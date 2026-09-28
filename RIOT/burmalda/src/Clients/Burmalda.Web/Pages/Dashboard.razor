@@ -1,0 +1,147 @@
+@page "/dashboard"
+@inject AuthSession Auth
+@inject GatewayApiClient Api
+
+<PageTitle>My account · Burmalda</PageTitle>
+
+@if (!Auth.IsAuthenticated)
+{
+    <SignInPrompt />
+}
+else
+{
+    <header class="dashboard-heading">
+        <div>
+            <span class="eyebrow">READER LEDGER · @DateTime.Now.ToString("dd MMM yyyy").ToUpperInvariant()</span>
+            <h1>Good to see you,<br /><em>@FirstName.</em></h1>
+        </div>
+        <a class="button button-primary" href="discover">Borrow a book →</a>
+    </header>
+
+    @if (loading)
+    {
+        <div class="loading-line"><span></span> Balancing your ledger…</div>
+    }
+    else if (!string.IsNullOrWhiteSpace(error))
+    {
+        <div class="form-error">@error</div>
+    }
+    else
+    {
+        <section class="metric-grid">
+            <article class="metric-card metric-primary">
+                <span>AVAILABLE BALANCE</span>
+                <strong>@wallet?.Available.ToString("0.##") <small>BD</small></strong>
+                <p>@wallet?.Reserved.ToString("0.##") BD currently reserved</p>
+                <div class="metric-mark">БД</div>
+            </article>
+            <article class="metric-card">
+                <span>TRUST SCORE</span>
+                <strong>@reputation?.Score <small>/ 1000</small></strong>
+                <p>@reputation?.SuccessfulReturns successful returns</p>
+                <div class="score-rule"><i style="width: @ScoreWidth"></i></div>
+            </article>
+            <article class="metric-card">
+                <span>ACTIVE EXCHANGES</span>
+                <strong>@ActiveLoans <small>books</small></strong>
+                <p>@loans.Count total loan records</p>
+                <a href="loans">Open loan desk →</a>
+            </article>
+            <article class="metric-card">
+                <span>UNREAD NOTICES</span>
+                <strong>@unread <small>new</small></strong>
+                <p>Handover and return updates</p>
+                <a href="notifications">Read notices →</a>
+            </article>
+        </section>
+
+        <section class="dashboard-columns">
+            <div class="section-block">
+                <div class="section-title">
+                    <div><span class="eyebrow">RECENT ACTIVITY</span><h2>Kindness ledger</h2></div>
+                    <a class="text-link" href="dashboard">All entries</a>
+                </div>
+                @if (transactions.Count == 0)
+                {
+                    <div class="empty-row">Your first ledger entries are on their way.</div>
+                }
+                else
+                {
+                    <div class="ledger-list">
+                        @foreach (var item in transactions.Take(6))
+                        {
+                            <article>
+                                <span class="ledger-sign @(item.Amount >= 0 ? "positive" : "negative")">@(item.Amount >= 0 ? "+" : "−")</span>
+                                <div><strong>@item.Description</strong><small>@item.CreatedAt.LocalDateTime.ToString("dd MMM · HH:mm")</small></div>
+                                <b>@(item.Amount > 0 ? "+" : "")@item.Amount.ToString("0.##") BD</b>
+                            </article>
+                        }
+                    </div>
+                }
+            </div>
+            <aside class="community-note">
+                <span class="section-index">NOTE</span>
+                <h2>A healthy shelf is a moving shelf.</h2>
+                <p>Books you lend fund the books you borrow. Returns made on time strengthen both your balance and your reputation.</p>
+                <a href="shelf">Add a book to circulation →</a>
+            </aside>
+        </section>
+    }
+}
+
+@code {
+    private WalletSummary? wallet;
+    private ReputationSummary? reputation;
+    private IReadOnlyList<LoanItem> loans = [];
+    private IReadOnlyList<TransactionItem> transactions = [];
+    private int unread;
+    private bool loading = true;
+    private string? error;
+
+    private string FirstName => Auth.Current!.DisplayName.Split(' ', StringSplitOptions.RemoveEmptyEntries).FirstOrDefault() ?? "reader";
+    private int ActiveLoans => loans.Count(x => x.Status is 0 or 1 or 5 or 6 or 8);
+    private string ScoreWidth => $"{Math.Clamp(reputation?.Score ?? 0, 0, 1000) / 10}%";
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!Auth.IsAuthenticated)
+        {
+            loading = false;
+            return;
+        }
+
+        for (var attempt = 1; attempt <= 5; attempt++)
+        {
+            try
+            {
+                var walletTask = Api.GetWalletAsync();
+                var repTask = Api.GetReputationAsync();
+                var loanTask = Api.GetMyLoansAsync();
+                var transactionTask = Api.GetTransactionsAsync();
+                var noticeTask = Api.GetUnreadCountAsync();
+
+                await Task.WhenAll(walletTask, repTask, loanTask, transactionTask, noticeTask);
+
+                wallet = await walletTask;
+                reputation = await repTask;
+                loans = await loanTask;
+                transactions = await transactionTask;
+                unread = (await noticeTask).Count;
+                error = null;
+                break;
+            }
+            catch (ApiException ex) when (attempt < 5)
+            {
+                error = ex.Message;
+                await Task.Delay(600 * attempt);
+            }
+            catch (Exception ex) when (ex is ApiException or HttpRequestException)
+            {
+                error = ex.Message;
+                break;
+            }
+        }
+
+        loading = false;
+    }
+}

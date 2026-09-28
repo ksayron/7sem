@@ -1,0 +1,87 @@
+name: burmalda
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: burmalda-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_ADMIN_USER:-burmalda_admin}
+      POSTGRES_PASSWORD: ${POSTGRES_ADMIN_PASSWORD:-burmalda_admin_dev}
+      POSTGRES_DB: postgres
+      IDENTITY_DB_PASSWORD: ${IDENTITY_DB_PASSWORD:-identity_dev}
+      CATALOG_DB_PASSWORD: ${CATALOG_DB_PASSWORD:-catalog_dev}
+      LENDING_DB_PASSWORD: ${LENDING_DB_PASSWORD:-lending_dev}
+      ECONOMY_DB_PASSWORD: ${ECONOMY_DB_PASSWORD:-economy_dev}
+      REPUTATION_DB_PASSWORD: ${REPUTATION_DB_PASSWORD:-reputation_dev}
+      NOTIFICATION_DB_PASSWORD: ${NOTIFICATION_DB_PASSWORD:-notification_dev}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./docker/postgres/init-databases.sh:/docker-entrypoint-initdb.d/10-init-databases.sh:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+    networks:
+      - burmalda
+
+  rabbitmq:
+    image: rabbitmq:4-management-alpine
+    container_name: burmalda-rabbitmq
+    restart: unless-stopped
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER:-burmalda}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD:-burmalda_dev}
+    ports:
+      - "${RABBITMQ_AMQP_PORT:-5672}:5672"
+      - "${RABBITMQ_MANAGEMENT_PORT:-15672}:15672"
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmq-diagnostics", "-q", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+    networks:
+      - burmalda
+
+  jaeger:
+    image: jaegertracing/all-in-one:1.68.0
+    container_name: burmalda-jaeger
+    restart: unless-stopped
+    environment:
+      COLLECTOR_OTLP_ENABLED: "true"
+    ports:
+      - "${JAEGER_UI_PORT:-16686}:16686"
+    networks:
+      - burmalda
+
+  otel-collector:
+    image: otel/opentelemetry-collector-contrib:0.120.0
+    container_name: burmalda-otel-collector
+    restart: unless-stopped
+    command: ["--config=/etc/otelcol-contrib/config.yaml"]
+    volumes:
+      - ./docker/otel-collector/config.yaml:/etc/otelcol-contrib/config.yaml:ro
+    ports:
+      - "${OTEL_GRPC_PORT:-4317}:4317"
+      - "${OTEL_HTTP_PORT:-4318}:4318"
+      - "${METRICS_PORT:-8889}:8889"
+    depends_on:
+      jaeger:
+        condition: service_started
+    networks:
+      - burmalda
+
+volumes:
+  postgres-data:
+  rabbitmq-data:
+
+networks:
+  burmalda:
+    name: burmalda

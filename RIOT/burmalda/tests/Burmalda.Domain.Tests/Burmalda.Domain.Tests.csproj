@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup><IsPackable>false</IsPackable><IsTestProject>true</IsTestProject></PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit" />
+    <PackageReference Include="xunit.runner.visualstudio"><PrivateAssets>all</PrivateAssets></PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../src/Services/Lending/Burmalda.Lending.Api/Burmalda.Lending.Api.csproj" />
+    <ProjectReference Include="../../src/Services/Economy/Burmalda.Economy.Api/Burmalda.Economy.Api.csproj" />
+    <ProjectReference Include="../../src/Services/Catalog/Burmalda.Catalog.Api/Burmalda.Catalog.Api.csproj" />
+  </ItemGroup>
+</Project>

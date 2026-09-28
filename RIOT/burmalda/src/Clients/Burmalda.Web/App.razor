@@ -1,0 +1,17 @@
+﻿<Router AppAssembly="@typeof(App).Assembly">
+    <Found Context="routeData">
+        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
+    </Found>
+    <NotFound>
+        <PageTitle>Page not found · Burmalda</PageTitle>
+        <LayoutView Layout="@typeof(MainLayout)">
+            <section class="empty-state">
+                <span class="eyebrow">404 · MISPLACED CHAPTER</span>
+                <h1>This page wandered off the shelf.</h1>
+                <p>The link may be old, or the story may have moved.</p>
+                <a class="button button-primary" href="">Return home</a>
+            </section>
+        </LayoutView>
+    </NotFound>
+</Router>

@@ -1,0 +1,111 @@
+@page "/discover"
+@inject AuthSession Auth
+@inject GatewayApiClient Api
+
+<PageTitle>Discover books · Burmalda</PageTitle>
+
+@if (!Auth.IsAuthenticated)
+{
+    <SignInPrompt />
+}
+else
+{
+    <header class="page-heading">
+        <div><span class="eyebrow">CATALOGUE · LIVE AVAILABILITY</span><h1>Find a book<br />worth passing on.</h1></div>
+        <p>Search by title, author, genre, or ISBN. Every result represents a real copy offered by someone in the community.</p>
+    </header>
+
+    <div class="search-bar">
+        <span>⌕</span>
+        <input @bind="query" @bind:event="oninput" @onkeydown="SearchOnEnter" placeholder="Try ‘Bulgakov’, ‘fantasy’, or an ISBN…" aria-label="Search the catalogue" />
+        <button class="button button-dark" @onclick="Search" disabled="@loading">Search</button>
+    </div>
+
+    @if (!string.IsNullOrWhiteSpace(message)) { <div class="notice-banner">@message</div> }
+    @if (!string.IsNullOrWhiteSpace(error)) { <div class="form-error">@error</div> }
+
+    @if (loading)
+    {
+        <div class="loading-line"><span></span> Reading the shelves…</div>
+    }
+    else if (books.Count == 0)
+    {
+        <section class="empty-state compact"><h2>No copies found.</h2><p>Try a broader phrase—or list the book from your own shelf.</p></section>
+    }
+    else
+    {
+        <div class="results-meta"><strong>@books.Count</strong> titles in circulation <span>Updated just now</span></div>
+        <div class="book-grid">
+            @foreach (var book in books)
+            {
+                <article class="catalog-card">
+                    <div class="cover-swatch @CoverClass(book.BookId)"><span>@BookInitials(book.Title)</span><small>@book.PublicationLabel()</small></div>
+                    <div class="catalog-card-body">
+                        <div class="catalog-kicker">@book.GenresText</div>
+                        <h2>@book.Title</h2>
+                        <p>@book.AuthorsText</p>
+                        <div class="catalog-facts"><span><b>@book.AvailableCopies</b> available</span><span>from <b>@book.MinimumPrice?.ToString("0.##") BD</b></span></div>
+                        <button class="text-button" @onclick="() => ToggleCopies(book.BookId)">@(expandedBook == book.BookId ? "Hide copies ↑" : "Choose a copy →")</button>
+                    </div>
+                    @if (expandedBook == book.BookId)
+                    {
+                        <div class="copy-drawer">
+                            @if (copiesLoading) { <span>Checking copies…</span> }
+                            else foreach (var copy in copies)
+                            {
+                                <div class="copy-row">
+                                    <div><strong>@Condition(copy.Condition)</strong><small>@copy.Location · @copy.MaximumLoanDays days</small></div>
+                                    <b>@copy.LendingPrice.ToString("0.##") BD</b>
+                                    <button class="button button-small" @onclick="() => Request(copy.Id)">Request</button>
+                                </div>
+                            }
+                        </div>
+                    }
+                </article>
+            }
+        </div>
+    }
+}
+
+@code {
+    private string query = "";
+    private List<BookSearchItem> books = [];
+    private IReadOnlyList<BookCopyItem> copies = [];
+    private Guid? expandedBook;
+    private bool loading = true;
+    private bool copiesLoading;
+    private string? error;
+    private string? message;
+
+    protected override async Task OnInitializedAsync() { if (Auth.IsAuthenticated) await Search(); else loading = false; }
+
+    private async Task Search()
+    {
+        loading = true; error = null; message = null;
+        try { books = (await Api.SearchBooksAsync(query)).ToList(); }
+        catch (Exception ex) when (ex is ApiException or HttpRequestException) { error = ex.Message; }
+        finally { loading = false; }
+    }
+
+    private async Task SearchOnEnter(KeyboardEventArgs args) { if (args.Key == "Enter") await Search(); }
+
+    private async Task ToggleCopies(Guid bookId)
+    {
+        if (expandedBook == bookId) { expandedBook = null; return; }
+        expandedBook = bookId; copiesLoading = true;
+        try { copies = await Api.GetCopiesAsync(bookId); }
+        catch (Exception ex) when (ex is ApiException or HttpRequestException) { error = ex.Message; }
+        finally { copiesLoading = false; }
+    }
+
+    private async Task Request(Guid copyId)
+    {
+        error = null;
+        try { var receipt = await Api.RequestLoanAsync(copyId); message = $"Request accepted. Reservation workflow {receipt.Id.ToString()[..8]} is now running."; }
+        catch (Exception ex) when (ex is ApiException or HttpRequestException) { error = ex.Message; }
+    }
+
+    private static string Condition(int value) => new[] { "New", "Excellent", "Good", "Used", "Well-loved" }.ElementAtOrDefault(value) ?? "Unknown";
+    private static string BookInitials(string title) => string.Concat(title.Split(' ', StringSplitOptions.RemoveEmptyEntries).Take(2).Select(x => char.ToUpperInvariant(x[0])));
+    private static string CoverClass(Guid id) => $"cover-{Math.Abs(id.GetHashCode()) % 5}";
+}

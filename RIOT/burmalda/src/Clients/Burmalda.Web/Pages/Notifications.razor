@@ -1,0 +1,38 @@
+@page "/notifications"
+@inject AuthSession Auth
+@inject GatewayApiClient Api
+
+<PageTitle>Notices · Burmalda</PageTitle>
+
+@if (!Auth.IsAuthenticated) { <SignInPrompt /> }
+else
+{
+    <header class="section-title notice-heading"><div><span class="eyebrow">YOUR COMMUNITY POSTBOX</span><h1>Notices & updates</h1></div><button class="text-button" @onclick="MarkAll">Mark all as read</button></header>
+    @if (!string.IsNullOrWhiteSpace(error)) { <div class="form-error">@error</div> }
+    @if (loading) { <div class="loading-line"><span></span> Opening the postbox…</div> }
+    else if (items.Count == 0) { <section class="empty-state compact"><h2>Your postbox is quiet.</h2><p>Loan and community updates will appear here.</p></section> }
+    else
+    {
+        <div class="notification-list">
+            @foreach (var item in items)
+            {
+                <article class="@(item.ReadAt is null ? "unread" : "")" @onclick="() => MarkRead(item)">
+                    <span class="notice-symbol">@Symbol(item.Type)</span>
+                    <div><span class="notice-type">@item.Type</span><h2>@item.Title</h2><p>@item.Body</p><small>@item.CreatedAt.LocalDateTime.ToString("dd MMM yyyy · HH:mm")</small></div>
+                    @if (item.ReadAt is null) { <i title="Unread"></i> }
+                </article>
+            }
+        </div>
+    }
+}
+
+@code {
+    private IReadOnlyList<NotificationItem> items = [];
+    private bool loading = true;
+    private string? error;
+    protected override async Task OnInitializedAsync() { if (Auth.IsAuthenticated) await Load(); else loading = false; }
+    private async Task Load() { try { items = await Api.GetNotificationsAsync(); } catch (Exception ex) when (ex is ApiException or HttpRequestException) { error = ex.Message; } finally { loading = false; } }
+    private async Task MarkRead(NotificationItem item) { if (item.ReadAt is not null) return; try { await Api.MarkNotificationReadAsync(item.Id); await Load(); } catch (ApiException ex) { error = ex.Message; } }
+    private async Task MarkAll() { try { await Api.MarkAllNotificationsReadAsync(); await Load(); } catch (ApiException ex) { error = ex.Message; } }
+    private static string Symbol(string type) => type.Contains("Return", StringComparison.OrdinalIgnoreCase) ? "↩" : type.Contains("Loan", StringComparison.OrdinalIgnoreCase) ? "⇄" : type.Contains("Fine", StringComparison.OrdinalIgnoreCase) ? "!" : "✦";
+}

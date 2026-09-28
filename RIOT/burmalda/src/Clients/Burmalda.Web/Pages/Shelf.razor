@@ -1,0 +1,88 @@
+@page "/shelf"
+@inject AuthSession Auth
+@inject GatewayApiClient Api
+
+<PageTitle>My shelf · Burmalda</PageTitle>
+
+@if (!Auth.IsAuthenticated) { <SignInPrompt /> }
+else
+{
+    <header class="page-heading compact-heading">
+        <div><span class="eyebrow">YOUR PHYSICAL COLLECTION</span><h1>Put a book<br />into motion.</h1></div>
+        <p>Create the bibliographic record once, then describe the physical copy you are making available.</p>
+    </header>
+
+    @if (!string.IsNullOrWhiteSpace(message)) { <div class="notice-banner">@message</div> }
+    @if (!string.IsNullOrWhiteSpace(error)) { <div class="form-error">@error</div> }
+
+    <div class="split-forms">
+        <section class="form-card editorial-form">
+            <div class="form-card-head"><span>STEP 01 · THE BOOK</span><b>Bibliography</b></div>
+            <EditForm Model="bookForm" OnValidSubmit="CreateBook">
+                <DataAnnotationsValidator />
+                <div class="field-grid"><label>ISBN<InputText @bind-Value="bookForm.Isbn" /></label><label>Year<InputNumber @bind-Value="bookForm.PublicationYear" /></label></div>
+                <label>Title<InputText @bind-Value="bookForm.Title" /></label>
+                <label>Authors <small>comma-separated</small><InputText @bind-Value="bookForm.Authors" /></label>
+                <label>Genres <small>comma-separated</small><InputText @bind-Value="bookForm.Genres" /></label>
+                <label>Description<InputTextArea @bind-Value="bookForm.Description" /></label>
+                <label>Publisher<InputText @bind-Value="bookForm.Publisher" /></label>
+                <ValidationSummary />
+                <button class="button button-dark button-full" disabled="@busy">Create book record</button>
+            </EditForm>
+        </section>
+        <section class="form-card editorial-form accent-form">
+            <div class="form-card-head"><span>STEP 02 · YOUR COPY</span><b>Offer</b></div>
+            <EditForm Model="copyForm" OnValidSubmit="ListCopy">
+                <DataAnnotationsValidator />
+                <label>Book ID<InputText @bind-Value="BookIdText" placeholder="Created automatically in step 01" /></label>
+                <label>Condition<InputSelect @bind-Value="copyForm.Condition"><option value="0">New</option><option value="1">Excellent</option><option value="2">Good</option><option value="3">Used</option><option value="4">Poor</option></InputSelect></label>
+                <div class="field-grid"><label>Price, BD<InputNumber @bind-Value="copyForm.LendingPrice" /></label><label>Loan days<InputNumber @bind-Value="copyForm.MaximumLoanDays" /></label></div>
+                <label>Handover location<InputText @bind-Value="copyForm.Location" /></label>
+                <ValidationSummary />
+                <button class="button button-primary button-full" disabled="@busy">List this copy</button>
+            </EditForm>
+        </section>
+    </div>
+
+    <section class="section-block">
+        <div class="section-title"><div><span class="eyebrow">CURRENT INVENTORY</span><h2>Copies on your shelf</h2></div><button class="text-button" @onclick="LoadCopies">Refresh ↻</button></div>
+        @if (copies.Count == 0) { <div class="empty-row">No copies listed yet. Your first one starts above.</div> }
+        else
+        {
+            <div class="data-list">
+                @foreach (var copy in copies)
+                {
+                    <article><span class="status-dot status-@copy.Status"></span><div><strong>Copy @copy.Id.ToString()[..8]</strong><small>@copy.Location · @copy.MaximumLoanDays days · @Status(copy.Status)</small></div><b>@copy.LendingPrice.ToString("0.##") BD</b></article>
+                }
+            </div>
+        }
+    </section>
+}
+
+@code {
+    private readonly CreateBookForm bookForm = new();
+    private readonly ListCopyForm copyForm = new();
+    private IReadOnlyList<OwnedCopy> copies = [];
+    private bool busy;
+    private string? message;
+    private string? error;
+    private string BookIdText { get => copyForm.BookId?.ToString() ?? ""; set => copyForm.BookId = Guid.TryParse(value, out var id) ? id : null; }
+
+    protected override async Task OnInitializedAsync() { if (Auth.IsAuthenticated) await LoadCopies(); }
+    private async Task LoadCopies() { try { copies = await Api.GetMyCopiesAsync(); } catch (Exception ex) when (ex is ApiException or HttpRequestException) { error = ex.Message; } }
+    private async Task CreateBook()
+    {
+        busy = true; error = null;
+        try { var created = await Api.CreateBookAsync(bookForm); copyForm.BookId = created.Id; message = "Book record created. Now describe your physical copy."; }
+        catch (Exception ex) when (ex is ApiException or HttpRequestException) { error = ex.Message; }
+        finally { busy = false; }
+    }
+    private async Task ListCopy()
+    {
+        busy = true; error = null;
+        try { await Api.ListCopyAsync(copyForm); message = "Your copy is now available to the community."; await LoadCopies(); }
+        catch (Exception ex) when (ex is ApiException or HttpRequestException) { error = ex.Message; }
+        finally { busy = false; }
+    }
+    private static string Status(int value) => new[] { "Available", "Reserved", "On loan", "Unavailable" }.ElementAtOrDefault(value) ?? "Unknown";
+}

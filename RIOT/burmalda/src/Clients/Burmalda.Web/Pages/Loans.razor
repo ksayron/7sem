@@ -1,0 +1,63 @@
+@page "/loans"
+@inject AuthSession Auth
+@inject GatewayApiClient Api
+
+<PageTitle>Loans · Burmalda</PageTitle>
+
+@if (!Auth.IsAuthenticated) { <SignInPrompt /> }
+else
+{
+    <header class="page-heading compact-heading"><div><span class="eyebrow">LOAN DESK · LIVE WORKFLOWS</span><h1>Every book has<br />a journey.</h1></div><p>Accept incoming requests, confirm handovers, and keep returns moving from one trusted reader to another.</p></header>
+    @if (!string.IsNullOrWhiteSpace(message)) { <div class="notice-banner">@message</div> }
+    @if (!string.IsNullOrWhiteSpace(error)) { <div class="form-error">@error</div> }
+    @if (loading) { <div class="loading-line"><span></span> Checking loan journeys…</div> }
+    else if (loans.Count == 0) { <section class="empty-state compact"><h2>No journeys yet.</h2><p>Request a book from Discover, or wait for someone to request yours.</p><a class="button button-primary" href="discover">Discover books</a></section> }
+    else
+    {
+        <div class="loan-board">
+            @foreach (var loan in loans)
+            {
+                var isOwner = loan.OwnerId == Auth.Current!.Id;
+                <article class="loan-card">
+                    <div class="loan-card-top"><span class="role-label">@(isOwner ? "YOU ARE LENDING" : "YOU ARE BORROWING")</span><span class="status-pill status-loan-@loan.Status">@Status(loan.Status)</span></div>
+                    <div class="loan-book-mark">@loan.Id.ToString()[..2].ToUpperInvariant()</div>
+                    <div class="loan-main"><h2>Loan @loan.Id.ToString()[..8]</h2><p>Copy @loan.CopyId.ToString()[..8] · @loan.Price.ToString("0.##") BD · @loan.MaximumLoanDays days</p>
+                        <div class="loan-dates"><span>CREATED <b>@loan.CreatedAt.LocalDateTime.ToString("dd MMM")</b></span><span>DUE <b>@(loan.DueAt?.LocalDateTime.ToString("dd MMM") ?? "—")</b></span></div>
+                    </div>
+                    <div class="loan-actions">
+                        @if (loan.Status == 0 && isOwner)
+                        {
+                            <button class="button button-primary" @onclick="() => Accept(loan.Id)">Accept</button><button class="button button-quiet" @onclick="() => Reject(loan.Id)">Reject</button>
+                        }
+                        @if (loan.Status is 0 or 1 && !isOwner) { <button class="button button-quiet" @onclick="() => Cancel(loan.Id)">Cancel request</button> }
+                        @if (loan.Status == 1 && !isOwner)
+                        {
+                            <input class="compact-input" @bind="handoverCodes[loan.Id]" placeholder="6-digit code" /><button class="button button-primary" @onclick="() => ConfirmHandover(loan.Id)">Confirm handover</button>
+                        }
+                        @if (loan.Status is 5 or 8 && !isOwner) { <button class="button button-primary" @onclick="() => InitiateReturn(loan.Id)">Start return</button> }
+                        @if (loan.Status == 6 && isOwner) { <button class="button button-primary" @onclick="() => ConfirmReturn(loan.Id)">Confirm returned</button> }
+                        @if (handoverCodes.TryGetValue(loan.Id, out var handoverCode) && isOwner && handoverCode.Length == 6) { <div class="handover-code">HANDOVER CODE <strong>@handoverCode</strong></div> }
+                    </div>
+                </article>
+            }
+        </div>
+    }
+}
+
+@code {
+    private IReadOnlyList<LoanItem> loans = [];
+    private readonly Dictionary<Guid, string> handoverCodes = [];
+    private bool loading = true;
+    private string? message;
+    private string? error;
+    protected override async Task OnInitializedAsync() { if (Auth.IsAuthenticated) await Load(); else loading = false; }
+    private async Task Load() { loading = true; try { loans = await Api.GetMyLoansAsync(); foreach (var loan in loans) handoverCodes.TryAdd(loan.Id, ""); } catch (Exception ex) when (ex is ApiException or HttpRequestException) { error = ex.Message; } finally { loading = false; } }
+    private async Task Act(Func<Task> action, string success) { error = null; try { await action(); message = success; await Load(); } catch (Exception ex) when (ex is ApiException or HttpRequestException) { error = ex.Message; } }
+    private async Task Accept(Guid id) { try { var code = await Api.AcceptLoanAsync(id); handoverCodes[id] = code; message = "Request accepted. Share the handover code in person."; await Load(); } catch (Exception ex) when (ex is ApiException or HttpRequestException) { error = ex.Message; } }
+    private Task Reject(Guid id) => Act(() => Api.RejectLoanAsync(id, "Owner declined the request."), "Request declined and reservations released.");
+    private Task Cancel(Guid id) => Act(() => Api.CancelLoanAsync(id), "Request cancelled.");
+    private Task InitiateReturn(Guid id) => Act(() => Api.InitiateReturnAsync(id), "Return started. The owner can now confirm receipt.");
+    private Task ConfirmReturn(Guid id) => Act(() => Api.ConfirmReturnAsync(id), "Return confirmed. The loan is complete.");
+    private Task ConfirmHandover(Guid id) => Act(() => Api.ConfirmHandoverAsync(id, handoverCodes.GetValueOrDefault(id, "")), "Handover confirmed. Enjoy the book.");
+    private static string Status(int value) => new[] { "Requested", "Accepted", "Rejected", "Cancelled", "Handover pending", "Active", "Return pending", "Completed", "Overdue", "Disputed", "Lost" }.ElementAtOrDefault(value) ?? "Unknown";
+}

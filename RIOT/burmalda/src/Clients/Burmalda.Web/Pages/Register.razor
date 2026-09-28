@@ -1,0 +1,43 @@
+@page "/register"
+@inject AuthSession Auth
+@inject NavigationManager Navigation
+
+<PageTitle>Join · Burmalda</PageTitle>
+
+<section class="auth-scene register-scene">
+    <div class="auth-intro">
+        <span class="eyebrow">BECOME PART OF THE CIRCULATION</span>
+        <h1>One account.<br /><em>A thousand shelves.</em></h1>
+        <p>New members receive 30 BD—enough to begin borrowing while their own books find new readers.</p>
+    </div>
+    <div class="form-card">
+        <div class="form-card-head"><span>NEW READER CARD</span><b>+30 BD</b></div>
+        <EditForm Model="form" OnValidSubmit="Submit">
+            <DataAnnotationsValidator />
+            <label>Display name<InputText @bind-Value="form.DisplayName" autocomplete="name" /></label>
+            <ValidationMessage For="@(() => form.DisplayName)" />
+            <label>Email address<InputText @bind-Value="form.Email" type="email" autocomplete="email" /></label>
+            <ValidationMessage For="@(() => form.Email)" />
+            <label>Password <small>8 characters minimum</small><InputText @bind-Value="form.Password" type="password" autocomplete="new-password" /></label>
+            <ValidationMessage For="@(() => form.Password)" />
+            @if (!string.IsNullOrWhiteSpace(error)) { <div class="form-error" role="alert">@error</div> }
+            <button class="button button-primary button-full" disabled="@busy">@(busy ? "Creating your reader card…" : "Join Burmalda")</button>
+        </EditForm>
+        <p class="form-foot">Already a member? <a href="login">Sign in</a></p>
+    </div>
+</section>
+
+@code {
+    private readonly RegisterForm form = new();
+    private bool busy;
+    private string? error;
+
+    private async Task Submit()
+    {
+        busy = true; error = null;
+        try { await Auth.RegisterAsync(form); Navigation.NavigateTo("/dashboard"); }
+        catch (ApiException ex) { error = ex.Message; }
+        catch (HttpRequestException) { error = "The Burmalda gateway is not reachable yet."; }
+        finally { busy = false; }
+    }
+}

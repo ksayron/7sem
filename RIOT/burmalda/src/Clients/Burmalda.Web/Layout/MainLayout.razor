@@ -1,0 +1,50 @@
+@inherits LayoutComponentBase
+@implements IDisposable
+@inject AuthSession Auth
+@inject NavigationManager Navigation
+
+<div class="app-shell">
+    <aside class="app-sidebar">
+        <NavMenu />
+    </aside>
+    <main class="app-main">
+        <header class="app-topbar">
+            <a class="mobile-mark" href="" aria-label="Burmalda home">БД</a>
+            <div class="topbar-context">
+                <span class="pulse-dot"></span>
+                <span>Community exchange is open</span>
+            </div>
+            @if (Auth.IsAuthenticated)
+            {
+                <div class="identity-chip">
+                    <span class="identity-avatar">@Initials</span>
+                    <span><strong>@Auth.Current!.DisplayName</strong><small>@Auth.Current.Role</small></span>
+                    <button class="icon-button" title="Sign out" @onclick="SignOut">↗</button>
+                </div>
+            }
+            else
+            {
+                <a class="button button-small" href="login">Sign in</a>
+            }
+        </header>
+        <article class="page-content">
+            @Body
+        </article>
+    </main>
+</div>
+
+@code {
+    private string Initials => string.Join("", (Auth.Current?.DisplayName ?? "B")
+        .Split(' ', StringSplitOptions.RemoveEmptyEntries).Take(2).Select(x => char.ToUpperInvariant(x[0])));
+
+    protected override void OnInitialized() => Auth.Changed += Refresh;
+    private void Refresh() => InvokeAsync(StateHasChanged);
+
+    private async Task SignOut()
+    {
+        await Auth.LogoutAsync();
+        Navigation.NavigateTo("/");
+    }
+
+    public void Dispose() => Auth.Changed -= Refresh;
+}

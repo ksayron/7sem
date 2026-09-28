@@ -1,0 +1,8 @@
+.env
+
+# Local IDE and build output
+.idea/
+.vs/
+**/bin/
+**/obj/
+

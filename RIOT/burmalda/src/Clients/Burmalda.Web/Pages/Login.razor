@@ -1,0 +1,41 @@
+@page "/login"
+@inject AuthSession Auth
+@inject NavigationManager Navigation
+
+<PageTitle>Sign in · Burmalda</PageTitle>
+
+<section class="auth-scene">
+    <div class="auth-intro">
+        <span class="eyebrow">WELCOME BACK, READER</span>
+        <h1>Return to your<br /><em>shared shelf.</em></h1>
+        <blockquote>“A book is a gift you can open again and again.”</blockquote>
+    </div>
+    <div class="form-card">
+        <div class="form-card-head"><span>MEMBER ACCESS</span><b>№ 01</b></div>
+        <EditForm Model="form" OnValidSubmit="Submit">
+            <DataAnnotationsValidator />
+            <label>Email address<InputText @bind-Value="form.Email" type="email" autocomplete="email" /></label>
+            <ValidationMessage For="@(() => form.Email)" />
+            <label>Password<InputText @bind-Value="form.Password" type="password" autocomplete="current-password" /></label>
+            <ValidationMessage For="@(() => form.Password)" />
+            @if (!string.IsNullOrWhiteSpace(error)) { <div class="form-error" role="alert">@error</div> }
+            <button class="button button-primary button-full" disabled="@busy">@(busy ? "Opening your shelf…" : "Sign in")</button>
+        </EditForm>
+        <p class="form-foot">New to the exchange? <a href="register">Create an account</a></p>
+    </div>
+</section>
+
+@code {
+    private readonly LoginForm form = new();
+    private bool busy;
+    private string? error;
+
+    private async Task Submit()
+    {
+        busy = true; error = null;
+        try { await Auth.LoginAsync(form); Navigation.NavigateTo("/dashboard"); }
+        catch (ApiException ex) { error = ex.Message; }
+        catch (HttpRequestException) { error = "The Burmalda gateway is not reachable yet."; }
+        finally { busy = false; }
+    }
+}

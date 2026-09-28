@@ -1,0 +1,36 @@
+@page "/admin"
+@inject AuthSession Auth
+@inject GatewayApiClient Api
+
+<PageTitle>Admin pulse · Burmalda</PageTitle>
+
+@if (!Auth.IsAdmin)
+{
+    <section class="empty-state"><span class="eyebrow">ADMINISTRATORS ONLY</span><h1>This desk requires a different key.</h1><p>Operational controls are visible only to platform administrators.</p></section>
+}
+else
+{
+    <header class="page-heading compact-heading"><div><span class="eyebrow">OPERATIONS · SYSTEM PULSE</span><h1>Quiet systems.<br />Visible signals.</h1></div><p>A gateway-level view of every service boundary. Health is checked live; operational actions remain with the service that owns the data.</p></header>
+    @if (loading) { <div class="loading-line"><span></span> Checking service boundaries…</div> }
+    else if (!string.IsNullOrWhiteSpace(error)) { <div class="form-error">@error</div> }
+    else if (health is not null)
+    {
+        <div class="health-summary"><div><span class="pulse-dot"></span><strong>@HealthyCount / @health.Services.Count services healthy</strong></div><small>Checked @health.CheckedAt.LocalDateTime.ToString("HH:mm:ss")</small><button class="text-button" @onclick="Load">Check again ↻</button></div>
+        <div class="health-grid">
+            @foreach (var service in health.Services)
+            {
+                <article class="@(service.Value.Healthy ? "healthy" : "unhealthy")"><div class="service-glyph">@service.Key[..2].ToUpperInvariant()</div><div><span>@service.Key.ToUpperInvariant()</span><h2>@(service.Value.Healthy ? "Operational" : "Needs attention")</h2><p>@(service.Value.Healthy ? $"HTTP {service.Value.Status} · responding normally" : service.Value.Error)</p></div><i></i></article>
+            }
+        </div>
+        <div class="ops-links"><a href="http://localhost:16686" target="_blank">Open Jaeger traces ↗</a><a href="http://localhost:15672" target="_blank">Open RabbitMQ ↗</a><a href="http://localhost:8889/metrics" target="_blank">Inspect metrics ↗</a></div>
+    }
+}
+
+@code {
+    private SystemHealth? health;
+    private bool loading = true;
+    private string? error;
+    private int HealthyCount => health?.Services.Count(x => x.Value.Healthy) ?? 0;
+    protected override async Task OnInitializedAsync() { if (Auth.IsAdmin) await Load(); else loading = false; }
+    private async Task Load() { loading = true; error = null; try { health = await Api.GetSystemHealthAsync(); } catch (Exception ex) when (ex is ApiException or HttpRequestException) { error = ex.Message; } finally { loading = false; } }
+}

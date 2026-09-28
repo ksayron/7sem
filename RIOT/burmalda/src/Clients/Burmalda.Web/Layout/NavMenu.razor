@@ -1,0 +1,38 @@
+@implements IDisposable
+@inject AuthSession Auth
+
+<div class="brand-lockup">
+    <a href="" class="brand-mark" aria-label="Burmalda home">
+        <span class="brand-monogram">БД</span>
+        <span><strong>Burmalda</strong><small>Доброта</small></span>
+    </a>
+    <p>Books move.<br />Kindness circulates.</p>
+</div>
+
+<nav class="primary-nav" aria-label="Primary navigation">
+    <NavLink href="" Match="NavLinkMatch.All"><span>⌂</span> Home</NavLink>
+    @if (Auth.IsAuthenticated)
+    {
+        <NavLink href="discover"><span>⌕</span> Discover</NavLink>
+        <NavLink href="shelf"><span>▥</span> My shelf</NavLink>
+        <NavLink href="loans"><span>⇄</span> Loans</NavLink>
+        <NavLink href="dashboard"><span>◴</span> My account</NavLink>
+        <NavLink href="notifications"><span>◌</span> Notices</NavLink>
+        @if (Auth.IsAdmin)
+        {
+            <span class="nav-section">Operations</span>
+            <NavLink href="admin"><span>⌁</span> Admin pulse</NavLink>
+        }
+    }
+</nav>
+
+<div class="sidebar-foot">
+    <span class="tiny-label">COMMUNITY CURRENCY</span>
+    <div class="bd-stamp"><strong>BD</strong><span>Kindness<br />points</span></div>
+</div>
+
+@code {
+    protected override void OnInitialized() => Auth.Changed += Refresh;
+    private void Refresh() => InvokeAsync(StateHasChanged);
+    public void Dispose() => Auth.Changed -= Refresh;
+}
