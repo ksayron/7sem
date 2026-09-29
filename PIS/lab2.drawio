@@ -1,0 +1,1134 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" modified="2026-10-01T00:00:00.000Z" agent="Sensei++ IDEF0 generator" version="24.7.17" type="device" compressed="false">
+  <diagram id="context" name="A-0 · Контекст">
+    <mxGraphModel dx="2000" dy="1400" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2000" pageHeight="1400" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="context-v1" value="Sensei++ · Функциональная модель IDEF0" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=28;fontColor=#17212B;fontStyle=1;align=left;verticalAlign=middle;spacing=8;fillColor=none;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="40" y="25" width="1920" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="context-v2" value="Цель: связать обучение и инженерную работу с проверяемым развитием и достоверным описанием опыта." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=21;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=none;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="1920" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="context-v3" value="Узел: A-0    |    Модель «как будет»    |    Точка зрения: владелец системы и разработчик" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=18;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=none;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1340" width="1920" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="context-A0" value="Сопровождать профессиональное&#10;развитие разработчика&#10;&#10;Обучение · осмысление работы ·&#10;свидетельства · подтверждённый опыт&#10;&#10;A0" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=27;fontColor=#17212B;fontStyle=1;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="700" y="480" width="580" height="340" as="geometry" />
+        </mxCell>
+        <mxCell id="context-I1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.0;entryY=0.10294117647058823;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="context-A0">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="70" y="515" as="sourcePoint" />
+            <mxPoint x="700" y="515" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="context-v5" value="I1  Исходные понятия, материалы, упражнения и маршруты" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="75" y="462" width="575" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="context-I2" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.0;entryY=0.2911764705882353;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="context-A0">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="70" y="579" as="sourcePoint" />
+            <mxPoint x="700" y="579" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="context-v6" value="I2  Цели обучения, ответы, заметки и самооценки" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="75" y="526" width="575" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="context-I3" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.0;entryY=0.47941176470588237;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="context-A0">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="70" y="643" as="sourcePoint" />
+            <mxPoint x="700" y="643" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="context-v7" value="I3  Контекст работы, объяснения и сведения о личном вкладе" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="75" y="590" width="575" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="context-I4" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.0;entryY=0.6676470588235294;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="context-A0">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="70" y="707" as="sourcePoint" />
+            <mxPoint x="700" y="707" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="context-v8" value="I4  Учётные данные, локальные операции и резервные копии" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="75" y="654" width="575" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="context-I5" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.0;entryY=0.8558823529411764;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="context-A0">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="70" y="771" as="sourcePoint" />
+            <mxPoint x="700" y="771" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="context-v9" value="I5  Описание опыта и правки записей и представлений" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="75" y="718" width="575" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="context-O1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;exitX=1.0;exitY=0.10294117647058823;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="context-A0">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1280" y="515" as="sourcePoint" />
+            <mxPoint x="1930" y="515" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="context-v10" value="O1  Учебные материалы, маршрут и обратная связь" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1330" y="462" width="590" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="context-O2" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;exitX=1.0;exitY=0.2911764705882353;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="context-A0">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1280" y="579" as="sourcePoint" />
+            <mxPoint x="1930" y="579" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="context-v11" value="O2  Хронология работы и подтверждение рассмотренной версии" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1330" y="526" width="590" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="context-O3" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;exitX=1.0;exitY=0.47941176470588237;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="context-A0">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1280" y="643" as="sourcePoint" />
+            <mxPoint x="1930" y="643" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="context-v12" value="O3  История практики, свидетельства и профиль развития" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1330" y="590" width="590" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="context-O4" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;exitX=1.0;exitY=0.6676470588235294;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="context-A0">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1280" y="707" as="sourcePoint" />
+            <mxPoint x="1930" y="707" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="context-v13" value="O4  Подтверждённый опыт и проверенные материалы представления" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1330" y="654" width="590" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="context-O5" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;exitX=1.0;exitY=0.8558823529411764;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="context-A0">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1280" y="771" as="sourcePoint" />
+            <mxPoint x="1930" y="771" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="context-v14" value="O5  Доступ, автономные пакеты, согласованные данные и отчёты эксплуатации" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1330" y="718" width="590" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="context-C1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.09482758620689655;entryY=0.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="context-A0">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="755" y="265" as="sourcePoint" />
+            <mxPoint x="755" y="480" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="context-v15" value="C1  Правила подготовки контента и организации обучения" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=18;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="610" y="165" width="290" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="context-C2" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.3620689655172414;entryY=0.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="context-A0">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="910" y="395" as="sourcePoint" />
+            <mxPoint x="910" y="480" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="context-v16" value="C2  Правила оценки, происхождения и интерпретации свидетельств" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=18;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="765" y="295" width="290" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="context-C3" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.6293103448275862;entryY=0.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="context-A0">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1065" y="265" as="sourcePoint" />
+            <mxPoint x="1065" y="480" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="context-v17" value="C3  Явные решения пользователя: подтверждение, оспаривание, отзыв, экспорт" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=18;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="920" y="165" width="290" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="context-C4" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.896551724137931;entryY=0.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="context-A0">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1220" y="395" as="sourcePoint" />
+            <mxPoint x="1220" y="480" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="context-v18" value="C4  Политики доступа, приватности, версий, синхронизации и хранения" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=18;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1075" y="295" width="290" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="context-M1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.11206896551724138;entryY=1.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="context-A0">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="315" y="1120" as="sourcePoint" />
+            <mxPoint x="765" y="820" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="315" y="1050" />
+              <mxPoint x="765" y="1050" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="context-v19" value="M1  Разработчик / обучающийся" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="80" y="1130" width="470" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="context-M2" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.3706896551724138;entryY=1.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="context-A0">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="800" y="1120" as="sourcePoint" />
+            <mxPoint x="915" y="820" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="800" y="1062" />
+              <mxPoint x="915" y="1062" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="context-v20" value="M2  Автор материалов и администратор" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="565" y="1130" width="470" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="context-M3" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.6293103448275862;entryY=1.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="context-A0">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1285" y="1120" as="sourcePoint" />
+            <mxPoint x="1065" y="820" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1285" y="1074" />
+              <mxPoint x="1065" y="1074" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="context-v21" value="M3  Клиенты, сервер, хранилища данных и средства синхронизации" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1050" y="1130" width="470" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="context-M4" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.8879310344827587;entryY=1.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="context-A0">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1770" y="1120" as="sourcePoint" />
+            <mxPoint x="1215" y="820" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1770" y="1086" />
+              <mxPoint x="1215" y="1086" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="context-v22" value="M4  Необязательные средства ИИ и разрешённые интеграции" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1535" y="1130" width="470" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="context-v23" value="ICOM: слева — вход; сверху — управление; справа — выход; снизу — механизм.&#10;Подтверждение обсуждения, подтверждение фактов опыта и разрешение экспорта являются отдельными решениями." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=none;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="140" y="1240" width="1720" height="65" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="decomposition" name="A0 · Декомпозиция">
+    <mxGraphModel dx="2400" dy="1570" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2400" pageHeight="1570" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="decomposition-v1" value="Sensei++ · Функциональная модель IDEF0" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=28;fontColor=#17212B;fontStyle=1;align=left;verticalAlign=middle;spacing=8;fillColor=none;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="40" y="25" width="2320" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-v2" value="Шесть функций полного целевого продукта. Повторённый код граничной стрелки обозначает тот же поток A-0." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=21;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=none;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="2320" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-v3" value="Узел: A0    |    Модель «как будет»    |    Точка зрения: владелец системы и разработчик" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=18;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=none;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1510" width="2320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-A1" value="Формировать&#10;учебную базу&#10;&#10;A1" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=24;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="300" y="350" width="280" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-A2" value="Планировать и проводить&#10;обучение&#10;&#10;A2" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=24;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="350" width="280" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-A3" value="Осмысливать&#10;инженерную работу&#10;&#10;A3" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=24;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1700" y="350" width="280" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-A4" value="Вести свидетельства&#10;и профиль развития&#10;&#10;A4" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=24;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1000" y="1000" width="280" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-A5" value="Подготавливать и&#10;подтверждать опыт&#10;&#10;A5" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=24;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1700" y="1000" width="280" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-A6" value="Обеспечивать доступ&#10;и сохранность данных&#10;&#10;A6" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=24;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="300" y="1000" width="280" height="170" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-I1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.0;entryY=0.38235294117647056;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="decomposition-A1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="70" y="415" as="sourcePoint" />
+            <mxPoint x="300" y="415" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v10" value="I1  Исходный контент" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=17;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="345" width="230" height="68" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-I2" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.0;entryY=0.6176470588235294;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="decomposition-A2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="770" y="455" as="sourcePoint" />
+            <mxPoint x="1000" y="455" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v11" value="I2  Цели, ответы, самооценки" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=17;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="760" y="400" width="230" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-I3" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.0;entryY=0.7647058823529411;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="decomposition-A3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1470" y="480" as="sourcePoint" />
+            <mxPoint x="1700" y="480" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v12" value="I3  Контекст и объяснения" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=17;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1460" y="410" width="230" height="68" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-I4" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.0;entryY=0.11764705882352941;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="decomposition-A6">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="70" y="1020" as="sourcePoint" />
+            <mxPoint x="300" y="1020" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v13" value="I4  Учётные данные,&#10;локальные операции, копии" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=17;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="950" width="230" height="68" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-I5" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.0;entryY=0.47058823529411764;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="decomposition-A5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1470" y="1080" as="sourcePoint" />
+            <mxPoint x="1700" y="1080" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v14" value="I5  Описание опыта и правки" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=17;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1460" y="1010" width="230" height="68" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-O1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;exitX=1.0;exitY=0.29411764705882354;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="decomposition-A2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1280" y="400" as="sourcePoint" />
+            <mxPoint x="1595" y="400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v15" value="O1  Учебные результаты" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=17;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1465" y="335" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-O2" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;exitX=1.0;exitY=0.2647058823529412;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="decomposition-A3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1980" y="395" as="sourcePoint" />
+            <mxPoint x="2295" y="395" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v16" value="O2  Хронология и подтверждение&#10;рассмотренной версии" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=17;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="2010" y="329" width="290" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-O3" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;exitX=1.0;exitY=0.23529411764705882;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="decomposition-A4">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1280" y="1040" as="sourcePoint" />
+            <mxPoint x="1595" y="1040" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v17" value="O3  История и профиль" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=17;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1465" y="950" width="170" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-O4" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;exitX=1.0;exitY=0.23529411764705882;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="decomposition-A5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1980" y="1040" as="sourcePoint" />
+            <mxPoint x="2295" y="1040" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v18" value="O4  Подтверждённый опыт,&#10;проверенное представление" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=17;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="2010" y="974" width="290" height="62" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-O5" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;exitX=1.0;exitY=0.5588235294117647;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="decomposition-A6">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="1095" as="sourcePoint" />
+            <mxPoint x="895" y="1095" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v19" value="O5  Доступ, пакеты,&#10;данные и отчёты" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=17;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="690" y="1100" width="210" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-C1-A1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.14285714285714285;entryY=0.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="decomposition-A1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340.0" y="275" as="sourcePoint" />
+            <mxPoint x="340.0" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v20" value="C1&#10;Контент и обучение" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=14;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="280.0" y="205" width="120" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-C4-A1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.8571428571428571;entryY=0.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="decomposition-A1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="540.0" y="225" as="sourcePoint" />
+            <mxPoint x="540.0" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v21" value="C4&#10;Версии и доступ" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=14;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="480.0" y="155" width="120" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-C1-A2" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.14285714285714285;entryY=0.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="decomposition-A2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1040.0" y="275" as="sourcePoint" />
+            <mxPoint x="1040.0" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v22" value="C1&#10;Учебные правила" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=14;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="980.0" y="205" width="120" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-C2-A2" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.5;entryY=0.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="decomposition-A2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1140.0" y="225" as="sourcePoint" />
+            <mxPoint x="1140.0" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v23" value="C2&#10;Правила оценки" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=14;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1080.0" y="155" width="120" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-C4-A2" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.8571428571428571;entryY=0.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="decomposition-A2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1240.0" y="275" as="sourcePoint" />
+            <mxPoint x="1240.0" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v24" value="C4&#10;Доступ и версии" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=14;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1180.0" y="205" width="120" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-C2-A3" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.14285714285714285;entryY=0.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="decomposition-A3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1740.0" y="275" as="sourcePoint" />
+            <mxPoint x="1740.0" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v25" value="C2&#10;Происхождение" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=14;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1680.0" y="205" width="120" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-C3-A3" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.5;entryY=0.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="decomposition-A3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1840.0" y="225" as="sourcePoint" />
+            <mxPoint x="1840.0" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v26" value="C3&#10;Явное подтверждение" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=14;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1780.0" y="155" width="120" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-C4-A3" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.8571428571428571;entryY=0.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="decomposition-A3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1940.0" y="275" as="sourcePoint" />
+            <mxPoint x="1940.0" y="350" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v27" value="C4&#10;Приватность" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=14;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1880.0" y="205" width="120" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-C2-A4" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.14285714285714285;entryY=0.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="decomposition-A4">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1040.0" y="925" as="sourcePoint" />
+            <mxPoint x="1040.0" y="1000" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v28" value="C2&#10;Правила свидетельств" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=14;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="980.0" y="855" width="120" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-C3-A4" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.5;entryY=0.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="decomposition-A4">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1140.0" y="875" as="sourcePoint" />
+            <mxPoint x="1140.0" y="1000" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v29" value="C3&#10;Оспаривание, отзыв" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=14;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1080.0" y="805" width="120" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-C4-A4" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.8571428571428571;entryY=0.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="decomposition-A4">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1240.0" y="925" as="sourcePoint" />
+            <mxPoint x="1240.0" y="1000" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v30" value="C4&#10;Доступ и хранение" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=14;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1180.0" y="855" width="120" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-C2-A5" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.14285714285714285;entryY=0.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="decomposition-A5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1740.0" y="925" as="sourcePoint" />
+            <mxPoint x="1740.0" y="1000" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v31" value="C2&#10;Достоверность" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=14;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1680.0" y="855" width="120" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-C3-A5" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.5;entryY=0.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="decomposition-A5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1840.0" y="875" as="sourcePoint" />
+            <mxPoint x="1840.0" y="1000" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v32" value="C3&#10;Подтверждение, экспорт" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=14;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1780.0" y="805" width="120" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-C4-A5" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.8571428571428571;entryY=0.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="decomposition-A5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1940.0" y="925" as="sourcePoint" />
+            <mxPoint x="1940.0" y="1000" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v33" value="C4&#10;Доступ и версии" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=14;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1880.0" y="855" width="120" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-C3-A6" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.14285714285714285;entryY=0.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="decomposition-A6">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340.0" y="925" as="sourcePoint" />
+            <mxPoint x="340.0" y="1000" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v34" value="C3&#10;Разрешения пользователя" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=14;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="280.0" y="855" width="120" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-C4-A6" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.8571428571428571;entryY=0.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="decomposition-A6">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="540.0" y="875" as="sourcePoint" />
+            <mxPoint x="540.0" y="1000" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v35" value="C4&#10;Доступ, хранение, sync" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=14;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="480.0" y="805" width="120" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-M2-A1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.14285714285714285;entryY=1.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="decomposition-A1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340.0" y="650" as="sourcePoint" />
+            <mxPoint x="340.0" y="520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v36" value="M2&#10;Автор / администратор" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=14;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="282.0" y="655" width="116" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-M3-A1" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.8571428571428571;entryY=1.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="decomposition-A1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="540.0" y="720" as="sourcePoint" />
+            <mxPoint x="540.0" y="520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v37" value="M3&#10;Клиенты и хранилища" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=14;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="482.0" y="725" width="116" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-M1-A2" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.14285714285714285;entryY=1.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="decomposition-A2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1040.0" y="650" as="sourcePoint" />
+            <mxPoint x="1040.0" y="520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v38" value="M1&#10;Разработчик" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=14;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="982.0" y="655" width="116" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-M3-A2" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.5;entryY=1.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="decomposition-A2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1140.0" y="720" as="sourcePoint" />
+            <mxPoint x="1140.0" y="520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v39" value="M3&#10;Клиенты и хранилища" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=14;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1082.0" y="725" width="116" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-M4-A2" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.8571428571428571;entryY=1.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="decomposition-A2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1240.0" y="650" as="sourcePoint" />
+            <mxPoint x="1240.0" y="520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v40" value="M4&#10;ИИ / интеграции (опц.)" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=14;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1182.0" y="655" width="116" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-M1-A3" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.14285714285714285;entryY=1.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="decomposition-A3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1740.0" y="650" as="sourcePoint" />
+            <mxPoint x="1740.0" y="520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v41" value="M1&#10;Разработчик" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=14;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1682.0" y="655" width="116" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-M3-A3" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.5;entryY=1.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="decomposition-A3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1840.0" y="720" as="sourcePoint" />
+            <mxPoint x="1840.0" y="520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v42" value="M3&#10;Клиенты и хранилища" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=14;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1782.0" y="725" width="116" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-M4-A3" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.8571428571428571;entryY=1.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="decomposition-A3">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1940.0" y="650" as="sourcePoint" />
+            <mxPoint x="1940.0" y="520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v43" value="M4&#10;ИИ / интеграции (опц.)" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=14;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1882.0" y="655" width="116" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-M1-A4" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.14285714285714285;entryY=1.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="decomposition-A4">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1040.0" y="1300" as="sourcePoint" />
+            <mxPoint x="1040.0" y="1170" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v44" value="M1&#10;Разработчик" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=14;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="982.0" y="1305" width="116" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-M3-A4" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.8571428571428571;entryY=1.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="decomposition-A4">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1240.0" y="1370" as="sourcePoint" />
+            <mxPoint x="1240.0" y="1170" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v45" value="M3&#10;Клиенты и хранилища" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=14;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1182.0" y="1375" width="116" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-M1-A5" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.14285714285714285;entryY=1.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="decomposition-A5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1740.0" y="1300" as="sourcePoint" />
+            <mxPoint x="1740.0" y="1170" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v46" value="M1&#10;Разработчик" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=14;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1682.0" y="1305" width="116" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-M3-A5" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.5;entryY=1.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="decomposition-A5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1840.0" y="1370" as="sourcePoint" />
+            <mxPoint x="1840.0" y="1170" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v47" value="M3&#10;Клиенты и хранилища" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=14;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1782.0" y="1375" width="116" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-M4-A5" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.8571428571428571;entryY=1.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="decomposition-A5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1940.0" y="1300" as="sourcePoint" />
+            <mxPoint x="1940.0" y="1170" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v48" value="M4&#10;ИИ / интеграции (опц.)" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=14;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1882.0" y="1305" width="116" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-M1-A6" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.14285714285714285;entryY=1.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="decomposition-A6">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="340.0" y="1300" as="sourcePoint" />
+            <mxPoint x="340.0" y="1170" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v49" value="M1&#10;Разработчик" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=14;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="282.0" y="1305" width="116" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-M2-A6" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.38095238095238104;entryY=1.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="decomposition-A6">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="406.6666666666667" y="1370" as="sourcePoint" />
+            <mxPoint x="406.6666666666667" y="1170" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v50" value="M2&#10;Автор / администратор" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=14;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="348.6666666666667" y="1375" width="116" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-M3-A6" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.6190476190476192;entryY=1.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="decomposition-A6">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="473.33333333333337" y="1300" as="sourcePoint" />
+            <mxPoint x="473.33333333333337" y="1170" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v51" value="M3&#10;Клиенты и хранилища" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=14;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="415.33333333333337" y="1305" width="116" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-M4-A6" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;entryX=0.8571428571428571;entryY=1.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="decomposition-A6">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="540.0" y="1370" as="sourcePoint" />
+            <mxPoint x="540.0" y="1170" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v52" value="M4&#10;ИИ / интеграции (опц.)" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=14;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="482.0" y="1375" width="116" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-F01" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;exitX=1.0;exitY=0.2647058823529412;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.0;entryY=0.20588235294117646;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="decomposition-A1" target="decomposition-A2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="395" as="sourcePoint" />
+            <mxPoint x="1000" y="385" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="750" y="395" />
+              <mxPoint x="750" y="385" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v53" value="F01  Версии учебного контента" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=18;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="650" y="325" width="300" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-F02" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;exitX=1.0;exitY=0.6764705882352942;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.0;entryY=0.47058823529411764;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="decomposition-A2" target="decomposition-A4">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1280" y="465" as="sourcePoint" />
+            <mxPoint x="1000" y="1080" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1360" y="465" />
+              <mxPoint x="1360" y="880" />
+              <mxPoint x="950" y="880" />
+              <mxPoint x="950" y="1080" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v54" value="F02  Результаты и помощь" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=16;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1205" y="735" width="140" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-F03" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;exitX=1.0;exitY=0.0;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.32142857142857145;entryY=0.0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="decomposition-A4" target="decomposition-A2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1280" y="1000" as="sourcePoint" />
+            <mxPoint x="1090" y="350" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1450" y="1000" />
+              <mxPoint x="1450" y="150" />
+              <mxPoint x="950" y="150" />
+              <mxPoint x="950" y="300" />
+              <mxPoint x="1090" y="300" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v55" value="F03  Приоритеты и рекомендации" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=18;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1190" y="160" width="250" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-F04" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;exitX=1.0;exitY=0.6176470588235294;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.0;entryY=0.6470588235294118;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="decomposition-A3" target="decomposition-A4">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1980" y="455" as="sourcePoint" />
+            <mxPoint x="1000" y="1110" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="2110" y="455" />
+              <mxPoint x="2110" y="802" />
+              <mxPoint x="900" y="802" />
+              <mxPoint x="900" y="1110" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v56" value="F04  Наблюдения по объяснениям" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=18;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1480" y="700" width="200" height="75" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-F05" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;exitX=1.0;exitY=0.9117647058823529;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.0;entryY=0.17647058823529413;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="decomposition-A3" target="decomposition-A5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1980" y="505" as="sourcePoint" />
+            <mxPoint x="1700" y="1030" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="2200" y="505" />
+              <mxPoint x="2200" y="940" />
+              <mxPoint x="1645" y="940" />
+              <mxPoint x="1645" y="1030" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v57" value="F05  Контекст, вклад и решения" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=18;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="2010" y="860" width="180" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-F06" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;exitX=1.0;exitY=0.8235294117647058;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.0;entryY=0.6764705882352942;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="decomposition-A4" target="decomposition-A5">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1280" y="1140" as="sourcePoint" />
+            <mxPoint x="1700" y="1115" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1550" y="1140" />
+              <mxPoint x="1550" y="1115" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v58" value="F06  Свидетельства и ограничения" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=18;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1320" y="1185" width="280" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-F07" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;exitX=1.0;exitY=0.7647058823529411;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.0;entryY=0.8235294117647058;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="decomposition-A5" target="decomposition-A4">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1980" y="1130" as="sourcePoint" />
+            <mxPoint x="1000" y="1140" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="2290" y="1130" />
+              <mxPoint x="2290" y="1460" />
+              <mxPoint x="830" y="1460" />
+              <mxPoint x="830" y="1140" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v59" value="F07  Подтверждённые сведения о применении понятий" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=18;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1305" y="1398" width="440" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-F08" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;exitX=1.0;exitY=0.17647058823529413;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.0;entryY=0.8235294117647058;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="decomposition-A6" target="decomposition-A2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="1030" as="sourcePoint" />
+            <mxPoint x="1000" y="490" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="665" y="1030" />
+              <mxPoint x="665" y="570" />
+              <mxPoint x="880" y="570" />
+              <mxPoint x="880" y="490" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v60" value="F08  Автономные учебные операции" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=18;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="690" y="585" width="320" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="decomposition-F09" value="" style="edgeStyle=none;rounded=0;html=0;strokeColor=#17212B;strokeWidth=2;endArrow=block;endFill=1;endSize=10;startArrow=none;jumpStyle=arc;jumpSize=10;exitX=1.0;exitY=0.7352941176470589;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.0;entryY=0.2647058823529412;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="decomposition-A1" target="decomposition-A6">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="475" as="sourcePoint" />
+            <mxPoint x="300" y="1045" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="620" y="475" />
+              <mxPoint x="620" y="935" />
+              <mxPoint x="295" y="935" />
+              <mxPoint x="295" y="1045" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="decomposition-v61" value="F09  Состав и версии пакета" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=18;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="70" y="830" width="200" height="70" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="requirements" name="Требования · Покрытие">
+    <mxGraphModel dx="2000" dy="1570" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2000" pageHeight="1570" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="requirements-v1" value="Sensei++ · Функциональная модель IDEF0" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=28;fontColor=#17212B;fontStyle=1;align=left;verticalAlign=middle;spacing=8;fillColor=none;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="40" y="25" width="1920" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v2" value="24 функциональных требования целевого продукта и соответствующие им блоки A0." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=21;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=none;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="1920" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v3" value="Узел: Справочная страница    |    Модель «как будет»    |    Точка зрения: владелец системы и разработчик" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=18;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=none;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1510" width="1920" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v4" value="Код" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=1;align=center;verticalAlign=middle;spacing=8;fillColor=#EAF0F5;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="175" width="120" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v5" value="Функциональное требование" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=1;align=left;verticalAlign=middle;spacing=8;fillColor=#EAF0F5;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="180" y="175" width="1460" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v6" value="Блоки" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=1;align=center;verticalAlign=middle;spacing=8;fillColor=#EAF0F5;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1640" y="175" width="300" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v7" value="FR01" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="224" width="120" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v8" value="Вести предметно-независимый каталог понятий, их связей и предпосылок." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="180" y="224" width="1460" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v9" value="A1" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1640" y="224" width="300" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v10" value="FR02" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="273" width="120" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v11" value="Готовить, проверять, публиковать и деактивировать версии учебного контента." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="180" y="273" width="1460" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v12" value="A1" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1640" y="273" width="300" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v13" value="FR03" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="322" width="120" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v14" value="Поддерживать шесть типов упражнений, допустимые ответы и правила проверки." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="180" y="322" width="1460" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v15" value="A1, A2" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1640" y="322" width="300" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v16" value="FR04" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="371" width="120" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v17" value="Вести личные цели и маршруты по общим понятиям без дублирования прогресса." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="180" y="371" width="1460" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v18" value="A2" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1640" y="371" width="300" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v19" value="FR05" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="420" width="120" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v20" value="Предоставлять материалы и справочные объяснения выбранной темы." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="180" y="420" width="1460" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v21" value="A2" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1640" y="420" width="300" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v22" value="FR06" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="469" width="120" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v23" value="Проводить сессии на 3/5/10 заданий; сохранять паузу, пропуск и завершение." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="180" y="469" width="1460" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v24" value="A2" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1640" y="469" width="300" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v25" value="FR07" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="518" width="120" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v26" value="Сохранять ответы и помощь; проверять объективные задания; выдавать обратную связь." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="180" y="518" width="1460" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v27" value="A2" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1640" y="518" width="300" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v28" value="FR08" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="567" width="120" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v29" value="Поддерживать интенсивную практику, экзаменационный режим и подготовку к интервью." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="180" y="567" width="1460" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v30" value="A2" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1640" y="567" width="300" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v31" value="FR09" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="616" width="120" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v32" value="Рекомендовать темы и повторения по целям, свидетельствам и актуальности знаний." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="180" y="616" width="1460" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v33" value="A2, A4" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1640" y="616" width="300" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v34" value="FR10" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="665" width="120" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v35" value="Создавать и архивировать рабочие/учебные эпизоды; фиксировать контекст и вклад." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="180" y="665" width="1460" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v36" value="A3" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1640" y="665" width="300" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v37" value="FR11" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="714" width="120" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v38" value="Уточнять интерпретацию контекста, обсуждать решения и сохранять открытые вопросы." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="180" y="714" width="1460" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v39" value="A3" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1640" y="714" width="300" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v40" value="FR12" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="763" width="120" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v41" value="Записывать явное подтверждение точной рассмотренной версии контекста и обсуждения." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="180" y="763" width="1460" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v42" value="A3" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1640" y="763" width="300" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v43" value="FR13" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="812" width="120" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v44" value="Автоматически вести историю, свидетельства и профиль с источниками и условиями." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="180" y="812" width="1460" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v45" value="A4" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1640" y="812" width="300" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v46" value="FR14" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="861" width="120" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v47" value="Позволять оспаривать, исправлять и отзывать наблюдения, сохраняя их происхождение." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="180" y="861" width="1460" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v48" value="A4" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1640" y="861" width="300" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v49" value="FR15" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="910" width="120" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v50" value="Формировать черновики опыта из активности; разрешать прямое создание и правки." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="180" y="910" width="1460" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v51" value="A5" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1640" y="910" width="300" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v52" value="FR16" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="959" width="120" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v53" value="Вести редакции опыта; подтверждать точные факты, вклад и известный результат." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="180" y="959" width="1460" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v54" value="A5" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1640" y="959" width="300" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v55" value="FR17" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1008" width="120" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v56" value="Готовить и репетировать рассказ об опыте; экспортировать проверенное представление." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="180" y="1008" width="1460" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v57" value="A5" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1640" y="1008" width="300" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v58" value="FR18" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1057" width="120" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v59" value="Управлять учётными записями, входом, ролями и изоляцией данных владельцев." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="180" y="1057" width="1460" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v60" value="A6" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1640" y="1057" width="300" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v61" value="FR19" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1106" width="120" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v62" value="Управлять разрешением на раскрытие, выгрузкой и удалением личных данных." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="180" y="1106" width="1460" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v63" value="A6" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1640" y="1106" width="300" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v64" value="FR20" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1155" width="120" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v65" value="Загружать пакеты, обучаться без сети и синхронизировать сохранённые результаты." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="180" y="1155" width="1460" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v66" value="A1, A2, A6" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1640" y="1155" width="300" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v67" value="FR21" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1204" width="120" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v68" value="Повторять операции без дублей; выявлять конфликты версий; сохранять принятые данные." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="180" y="1204" width="1460" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v69" value="A2, A3, A4, A5, A6" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1640" y="1204" width="300" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v70" value="FR22" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1253" width="120" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v71" value="Контролировать состояние системы; вести журналы, резервные копии и восстановление." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="180" y="1253" width="1460" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v72" value="A6" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1640" y="1253" width="300" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v73" value="FR23" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1302" width="120" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v74" value="Принимать разрешённый выбранный контекст из интеграций с указанием происхождения." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="180" y="1302" width="1460" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v75" value="A3, A6" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1640" y="1302" width="300" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v76" value="FR24" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1351" width="120" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v77" value="Использовать необязательный ИИ для помощи, интерпретаций и черновиков без автоподтверждения." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="180" y="1351" width="1460" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v78" value="A2, A3, A4, A5" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=19;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="1640" y="1351" width="300" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="requirements-v79" value="Источники: целевое ТЗ (docs/12), исходное видение (product-brief), учебный контракт (docs/09).&#10;FR08, FR17, FR23, FR24 раскрывают общее видение; сроки и степень реализации здесь не моделируются." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=none;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1430" width="1880" height="66" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="rules" name="Потоки · Проверка">
+    <mxGraphModel dx="2400" dy="1570" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2400" pageHeight="1570" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="rules-v1" value="Sensei++ · Функциональная модель IDEF0" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=28;fontColor=#17212B;fontStyle=1;align=left;verticalAlign=middle;spacing=8;fillColor=none;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="40" y="25" width="2320" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="rules-v2" value="Семантика межфункциональных стрелок и проверка модели по условиям задания." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=21;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=none;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="40" y="80" width="2320" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="rules-v3" value="Узел: Справочная страница    |    Модель «как будет»    |    Точка зрения: владелец системы и разработчик" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=18;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=none;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="40" y="1510" width="2320" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="rules-v4" value="Поток" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#17212B;fontStyle=1;align=center;verticalAlign=middle;spacing=8;fillColor=#EAF0F5;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="160" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rules-v5" value="Откуда → куда / роль" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#17212B;fontStyle=1;align=left;verticalAlign=middle;spacing=8;fillColor=#EAF0F5;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="180" y="160" width="430" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rules-v6" value="Содержание" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#17212B;fontStyle=1;align=center;verticalAlign=middle;spacing=8;fillColor=#EAF0F5;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="610" y="160" width="1730" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rules-v7" value="F01" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="220" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rules-v8" value="A1 → A2 (вход)" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="180" y="220" width="430" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rules-v9" value="Опубликованные версии понятий, материалов, упражнений и маршрутов." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="610" y="220" width="1730" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rules-v10" value="F02" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="280" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rules-v11" value="A2 → A4 (вход)" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="180" y="280" width="430" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rules-v12" value="Сохранённые попытки, результаты, самооценки и события помощи." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="610" y="280" width="1730" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rules-v13" value="F03" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="340" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rules-v14" value="A4 → A2 (управление)" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="180" y="340" width="430" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rules-v15" value="Приоритеты тем и объяснимые рекомендации повторения." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="610" y="340" width="1730" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rules-v16" value="F04" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="400" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rules-v17" value="A3 → A4 (вход)" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="180" y="400" width="430" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rules-v18" value="Наблюдения по объяснениям и контексту; источники, помощь и открытые вопросы." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="610" y="400" width="1730" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rules-v19" value="F05" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="460" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rules-v20" value="A3 → A5 (вход)" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="180" y="460" width="430" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rules-v21" value="Контекст, роль, решения, вклад и подтверждение рассмотренного обсуждения." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="610" y="460" width="1730" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rules-v22" value="F06" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="520" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rules-v23" value="A4 → A5 (вход)" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="180" y="520" width="430" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rules-v24" value="Свидетельства и их ограничения для подготовки достоверного описания опыта." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="610" y="520" width="1730" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rules-v25" value="F07" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="580" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rules-v26" value="A5 → A4 (вход)" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="180" y="580" width="430" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rules-v27" value="Подтверждённая редакция опыта и сведения о применении понятий." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="610" y="580" width="1730" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rules-v28" value="F08" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="640" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rules-v29" value="A6 → A2 (вход)" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="180" y="640" width="430" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rules-v30" value="Авторизованные автономные учебные операции для проверки по закреплённым версиям." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="610" y="640" width="1730" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rules-v31" value="F09" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="700" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rules-v32" value="A1 → A6 (вход)" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="180" y="700" width="430" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rules-v33" value="Опубликованный состав и точные версии контента для автономных пакетов." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=20;fontColor=#17212B;fontStyle=0;align=center;verticalAlign=middle;spacing=8;fillColor=#FFFFFF;strokeColor=#17212B;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="610" y="700" width="1730" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rules-v34" value="Выполнено: два уровня — A-0 содержит один блок A0; A0 раскрывает его шестью блоками A1–A6." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=23;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=none;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="800" width="2280" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="rules-v35" value="Выполнено: все 24 требования имеют хотя бы один блок; ни один блок не остаётся без требований." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=23;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=none;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="852" width="2280" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="rules-v36" value="Выполнено: модель окружения содержит 6 блоков — соблюдены минимум 4 и ограничение сложности 2–6." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=23;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=none;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="904" width="2280" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="rules-v37" value="Выполнено: граница сбалансирована — I1–I5, C1–C4, M1–M4, O1–O5 представлены на обоих уровнях." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=23;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=none;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="956" width="2280" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="rules-v38" value="Выполнено: внутренние потоки выходят справа; входы слева; F03 входит сверху как управление." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=23;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=none;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1008" width="2280" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="rules-v39" value="Выполнено: механизмы входят снизу; повтор кода внешней стрелки означает тот же граничный поток." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=23;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=none;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1060" width="2280" height="49" as="geometry" />
+        </mxCell>
+        <mxCell id="rules-v40" value="Правила движения данных" style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=25;fontColor=#17212B;fontStyle=1;align=left;verticalAlign=middle;spacing=8;fillColor=none;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1130" width="2280" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="rules-v41" value="1. A2 фиксирует ответ, версию задания и помощь до передачи результата в A4; чтение материала не доказывает знание.&#10;2. A4 различает проверенный результат, самооценку, применение в работе и интерпретацию ИИ; спорные выводы исключаются из рекомендаций.&#10;3. Подтверждение обсуждения в A3 не подтверждает факты опыта в A5; экспорт требует отдельной проверки представления.&#10;4. A6 передаёт F08 в A2 для предметной проверки: клиент не может назначить оценку или изменить профиль напрямую.&#10;5. Обработка повторов не создаёт дубли; конфликт версий не перезаписывает данные; ИИ не совершает подтверждение за пользователя." style="rounded=0;whiteSpace=wrap;html=0;fontFamily=Arial;fontSize=22;fontColor=#17212B;fontStyle=0;align=left;verticalAlign=middle;spacing=8;fillColor=none;strokeColor=none;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="60" y="1180" width="2280" height="225" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
