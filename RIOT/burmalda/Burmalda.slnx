@@ -12,6 +12,7 @@
   <Folder Name="/Services/">
     <File Path="docker-compose.yml" />
     <Project Path="src/Services/Catalog/Burmalda.Catalog.Api/Burmalda.Catalog.Api.csproj" />
+    <Project Path="src/Services/ConcurrencyLab/Burmalda.ConcurrencyLab.Api/Burmalda.ConcurrencyLab.Api.csproj" />
     <Project Path="src/Services/Economy/Burmalda.Economy.Api/Burmalda.Economy.Api.csproj" />
     <Project Path="src/Services/Identity/Burmalda.Identity.Api/Burmalda.Identity.Api.csproj" />
     <Project Path="src/Services/Lending/Burmalda.Lending.Api/Burmalda.Lending.Api.csproj" />
@@ -20,5 +21,8 @@
   </Folder>
   <Folder Name="/Tests/">
     <Project Path="tests/Burmalda.Domain.Tests/Burmalda.Domain.Tests.csproj" />
+  </Folder>
+  <Folder Name="/Tools/">
+    <Project Path="tools/ConcurrencyLab.Client/ConcurrencyLab.Client.csproj" />
   </Folder>
 </Solution>

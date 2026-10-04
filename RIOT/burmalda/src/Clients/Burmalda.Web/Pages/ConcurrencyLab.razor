@@ -1,0 +1,203 @@
+@page "/concurrency-lab"
+@implements IDisposable
+@using System.Diagnostics
+@using System.Net.Http.Json
+@inject HttpClient Http
+
+<PageTitle>Лаборатория конкурентности · Burmalda</PageTitle>
+
+<main class="concurrency-lab">
+    <header class="lab-header">
+        <div><span class="eyebrow">BURMALDA · ЛАБОРАТОРНАЯ 02 + 03</span><h1>Одна книга.<br /><em>Много запросов.</em></h1></div>
+        <p>Виртуальные резервы одной книги. Каждый клиент посылает отдельный HTTP-запрос. Изменяется только счётчик учебного сервиса; реальные книги и BD не затрагиваются.</p>
+    </header>
+
+    <section class="lab-panel" aria-labelledby="lab-controls-title">
+        <div class="lab-panel-heading"><div><span class="lab-step">01 / ЭКСПЕРИМЕНТ</span><h2 id="lab-controls-title">Запустить нагрузку</h2></div><span class="lab-aside">Один серверный процесс · общая память</span></div>
+        <div class="lab-controls">
+            <label>Клиентских запросов <input type="number" min="2" max="32" @bind="requestCount" disabled="@running" /></label>
+            <label>Пауза между чтением и записью, мс <input type="number" min="10" max="200" @bind="workDelayMs" disabled="@running" /></label>
+            <button class="button button-dark" @onclick="RunComparison" disabled="@running">@(running ? "Запросы выполняются…" : "Сравнить три режима →")</button>
+        </div>
+        <p class="lab-hint">Запросы каждого режима отправляются одновременно. По умолчанию 12 клиентов и пауза 60 мс делают потерянные обновления заметными.</p>
+        @if (!string.IsNullOrWhiteSpace(error)) { <div class="form-error" role="alert">@error</div> }
+    </section>
+
+    @if (runs.Count > 0)
+    {
+        <section class="lab-results" aria-labelledby="lab-results-title">
+            <div class="lab-panel-heading"><div><span class="lab-step">02 / СРАВНЕНИЕ</span><h2 id="lab-results-title">Что произошло со счётчиком</h2></div><span class="lab-aside">Ожидалось = число успешно завершённых запросов</span></div>
+            @if (sequentialBaseline is { } baseline)
+            {
+                <div class="lab-baseline"><div><span class="lab-step">КОНТРОЛЬНЫЙ ОПЫТ · ПО ОЧЕРЕДИ</span><strong>Unsafe без одновременных запросов</strong></div><div><b>@baseline.Snapshot.ActualReservations / @baseline.Snapshot.ExpectedReservations</b><small>пик @baseline.Snapshot.MaxConcurrentRequests · @baseline.ElapsedMs мс</small></div></div>
+            }
+            <div class="lab-result-grid">
+                @foreach (var run in runs)
+                {
+                    <button class="lab-result-card @(selectedMode == run.Mode ? "selected" : "") @(run.Snapshot.LostUpdates > 0 ? "has-loss" : "")" @onclick="() => selectedMode = run.Mode">
+                        <span class="lab-mode">@ModeLabel(run.Mode)</span>
+                        <strong>@run.Snapshot.ActualReservations <small>/ @run.Snapshot.ExpectedReservations</small></strong>
+                        <span class="lab-meter"><i style="width: @(run.Snapshot.ExpectedReservations == 0 ? 0 : 100 * run.Snapshot.ActualReservations / run.Snapshot.ExpectedReservations)%"></i></span>
+                        <span class="lab-card-foot"><b>@(run.Snapshot.LostUpdates > 0 ? $"Потеряно {run.Snapshot.LostUpdates}" : "Потерь нет")</b><small>@run.ElapsedMs мс · пик @run.Snapshot.MaxConcurrentRequests запросов</small></span>
+                    </button>
+                }
+            </div>
+            @if (SelectedRun is { } selected)
+            {
+                <div class="lab-trace">
+                    <div class="lab-trace-intro"><div><span class="lab-step">03 / ТРАССА</span><h3>@ModeLabel(selected.Mode)</h3></div><p>PID @selected.Snapshot.ProcessId · Старт, чтение и запись каждого запроса. Совпадающие значения чтения в режиме Race Condition показывают источник потери.</p></div>
+                    <div class="lab-trace-table-wrap"><table class="lab-trace-table"><thead><tr><th>#</th><th>Время UTC</th><th>Клиент</th><th>Запрос</th><th>Фаза</th><th>Значение</th><th>Поток</th></tr></thead><tbody>
+                        @foreach (var item in selected.Snapshot.Events)
+                        {
+                            <tr class="@(item.Phase == "wrote" ? "write-row" : "")"><td>@item.Sequence</td><td>@item.AtUtc.ToString("HH:mm:ss.fff")</td><td>@item.ClientId</td><td>@item.RequestNumber</td><td>@PhaseLabel(item.Phase)</td><td>@(item.Value?.ToString() ?? "—")</td><td>@item.ThreadId</td></tr>
+                        }
+                    </tbody></table></div>
+                </div>
+            }
+        </section>
+    }
+
+    <section class="lab-panel lab-clock" aria-labelledby="lab-clock-title">
+        <div class="lab-panel-heading"><div><span class="lab-step">04 / РАСПРЕДЕЛЁННОЕ ВРЕМЯ</span><h2 id="lab-clock-title">Сверить часы клиента и сервера</h2></div><span class="lab-aside">Оценка задержки в обе стороны</span></div>
+        <p>Сдвиги часов моделируются в запросе и ответе. Из пяти проб выбирается та, у которой минимальная задержка: <code>offset = ((t₁ − t₀) + (t₂ − t₃)) / 2</code>.</p>
+        <div class="lab-controls">
+            <label>Сдвиг клиента, мс <input type="number" min="-300000" max="300000" @bind="clientSkewMs" disabled="@syncing" /></label>
+            <label>Сдвиг сервера, мс <input type="number" min="-300000" max="300000" @bind="serverSkewMs" disabled="@syncing" /></label>
+            <button class="button button-dark" @onclick="SynchronizeClock" disabled="@syncing">@(syncing ? "Измеряем…" : "Сверить время →")</button>
+        </div>
+        @if (!string.IsNullOrWhiteSpace(clockError)) { <div class="form-error" role="alert">@clockError</div> }
+        @if (bestSample is { } sample)
+        {
+            <div class="lab-clock-results">
+                <div><span>Смещение сервера относительно клиента</span><strong>@Signed(sample.OffsetMs) мс</strong></div>
+                <div><span>Оценка сетевой задержки RTT</span><strong>@sample.NetworkRttMs.ToString("0.0") мс</strong></div>
+                <div><span>Синхронизированные часы клиента</span><strong>@(DateTimeOffset.UtcNow.AddMilliseconds(measuredClientSkewMs + sample.OffsetMs).ToString("HH:mm:ss")) UTC</strong></div>
+            </div>
+            <p class="lab-hint">t₀ и t₃ измерены на клиенте; t₁ и t₂ — на сервере. Коррекция приблизительная: она предполагает близкие задержки туда и обратно. Сдвиг не меняет системные часы устройства.</p>
+        }
+    </section>
+</main>
+
+@code {
+    private int requestCount = 12;
+    private int workDelayMs = 60;
+    private int clientSkewMs = 90_000;
+    private int serverSkewMs = -45_000;
+    private bool running;
+    private bool syncing;
+    private string? error;
+    private string? clockError;
+    private readonly List<LabRun> runs = [];
+    private LabRun? sequentialBaseline;
+    private ReservationMode selectedMode = ReservationMode.Unsafe;
+    private ClockMeasurement? bestSample;
+    private int measuredClientSkewMs;
+    private System.Threading.Timer? clockTimer;
+    private LabRun? SelectedRun => runs.FirstOrDefault(x => x.Mode == selectedMode);
+
+    private async Task RunComparison()
+    {
+        error = null;
+        if (requestCount is < 2 or > 32 || workDelayMs is < 10 or > 200)
+        { error = "Допустимо 2–32 запроса и пауза 10–200 мс."; return; }
+        running = true;
+        runs.Clear();
+        sequentialBaseline = null;
+        try
+        {
+            sequentialBaseline = await RunExperiment(ReservationMode.Unsafe, false);
+            StateHasChanged();
+            foreach (var mode in Enum.GetValues<ReservationMode>())
+            {
+                runs.Add(await RunExperiment(mode, true));
+                StateHasChanged();
+            }
+            selectedMode = ReservationMode.Unsafe;
+        }
+        catch (Exception ex) when (ex is HttpRequestException or InvalidOperationException)
+        { error = $"Не удалось завершить сравнение: {ex.Message}. Проверьте запуск gateway и ConcurrencyLab API."; }
+        finally { running = false; }
+    }
+
+    private async Task<LabRun> RunExperiment(ReservationMode mode, bool parallel)
+    {
+        using var create = await Http.PostAsJsonAsync("/api/concurrency-lab/experiments",
+            new { mode, plannedRequests = requestCount, workDelayMs, startTogether = parallel });
+        await EnsureSuccess(create);
+        var created = await create.Content.ReadFromJsonAsync<ExperimentSnapshot>() ?? throw new InvalidOperationException("Пустой ответ сервера.");
+        var timer = Stopwatch.StartNew();
+        if (parallel)
+            await Task.WhenAll(Enumerable.Range(1, requestCount).Select(i => SendReserve(created.Id, i)));
+        else
+            for (var i = 1; i <= requestCount; i++) await SendReserve(created.Id, i);
+        timer.Stop();
+        var snapshot = await Http.GetFromJsonAsync<ExperimentSnapshot>($"/api/concurrency-lab/experiments/{created.Id}")
+            ?? throw new InvalidOperationException("Нет результата эксперимента.");
+        return new LabRun(mode, snapshot, timer.ElapsedMilliseconds);
+    }
+
+    private async Task SendReserve(Guid id, int i)
+    {
+        using var response = await Http.PostAsJsonAsync($"/api/concurrency-lab/experiments/{id}/reserve", new { clientId = $"Клиент {i:00}" });
+        await EnsureSuccess(response);
+    }
+
+    private async Task SynchronizeClock()
+    {
+        clockError = null;
+        if (clientSkewMs is < -300_000 or > 300_000 || serverSkewMs is < -300_000 or > 300_000)
+        { clockError = "Сдвиг должен быть в пределах ±300 000 мс."; return; }
+        syncing = true;
+        bestSample = null;
+        measuredClientSkewMs = clientSkewMs;
+        try
+        {
+            for (var i = 0; i < 5; i++)
+            {
+                var t0 = DateTimeOffset.UtcNow.AddMilliseconds(clientSkewMs);
+                using var response = await Http.GetAsync($"/api/concurrency-lab/time?serverSkewMs={serverSkewMs}&processingMs=20");
+                var t3 = DateTimeOffset.UtcNow.AddMilliseconds(clientSkewMs);
+                await EnsureSuccess(response);
+                var server = await response.Content.ReadFromJsonAsync<TimeSample>() ?? throw new InvalidOperationException("Нет временных меток сервера.");
+                var offset = ((server.ServerReceivedAtUtc - t0).TotalMilliseconds + (server.ServerSentAtUtc - t3).TotalMilliseconds) / 2;
+                var rtt = (t3 - t0).TotalMilliseconds - (server.ServerSentAtUtc - server.ServerReceivedAtUtc).TotalMilliseconds;
+                var measurement = new ClockMeasurement(offset, rtt);
+                if (bestSample is null || measurement.NetworkRttMs < bestSample.NetworkRttMs) bestSample = measurement;
+            }
+            clockTimer?.Dispose();
+            clockTimer = new System.Threading.Timer(state => { _ = InvokeAsync(StateHasChanged); }, null,
+                TimeSpan.FromSeconds(1), TimeSpan.FromSeconds(1));
+        }
+        catch (Exception ex) when (ex is HttpRequestException or InvalidOperationException)
+        { clockError = $"Не удалось сверить часы: {ex.Message}"; }
+        finally { syncing = false; }
+    }
+
+    private static Task EnsureSuccess(HttpResponseMessage response)
+    {
+        if (response.IsSuccessStatusCode) return Task.CompletedTask;
+        throw new HttpRequestException($"HTTP {(int)response.StatusCode}");
+    }
+
+    private static string ModeLabel(ReservationMode mode) => mode switch
+    {
+        ReservationMode.Unsafe => "Race Condition · ЛР 2",
+        ReservationMode.Lock => "lock · ЛР 3",
+        _ => "SemaphoreSlim · ЛР 3"
+    };
+    private static string PhaseLabel(string phase) => phase switch
+    {
+        "started" => "Начало", "read" => "Чтение", "wrote" => "Запись", "start-timeout" => "Ожидание истекло", _ => phase
+    };
+    private static string Signed(double value) => value >= 0 ? $"+{value:0.0}" : $"{value:0.0}";
+
+    private enum ReservationMode { Unsafe, Lock, SemaphoreSlim }
+    private sealed record LabRun(ReservationMode Mode, ExperimentSnapshot Snapshot, long ElapsedMs);
+    private sealed record ReservationEvent(long Sequence, int RequestNumber, string ClientId, string Phase, DateTimeOffset AtUtc, int ThreadId, int? Value);
+    private sealed record ExperimentSnapshot(Guid Id, ReservationMode Mode, bool StartTogether, int PlannedRequests, int WorkDelayMs,
+        int AcceptedRequests, int CompletedRequests, int ExpectedReservations, int ActualReservations,
+        int LostUpdates, int ActiveRequests, int MaxConcurrentRequests, int ProcessId, List<ReservationEvent> Events);
+    private sealed record TimeSample(DateTimeOffset ServerReceivedAtUtc, DateTimeOffset ServerSentAtUtc, int ServerSkewMs);
+    private sealed record ClockMeasurement(double OffsetMs, double NetworkRttMs);
+    public void Dispose() => clockTimer?.Dispose();
+}

@@ -7,6 +7,7 @@ COPY src/BuildingBlocks/Burmalda.ServiceDefaults/Burmalda.ServiceDefaults.csproj
 COPY src/Gateway/Burmalda.Gateway/Burmalda.Gateway.csproj src/Gateway/Burmalda.Gateway/
 COPY src/Services/Identity/Burmalda.Identity.Api/Burmalda.Identity.Api.csproj src/Services/Identity/Burmalda.Identity.Api/
 COPY src/Services/Catalog/Burmalda.Catalog.Api/Burmalda.Catalog.Api.csproj src/Services/Catalog/Burmalda.Catalog.Api/
+COPY src/Services/ConcurrencyLab/Burmalda.ConcurrencyLab.Api/Burmalda.ConcurrencyLab.Api.csproj src/Services/ConcurrencyLab/Burmalda.ConcurrencyLab.Api/
 COPY src/Services/Lending/Burmalda.Lending.Api/Burmalda.Lending.Api.csproj src/Services/Lending/Burmalda.Lending.Api/
 COPY src/Services/Economy/Burmalda.Economy.Api/Burmalda.Economy.Api.csproj src/Services/Economy/Burmalda.Economy.Api/
 COPY src/Services/Reputation/Burmalda.Reputation.Api/Burmalda.Reputation.Api.csproj src/Services/Reputation/Burmalda.Reputation.Api/

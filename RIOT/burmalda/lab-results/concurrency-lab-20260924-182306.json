@@ -1,0 +1,1388 @@
+{
+  "recordedAtUtc": "2026-09-24T18:23:06.6288718+00:00",
+  "server": "http://localhost:5107",
+  "clients": 12,
+  "workDelayMs": 60,
+  "runs": [
+    {
+      "mode": "Unsafe sequential",
+      "elapsedMs": 810,
+      "snapshot": {
+        "id": "5caf84ff-a9f6-4d74-b927-110e9c879279",
+        "mode": 0,
+        "startTogether": false,
+        "plannedRequests": 12,
+        "workDelayMs": 60,
+        "acceptedRequests": 12,
+        "completedRequests": 12,
+        "expectedReservations": 12,
+        "actualReservations": 12,
+        "lostUpdates": 0,
+        "activeRequests": 0,
+        "maxConcurrentRequests": 1,
+        "processId": 32532,
+        "events": [
+          {
+            "sequence": 1,
+            "requestNumber": 1,
+            "clientId": "sequential-01-01",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:02.0628855+00:00",
+            "threadId": 11,
+            "value": null
+          },
+          {
+            "sequence": 2,
+            "requestNumber": 1,
+            "clientId": "sequential-01-01",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:02.0629781+00:00",
+            "threadId": 11,
+            "value": 0
+          },
+          {
+            "sequence": 3,
+            "requestNumber": 1,
+            "clientId": "sequential-01-01",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:02.1247582+00:00",
+            "threadId": 11,
+            "value": 1
+          },
+          {
+            "sequence": 4,
+            "requestNumber": 2,
+            "clientId": "sequential-02-01",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:02.1330709+00:00",
+            "threadId": 11,
+            "value": null
+          },
+          {
+            "sequence": 5,
+            "requestNumber": 2,
+            "clientId": "sequential-02-01",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:02.1330725+00:00",
+            "threadId": 11,
+            "value": 1
+          },
+          {
+            "sequence": 6,
+            "requestNumber": 2,
+            "clientId": "sequential-02-01",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:02.199338+00:00",
+            "threadId": 11,
+            "value": 2
+          },
+          {
+            "sequence": 7,
+            "requestNumber": 3,
+            "clientId": "sequential-03-01",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:02.2009354+00:00",
+            "threadId": 11,
+            "value": null
+          },
+          {
+            "sequence": 8,
+            "requestNumber": 3,
+            "clientId": "sequential-03-01",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:02.2009367+00:00",
+            "threadId": 11,
+            "value": 2
+          },
+          {
+            "sequence": 9,
+            "requestNumber": 3,
+            "clientId": "sequential-03-01",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:02.2658423+00:00",
+            "threadId": 11,
+            "value": 3
+          },
+          {
+            "sequence": 10,
+            "requestNumber": 4,
+            "clientId": "sequential-04-01",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:02.2677494+00:00",
+            "threadId": 12,
+            "value": null
+          },
+          {
+            "sequence": 11,
+            "requestNumber": 4,
+            "clientId": "sequential-04-01",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:02.2677516+00:00",
+            "threadId": 12,
+            "value": 3
+          },
+          {
+            "sequence": 12,
+            "requestNumber": 4,
+            "clientId": "sequential-04-01",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:02.332541+00:00",
+            "threadId": 12,
+            "value": 4
+          },
+          {
+            "sequence": 13,
+            "requestNumber": 5,
+            "clientId": "sequential-05-01",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:02.3346093+00:00",
+            "threadId": 11,
+            "value": null
+          },
+          {
+            "sequence": 14,
+            "requestNumber": 5,
+            "clientId": "sequential-05-01",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:02.3346103+00:00",
+            "threadId": 11,
+            "value": 4
+          },
+          {
+            "sequence": 15,
+            "requestNumber": 5,
+            "clientId": "sequential-05-01",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:02.3989818+00:00",
+            "threadId": 11,
+            "value": 5
+          },
+          {
+            "sequence": 16,
+            "requestNumber": 6,
+            "clientId": "sequential-06-01",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:02.4015843+00:00",
+            "threadId": 11,
+            "value": null
+          },
+          {
+            "sequence": 17,
+            "requestNumber": 6,
+            "clientId": "sequential-06-01",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:02.4015853+00:00",
+            "threadId": 11,
+            "value": 5
+          },
+          {
+            "sequence": 18,
+            "requestNumber": 6,
+            "clientId": "sequential-06-01",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:02.4657991+00:00",
+            "threadId": 11,
+            "value": 6
+          },
+          {
+            "sequence": 19,
+            "requestNumber": 7,
+            "clientId": "sequential-07-01",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:02.4682648+00:00",
+            "threadId": 12,
+            "value": null
+          },
+          {
+            "sequence": 20,
+            "requestNumber": 7,
+            "clientId": "sequential-07-01",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:02.4682665+00:00",
+            "threadId": 12,
+            "value": 6
+          },
+          {
+            "sequence": 21,
+            "requestNumber": 7,
+            "clientId": "sequential-07-01",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:02.5311507+00:00",
+            "threadId": 12,
+            "value": 7
+          },
+          {
+            "sequence": 22,
+            "requestNumber": 8,
+            "clientId": "sequential-08-01",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:02.5337031+00:00",
+            "threadId": 12,
+            "value": null
+          },
+          {
+            "sequence": 23,
+            "requestNumber": 8,
+            "clientId": "sequential-08-01",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:02.5337052+00:00",
+            "threadId": 12,
+            "value": 7
+          },
+          {
+            "sequence": 24,
+            "requestNumber": 8,
+            "clientId": "sequential-08-01",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:02.6029685+00:00",
+            "threadId": 12,
+            "value": 8
+          },
+          {
+            "sequence": 25,
+            "requestNumber": 9,
+            "clientId": "sequential-09-01",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:02.6044461+00:00",
+            "threadId": 12,
+            "value": null
+          },
+          {
+            "sequence": 26,
+            "requestNumber": 9,
+            "clientId": "sequential-09-01",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:02.6044489+00:00",
+            "threadId": 12,
+            "value": 8
+          },
+          {
+            "sequence": 27,
+            "requestNumber": 9,
+            "clientId": "sequential-09-01",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:02.6656112+00:00",
+            "threadId": 12,
+            "value": 9
+          },
+          {
+            "sequence": 28,
+            "requestNumber": 10,
+            "clientId": "sequential-10-01",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:02.667758+00:00",
+            "threadId": 11,
+            "value": null
+          },
+          {
+            "sequence": 29,
+            "requestNumber": 10,
+            "clientId": "sequential-10-01",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:02.6677594+00:00",
+            "threadId": 11,
+            "value": 9
+          },
+          {
+            "sequence": 30,
+            "requestNumber": 10,
+            "clientId": "sequential-10-01",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:02.7322509+00:00",
+            "threadId": 11,
+            "value": 10
+          },
+          {
+            "sequence": 31,
+            "requestNumber": 11,
+            "clientId": "sequential-11-01",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:02.7340881+00:00",
+            "threadId": 11,
+            "value": null
+          },
+          {
+            "sequence": 32,
+            "requestNumber": 11,
+            "clientId": "sequential-11-01",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:02.7340899+00:00",
+            "threadId": 11,
+            "value": 10
+          },
+          {
+            "sequence": 33,
+            "requestNumber": 11,
+            "clientId": "sequential-11-01",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:02.7937142+00:00",
+            "threadId": 11,
+            "value": 11
+          },
+          {
+            "sequence": 34,
+            "requestNumber": 12,
+            "clientId": "sequential-12-01",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:02.7954807+00:00",
+            "threadId": 12,
+            "value": null
+          },
+          {
+            "sequence": 35,
+            "requestNumber": 12,
+            "clientId": "sequential-12-01",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:02.7954821+00:00",
+            "threadId": 12,
+            "value": 11
+          },
+          {
+            "sequence": 36,
+            "requestNumber": 12,
+            "clientId": "sequential-12-01",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:02.8573763+00:00",
+            "threadId": 12,
+            "value": 12
+          }
+        ]
+      }
+    },
+    {
+      "mode": "Unsafe",
+      "elapsedMs": 2102,
+      "snapshot": {
+        "id": "5848e678-b1a2-4a76-831d-c9dba328b951",
+        "mode": 0,
+        "startTogether": true,
+        "plannedRequests": 12,
+        "workDelayMs": 60,
+        "acceptedRequests": 12,
+        "completedRequests": 12,
+        "expectedReservations": 12,
+        "actualReservations": 1,
+        "lostUpdates": 11,
+        "activeRequests": 0,
+        "maxConcurrentRequests": 12,
+        "processId": 32532,
+        "events": [
+          {
+            "sequence": 1,
+            "requestNumber": 1,
+            "clientId": "cli-01",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:02.8908461+00:00",
+            "threadId": 12,
+            "value": null
+          },
+          {
+            "sequence": 2,
+            "requestNumber": 2,
+            "clientId": "cli-04",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:04.9185606+00:00",
+            "threadId": 11,
+            "value": null
+          },
+          {
+            "sequence": 3,
+            "requestNumber": 3,
+            "clientId": "cli-05",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:04.9185647+00:00",
+            "threadId": 8,
+            "value": null
+          },
+          {
+            "sequence": 4,
+            "requestNumber": 4,
+            "clientId": "cli-07",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:04.9186095+00:00",
+            "threadId": 10,
+            "value": null
+          },
+          {
+            "sequence": 5,
+            "requestNumber": 4,
+            "clientId": "cli-07",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:04.9186569+00:00",
+            "threadId": 10,
+            "value": 0
+          },
+          {
+            "sequence": 6,
+            "requestNumber": 1,
+            "clientId": "cli-01",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:04.9187793+00:00",
+            "threadId": 10,
+            "value": 0
+          },
+          {
+            "sequence": 7,
+            "requestNumber": 5,
+            "clientId": "cli-03",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:04.9188018+00:00",
+            "threadId": 12,
+            "value": null
+          },
+          {
+            "sequence": 8,
+            "requestNumber": 3,
+            "clientId": "cli-05",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:04.9188034+00:00",
+            "threadId": 8,
+            "value": 0
+          },
+          {
+            "sequence": 9,
+            "requestNumber": 2,
+            "clientId": "cli-04",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:04.9188033+00:00",
+            "threadId": 11,
+            "value": 0
+          },
+          {
+            "sequence": 10,
+            "requestNumber": 5,
+            "clientId": "cli-03",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:04.9188112+00:00",
+            "threadId": 12,
+            "value": 0
+          },
+          {
+            "sequence": 11,
+            "requestNumber": 6,
+            "clientId": "cli-12",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:04.9193314+00:00",
+            "threadId": 15,
+            "value": null
+          },
+          {
+            "sequence": 12,
+            "requestNumber": 6,
+            "clientId": "cli-12",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:04.9193349+00:00",
+            "threadId": 15,
+            "value": 0
+          },
+          {
+            "sequence": 13,
+            "requestNumber": 7,
+            "clientId": "cli-02",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:04.9194275+00:00",
+            "threadId": 12,
+            "value": null
+          },
+          {
+            "sequence": 14,
+            "requestNumber": 7,
+            "clientId": "cli-02",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:04.9194299+00:00",
+            "threadId": 12,
+            "value": 0
+          },
+          {
+            "sequence": 15,
+            "requestNumber": 8,
+            "clientId": "cli-11",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:04.9195353+00:00",
+            "threadId": 11,
+            "value": null
+          },
+          {
+            "sequence": 16,
+            "requestNumber": 8,
+            "clientId": "cli-11",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:04.9195378+00:00",
+            "threadId": 11,
+            "value": 0
+          },
+          {
+            "sequence": 17,
+            "requestNumber": 9,
+            "clientId": "cli-09",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:04.9256645+00:00",
+            "threadId": 15,
+            "value": null
+          },
+          {
+            "sequence": 18,
+            "requestNumber": 10,
+            "clientId": "cli-10",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:04.9256647+00:00",
+            "threadId": 14,
+            "value": null
+          },
+          {
+            "sequence": 19,
+            "requestNumber": 9,
+            "clientId": "cli-09",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:04.9256718+00:00",
+            "threadId": 15,
+            "value": 0
+          },
+          {
+            "sequence": 20,
+            "requestNumber": 10,
+            "clientId": "cli-10",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:04.9256721+00:00",
+            "threadId": 14,
+            "value": 0
+          },
+          {
+            "sequence": 21,
+            "requestNumber": 11,
+            "clientId": "cli-08",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:04.9260657+00:00",
+            "threadId": 15,
+            "value": null
+          },
+          {
+            "sequence": 22,
+            "requestNumber": 11,
+            "clientId": "cli-08",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:04.926069+00:00",
+            "threadId": 15,
+            "value": 0
+          },
+          {
+            "sequence": 23,
+            "requestNumber": 12,
+            "clientId": "cli-06",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:04.9262294+00:00",
+            "threadId": 8,
+            "value": null
+          },
+          {
+            "sequence": 24,
+            "requestNumber": 12,
+            "clientId": "cli-06",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:04.9262402+00:00",
+            "threadId": 8,
+            "value": 0
+          },
+          {
+            "sequence": 25,
+            "requestNumber": 8,
+            "clientId": "cli-11",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:04.9817294+00:00",
+            "threadId": 8,
+            "value": 1
+          },
+          {
+            "sequence": 26,
+            "requestNumber": 7,
+            "clientId": "cli-02",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:04.9817294+00:00",
+            "threadId": 15,
+            "value": 1
+          },
+          {
+            "sequence": 27,
+            "requestNumber": 5,
+            "clientId": "cli-03",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:04.9817598+00:00",
+            "threadId": 12,
+            "value": 1
+          },
+          {
+            "sequence": 28,
+            "requestNumber": 2,
+            "clientId": "cli-04",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:04.9817674+00:00",
+            "threadId": 11,
+            "value": 1
+          },
+          {
+            "sequence": 29,
+            "requestNumber": 6,
+            "clientId": "cli-12",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:04.9818051+00:00",
+            "threadId": 14,
+            "value": 1
+          },
+          {
+            "sequence": 30,
+            "requestNumber": 1,
+            "clientId": "cli-01",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:04.9823244+00:00",
+            "threadId": 11,
+            "value": 1
+          },
+          {
+            "sequence": 31,
+            "requestNumber": 4,
+            "clientId": "cli-07",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:04.9823796+00:00",
+            "threadId": 8,
+            "value": 1
+          },
+          {
+            "sequence": 32,
+            "requestNumber": 3,
+            "clientId": "cli-05",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:04.9833398+00:00",
+            "threadId": 10,
+            "value": 1
+          },
+          {
+            "sequence": 33,
+            "requestNumber": 12,
+            "clientId": "cli-06",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:04.991192+00:00",
+            "threadId": 10,
+            "value": 1
+          },
+          {
+            "sequence": 34,
+            "requestNumber": 10,
+            "clientId": "cli-10",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:04.991192+00:00",
+            "threadId": 16,
+            "value": 1
+          },
+          {
+            "sequence": 35,
+            "requestNumber": 11,
+            "clientId": "cli-08",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:04.9912578+00:00",
+            "threadId": 15,
+            "value": 1
+          },
+          {
+            "sequence": 36,
+            "requestNumber": 9,
+            "clientId": "cli-09",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:04.9912919+00:00",
+            "threadId": 8,
+            "value": 1
+          }
+        ]
+      }
+    },
+    {
+      "mode": "Lock",
+      "elapsedMs": 799,
+      "snapshot": {
+        "id": "aa99d5cf-b8d6-4e82-84b9-70c15a60288f",
+        "mode": 1,
+        "startTogether": true,
+        "plannedRequests": 12,
+        "workDelayMs": 60,
+        "acceptedRequests": 12,
+        "completedRequests": 12,
+        "expectedReservations": 12,
+        "actualReservations": 12,
+        "lostUpdates": 0,
+        "activeRequests": 0,
+        "maxConcurrentRequests": 12,
+        "processId": 32532,
+        "events": [
+          {
+            "sequence": 1,
+            "requestNumber": 1,
+            "clientId": "cli-01",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:04.9964074+00:00",
+            "threadId": 11,
+            "value": null
+          },
+          {
+            "sequence": 2,
+            "requestNumber": 2,
+            "clientId": "cli-02",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:04.9965259+00:00",
+            "threadId": 16,
+            "value": null
+          },
+          {
+            "sequence": 3,
+            "requestNumber": 3,
+            "clientId": "cli-03",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:04.9966622+00:00",
+            "threadId": 17,
+            "value": null
+          },
+          {
+            "sequence": 4,
+            "requestNumber": 4,
+            "clientId": "cli-04",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:04.9967627+00:00",
+            "threadId": 11,
+            "value": null
+          },
+          {
+            "sequence": 5,
+            "requestNumber": 4,
+            "clientId": "cli-04",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:04.9967922+00:00",
+            "threadId": 11,
+            "value": 0
+          },
+          {
+            "sequence": 6,
+            "requestNumber": 5,
+            "clientId": "cli-05",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:04.9968952+00:00",
+            "threadId": 16,
+            "value": null
+          },
+          {
+            "sequence": 7,
+            "requestNumber": 6,
+            "clientId": "cli-06",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:04.9970415+00:00",
+            "threadId": 10,
+            "value": null
+          },
+          {
+            "sequence": 8,
+            "requestNumber": 7,
+            "clientId": "cli-08",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:04.9971046+00:00",
+            "threadId": 14,
+            "value": null
+          },
+          {
+            "sequence": 9,
+            "requestNumber": 8,
+            "clientId": "cli-07",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:05.0053205+00:00",
+            "threadId": 15,
+            "value": null
+          },
+          {
+            "sequence": 10,
+            "requestNumber": 9,
+            "clientId": "cli-10",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:05.0061475+00:00",
+            "threadId": 19,
+            "value": null
+          },
+          {
+            "sequence": 11,
+            "requestNumber": 10,
+            "clientId": "cli-09",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:05.0061484+00:00",
+            "threadId": 18,
+            "value": null
+          },
+          {
+            "sequence": 12,
+            "requestNumber": 11,
+            "clientId": "cli-11",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:05.0063266+00:00",
+            "threadId": 20,
+            "value": null
+          },
+          {
+            "sequence": 13,
+            "requestNumber": 12,
+            "clientId": "cli-12",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:05.0066163+00:00",
+            "threadId": 21,
+            "value": null
+          },
+          {
+            "sequence": 14,
+            "requestNumber": 4,
+            "clientId": "cli-04",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:05.0574854+00:00",
+            "threadId": 11,
+            "value": 1
+          },
+          {
+            "sequence": 15,
+            "requestNumber": 1,
+            "clientId": "cli-01",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:05.0574943+00:00",
+            "threadId": 17,
+            "value": 1
+          },
+          {
+            "sequence": 16,
+            "requestNumber": 1,
+            "clientId": "cli-01",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:05.1235498+00:00",
+            "threadId": 17,
+            "value": 2
+          },
+          {
+            "sequence": 17,
+            "requestNumber": 2,
+            "clientId": "cli-02",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:05.1235601+00:00",
+            "threadId": 12,
+            "value": 2
+          },
+          {
+            "sequence": 18,
+            "requestNumber": 3,
+            "clientId": "cli-03",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:05.1908815+00:00",
+            "threadId": 8,
+            "value": 3
+          },
+          {
+            "sequence": 19,
+            "requestNumber": 2,
+            "clientId": "cli-02",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:05.1909017+00:00",
+            "threadId": 12,
+            "value": 3
+          },
+          {
+            "sequence": 20,
+            "requestNumber": 3,
+            "clientId": "cli-03",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:05.2574612+00:00",
+            "threadId": 8,
+            "value": 4
+          },
+          {
+            "sequence": 21,
+            "requestNumber": 5,
+            "clientId": "cli-05",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:05.2574721+00:00",
+            "threadId": 16,
+            "value": 4
+          },
+          {
+            "sequence": 22,
+            "requestNumber": 5,
+            "clientId": "cli-05",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:05.3243731+00:00",
+            "threadId": 16,
+            "value": 5
+          },
+          {
+            "sequence": 23,
+            "requestNumber": 6,
+            "clientId": "cli-06",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:05.324385+00:00",
+            "threadId": 10,
+            "value": 5
+          },
+          {
+            "sequence": 24,
+            "requestNumber": 6,
+            "clientId": "cli-06",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:05.3909074+00:00",
+            "threadId": 10,
+            "value": 6
+          },
+          {
+            "sequence": 25,
+            "requestNumber": 7,
+            "clientId": "cli-08",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:05.3909429+00:00",
+            "threadId": 14,
+            "value": 6
+          },
+          {
+            "sequence": 26,
+            "requestNumber": 7,
+            "clientId": "cli-08",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:05.4575569+00:00",
+            "threadId": 14,
+            "value": 7
+          },
+          {
+            "sequence": 27,
+            "requestNumber": 8,
+            "clientId": "cli-07",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:05.4575618+00:00",
+            "threadId": 15,
+            "value": 7
+          },
+          {
+            "sequence": 28,
+            "requestNumber": 8,
+            "clientId": "cli-07",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:05.5240616+00:00",
+            "threadId": 15,
+            "value": 8
+          },
+          {
+            "sequence": 29,
+            "requestNumber": 10,
+            "clientId": "cli-09",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:05.5240722+00:00",
+            "threadId": 18,
+            "value": 8
+          },
+          {
+            "sequence": 30,
+            "requestNumber": 10,
+            "clientId": "cli-09",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:05.5907192+00:00",
+            "threadId": 18,
+            "value": 9
+          },
+          {
+            "sequence": 31,
+            "requestNumber": 9,
+            "clientId": "cli-10",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:05.590731+00:00",
+            "threadId": 19,
+            "value": 9
+          },
+          {
+            "sequence": 32,
+            "requestNumber": 9,
+            "clientId": "cli-10",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:05.6644828+00:00",
+            "threadId": 19,
+            "value": 10
+          },
+          {
+            "sequence": 33,
+            "requestNumber": 11,
+            "clientId": "cli-11",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:05.6644964+00:00",
+            "threadId": 20,
+            "value": 10
+          },
+          {
+            "sequence": 34,
+            "requestNumber": 11,
+            "clientId": "cli-11",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:05.7313873+00:00",
+            "threadId": 20,
+            "value": 11
+          },
+          {
+            "sequence": 35,
+            "requestNumber": 12,
+            "clientId": "cli-12",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:05.7313941+00:00",
+            "threadId": 21,
+            "value": 11
+          },
+          {
+            "sequence": 36,
+            "requestNumber": 12,
+            "clientId": "cli-12",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:05.7951685+00:00",
+            "threadId": 21,
+            "value": 12
+          }
+        ]
+      }
+    },
+    {
+      "mode": "SemaphoreSlim",
+      "elapsedMs": 826,
+      "snapshot": {
+        "id": "360b4d0b-213d-47e1-8e68-d92e3f05ceda",
+        "mode": 2,
+        "startTogether": true,
+        "plannedRequests": 12,
+        "workDelayMs": 60,
+        "acceptedRequests": 12,
+        "completedRequests": 12,
+        "expectedReservations": 12,
+        "actualReservations": 12,
+        "lostUpdates": 0,
+        "activeRequests": 0,
+        "maxConcurrentRequests": 12,
+        "processId": 32532,
+        "events": [
+          {
+            "sequence": 1,
+            "requestNumber": 1,
+            "clientId": "cli-01",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:05.7994162+00:00",
+            "threadId": 21,
+            "value": null
+          },
+          {
+            "sequence": 2,
+            "requestNumber": 2,
+            "clientId": "cli-02",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:05.7994257+00:00",
+            "threadId": 18,
+            "value": null
+          },
+          {
+            "sequence": 3,
+            "requestNumber": 3,
+            "clientId": "cli-03",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:05.7996314+00:00",
+            "threadId": 21,
+            "value": null
+          },
+          {
+            "sequence": 4,
+            "requestNumber": 4,
+            "clientId": "cli-04",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:05.7997835+00:00",
+            "threadId": 18,
+            "value": null
+          },
+          {
+            "sequence": 5,
+            "requestNumber": 4,
+            "clientId": "cli-04",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:05.7997971+00:00",
+            "threadId": 18,
+            "value": 0
+          },
+          {
+            "sequence": 6,
+            "requestNumber": 5,
+            "clientId": "cli-05",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:05.79992+00:00",
+            "threadId": 21,
+            "value": null
+          },
+          {
+            "sequence": 7,
+            "requestNumber": 6,
+            "clientId": "cli-06",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:05.8000547+00:00",
+            "threadId": 15,
+            "value": null
+          },
+          {
+            "sequence": 8,
+            "requestNumber": 7,
+            "clientId": "cli-08",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:05.8001514+00:00",
+            "threadId": 12,
+            "value": null
+          },
+          {
+            "sequence": 9,
+            "requestNumber": 8,
+            "clientId": "cli-07",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:05.8001534+00:00",
+            "threadId": 16,
+            "value": null
+          },
+          {
+            "sequence": 10,
+            "requestNumber": 10,
+            "clientId": "cli-09",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:05.8003548+00:00",
+            "threadId": 10,
+            "value": null
+          },
+          {
+            "sequence": 11,
+            "requestNumber": 9,
+            "clientId": "cli-10",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:05.8003572+00:00",
+            "threadId": 14,
+            "value": null
+          },
+          {
+            "sequence": 12,
+            "requestNumber": 11,
+            "clientId": "cli-11",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:05.8005494+00:00",
+            "threadId": 23,
+            "value": null
+          },
+          {
+            "sequence": 13,
+            "requestNumber": 12,
+            "clientId": "cli-12",
+            "phase": "started",
+            "atUtc": "2026-09-24T18:23:05.8005791+00:00",
+            "threadId": 22,
+            "value": null
+          },
+          {
+            "sequence": 14,
+            "requestNumber": 4,
+            "clientId": "cli-04",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:05.8745281+00:00",
+            "threadId": 22,
+            "value": 1
+          },
+          {
+            "sequence": 15,
+            "requestNumber": 3,
+            "clientId": "cli-03",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:05.8751296+00:00",
+            "threadId": 23,
+            "value": 1
+          },
+          {
+            "sequence": 16,
+            "requestNumber": 3,
+            "clientId": "cli-03",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:05.9483579+00:00",
+            "threadId": 22,
+            "value": 2
+          },
+          {
+            "sequence": 17,
+            "requestNumber": 1,
+            "clientId": "cli-01",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:05.9485266+00:00",
+            "threadId": 23,
+            "value": 2
+          },
+          {
+            "sequence": 18,
+            "requestNumber": 1,
+            "clientId": "cli-01",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:06.0241383+00:00",
+            "threadId": 14,
+            "value": 3
+          },
+          {
+            "sequence": 19,
+            "requestNumber": 2,
+            "clientId": "cli-02",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:06.0244998+00:00",
+            "threadId": 14,
+            "value": 3
+          },
+          {
+            "sequence": 20,
+            "requestNumber": 2,
+            "clientId": "cli-02",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:06.0915304+00:00",
+            "threadId": 22,
+            "value": 4
+          },
+          {
+            "sequence": 21,
+            "requestNumber": 5,
+            "clientId": "cli-05",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:06.0915926+00:00",
+            "threadId": 14,
+            "value": 4
+          },
+          {
+            "sequence": 22,
+            "requestNumber": 5,
+            "clientId": "cli-05",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:06.164958+00:00",
+            "threadId": 14,
+            "value": 5
+          },
+          {
+            "sequence": 23,
+            "requestNumber": 6,
+            "clientId": "cli-06",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:06.1650811+00:00",
+            "threadId": 23,
+            "value": 5
+          },
+          {
+            "sequence": 24,
+            "requestNumber": 6,
+            "clientId": "cli-06",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:06.2273133+00:00",
+            "threadId": 14,
+            "value": 6
+          },
+          {
+            "sequence": 25,
+            "requestNumber": 7,
+            "clientId": "cli-08",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:06.2273342+00:00",
+            "threadId": 23,
+            "value": 6
+          },
+          {
+            "sequence": 26,
+            "requestNumber": 7,
+            "clientId": "cli-08",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:06.2911414+00:00",
+            "threadId": 23,
+            "value": 7
+          },
+          {
+            "sequence": 27,
+            "requestNumber": 8,
+            "clientId": "cli-07",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:06.2911851+00:00",
+            "threadId": 14,
+            "value": 7
+          },
+          {
+            "sequence": 28,
+            "requestNumber": 8,
+            "clientId": "cli-07",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:06.3576138+00:00",
+            "threadId": 14,
+            "value": 8
+          },
+          {
+            "sequence": 29,
+            "requestNumber": 10,
+            "clientId": "cli-09",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:06.3576367+00:00",
+            "threadId": 23,
+            "value": 8
+          },
+          {
+            "sequence": 30,
+            "requestNumber": 10,
+            "clientId": "cli-09",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:06.4242159+00:00",
+            "threadId": 22,
+            "value": 9
+          },
+          {
+            "sequence": 31,
+            "requestNumber": 9,
+            "clientId": "cli-10",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:06.4242414+00:00",
+            "threadId": 14,
+            "value": 9
+          },
+          {
+            "sequence": 32,
+            "requestNumber": 9,
+            "clientId": "cli-10",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:06.4913446+00:00",
+            "threadId": 23,
+            "value": 10
+          },
+          {
+            "sequence": 33,
+            "requestNumber": 11,
+            "clientId": "cli-11",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:06.4915661+00:00",
+            "threadId": 14,
+            "value": 10
+          },
+          {
+            "sequence": 34,
+            "requestNumber": 11,
+            "clientId": "cli-11",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:06.5576114+00:00",
+            "threadId": 22,
+            "value": 11
+          },
+          {
+            "sequence": 35,
+            "requestNumber": 12,
+            "clientId": "cli-12",
+            "phase": "read",
+            "atUtc": "2026-09-24T18:23:06.5576692+00:00",
+            "threadId": 23,
+            "value": 11
+          },
+          {
+            "sequence": 36,
+            "requestNumber": 12,
+            "clientId": "cli-12",
+            "phase": "wrote",
+            "atUtc": "2026-09-24T18:23:06.6244311+00:00",
+            "threadId": 23,
+            "value": 12
+          }
+        ]
+      }
+    }
+  ]
+}

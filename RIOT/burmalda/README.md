@@ -5,6 +5,9 @@ contains a standalone Blazor WebAssembly client, an API gateway, and six
 independently persisted services: Identity, Catalog, Lending, Economy,
 Reputation, and Notifications.
 
+An isolated [concurrency lab](docs/concurrency-lab.md) adds a development-only
+API, Blazor comparison page, and C# command-line client for LR 2 and LR 3.
+
 The current implementation covers the complete first two vertical milestones:
 
 - JWT registration/login/refresh and role-based administration;
@@ -40,7 +43,7 @@ not restart infrastructure, and restarting infrastructure does not manage any
 Burmalda application process.
 
 Open `Burmalda.slnx` in Visual Studio and select `Full application` to start the
-client, gateway, and all six services under the debugger. `All backend services`
+client, gateway, six business services, and the concurrency lab under the debugger. `All backend services`
 and `Web client` are also available for focused work. Each project has a stable
 HTTP port in its `Properties/launchSettings.json` file.
 
@@ -49,6 +52,7 @@ Alternatively, start the projects in separate terminals:
 ```powershell
 dotnet run --project src/Services/Identity/Burmalda.Identity.Api -- --urls http://localhost:5101
 dotnet run --project src/Services/Catalog/Burmalda.Catalog.Api -- --urls http://localhost:5102
+dotnet run --project src/Services/ConcurrencyLab/Burmalda.ConcurrencyLab.Api -- --urls http://localhost:5107
 dotnet run --project src/Services/Lending/Burmalda.Lending.Api -- --urls http://localhost:5103
 dotnet run --project src/Services/Economy/Burmalda.Economy.Api -- --urls http://localhost:5104
 dotnet run --project src/Services/Reputation/Burmalda.Reputation.Api -- --urls http://localhost:5105

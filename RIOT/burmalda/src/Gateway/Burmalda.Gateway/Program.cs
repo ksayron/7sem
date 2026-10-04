@@ -7,7 +7,15 @@ builder.Services.AddCors(options => options.AddPolicy("WebClient", policy => pol
     .WithOrigins(builder.Configuration.GetSection("ClientOrigins").Get<string[]>() ?? ["http://localhost:5300"])
     .AllowAnyHeader()
     .AllowAnyMethod()));
-builder.Services.AddRateLimiter(options => options.AddPolicy("api", context => RateLimitPartition.GetFixedWindowLimiter(context.User.Identity?.Name ?? context.Connection.RemoteIpAddress?.ToString() ?? "anonymous", _ => new FixedWindowRateLimiterOptions { PermitLimit = 120, Window = TimeSpan.FromMinutes(1), QueueLimit = 0 })));
+builder.Services.AddRateLimiter(options =>
+{
+    options.AddPolicy("api", context => RateLimitPartition.GetFixedWindowLimiter(
+        context.User.Identity?.Name ?? context.Connection.RemoteIpAddress?.ToString() ?? "anonymous",
+        _ => new FixedWindowRateLimiterOptions { PermitLimit = 120, Window = TimeSpan.FromMinutes(1), QueueLimit = 0 }));
+    options.AddPolicy("concurrency-lab", context => RateLimitPartition.GetFixedWindowLimiter(
+        context.Connection.RemoteIpAddress?.ToString() ?? "anonymous",
+        _ => new FixedWindowRateLimiterOptions { PermitLimit = 400, Window = TimeSpan.FromMinutes(1), QueueLimit = 0 }));
+});
 builder.Services.AddHttpClient("monitoring", client => client.Timeout = TimeSpan.FromSeconds(3));
 var app = builder.Build(); app.UseCors("WebClient"); app.UseBurmaldaDefaults(); app.UseRateLimiter();
 app.Use(async (context, next) => { 
@@ -33,5 +41,5 @@ app.MapGet("/api/admin/system/health", async (IConfiguration configuration, IHtt
     }
     return Results.Ok(new { CheckedAt = DateTimeOffset.UtcNow, Services = results });
 }).RequireAuthorization("AdminOnly");
-app.MapReverseProxy().RequireRateLimiting("api"); await app.RunAsync();
+app.MapReverseProxy(); await app.RunAsync();
 public partial class Program;

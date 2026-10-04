@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <AssemblyName>Burmalda.ConcurrencyLab.Api</AssemblyName>
+  </PropertyGroup>
+</Project>

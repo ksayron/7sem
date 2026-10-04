@@ -1,0 +1,56 @@
+{
+  "recordedAtUtc": "2026-09-24T18:14:59.166467+00:00",
+  "server": "http://localhost:5107",
+  "clientSkewMs": 90000,
+  "serverSkewMs": -45000,
+  "selected": {
+    "clientSentAtUtc": "2026-09-24T18:16:29.09022+00:00",
+    "serverReceivedAtUtc": "2026-09-24T18:14:14.0906712+00:00",
+    "serverSentAtUtc": "2026-09-24T18:14:14.1141008+00:00",
+    "clientReceivedAtUtc": "2026-09-24T18:16:29.1151115+00:00",
+    "offsetMs": -135000.27975,
+    "networkRttMs": 1.4619
+  },
+  "samples": [
+    {
+      "clientSentAtUtc": "2026-09-24T18:16:26.8422378+00:00",
+      "serverReceivedAtUtc": "2026-09-24T18:14:13.9481079+00:00",
+      "serverSentAtUtc": "2026-09-24T18:14:13.9727353+00:00",
+      "clientReceivedAtUtc": "2026-09-24T18:16:29.0366667+00:00",
+      "offsetMs": -133979.03065,
+      "networkRttMs": 2169.8015
+    },
+    {
+      "clientSentAtUtc": "2026-09-24T18:16:29.0368806+00:00",
+      "serverReceivedAtUtc": "2026-09-24T18:14:14.0379879+00:00",
+      "serverSentAtUtc": "2026-09-24T18:14:14.0577832+00:00",
+      "clientReceivedAtUtc": "2026-09-24T18:16:29.0589517+00:00",
+      "offsetMs": -135000.0306,
+      "networkRttMs": 2.2758000000000003
+    },
+    {
+      "clientSentAtUtc": "2026-09-24T18:16:29.0589568+00:00",
+      "serverReceivedAtUtc": "2026-09-24T18:14:14.0593512+00:00",
+      "serverSentAtUtc": "2026-09-24T18:14:14.0890224+00:00",
+      "clientReceivedAtUtc": "2026-09-24T18:16:29.0902055+00:00",
+      "offsetMs": -135000.39435000002,
+      "networkRttMs": 1.5775000000000006
+    },
+    {
+      "clientSentAtUtc": "2026-09-24T18:16:29.09022+00:00",
+      "serverReceivedAtUtc": "2026-09-24T18:14:14.0906712+00:00",
+      "serverSentAtUtc": "2026-09-24T18:14:14.1141008+00:00",
+      "clientReceivedAtUtc": "2026-09-24T18:16:29.1151115+00:00",
+      "offsetMs": -135000.27975,
+      "networkRttMs": 1.4619
+    },
+    {
+      "clientSentAtUtc": "2026-09-24T18:16:29.115122+00:00",
+      "serverReceivedAtUtc": "2026-09-24T18:14:14.1165111+00:00",
+      "serverSentAtUtc": "2026-09-24T18:14:14.1390771+00:00",
+      "clientReceivedAtUtc": "2026-09-24T18:16:29.1399903+00:00",
+      "offsetMs": -134999.76205000002,
+      "networkRttMs": 2.3023000000000025
+    }
+  ]
+}
