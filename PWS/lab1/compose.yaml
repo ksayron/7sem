@@ -1,0 +1,64 @@
+name: pws-lab1
+x-common: &common
+  restart: unless-stopped
+  networks: [lab]
+  pull_policy: never
+
+services:
+  ws01-01-a:
+    <<: *common
+    image: pws-lab1-ws01-01:local
+    build: &build-ws01
+      context: .
+      args: { PROJECT: WS01-01 }
+    environment: { INSTANCE_NAME: WS01-01-A }
+    ports: ["127.0.0.1:8111:8080"]
+  ws01-01-b:
+    <<: *common
+    image: pws-lab1-ws01-01:local
+    build: *build-ws01
+    environment: { INSTANCE_NAME: WS01-01-B }
+    ports: ["127.0.0.1:8112:8080"]
+  ws01-02-a:
+    <<: *common
+    image: pws-lab1-ws01-02:local
+    build: &build-ws02
+      context: .
+      args: { PROJECT: WS01-02 }
+    environment:
+      INSTANCE_NAME: WS01-02-A
+      COOKIE_SIGNING_KEY: ${COOKIE_SIGNING_KEY:-pws-lab1-local-demo-key-change-before-production}
+    ports: ["127.0.0.1:8121:8080"]
+  ws01-02-b:
+    <<: *common
+    image: pws-lab1-ws01-02:local
+    build: *build-ws02
+    environment:
+      INSTANCE_NAME: WS01-02-B
+      COOKIE_SIGNING_KEY: ${COOKIE_SIGNING_KEY:-pws-lab1-local-demo-key-change-before-production}
+    ports: ["127.0.0.1:8122:8080"]
+  gateway-sticky:
+    <<: *common
+    image: pws-lab1-gateway:local
+    build: &build-gateway
+      context: .
+      args: { PROJECT: Gateway }
+    environment:
+      GATEWAY_MODE: sticky
+      BACKEND_A: http://ws01-01-a:8080/
+      BACKEND_B: http://ws01-01-b:8080/
+    ports: ["127.0.0.1:8101:8080"]
+    depends_on: [ws01-01-a, ws01-01-b]
+  gateway-round-robin:
+    <<: *common
+    image: pws-lab1-gateway:local
+    build: *build-gateway
+    environment:
+      GATEWAY_MODE: round-robin
+      BACKEND_A: http://ws01-02-a:8080/
+      BACKEND_B: http://ws01-02-b:8080/
+    ports: ["127.0.0.1:8102:8080"]
+    depends_on: [ws01-02-a, ws01-02-b]
+
+networks:
+  lab:

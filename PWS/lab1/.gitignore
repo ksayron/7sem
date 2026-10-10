@@ -1,0 +1,8 @@
+**/bin/
+**/obj/
+artifacts/publish/
+artifacts/*.log
+artifacts/local-processes.json
+artifacts/nuget/
+artifacts/download_runtime.py
+.env

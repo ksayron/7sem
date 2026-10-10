@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PWS — Лабораторная 1</title>
+  <style>pre { white-space: pre-wrap; overflow-wrap: anywhere; }</style>
+</head>
+<body>
+  <h1>__NAME__</h1>
+  <p>
+    <a href="http://localhost:8101/">Sticky Session</a> |
+    <a href="http://localhost:8102/">Round Robin</a> |
+    <a href="http://localhost:8111/">WS01-01</a> |
+    <a href="http://localhost:8121/">WS01-02</a>
+  </p>
+
+  <p><button type="button" data-method="GET">GET</button></p>
+  <form id="post-form">
+    <p>
+      <label for="base">RESULT:</label>
+      <input id="base" type="number" step="1" min="-2147483648" max="2147483647" value="10" required>
+      <button type="submit">POST</button>
+    </p>
+  </form>
+  <form id="put-form">
+    <p>
+      <label for="add">ADD:</label>
+      <input id="add" type="number" step="1" min="-2147483648" max="2147483647" value="5" required>
+      <button type="submit">PUT (PUSH)</button>
+    </p>
+  </form>
+  <p><button type="button" data-method="DELETE">DELETE (POP)</button></p>
+
+  <p id="status" role="status" aria-live="polite">Готово к запросам.</p>
+  <p>RESULT: <strong id="result">—</strong></p>
+  <p>Экземпляр: <span id="instance">—</span></p>
+  <p>Стек снизу вверх: <span id="stack">—</span></p>
+  <h2>Ответ JSON</h2>
+  <pre id="raw">Нет запросов.</pre>
+
+  <h2>Журнал запросов</h2>
+  <button type="button" id="clear">Очистить журнал</button>
+  <ol id="journal"></ol>
+
+  <script>
+    const mode = '__MODE__';
+    const $ = id => document.getElementById(id);
+    let sequence = 0;
+
+    async function send(method) {
+      let path = '/stack';
+      const options = { method, credentials: 'same-origin', cache: 'no-store' };
+      if (method === 'POST') {
+        options.headers = { 'Content-Type': 'application/json' };
+        options.body = JSON.stringify({ RESULT: Number($('base').value) });
+      }
+      if (method === 'PUT') path += '?ADD=' + encodeURIComponent($('add').value);
+
+      document.querySelectorAll('button').forEach(button => button.disabled = true);
+      $('status').textContent = 'Отправка запроса...';
+      try {
+        const response = await fetch(path, options);
+        const data = await response.json();
+        const instance = response.headers.get('X-Instance') || '—';
+        const policy = response.headers.get('X-Gateway-Policy') || 'напрямую';
+        const entry = document.createElement('li');
+        entry.value = ++sequence;
+        entry.append(method + ' ' + path + ' | HTTP ' + response.status + ' | ');
+        const instanceText = document.createElement('span');
+        instanceText.dataset.instance = instance;
+        instanceText.textContent = instance;
+        entry.append(instanceText, ' | RESULT: ' + (data.RESULT ?? '—') + ' | ' + policy);
+        $('journal').prepend(entry);
+        while ($('journal').children.length > 40) $('journal').lastChild.remove();
+
+        $('raw').textContent = JSON.stringify(data, null, 2);
+        $('status').textContent = response.ok
+          ? 'HTTP ' + response.status
+          : 'HTTP ' + response.status + ': ' + data.error;
+        if (response.ok) {
+          $('result').textContent = data.RESULT;
+          $('instance').textContent = instance;
+          $('stack').replaceChildren();
+          if (!data.stack.length) $('stack').textContent = 'пуст';
+          data.stack.forEach((value, index) => {
+            if (index) $('stack').append(', ');
+            const item = document.createElement('span');
+            item.textContent = value;
+            $('stack').append(item);
+          });
+        }
+      } catch (error) {
+        $('status').textContent = 'Ошибка соединения: ' + error.message;
+      } finally {
+        document.querySelectorAll('button').forEach(button => button.disabled = false);
+      }
+    }
+
+    document.querySelectorAll('[data-method]').forEach(button => {
+      button.addEventListener('click', () => send(button.dataset.method));
+    });
+    $('post-form').addEventListener('submit', event => { event.preventDefault(); send('POST'); });
+    $('put-form').addEventListener('submit', event => { event.preventDefault(); send('PUT'); });
+    $('clear').addEventListener('click', () => { $('journal').replaceChildren(); sequence = 0; });
+  </script>
+</body>
+</html>

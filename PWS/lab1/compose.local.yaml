@@ -1,0 +1,38 @@
+# Standalone configuration. Requires Linux binaries from Publish-Linux.ps1.
+name: pws-lab1
+x-local-build: &local-build
+  context: ./artifacts/publish
+  dockerfile: ../../Dockerfile.local
+services:
+  ws01-01-a:
+    extends: { file: compose.yaml, service: ws01-01-a }
+    build:
+      <<: *local-build
+      args: { PROJECT: WS01-01 }
+  ws01-01-b:
+    extends: { file: compose.yaml, service: ws01-01-b }
+    build:
+      <<: *local-build
+      args: { PROJECT: WS01-01 }
+  ws01-02-a:
+    extends: { file: compose.yaml, service: ws01-02-a }
+    build:
+      <<: *local-build
+      args: { PROJECT: WS01-02 }
+  ws01-02-b:
+    extends: { file: compose.yaml, service: ws01-02-b }
+    build:
+      <<: *local-build
+      args: { PROJECT: WS01-02 }
+  gateway-sticky:
+    extends: { file: compose.yaml, service: gateway-sticky }
+    build:
+      <<: *local-build
+      args: { PROJECT: Gateway }
+  gateway-round-robin:
+    extends: { file: compose.yaml, service: gateway-round-robin }
+    build:
+      <<: *local-build
+      args: { PROJECT: Gateway }
+networks:
+  lab:

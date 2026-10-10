@@ -1,0 +1,15 @@
+# Fallback when MCR is inaccessible: cross-publish on the host, then package.
+# Debian supplies native OS libraries only; the application bundles .NET.
+FROM debian:trixie-20260505-slim
+ARG PROJECT=WS01-01
+WORKDIR /app
+COPY ${PROJECT}/${PROJECT} ./service
+RUN chmod 755 /app/service && useradd --uid 1654 --create-home app
+ENV ASPNETCORE_URLS=http://+:8080 \
+    DOTNET_BUNDLE_EXTRACT_BASE_DIR=/tmp/dotnet-bundle \
+    DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1 \
+    Logging__LogLevel__Default=Information \
+    Logging__LogLevel__Microsoft.AspNetCore=Warning
+USER app
+EXPOSE 8080
+ENTRYPOINT ["./service"]
