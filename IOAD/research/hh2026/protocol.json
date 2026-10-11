@@ -1,0 +1,42 @@
+{
+  "seed": 42,
+  "folds": 3,
+  "split": "StratifiedGroupKFold, group=company",
+  "sample_limit": 20000,
+  "hyperparameter_search": false,
+  "tasks": [
+    {
+      "task": "salary_ge_100k_net_month",
+      "eligible_rows": 61938,
+      "after_template_dedup": 59814,
+      "evaluated_rows": 20000,
+      "positive_count": 8802,
+      "positive_share": 0.4401,
+      "companies": 11951
+    },
+    {
+      "task": "it_no_experience",
+      "eligible_rows": 5850,
+      "after_template_dedup": 5781,
+      "evaluated_rows": 5781,
+      "positive_count": 340,
+      "positive_share": 0.058813354090987716,
+      "companies": 2681
+    },
+    {
+      "task": "it_experience_ge_3_years",
+      "eligible_rows": 5850,
+      "after_template_dedup": 5781,
+      "evaluated_rows": 5781,
+      "positive_count": 3519,
+      "positive_share": 0.6087182148417228,
+      "companies": 2681
+    }
+  ],
+  "salary_threshold": 100000,
+  "salary_definition": "Advertised lower bound in RUB / month / net; titles mentioning money excluded",
+  "features": "Job title TF-IDF + metadata; no company, IDs, address, dates, response counts or salaries",
+  "entry_level_definition": "experience == Без опыта; experience excluded from predictors",
+  "senior_definition": "experience in [3-6 лет, Более 6 лет]; experience excluded from predictors",
+  "scope": "Candidate screening; no separate final test; not a learner skill assessment"
+}

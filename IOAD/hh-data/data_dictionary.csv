@@ -1,0 +1,39 @@
+column,type,description
+vacancy_id,integer,Unique vacancy identifier on hh.ru
+name,string,Job title as posted
+company,string,Employer name
+collected_area_id,integer,hh.ru id of the regional search this vacancy was collected from (clean region key)
+area_name,string,Area name of the vacancy (may be a suburb of the searched city)
+address_city,string,Actual city of the vacancy when provided
+address_display,string,Full address string when provided
+category,string,Professional field (one of 27)
+role_ids,string,"Underlying professional role id(s), comma-separated"
+experience,string,Required experience (No experience / 1-3 / 3-6 / 6+ years)
+salary_from,float,Lower salary bound in the original currency
+salary_to,float,Upper salary bound in the original currency
+currency,string,"Currency code (RUR, USD, EUR, ...)"
+gross,boolean,True if the salary is stated before tax
+salary_from_rub,float,Lower salary bound converted to RUB
+salary_to_rub,float,Upper salary bound converted to RUB
+salary_shown,boolean,True if at least one salary bound is stated
+salary_period,string,"Salary period in readable form (per month / shift / hour / rotation / service)"
+salary_mode,string,Raw salary period code behind salary_period (e.g. MONTH)
+employment_form,string,Employment form (Full / Part-time / Project / Side job / Fly-in-fly-out)
+work_formats,string,"Work format code(s): ON_SITE, REMOTE, HYBRID, FIELD_WORK"
+is_on_site,boolean,Work format flag: on-site
+is_remote,boolean,Work format flag: remote
+is_hybrid,boolean,Work format flag: hybrid
+is_field_work,boolean,Work format flag: field work
+work_schedule,string,"Shift pattern (5/2, 6/1, 2/2, ...)"
+working_hours,string,"Shift length (8 hours, 12 hours, flexible, ...)"
+internship,boolean,True if the vacancy is an internship
+night_shifts,boolean,True if night shifts are involved
+accept_temporary,boolean,Employer accepts temporary work
+accept_labor_contract,boolean,Employment under a labor contract is offered
+response_letter_required,boolean,A cover letter is required to apply
+civil_law_contracts,string,Accepted civil-law contract types (self-employed / sole proprietor / individual)
+languages,string,Required languages with level (e.g. eng:b2)
+responses_count,integer,Number of applicants so far (competition proxy)
+total_responses_count,integer,Total number of applicants
+publication_time,datetime,Vacancy publication date and time
+snapshot_date,date,Date this vacancy was collected (collection wave: 2026-07-13 or 2026-07-30)

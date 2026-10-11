@@ -1,0 +1,33 @@
+{
+  "sha256": "5844598356d0d8a156260457e3f961008410519083cc3e0b020fb230e9534d07",
+  "rows": 47150,
+  "original_columns": 317,
+  "raw_features": 312,
+  "duplicate_match_ids": 0,
+  "missing_input_cells": 1534257,
+  "no_input_history": 1448,
+  "duplicate_feature_rows": 11389,
+  "conflicting_feature_groups": 3679,
+  "features_shared_train_validation": 45,
+  "features_shared_development_test": 453,
+  "partitions": {
+    "train": {
+      "rows": 32964,
+      "start": "2019-01-01 12:17:15",
+      "end": "2020-08-18 23:56:31",
+      "radiant_share": 0.519354447275816
+    },
+    "validation": {
+      "rows": 4714,
+      "start": "2020-08-19 00:01:58",
+      "end": "2020-11-15 23:59:41",
+      "radiant_share": 0.5163343232923208
+    },
+    "test": {
+      "rows": 9472,
+      "start": "2020-11-16 00:56:38",
+      "end": "2021-06-18 23:53:03",
+      "radiant_share": 0.5275548986486487
+    }
+  }
+}

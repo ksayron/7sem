@@ -1,0 +1,13 @@
+{
+  "dataset": "tb_pro_players_matches.csv",
+  "sha256": "5844598356d0d8a156260457e3f961008410519083cc3e0b020fb230e9534d07",
+  "train_before": "2020-08-19",
+  "validation_before": "2020-11-16",
+  "test_from": "2020-11-16",
+  "split_unit": "UTC calendar day, chronological, no shuffle",
+  "selection_metric": "validation accuracy, followed by expanding temporal checks within development data",
+  "excluded_inputs": ["match_id", "dt_match", "radiant_win", "isRadiant_avg_r", "isRadiant_avg_d"],
+  "final_test_policy": "no test metrics in pilot or tuning; freeze configurations before final evaluation",
+  "prior_exposure": "Previous coursework evaluated a 6000-row random subsample. Report a secondary result on test IDs not present in that subsample.",
+  "scope": "Predict current match winner from player history; no external data or target change"
+}

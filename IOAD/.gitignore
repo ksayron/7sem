@@ -1,0 +1,10 @@
+# Небольшие таблицы результатов; исходные датасеты остаются исключены.
+!lab4/*.csv
+!lab5/*.csv
+!lab6/*.csv
+!lab7/*.csv
+!research/*.csv
+.qa/
+codehunt-data/*
+!codehunt-data/readme.md
+!codehunt-data/download.py
