@@ -98,6 +98,22 @@ dotnet test tests/Burmalda.Domain.Tests/Burmalda.Domain.Tests.csproj --no-build
 
 The complete architecture, contracts, and tradeoffs are under [docs](docs/architecture.md).
 
+## Database and transaction lab
+
+`http://localhost:5300/concurrency-lab` now includes PostgreSQL experiments for
+two-client single-copy reservations, partial writes, COMMIT/ROLLBACK, and a
+step-by-step saga compensation model. Discover also tracks the real RabbitMQ
+Lending Saga after a book request.
+
+```powershell
+./tools/Start-Lab.ps1 -PostgresPort 5547 -Full
+./tools/Stop-Lab.ps1
+```
+
+Choose a free PostgreSQL port; 5432 is the normal default. The script provisions
+the isolated lab database on existing volumes. API logs use compact colored
+`[info]`, `[warn]`, `[error]` labels. See [the lab guide and measured results](docs/lab-4-database-transactions.md).
+
 ## Administration and monitoring
 
 Admin and moderator endpoints are routed under `/api/admin/*`. They cover user

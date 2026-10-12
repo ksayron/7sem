@@ -4,7 +4,7 @@ using Burmalda.ServiceDefaults;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Logging.ClearProviders(); builder.Logging.AddJsonConsole(); builder.Services.AddBurmaldaDefaults(builder.Configuration, "economy-service");
+builder.Logging.AddBurmaldaConsole(builder.Configuration); builder.Services.AddBurmaldaDefaults(builder.Configuration, "economy-service");
 builder.Services.AddDbContext<EconomyDbContext>(o => o.UseNpgsql(builder.Configuration.GetConnectionString("Database")));
 builder.Services.AddServiceMessaging<EconomyDbContext, EconomyQueue>();
 foreach (var type in new[] { MessageNames.UserRegistered, MessageNames.ReservePoints, MessageNames.ReleasePoints, MessageNames.LoanActivated, MessageNames.LoanCompleted, MessageNames.LoanBecameOverdue })

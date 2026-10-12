@@ -10,6 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
@@ -79,6 +80,7 @@ public static class ServiceDefaultsExtensions
 
     public static WebApplication UseBurmaldaDefaults(this WebApplication app)
     {
+        app.Lifetime.ApplicationStarted.Register(() => app.Logger.LogInformation("Ready · {Urls}", string.Join(", ", app.Urls)));
         app.UseExceptionHandler();
         app.UseAuthentication();
         app.UseAuthorization();

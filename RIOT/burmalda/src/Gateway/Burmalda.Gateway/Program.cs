@@ -1,7 +1,7 @@
 using System.Threading.RateLimiting;
 using Burmalda.ServiceDefaults;
 
-var builder = WebApplication.CreateBuilder(args); builder.Logging.ClearProviders(); builder.Logging.AddJsonConsole(); builder.Services.AddBurmaldaDefaults(builder.Configuration, "api-gateway");
+var builder = WebApplication.CreateBuilder(args); builder.Logging.AddBurmaldaConsole(builder.Configuration); builder.Services.AddBurmaldaDefaults(builder.Configuration, "api-gateway");
 builder.Services.AddReverseProxy().LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
 builder.Services.AddCors(options => options.AddPolicy("WebClient", policy => policy
     .WithOrigins(builder.Configuration.GetSection("ClientOrigins").Get<string[]>() ?? ["http://localhost:5300"])
@@ -14,7 +14,7 @@ builder.Services.AddRateLimiter(options =>
         _ => new FixedWindowRateLimiterOptions { PermitLimit = 120, Window = TimeSpan.FromMinutes(1), QueueLimit = 0 }));
     options.AddPolicy("concurrency-lab", context => RateLimitPartition.GetFixedWindowLimiter(
         context.Connection.RemoteIpAddress?.ToString() ?? "anonymous",
-        _ => new FixedWindowRateLimiterOptions { PermitLimit = 400, Window = TimeSpan.FromMinutes(1), QueueLimit = 0 }));
+        _ => new FixedWindowRateLimiterOptions { PermitLimit = 1000, Window = TimeSpan.FromMinutes(1), QueueLimit = 0 }));
 });
 builder.Services.AddHttpClient("monitoring", client => client.Timeout = TimeSpan.FromSeconds(3));
 var app = builder.Build(); app.UseCors("WebClient"); app.UseBurmaldaDefaults(); app.UseRateLimiter();

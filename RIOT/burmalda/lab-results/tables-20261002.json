@@ -1,0 +1,2784 @@
+{
+  "recordedAtUtc": "2026-10-02T07:44:25.6111449+00:00",
+  "server": "http://localhost:5117",
+  "workDelayMs": 200,
+  "runs": [
+    {
+      "mode": "Unsafe",
+      "clients": [
+        {
+          "client": "Client 1",
+          "sentAtUtc": "2026-10-02T07:44:23.9646968+00:00",
+          "status": 200,
+          "result": {
+            "requestNumber": 1,
+            "clientId": "Client 1",
+            "readValue": 0,
+            "writtenValue": 1,
+            "threadAtStart": 20,
+            "threadAtFinish": 27,
+            "startedAtUtc": "2026-10-02T07:44:23.9675521+00:00",
+            "finishedAtUtc": "2026-10-02T07:44:24.1903548+00:00"
+          }
+        },
+        {
+          "client": "Client 2",
+          "sentAtUtc": "2026-10-02T07:44:23.9728902+00:00",
+          "status": 200,
+          "result": {
+            "requestNumber": 2,
+            "clientId": "Client 2",
+            "readValue": 0,
+            "writtenValue": 1,
+            "threadAtStart": 26,
+            "threadAtFinish": 26,
+            "startedAtUtc": "2026-10-02T07:44:23.9759577+00:00",
+            "finishedAtUtc": "2026-10-02T07:44:24.1903547+00:00"
+          }
+        }
+      ],
+      "liveSnapshots": [
+        {
+          "id": "a8fd137d-bc24-4591-87a1-84319f4b671d",
+          "mode": 0,
+          "startTogether": true,
+          "plannedRequests": 2,
+          "workDelayMs": 200,
+          "acceptedRequests": 2,
+          "completedRequests": 0,
+          "expectedReservations": 0,
+          "actualReservations": 0,
+          "lostUpdates": 0,
+          "activeRequests": 2,
+          "maxConcurrentRequests": 2,
+          "processId": 16704,
+          "events": [
+            {
+              "sequence": 1,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:23.967554+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 2,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:23.9675594+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 3,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:23.9759595+00:00",
+              "threadId": 26,
+              "value": null
+            },
+            {
+              "sequence": 4,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:23.9759604+00:00",
+              "threadId": 26,
+              "value": null
+            },
+            {
+              "sequence": 5,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "read",
+              "atUtc": "2026-10-02T07:44:23.9759807+00:00",
+              "threadId": 26,
+              "value": 0
+            },
+            {
+              "sequence": 6,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "read",
+              "atUtc": "2026-10-02T07:44:23.9760257+00:00",
+              "threadId": 27,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "id": "a8fd137d-bc24-4591-87a1-84319f4b671d",
+          "mode": 0,
+          "startTogether": true,
+          "plannedRequests": 2,
+          "workDelayMs": 200,
+          "acceptedRequests": 2,
+          "completedRequests": 0,
+          "expectedReservations": 0,
+          "actualReservations": 0,
+          "lostUpdates": 0,
+          "activeRequests": 2,
+          "maxConcurrentRequests": 2,
+          "processId": 16704,
+          "events": [
+            {
+              "sequence": 1,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:23.967554+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 2,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:23.9675594+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 3,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:23.9759595+00:00",
+              "threadId": 26,
+              "value": null
+            },
+            {
+              "sequence": 4,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:23.9759604+00:00",
+              "threadId": 26,
+              "value": null
+            },
+            {
+              "sequence": 5,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "read",
+              "atUtc": "2026-10-02T07:44:23.9759807+00:00",
+              "threadId": 26,
+              "value": 0
+            },
+            {
+              "sequence": 6,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "read",
+              "atUtc": "2026-10-02T07:44:23.9760257+00:00",
+              "threadId": 27,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "id": "a8fd137d-bc24-4591-87a1-84319f4b671d",
+          "mode": 0,
+          "startTogether": true,
+          "plannedRequests": 2,
+          "workDelayMs": 200,
+          "acceptedRequests": 2,
+          "completedRequests": 0,
+          "expectedReservations": 0,
+          "actualReservations": 0,
+          "lostUpdates": 0,
+          "activeRequests": 2,
+          "maxConcurrentRequests": 2,
+          "processId": 16704,
+          "events": [
+            {
+              "sequence": 1,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:23.967554+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 2,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:23.9675594+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 3,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:23.9759595+00:00",
+              "threadId": 26,
+              "value": null
+            },
+            {
+              "sequence": 4,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:23.9759604+00:00",
+              "threadId": 26,
+              "value": null
+            },
+            {
+              "sequence": 5,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "read",
+              "atUtc": "2026-10-02T07:44:23.9759807+00:00",
+              "threadId": 26,
+              "value": 0
+            },
+            {
+              "sequence": 6,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "read",
+              "atUtc": "2026-10-02T07:44:23.9760257+00:00",
+              "threadId": 27,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "id": "a8fd137d-bc24-4591-87a1-84319f4b671d",
+          "mode": 0,
+          "startTogether": true,
+          "plannedRequests": 2,
+          "workDelayMs": 200,
+          "acceptedRequests": 2,
+          "completedRequests": 0,
+          "expectedReservations": 0,
+          "actualReservations": 0,
+          "lostUpdates": 0,
+          "activeRequests": 2,
+          "maxConcurrentRequests": 2,
+          "processId": 16704,
+          "events": [
+            {
+              "sequence": 1,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:23.967554+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 2,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:23.9675594+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 3,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:23.9759595+00:00",
+              "threadId": 26,
+              "value": null
+            },
+            {
+              "sequence": 4,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:23.9759604+00:00",
+              "threadId": 26,
+              "value": null
+            },
+            {
+              "sequence": 5,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "read",
+              "atUtc": "2026-10-02T07:44:23.9759807+00:00",
+              "threadId": 26,
+              "value": 0
+            },
+            {
+              "sequence": 6,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "read",
+              "atUtc": "2026-10-02T07:44:23.9760257+00:00",
+              "threadId": 27,
+              "value": 0
+            }
+          ]
+        },
+        {
+          "id": "a8fd137d-bc24-4591-87a1-84319f4b671d",
+          "mode": 0,
+          "startTogether": true,
+          "plannedRequests": 2,
+          "workDelayMs": 200,
+          "acceptedRequests": 2,
+          "completedRequests": 2,
+          "expectedReservations": 2,
+          "actualReservations": 1,
+          "lostUpdates": 1,
+          "activeRequests": 0,
+          "maxConcurrentRequests": 2,
+          "processId": 16704,
+          "events": [
+            {
+              "sequence": 1,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:23.967554+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 2,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:23.9675594+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 3,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:23.9759595+00:00",
+              "threadId": 26,
+              "value": null
+            },
+            {
+              "sequence": 4,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:23.9759604+00:00",
+              "threadId": 26,
+              "value": null
+            },
+            {
+              "sequence": 5,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "read",
+              "atUtc": "2026-10-02T07:44:23.9759807+00:00",
+              "threadId": 26,
+              "value": 0
+            },
+            {
+              "sequence": 6,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "read",
+              "atUtc": "2026-10-02T07:44:23.9760257+00:00",
+              "threadId": 27,
+              "value": 0
+            },
+            {
+              "sequence": 7,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "wrote",
+              "atUtc": "2026-10-02T07:44:24.1903373+00:00",
+              "threadId": 27,
+              "value": 1
+            },
+            {
+              "sequence": 8,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "wrote",
+              "atUtc": "2026-10-02T07:44:24.1903372+00:00",
+              "threadId": 26,
+              "value": 1
+            }
+          ]
+        }
+      ],
+      "snapshot": {
+        "id": "a8fd137d-bc24-4591-87a1-84319f4b671d",
+        "mode": 0,
+        "startTogether": true,
+        "plannedRequests": 2,
+        "workDelayMs": 200,
+        "acceptedRequests": 2,
+        "completedRequests": 2,
+        "expectedReservations": 2,
+        "actualReservations": 1,
+        "lostUpdates": 1,
+        "activeRequests": 0,
+        "maxConcurrentRequests": 2,
+        "processId": 16704,
+        "events": [
+          {
+            "sequence": 1,
+            "requestNumber": 1,
+            "clientId": "Client 1",
+            "phase": "started",
+            "atUtc": "2026-10-02T07:44:23.967554+00:00",
+            "threadId": 20,
+            "value": null
+          },
+          {
+            "sequence": 2,
+            "requestNumber": 1,
+            "clientId": "Client 1",
+            "phase": "barrier",
+            "atUtc": "2026-10-02T07:44:23.9675594+00:00",
+            "threadId": 20,
+            "value": null
+          },
+          {
+            "sequence": 3,
+            "requestNumber": 2,
+            "clientId": "Client 2",
+            "phase": "started",
+            "atUtc": "2026-10-02T07:44:23.9759595+00:00",
+            "threadId": 26,
+            "value": null
+          },
+          {
+            "sequence": 4,
+            "requestNumber": 2,
+            "clientId": "Client 2",
+            "phase": "barrier",
+            "atUtc": "2026-10-02T07:44:23.9759604+00:00",
+            "threadId": 26,
+            "value": null
+          },
+          {
+            "sequence": 5,
+            "requestNumber": 2,
+            "clientId": "Client 2",
+            "phase": "read",
+            "atUtc": "2026-10-02T07:44:23.9759807+00:00",
+            "threadId": 26,
+            "value": 0
+          },
+          {
+            "sequence": 6,
+            "requestNumber": 1,
+            "clientId": "Client 1",
+            "phase": "read",
+            "atUtc": "2026-10-02T07:44:23.9760257+00:00",
+            "threadId": 27,
+            "value": 0
+          },
+          {
+            "sequence": 7,
+            "requestNumber": 1,
+            "clientId": "Client 1",
+            "phase": "wrote",
+            "atUtc": "2026-10-02T07:44:24.1903373+00:00",
+            "threadId": 27,
+            "value": 1
+          },
+          {
+            "sequence": 8,
+            "requestNumber": 2,
+            "clientId": "Client 2",
+            "phase": "wrote",
+            "atUtc": "2026-10-02T07:44:24.1903372+00:00",
+            "threadId": 26,
+            "value": 1
+          }
+        ]
+      }
+    },
+    {
+      "mode": "Lock",
+      "clients": [
+        {
+          "client": "Client 1",
+          "sentAtUtc": "2026-10-02T07:44:24.2121829+00:00",
+          "status": 200,
+          "result": {
+            "requestNumber": 1,
+            "clientId": "Client 1",
+            "readValue": 1,
+            "writtenValue": 2,
+            "threadAtStart": 22,
+            "threadAtFinish": 28,
+            "startedAtUtc": "2026-10-02T07:44:24.2140492+00:00",
+            "finishedAtUtc": "2026-10-02T07:44:24.6380417+00:00"
+          }
+        },
+        {
+          "client": "Client 2",
+          "sentAtUtc": "2026-10-02T07:44:24.2136859+00:00",
+          "status": 200,
+          "result": {
+            "requestNumber": 2,
+            "clientId": "Client 2",
+            "readValue": 0,
+            "writtenValue": 1,
+            "threadAtStart": 20,
+            "threadAtFinish": 20,
+            "startedAtUtc": "2026-10-02T07:44:24.2141471+00:00",
+            "finishedAtUtc": "2026-10-02T07:44:24.4299917+00:00"
+          }
+        }
+      ],
+      "liveSnapshots": [
+        {
+          "id": "757220bf-3ff6-4490-b3fd-ab4943dbadee",
+          "mode": 1,
+          "startTogether": true,
+          "plannedRequests": 2,
+          "workDelayMs": 200,
+          "acceptedRequests": 2,
+          "completedRequests": 0,
+          "expectedReservations": 0,
+          "actualReservations": 0,
+          "lostUpdates": 0,
+          "activeRequests": 2,
+          "maxConcurrentRequests": 2,
+          "processId": 16704,
+          "events": [
+            {
+              "sequence": 1,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:24.2140521+00:00",
+              "threadId": 22,
+              "value": null
+            },
+            {
+              "sequence": 2,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:24.2140563+00:00",
+              "threadId": 22,
+              "value": null
+            },
+            {
+              "sequence": 3,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:24.2141477+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 4,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:24.2141481+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 5,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "waiting",
+              "atUtc": "2026-10-02T07:44:24.2142087+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 6,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "read",
+              "atUtc": "2026-10-02T07:44:24.2142096+00:00",
+              "threadId": 20,
+              "value": 0
+            },
+            {
+              "sequence": 7,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "waiting",
+              "atUtc": "2026-10-02T07:44:24.2142459+00:00",
+              "threadId": 28,
+              "value": null
+            }
+          ]
+        },
+        {
+          "id": "757220bf-3ff6-4490-b3fd-ab4943dbadee",
+          "mode": 1,
+          "startTogether": true,
+          "plannedRequests": 2,
+          "workDelayMs": 200,
+          "acceptedRequests": 2,
+          "completedRequests": 0,
+          "expectedReservations": 0,
+          "actualReservations": 0,
+          "lostUpdates": 0,
+          "activeRequests": 2,
+          "maxConcurrentRequests": 2,
+          "processId": 16704,
+          "events": [
+            {
+              "sequence": 1,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:24.2140521+00:00",
+              "threadId": 22,
+              "value": null
+            },
+            {
+              "sequence": 2,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:24.2140563+00:00",
+              "threadId": 22,
+              "value": null
+            },
+            {
+              "sequence": 3,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:24.2141477+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 4,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:24.2141481+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 5,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "waiting",
+              "atUtc": "2026-10-02T07:44:24.2142087+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 6,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "read",
+              "atUtc": "2026-10-02T07:44:24.2142096+00:00",
+              "threadId": 20,
+              "value": 0
+            },
+            {
+              "sequence": 7,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "waiting",
+              "atUtc": "2026-10-02T07:44:24.2142459+00:00",
+              "threadId": 28,
+              "value": null
+            }
+          ]
+        },
+        {
+          "id": "757220bf-3ff6-4490-b3fd-ab4943dbadee",
+          "mode": 1,
+          "startTogether": true,
+          "plannedRequests": 2,
+          "workDelayMs": 200,
+          "acceptedRequests": 2,
+          "completedRequests": 0,
+          "expectedReservations": 0,
+          "actualReservations": 0,
+          "lostUpdates": 0,
+          "activeRequests": 2,
+          "maxConcurrentRequests": 2,
+          "processId": 16704,
+          "events": [
+            {
+              "sequence": 1,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:24.2140521+00:00",
+              "threadId": 22,
+              "value": null
+            },
+            {
+              "sequence": 2,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:24.2140563+00:00",
+              "threadId": 22,
+              "value": null
+            },
+            {
+              "sequence": 3,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:24.2141477+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 4,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:24.2141481+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 5,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "waiting",
+              "atUtc": "2026-10-02T07:44:24.2142087+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 6,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "read",
+              "atUtc": "2026-10-02T07:44:24.2142096+00:00",
+              "threadId": 20,
+              "value": 0
+            },
+            {
+              "sequence": 7,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "waiting",
+              "atUtc": "2026-10-02T07:44:24.2142459+00:00",
+              "threadId": 28,
+              "value": null
+            }
+          ]
+        },
+        {
+          "id": "757220bf-3ff6-4490-b3fd-ab4943dbadee",
+          "mode": 1,
+          "startTogether": true,
+          "plannedRequests": 2,
+          "workDelayMs": 200,
+          "acceptedRequests": 2,
+          "completedRequests": 0,
+          "expectedReservations": 0,
+          "actualReservations": 0,
+          "lostUpdates": 0,
+          "activeRequests": 2,
+          "maxConcurrentRequests": 2,
+          "processId": 16704,
+          "events": [
+            {
+              "sequence": 1,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:24.2140521+00:00",
+              "threadId": 22,
+              "value": null
+            },
+            {
+              "sequence": 2,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:24.2140563+00:00",
+              "threadId": 22,
+              "value": null
+            },
+            {
+              "sequence": 3,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:24.2141477+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 4,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:24.2141481+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 5,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "waiting",
+              "atUtc": "2026-10-02T07:44:24.2142087+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 6,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "read",
+              "atUtc": "2026-10-02T07:44:24.2142096+00:00",
+              "threadId": 20,
+              "value": 0
+            },
+            {
+              "sequence": 7,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "waiting",
+              "atUtc": "2026-10-02T07:44:24.2142459+00:00",
+              "threadId": 28,
+              "value": null
+            }
+          ]
+        },
+        {
+          "id": "757220bf-3ff6-4490-b3fd-ab4943dbadee",
+          "mode": 1,
+          "startTogether": true,
+          "plannedRequests": 2,
+          "workDelayMs": 200,
+          "acceptedRequests": 2,
+          "completedRequests": 1,
+          "expectedReservations": 1,
+          "actualReservations": 1,
+          "lostUpdates": 0,
+          "activeRequests": 1,
+          "maxConcurrentRequests": 2,
+          "processId": 16704,
+          "events": [
+            {
+              "sequence": 1,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:24.2140521+00:00",
+              "threadId": 22,
+              "value": null
+            },
+            {
+              "sequence": 2,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:24.2140563+00:00",
+              "threadId": 22,
+              "value": null
+            },
+            {
+              "sequence": 3,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:24.2141477+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 4,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:24.2141481+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 5,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "waiting",
+              "atUtc": "2026-10-02T07:44:24.2142087+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 6,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "read",
+              "atUtc": "2026-10-02T07:44:24.2142096+00:00",
+              "threadId": 20,
+              "value": 0
+            },
+            {
+              "sequence": 7,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "waiting",
+              "atUtc": "2026-10-02T07:44:24.2142459+00:00",
+              "threadId": 28,
+              "value": null
+            },
+            {
+              "sequence": 8,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "wrote",
+              "atUtc": "2026-10-02T07:44:24.4299822+00:00",
+              "threadId": 20,
+              "value": 1
+            },
+            {
+              "sequence": 9,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "read",
+              "atUtc": "2026-10-02T07:44:24.4299941+00:00",
+              "threadId": 28,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "id": "757220bf-3ff6-4490-b3fd-ab4943dbadee",
+          "mode": 1,
+          "startTogether": true,
+          "plannedRequests": 2,
+          "workDelayMs": 200,
+          "acceptedRequests": 2,
+          "completedRequests": 1,
+          "expectedReservations": 1,
+          "actualReservations": 1,
+          "lostUpdates": 0,
+          "activeRequests": 1,
+          "maxConcurrentRequests": 2,
+          "processId": 16704,
+          "events": [
+            {
+              "sequence": 1,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:24.2140521+00:00",
+              "threadId": 22,
+              "value": null
+            },
+            {
+              "sequence": 2,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:24.2140563+00:00",
+              "threadId": 22,
+              "value": null
+            },
+            {
+              "sequence": 3,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:24.2141477+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 4,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:24.2141481+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 5,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "waiting",
+              "atUtc": "2026-10-02T07:44:24.2142087+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 6,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "read",
+              "atUtc": "2026-10-02T07:44:24.2142096+00:00",
+              "threadId": 20,
+              "value": 0
+            },
+            {
+              "sequence": 7,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "waiting",
+              "atUtc": "2026-10-02T07:44:24.2142459+00:00",
+              "threadId": 28,
+              "value": null
+            },
+            {
+              "sequence": 8,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "wrote",
+              "atUtc": "2026-10-02T07:44:24.4299822+00:00",
+              "threadId": 20,
+              "value": 1
+            },
+            {
+              "sequence": 9,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "read",
+              "atUtc": "2026-10-02T07:44:24.4299941+00:00",
+              "threadId": 28,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "id": "757220bf-3ff6-4490-b3fd-ab4943dbadee",
+          "mode": 1,
+          "startTogether": true,
+          "plannedRequests": 2,
+          "workDelayMs": 200,
+          "acceptedRequests": 2,
+          "completedRequests": 1,
+          "expectedReservations": 1,
+          "actualReservations": 1,
+          "lostUpdates": 0,
+          "activeRequests": 1,
+          "maxConcurrentRequests": 2,
+          "processId": 16704,
+          "events": [
+            {
+              "sequence": 1,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:24.2140521+00:00",
+              "threadId": 22,
+              "value": null
+            },
+            {
+              "sequence": 2,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:24.2140563+00:00",
+              "threadId": 22,
+              "value": null
+            },
+            {
+              "sequence": 3,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:24.2141477+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 4,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:24.2141481+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 5,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "waiting",
+              "atUtc": "2026-10-02T07:44:24.2142087+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 6,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "read",
+              "atUtc": "2026-10-02T07:44:24.2142096+00:00",
+              "threadId": 20,
+              "value": 0
+            },
+            {
+              "sequence": 7,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "waiting",
+              "atUtc": "2026-10-02T07:44:24.2142459+00:00",
+              "threadId": 28,
+              "value": null
+            },
+            {
+              "sequence": 8,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "wrote",
+              "atUtc": "2026-10-02T07:44:24.4299822+00:00",
+              "threadId": 20,
+              "value": 1
+            },
+            {
+              "sequence": 9,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "read",
+              "atUtc": "2026-10-02T07:44:24.4299941+00:00",
+              "threadId": 28,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "id": "757220bf-3ff6-4490-b3fd-ab4943dbadee",
+          "mode": 1,
+          "startTogether": true,
+          "plannedRequests": 2,
+          "workDelayMs": 200,
+          "acceptedRequests": 2,
+          "completedRequests": 1,
+          "expectedReservations": 1,
+          "actualReservations": 1,
+          "lostUpdates": 0,
+          "activeRequests": 1,
+          "maxConcurrentRequests": 2,
+          "processId": 16704,
+          "events": [
+            {
+              "sequence": 1,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:24.2140521+00:00",
+              "threadId": 22,
+              "value": null
+            },
+            {
+              "sequence": 2,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:24.2140563+00:00",
+              "threadId": 22,
+              "value": null
+            },
+            {
+              "sequence": 3,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:24.2141477+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 4,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:24.2141481+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 5,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "waiting",
+              "atUtc": "2026-10-02T07:44:24.2142087+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 6,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "read",
+              "atUtc": "2026-10-02T07:44:24.2142096+00:00",
+              "threadId": 20,
+              "value": 0
+            },
+            {
+              "sequence": 7,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "waiting",
+              "atUtc": "2026-10-02T07:44:24.2142459+00:00",
+              "threadId": 28,
+              "value": null
+            },
+            {
+              "sequence": 8,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "wrote",
+              "atUtc": "2026-10-02T07:44:24.4299822+00:00",
+              "threadId": 20,
+              "value": 1
+            },
+            {
+              "sequence": 9,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "read",
+              "atUtc": "2026-10-02T07:44:24.4299941+00:00",
+              "threadId": 28,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "id": "757220bf-3ff6-4490-b3fd-ab4943dbadee",
+          "mode": 1,
+          "startTogether": true,
+          "plannedRequests": 2,
+          "workDelayMs": 200,
+          "acceptedRequests": 2,
+          "completedRequests": 1,
+          "expectedReservations": 1,
+          "actualReservations": 1,
+          "lostUpdates": 0,
+          "activeRequests": 1,
+          "maxConcurrentRequests": 2,
+          "processId": 16704,
+          "events": [
+            {
+              "sequence": 1,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:24.2140521+00:00",
+              "threadId": 22,
+              "value": null
+            },
+            {
+              "sequence": 2,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:24.2140563+00:00",
+              "threadId": 22,
+              "value": null
+            },
+            {
+              "sequence": 3,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:24.2141477+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 4,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:24.2141481+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 5,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "waiting",
+              "atUtc": "2026-10-02T07:44:24.2142087+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 6,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "read",
+              "atUtc": "2026-10-02T07:44:24.2142096+00:00",
+              "threadId": 20,
+              "value": 0
+            },
+            {
+              "sequence": 7,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "waiting",
+              "atUtc": "2026-10-02T07:44:24.2142459+00:00",
+              "threadId": 28,
+              "value": null
+            },
+            {
+              "sequence": 8,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "wrote",
+              "atUtc": "2026-10-02T07:44:24.4299822+00:00",
+              "threadId": 20,
+              "value": 1
+            },
+            {
+              "sequence": 9,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "read",
+              "atUtc": "2026-10-02T07:44:24.4299941+00:00",
+              "threadId": 28,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "id": "757220bf-3ff6-4490-b3fd-ab4943dbadee",
+          "mode": 1,
+          "startTogether": true,
+          "plannedRequests": 2,
+          "workDelayMs": 200,
+          "acceptedRequests": 2,
+          "completedRequests": 2,
+          "expectedReservations": 2,
+          "actualReservations": 2,
+          "lostUpdates": 0,
+          "activeRequests": 0,
+          "maxConcurrentRequests": 2,
+          "processId": 16704,
+          "events": [
+            {
+              "sequence": 1,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:24.2140521+00:00",
+              "threadId": 22,
+              "value": null
+            },
+            {
+              "sequence": 2,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:24.2140563+00:00",
+              "threadId": 22,
+              "value": null
+            },
+            {
+              "sequence": 3,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:24.2141477+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 4,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:24.2141481+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 5,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "waiting",
+              "atUtc": "2026-10-02T07:44:24.2142087+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 6,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "read",
+              "atUtc": "2026-10-02T07:44:24.2142096+00:00",
+              "threadId": 20,
+              "value": 0
+            },
+            {
+              "sequence": 7,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "waiting",
+              "atUtc": "2026-10-02T07:44:24.2142459+00:00",
+              "threadId": 28,
+              "value": null
+            },
+            {
+              "sequence": 8,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "wrote",
+              "atUtc": "2026-10-02T07:44:24.4299822+00:00",
+              "threadId": 20,
+              "value": 1
+            },
+            {
+              "sequence": 9,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "read",
+              "atUtc": "2026-10-02T07:44:24.4299941+00:00",
+              "threadId": 28,
+              "value": 1
+            },
+            {
+              "sequence": 10,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "wrote",
+              "atUtc": "2026-10-02T07:44:24.6379793+00:00",
+              "threadId": 28,
+              "value": 2
+            }
+          ]
+        }
+      ],
+      "snapshot": {
+        "id": "757220bf-3ff6-4490-b3fd-ab4943dbadee",
+        "mode": 1,
+        "startTogether": true,
+        "plannedRequests": 2,
+        "workDelayMs": 200,
+        "acceptedRequests": 2,
+        "completedRequests": 2,
+        "expectedReservations": 2,
+        "actualReservations": 2,
+        "lostUpdates": 0,
+        "activeRequests": 0,
+        "maxConcurrentRequests": 2,
+        "processId": 16704,
+        "events": [
+          {
+            "sequence": 1,
+            "requestNumber": 1,
+            "clientId": "Client 1",
+            "phase": "started",
+            "atUtc": "2026-10-02T07:44:24.2140521+00:00",
+            "threadId": 22,
+            "value": null
+          },
+          {
+            "sequence": 2,
+            "requestNumber": 1,
+            "clientId": "Client 1",
+            "phase": "barrier",
+            "atUtc": "2026-10-02T07:44:24.2140563+00:00",
+            "threadId": 22,
+            "value": null
+          },
+          {
+            "sequence": 3,
+            "requestNumber": 2,
+            "clientId": "Client 2",
+            "phase": "started",
+            "atUtc": "2026-10-02T07:44:24.2141477+00:00",
+            "threadId": 20,
+            "value": null
+          },
+          {
+            "sequence": 4,
+            "requestNumber": 2,
+            "clientId": "Client 2",
+            "phase": "barrier",
+            "atUtc": "2026-10-02T07:44:24.2141481+00:00",
+            "threadId": 20,
+            "value": null
+          },
+          {
+            "sequence": 5,
+            "requestNumber": 2,
+            "clientId": "Client 2",
+            "phase": "waiting",
+            "atUtc": "2026-10-02T07:44:24.2142087+00:00",
+            "threadId": 20,
+            "value": null
+          },
+          {
+            "sequence": 6,
+            "requestNumber": 2,
+            "clientId": "Client 2",
+            "phase": "read",
+            "atUtc": "2026-10-02T07:44:24.2142096+00:00",
+            "threadId": 20,
+            "value": 0
+          },
+          {
+            "sequence": 7,
+            "requestNumber": 1,
+            "clientId": "Client 1",
+            "phase": "waiting",
+            "atUtc": "2026-10-02T07:44:24.2142459+00:00",
+            "threadId": 28,
+            "value": null
+          },
+          {
+            "sequence": 8,
+            "requestNumber": 2,
+            "clientId": "Client 2",
+            "phase": "wrote",
+            "atUtc": "2026-10-02T07:44:24.4299822+00:00",
+            "threadId": 20,
+            "value": 1
+          },
+          {
+            "sequence": 9,
+            "requestNumber": 1,
+            "clientId": "Client 1",
+            "phase": "read",
+            "atUtc": "2026-10-02T07:44:24.4299941+00:00",
+            "threadId": 28,
+            "value": 1
+          },
+          {
+            "sequence": 10,
+            "requestNumber": 1,
+            "clientId": "Client 1",
+            "phase": "wrote",
+            "atUtc": "2026-10-02T07:44:24.6379793+00:00",
+            "threadId": 28,
+            "value": 2
+          }
+        ]
+      }
+    },
+    {
+      "mode": "SemaphoreSlim",
+      "clients": [
+        {
+          "client": "Client 1",
+          "sentAtUtc": "2026-10-02T07:44:24.6835706+00:00",
+          "status": 200,
+          "result": {
+            "requestNumber": 1,
+            "clientId": "Client 1",
+            "readValue": 1,
+            "writtenValue": 2,
+            "threadAtStart": 20,
+            "threadAtFinish": 27,
+            "startedAtUtc": "2026-10-02T07:44:24.6843468+00:00",
+            "finishedAtUtc": "2026-10-02T07:44:25.0976518+00:00"
+          }
+        },
+        {
+          "client": "Client 2",
+          "sentAtUtc": "2026-10-02T07:44:24.6842966+00:00",
+          "status": 200,
+          "result": {
+            "requestNumber": 2,
+            "clientId": "Client 2",
+            "readValue": 0,
+            "writtenValue": 1,
+            "threadAtStart": 27,
+            "threadAtFinish": 20,
+            "startedAtUtc": "2026-10-02T07:44:24.6848232+00:00",
+            "finishedAtUtc": "2026-10-02T07:44:24.8960578+00:00"
+          }
+        }
+      ],
+      "liveSnapshots": [
+        {
+          "id": "339f5707-f5bf-4bbe-9bce-c1cb259312b5",
+          "mode": 2,
+          "startTogether": true,
+          "plannedRequests": 2,
+          "workDelayMs": 200,
+          "acceptedRequests": 2,
+          "completedRequests": 0,
+          "expectedReservations": 0,
+          "actualReservations": 0,
+          "lostUpdates": 0,
+          "activeRequests": 2,
+          "maxConcurrentRequests": 2,
+          "processId": 16704,
+          "events": [
+            {
+              "sequence": 1,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:24.6843478+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 2,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:24.6843523+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 3,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:24.6848237+00:00",
+              "threadId": 27,
+              "value": null
+            },
+            {
+              "sequence": 4,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:24.6848242+00:00",
+              "threadId": 27,
+              "value": null
+            },
+            {
+              "sequence": 5,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "waiting",
+              "atUtc": "2026-10-02T07:44:24.6848374+00:00",
+              "threadId": 27,
+              "value": null
+            },
+            {
+              "sequence": 6,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "read",
+              "atUtc": "2026-10-02T07:44:24.6848397+00:00",
+              "threadId": 27,
+              "value": 0
+            },
+            {
+              "sequence": 7,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "waiting",
+              "atUtc": "2026-10-02T07:44:24.6848722+00:00",
+              "threadId": 28,
+              "value": null
+            }
+          ]
+        },
+        {
+          "id": "339f5707-f5bf-4bbe-9bce-c1cb259312b5",
+          "mode": 2,
+          "startTogether": true,
+          "plannedRequests": 2,
+          "workDelayMs": 200,
+          "acceptedRequests": 2,
+          "completedRequests": 0,
+          "expectedReservations": 0,
+          "actualReservations": 0,
+          "lostUpdates": 0,
+          "activeRequests": 2,
+          "maxConcurrentRequests": 2,
+          "processId": 16704,
+          "events": [
+            {
+              "sequence": 1,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:24.6843478+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 2,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:24.6843523+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 3,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:24.6848237+00:00",
+              "threadId": 27,
+              "value": null
+            },
+            {
+              "sequence": 4,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:24.6848242+00:00",
+              "threadId": 27,
+              "value": null
+            },
+            {
+              "sequence": 5,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "waiting",
+              "atUtc": "2026-10-02T07:44:24.6848374+00:00",
+              "threadId": 27,
+              "value": null
+            },
+            {
+              "sequence": 6,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "read",
+              "atUtc": "2026-10-02T07:44:24.6848397+00:00",
+              "threadId": 27,
+              "value": 0
+            },
+            {
+              "sequence": 7,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "waiting",
+              "atUtc": "2026-10-02T07:44:24.6848722+00:00",
+              "threadId": 28,
+              "value": null
+            }
+          ]
+        },
+        {
+          "id": "339f5707-f5bf-4bbe-9bce-c1cb259312b5",
+          "mode": 2,
+          "startTogether": true,
+          "plannedRequests": 2,
+          "workDelayMs": 200,
+          "acceptedRequests": 2,
+          "completedRequests": 0,
+          "expectedReservations": 0,
+          "actualReservations": 0,
+          "lostUpdates": 0,
+          "activeRequests": 2,
+          "maxConcurrentRequests": 2,
+          "processId": 16704,
+          "events": [
+            {
+              "sequence": 1,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:24.6843478+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 2,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:24.6843523+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 3,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:24.6848237+00:00",
+              "threadId": 27,
+              "value": null
+            },
+            {
+              "sequence": 4,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:24.6848242+00:00",
+              "threadId": 27,
+              "value": null
+            },
+            {
+              "sequence": 5,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "waiting",
+              "atUtc": "2026-10-02T07:44:24.6848374+00:00",
+              "threadId": 27,
+              "value": null
+            },
+            {
+              "sequence": 6,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "read",
+              "atUtc": "2026-10-02T07:44:24.6848397+00:00",
+              "threadId": 27,
+              "value": 0
+            },
+            {
+              "sequence": 7,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "waiting",
+              "atUtc": "2026-10-02T07:44:24.6848722+00:00",
+              "threadId": 28,
+              "value": null
+            }
+          ]
+        },
+        {
+          "id": "339f5707-f5bf-4bbe-9bce-c1cb259312b5",
+          "mode": 2,
+          "startTogether": true,
+          "plannedRequests": 2,
+          "workDelayMs": 200,
+          "acceptedRequests": 2,
+          "completedRequests": 0,
+          "expectedReservations": 0,
+          "actualReservations": 0,
+          "lostUpdates": 0,
+          "activeRequests": 2,
+          "maxConcurrentRequests": 2,
+          "processId": 16704,
+          "events": [
+            {
+              "sequence": 1,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:24.6843478+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 2,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:24.6843523+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 3,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:24.6848237+00:00",
+              "threadId": 27,
+              "value": null
+            },
+            {
+              "sequence": 4,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:24.6848242+00:00",
+              "threadId": 27,
+              "value": null
+            },
+            {
+              "sequence": 5,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "waiting",
+              "atUtc": "2026-10-02T07:44:24.6848374+00:00",
+              "threadId": 27,
+              "value": null
+            },
+            {
+              "sequence": 6,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "read",
+              "atUtc": "2026-10-02T07:44:24.6848397+00:00",
+              "threadId": 27,
+              "value": 0
+            },
+            {
+              "sequence": 7,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "waiting",
+              "atUtc": "2026-10-02T07:44:24.6848722+00:00",
+              "threadId": 28,
+              "value": null
+            }
+          ]
+        },
+        {
+          "id": "339f5707-f5bf-4bbe-9bce-c1cb259312b5",
+          "mode": 2,
+          "startTogether": true,
+          "plannedRequests": 2,
+          "workDelayMs": 200,
+          "acceptedRequests": 2,
+          "completedRequests": 1,
+          "expectedReservations": 1,
+          "actualReservations": 1,
+          "lostUpdates": 0,
+          "activeRequests": 1,
+          "maxConcurrentRequests": 2,
+          "processId": 16704,
+          "events": [
+            {
+              "sequence": 1,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:24.6843478+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 2,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:24.6843523+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 3,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:24.6848237+00:00",
+              "threadId": 27,
+              "value": null
+            },
+            {
+              "sequence": 4,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:24.6848242+00:00",
+              "threadId": 27,
+              "value": null
+            },
+            {
+              "sequence": 5,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "waiting",
+              "atUtc": "2026-10-02T07:44:24.6848374+00:00",
+              "threadId": 27,
+              "value": null
+            },
+            {
+              "sequence": 6,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "read",
+              "atUtc": "2026-10-02T07:44:24.6848397+00:00",
+              "threadId": 27,
+              "value": 0
+            },
+            {
+              "sequence": 7,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "waiting",
+              "atUtc": "2026-10-02T07:44:24.6848722+00:00",
+              "threadId": 28,
+              "value": null
+            },
+            {
+              "sequence": 8,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "wrote",
+              "atUtc": "2026-10-02T07:44:24.8960479+00:00",
+              "threadId": 20,
+              "value": 1
+            },
+            {
+              "sequence": 9,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "read",
+              "atUtc": "2026-10-02T07:44:24.8961739+00:00",
+              "threadId": 28,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "id": "339f5707-f5bf-4bbe-9bce-c1cb259312b5",
+          "mode": 2,
+          "startTogether": true,
+          "plannedRequests": 2,
+          "workDelayMs": 200,
+          "acceptedRequests": 2,
+          "completedRequests": 1,
+          "expectedReservations": 1,
+          "actualReservations": 1,
+          "lostUpdates": 0,
+          "activeRequests": 1,
+          "maxConcurrentRequests": 2,
+          "processId": 16704,
+          "events": [
+            {
+              "sequence": 1,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:24.6843478+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 2,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:24.6843523+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 3,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:24.6848237+00:00",
+              "threadId": 27,
+              "value": null
+            },
+            {
+              "sequence": 4,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:24.6848242+00:00",
+              "threadId": 27,
+              "value": null
+            },
+            {
+              "sequence": 5,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "waiting",
+              "atUtc": "2026-10-02T07:44:24.6848374+00:00",
+              "threadId": 27,
+              "value": null
+            },
+            {
+              "sequence": 6,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "read",
+              "atUtc": "2026-10-02T07:44:24.6848397+00:00",
+              "threadId": 27,
+              "value": 0
+            },
+            {
+              "sequence": 7,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "waiting",
+              "atUtc": "2026-10-02T07:44:24.6848722+00:00",
+              "threadId": 28,
+              "value": null
+            },
+            {
+              "sequence": 8,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "wrote",
+              "atUtc": "2026-10-02T07:44:24.8960479+00:00",
+              "threadId": 20,
+              "value": 1
+            },
+            {
+              "sequence": 9,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "read",
+              "atUtc": "2026-10-02T07:44:24.8961739+00:00",
+              "threadId": 28,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "id": "339f5707-f5bf-4bbe-9bce-c1cb259312b5",
+          "mode": 2,
+          "startTogether": true,
+          "plannedRequests": 2,
+          "workDelayMs": 200,
+          "acceptedRequests": 2,
+          "completedRequests": 1,
+          "expectedReservations": 1,
+          "actualReservations": 1,
+          "lostUpdates": 0,
+          "activeRequests": 1,
+          "maxConcurrentRequests": 2,
+          "processId": 16704,
+          "events": [
+            {
+              "sequence": 1,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:24.6843478+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 2,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:24.6843523+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 3,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:24.6848237+00:00",
+              "threadId": 27,
+              "value": null
+            },
+            {
+              "sequence": 4,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:24.6848242+00:00",
+              "threadId": 27,
+              "value": null
+            },
+            {
+              "sequence": 5,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "waiting",
+              "atUtc": "2026-10-02T07:44:24.6848374+00:00",
+              "threadId": 27,
+              "value": null
+            },
+            {
+              "sequence": 6,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "read",
+              "atUtc": "2026-10-02T07:44:24.6848397+00:00",
+              "threadId": 27,
+              "value": 0
+            },
+            {
+              "sequence": 7,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "waiting",
+              "atUtc": "2026-10-02T07:44:24.6848722+00:00",
+              "threadId": 28,
+              "value": null
+            },
+            {
+              "sequence": 8,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "wrote",
+              "atUtc": "2026-10-02T07:44:24.8960479+00:00",
+              "threadId": 20,
+              "value": 1
+            },
+            {
+              "sequence": 9,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "read",
+              "atUtc": "2026-10-02T07:44:24.8961739+00:00",
+              "threadId": 28,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "id": "339f5707-f5bf-4bbe-9bce-c1cb259312b5",
+          "mode": 2,
+          "startTogether": true,
+          "plannedRequests": 2,
+          "workDelayMs": 200,
+          "acceptedRequests": 2,
+          "completedRequests": 1,
+          "expectedReservations": 1,
+          "actualReservations": 1,
+          "lostUpdates": 0,
+          "activeRequests": 1,
+          "maxConcurrentRequests": 2,
+          "processId": 16704,
+          "events": [
+            {
+              "sequence": 1,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:24.6843478+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 2,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:24.6843523+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 3,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:24.6848237+00:00",
+              "threadId": 27,
+              "value": null
+            },
+            {
+              "sequence": 4,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:24.6848242+00:00",
+              "threadId": 27,
+              "value": null
+            },
+            {
+              "sequence": 5,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "waiting",
+              "atUtc": "2026-10-02T07:44:24.6848374+00:00",
+              "threadId": 27,
+              "value": null
+            },
+            {
+              "sequence": 6,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "read",
+              "atUtc": "2026-10-02T07:44:24.6848397+00:00",
+              "threadId": 27,
+              "value": 0
+            },
+            {
+              "sequence": 7,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "waiting",
+              "atUtc": "2026-10-02T07:44:24.6848722+00:00",
+              "threadId": 28,
+              "value": null
+            },
+            {
+              "sequence": 8,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "wrote",
+              "atUtc": "2026-10-02T07:44:24.8960479+00:00",
+              "threadId": 20,
+              "value": 1
+            },
+            {
+              "sequence": 9,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "read",
+              "atUtc": "2026-10-02T07:44:24.8961739+00:00",
+              "threadId": 28,
+              "value": 1
+            }
+          ]
+        },
+        {
+          "id": "339f5707-f5bf-4bbe-9bce-c1cb259312b5",
+          "mode": 2,
+          "startTogether": true,
+          "plannedRequests": 2,
+          "workDelayMs": 200,
+          "acceptedRequests": 2,
+          "completedRequests": 2,
+          "expectedReservations": 2,
+          "actualReservations": 2,
+          "lostUpdates": 0,
+          "activeRequests": 0,
+          "maxConcurrentRequests": 2,
+          "processId": 16704,
+          "events": [
+            {
+              "sequence": 1,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:24.6843478+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 2,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:24.6843523+00:00",
+              "threadId": 20,
+              "value": null
+            },
+            {
+              "sequence": 3,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "started",
+              "atUtc": "2026-10-02T07:44:24.6848237+00:00",
+              "threadId": 27,
+              "value": null
+            },
+            {
+              "sequence": 4,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "barrier",
+              "atUtc": "2026-10-02T07:44:24.6848242+00:00",
+              "threadId": 27,
+              "value": null
+            },
+            {
+              "sequence": 5,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "waiting",
+              "atUtc": "2026-10-02T07:44:24.6848374+00:00",
+              "threadId": 27,
+              "value": null
+            },
+            {
+              "sequence": 6,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "read",
+              "atUtc": "2026-10-02T07:44:24.6848397+00:00",
+              "threadId": 27,
+              "value": 0
+            },
+            {
+              "sequence": 7,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "waiting",
+              "atUtc": "2026-10-02T07:44:24.6848722+00:00",
+              "threadId": 28,
+              "value": null
+            },
+            {
+              "sequence": 8,
+              "requestNumber": 2,
+              "clientId": "Client 2",
+              "phase": "wrote",
+              "atUtc": "2026-10-02T07:44:24.8960479+00:00",
+              "threadId": 20,
+              "value": 1
+            },
+            {
+              "sequence": 9,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "read",
+              "atUtc": "2026-10-02T07:44:24.8961739+00:00",
+              "threadId": 28,
+              "value": 1
+            },
+            {
+              "sequence": 10,
+              "requestNumber": 1,
+              "clientId": "Client 1",
+              "phase": "wrote",
+              "atUtc": "2026-10-02T07:44:25.0976399+00:00",
+              "threadId": 27,
+              "value": 2
+            }
+          ]
+        }
+      ],
+      "snapshot": {
+        "id": "339f5707-f5bf-4bbe-9bce-c1cb259312b5",
+        "mode": 2,
+        "startTogether": true,
+        "plannedRequests": 2,
+        "workDelayMs": 200,
+        "acceptedRequests": 2,
+        "completedRequests": 2,
+        "expectedReservations": 2,
+        "actualReservations": 2,
+        "lostUpdates": 0,
+        "activeRequests": 0,
+        "maxConcurrentRequests": 2,
+        "processId": 16704,
+        "events": [
+          {
+            "sequence": 1,
+            "requestNumber": 1,
+            "clientId": "Client 1",
+            "phase": "started",
+            "atUtc": "2026-10-02T07:44:24.6843478+00:00",
+            "threadId": 20,
+            "value": null
+          },
+          {
+            "sequence": 2,
+            "requestNumber": 1,
+            "clientId": "Client 1",
+            "phase": "barrier",
+            "atUtc": "2026-10-02T07:44:24.6843523+00:00",
+            "threadId": 20,
+            "value": null
+          },
+          {
+            "sequence": 3,
+            "requestNumber": 2,
+            "clientId": "Client 2",
+            "phase": "started",
+            "atUtc": "2026-10-02T07:44:24.6848237+00:00",
+            "threadId": 27,
+            "value": null
+          },
+          {
+            "sequence": 4,
+            "requestNumber": 2,
+            "clientId": "Client 2",
+            "phase": "barrier",
+            "atUtc": "2026-10-02T07:44:24.6848242+00:00",
+            "threadId": 27,
+            "value": null
+          },
+          {
+            "sequence": 5,
+            "requestNumber": 2,
+            "clientId": "Client 2",
+            "phase": "waiting",
+            "atUtc": "2026-10-02T07:44:24.6848374+00:00",
+            "threadId": 27,
+            "value": null
+          },
+          {
+            "sequence": 6,
+            "requestNumber": 2,
+            "clientId": "Client 2",
+            "phase": "read",
+            "atUtc": "2026-10-02T07:44:24.6848397+00:00",
+            "threadId": 27,
+            "value": 0
+          },
+          {
+            "sequence": 7,
+            "requestNumber": 1,
+            "clientId": "Client 1",
+            "phase": "waiting",
+            "atUtc": "2026-10-02T07:44:24.6848722+00:00",
+            "threadId": 28,
+            "value": null
+          },
+          {
+            "sequence": 8,
+            "requestNumber": 2,
+            "clientId": "Client 2",
+            "phase": "wrote",
+            "atUtc": "2026-10-02T07:44:24.8960479+00:00",
+            "threadId": 20,
+            "value": 1
+          },
+          {
+            "sequence": 9,
+            "requestNumber": 1,
+            "clientId": "Client 1",
+            "phase": "read",
+            "atUtc": "2026-10-02T07:44:24.8961739+00:00",
+            "threadId": 28,
+            "value": 1
+          },
+          {
+            "sequence": 10,
+            "requestNumber": 1,
+            "clientId": "Client 1",
+            "phase": "wrote",
+            "atUtc": "2026-10-02T07:44:25.0976399+00:00",
+            "threadId": 27,
+            "value": 2
+          }
+        ]
+      }
+    }
+  ],
+  "clocks": [
+    {
+      "clientSkewMs": 90000,
+      "serverSkewMs": -45000,
+      "selected": {
+        "t0": "2026-10-02T07:45:55.1637829+00:00",
+        "t1": "2026-10-02T07:43:40.1645135+00:00",
+        "t2": "2026-10-02T07:43:40.1920316+00:00",
+        "t3": "2026-10-02T07:45:55.1926765+00:00",
+        "referenceServerAtT3": "2026-10-02T07:43:40.1926765+00:00",
+        "differenceBeforeMs": 135000.0,
+        "networkRttMs": 1.3754999999999988,
+        "oneWayDelayMs": 0.6877499999999994,
+        "offsetMs": -134999.95715,
+        "correctedClientAtT3": "2026-10-02T07:43:40.1927194+00:00",
+        "differenceAfterMs": 0.0429
+      },
+      "probes": [
+        {
+          "t0": "2026-10-02T07:45:55.1037289+00:00",
+          "t1": "2026-10-02T07:43:40.1135987+00:00",
+          "t2": "2026-10-02T07:43:40.140176+00:00",
+          "t3": "2026-10-02T07:45:55.141232+00:00",
+          "referenceServerAtT3": "2026-10-02T07:43:40.141232+00:00",
+          "differenceBeforeMs": 135000.0,
+          "networkRttMs": 10.925800000000002,
+          "oneWayDelayMs": 5.462900000000001,
+          "offsetMs": -134995.5931,
+          "correctedClientAtT3": "2026-10-02T07:43:40.145639+00:00",
+          "differenceAfterMs": 4.407
+        },
+        {
+          "t0": "2026-10-02T07:45:55.1637829+00:00",
+          "t1": "2026-10-02T07:43:40.1645135+00:00",
+          "t2": "2026-10-02T07:43:40.1920316+00:00",
+          "t3": "2026-10-02T07:45:55.1926765+00:00",
+          "referenceServerAtT3": "2026-10-02T07:43:40.1926765+00:00",
+          "differenceBeforeMs": 135000.0,
+          "networkRttMs": 1.3754999999999988,
+          "oneWayDelayMs": 0.6877499999999994,
+          "offsetMs": -134999.95715,
+          "correctedClientAtT3": "2026-10-02T07:43:40.1927194+00:00",
+          "differenceAfterMs": 0.0429
+        },
+        {
+          "t0": "2026-10-02T07:45:55.1934951+00:00",
+          "t1": "2026-10-02T07:43:40.1939523+00:00",
+          "t2": "2026-10-02T07:43:40.223423+00:00",
+          "t3": "2026-10-02T07:45:55.2244258+00:00",
+          "referenceServerAtT3": "2026-10-02T07:43:40.2244258+00:00",
+          "differenceBeforeMs": 135000.0,
+          "networkRttMs": 1.4600000000000009,
+          "oneWayDelayMs": 0.7300000000000004,
+          "offsetMs": -135000.27279999998,
+          "correctedClientAtT3": "2026-10-02T07:43:40.2241531+00:00",
+          "differenceAfterMs": -0.2727
+        },
+        {
+          "t0": "2026-10-02T07:45:55.2255779+00:00",
+          "t1": "2026-10-02T07:43:40.2260966+00:00",
+          "t2": "2026-10-02T07:43:40.2540081+00:00",
+          "t3": "2026-10-02T07:45:55.2549531+00:00",
+          "referenceServerAtT3": "2026-10-02T07:43:40.2549531+00:00",
+          "differenceBeforeMs": 135000.0,
+          "networkRttMs": 1.4636999999999993,
+          "oneWayDelayMs": 0.7318499999999997,
+          "offsetMs": -135000.21315000003,
+          "correctedClientAtT3": "2026-10-02T07:43:40.25474+00:00",
+          "differenceAfterMs": -0.2131
+        },
+        {
+          "t0": "2026-10-02T07:45:55.257106+00:00",
+          "t1": "2026-10-02T07:43:40.2576562+00:00",
+          "t2": "2026-10-02T07:43:40.2819344+00:00",
+          "t3": "2026-10-02T07:45:55.2830404+00:00",
+          "referenceServerAtT3": "2026-10-02T07:43:40.2830404+00:00",
+          "differenceBeforeMs": 135000.0,
+          "networkRttMs": 1.656200000000002,
+          "oneWayDelayMs": 0.828100000000001,
+          "offsetMs": -135000.2779,
+          "correctedClientAtT3": "2026-10-02T07:43:40.2827626+00:00",
+          "differenceAfterMs": -0.2778
+        }
+      ]
+    },
+    {
+      "clientSkewMs": -30000,
+      "serverSkewMs": 15000,
+      "selected": {
+        "t0": "2026-10-02T07:43:55.3878022+00:00",
+        "t1": "2026-10-02T07:44:40.3881705+00:00",
+        "t2": "2026-10-02T07:44:40.4157547+00:00",
+        "t3": "2026-10-02T07:43:55.4165003+00:00",
+        "referenceServerAtT3": "2026-10-02T07:44:40.4165003+00:00",
+        "differenceBeforeMs": -45000.0,
+        "networkRttMs": 1.113900000000001,
+        "oneWayDelayMs": 0.5569500000000005,
+        "offsetMs": 44999.81135,
+        "correctedClientAtT3": "2026-10-02T07:44:40.4163116+00:00",
+        "differenceAfterMs": -0.1887
+      },
+      "probes": [
+        {
+          "t0": "2026-10-02T07:43:55.2948655+00:00",
+          "t1": "2026-10-02T07:44:40.295456+00:00",
+          "t2": "2026-10-02T07:44:40.3265189+00:00",
+          "t3": "2026-10-02T07:43:55.3271428+00:00",
+          "referenceServerAtT3": "2026-10-02T07:44:40.3271428+00:00",
+          "differenceBeforeMs": -45000.0,
+          "networkRttMs": 1.2143999999999977,
+          "oneWayDelayMs": 0.6071999999999989,
+          "offsetMs": 44999.9833,
+          "correctedClientAtT3": "2026-10-02T07:44:40.327126+00:00",
+          "differenceAfterMs": -0.0168
+        },
+        {
+          "t0": "2026-10-02T07:43:55.3284369+00:00",
+          "t1": "2026-10-02T07:44:40.329002+00:00",
+          "t2": "2026-10-02T07:44:40.3562411+00:00",
+          "t3": "2026-10-02T07:43:55.3580522+00:00",
+          "referenceServerAtT3": "2026-10-02T07:44:40.3580522+00:00",
+          "differenceBeforeMs": -45000.0,
+          "networkRttMs": 2.3762000000000008,
+          "oneWayDelayMs": 1.1881000000000004,
+          "offsetMs": 44999.377,
+          "correctedClientAtT3": "2026-10-02T07:44:40.3574292+00:00",
+          "differenceAfterMs": -0.623
+        },
+        {
+          "t0": "2026-10-02T07:43:55.3593721+00:00",
+          "t1": "2026-10-02T07:44:40.3599078+00:00",
+          "t2": "2026-10-02T07:44:40.3863522+00:00",
+          "t3": "2026-10-02T07:43:55.3869383+00:00",
+          "referenceServerAtT3": "2026-10-02T07:44:40.3869383+00:00",
+          "differenceBeforeMs": -45000.0,
+          "networkRttMs": 1.1217999999999968,
+          "oneWayDelayMs": 0.5608999999999984,
+          "offsetMs": 44999.974799999996,
+          "correctedClientAtT3": "2026-10-02T07:44:40.386913+00:00",
+          "differenceAfterMs": -0.0253
+        },
+        {
+          "t0": "2026-10-02T07:43:55.3878022+00:00",
+          "t1": "2026-10-02T07:44:40.3881705+00:00",
+          "t2": "2026-10-02T07:44:40.4157547+00:00",
+          "t3": "2026-10-02T07:43:55.4165003+00:00",
+          "referenceServerAtT3": "2026-10-02T07:44:40.4165003+00:00",
+          "differenceBeforeMs": -45000.0,
+          "networkRttMs": 1.113900000000001,
+          "oneWayDelayMs": 0.5569500000000005,
+          "offsetMs": 44999.81135,
+          "correctedClientAtT3": "2026-10-02T07:44:40.4163116+00:00",
+          "differenceAfterMs": -0.1887
+        },
+        {
+          "t0": "2026-10-02T07:43:55.4177542+00:00",
+          "t1": "2026-10-02T07:44:40.4184686+00:00",
+          "t2": "2026-10-02T07:44:40.4387443+00:00",
+          "t3": "2026-10-02T07:43:55.4396261+00:00",
+          "referenceServerAtT3": "2026-10-02T07:44:40.4396261+00:00",
+          "differenceBeforeMs": -45000.0,
+          "networkRttMs": 1.5961999999999996,
+          "oneWayDelayMs": 0.7980999999999998,
+          "offsetMs": 44999.9163,
+          "correctedClientAtT3": "2026-10-02T07:44:40.4395423+00:00",
+          "differenceAfterMs": -0.0838
+        }
+      ]
+    },
+    {
+      "clientSkewMs": 10000,
+      "serverSkewMs": 0,
+      "selected": {
+        "t0": "2026-10-02T07:44:35.5020033+00:00",
+        "t1": "2026-10-02T07:44:25.5025674+00:00",
+        "t2": "2026-10-02T07:44:25.5301793+00:00",
+        "t3": "2026-10-02T07:44:35.5311045+00:00",
+        "referenceServerAtT3": "2026-10-02T07:44:25.5311045+00:00",
+        "differenceBeforeMs": 10000.0,
+        "networkRttMs": 1.4893,
+        "oneWayDelayMs": 0.74465,
+        "offsetMs": -10000.180550000001,
+        "correctedClientAtT3": "2026-10-02T07:44:25.530924+00:00",
+        "differenceAfterMs": -0.1805
+      },
+      "probes": [
+        {
+          "t0": "2026-10-02T07:44:35.4419049+00:00",
+          "t1": "2026-10-02T07:44:25.4423777+00:00",
+          "t2": "2026-10-02T07:44:25.4748713+00:00",
+          "t3": "2026-10-02T07:44:35.4775017+00:00",
+          "referenceServerAtT3": "2026-10-02T07:44:25.4775017+00:00",
+          "differenceBeforeMs": 10000.0,
+          "networkRttMs": 3.103200000000001,
+          "oneWayDelayMs": 1.5516000000000005,
+          "offsetMs": -10001.0788,
+          "correctedClientAtT3": "2026-10-02T07:44:25.476423+00:00",
+          "differenceAfterMs": -1.0787
+        },
+        {
+          "t0": "2026-10-02T07:44:35.4792454+00:00",
+          "t1": "2026-10-02T07:44:25.4796841+00:00",
+          "t2": "2026-10-02T07:44:25.4979448+00:00",
+          "t3": "2026-10-02T07:44:35.5007651+00:00",
+          "referenceServerAtT3": "2026-10-02T07:44:25.5007651+00:00",
+          "differenceBeforeMs": 10000.0,
+          "networkRttMs": 3.2590000000000003,
+          "oneWayDelayMs": 1.6295000000000002,
+          "offsetMs": -10001.1908,
+          "correctedClientAtT3": "2026-10-02T07:44:25.4995743+00:00",
+          "differenceAfterMs": -1.1908
+        },
+        {
+          "t0": "2026-10-02T07:44:35.5020033+00:00",
+          "t1": "2026-10-02T07:44:25.5025674+00:00",
+          "t2": "2026-10-02T07:44:25.5301793+00:00",
+          "t3": "2026-10-02T07:44:35.5311045+00:00",
+          "referenceServerAtT3": "2026-10-02T07:44:25.5311045+00:00",
+          "differenceBeforeMs": 10000.0,
+          "networkRttMs": 1.4893,
+          "oneWayDelayMs": 0.74465,
+          "offsetMs": -10000.180550000001,
+          "correctedClientAtT3": "2026-10-02T07:44:25.530924+00:00",
+          "differenceAfterMs": -0.1805
+        },
+        {
+          "t0": "2026-10-02T07:44:35.5336583+00:00",
+          "t1": "2026-10-02T07:44:25.5350988+00:00",
+          "t2": "2026-10-02T07:44:25.5733153+00:00",
+          "t3": "2026-10-02T07:44:35.5742757+00:00",
+          "referenceServerAtT3": "2026-10-02T07:44:25.5742757+00:00",
+          "differenceBeforeMs": 10000.0,
+          "networkRttMs": 2.4009,
+          "oneWayDelayMs": 1.20045,
+          "offsetMs": -9999.75995,
+          "correctedClientAtT3": "2026-10-02T07:44:25.5745158+00:00",
+          "differenceAfterMs": 0.2401
+        },
+        {
+          "t0": "2026-10-02T07:44:35.5755466+00:00",
+          "t1": "2026-10-02T07:44:25.5763396+00:00",
+          "t2": "2026-10-02T07:44:25.6078815+00:00",
+          "t3": "2026-10-02T07:44:35.6087831+00:00",
+          "referenceServerAtT3": "2026-10-02T07:44:25.6087831+00:00",
+          "differenceBeforeMs": 10000.0,
+          "networkRttMs": 1.6946000000000012,
+          "oneWayDelayMs": 0.8473000000000006,
+          "offsetMs": -10000.0543,
+          "correctedClientAtT3": "2026-10-02T07:44:25.6087289+00:00",
+          "differenceAfterMs": -0.0542
+        }
+      ]
+    }
+  ]
+}

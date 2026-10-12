@@ -6,7 +6,7 @@ using Hangfire.PostgreSql;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Logging.ClearProviders(); builder.Logging.AddJsonConsole();
+builder.Logging.AddBurmaldaConsole(builder.Configuration);
 builder.Services.AddBurmaldaDefaults(builder.Configuration, "lending-service");
 var connection = builder.Configuration.GetConnectionString("Database")!;
 builder.Services.AddDbContext<LendingDbContext>(o => o.UseNpgsql(connection));

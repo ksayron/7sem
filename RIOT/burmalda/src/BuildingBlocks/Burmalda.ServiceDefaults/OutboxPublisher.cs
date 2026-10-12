@@ -14,6 +14,8 @@ public sealed class OutboxPublisher<TDbContext>(
     ILogger<OutboxPublisher<TDbContext>> logger) : BackgroundService
     where TDbContext : DbContext
 {
+    private DateTimeOffset _lastErrorAt;
+    private bool _unavailable;
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
         while (!stoppingToken.IsCancellationRequested)
@@ -21,11 +23,18 @@ public sealed class OutboxPublisher<TDbContext>(
             try
             {
                 await PublishBatch(stoppingToken);
+                if (_unavailable) logger.LogInformation("Outbox connection restored");
+                _unavailable = false;
             }
             catch (OperationCanceledException) when (stoppingToken.IsCancellationRequested) { }
             catch (Exception ex)
             {
-                logger.LogError(ex, "Outbox publishing iteration failed");
+                if (!_unavailable || DateTimeOffset.UtcNow - _lastErrorAt > TimeSpan.FromSeconds(30))
+                {
+                    logger.LogError(ex, "Outbox unavailable; retrying (repeated errors summarized every 30 s)");
+                    _lastErrorAt = DateTimeOffset.UtcNow;
+                }
+                _unavailable = true;
             }
             await Task.Delay(TimeSpan.FromSeconds(1), stoppingToken);
         }

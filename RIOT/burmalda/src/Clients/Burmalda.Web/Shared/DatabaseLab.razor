@@ -1,0 +1,164 @@
+@implements IDisposable
+@inject HttpClient Http
+
+<section class="database-lab" aria-labelledby="db-lab-title">
+    <header class="db-heading"><div><span class="eyebrow">ЛР 4 / CLIENT → SERVER → POSTGRESQL</span><h2 id="db-lab-title">Одна книга.<br />Два клиента. <em>Один результат?</em></h2></div><p>Проверьте резервирование, атомарность выдачи и компенсацию саги. Каждый опыт получает собственный учебный экземпляр в отдельной базе.</p></header>
+    <div class="db-modes" role="group" aria-label="Механизм эксперимента">
+        @foreach (var option in Modes)
+        {
+            <button class="@(mode == option.Key ? "active" : "")" aria-pressed="@(mode == option.Key)" disabled="@busy" @onclick="() => Select(option.Key)"><small>@option.Number</small><strong>@option.Label</strong><span>@option.Detail</span></button>
+        }
+    </div>
+    <div class="db-controls">
+        @if (mode is 2 or 3 or 4)
+        {
+            <label>Искусственная ошибка<select @bind="failure" disabled="@busy"><option value="0">Без ошибки</option>
+                @if (mode == 4) { <option value="3">Отказ Economy: резерв баллов</option><option value="4">Отказ Lending: создание выдачи</option> }
+                else { <option value="1">После создания выдачи</option>@if (mode == 3) { <option value="2">Перед COMMIT</option> } }
+            </select></label>
+        }
+        <button class="button button-dark" @onclick="Start" disabled="@busy">@(busy ? "Выполняется…" : mode == 4 ? "Создать сагу →" : "Запустить опыт →")</button>
+        <button class="button button-quiet" @onclick="Compare" disabled="@busy">Сравнить 4 опыта транзакции</button>
+    </div>
+    <p class="db-note">@(mode == 4 ? "Учебная модель Lending Saga: Catalog → Economy → Lending. Шаги сохраняются отдельными локальными транзакциями в учебной БД; доставка RabbitMQ здесь не моделируется. Ошибка запускает новые компенсирующие записи." : mode is 0 or 1 ? "Resource = 1. Два HTTP-запроса встречаются на барьере старта. lock защищает чтение, проверку и запись одного экземпляра в одном процессе сервера." : "Операция 1 создаёт выдачу. Операция 2 занимает экземпляр. Без общей транзакции каждое SaveChanges сохраняется отдельно.")</p>
+    @if (error is not null) { <p class="form-error" role="alert">@error</p> }
+    <details class="db-join"><summary>Два отдельных клиента / подключиться к опыту</summary>
+        <p>Создайте общий опыт, откройте лабораторию во второй вкладке и введите его ID. Выберите разные ClientId и отправьте запросы в течение 10 секунд.</p>
+        <div class="db-controls"><button class="button button-quiet" @onclick="CreateOnly" disabled="@(busy || mode > 1)">Создать общий опыт</button><label>ID опыта<input @bind="joinId" disabled="@busy" /></label><label>ClientId<input @bind="clientId" maxlength="32" disabled="@busy" /></label><button class="button button-quiet" @onclick="Join" disabled="@busy">Подключиться</button><button class="button button-dark" @onclick="ReserveOwn" disabled="@(busy || current is null || current.Mode > 1)">Отправить свой запрос</button></div>
+    </details>
+    @if (current is { } run)
+    {
+        <article class="db-run" aria-live="polite">
+            <div class="db-run-heading"><div><span class="eyebrow">@ModeName(run.Mode) / @run.Id.ToString()[..8]</span><h3>@StatusName(run.Status)</h3></div><span class="db-badge @OutcomeClass(run)">@run.Status</span></div>
+            <div class="db-state-grid">
+                <div><span>Экземпляр в БД</span><strong>@(run.After.CopyAvailable ? "Свободен" : "Занят")</strong><small>До: свободен</small></div>
+                <div><span>Выдачи в БД</span><strong>@run.After.Loans</strong><small>До: 0</small></div>
+                <div><span>Резерв баллов в БД</span><strong>@run.After.ReservedPoints <small>BD</small></strong><small>До: 0 BD</small></div>
+            </div>
+            <p class="db-note">Состояние прочитано сервером из БД через новый DbContext. Во время BEGIN видны только сохранённые данные; журнал также показывает ещё не зафиксированные шаги.</p>
+            @if (run.Mode == 4)
+            {
+                <ol class="db-flow">
+                    @foreach (var step in SagaSteps)
+                    {
+                        var done = run.Events.Any(x => x.Phase == step);
+                        <li class="@(done ? "done" : "")"><b>@(done ? "✓" : "○")</b><span>@step</span></li>
+                    }
+                </ol>
+                @if (run.Status is not ("Completed" or "Compensated")) { <button class="button button-dark" @onclick="Step" disabled="@busy">Следующий шаг →</button> }
+                <p class="db-note">Компенсация выполняется в обратном порядке: ReleasePoints → ReleaseBookCopy. Уже выполненные COMMIT остаются в истории.</p>
+            }
+            @if (run.Clients.Count > 0)
+            {
+                <div class="db-table-scroll"><table><caption>Два клиента · время UTC</caption><thead><tr><th>Клиент</th><th>Отправка¹</th><th>Принят сервером</th><th>Вход²</th><th>Выход²</th><th>Результат</th></tr></thead><tbody>
+                    @foreach (var client in run.Clients) { <tr><td>@client.ClientId</td><td>@Time(client.SentAtUtc)</td><td>@Time(client.StartedAtUtc)</td><td>@Time(client.EnteredAtUtc)</td><td>@Time(client.ExitedAtUtc)</td><td><b class="@(client.Result == "SUCCESS" ? "db-success" : "db-error")">@client.Result</b></td></tr> }
+                </tbody></table></div><p class="db-note">¹ Часы клиента. ² Для lock — границы критической секции; без lock — интервал check → save. Порядок клиентов может отличаться.</p>
+            }
+            <details class="db-journal" open><summary>Журнал / @run.Events.Count событий / UTC</summary><ol>
+                @foreach (var item in run.Events) { <li class="@item.Level"><time>@Time(item.AtUtc)</time><b>[@item.Level]</b><span><strong>@item.ClientId → @item.Phase</strong><small>@item.Detail</small></span></li> }
+            </ol></details>
+            <a class="text-button" href="@EvidenceUrl(run)" download="@($"db-lab-{run.Id}.json")">Скачать JSON опыта ↓</a>
+        </article>
+    }
+    @if (history.Count > 0)
+    {
+        <div class="db-table-scroll db-history"><table><caption>Результаты выполненных опытов</caption><thead><tr><th>Механизм</th><th>Ошибка</th><th>Операция 1³</th><th>Операция 2³</th><th>Состояние БД</th><th>Итог</th></tr></thead><tbody>
+            @foreach (var savedRun in history) { <tr><td><button class="text-button" @onclick="() => current = savedRun">@ModeName(savedRun.Mode)</button></td><td>@FailureName(savedRun.Failure)</td><td>@(savedRun.Events.Any(x => x.Phase == "OPERATION 1") ? "Выполнена" : "—")</td><td>@(savedRun.Events.Any(x => x.Phase == "OPERATION 2") ? "Выполнена" : "—")</td><td>@savedRun.After.Loans выдач / @(savedRun.After.CopyAvailable ? "свободен" : "занят") / @savedRun.After.ReservedPoints BD</td><td>@StatusName(savedRun.Status)</td></tr> }
+        </tbody></table><p class="db-note">³ Выполнена внутри опыта; после ROLLBACK изменение отменено. Нажмите механизм, чтобы открыть журнал.</p></div>
+    }
+    <details class="db-join"><summary>Сравнение механизмов и ожидаемый результат</summary><div class="db-table-scroll"><table><thead><tr><th>Критерий</th><th>Без общей транзакции</th><th>С транзакцией</th><th>Сага</th></tr></thead><tbody>
+        <tr><td>Атомарность двух операций</td><td>Нет</td><td>Да, в одной БД</td><td>Локальная для каждого шага</td></tr><tr><td>Ошибка после операции 1</td><td>Частичное изменение</td><td>ROLLBACK</td><td>Компенсация сохранённых шагов</td></tr><tr><td>Сохранение при успехе</td><td>Два отдельных сохранения</td><td>Общий COMMIT</td><td>COMMIT каждого шага</td></tr><tr><td>Отмена при ошибке</td><td>Нет общей отмены</td><td>Изменений в БД нет</td><td>Новые обратные операции</td></tr><tr><td>Resource = 1, два клиента</td><td colspan="3">С lock: один SUCCESS, один FAIL. Без синхронизации в учебном опыте: два SUCCESS, две выдачи одного экземпляра.</td></tr>
+    </tbody></table></div></details>
+</section>
+
+@code {
+    private static readonly (int Key, string Number, string Label, string Detail)[] Modes = [(0,"01","Без lock","Двойное резервирование"),(1,"02","lock","Один победитель"),(2,"03","Без транзакции","Частичное изменение"),(3,"04","Транзакция","COMMIT / ROLLBACK"),(4,"05","Сага","Шаги и компенсация")];
+    private static readonly string[] SagaSteps = ["ReserveBookCopy", "ReservePoints", "CreateLoan", "ReleasePoints", "ReleaseBookCopy"];
+    private int mode = 1;
+    private int failure;
+    private bool busy;
+    private string? error;
+    private string joinId = "";
+    private string clientId = "Client 1";
+    private DbSnapshot? current;
+    private readonly List<DbSnapshot> history = [];
+    private readonly CancellationTokenSource lifetime = new();
+    private const string Base = "/api/concurrency-lab/database/runs";
+    private void Select(int value) { mode = value; failure = 0; }
+    private Task Start() => Guard(async () => { await Create(); if (mode <= 1) await ExecuteWithPolling(() => Task.WhenAll(SendReserve("Client 1"), SendReserve("Client 2"))); else if (mode <= 3) await ExecuteWithPolling(() => PostAction("execute")); });
+    private Task CreateOnly() => Guard(Create);
+    private Task Step() => Guard(async () => { await PostAction("step"); Remember(); });
+    private Task Join() => Guard(async () => { if (!Guid.TryParse(joinId, out var id)) throw new InvalidOperationException("Введите корректный ID опыта."); current = await Get(id); mode = current.Mode; failure = current.Failure; });
+    private Task ReserveOwn() => Guard(() => ExecuteWithPolling(() => SendReserve(clientId)));
+    private Task Compare() => Guard(async () => { foreach (var item in new[] { (2,0), (2,1), (3,0), (3,1) }) { mode = item.Item1; failure = item.Item2; await Create(); await ExecuteWithPolling(() => PostAction("execute")); } });
+    private async Task Create()
+    {
+        using var response = await Http.PostAsJsonAsync(Base, new { mode, failure }, lifetime.Token);
+        current = await Read(response); joinId = current.Id.ToString();
+    }
+    private async Task SendReserve(string client)
+    {
+        var id = current?.Id ?? throw new InvalidOperationException("Создайте опыт.");
+        using var response = await Http.PostAsJsonAsync($"{Base}/{id}/reserve", new { clientId = client, sentAtUtc = DateTimeOffset.UtcNow }, lifetime.Token);
+        await Read(response);
+    }
+    private async Task PostAction(string action)
+    {
+        var id = current?.Id ?? throw new InvalidOperationException("Создайте опыт.");
+        using var response = await Http.PostAsJsonAsync($"{Base}/{id}/{action}", new { }, lifetime.Token);
+        current = await Read(response);
+    }
+    private async Task<DbSnapshot> Get(Guid id)
+    {
+        using var response = await Http.GetAsync($"{Base}/{id}", lifetime.Token);
+        return await Read(response);
+    }
+    private async Task ExecuteWithPolling(Func<Task> execute)
+    {
+        var id = current!.Id;
+        using var polling = CancellationTokenSource.CreateLinkedTokenSource(lifetime.Token);
+        var poll = Poll(id, polling.Token);
+        try { await execute(); }
+        finally { polling.Cancel(); await poll; }
+        current = await Get(id); Remember();
+    }
+    private async Task Poll(Guid id, CancellationToken ct)
+    {
+        try { using var timer = new PeriodicTimer(TimeSpan.FromMilliseconds(250)); while (await timer.WaitForNextTickAsync(ct)) { current = await Get(id); await InvokeAsync(StateHasChanged); } }
+        catch (OperationCanceledException) when (ct.IsCancellationRequested || lifetime.IsCancellationRequested) { }
+        catch (Exception ex) when (ex is HttpRequestException or InvalidOperationException) { error = ex.Message; await InvokeAsync(StateHasChanged); }
+    }
+    private void Remember() { if (current is not null) { history.RemoveAll(x => x.Id == current.Id); history.Insert(0, current); if (history.Count > 30) history.RemoveAt(30); } }
+    private async Task Guard(Func<Task> action)
+    {
+        if (busy) return;
+        busy = true; error = null;
+        try { await action(); }
+        catch (OperationCanceledException) when (lifetime.IsCancellationRequested) { }
+        catch (OperationCanceledException) { error = "Сервер не ответил вовремя. Проверьте подключение и состояние опыта."; }
+        catch (Exception ex) when (ex is HttpRequestException or InvalidOperationException or System.Text.Json.JsonException) { error = $"{ex.Message} Проверьте запуск Gateway, ConcurrencyLab API и PostgreSQL."; }
+        finally { busy = false; }
+    }
+    private async Task<DbSnapshot> Read(HttpResponseMessage response)
+    {
+        if (!response.IsSuccessStatusCode)
+        {
+            var body = await response.Content.ReadAsStringAsync(lifetime.Token);
+            string? message = null;
+            try { using var json = System.Text.Json.JsonDocument.Parse(body); if (json.RootElement.TryGetProperty("message", out var value)) message = value.GetString(); } catch (System.Text.Json.JsonException) { }
+            throw new HttpRequestException(message ?? $"HTTP {(int)response.StatusCode}: сервер недоступен или запрос отклонён.");
+        }
+        return await response.Content.ReadFromJsonAsync<DbSnapshot>(lifetime.Token) ?? throw new InvalidOperationException("Пустой ответ сервера.");
+    }
+    private static string EvidenceUrl(DbSnapshot value) => "data:application/json;base64," + Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(System.Text.Json.JsonSerializer.Serialize(value, new System.Text.Json.JsonSerializerOptions { WriteIndented = true })));
+    private static string Time(DateTimeOffset? time) => time?.ToString("HH:mm:ss.fff") ?? "—";
+    private static string ModeName(int value) => Modes.FirstOrDefault(x => x.Key == value).Label ?? "Неизвестный механизм";
+    private static string FailureName(int value) => value switch { 0 => "Нет", 1 => "После операции 1", 2 => "Перед COMMIT", 3 => "Резерв BD", 4 => "Создание выдачи", _ => "—" };
+    private static string OutcomeClass(DbSnapshot run) => run.Status is "Incorrect" or "Partial" ? "bad" : "good";
+    private static string StatusName(string value) => value switch { "Ready" => "Готов к запуску", "Running" => "Операция выполняется", "Correct" => "Один экземпляр — одна выдача", "Incorrect" => "Нарушение: экземпляр выдан дважды", "Saved" => "Обе операции сохранены", "Committed" => "COMMIT: обе операции сохранены", "RolledBack" => "ROLLBACK: изменений нет", "Partial" => "Ошибка: данные изменены частично", "AwaitingPointsReservation" => "Книга занята, ждём резерв BD", "CreatingLoan" => "Резервы готовы, создаём выдачу", "Completed" => "Сага завершена", "CompensatingPoints" => "Отказ: возвращаем BD", "CompensatingCopy" => "Освобождаем книгу", "Compensated" => "Компенсация завершена", _ => value };
+    public void Dispose() { lifetime.Cancel(); lifetime.Dispose(); }
+    private sealed record DbState(bool CopyAvailable, int Loans, int ReservedPoints);
+    private sealed record DbEvent(long Sequence, DateTimeOffset AtUtc, string ClientId, string Level, string Phase, string Detail);
+    private sealed record DbClient(string ClientId, DateTimeOffset? SentAtUtc, DateTimeOffset StartedAtUtc, DateTimeOffset? EnteredAtUtc, DateTimeOffset? ExitedAtUtc, string Result);
+    private sealed record DbSnapshot(Guid Id, int Mode, int Failure, string Status, DbState Before, DbState After, IReadOnlyList<DbEvent> Events, IReadOnlyList<DbClient> Clients);
+}

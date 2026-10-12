@@ -1,0 +1,56 @@
+const { chromium } = require('playwright');
+const assert = require('node:assert/strict');
+const fs = require('node:fs/promises');
+const path = require('node:path');
+(async () => {
+    const folder = path.resolve('lab-results/ui-2026-10-05'); await fs.mkdir(folder, { recursive: true });
+    const browser = await chromium.launch({ headless: true, channel: process.env.BURMALDA_BROWSER ?? 'msedge' });
+    try {
+        const page = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
+        const errors = []; page.on('pageerror', e => errors.push(e.message));
+        await page.goto('http://localhost:5300/concurrency-lab');
+        await page.getByRole('heading', { name: /Одна книга/ }).waitFor();
+        await page.getByRole('button', { name: 'Запустить опыт →', exact: true }).click();
+        await page.getByRole('heading', { name: 'Один экземпляр — одна выдача', exact: true }).waitFor();
+        assert.equal(await page.locator('.db-run tbody tr').count(), 2);
+        await page.screenshot({ path: path.join(folder, 'lock-desktop.png'), fullPage: true });
+        await page.locator('.db-modes button').nth(3).click();
+        await page.locator('.db-controls select').selectOption('1');
+        await page.getByRole('button', { name: 'Запустить опыт →', exact: true }).click();
+        await page.getByRole('heading', { name: 'ROLLBACK: изменений нет', exact: true }).waitFor();
+        await page.getByRole('button', { name: 'Сравнить 4 опыта транзакции', exact: true }).click();
+        await page.waitForFunction(() => document.querySelector('.db-controls button').disabled === false);
+        assert.equal(await page.locator('.db-history tbody tr').count(), 6);
+        await page.screenshot({ path: path.join(folder, 'transactions-desktop.png'), fullPage: true });
+        await page.locator('.db-modes button').nth(4).click();
+        await page.locator('.db-controls select').selectOption('4');
+        await page.getByRole('button', { name: 'Создать сагу →', exact: true }).click();
+        for (let i = 0; i < 5; i++) await page.getByRole('button', { name: 'Следующий шаг →', exact: true }).click();
+        await page.getByRole('heading', { name: 'Компенсация завершена', exact: true }).waitFor();
+        assert.equal(await page.locator('.db-flow .done').count(), 4);
+        await page.screenshot({ path: path.join(folder, 'saga-desktop.png'), fullPage: true });
+        await page.setViewportSize({ width: 390, height: 844 });
+        await page.screenshot({ path: path.join(folder, 'saga-mobile.png'), fullPage: true });
+        assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), 'Mobile page overflows viewport');
+        // Manual two-tab flow, including persisted server state.
+        await page.setViewportSize({ width: 1440, height: 1000 });
+        await page.locator('.db-modes button').nth(1).click();
+        await page.locator('.db-join').first().locator('summary').click();
+        await page.getByRole('button', { name: 'Создать общий опыт', exact: true }).click();
+        await page.getByRole('heading', { name: 'Готов к запуску', exact: true }).waitFor();
+        const id = await page.getByLabel('ID опыта', { exact: true }).inputValue();
+        const page2 = await browser.newPage(); page2.on('pageerror', e => errors.push(e.message));
+        await page2.goto('http://localhost:5300/concurrency-lab');
+        await page2.locator('.db-join').first().locator('summary').click();
+        await page2.getByLabel('ID опыта', { exact: true }).fill(id);
+        await page2.getByLabel('ClientId', { exact: true }).fill('Client 2');
+        await page2.getByRole('button', { name: 'Подключиться', exact: true }).click();
+        await page2.getByRole('heading', { name: 'Готов к запуску', exact: true }).waitFor();
+        await Promise.all([page.getByRole('button', { name: 'Отправить свой запрос', exact: true }).click(), page2.getByRole('button', { name: 'Отправить свой запрос', exact: true }).click()]);
+        await page.getByRole('heading', { name: 'Один экземпляр — одна выдача', exact: true }).waitFor();
+        await page2.getByRole('heading', { name: 'Один экземпляр — одна выдача', exact: true }).waitFor();
+        assert.deepEqual(errors, []);
+        await fs.writeFile(path.join(folder, 'verification.json'), JSON.stringify({ verifiedAtUtc: new Date().toISOString(), checks: ['lock','rollback','four-transaction-comparison','saga-compensation','mobile-overflow','two-independent-tabs'], pageErrors: errors }, null, 2));
+        console.log(`[info] Browser verification passed: ${folder}`);
+    } finally { await browser.close(); }
+})().catch(e => { console.error(e); process.exitCode = 1; });

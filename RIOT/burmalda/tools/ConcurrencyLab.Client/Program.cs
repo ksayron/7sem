@@ -2,6 +2,8 @@ using System.Diagnostics;
 using System.Net.Http.Json;
 using System.Text.Json;
 
+Console.OutputEncoding = new System.Text.UTF8Encoding(false);
+
 var baseUrl = Environment.GetEnvironmentVariable("BURMALDA_LAB_URL") ?? "http://localhost:5107";
 using var http = new HttpClient(new SocketsHttpHandler { MaxConnectionsPerServer = 32 })
 { BaseAddress = new Uri(baseUrl), Timeout = TimeSpan.FromSeconds(30) };
@@ -11,6 +13,32 @@ try
 {
     switch (action)
     {
+        case "db-create":
+        {
+            var mode = args.ElementAtOrDefault(1)?.ToLowerInvariant() switch
+            { "unsafe" => 0, "lock" => 1, "none" => 2, "transaction" => 3, "saga" => 4,
+                _ => throw new ArgumentException("Use db-create unsafe|lock|none|transaction|saga [failure: 0..4].") };
+            using var response = await http.PostAsJsonAsync("/api/concurrency-lab/database/runs", new { mode, failure = ParseInt(2, 0, 0, 4) });
+            PrintDatabase(await ReadDatabase(response));
+            break;
+        }
+        case "db-reserve":
+        case "db-execute":
+        case "db-step":
+        {
+            var id = ParseGuid(1);
+            var endpoint = action[3..];
+            using var response = await http.PostAsJsonAsync($"/api/concurrency-lab/database/runs/{id}/{endpoint}",
+                new { clientId = args.ElementAtOrDefault(2) ?? "Client 1", sentAtUtc = DateTimeOffset.UtcNow });
+            PrintDatabase(await ReadDatabase(response));
+            break;
+        }
+        case "db-report":
+        {
+            using var response = await http.GetAsync($"/api/concurrency-lab/database/runs/{ParseGuid(1)}");
+            PrintDatabase(await ReadDatabase(response));
+            break;
+        }
         case "compare":
         {
             var count = ParseInt(1, 12, 2, 32);
@@ -42,20 +70,20 @@ try
                 recordedAtUtc = DateTimeOffset.UtcNow, server = baseUrl, clients = count,
                 workDelayMs = delay, runs = results
             }, new JsonSerializerOptions(JsonSerializerDefaults.Web) { WriteIndented = true }));
-            Console.WriteLine($"JSON report: {reportFile}");
+            WriteLog("info", $"JSON report: {reportFile}");
             break;
         }
         case "create":
         {
             var mode = args.ElementAtOrDefault(1) ?? "Unsafe";
             var created = await Create(mode, ParseInt(2, 12, 2, 32), ParseInt(3, 60, 10, 200));
-            Console.WriteLine($"Experiment ID: {created.Id}");
-            Console.WriteLine("Run 'join <id> <count> <client-label>' from two terminals, then 'report <id>'.");
+            WriteLog("info", $"Experiment ID: {created.Id}");
+            WriteLog("info", "Run 'join <id> <count> <client-label>' from two terminals, then 'report <id>'.");
             break;
         }
         case "join":
             await Send(ParseGuid(1), ParseInt(2, 6, 1, 32), args.ElementAtOrDefault(3) ?? Environment.MachineName);
-            Console.WriteLine("Requests completed. Run 'report <id>' for the shared counter.");
+            WriteLog("info", "Requests completed. Run 'report <id>' for the shared counter.");
             break;
         case "report":
             Print(await Get(ParseGuid(1)));
@@ -79,10 +107,10 @@ try
                 samples.Add(new ClockReport(t0, server.ServerReceivedAtUtc, server.ServerSentAtUtc, t3, offset, rtt));
             }
             var best = samples.MinBy(x => x.NetworkRttMs)!;
-            Console.WriteLine($"Client skew: {clientSkew:+0;-0;0} ms; server skew: {serverSkew:+0;-0;0} ms");
-            Console.WriteLine($"Estimated server-client offset: {best.OffsetMs:+0.0;-0.0;0.0} ms");
-            Console.WriteLine($"Estimated network RTT: {best.NetworkRttMs:0.0} ms");
-            Console.WriteLine($"Corrected client timestamp: {best.ClientReceivedAtUtc.AddMilliseconds(best.OffsetMs):O}");
+            WriteLog("info", $"Client skew: {clientSkew:+0;-0;0} ms; server skew: {serverSkew:+0;-0;0} ms");
+            WriteLog("info", $"Estimated server-client offset: {best.OffsetMs:+0.0;-0.0;0.0} ms");
+            WriteLog("info", $"Estimated network RTT: {best.NetworkRttMs:0.0} ms");
+            WriteLog("info", $"Corrected client timestamp: {best.ClientReceivedAtUtc.AddMilliseconds(best.OffsetMs):O}");
             var clockDirectory = Path.Combine(Directory.GetCurrentDirectory(), "lab-results");
             Directory.CreateDirectory(clockDirectory);
             var clockFile = Path.Combine(clockDirectory, $"clock-{DateTimeOffset.UtcNow:yyyyMMdd-HHmmss}.json");
@@ -91,7 +119,7 @@ try
                 recordedAtUtc = DateTimeOffset.UtcNow, server = baseUrl, clientSkewMs = clientSkew,
                 serverSkewMs = serverSkew, selected = best, samples
             }, new JsonSerializerOptions(JsonSerializerDefaults.Web) { WriteIndented = true }));
-            Console.WriteLine($"JSON report: {clockFile}");
+            WriteLog("info", $"JSON report: {clockFile}");
             break;
         }
         default: throw new ArgumentException("Use compare [count] [delayMs], create <mode> <count> <delayMs>, join <id> <count> <label>, report <id>, or clock [clientSkewMs] [serverSkewMs].");
@@ -99,7 +127,7 @@ try
 }
 catch (Exception ex) when (ex is ArgumentException or HttpRequestException or InvalidOperationException or TaskCanceledException)
 {
-    Console.Error.WriteLine(ex.Message);
+    WriteLog("error", ex.Message);
     Environment.ExitCode = 1;
 }
 
@@ -135,9 +163,44 @@ async Task<ExperimentSnapshot> Get(Guid id) =>
 void Print(ExperimentSnapshot snapshot, long? elapsedMs = null, string? label = null)
 {
     var mode = label ?? (snapshot.Mode switch { 0 => "Unsafe", 1 => "Lock", 2 => "SemaphoreSlim", _ => "Unknown" });
-    Console.WriteLine($"{mode}: expected {snapshot.ExpectedReservations}, actual {snapshot.ActualReservations}, lost {snapshot.LostUpdates}; peak overlap {snapshot.MaxConcurrentRequests}; PID {snapshot.ProcessId}{(elapsedMs is null ? "" : $"; {elapsedMs} ms")}");
-    foreach (var item in snapshot.Events)
-        Console.WriteLine($"  {item.Sequence,3} {item.AtUtc:HH:mm:ss.fff} client={item.ClientId,-16} request={item.RequestNumber,2} {item.Phase,-7} value={item.Value?.ToString() ?? "-",2} thread={item.ThreadId}");
+    WriteLog(snapshot.LostUpdates > 0 ? "warn" : "info", $"{mode}: expected {snapshot.ExpectedReservations}, actual {snapshot.ActualReservations}, lost {snapshot.LostUpdates}; peak overlap {snapshot.MaxConcurrentRequests}; PID {snapshot.ProcessId}{(elapsedMs is null ? "" : $"; {elapsedMs} ms")}");
+    if (args.Contains("--verbose"))
+        foreach (var item in snapshot.Events)
+            WriteLog("info", $"{item.AtUtc:HH:mm:ss.fff} client={item.ClientId} request={item.RequestNumber} {item.Phase} value={item.Value?.ToString() ?? "-"} thread={item.ThreadId}");
+}
+
+async Task<JsonElement> ReadDatabase(HttpResponseMessage response)
+{
+    var body = await response.Content.ReadAsStringAsync();
+    if (!response.IsSuccessStatusCode)
+    {
+        string? message = null;
+        try { using var json = JsonDocument.Parse(body); if (json.RootElement.TryGetProperty("message", out var value)) message = value.GetString(); } catch (JsonException) { }
+        throw new HttpRequestException(message ?? $"HTTP {(int)response.StatusCode}");
+    }
+    using var document = JsonDocument.Parse(body);
+    return document.RootElement.Clone();
+}
+
+void PrintDatabase(JsonElement snapshot)
+{
+    var directory = Path.Combine(Directory.GetCurrentDirectory(), "lab-results"); Directory.CreateDirectory(directory);
+    var id = snapshot.GetProperty("id").GetGuid();
+    var file = Path.Combine(directory, $"database-lab-{id}-{Guid.NewGuid().ToString()[..8]}.json");
+    File.WriteAllText(file, JsonSerializer.Serialize(snapshot, new JsonSerializerOptions { WriteIndented = true }));
+    var state = snapshot.GetProperty("after");
+    WriteLog("info", $"{id} · {snapshot.GetProperty("status")} · available={state.GetProperty("copyAvailable")} loans={state.GetProperty("loans")} points={state.GetProperty("reservedPoints")}");
+    WriteLog("info", $"JSON: {file}");
+    if (args.Contains("--verbose"))
+        foreach (var evt in snapshot.GetProperty("events").EnumerateArray())
+            WriteLog(evt.GetProperty("level").GetString()!, $"{evt.GetProperty("atUtc")} {evt.GetProperty("clientId")} → {evt.GetProperty("phase")} · {evt.GetProperty("detail")}");
+}
+
+void WriteLog(string level, string message)
+{
+    var tag = $"[{level}]";
+    if (!Console.IsOutputRedirected) tag = $"\u001b[{(level == "error" ? "31" : level == "warn" ? "33" : "36")}m{tag}\u001b[0m";
+    Console.WriteLine($"{tag} {message}");
 }
 
 int ParseInt(int index, int fallback, int min, int max)

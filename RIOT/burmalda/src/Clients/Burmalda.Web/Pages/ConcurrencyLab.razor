@@ -4,29 +4,78 @@
 @using System.Net.Http.Json
 @inject HttpClient Http
 
-<PageTitle>Лаборатория конкурентности · Burmalda</PageTitle>
+<PageTitle>БД, транзакции и сага · Burmalda</PageTitle>
 
 <main class="concurrency-lab">
     <header class="lab-header">
-        <div><span class="eyebrow">BURMALDA · ЛАБОРАТОРНАЯ 02 + 03</span><h1>Одна книга.<br /><em>Много запросов.</em></h1></div>
-        <p>Виртуальные резервы одной книги. Каждый клиент посылает отдельный HTTP-запрос. Изменяется только счётчик учебного сервиса; реальные книги и BD не затрагиваются.</p>
+        <div>BURMALDA ЛАБОРАТОРИЯ</div>
     </header>
 
+    <DatabaseLab />
+
     <section class="lab-panel" aria-labelledby="lab-controls-title">
-        <div class="lab-panel-heading"><div><span class="lab-step">01 / ЭКСПЕРИМЕНТ</span><h2 id="lab-controls-title">Запустить нагрузку</h2></div><span class="lab-aside">Один серверный процесс · общая память</span></div>
+        <div class="lab-panel-heading"><div><span class="lab-step">ЛР 2–3 / СЧЁТЧИК В ПАМЯТИ</span><h2 id="lab-controls-title">Запустить нагрузку</h2></div><span class="lab-aside">Один серверный процесс · общая память</span></div>
         <div class="lab-controls">
             <label>Клиентских запросов <input type="number" min="2" max="32" @bind="requestCount" disabled="@running" /></label>
-            <label>Пауза между чтением и записью, мс <input type="number" min="10" max="200" @bind="workDelayMs" disabled="@running" /></label>
+            <label>Пауза между чтением и записью, мс <input type="number" min="10" max="2000" @bind="workDelayMs" disabled="@running" /></label>
             <button class="button button-dark" @onclick="RunComparison" disabled="@running">@(running ? "Запросы выполняются…" : "Сравнить три режима →")</button>
         </div>
-        <p class="lab-hint">Запросы каждого режима отправляются одновременно. По умолчанию 12 клиентов и пауза 60 мс делают потерянные обновления заметными.</p>
+        @if (liveRun is { } current)
+        {
+            <p class="lab-current-status" role="status">Сейчас: @RunLabel(current) · завершено @current.Snapshot.CompletedRequests из @current.Snapshot.PlannedRequests</p>
+        }
         @if (!string.IsNullOrWhiteSpace(error)) { <div class="form-error" role="alert">@error</div> }
     </section>
+
+    @if (liveRun is { } live)
+    {
+        <section class="lab-live" aria-labelledby="lab-live-title">
+            <div class="lab-live-heading">
+                <div><span class="lab-step">ВЫПОЛНЯЕТСЯ · СЕРИЯ @live.Stage ИЗ 4</span><h2 id="lab-live-title">@RunLabel(live)</h2></div>
+                <span class="lab-live-time">@live.Timer.ElapsedMilliseconds мс</span>
+            </div>
+            <div class="lab-live-metrics">
+                <div><span>На сервере сейчас</span><strong>@live.Snapshot.ActiveRequests</strong></div>
+                <div><span>Завершено</span><strong>@live.Snapshot.CompletedRequests <small>/ @live.Snapshot.PlannedRequests</small></strong></div>
+                <div><span>Общий счётчик</span><strong>@live.Snapshot.ActualReservations</strong></div>
+                <div><span>Потеряно обновлений</span><strong>@live.Snapshot.LostUpdates</strong></div>
+            </div>
+            <div class="lab-live-progress" role="progressbar" aria-label="Завершённые запросы" aria-valuenow="@live.Snapshot.CompletedRequests" aria-valuemin="0" aria-valuemax="@live.Snapshot.PlannedRequests"><i style="width: @(100 * live.Snapshot.CompletedRequests / live.Snapshot.PlannedRequests)%"></i></div>
+            <div class="lab-live-body">
+                <div class="lab-client-grid">
+                    @for (var client = 1; client <= live.Snapshot.PlannedRequests; client++)
+                    {
+                        var state = ClientState(live, client);
+                        <div class="lab-client-state @state.CssClass">
+                            <strong>Клиент @client.ToString("00")</strong>
+                            <span>@state.Label</span>
+                            <small>@state.Detail</small>
+                        </div>
+                    }
+                </div>
+                <div class="lab-live-events">
+                    <span class="lab-step">ПОСЛЕДНИЕ СОБЫТИЯ · UTC</span>
+                    @if (live.Snapshot.Events.Count == 0)
+                    {
+                        <p>Ожидаем первые запросы…</p>
+                    }
+                    else
+                    {
+                        @foreach (var item in live.Snapshot.Events.TakeLast(8).Reverse())
+                        {
+                            <p><time>@item.AtUtc.ToString("HH:mm:ss.fff")</time><span>@item.ClientId · @PhaseLabel(item.Phase)</span><b>@(item.Value?.ToString() ?? "")</b></p>
+                        }
+                    }
+                    @if (!string.IsNullOrWhiteSpace(live.PollingError)) { <div class="form-error">@live.PollingError</div> }
+                </div>
+            </div>
+        </section>
+    }
 
     @if (runs.Count > 0)
     {
         <section class="lab-results" aria-labelledby="lab-results-title">
-            <div class="lab-panel-heading"><div><span class="lab-step">02 / СРАВНЕНИЕ</span><h2 id="lab-results-title">Что произошло со счётчиком</h2></div><span class="lab-aside">Ожидалось = число успешно завершённых запросов</span></div>
+            <div class="lab-panel-heading"><div><span class="lab-step">02 / СРАВНЕНИЕ</span></div><span class="lab-aside">Ожидалось = число успешно завершённых запросов</span></div>
             @if (sequentialBaseline is { } baseline)
             {
                 <div class="lab-baseline"><div><span class="lab-step">КОНТРОЛЬНЫЙ ОПЫТ · ПО ОЧЕРЕДИ</span><strong>Unsafe без одновременных запросов</strong></div><div><b>@baseline.Snapshot.ActualReservations / @baseline.Snapshot.ExpectedReservations</b><small>пик @baseline.Snapshot.MaxConcurrentRequests · @baseline.ElapsedMs мс</small></div></div>
@@ -89,6 +138,8 @@
     private string? clockError;
     private readonly List<LabRun> runs = [];
     private LabRun? sequentialBaseline;
+    private LiveExperiment? liveRun;
+    private CancellationTokenSource? runCancellation;
     private ReservationMode selectedMode = ReservationMode.Unsafe;
     private ClockMeasurement? bestSample;
     private int measuredClientSkewMs;
@@ -98,47 +149,92 @@
     private async Task RunComparison()
     {
         error = null;
-        if (requestCount is < 2 or > 32 || workDelayMs is < 10 or > 200)
+        if (requestCount is < 2 or > 32 || workDelayMs is < 10 or > 2000)
         { error = "Допустимо 2–32 запроса и пауза 10–200 мс."; return; }
         running = true;
         runs.Clear();
         sequentialBaseline = null;
+        using var cancellation = new CancellationTokenSource();
+        runCancellation = cancellation;
         try
         {
-            sequentialBaseline = await RunExperiment(ReservationMode.Unsafe, false);
+            sequentialBaseline = await RunExperiment(ReservationMode.Unsafe, false, cancellation.Token);
             StateHasChanged();
             foreach (var mode in Enum.GetValues<ReservationMode>())
             {
-                runs.Add(await RunExperiment(mode, true));
+                runs.Add(await RunExperiment(mode, true, cancellation.Token));
                 StateHasChanged();
             }
             selectedMode = ReservationMode.Unsafe;
         }
-        catch (Exception ex) when (ex is HttpRequestException or InvalidOperationException)
+        catch (OperationCanceledException) when (cancellation.IsCancellationRequested) { }
+        catch (Exception ex) when (ex is HttpRequestException or InvalidOperationException or System.Text.Json.JsonException)
         { error = $"Не удалось завершить сравнение: {ex.Message}. Проверьте запуск gateway и ConcurrencyLab API."; }
-        finally { running = false; }
+        finally { running = false; liveRun = null; runCancellation = null; }
     }
 
-    private async Task<LabRun> RunExperiment(ReservationMode mode, bool parallel)
+    private async Task<LabRun> RunExperiment(ReservationMode mode, bool parallel, CancellationToken ct)
     {
         using var create = await Http.PostAsJsonAsync("/api/concurrency-lab/experiments",
-            new { mode, plannedRequests = requestCount, workDelayMs, startTogether = parallel });
+            new { mode, plannedRequests = requestCount, workDelayMs, startTogether = parallel }, ct);
         await EnsureSuccess(create);
         var created = await create.Content.ReadFromJsonAsync<ExperimentSnapshot>() ?? throw new InvalidOperationException("Пустой ответ сервера.");
         var timer = Stopwatch.StartNew();
-        if (parallel)
-            await Task.WhenAll(Enumerable.Range(1, requestCount).Select(i => SendReserve(created.Id, i)));
-        else
-            for (var i = 1; i <= requestCount; i++) await SendReserve(created.Id, i);
+        var live = new LiveExperiment(mode, parallel, created, timer);
+        liveRun = live;
+        await InvokeAsync(StateHasChanged);
+        using var pollCancellation = CancellationTokenSource.CreateLinkedTokenSource(ct);
+        var polling = PollLiveAsync(live, pollCancellation.Token);
+        try
+        {
+            if (parallel)
+                await Task.WhenAll(Enumerable.Range(1, requestCount).Select(i => SendReserve(created.Id, i, live, ct)));
+            else
+                for (var i = 1; i <= requestCount; i++) await SendReserve(created.Id, i, live, ct);
+        }
+        finally
+        {
+            pollCancellation.Cancel();
+            await polling;
+        }
         timer.Stop();
-        var snapshot = await Http.GetFromJsonAsync<ExperimentSnapshot>($"/api/concurrency-lab/experiments/{created.Id}")
+        var snapshot = await Http.GetFromJsonAsync<ExperimentSnapshot>($"/api/concurrency-lab/experiments/{created.Id}", ct)
             ?? throw new InvalidOperationException("Нет результата эксперимента.");
+        live.Snapshot = snapshot;
+        await InvokeAsync(StateHasChanged);
+        liveRun = null;
         return new LabRun(mode, snapshot, timer.ElapsedMilliseconds);
     }
 
-    private async Task SendReserve(Guid id, int i)
+    private async Task PollLiveAsync(LiveExperiment live, CancellationToken ct)
     {
-        using var response = await Http.PostAsJsonAsync($"/api/concurrency-lab/experiments/{id}/reserve", new { clientId = $"Клиент {i:00}" });
+        try
+        {
+            using var timer = new PeriodicTimer(TimeSpan.FromMilliseconds(180));
+            while (await timer.WaitForNextTickAsync(ct))
+            {
+                var snapshot = await Http.GetFromJsonAsync<ExperimentSnapshot>(
+                    $"/api/concurrency-lab/experiments/{live.Snapshot.Id}", ct);
+                if (snapshot is null) throw new InvalidOperationException("Пустой снимок эксперимента.");
+                if (ReferenceEquals(liveRun, live))
+                {
+                    live.Snapshot = snapshot;
+                    await InvokeAsync(StateHasChanged);
+                }
+            }
+        }
+        catch (OperationCanceledException) when (ct.IsCancellationRequested) { }
+        catch (Exception ex) when (ex is HttpRequestException or InvalidOperationException or System.Text.Json.JsonException)
+        {
+            live.PollingError = $"Живые обновления прерваны: {ex.Message}";
+            await InvokeAsync(StateHasChanged);
+        }
+    }
+
+    private async Task SendReserve(Guid id, int i, LiveExperiment live, CancellationToken ct)
+    {
+        live.DispatchedRequests++;
+        using var response = await Http.PostAsJsonAsync($"/api/concurrency-lab/experiments/{id}/reserve", new { clientId = $"Клиент {i:00}" }, ct);
         await EnsureSuccess(response);
     }
 
@@ -187,11 +283,43 @@
     };
     private static string PhaseLabel(string phase) => phase switch
     {
-        "started" => "Начало", "read" => "Чтение", "wrote" => "Запись", "start-timeout" => "Ожидание истекло", _ => phase
+        "started" => "Принят", "barrier" => "Барьер старта", "waiting" => "Ждёт доступ",
+        "read" => "Чтение", "wrote" => "Запись", "start-timeout" => "Ожидание истекло", _ => phase
     };
+    private static string RunLabel(LiveExperiment live) => live.Parallel
+        ? ModeLabel(live.Mode) : "Последовательно · Unsafe";
+    private static ClientProgress ClientState(LiveExperiment live, int client)
+    {
+        var latest = live.Snapshot.Events.LastOrDefault(x => x.ClientId == $"Клиент {client:00}");
+        if (latest is null)
+            return client <= live.DispatchedRequests
+                ? new ClientProgress("sent", "Отправлен", "Ожидает сервер")
+                : new ClientProgress("pending", "В очереди", "Ещё не отправлен");
+        return latest.Phase switch
+        {
+            "started" => new ClientProgress("accepted", "Принят", $"Запрос №{latest.RequestNumber}"),
+            "barrier" => new ClientProgress("waiting", "На барьере", "Ждёт другие запросы"),
+            "waiting" => new ClientProgress("waiting", "Ждёт доступ", "Критическая секция занята"),
+            "read" => new ClientProgress("working", "Работает", $"Прочитал {latest.Value}"),
+            "wrote" => new ClientProgress("done", "Завершён", $"Записал {latest.Value}"),
+            "start-timeout" => new ClientProgress("accepted", "Продолжает", "Барьер отпущен по времени"),
+            _ => new ClientProgress("accepted", latest.Phase, "На сервере")
+        };
+    }
     private static string Signed(double value) => value >= 0 ? $"+{value:0.0}" : $"{value:0.0}";
 
     private enum ReservationMode { Unsafe, Lock, SemaphoreSlim }
+    private sealed record ClientProgress(string CssClass, string Label, string Detail);
+    private sealed class LiveExperiment(ReservationMode mode, bool parallel, ExperimentSnapshot snapshot, Stopwatch timer)
+    {
+        public ReservationMode Mode { get; } = mode;
+        public bool Parallel { get; } = parallel;
+        public int Stage => Parallel ? (int)Mode + 2 : 1;
+        public ExperimentSnapshot Snapshot { get; set; } = snapshot;
+        public Stopwatch Timer { get; } = timer;
+        public int DispatchedRequests { get; set; }
+        public string? PollingError { get; set; }
+    }
     private sealed record LabRun(ReservationMode Mode, ExperimentSnapshot Snapshot, long ElapsedMs);
     private sealed record ReservationEvent(long Sequence, int RequestNumber, string ClientId, string Phase, DateTimeOffset AtUtc, int ThreadId, int? Value);
     private sealed record ExperimentSnapshot(Guid Id, ReservationMode Mode, bool StartTogether, int PlannedRequests, int WorkDelayMs,
@@ -199,5 +327,9 @@
         int LostUpdates, int ActiveRequests, int MaxConcurrentRequests, int ProcessId, List<ReservationEvent> Events);
     private sealed record TimeSample(DateTimeOffset ServerReceivedAtUtc, DateTimeOffset ServerSentAtUtc, int ServerSkewMs);
     private sealed record ClockMeasurement(double OffsetMs, double NetworkRttMs);
-    public void Dispose() => clockTimer?.Dispose();
+    public void Dispose()
+    {
+        runCancellation?.Cancel();
+        clockTimer?.Dispose();
+    }
 }

@@ -5,11 +5,20 @@ namespace Burmalda.ConcurrencyLab.Api;
 
 public enum ReservationMode { Unsafe, Lock, SemaphoreSlim }
 
-public sealed record CreateExperimentRequest(ReservationMode Mode, int PlannedRequests, int WorkDelayMs,
-    bool StartTogether = true);
+public sealed record CreateExperimentRequest(
+    ReservationMode Mode,
+    int PlannedRequests, 
+    int WorkDelayMs,
+    bool StartTogether = true
+    );
 public sealed record ReserveRequest(string ClientId);
-public sealed record ReservationEvent(long Sequence, int RequestNumber, string ClientId, string Phase,
-    DateTimeOffset AtUtc, int ThreadId, int? Value);
+public sealed record ReservationEvent(long Sequence, 
+    int RequestNumber, 
+    string ClientId, 
+    string Phase,
+    DateTimeOffset AtUtc, 
+    int ThreadId, 
+    int? Value);
 public sealed record ReservationResult(int RequestNumber, string ClientId, int ReadValue, int WrittenValue,
     int ThreadAtStart, int ThreadAtFinish, DateTimeOffset StartedAtUtc, DateTimeOffset FinishedAtUtc);
 public sealed record ExperimentSnapshot(Guid Id, ReservationMode Mode, bool StartTogether, int PlannedRequests, int WorkDelayMs,
@@ -26,7 +35,7 @@ public static class ConcurrencyLabEndpoints
         group.MapPost("/experiments", (CreateExperimentRequest request, ExperimentStore store) =>
         {
             if (!Enum.IsDefined(request.Mode) || request.PlannedRequests is < 2 or > 32 ||
-                request.WorkDelayMs is < 10 or > 200)
+                request.WorkDelayMs is < 10 or > 2000)
                 return Results.BadRequest(new { message = "Use 2..32 requests and a 10..200 ms work delay." });
 
             var experiment = store.Create(request);
@@ -37,7 +46,8 @@ public static class ConcurrencyLabEndpoints
         group.MapPost("/experiments/{id:guid}/reserve", async (Guid id, ReserveRequest request,
             ExperimentStore store, CancellationToken ct) =>
         {
-            if (store.Get(id) is not { } experiment) return Results.NotFound();
+            if (store.Get(id) is not { } experiment) 
+                return Results.NotFound();
             if (string.IsNullOrWhiteSpace(request.ClientId) || request.ClientId.Length > 32)
                 return Results.BadRequest(new { message = "ClientId must have 1..32 characters." });
             if (!experiment.TryAccept(out var requestNumber))
@@ -50,7 +60,8 @@ public static class ConcurrencyLabEndpoints
                 return Results.BadRequest(new { message = "serverSkewMs must be within ±300000; processingMs within 0..500." });
             var skew = TimeSpan.FromMilliseconds(serverSkewMs);
             var received = DateTimeOffset.UtcNow + skew;
-            if (processingMs > 0) await Task.Delay(processingMs, ct);
+            if (processingMs > 0)
+                await Task.Delay(processingMs, ct);
             return Results.Ok(new TimeSample(received, DateTimeOffset.UtcNow + skew, serverSkewMs));
         });
         return app;
@@ -63,7 +74,6 @@ public sealed class ExperimentStore
 
     public ReservationExperiment Create(CreateExperimentRequest request)
     {
-        // These short-lived in-memory exercises have no connection to real catalogue data.
         foreach (var (id, experiment) in _experiments)
             if (experiment.CreatedAtUtc < DateTimeOffset.UtcNow.AddMinutes(-30))
                 _experiments.TryRemove(id, out _);
@@ -74,8 +84,10 @@ public sealed class ExperimentStore
 
     public ReservationExperiment? Get(Guid id)
     {
-        if (!_experiments.TryGetValue(id, out var experiment)) return null;
-        if (experiment.CreatedAtUtc >= DateTimeOffset.UtcNow.AddMinutes(-30)) return experiment;
+        if (!_experiments.TryGetValue(id, out var experiment))
+            return null;
+        if (experiment.CreatedAtUtc >= DateTimeOffset.UtcNow.AddMinutes(-30)) 
+            return experiment;
         _experiments.TryRemove(id, out _);
         return null;
     }
@@ -115,9 +127,16 @@ public sealed class ReservationExperiment
         while (true)
         {
             var current = Volatile.Read(ref _accepted);
-            if (current >= PlannedRequests) { requestNumber = 0; return false; }
+            if (current >= PlannedRequests) 
+            { 
+                requestNumber = 0;
+                return false; 
+            }
             if (Interlocked.CompareExchange(ref _accepted, current + 1, current) == current)
-            { requestNumber = current + 1; return true; }
+            { 
+                requestNumber = current + 1; 
+                return true; 
+            }
         }
     }
 
@@ -133,10 +152,16 @@ public sealed class ReservationExperiment
             // Coordinate arrival only. This does not protect the shared counter.
             if (StartTogether)
             {
+                Log(requestNumber, clientId, "barrier", null);
                 if (Interlocked.Increment(ref _arrived) >= Math.Min(PlannedRequests, 4))
                     _startSignal.TrySetResult();
-                try { await _startSignal.Task.WaitAsync(TimeSpan.FromSeconds(5), ct); }
-                catch (TimeoutException) { Log(requestNumber, clientId, "start-timeout", null); }
+                try 
+                { 
+                    await _startSignal.Task.WaitAsync(TimeSpan.FromSeconds(5), ct); 
+                }
+                catch (TimeoutException) { 
+                    Log(requestNumber, clientId, "start-timeout", null); 
+                }
             }
 
             int before;
@@ -153,6 +178,7 @@ public sealed class ReservationExperiment
                     break;
                 case ReservationMode.Lock:
                     // LR3: the entire read / work / write sequence is the critical section.
+                    Log(requestNumber, clientId, "waiting", null);
                     lock (_gate)
                     {
                         before = _reservations;
@@ -163,6 +189,7 @@ public sealed class ReservationExperiment
                     }
                     break;
                 case ReservationMode.SemaphoreSlim:
+                    Log(requestNumber, clientId, "waiting", null);
                     await _semaphore.WaitAsync(ct);
                     try
                     {
@@ -172,7 +199,9 @@ public sealed class ReservationExperiment
                         after = before + 1;
                         _reservations = after;
                     }
-                    finally { _semaphore.Release(); }
+                    finally { 
+                        _semaphore.Release(); 
+                    }
                     break;
                 default: throw new UnreachableException();
             }
@@ -181,7 +210,9 @@ public sealed class ReservationExperiment
             return new ReservationResult(requestNumber, clientId, before, after,
                 startThread, Environment.CurrentManagedThreadId, started, DateTimeOffset.UtcNow);
         }
-        finally { Interlocked.Decrement(ref _active); }
+        finally { 
+            Interlocked.Decrement(ref _active); 
+        }
     }
 
     public ExperimentSnapshot Snapshot()
@@ -194,8 +225,8 @@ public sealed class ReservationExperiment
             _events.OrderBy(x => x.Sequence).ToArray());
     }
 
-    private void Log(int number, string clientId, string phase, int? value) =>
-        _events.Enqueue(new ReservationEvent(Interlocked.Increment(ref _eventSequence), number,
+    private void Log(int number, string clientId, string phase, int? value) 
+        => _events.Enqueue(new ReservationEvent(Interlocked.Increment(ref _eventSequence), number,
             clientId, phase, DateTimeOffset.UtcNow, Environment.CurrentManagedThreadId, value));
 
     private void UpdateMaximum(int active)

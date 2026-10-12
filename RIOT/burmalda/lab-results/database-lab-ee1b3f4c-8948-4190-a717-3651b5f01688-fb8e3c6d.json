@@ -1,0 +1,140 @@
+{
+  "id": "ee1b3f4c-8948-4190-a717-3651b5f01688",
+  "mode": 1,
+  "failure": 0,
+  "status": "Correct",
+  "before": {
+    "copyAvailable": true,
+    "loans": 0,
+    "reservedPoints": 0
+  },
+  "after": {
+    "copyAvailable": false,
+    "loans": 1,
+    "reservedPoints": 0
+  },
+  "events": [
+    {
+      "sequence": 1,
+      "atUtc": "2026-10-05T16:12:03.3316771\u002B00:00",
+      "clientId": "server",
+      "level": "info",
+      "phase": "READY",
+      "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+    },
+    {
+      "sequence": 2,
+      "atUtc": "2026-10-05T16:12:03.5016364\u002B00:00",
+      "clientId": "Client 1",
+      "level": "info",
+      "phase": "START Reserve",
+      "detail": "\u041E\u0436\u0438\u0434\u0430\u043D\u0438\u0435 \u0432\u0442\u043E\u0440\u043E\u0433\u043E \u043A\u043B\u0438\u0435\u043D\u0442\u0430"
+    },
+    {
+      "sequence": 3,
+      "atUtc": "2026-10-05T16:12:03.5155917\u002B00:00",
+      "clientId": "Client 2",
+      "level": "info",
+      "phase": "START Reserve",
+      "detail": "\u041E\u0436\u0438\u0434\u0430\u043D\u0438\u0435 \u0432\u0442\u043E\u0440\u043E\u0433\u043E \u043A\u043B\u0438\u0435\u043D\u0442\u0430"
+    },
+    {
+      "sequence": 4,
+      "atUtc": "2026-10-05T16:12:03.5156302\u002B00:00",
+      "clientId": "Client 1",
+      "level": "info",
+      "phase": "WAIT LOCK",
+      "detail": "\u041A\u0440\u0438\u0442\u0438\u0447\u0435\u0441\u043A\u0430\u044F \u0441\u0435\u043A\u0446\u0438\u044F: check \u2192 reserve \u2192 save"
+    },
+    {
+      "sequence": 5,
+      "atUtc": "2026-10-05T16:12:03.5156605\u002B00:00",
+      "clientId": "Client 2",
+      "level": "info",
+      "phase": "WAIT LOCK",
+      "detail": "\u041A\u0440\u0438\u0442\u0438\u0447\u0435\u0441\u043A\u0430\u044F \u0441\u0435\u043A\u0446\u0438\u044F: check \u2192 reserve \u2192 save"
+    },
+    {
+      "sequence": 6,
+      "atUtc": "2026-10-05T16:12:03.5156608\u002B00:00",
+      "clientId": "Client 1",
+      "level": "info",
+      "phase": "LOCK",
+      "detail": "\u0412\u0445\u043E\u0434 \u0432 \u043A\u0440\u0438\u0442\u0438\u0447\u0435\u0441\u043A\u0443\u044E \u0441\u0435\u043A\u0446\u0438\u044E"
+    },
+    {
+      "sequence": 7,
+      "atUtc": "2026-10-05T16:12:03.5270442\u002B00:00",
+      "clientId": "Client 1",
+      "level": "info",
+      "phase": "CHECK",
+      "detail": "Available = True"
+    },
+    {
+      "sequence": 8,
+      "atUtc": "2026-10-05T16:12:03.5373273\u002B00:00",
+      "clientId": "Client 1",
+      "level": "info",
+      "phase": "SUCCESS",
+      "detail": "Reserve"
+    },
+    {
+      "sequence": 9,
+      "atUtc": "2026-10-05T16:12:03.5379801\u002B00:00",
+      "clientId": "Client 1",
+      "level": "info",
+      "phase": "UNLOCK",
+      "detail": "\u0412\u044B\u0445\u043E\u0434 \u0438\u0437 \u043A\u0440\u0438\u0442\u0438\u0447\u0435\u0441\u043A\u043E\u0439 \u0441\u0435\u043A\u0446\u0438\u0438"
+    },
+    {
+      "sequence": 10,
+      "atUtc": "2026-10-05T16:12:03.5380352\u002B00:00",
+      "clientId": "Client 2",
+      "level": "info",
+      "phase": "LOCK",
+      "detail": "\u0412\u0445\u043E\u0434 \u0432 \u043A\u0440\u0438\u0442\u0438\u0447\u0435\u0441\u043A\u0443\u044E \u0441\u0435\u043A\u0446\u0438\u044E"
+    },
+    {
+      "sequence": 11,
+      "atUtc": "2026-10-05T16:12:03.5401305\u002B00:00",
+      "clientId": "Client 2",
+      "level": "info",
+      "phase": "CHECK",
+      "detail": "Available = False"
+    },
+    {
+      "sequence": 12,
+      "atUtc": "2026-10-05T16:12:03.5401827\u002B00:00",
+      "clientId": "Client 2",
+      "level": "warn",
+      "phase": "FAIL",
+      "detail": "Reserve"
+    },
+    {
+      "sequence": 13,
+      "atUtc": "2026-10-05T16:12:03.5402224\u002B00:00",
+      "clientId": "Client 2",
+      "level": "info",
+      "phase": "UNLOCK",
+      "detail": "\u0412\u044B\u0445\u043E\u0434 \u0438\u0437 \u043A\u0440\u0438\u0442\u0438\u0447\u0435\u0441\u043A\u043E\u0439 \u0441\u0435\u043A\u0446\u0438\u0438"
+    }
+  ],
+  "clients": [
+    {
+      "clientId": "Client 1",
+      "sentAtUtc": "2026-10-05T16:12:03.4221611\u002B00:00",
+      "startedAtUtc": "2026-10-05T16:12:03.5016356\u002B00:00",
+      "enteredAtUtc": "2026-10-05T16:12:03.5156606\u002B00:00",
+      "exitedAtUtc": "2026-10-05T16:12:03.5379776\u002B00:00",
+      "result": "SUCCESS"
+    },
+    {
+      "clientId": "Client 2",
+      "sentAtUtc": "2026-10-05T16:12:03.4318321\u002B00:00",
+      "startedAtUtc": "2026-10-05T16:12:03.5155914\u002B00:00",
+      "enteredAtUtc": "2026-10-05T16:12:03.5380345\u002B00:00",
+      "exitedAtUtc": "2026-10-05T16:12:03.5402217\u002B00:00",
+      "result": "FAIL"
+    }
+  ]
+}

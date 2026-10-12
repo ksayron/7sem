@@ -1,0 +1,58 @@
+@implements IDisposable
+@inject GatewayApiClient Api
+
+<section class="saga-tracker" aria-label="Состояние Lending Saga" aria-live="polite">
+    <div class="eyebrow">LENDING SAGA / RABBITMQ / @SagaId.ToString()[..8]</div>
+    <h2>@(snapshot is null ? "Получаем состояние саги…" : StateName(snapshot.State))</h2>
+    <ol><li>Catalog · ReserveBookCopy</li><li>Economy · ReservePoints</li><li>Lending · CreateLoan</li></ol>
+    @if (snapshot is { } saga)
+    {
+        <p>Последнее изменение: @saga.UpdatedAt.ToString("HH:mm:ss.fff") UTC. Состояние получено из Lending; каждый сервис сохраняет собственную локальную транзакцию.</p>
+        @if (saga.State == 3) { <p>Economy отказал. Catalog освобождает книгу командой ReleaseBookCopy.</p> }
+        @if (saga.FailureReason is not null) { <p class="form-error" role="alert">@saga.FailureReason</p> }
+        @if (saga.LoanId is not null) { <a class="text-button" href="loans">Открыть выдачи →</a> }
+    }
+    @if (error is not null) { <p class="form-error" role="alert">@error</p> }
+    <button class="text-button" @onclick="Refresh">Обновить состояние</button>
+</section>
+
+@code {
+    [Parameter] public Guid SagaId { get; set; }
+    private Guid tracked;
+    private LoanSagaSnapshot? snapshot;
+    private string? error;
+    private CancellationTokenSource? cancellation;
+    protected override async Task OnParametersSetAsync()
+    {
+        if (tracked == SagaId) return;
+        tracked = SagaId; snapshot = null; cancellation?.Cancel();
+        var source = new CancellationTokenSource(); cancellation = source;
+        await Refresh();
+        _ = Poll(source, SagaId);
+    }
+    private async Task Refresh()
+    {
+        var id = SagaId;
+        try { var value = await Api.GetLoanSagaAsync(id, cancellation?.Token ?? default); if (id == SagaId) { snapshot = value; error = null; } }
+        catch (OperationCanceledException) { }
+        catch (Exception ex) when (ex is ApiException or HttpRequestException) { if (id == SagaId) error = ex.Message; }
+    }
+    private async Task Poll(CancellationTokenSource source, Guid id)
+    {
+        try
+        {
+            using var timer = new PeriodicTimer(TimeSpan.FromSeconds(2));
+            while (!source.IsCancellationRequested && id == SagaId && snapshot?.State is not (2 or 4 or 5) && await timer.WaitForNextTickAsync(source.Token))
+            {
+                await Refresh(); await InvokeAsync(StateHasChanged);
+                if (error is not null) break;
+                if (snapshot is not null && DateTimeOffset.UtcNow > snapshot.Deadline.AddSeconds(10))
+                { error = "Срок ожидания истёк. Обновите состояние после обработки тайм-аута сервером."; break; }
+            }
+        }
+        catch (OperationCanceledException) when (source.IsCancellationRequested) { }
+        finally { if (ReferenceEquals(cancellation, source)) cancellation = null; source.Dispose(); }
+    }
+    private static string StateName(int value) => value switch { 0 => "Catalog: ожидаем резерв книги", 1 => "Economy: ожидаем резерв BD", 2 => "Сага завершена: выдача создана", 3 => "Компенсация: освобождаем книгу", 4 => "Сага завершилась отказом", 5 => "Срок выполнения саги истёк", _ => "Неизвестное состояние" };
+    public void Dispose() { cancellation?.Cancel(); }
+}

@@ -47,6 +47,9 @@ public sealed class GatewayApiClient(HttpClient http, AuthSession auth)
     public Task<LoanRequestReceipt> RequestLoanAsync(Guid copyId, CancellationToken ct = default) =>
         Post<LoanRequestReceipt>("/api/loans/requests", new { CopyId = copyId }, ct);
 
+    public Task<LoanSagaSnapshot> GetLoanSagaAsync(Guid id, CancellationToken ct = default) =>
+        Get<LoanSagaSnapshot>($"/api/loans/requests/{id}", ct);
+
     public Task MarkNotificationReadAsync(Guid id, CancellationToken ct = default) => SendNoContent(HttpMethod.Put, $"/api/notifications/{id}/read", null, ct);
     public Task MarkAllNotificationsReadAsync(CancellationToken ct = default) => SendNoContent(HttpMethod.Put, "/api/notifications/read-all", null, ct);
     public Task CancelLoanAsync(Guid id, CancellationToken ct = default) => SendNoContent(HttpMethod.Post, $"/api/loans/{id}/cancel", new { }, ct);

@@ -1,0 +1,5 @@
+.saga-tracker { border: 1px solid var(--ink); border-left: 4px solid var(--red-dark); padding: 24px; margin: 24px 0; background: var(--paper-light); }
+h2 { font-family: var(--serif); font-weight: 500; font-size: 30px; margin: 14px 0; }
+ol { display: flex; flex-wrap: wrap; list-style: none; gap: 8px; padding: 0; }
+li { border: 1px solid var(--line); padding: 12px; font-size: 12px; }
+p { color: var(--ink-soft); line-height: 1.6; font-size: 13px; }

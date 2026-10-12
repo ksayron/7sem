@@ -1,0 +1,59 @@
+{
+  "verifiedAtUtc": "2026-10-05T16:07:49.394Z",
+  "fixtureBookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+  "cases": {
+    "compensated": {
+      "id": "2373a5de-9ca8-4758-9a4a-555e388715c3",
+      "copyId": "01e7800a-64f1-4729-9430-c759e7dc84a1",
+      "borrowerId": "e75d5993-d1c8-4ade-b0eb-107bf1a15b98",
+      "ownerId": "2d013956-80fa-4d0b-a96b-a4038e32659b",
+      "pointsReservationId": null,
+      "loanId": null,
+      "price": 50,
+      "maximumLoanDays": 14,
+      "state": 4,
+      "failureReason": "Insufficient available BD.",
+      "deadline": "2026-10-05T16:09:25.976588+00:00",
+      "createdAt": "2026-10-05T16:07:25.976588+00:00",
+      "updatedAt": "2026-10-05T16:07:29.69879+00:00"
+    },
+    "completed": {
+      "id": "2cc3cbe9-5c33-482e-9315-497f3d638a5a",
+      "copyId": "35248fb9-9bf7-48f6-93b1-a53aa1ce73b3",
+      "borrowerId": "e75d5993-d1c8-4ade-b0eb-107bf1a15b98",
+      "ownerId": "2d013956-80fa-4d0b-a96b-a4038e32659b",
+      "pointsReservationId": "c588cbe3-6253-4d7e-a4d5-ef2e55ab3091",
+      "loanId": "6c41b74e-c056-4662-92f9-69270167adc7",
+      "price": 10,
+      "maximumLoanDays": 14,
+      "state": 2,
+      "failureReason": null,
+      "deadline": "2026-10-05T16:09:29.918923+00:00",
+      "createdAt": "2026-10-05T16:07:29.918923+00:00",
+      "updatedAt": "2026-10-05T16:07:32.311922+00:00"
+    },
+    "occupied": {
+      "id": "4c3fe80f-a3aa-4820-a0fe-f376876df179",
+      "copyId": "35248fb9-9bf7-48f6-93b1-a53aa1ce73b3",
+      "borrowerId": "e75d5993-d1c8-4ade-b0eb-107bf1a15b98",
+      "ownerId": null,
+      "pointsReservationId": null,
+      "loanId": null,
+      "price": null,
+      "maximumLoanDays": null,
+      "state": 4,
+      "failureReason": "Copy is unavailable, hidden, or owned by the borrower.",
+      "deadline": "2026-10-05T16:09:32.573805+00:00",
+      "createdAt": "2026-10-05T16:07:32.573805+00:00",
+      "updatedAt": "2026-10-05T16:07:33.807608+00:00"
+    }
+  },
+  "browserChecks": [
+    "failureReason",
+    "completed",
+    "switchBetweenSagaIds",
+    "noPageErrors"
+  ],
+  "pageErrors": [],
+  "cleanup": "Successful loans cancelled through API; test users/book/history retained as development fixtures"
+}

@@ -1,0 +1,2561 @@
+{
+  "recordedAtUtc": "2026-10-05T15:59:42.679Z",
+  "base": "http://localhost:5000",
+  "provider": "PostgreSQL",
+  "results": [
+    {
+      "repeat": 0,
+      "processes": [
+        {
+          "label": "Client 1",
+          "pid": 8108,
+          "output": "[info] ef533951-11c3-47c2-af1d-f95d06e46be5 � Incorrect � available=False loans=2 points=0\r\n[info] JSON: D:\\BSTU\\7sem\\RIOT\\burmalda\\lab-results\\database-lab-ef533951-11c3-47c2-af1d-f95d06e46be5-abb1fe55.json\r\n"
+        },
+        {
+          "label": "Client 2",
+          "pid": 24324,
+          "output": "[info] ef533951-11c3-47c2-af1d-f95d06e46be5 � Incorrect � available=False loans=2 points=0\r\n[info] JSON: D:\\BSTU\\7sem\\RIOT\\burmalda\\lab-results\\database-lab-ef533951-11c3-47c2-af1d-f95d06e46be5-515dcb46.json\r\n"
+        }
+      ],
+      "snapshot": {
+        "id": "ef533951-11c3-47c2-af1d-f95d06e46be5",
+        "mode": 0,
+        "failure": 0,
+        "status": "Incorrect",
+        "before": {
+          "copyAvailable": true,
+          "loans": 0,
+          "reservedPoints": 0
+        },
+        "after": {
+          "copyAvailable": false,
+          "loans": 2,
+          "reservedPoints": 0
+        },
+        "events": [
+          {
+            "sequence": 1,
+            "atUtc": "2026-10-05T15:59:36.0217048+00:00",
+            "clientId": "server",
+            "level": "info",
+            "phase": "READY",
+            "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+          },
+          {
+            "sequence": 2,
+            "atUtc": "2026-10-05T15:59:36.5693498+00:00",
+            "clientId": "Client 1",
+            "level": "info",
+            "phase": "START Reserve",
+            "detail": "Ожидание второго клиента"
+          },
+          {
+            "sequence": 3,
+            "atUtc": "2026-10-05T15:59:36.5693615+00:00",
+            "clientId": "Client 2",
+            "level": "info",
+            "phase": "START Reserve",
+            "detail": "Ожидание второго клиента"
+          },
+          {
+            "sequence": 4,
+            "atUtc": "2026-10-05T15:59:36.6134502+00:00",
+            "clientId": "Client 2",
+            "level": "info",
+            "phase": "CHECK",
+            "detail": "Available = True"
+          },
+          {
+            "sequence": 5,
+            "atUtc": "2026-10-05T15:59:36.6233385+00:00",
+            "clientId": "Client 1",
+            "level": "info",
+            "phase": "CHECK",
+            "detail": "Available = True"
+          },
+          {
+            "sequence": 6,
+            "atUtc": "2026-10-05T15:59:36.641391+00:00",
+            "clientId": "Client 1",
+            "level": "warn",
+            "phase": "SUCCESS",
+            "detail": "Без синхронизации"
+          },
+          {
+            "sequence": 7,
+            "atUtc": "2026-10-05T15:59:36.6433195+00:00",
+            "clientId": "Client 2",
+            "level": "warn",
+            "phase": "SUCCESS",
+            "detail": "Без синхронизации"
+          }
+        ],
+        "clients": [
+          {
+            "clientId": "Client 1",
+            "sentAtUtc": "2026-10-05T15:59:36.4630746+00:00",
+            "startedAtUtc": "2026-10-05T15:59:36.5693489+00:00",
+            "enteredAtUtc": "2026-10-05T15:59:36.5695146+00:00",
+            "exitedAtUtc": "2026-10-05T15:59:36.6413883+00:00",
+            "result": "SUCCESS"
+          },
+          {
+            "clientId": "Client 2",
+            "sentAtUtc": "2026-10-05T15:59:36.4630746+00:00",
+            "startedAtUtc": "2026-10-05T15:59:36.5693611+00:00",
+            "enteredAtUtc": "2026-10-05T15:59:36.5695016+00:00",
+            "exitedAtUtc": "2026-10-05T15:59:36.6433188+00:00",
+            "result": "SUCCESS"
+          }
+        ]
+      }
+    },
+    {
+      "repeat": 0,
+      "processes": [
+        {
+          "label": "Client 1",
+          "pid": 27732,
+          "output": "[info] 07309080-3bd9-40fa-8d64-b8bd80aa8737 � Correct � available=False loans=1 points=0\r\n[info] JSON: D:\\BSTU\\7sem\\RIOT\\burmalda\\lab-results\\database-lab-07309080-3bd9-40fa-8d64-b8bd80aa8737-bbc2be1f.json\r\n"
+        },
+        {
+          "label": "Client 2",
+          "pid": 31548,
+          "output": "[info] 07309080-3bd9-40fa-8d64-b8bd80aa8737 � Correct � available=False loans=1 points=0\r\n[info] JSON: D:\\BSTU\\7sem\\RIOT\\burmalda\\lab-results\\database-lab-07309080-3bd9-40fa-8d64-b8bd80aa8737-7e6e6293.json\r\n"
+        }
+      ],
+      "snapshot": {
+        "id": "07309080-3bd9-40fa-8d64-b8bd80aa8737",
+        "mode": 1,
+        "failure": 0,
+        "status": "Correct",
+        "before": {
+          "copyAvailable": true,
+          "loans": 0,
+          "reservedPoints": 0
+        },
+        "after": {
+          "copyAvailable": false,
+          "loans": 1,
+          "reservedPoints": 0
+        },
+        "events": [
+          {
+            "sequence": 1,
+            "atUtc": "2026-10-05T15:59:36.7029117+00:00",
+            "clientId": "server",
+            "level": "info",
+            "phase": "READY",
+            "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+          },
+          {
+            "sequence": 2,
+            "atUtc": "2026-10-05T15:59:36.8835543+00:00",
+            "clientId": "Client 1",
+            "level": "info",
+            "phase": "START Reserve",
+            "detail": "Ожидание второго клиента"
+          },
+          {
+            "sequence": 3,
+            "atUtc": "2026-10-05T15:59:36.8841407+00:00",
+            "clientId": "Client 2",
+            "level": "info",
+            "phase": "START Reserve",
+            "detail": "Ожидание второго клиента"
+          },
+          {
+            "sequence": 4,
+            "atUtc": "2026-10-05T15:59:36.8841677+00:00",
+            "clientId": "Client 1",
+            "level": "info",
+            "phase": "WAIT LOCK",
+            "detail": "Критическая секция: check → reserve → save"
+          },
+          {
+            "sequence": 5,
+            "atUtc": "2026-10-05T15:59:36.8841675+00:00",
+            "clientId": "Client 2",
+            "level": "info",
+            "phase": "WAIT LOCK",
+            "detail": "Критическая секция: check → reserve → save"
+          },
+          {
+            "sequence": 6,
+            "atUtc": "2026-10-05T15:59:36.8841716+00:00",
+            "clientId": "Client 2",
+            "level": "info",
+            "phase": "LOCK",
+            "detail": "Вход в критическую секцию"
+          },
+          {
+            "sequence": 7,
+            "atUtc": "2026-10-05T15:59:36.8958617+00:00",
+            "clientId": "Client 2",
+            "level": "info",
+            "phase": "CHECK",
+            "detail": "Available = True"
+          },
+          {
+            "sequence": 8,
+            "atUtc": "2026-10-05T15:59:36.9065036+00:00",
+            "clientId": "Client 2",
+            "level": "info",
+            "phase": "SUCCESS",
+            "detail": "Reserve"
+          },
+          {
+            "sequence": 9,
+            "atUtc": "2026-10-05T15:59:36.9072758+00:00",
+            "clientId": "Client 2",
+            "level": "info",
+            "phase": "UNLOCK",
+            "detail": "Выход из критической секции"
+          },
+          {
+            "sequence": 10,
+            "atUtc": "2026-10-05T15:59:36.9073296+00:00",
+            "clientId": "Client 1",
+            "level": "info",
+            "phase": "LOCK",
+            "detail": "Вход в критическую секцию"
+          },
+          {
+            "sequence": 11,
+            "atUtc": "2026-10-05T15:59:36.9096956+00:00",
+            "clientId": "Client 1",
+            "level": "info",
+            "phase": "CHECK",
+            "detail": "Available = False"
+          },
+          {
+            "sequence": 12,
+            "atUtc": "2026-10-05T15:59:36.909736+00:00",
+            "clientId": "Client 1",
+            "level": "warn",
+            "phase": "FAIL",
+            "detail": "Reserve"
+          },
+          {
+            "sequence": 13,
+            "atUtc": "2026-10-05T15:59:36.90977+00:00",
+            "clientId": "Client 1",
+            "level": "info",
+            "phase": "UNLOCK",
+            "detail": "Выход из критической секции"
+          }
+        ],
+        "clients": [
+          {
+            "clientId": "Client 1",
+            "sentAtUtc": "2026-10-05T15:59:36.7996496+00:00",
+            "startedAtUtc": "2026-10-05T15:59:36.8835536+00:00",
+            "enteredAtUtc": "2026-10-05T15:59:36.9073285+00:00",
+            "exitedAtUtc": "2026-10-05T15:59:36.9097696+00:00",
+            "result": "FAIL"
+          },
+          {
+            "clientId": "Client 2",
+            "sentAtUtc": "2026-10-05T15:59:36.8033767+00:00",
+            "startedAtUtc": "2026-10-05T15:59:36.8841404+00:00",
+            "enteredAtUtc": "2026-10-05T15:59:36.8841714+00:00",
+            "exitedAtUtc": "2026-10-05T15:59:36.9072745+00:00",
+            "result": "SUCCESS"
+          }
+        ]
+      }
+    },
+    {
+      "repeat": 0,
+      "snapshot": {
+        "id": "4fb08231-7ac2-4fb5-a051-2c1273fcb904",
+        "mode": 2,
+        "failure": 0,
+        "status": "Saved",
+        "before": {
+          "copyAvailable": true,
+          "loans": 0,
+          "reservedPoints": 0
+        },
+        "after": {
+          "copyAvailable": false,
+          "loans": 1,
+          "reservedPoints": 0
+        },
+        "events": [
+          {
+            "sequence": 1,
+            "atUtc": "2026-10-05T15:59:36.9648497+00:00",
+            "clientId": "server",
+            "level": "info",
+            "phase": "READY",
+            "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+          },
+          {
+            "sequence": 2,
+            "atUtc": "2026-10-05T15:59:36.9793981+00:00",
+            "clientId": "server",
+            "level": "info",
+            "phase": "AUTOCOMMIT",
+            "detail": "Операция 1: создать выдачу; операция 2: занять экземпляр"
+          },
+          {
+            "sequence": 3,
+            "atUtc": "2026-10-05T15:59:36.9828668+00:00",
+            "clientId": "Client 1",
+            "level": "info",
+            "phase": "OPERATION 1",
+            "detail": "Выдача добавлена"
+          },
+          {
+            "sequence": 4,
+            "atUtc": "2026-10-05T15:59:37.3538613+00:00",
+            "clientId": "Client 1",
+            "level": "info",
+            "phase": "OPERATION 2",
+            "detail": "Экземпляр занят"
+          },
+          {
+            "sequence": 5,
+            "atUtc": "2026-10-05T15:59:37.3539786+00:00",
+            "clientId": "server",
+            "level": "info",
+            "phase": "SAVED",
+            "detail": "Обе операции сохранены"
+          }
+        ],
+        "clients": []
+      }
+    },
+    {
+      "repeat": 0,
+      "snapshot": {
+        "id": "b9aad4b9-4cba-4bff-a15e-45d863735472",
+        "mode": 2,
+        "failure": 1,
+        "status": "Partial",
+        "before": {
+          "copyAvailable": true,
+          "loans": 0,
+          "reservedPoints": 0
+        },
+        "after": {
+          "copyAvailable": true,
+          "loans": 1,
+          "reservedPoints": 0
+        },
+        "events": [
+          {
+            "sequence": 1,
+            "atUtc": "2026-10-05T15:59:37.3989903+00:00",
+            "clientId": "server",
+            "level": "info",
+            "phase": "READY",
+            "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+          },
+          {
+            "sequence": 2,
+            "atUtc": "2026-10-05T15:59:37.4255728+00:00",
+            "clientId": "server",
+            "level": "info",
+            "phase": "AUTOCOMMIT",
+            "detail": "Операция 1: создать выдачу; операция 2: занять экземпляр"
+          },
+          {
+            "sequence": 3,
+            "atUtc": "2026-10-05T15:59:37.4285863+00:00",
+            "clientId": "Client 1",
+            "level": "info",
+            "phase": "OPERATION 1",
+            "detail": "Выдача добавлена"
+          },
+          {
+            "sequence": 4,
+            "atUtc": "2026-10-05T15:59:37.7822153+00:00",
+            "clientId": "server",
+            "level": "error",
+            "phase": "ERROR",
+            "detail": "Искусственная ошибка"
+          },
+          {
+            "sequence": 5,
+            "atUtc": "2026-10-05T15:59:37.7823284+00:00",
+            "clientId": "server",
+            "level": "warn",
+            "phase": "PARTIAL",
+            "detail": "Первое SaveChanges уже сохранило выдачу; экземпляр остался свободным"
+          }
+        ],
+        "clients": []
+      }
+    },
+    {
+      "repeat": 0,
+      "snapshot": {
+        "id": "ee2d5a65-05b8-4797-97ae-91bf953a7a4b",
+        "mode": 3,
+        "failure": 0,
+        "status": "Committed",
+        "before": {
+          "copyAvailable": true,
+          "loans": 0,
+          "reservedPoints": 0
+        },
+        "after": {
+          "copyAvailable": false,
+          "loans": 1,
+          "reservedPoints": 0
+        },
+        "events": [
+          {
+            "sequence": 1,
+            "atUtc": "2026-10-05T15:59:37.8351696+00:00",
+            "clientId": "server",
+            "level": "info",
+            "phase": "READY",
+            "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+          },
+          {
+            "sequence": 2,
+            "atUtc": "2026-10-05T15:59:37.8479552+00:00",
+            "clientId": "server",
+            "level": "info",
+            "phase": "BEGIN",
+            "detail": "Операция 1: создать выдачу; операция 2: занять экземпляр"
+          },
+          {
+            "sequence": 3,
+            "atUtc": "2026-10-05T15:59:37.8543296+00:00",
+            "clientId": "Client 1",
+            "level": "info",
+            "phase": "OPERATION 1",
+            "detail": "Выдача добавлена"
+          },
+          {
+            "sequence": 4,
+            "atUtc": "2026-10-05T15:59:38.2238725+00:00",
+            "clientId": "Client 1",
+            "level": "info",
+            "phase": "OPERATION 2",
+            "detail": "Экземпляр занят"
+          },
+          {
+            "sequence": 5,
+            "atUtc": "2026-10-05T15:59:38.2255317+00:00",
+            "clientId": "server",
+            "level": "info",
+            "phase": "COMMIT",
+            "detail": "Обе операции сохранены"
+          }
+        ],
+        "clients": []
+      }
+    },
+    {
+      "repeat": 0,
+      "snapshot": {
+        "id": "e437924a-13a2-4acc-b72d-650780a14ada",
+        "mode": 3,
+        "failure": 1,
+        "status": "RolledBack",
+        "before": {
+          "copyAvailable": true,
+          "loans": 0,
+          "reservedPoints": 0
+        },
+        "after": {
+          "copyAvailable": true,
+          "loans": 0,
+          "reservedPoints": 0
+        },
+        "events": [
+          {
+            "sequence": 1,
+            "atUtc": "2026-10-05T15:59:38.2705753+00:00",
+            "clientId": "server",
+            "level": "info",
+            "phase": "READY",
+            "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+          },
+          {
+            "sequence": 2,
+            "atUtc": "2026-10-05T15:59:38.2885433+00:00",
+            "clientId": "server",
+            "level": "info",
+            "phase": "BEGIN",
+            "detail": "Операция 1: создать выдачу; операция 2: занять экземпляр"
+          },
+          {
+            "sequence": 3,
+            "atUtc": "2026-10-05T15:59:38.2915636+00:00",
+            "clientId": "Client 1",
+            "level": "info",
+            "phase": "OPERATION 1",
+            "detail": "Выдача добавлена"
+          },
+          {
+            "sequence": 4,
+            "atUtc": "2026-10-05T15:59:38.6512774+00:00",
+            "clientId": "server",
+            "level": "error",
+            "phase": "ERROR",
+            "detail": "Искусственная ошибка"
+          },
+          {
+            "sequence": 5,
+            "atUtc": "2026-10-05T15:59:38.6557144+00:00",
+            "clientId": "server",
+            "level": "warn",
+            "phase": "ROLLBACK",
+            "detail": "Изменения обеих операций отменены"
+          }
+        ],
+        "clients": []
+      }
+    },
+    {
+      "repeat": 0,
+      "snapshot": {
+        "id": "1848b8ae-66cc-4141-99f6-0cf59f3cfa88",
+        "mode": 3,
+        "failure": 2,
+        "status": "RolledBack",
+        "before": {
+          "copyAvailable": true,
+          "loans": 0,
+          "reservedPoints": 0
+        },
+        "after": {
+          "copyAvailable": true,
+          "loans": 0,
+          "reservedPoints": 0
+        },
+        "events": [
+          {
+            "sequence": 1,
+            "atUtc": "2026-10-05T15:59:38.7038385+00:00",
+            "clientId": "server",
+            "level": "info",
+            "phase": "READY",
+            "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+          },
+          {
+            "sequence": 2,
+            "atUtc": "2026-10-05T15:59:38.713662+00:00",
+            "clientId": "server",
+            "level": "info",
+            "phase": "BEGIN",
+            "detail": "Операция 1: создать выдачу; операция 2: занять экземпляр"
+          },
+          {
+            "sequence": 3,
+            "atUtc": "2026-10-05T15:59:38.71597+00:00",
+            "clientId": "Client 1",
+            "level": "info",
+            "phase": "OPERATION 1",
+            "detail": "Выдача добавлена"
+          },
+          {
+            "sequence": 4,
+            "atUtc": "2026-10-05T15:59:39.0744353+00:00",
+            "clientId": "Client 1",
+            "level": "info",
+            "phase": "OPERATION 2",
+            "detail": "Экземпляр занят"
+          },
+          {
+            "sequence": 5,
+            "atUtc": "2026-10-05T15:59:39.0745216+00:00",
+            "clientId": "server",
+            "level": "error",
+            "phase": "ERROR",
+            "detail": "Искусственная ошибка"
+          },
+          {
+            "sequence": 6,
+            "atUtc": "2026-10-05T15:59:39.0753189+00:00",
+            "clientId": "server",
+            "level": "warn",
+            "phase": "ROLLBACK",
+            "detail": "Изменения обеих операций отменены"
+          }
+        ],
+        "clients": []
+      }
+    },
+    {
+      "repeat": 0,
+      "snapshot": {
+        "id": "f49fd344-58c9-4794-b8b9-ffbf6728aee5",
+        "mode": 4,
+        "failure": 0,
+        "status": "Completed",
+        "before": {
+          "copyAvailable": true,
+          "loans": 0,
+          "reservedPoints": 0
+        },
+        "after": {
+          "copyAvailable": false,
+          "loans": 1,
+          "reservedPoints": 10
+        },
+        "events": [
+          {
+            "sequence": 1,
+            "atUtc": "2026-10-05T15:59:39.1194897+00:00",
+            "clientId": "server",
+            "level": "info",
+            "phase": "READY",
+            "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+          },
+          {
+            "sequence": 2,
+            "atUtc": "2026-10-05T15:59:39.1387694+00:00",
+            "clientId": "saga",
+            "level": "info",
+            "phase": "ReserveBookCopy",
+            "detail": "Catalog: экземпляр зарезервирован; локальный COMMIT"
+          },
+          {
+            "sequence": 3,
+            "atUtc": "2026-10-05T15:59:39.1506715+00:00",
+            "clientId": "saga",
+            "level": "info",
+            "phase": "ReservePoints",
+            "detail": "Economy: 10 BD зарезервированы; локальный COMMIT"
+          },
+          {
+            "sequence": 4,
+            "atUtc": "2026-10-05T15:59:39.1703047+00:00",
+            "clientId": "saga",
+            "level": "info",
+            "phase": "CreateLoan",
+            "detail": "Lending: выдача создана; локальный COMMIT"
+          }
+        ],
+        "clients": []
+      },
+      "intermediate": [
+        {
+          "id": "f49fd344-58c9-4794-b8b9-ffbf6728aee5",
+          "mode": 4,
+          "failure": 0,
+          "status": "AwaitingPointsReservation",
+          "before": {
+            "copyAvailable": true,
+            "loans": 0,
+            "reservedPoints": 0
+          },
+          "after": {
+            "copyAvailable": false,
+            "loans": 0,
+            "reservedPoints": 0
+          },
+          "events": [
+            {
+              "sequence": 1,
+              "atUtc": "2026-10-05T15:59:39.1194897+00:00",
+              "clientId": "server",
+              "level": "info",
+              "phase": "READY",
+              "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+            },
+            {
+              "sequence": 2,
+              "atUtc": "2026-10-05T15:59:39.1387694+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReserveBookCopy",
+              "detail": "Catalog: экземпляр зарезервирован; локальный COMMIT"
+            }
+          ],
+          "clients": []
+        },
+        {
+          "id": "f49fd344-58c9-4794-b8b9-ffbf6728aee5",
+          "mode": 4,
+          "failure": 0,
+          "status": "CreatingLoan",
+          "before": {
+            "copyAvailable": true,
+            "loans": 0,
+            "reservedPoints": 0
+          },
+          "after": {
+            "copyAvailable": false,
+            "loans": 0,
+            "reservedPoints": 10
+          },
+          "events": [
+            {
+              "sequence": 1,
+              "atUtc": "2026-10-05T15:59:39.1194897+00:00",
+              "clientId": "server",
+              "level": "info",
+              "phase": "READY",
+              "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+            },
+            {
+              "sequence": 2,
+              "atUtc": "2026-10-05T15:59:39.1387694+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReserveBookCopy",
+              "detail": "Catalog: экземпляр зарезервирован; локальный COMMIT"
+            },
+            {
+              "sequence": 3,
+              "atUtc": "2026-10-05T15:59:39.1506715+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReservePoints",
+              "detail": "Economy: 10 BD зарезервированы; локальный COMMIT"
+            }
+          ],
+          "clients": []
+        },
+        {
+          "id": "f49fd344-58c9-4794-b8b9-ffbf6728aee5",
+          "mode": 4,
+          "failure": 0,
+          "status": "Completed",
+          "before": {
+            "copyAvailable": true,
+            "loans": 0,
+            "reservedPoints": 0
+          },
+          "after": {
+            "copyAvailable": false,
+            "loans": 1,
+            "reservedPoints": 10
+          },
+          "events": [
+            {
+              "sequence": 1,
+              "atUtc": "2026-10-05T15:59:39.1194897+00:00",
+              "clientId": "server",
+              "level": "info",
+              "phase": "READY",
+              "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+            },
+            {
+              "sequence": 2,
+              "atUtc": "2026-10-05T15:59:39.1387694+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReserveBookCopy",
+              "detail": "Catalog: экземпляр зарезервирован; локальный COMMIT"
+            },
+            {
+              "sequence": 3,
+              "atUtc": "2026-10-05T15:59:39.1506715+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReservePoints",
+              "detail": "Economy: 10 BD зарезервированы; локальный COMMIT"
+            },
+            {
+              "sequence": 4,
+              "atUtc": "2026-10-05T15:59:39.1703047+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "CreateLoan",
+              "detail": "Lending: выдача создана; локальный COMMIT"
+            }
+          ],
+          "clients": []
+        }
+      ]
+    },
+    {
+      "repeat": 0,
+      "snapshot": {
+        "id": "e71731bd-23a8-437c-9f30-fabf4f9aa098",
+        "mode": 4,
+        "failure": 3,
+        "status": "Compensated",
+        "before": {
+          "copyAvailable": true,
+          "loans": 0,
+          "reservedPoints": 0
+        },
+        "after": {
+          "copyAvailable": true,
+          "loans": 0,
+          "reservedPoints": 0
+        },
+        "events": [
+          {
+            "sequence": 1,
+            "atUtc": "2026-10-05T15:59:39.2119295+00:00",
+            "clientId": "server",
+            "level": "info",
+            "phase": "READY",
+            "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+          },
+          {
+            "sequence": 2,
+            "atUtc": "2026-10-05T15:59:39.2290087+00:00",
+            "clientId": "saga",
+            "level": "info",
+            "phase": "ReserveBookCopy",
+            "detail": "Catalog: экземпляр зарезервирован; локальный COMMIT"
+          },
+          {
+            "sequence": 3,
+            "atUtc": "2026-10-05T15:59:39.2379563+00:00",
+            "clientId": "saga",
+            "level": "error",
+            "phase": "PointsReservationFailed",
+            "detail": "Economy: искусственный отказ → компенсация книги"
+          },
+          {
+            "sequence": 4,
+            "atUtc": "2026-10-05T15:59:39.2623259+00:00",
+            "clientId": "saga",
+            "level": "info",
+            "phase": "ReleaseBookCopy",
+            "detail": "Catalog: экземпляр освобождён новым COMMIT"
+          }
+        ],
+        "clients": []
+      },
+      "intermediate": [
+        {
+          "id": "e71731bd-23a8-437c-9f30-fabf4f9aa098",
+          "mode": 4,
+          "failure": 3,
+          "status": "AwaitingPointsReservation",
+          "before": {
+            "copyAvailable": true,
+            "loans": 0,
+            "reservedPoints": 0
+          },
+          "after": {
+            "copyAvailable": false,
+            "loans": 0,
+            "reservedPoints": 0
+          },
+          "events": [
+            {
+              "sequence": 1,
+              "atUtc": "2026-10-05T15:59:39.2119295+00:00",
+              "clientId": "server",
+              "level": "info",
+              "phase": "READY",
+              "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+            },
+            {
+              "sequence": 2,
+              "atUtc": "2026-10-05T15:59:39.2290087+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReserveBookCopy",
+              "detail": "Catalog: экземпляр зарезервирован; локальный COMMIT"
+            }
+          ],
+          "clients": []
+        },
+        {
+          "id": "e71731bd-23a8-437c-9f30-fabf4f9aa098",
+          "mode": 4,
+          "failure": 3,
+          "status": "CompensatingCopy",
+          "before": {
+            "copyAvailable": true,
+            "loans": 0,
+            "reservedPoints": 0
+          },
+          "after": {
+            "copyAvailable": false,
+            "loans": 0,
+            "reservedPoints": 0
+          },
+          "events": [
+            {
+              "sequence": 1,
+              "atUtc": "2026-10-05T15:59:39.2119295+00:00",
+              "clientId": "server",
+              "level": "info",
+              "phase": "READY",
+              "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+            },
+            {
+              "sequence": 2,
+              "atUtc": "2026-10-05T15:59:39.2290087+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReserveBookCopy",
+              "detail": "Catalog: экземпляр зарезервирован; локальный COMMIT"
+            },
+            {
+              "sequence": 3,
+              "atUtc": "2026-10-05T15:59:39.2379563+00:00",
+              "clientId": "saga",
+              "level": "error",
+              "phase": "PointsReservationFailed",
+              "detail": "Economy: искусственный отказ → компенсация книги"
+            }
+          ],
+          "clients": []
+        },
+        {
+          "id": "e71731bd-23a8-437c-9f30-fabf4f9aa098",
+          "mode": 4,
+          "failure": 3,
+          "status": "Compensated",
+          "before": {
+            "copyAvailable": true,
+            "loans": 0,
+            "reservedPoints": 0
+          },
+          "after": {
+            "copyAvailable": true,
+            "loans": 0,
+            "reservedPoints": 0
+          },
+          "events": [
+            {
+              "sequence": 1,
+              "atUtc": "2026-10-05T15:59:39.2119295+00:00",
+              "clientId": "server",
+              "level": "info",
+              "phase": "READY",
+              "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+            },
+            {
+              "sequence": 2,
+              "atUtc": "2026-10-05T15:59:39.2290087+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReserveBookCopy",
+              "detail": "Catalog: экземпляр зарезервирован; локальный COMMIT"
+            },
+            {
+              "sequence": 3,
+              "atUtc": "2026-10-05T15:59:39.2379563+00:00",
+              "clientId": "saga",
+              "level": "error",
+              "phase": "PointsReservationFailed",
+              "detail": "Economy: искусственный отказ → компенсация книги"
+            },
+            {
+              "sequence": 4,
+              "atUtc": "2026-10-05T15:59:39.2623259+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReleaseBookCopy",
+              "detail": "Catalog: экземпляр освобождён новым COMMIT"
+            }
+          ],
+          "clients": []
+        }
+      ]
+    },
+    {
+      "repeat": 0,
+      "snapshot": {
+        "id": "34c7477e-6d05-4a9e-a1ff-45f85e9a9ad7",
+        "mode": 4,
+        "failure": 4,
+        "status": "Compensated",
+        "before": {
+          "copyAvailable": true,
+          "loans": 0,
+          "reservedPoints": 0
+        },
+        "after": {
+          "copyAvailable": true,
+          "loans": 0,
+          "reservedPoints": 0
+        },
+        "events": [
+          {
+            "sequence": 1,
+            "atUtc": "2026-10-05T15:59:39.2906963+00:00",
+            "clientId": "server",
+            "level": "info",
+            "phase": "READY",
+            "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+          },
+          {
+            "sequence": 2,
+            "atUtc": "2026-10-05T15:59:39.3113505+00:00",
+            "clientId": "saga",
+            "level": "info",
+            "phase": "ReserveBookCopy",
+            "detail": "Catalog: экземпляр зарезервирован; локальный COMMIT"
+          },
+          {
+            "sequence": 3,
+            "atUtc": "2026-10-05T15:59:39.3436862+00:00",
+            "clientId": "saga",
+            "level": "info",
+            "phase": "ReservePoints",
+            "detail": "Economy: 10 BD зарезервированы; локальный COMMIT"
+          },
+          {
+            "sequence": 4,
+            "atUtc": "2026-10-05T15:59:39.3693196+00:00",
+            "clientId": "saga",
+            "level": "error",
+            "phase": "LoanCreationFailed",
+            "detail": "Lending: искусственный отказ → обратные действия"
+          },
+          {
+            "sequence": 5,
+            "atUtc": "2026-10-05T15:59:39.3869455+00:00",
+            "clientId": "saga",
+            "level": "info",
+            "phase": "ReleasePoints",
+            "detail": "Economy: резерв 10 BD снят новым COMMIT"
+          },
+          {
+            "sequence": 6,
+            "atUtc": "2026-10-05T15:59:39.3990274+00:00",
+            "clientId": "saga",
+            "level": "info",
+            "phase": "ReleaseBookCopy",
+            "detail": "Catalog: экземпляр освобождён новым COMMIT"
+          }
+        ],
+        "clients": []
+      },
+      "intermediate": [
+        {
+          "id": "34c7477e-6d05-4a9e-a1ff-45f85e9a9ad7",
+          "mode": 4,
+          "failure": 4,
+          "status": "AwaitingPointsReservation",
+          "before": {
+            "copyAvailable": true,
+            "loans": 0,
+            "reservedPoints": 0
+          },
+          "after": {
+            "copyAvailable": false,
+            "loans": 0,
+            "reservedPoints": 0
+          },
+          "events": [
+            {
+              "sequence": 1,
+              "atUtc": "2026-10-05T15:59:39.2906963+00:00",
+              "clientId": "server",
+              "level": "info",
+              "phase": "READY",
+              "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+            },
+            {
+              "sequence": 2,
+              "atUtc": "2026-10-05T15:59:39.3113505+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReserveBookCopy",
+              "detail": "Catalog: экземпляр зарезервирован; локальный COMMIT"
+            }
+          ],
+          "clients": []
+        },
+        {
+          "id": "34c7477e-6d05-4a9e-a1ff-45f85e9a9ad7",
+          "mode": 4,
+          "failure": 4,
+          "status": "CreatingLoan",
+          "before": {
+            "copyAvailable": true,
+            "loans": 0,
+            "reservedPoints": 0
+          },
+          "after": {
+            "copyAvailable": false,
+            "loans": 0,
+            "reservedPoints": 10
+          },
+          "events": [
+            {
+              "sequence": 1,
+              "atUtc": "2026-10-05T15:59:39.2906963+00:00",
+              "clientId": "server",
+              "level": "info",
+              "phase": "READY",
+              "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+            },
+            {
+              "sequence": 2,
+              "atUtc": "2026-10-05T15:59:39.3113505+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReserveBookCopy",
+              "detail": "Catalog: экземпляр зарезервирован; локальный COMMIT"
+            },
+            {
+              "sequence": 3,
+              "atUtc": "2026-10-05T15:59:39.3436862+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReservePoints",
+              "detail": "Economy: 10 BD зарезервированы; локальный COMMIT"
+            }
+          ],
+          "clients": []
+        },
+        {
+          "id": "34c7477e-6d05-4a9e-a1ff-45f85e9a9ad7",
+          "mode": 4,
+          "failure": 4,
+          "status": "CompensatingPoints",
+          "before": {
+            "copyAvailable": true,
+            "loans": 0,
+            "reservedPoints": 0
+          },
+          "after": {
+            "copyAvailable": false,
+            "loans": 0,
+            "reservedPoints": 10
+          },
+          "events": [
+            {
+              "sequence": 1,
+              "atUtc": "2026-10-05T15:59:39.2906963+00:00",
+              "clientId": "server",
+              "level": "info",
+              "phase": "READY",
+              "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+            },
+            {
+              "sequence": 2,
+              "atUtc": "2026-10-05T15:59:39.3113505+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReserveBookCopy",
+              "detail": "Catalog: экземпляр зарезервирован; локальный COMMIT"
+            },
+            {
+              "sequence": 3,
+              "atUtc": "2026-10-05T15:59:39.3436862+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReservePoints",
+              "detail": "Economy: 10 BD зарезервированы; локальный COMMIT"
+            },
+            {
+              "sequence": 4,
+              "atUtc": "2026-10-05T15:59:39.3693196+00:00",
+              "clientId": "saga",
+              "level": "error",
+              "phase": "LoanCreationFailed",
+              "detail": "Lending: искусственный отказ → обратные действия"
+            }
+          ],
+          "clients": []
+        },
+        {
+          "id": "34c7477e-6d05-4a9e-a1ff-45f85e9a9ad7",
+          "mode": 4,
+          "failure": 4,
+          "status": "CompensatingCopy",
+          "before": {
+            "copyAvailable": true,
+            "loans": 0,
+            "reservedPoints": 0
+          },
+          "after": {
+            "copyAvailable": false,
+            "loans": 0,
+            "reservedPoints": 0
+          },
+          "events": [
+            {
+              "sequence": 1,
+              "atUtc": "2026-10-05T15:59:39.2906963+00:00",
+              "clientId": "server",
+              "level": "info",
+              "phase": "READY",
+              "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+            },
+            {
+              "sequence": 2,
+              "atUtc": "2026-10-05T15:59:39.3113505+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReserveBookCopy",
+              "detail": "Catalog: экземпляр зарезервирован; локальный COMMIT"
+            },
+            {
+              "sequence": 3,
+              "atUtc": "2026-10-05T15:59:39.3436862+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReservePoints",
+              "detail": "Economy: 10 BD зарезервированы; локальный COMMIT"
+            },
+            {
+              "sequence": 4,
+              "atUtc": "2026-10-05T15:59:39.3693196+00:00",
+              "clientId": "saga",
+              "level": "error",
+              "phase": "LoanCreationFailed",
+              "detail": "Lending: искусственный отказ → обратные действия"
+            },
+            {
+              "sequence": 5,
+              "atUtc": "2026-10-05T15:59:39.3869455+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReleasePoints",
+              "detail": "Economy: резерв 10 BD снят новым COMMIT"
+            }
+          ],
+          "clients": []
+        },
+        {
+          "id": "34c7477e-6d05-4a9e-a1ff-45f85e9a9ad7",
+          "mode": 4,
+          "failure": 4,
+          "status": "Compensated",
+          "before": {
+            "copyAvailable": true,
+            "loans": 0,
+            "reservedPoints": 0
+          },
+          "after": {
+            "copyAvailable": true,
+            "loans": 0,
+            "reservedPoints": 0
+          },
+          "events": [
+            {
+              "sequence": 1,
+              "atUtc": "2026-10-05T15:59:39.2906963+00:00",
+              "clientId": "server",
+              "level": "info",
+              "phase": "READY",
+              "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+            },
+            {
+              "sequence": 2,
+              "atUtc": "2026-10-05T15:59:39.3113505+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReserveBookCopy",
+              "detail": "Catalog: экземпляр зарезервирован; локальный COMMIT"
+            },
+            {
+              "sequence": 3,
+              "atUtc": "2026-10-05T15:59:39.3436862+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReservePoints",
+              "detail": "Economy: 10 BD зарезервированы; локальный COMMIT"
+            },
+            {
+              "sequence": 4,
+              "atUtc": "2026-10-05T15:59:39.3693196+00:00",
+              "clientId": "saga",
+              "level": "error",
+              "phase": "LoanCreationFailed",
+              "detail": "Lending: искусственный отказ → обратные действия"
+            },
+            {
+              "sequence": 5,
+              "atUtc": "2026-10-05T15:59:39.3869455+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReleasePoints",
+              "detail": "Economy: резерв 10 BD снят новым COMMIT"
+            },
+            {
+              "sequence": 6,
+              "atUtc": "2026-10-05T15:59:39.3990274+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReleaseBookCopy",
+              "detail": "Catalog: экземпляр освобождён новым COMMIT"
+            }
+          ],
+          "clients": []
+        }
+      ]
+    },
+    {
+      "repeat": 1,
+      "processes": [
+        {
+          "label": "Client 1",
+          "pid": 15788,
+          "output": "[info] df0ef6f8-dd85-437b-a44f-53eb79701cfc � Incorrect � available=False loans=2 points=0\r\n[info] JSON: D:\\BSTU\\7sem\\RIOT\\burmalda\\lab-results\\database-lab-df0ef6f8-dd85-437b-a44f-53eb79701cfc-e5ee72c3.json\r\n"
+        },
+        {
+          "label": "Client 2",
+          "pid": 22984,
+          "output": "[info] df0ef6f8-dd85-437b-a44f-53eb79701cfc � Incorrect � available=False loans=2 points=0\r\n[info] JSON: D:\\BSTU\\7sem\\RIOT\\burmalda\\lab-results\\database-lab-df0ef6f8-dd85-437b-a44f-53eb79701cfc-b0affc25.json\r\n"
+        }
+      ],
+      "snapshot": {
+        "id": "df0ef6f8-dd85-437b-a44f-53eb79701cfc",
+        "mode": 0,
+        "failure": 0,
+        "status": "Incorrect",
+        "before": {
+          "copyAvailable": true,
+          "loans": 0,
+          "reservedPoints": 0
+        },
+        "after": {
+          "copyAvailable": false,
+          "loans": 2,
+          "reservedPoints": 0
+        },
+        "events": [
+          {
+            "sequence": 1,
+            "atUtc": "2026-10-05T15:59:39.4147388+00:00",
+            "clientId": "server",
+            "level": "info",
+            "phase": "READY",
+            "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+          },
+          {
+            "sequence": 2,
+            "atUtc": "2026-10-05T15:59:39.7125022+00:00",
+            "clientId": "Client 2",
+            "level": "info",
+            "phase": "START Reserve",
+            "detail": "Ожидание второго клиента"
+          },
+          {
+            "sequence": 3,
+            "atUtc": "2026-10-05T15:59:39.7128238+00:00",
+            "clientId": "Client 1",
+            "level": "info",
+            "phase": "START Reserve",
+            "detail": "Ожидание второго клиента"
+          },
+          {
+            "sequence": 4,
+            "atUtc": "2026-10-05T15:59:39.7149287+00:00",
+            "clientId": "Client 1",
+            "level": "info",
+            "phase": "CHECK",
+            "detail": "Available = True"
+          },
+          {
+            "sequence": 5,
+            "atUtc": "2026-10-05T15:59:39.7149287+00:00",
+            "clientId": "Client 2",
+            "level": "info",
+            "phase": "CHECK",
+            "detail": "Available = True"
+          },
+          {
+            "sequence": 6,
+            "atUtc": "2026-10-05T15:59:39.7191214+00:00",
+            "clientId": "Client 1",
+            "level": "warn",
+            "phase": "SUCCESS",
+            "detail": "Без синхронизации"
+          },
+          {
+            "sequence": 7,
+            "atUtc": "2026-10-05T15:59:39.7213434+00:00",
+            "clientId": "Client 2",
+            "level": "warn",
+            "phase": "SUCCESS",
+            "detail": "Без синхронизации"
+          }
+        ],
+        "clients": [
+          {
+            "clientId": "Client 2",
+            "sentAtUtc": "2026-10-05T15:59:39.5685529+00:00",
+            "startedAtUtc": "2026-10-05T15:59:39.7125014+00:00",
+            "enteredAtUtc": "2026-10-05T15:59:39.7128538+00:00",
+            "exitedAtUtc": "2026-10-05T15:59:39.7213422+00:00",
+            "result": "SUCCESS"
+          },
+          {
+            "clientId": "Client 1",
+            "sentAtUtc": "2026-10-05T15:59:39.5689189+00:00",
+            "startedAtUtc": "2026-10-05T15:59:39.7128234+00:00",
+            "enteredAtUtc": "2026-10-05T15:59:39.7128518+00:00",
+            "exitedAtUtc": "2026-10-05T15:59:39.7191205+00:00",
+            "result": "SUCCESS"
+          }
+        ]
+      }
+    },
+    {
+      "repeat": 1,
+      "processes": [
+        {
+          "label": "Client 1",
+          "pid": 2124,
+          "output": "[info] 01f56137-3321-49a5-b733-48b851f1161e � Correct � available=False loans=1 points=0\r\n[info] JSON: D:\\BSTU\\7sem\\RIOT\\burmalda\\lab-results\\database-lab-01f56137-3321-49a5-b733-48b851f1161e-9c5ed5a9.json\r\n"
+        },
+        {
+          "label": "Client 2",
+          "pid": 20576,
+          "output": "[info] 01f56137-3321-49a5-b733-48b851f1161e � Correct � available=False loans=1 points=0\r\n[info] JSON: D:\\BSTU\\7sem\\RIOT\\burmalda\\lab-results\\database-lab-01f56137-3321-49a5-b733-48b851f1161e-06dfab14.json\r\n"
+        }
+      ],
+      "snapshot": {
+        "id": "01f56137-3321-49a5-b733-48b851f1161e",
+        "mode": 1,
+        "failure": 0,
+        "status": "Correct",
+        "before": {
+          "copyAvailable": true,
+          "loans": 0,
+          "reservedPoints": 0
+        },
+        "after": {
+          "copyAvailable": false,
+          "loans": 1,
+          "reservedPoints": 0
+        },
+        "events": [
+          {
+            "sequence": 1,
+            "atUtc": "2026-10-05T15:59:39.8080107+00:00",
+            "clientId": "server",
+            "level": "info",
+            "phase": "READY",
+            "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+          },
+          {
+            "sequence": 2,
+            "atUtc": "2026-10-05T15:59:40.1364668+00:00",
+            "clientId": "Client 1",
+            "level": "info",
+            "phase": "START Reserve",
+            "detail": "Ожидание второго клиента"
+          },
+          {
+            "sequence": 3,
+            "atUtc": "2026-10-05T15:59:40.1364725+00:00",
+            "clientId": "Client 2",
+            "level": "info",
+            "phase": "START Reserve",
+            "detail": "Ожидание второго клиента"
+          },
+          {
+            "sequence": 4,
+            "atUtc": "2026-10-05T15:59:40.1365273+00:00",
+            "clientId": "Client 2",
+            "level": "info",
+            "phase": "WAIT LOCK",
+            "detail": "Критическая секция: check → reserve → save"
+          },
+          {
+            "sequence": 5,
+            "atUtc": "2026-10-05T15:59:40.1365274+00:00",
+            "clientId": "Client 1",
+            "level": "info",
+            "phase": "WAIT LOCK",
+            "detail": "Критическая секция: check → reserve → save"
+          },
+          {
+            "sequence": 6,
+            "atUtc": "2026-10-05T15:59:40.1365567+00:00",
+            "clientId": "Client 1",
+            "level": "info",
+            "phase": "LOCK",
+            "detail": "Вход в критическую секцию"
+          },
+          {
+            "sequence": 7,
+            "atUtc": "2026-10-05T15:59:40.139417+00:00",
+            "clientId": "Client 1",
+            "level": "info",
+            "phase": "CHECK",
+            "detail": "Available = True"
+          },
+          {
+            "sequence": 8,
+            "atUtc": "2026-10-05T15:59:40.1461173+00:00",
+            "clientId": "Client 1",
+            "level": "info",
+            "phase": "SUCCESS",
+            "detail": "Reserve"
+          },
+          {
+            "sequence": 9,
+            "atUtc": "2026-10-05T15:59:40.1462699+00:00",
+            "clientId": "Client 1",
+            "level": "info",
+            "phase": "UNLOCK",
+            "detail": "Выход из критической секции"
+          },
+          {
+            "sequence": 10,
+            "atUtc": "2026-10-05T15:59:40.146304+00:00",
+            "clientId": "Client 2",
+            "level": "info",
+            "phase": "LOCK",
+            "detail": "Вход в критическую секцию"
+          },
+          {
+            "sequence": 11,
+            "atUtc": "2026-10-05T15:59:40.1490894+00:00",
+            "clientId": "Client 2",
+            "level": "info",
+            "phase": "CHECK",
+            "detail": "Available = False"
+          },
+          {
+            "sequence": 12,
+            "atUtc": "2026-10-05T15:59:40.1491348+00:00",
+            "clientId": "Client 2",
+            "level": "warn",
+            "phase": "FAIL",
+            "detail": "Reserve"
+          },
+          {
+            "sequence": 13,
+            "atUtc": "2026-10-05T15:59:40.1491547+00:00",
+            "clientId": "Client 2",
+            "level": "info",
+            "phase": "UNLOCK",
+            "detail": "Выход из критической секции"
+          }
+        ],
+        "clients": [
+          {
+            "clientId": "Client 1",
+            "sentAtUtc": "2026-10-05T15:59:39.9706741+00:00",
+            "startedAtUtc": "2026-10-05T15:59:40.136466+00:00",
+            "enteredAtUtc": "2026-10-05T15:59:40.1365564+00:00",
+            "exitedAtUtc": "2026-10-05T15:59:40.1462684+00:00",
+            "result": "SUCCESS"
+          },
+          {
+            "clientId": "Client 2",
+            "sentAtUtc": "2026-10-05T15:59:39.9731048+00:00",
+            "startedAtUtc": "2026-10-05T15:59:40.1364721+00:00",
+            "enteredAtUtc": "2026-10-05T15:59:40.1463026+00:00",
+            "exitedAtUtc": "2026-10-05T15:59:40.1491536+00:00",
+            "result": "FAIL"
+          }
+        ]
+      }
+    },
+    {
+      "repeat": 1,
+      "snapshot": {
+        "id": "a591a52b-b97d-412d-9668-c30e69db3ec8",
+        "mode": 2,
+        "failure": 0,
+        "status": "Saved",
+        "before": {
+          "copyAvailable": true,
+          "loans": 0,
+          "reservedPoints": 0
+        },
+        "after": {
+          "copyAvailable": false,
+          "loans": 1,
+          "reservedPoints": 0
+        },
+        "events": [
+          {
+            "sequence": 1,
+            "atUtc": "2026-10-05T15:59:40.2417089+00:00",
+            "clientId": "server",
+            "level": "info",
+            "phase": "READY",
+            "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+          },
+          {
+            "sequence": 2,
+            "atUtc": "2026-10-05T15:59:40.252899+00:00",
+            "clientId": "server",
+            "level": "info",
+            "phase": "AUTOCOMMIT",
+            "detail": "Операция 1: создать выдачу; операция 2: занять экземпляр"
+          },
+          {
+            "sequence": 3,
+            "atUtc": "2026-10-05T15:59:40.2566351+00:00",
+            "clientId": "Client 1",
+            "level": "info",
+            "phase": "OPERATION 1",
+            "detail": "Выдача добавлена"
+          },
+          {
+            "sequence": 4,
+            "atUtc": "2026-10-05T15:59:40.6245262+00:00",
+            "clientId": "Client 1",
+            "level": "info",
+            "phase": "OPERATION 2",
+            "detail": "Экземпляр занят"
+          },
+          {
+            "sequence": 5,
+            "atUtc": "2026-10-05T15:59:40.62455+00:00",
+            "clientId": "server",
+            "level": "info",
+            "phase": "SAVED",
+            "detail": "Обе операции сохранены"
+          }
+        ],
+        "clients": []
+      }
+    },
+    {
+      "repeat": 1,
+      "snapshot": {
+        "id": "d50e242b-6fb3-462a-b4ed-11aa3348082a",
+        "mode": 2,
+        "failure": 1,
+        "status": "Partial",
+        "before": {
+          "copyAvailable": true,
+          "loans": 0,
+          "reservedPoints": 0
+        },
+        "after": {
+          "copyAvailable": true,
+          "loans": 1,
+          "reservedPoints": 0
+        },
+        "events": [
+          {
+            "sequence": 1,
+            "atUtc": "2026-10-05T15:59:40.6698949+00:00",
+            "clientId": "server",
+            "level": "info",
+            "phase": "READY",
+            "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+          },
+          {
+            "sequence": 2,
+            "atUtc": "2026-10-05T15:59:40.681707+00:00",
+            "clientId": "server",
+            "level": "info",
+            "phase": "AUTOCOMMIT",
+            "detail": "Операция 1: создать выдачу; операция 2: занять экземпляр"
+          },
+          {
+            "sequence": 3,
+            "atUtc": "2026-10-05T15:59:40.6846006+00:00",
+            "clientId": "Client 1",
+            "level": "info",
+            "phase": "OPERATION 1",
+            "detail": "Выдача добавлена"
+          },
+          {
+            "sequence": 4,
+            "atUtc": "2026-10-05T15:59:41.0358345+00:00",
+            "clientId": "server",
+            "level": "error",
+            "phase": "ERROR",
+            "detail": "Искусственная ошибка"
+          },
+          {
+            "sequence": 5,
+            "atUtc": "2026-10-05T15:59:41.0358795+00:00",
+            "clientId": "server",
+            "level": "warn",
+            "phase": "PARTIAL",
+            "detail": "Первое SaveChanges уже сохранило выдачу; экземпляр остался свободным"
+          }
+        ],
+        "clients": []
+      }
+    },
+    {
+      "repeat": 1,
+      "snapshot": {
+        "id": "1ea43c86-0fbe-4af7-9d62-d82c2e91c1e1",
+        "mode": 3,
+        "failure": 0,
+        "status": "Committed",
+        "before": {
+          "copyAvailable": true,
+          "loans": 0,
+          "reservedPoints": 0
+        },
+        "after": {
+          "copyAvailable": false,
+          "loans": 1,
+          "reservedPoints": 0
+        },
+        "events": [
+          {
+            "sequence": 1,
+            "atUtc": "2026-10-05T15:59:41.0856375+00:00",
+            "clientId": "server",
+            "level": "info",
+            "phase": "READY",
+            "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+          },
+          {
+            "sequence": 2,
+            "atUtc": "2026-10-05T15:59:41.09848+00:00",
+            "clientId": "server",
+            "level": "info",
+            "phase": "BEGIN",
+            "detail": "Операция 1: создать выдачу; операция 2: занять экземпляр"
+          },
+          {
+            "sequence": 3,
+            "atUtc": "2026-10-05T15:59:41.1007445+00:00",
+            "clientId": "Client 1",
+            "level": "info",
+            "phase": "OPERATION 1",
+            "detail": "Выдача добавлена"
+          },
+          {
+            "sequence": 4,
+            "atUtc": "2026-10-05T15:59:41.4591614+00:00",
+            "clientId": "Client 1",
+            "level": "info",
+            "phase": "OPERATION 2",
+            "detail": "Экземпляр занят"
+          },
+          {
+            "sequence": 5,
+            "atUtc": "2026-10-05T15:59:41.4607822+00:00",
+            "clientId": "server",
+            "level": "info",
+            "phase": "COMMIT",
+            "detail": "Обе операции сохранены"
+          }
+        ],
+        "clients": []
+      }
+    },
+    {
+      "repeat": 1,
+      "snapshot": {
+        "id": "4f848259-d7a3-4d4a-88f2-ded8b92efd3e",
+        "mode": 3,
+        "failure": 1,
+        "status": "RolledBack",
+        "before": {
+          "copyAvailable": true,
+          "loans": 0,
+          "reservedPoints": 0
+        },
+        "after": {
+          "copyAvailable": true,
+          "loans": 0,
+          "reservedPoints": 0
+        },
+        "events": [
+          {
+            "sequence": 1,
+            "atUtc": "2026-10-05T15:59:41.5064062+00:00",
+            "clientId": "server",
+            "level": "info",
+            "phase": "READY",
+            "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+          },
+          {
+            "sequence": 2,
+            "atUtc": "2026-10-05T15:59:41.5186859+00:00",
+            "clientId": "server",
+            "level": "info",
+            "phase": "BEGIN",
+            "detail": "Операция 1: создать выдачу; операция 2: занять экземпляр"
+          },
+          {
+            "sequence": 3,
+            "atUtc": "2026-10-05T15:59:41.5214209+00:00",
+            "clientId": "Client 1",
+            "level": "info",
+            "phase": "OPERATION 1",
+            "detail": "Выдача добавлена"
+          },
+          {
+            "sequence": 4,
+            "atUtc": "2026-10-05T15:59:41.876619+00:00",
+            "clientId": "server",
+            "level": "error",
+            "phase": "ERROR",
+            "detail": "Искусственная ошибка"
+          },
+          {
+            "sequence": 5,
+            "atUtc": "2026-10-05T15:59:41.8778475+00:00",
+            "clientId": "server",
+            "level": "warn",
+            "phase": "ROLLBACK",
+            "detail": "Изменения обеих операций отменены"
+          }
+        ],
+        "clients": []
+      }
+    },
+    {
+      "repeat": 1,
+      "snapshot": {
+        "id": "98f9a005-eb9e-49a7-b247-3adb9bfdf5e0",
+        "mode": 3,
+        "failure": 2,
+        "status": "RolledBack",
+        "before": {
+          "copyAvailable": true,
+          "loans": 0,
+          "reservedPoints": 0
+        },
+        "after": {
+          "copyAvailable": true,
+          "loans": 0,
+          "reservedPoints": 0
+        },
+        "events": [
+          {
+            "sequence": 1,
+            "atUtc": "2026-10-05T15:59:41.9273681+00:00",
+            "clientId": "server",
+            "level": "info",
+            "phase": "READY",
+            "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+          },
+          {
+            "sequence": 2,
+            "atUtc": "2026-10-05T15:59:41.9395577+00:00",
+            "clientId": "server",
+            "level": "info",
+            "phase": "BEGIN",
+            "detail": "Операция 1: создать выдачу; операция 2: занять экземпляр"
+          },
+          {
+            "sequence": 3,
+            "atUtc": "2026-10-05T15:59:41.9418358+00:00",
+            "clientId": "Client 1",
+            "level": "info",
+            "phase": "OPERATION 1",
+            "detail": "Выдача добавлена"
+          },
+          {
+            "sequence": 4,
+            "atUtc": "2026-10-05T15:59:42.2980931+00:00",
+            "clientId": "Client 1",
+            "level": "info",
+            "phase": "OPERATION 2",
+            "detail": "Экземпляр занят"
+          },
+          {
+            "sequence": 5,
+            "atUtc": "2026-10-05T15:59:42.2981721+00:00",
+            "clientId": "server",
+            "level": "error",
+            "phase": "ERROR",
+            "detail": "Искусственная ошибка"
+          },
+          {
+            "sequence": 6,
+            "atUtc": "2026-10-05T15:59:42.2986414+00:00",
+            "clientId": "server",
+            "level": "warn",
+            "phase": "ROLLBACK",
+            "detail": "Изменения обеих операций отменены"
+          }
+        ],
+        "clients": []
+      }
+    },
+    {
+      "repeat": 1,
+      "snapshot": {
+        "id": "9bcb2b4f-a31f-442f-a8f7-0762a16b6dfc",
+        "mode": 4,
+        "failure": 0,
+        "status": "Completed",
+        "before": {
+          "copyAvailable": true,
+          "loans": 0,
+          "reservedPoints": 0
+        },
+        "after": {
+          "copyAvailable": false,
+          "loans": 1,
+          "reservedPoints": 10
+        },
+        "events": [
+          {
+            "sequence": 1,
+            "atUtc": "2026-10-05T15:59:42.3485652+00:00",
+            "clientId": "server",
+            "level": "info",
+            "phase": "READY",
+            "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+          },
+          {
+            "sequence": 2,
+            "atUtc": "2026-10-05T15:59:42.3638507+00:00",
+            "clientId": "saga",
+            "level": "info",
+            "phase": "ReserveBookCopy",
+            "detail": "Catalog: экземпляр зарезервирован; локальный COMMIT"
+          },
+          {
+            "sequence": 3,
+            "atUtc": "2026-10-05T15:59:42.3786557+00:00",
+            "clientId": "saga",
+            "level": "info",
+            "phase": "ReservePoints",
+            "detail": "Economy: 10 BD зарезервированы; локальный COMMIT"
+          },
+          {
+            "sequence": 4,
+            "atUtc": "2026-10-05T15:59:42.3942477+00:00",
+            "clientId": "saga",
+            "level": "info",
+            "phase": "CreateLoan",
+            "detail": "Lending: выдача создана; локальный COMMIT"
+          }
+        ],
+        "clients": []
+      },
+      "intermediate": [
+        {
+          "id": "9bcb2b4f-a31f-442f-a8f7-0762a16b6dfc",
+          "mode": 4,
+          "failure": 0,
+          "status": "AwaitingPointsReservation",
+          "before": {
+            "copyAvailable": true,
+            "loans": 0,
+            "reservedPoints": 0
+          },
+          "after": {
+            "copyAvailable": false,
+            "loans": 0,
+            "reservedPoints": 0
+          },
+          "events": [
+            {
+              "sequence": 1,
+              "atUtc": "2026-10-05T15:59:42.3485652+00:00",
+              "clientId": "server",
+              "level": "info",
+              "phase": "READY",
+              "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+            },
+            {
+              "sequence": 2,
+              "atUtc": "2026-10-05T15:59:42.3638507+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReserveBookCopy",
+              "detail": "Catalog: экземпляр зарезервирован; локальный COMMIT"
+            }
+          ],
+          "clients": []
+        },
+        {
+          "id": "9bcb2b4f-a31f-442f-a8f7-0762a16b6dfc",
+          "mode": 4,
+          "failure": 0,
+          "status": "CreatingLoan",
+          "before": {
+            "copyAvailable": true,
+            "loans": 0,
+            "reservedPoints": 0
+          },
+          "after": {
+            "copyAvailable": false,
+            "loans": 0,
+            "reservedPoints": 10
+          },
+          "events": [
+            {
+              "sequence": 1,
+              "atUtc": "2026-10-05T15:59:42.3485652+00:00",
+              "clientId": "server",
+              "level": "info",
+              "phase": "READY",
+              "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+            },
+            {
+              "sequence": 2,
+              "atUtc": "2026-10-05T15:59:42.3638507+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReserveBookCopy",
+              "detail": "Catalog: экземпляр зарезервирован; локальный COMMIT"
+            },
+            {
+              "sequence": 3,
+              "atUtc": "2026-10-05T15:59:42.3786557+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReservePoints",
+              "detail": "Economy: 10 BD зарезервированы; локальный COMMIT"
+            }
+          ],
+          "clients": []
+        },
+        {
+          "id": "9bcb2b4f-a31f-442f-a8f7-0762a16b6dfc",
+          "mode": 4,
+          "failure": 0,
+          "status": "Completed",
+          "before": {
+            "copyAvailable": true,
+            "loans": 0,
+            "reservedPoints": 0
+          },
+          "after": {
+            "copyAvailable": false,
+            "loans": 1,
+            "reservedPoints": 10
+          },
+          "events": [
+            {
+              "sequence": 1,
+              "atUtc": "2026-10-05T15:59:42.3485652+00:00",
+              "clientId": "server",
+              "level": "info",
+              "phase": "READY",
+              "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+            },
+            {
+              "sequence": 2,
+              "atUtc": "2026-10-05T15:59:42.3638507+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReserveBookCopy",
+              "detail": "Catalog: экземпляр зарезервирован; локальный COMMIT"
+            },
+            {
+              "sequence": 3,
+              "atUtc": "2026-10-05T15:59:42.3786557+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReservePoints",
+              "detail": "Economy: 10 BD зарезервированы; локальный COMMIT"
+            },
+            {
+              "sequence": 4,
+              "atUtc": "2026-10-05T15:59:42.3942477+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "CreateLoan",
+              "detail": "Lending: выдача создана; локальный COMMIT"
+            }
+          ],
+          "clients": []
+        }
+      ]
+    },
+    {
+      "repeat": 1,
+      "snapshot": {
+        "id": "5e683457-0c56-46ff-962b-4579dae7f6ae",
+        "mode": 4,
+        "failure": 3,
+        "status": "Compensated",
+        "before": {
+          "copyAvailable": true,
+          "loans": 0,
+          "reservedPoints": 0
+        },
+        "after": {
+          "copyAvailable": true,
+          "loans": 0,
+          "reservedPoints": 0
+        },
+        "events": [
+          {
+            "sequence": 1,
+            "atUtc": "2026-10-05T15:59:42.4235586+00:00",
+            "clientId": "server",
+            "level": "info",
+            "phase": "READY",
+            "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+          },
+          {
+            "sequence": 2,
+            "atUtc": "2026-10-05T15:59:42.4408519+00:00",
+            "clientId": "saga",
+            "level": "info",
+            "phase": "ReserveBookCopy",
+            "detail": "Catalog: экземпляр зарезервирован; локальный COMMIT"
+          },
+          {
+            "sequence": 3,
+            "atUtc": "2026-10-05T15:59:42.4542331+00:00",
+            "clientId": "saga",
+            "level": "error",
+            "phase": "PointsReservationFailed",
+            "detail": "Economy: искусственный отказ → компенсация книги"
+          },
+          {
+            "sequence": 4,
+            "atUtc": "2026-10-05T15:59:42.4710223+00:00",
+            "clientId": "saga",
+            "level": "info",
+            "phase": "ReleaseBookCopy",
+            "detail": "Catalog: экземпляр освобождён новым COMMIT"
+          }
+        ],
+        "clients": []
+      },
+      "intermediate": [
+        {
+          "id": "5e683457-0c56-46ff-962b-4579dae7f6ae",
+          "mode": 4,
+          "failure": 3,
+          "status": "AwaitingPointsReservation",
+          "before": {
+            "copyAvailable": true,
+            "loans": 0,
+            "reservedPoints": 0
+          },
+          "after": {
+            "copyAvailable": false,
+            "loans": 0,
+            "reservedPoints": 0
+          },
+          "events": [
+            {
+              "sequence": 1,
+              "atUtc": "2026-10-05T15:59:42.4235586+00:00",
+              "clientId": "server",
+              "level": "info",
+              "phase": "READY",
+              "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+            },
+            {
+              "sequence": 2,
+              "atUtc": "2026-10-05T15:59:42.4408519+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReserveBookCopy",
+              "detail": "Catalog: экземпляр зарезервирован; локальный COMMIT"
+            }
+          ],
+          "clients": []
+        },
+        {
+          "id": "5e683457-0c56-46ff-962b-4579dae7f6ae",
+          "mode": 4,
+          "failure": 3,
+          "status": "CompensatingCopy",
+          "before": {
+            "copyAvailable": true,
+            "loans": 0,
+            "reservedPoints": 0
+          },
+          "after": {
+            "copyAvailable": false,
+            "loans": 0,
+            "reservedPoints": 0
+          },
+          "events": [
+            {
+              "sequence": 1,
+              "atUtc": "2026-10-05T15:59:42.4235586+00:00",
+              "clientId": "server",
+              "level": "info",
+              "phase": "READY",
+              "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+            },
+            {
+              "sequence": 2,
+              "atUtc": "2026-10-05T15:59:42.4408519+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReserveBookCopy",
+              "detail": "Catalog: экземпляр зарезервирован; локальный COMMIT"
+            },
+            {
+              "sequence": 3,
+              "atUtc": "2026-10-05T15:59:42.4542331+00:00",
+              "clientId": "saga",
+              "level": "error",
+              "phase": "PointsReservationFailed",
+              "detail": "Economy: искусственный отказ → компенсация книги"
+            }
+          ],
+          "clients": []
+        },
+        {
+          "id": "5e683457-0c56-46ff-962b-4579dae7f6ae",
+          "mode": 4,
+          "failure": 3,
+          "status": "Compensated",
+          "before": {
+            "copyAvailable": true,
+            "loans": 0,
+            "reservedPoints": 0
+          },
+          "after": {
+            "copyAvailable": true,
+            "loans": 0,
+            "reservedPoints": 0
+          },
+          "events": [
+            {
+              "sequence": 1,
+              "atUtc": "2026-10-05T15:59:42.4235586+00:00",
+              "clientId": "server",
+              "level": "info",
+              "phase": "READY",
+              "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+            },
+            {
+              "sequence": 2,
+              "atUtc": "2026-10-05T15:59:42.4408519+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReserveBookCopy",
+              "detail": "Catalog: экземпляр зарезервирован; локальный COMMIT"
+            },
+            {
+              "sequence": 3,
+              "atUtc": "2026-10-05T15:59:42.4542331+00:00",
+              "clientId": "saga",
+              "level": "error",
+              "phase": "PointsReservationFailed",
+              "detail": "Economy: искусственный отказ → компенсация книги"
+            },
+            {
+              "sequence": 4,
+              "atUtc": "2026-10-05T15:59:42.4710223+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReleaseBookCopy",
+              "detail": "Catalog: экземпляр освобождён новым COMMIT"
+            }
+          ],
+          "clients": []
+        }
+      ]
+    },
+    {
+      "repeat": 1,
+      "snapshot": {
+        "id": "33808413-e106-428b-8b35-a53fec743436",
+        "mode": 4,
+        "failure": 4,
+        "status": "Compensated",
+        "before": {
+          "copyAvailable": true,
+          "loans": 0,
+          "reservedPoints": 0
+        },
+        "after": {
+          "copyAvailable": true,
+          "loans": 0,
+          "reservedPoints": 0
+        },
+        "events": [
+          {
+            "sequence": 1,
+            "atUtc": "2026-10-05T15:59:42.5025271+00:00",
+            "clientId": "server",
+            "level": "info",
+            "phase": "READY",
+            "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+          },
+          {
+            "sequence": 2,
+            "atUtc": "2026-10-05T15:59:42.5199318+00:00",
+            "clientId": "saga",
+            "level": "info",
+            "phase": "ReserveBookCopy",
+            "detail": "Catalog: экземпляр зарезервирован; локальный COMMIT"
+          },
+          {
+            "sequence": 3,
+            "atUtc": "2026-10-05T15:59:42.5284753+00:00",
+            "clientId": "saga",
+            "level": "info",
+            "phase": "ReservePoints",
+            "detail": "Economy: 10 BD зарезервированы; локальный COMMIT"
+          },
+          {
+            "sequence": 4,
+            "atUtc": "2026-10-05T15:59:42.5512297+00:00",
+            "clientId": "saga",
+            "level": "error",
+            "phase": "LoanCreationFailed",
+            "detail": "Lending: искусственный отказ → обратные действия"
+          },
+          {
+            "sequence": 5,
+            "atUtc": "2026-10-05T15:59:42.5666177+00:00",
+            "clientId": "saga",
+            "level": "info",
+            "phase": "ReleasePoints",
+            "detail": "Economy: резерв 10 BD снят новым COMMIT"
+          },
+          {
+            "sequence": 6,
+            "atUtc": "2026-10-05T15:59:42.5743193+00:00",
+            "clientId": "saga",
+            "level": "info",
+            "phase": "ReleaseBookCopy",
+            "detail": "Catalog: экземпляр освобождён новым COMMIT"
+          }
+        ],
+        "clients": []
+      },
+      "intermediate": [
+        {
+          "id": "33808413-e106-428b-8b35-a53fec743436",
+          "mode": 4,
+          "failure": 4,
+          "status": "AwaitingPointsReservation",
+          "before": {
+            "copyAvailable": true,
+            "loans": 0,
+            "reservedPoints": 0
+          },
+          "after": {
+            "copyAvailable": false,
+            "loans": 0,
+            "reservedPoints": 0
+          },
+          "events": [
+            {
+              "sequence": 1,
+              "atUtc": "2026-10-05T15:59:42.5025271+00:00",
+              "clientId": "server",
+              "level": "info",
+              "phase": "READY",
+              "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+            },
+            {
+              "sequence": 2,
+              "atUtc": "2026-10-05T15:59:42.5199318+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReserveBookCopy",
+              "detail": "Catalog: экземпляр зарезервирован; локальный COMMIT"
+            }
+          ],
+          "clients": []
+        },
+        {
+          "id": "33808413-e106-428b-8b35-a53fec743436",
+          "mode": 4,
+          "failure": 4,
+          "status": "CreatingLoan",
+          "before": {
+            "copyAvailable": true,
+            "loans": 0,
+            "reservedPoints": 0
+          },
+          "after": {
+            "copyAvailable": false,
+            "loans": 0,
+            "reservedPoints": 10
+          },
+          "events": [
+            {
+              "sequence": 1,
+              "atUtc": "2026-10-05T15:59:42.5025271+00:00",
+              "clientId": "server",
+              "level": "info",
+              "phase": "READY",
+              "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+            },
+            {
+              "sequence": 2,
+              "atUtc": "2026-10-05T15:59:42.5199318+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReserveBookCopy",
+              "detail": "Catalog: экземпляр зарезервирован; локальный COMMIT"
+            },
+            {
+              "sequence": 3,
+              "atUtc": "2026-10-05T15:59:42.5284753+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReservePoints",
+              "detail": "Economy: 10 BD зарезервированы; локальный COMMIT"
+            }
+          ],
+          "clients": []
+        },
+        {
+          "id": "33808413-e106-428b-8b35-a53fec743436",
+          "mode": 4,
+          "failure": 4,
+          "status": "CompensatingPoints",
+          "before": {
+            "copyAvailable": true,
+            "loans": 0,
+            "reservedPoints": 0
+          },
+          "after": {
+            "copyAvailable": false,
+            "loans": 0,
+            "reservedPoints": 10
+          },
+          "events": [
+            {
+              "sequence": 1,
+              "atUtc": "2026-10-05T15:59:42.5025271+00:00",
+              "clientId": "server",
+              "level": "info",
+              "phase": "READY",
+              "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+            },
+            {
+              "sequence": 2,
+              "atUtc": "2026-10-05T15:59:42.5199318+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReserveBookCopy",
+              "detail": "Catalog: экземпляр зарезервирован; локальный COMMIT"
+            },
+            {
+              "sequence": 3,
+              "atUtc": "2026-10-05T15:59:42.5284753+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReservePoints",
+              "detail": "Economy: 10 BD зарезервированы; локальный COMMIT"
+            },
+            {
+              "sequence": 4,
+              "atUtc": "2026-10-05T15:59:42.5512297+00:00",
+              "clientId": "saga",
+              "level": "error",
+              "phase": "LoanCreationFailed",
+              "detail": "Lending: искусственный отказ → обратные действия"
+            }
+          ],
+          "clients": []
+        },
+        {
+          "id": "33808413-e106-428b-8b35-a53fec743436",
+          "mode": 4,
+          "failure": 4,
+          "status": "CompensatingCopy",
+          "before": {
+            "copyAvailable": true,
+            "loans": 0,
+            "reservedPoints": 0
+          },
+          "after": {
+            "copyAvailable": false,
+            "loans": 0,
+            "reservedPoints": 0
+          },
+          "events": [
+            {
+              "sequence": 1,
+              "atUtc": "2026-10-05T15:59:42.5025271+00:00",
+              "clientId": "server",
+              "level": "info",
+              "phase": "READY",
+              "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+            },
+            {
+              "sequence": 2,
+              "atUtc": "2026-10-05T15:59:42.5199318+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReserveBookCopy",
+              "detail": "Catalog: экземпляр зарезервирован; локальный COMMIT"
+            },
+            {
+              "sequence": 3,
+              "atUtc": "2026-10-05T15:59:42.5284753+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReservePoints",
+              "detail": "Economy: 10 BD зарезервированы; локальный COMMIT"
+            },
+            {
+              "sequence": 4,
+              "atUtc": "2026-10-05T15:59:42.5512297+00:00",
+              "clientId": "saga",
+              "level": "error",
+              "phase": "LoanCreationFailed",
+              "detail": "Lending: искусственный отказ → обратные действия"
+            },
+            {
+              "sequence": 5,
+              "atUtc": "2026-10-05T15:59:42.5666177+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReleasePoints",
+              "detail": "Economy: резерв 10 BD снят новым COMMIT"
+            }
+          ],
+          "clients": []
+        },
+        {
+          "id": "33808413-e106-428b-8b35-a53fec743436",
+          "mode": 4,
+          "failure": 4,
+          "status": "Compensated",
+          "before": {
+            "copyAvailable": true,
+            "loans": 0,
+            "reservedPoints": 0
+          },
+          "after": {
+            "copyAvailable": true,
+            "loans": 0,
+            "reservedPoints": 0
+          },
+          "events": [
+            {
+              "sequence": 1,
+              "atUtc": "2026-10-05T15:59:42.5025271+00:00",
+              "clientId": "server",
+              "level": "info",
+              "phase": "READY",
+              "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+            },
+            {
+              "sequence": 2,
+              "atUtc": "2026-10-05T15:59:42.5199318+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReserveBookCopy",
+              "detail": "Catalog: экземпляр зарезервирован; локальный COMMIT"
+            },
+            {
+              "sequence": 3,
+              "atUtc": "2026-10-05T15:59:42.5284753+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReservePoints",
+              "detail": "Economy: 10 BD зарезервированы; локальный COMMIT"
+            },
+            {
+              "sequence": 4,
+              "atUtc": "2026-10-05T15:59:42.5512297+00:00",
+              "clientId": "saga",
+              "level": "error",
+              "phase": "LoanCreationFailed",
+              "detail": "Lending: искусственный отказ → обратные действия"
+            },
+            {
+              "sequence": 5,
+              "atUtc": "2026-10-05T15:59:42.5666177+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReleasePoints",
+              "detail": "Economy: резерв 10 BD снят новым COMMIT"
+            },
+            {
+              "sequence": 6,
+              "atUtc": "2026-10-05T15:59:42.5743193+00:00",
+              "clientId": "saga",
+              "level": "info",
+              "phase": "ReleaseBookCopy",
+              "detail": "Catalog: экземпляр освобождён новым COMMIT"
+            }
+          ],
+          "clients": []
+        }
+      ]
+    }
+  ]
+}

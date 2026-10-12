@@ -25,6 +25,8 @@ public sealed class MessageConsumer<TDbContext>(
     where TDbContext : DbContext
 {
     private IChannel? _channel;
+    private DateTimeOffset _lastErrorAt;
+    private bool _unavailable;
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
@@ -39,12 +41,19 @@ public sealed class MessageConsumer<TDbContext>(
                 var consumer = new AsyncEventingBasicConsumer(_channel);
                 consumer.ReceivedAsync += (_, args) => OnMessage(args, stoppingToken);
                 await _channel.BasicConsumeAsync(definition.QueueName, autoAck: false, consumer, stoppingToken);
+                if (_unavailable) logger.LogInformation("Consumer {Queue} connection restored", definition.QueueName);
+                _unavailable = false;
                 await Task.Delay(Timeout.Infinite, stoppingToken);
             }
             catch (OperationCanceledException) when (stoppingToken.IsCancellationRequested) { }
             catch (Exception ex)
             {
-                logger.LogError(ex, "RabbitMQ consumer {Queue} stopped; reconnecting", definition.QueueName);
+                if (!_unavailable || DateTimeOffset.UtcNow - _lastErrorAt > TimeSpan.FromSeconds(30))
+                {
+                    logger.LogError(ex, "Consumer {Queue} unavailable; reconnecting", definition.QueueName);
+                    _lastErrorAt = DateTimeOffset.UtcNow;
+                }
+                _unavailable = true;
                 await Task.Delay(TimeSpan.FromSeconds(5), stoppingToken);
             }
         }
@@ -93,6 +102,8 @@ public sealed class MessageConsumer<TDbContext>(
             });
             await db.SaveChangesAsync(cancellationToken);
             await transaction.CommitAsync(cancellationToken);
+            logger.LogInformation("{Queue} ← {Event} · local COMMIT · correlation {Correlation}",
+                definition.QueueName, envelope.Type, envelope.CorrelationId);
             await _channel.BasicAckAsync(args.DeliveryTag, false, cancellationToken);
         }
         catch (Exception ex)

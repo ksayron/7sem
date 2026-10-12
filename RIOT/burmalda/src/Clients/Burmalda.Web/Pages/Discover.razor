@@ -23,6 +23,7 @@ else
 
     @if (!string.IsNullOrWhiteSpace(message)) { <div class="notice-banner">@message</div> }
     @if (!string.IsNullOrWhiteSpace(error)) { <div class="form-error">@error</div> }
+    @if (activeSaga is { } sagaId) { <LoanSagaTracker SagaId="sagaId" /> }
 
     @if (loading)
     {
@@ -76,6 +77,7 @@ else
     private bool copiesLoading;
     private string? error;
     private string? message;
+    private Guid? activeSaga;
 
     protected override async Task OnInitializedAsync() { if (Auth.IsAuthenticated) await Search(); else loading = false; }
 
@@ -101,7 +103,7 @@ else
     private async Task Request(Guid copyId)
     {
         error = null;
-        try { var receipt = await Api.RequestLoanAsync(copyId); message = $"Request accepted. Reservation workflow {receipt.Id.ToString()[..8]} is now running."; }
+        try { var receipt = await Api.RequestLoanAsync(copyId); activeSaga = receipt.Id; message = $"Request accepted. Reservation workflow {receipt.Id.ToString()[..8]} is now running."; }
         catch (Exception ex) when (ex is ApiException or HttpRequestException) { error = ex.Message; }
     }
 

@@ -23,6 +23,8 @@ public sealed record OwnedCopy(Guid Id, Guid BookId, Guid OwnerId, int Condition
 public sealed record CreatedId(Guid Id);
 public sealed record CreatedBook(Guid Id);
 public sealed record LoanRequestReceipt(Guid Id, int State, DateTimeOffset Deadline);
+public sealed record LoanSagaSnapshot(Guid Id, int State, Guid CopyId, Guid? PointsReservationId,
+    Guid? LoanId, string? FailureReason, DateTimeOffset CreatedAt, DateTimeOffset UpdatedAt, DateTimeOffset Deadline);
 
 public sealed record LoanItem(
     Guid Id, Guid SagaId, Guid CopyId, Guid BorrowerId, Guid OwnerId, Guid ReservationId,

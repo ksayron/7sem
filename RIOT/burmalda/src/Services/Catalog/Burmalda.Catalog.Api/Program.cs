@@ -4,7 +4,7 @@ using Burmalda.ServiceDefaults;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Logging.ClearProviders(); builder.Logging.AddJsonConsole();
+builder.Logging.AddBurmaldaConsole(builder.Configuration);
 builder.Services.AddBurmaldaDefaults(builder.Configuration, "catalog-service");
 builder.Services.AddDbContext<CatalogDbContext>(o => o.UseNpgsql(builder.Configuration.GetConnectionString("Database")));
 builder.Services.AddServiceMessaging<CatalogDbContext, CatalogQueue>();

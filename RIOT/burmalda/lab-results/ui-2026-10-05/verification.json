@@ -1,0 +1,12 @@
+{
+  "verifiedAtUtc": "2026-10-05T16:12:23.317Z",
+  "checks": [
+    "lock",
+    "rollback",
+    "four-transaction-comparison",
+    "saga-compensation",
+    "mobile-overflow",
+    "two-independent-tabs"
+  ],
+  "pageErrors": []
+}

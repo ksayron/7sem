@@ -15,6 +15,7 @@ services:
       ECONOMY_DB_PASSWORD: ${ECONOMY_DB_PASSWORD:-economy_dev}
       REPUTATION_DB_PASSWORD: ${REPUTATION_DB_PASSWORD:-reputation_dev}
       NOTIFICATION_DB_PASSWORD: ${NOTIFICATION_DB_PASSWORD:-notification_dev}
+      CONCURRENCY_LAB_DB_PASSWORD: ${CONCURRENCY_LAB_DB_PASSWORD:-concurrency_lab_dev}
     ports:
       - "${POSTGRES_PORT:-5432}:5432"
     volumes:

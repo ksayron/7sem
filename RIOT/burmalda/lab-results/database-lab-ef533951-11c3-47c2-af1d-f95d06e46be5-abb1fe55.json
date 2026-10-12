@@ -1,0 +1,92 @@
+{
+  "id": "ef533951-11c3-47c2-af1d-f95d06e46be5",
+  "mode": 0,
+  "failure": 0,
+  "status": "Incorrect",
+  "before": {
+    "copyAvailable": true,
+    "loans": 0,
+    "reservedPoints": 0
+  },
+  "after": {
+    "copyAvailable": false,
+    "loans": 2,
+    "reservedPoints": 0
+  },
+  "events": [
+    {
+      "sequence": 1,
+      "atUtc": "2026-10-05T15:59:36.0217048\u002B00:00",
+      "clientId": "server",
+      "level": "info",
+      "phase": "READY",
+      "detail": "PostgreSQL: Resource = 1; Loans = 0; Points = 0"
+    },
+    {
+      "sequence": 2,
+      "atUtc": "2026-10-05T15:59:36.5693498\u002B00:00",
+      "clientId": "Client 1",
+      "level": "info",
+      "phase": "START Reserve",
+      "detail": "\u041E\u0436\u0438\u0434\u0430\u043D\u0438\u0435 \u0432\u0442\u043E\u0440\u043E\u0433\u043E \u043A\u043B\u0438\u0435\u043D\u0442\u0430"
+    },
+    {
+      "sequence": 3,
+      "atUtc": "2026-10-05T15:59:36.5693615\u002B00:00",
+      "clientId": "Client 2",
+      "level": "info",
+      "phase": "START Reserve",
+      "detail": "\u041E\u0436\u0438\u0434\u0430\u043D\u0438\u0435 \u0432\u0442\u043E\u0440\u043E\u0433\u043E \u043A\u043B\u0438\u0435\u043D\u0442\u0430"
+    },
+    {
+      "sequence": 4,
+      "atUtc": "2026-10-05T15:59:36.6134502\u002B00:00",
+      "clientId": "Client 2",
+      "level": "info",
+      "phase": "CHECK",
+      "detail": "Available = True"
+    },
+    {
+      "sequence": 5,
+      "atUtc": "2026-10-05T15:59:36.6233385\u002B00:00",
+      "clientId": "Client 1",
+      "level": "info",
+      "phase": "CHECK",
+      "detail": "Available = True"
+    },
+    {
+      "sequence": 6,
+      "atUtc": "2026-10-05T15:59:36.641391\u002B00:00",
+      "clientId": "Client 1",
+      "level": "warn",
+      "phase": "SUCCESS",
+      "detail": "\u0411\u0435\u0437 \u0441\u0438\u043D\u0445\u0440\u043E\u043D\u0438\u0437\u0430\u0446\u0438\u0438"
+    },
+    {
+      "sequence": 7,
+      "atUtc": "2026-10-05T15:59:36.6433195\u002B00:00",
+      "clientId": "Client 2",
+      "level": "warn",
+      "phase": "SUCCESS",
+      "detail": "\u0411\u0435\u0437 \u0441\u0438\u043D\u0445\u0440\u043E\u043D\u0438\u0437\u0430\u0446\u0438\u0438"
+    }
+  ],
+  "clients": [
+    {
+      "clientId": "Client 1",
+      "sentAtUtc": "2026-10-05T15:59:36.4630746\u002B00:00",
+      "startedAtUtc": "2026-10-05T15:59:36.5693489\u002B00:00",
+      "enteredAtUtc": "2026-10-05T15:59:36.5695146\u002B00:00",
+      "exitedAtUtc": "2026-10-05T15:59:36.6413883\u002B00:00",
+      "result": "SUCCESS"
+    },
+    {
+      "clientId": "Client 2",
+      "sentAtUtc": "2026-10-05T15:59:36.4630746\u002B00:00",
+      "startedAtUtc": "2026-10-05T15:59:36.5693611\u002B00:00",
+      "enteredAtUtc": "2026-10-05T15:59:36.5695016\u002B00:00",
+      "exitedAtUtc": "2026-10-05T15:59:36.6433188\u002B00:00",
+      "result": "SUCCESS"
+    }
+  ]
+}

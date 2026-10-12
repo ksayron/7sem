@@ -1,0 +1,27 @@
+{
+  "verifiedAtUtc": "2026-10-05T16:12:01.686Z",
+  "cases": [
+    {
+      "label": "unavailable-database",
+      "httpStatus": 503,
+      "repeated": 2,
+      "serverSurvived": true,
+      "memoryLabAvailable": true
+    },
+    {
+      "label": "invalid-database-credentials",
+      "httpStatus": 503,
+      "repeated": 2,
+      "serverSurvived": true,
+      "memoryLabAvailable": true
+    },
+    {
+      "label": "unavailable-server",
+      "browserErrorShown": true
+    },
+    {
+      "label": "database-error-ui",
+      "browserErrorShown": true
+    }
+  ]
+}
