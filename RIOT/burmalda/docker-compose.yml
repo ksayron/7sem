@@ -17,7 +17,7 @@ services:
       NOTIFICATION_DB_PASSWORD: ${NOTIFICATION_DB_PASSWORD:-notification_dev}
       CONCURRENCY_LAB_DB_PASSWORD: ${CONCURRENCY_LAB_DB_PASSWORD:-concurrency_lab_dev}
     ports:
-      - "${POSTGRES_PORT:-5432}:5432"
+      - "${POSTGRES_PORT:-5547}:5547"
     volumes:
       - postgres-data:/var/lib/postgresql/data
       - ./docker/postgres/init-databases.sh:/docker-entrypoint-initdb.d/10-init-databases.sh:ro

@@ -1,0 +1,547 @@
+{
+  "checked_at_utc": "2026-10-09T07:10:25.007082+00:00",
+  "database": "catalog_db",
+  "status": "passed",
+  "tables": 5,
+  "columns": 44,
+  "indexes": 9,
+  "physical_foreign_keys": 0,
+  "virtual_relationships": 2,
+  "columns_snapshot": [
+    {
+      "table_name": "book_copies",
+      "column_name": "Id",
+      "ordinal_position": 1,
+      "udt_name": "uuid",
+      "is_nullable": "NO",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "book_copies",
+      "column_name": "BookId",
+      "ordinal_position": 2,
+      "udt_name": "uuid",
+      "is_nullable": "NO",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "book_copies",
+      "column_name": "OwnerId",
+      "ordinal_position": 3,
+      "udt_name": "uuid",
+      "is_nullable": "NO",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "book_copies",
+      "column_name": "Condition",
+      "ordinal_position": 4,
+      "udt_name": "int4",
+      "is_nullable": "NO",
+      "character_maximum_length": null,
+      "numeric_precision": 32,
+      "numeric_scale": 0
+    },
+    {
+      "table_name": "book_copies",
+      "column_name": "Status",
+      "ordinal_position": 5,
+      "udt_name": "int4",
+      "is_nullable": "NO",
+      "character_maximum_length": null,
+      "numeric_precision": 32,
+      "numeric_scale": 0
+    },
+    {
+      "table_name": "book_copies",
+      "column_name": "LendingPrice",
+      "ordinal_position": 6,
+      "udt_name": "numeric",
+      "is_nullable": "NO",
+      "character_maximum_length": null,
+      "numeric_precision": 18,
+      "numeric_scale": 2
+    },
+    {
+      "table_name": "book_copies",
+      "column_name": "MaximumLoanDays",
+      "ordinal_position": 7,
+      "udt_name": "int4",
+      "is_nullable": "NO",
+      "character_maximum_length": null,
+      "numeric_precision": 32,
+      "numeric_scale": 0
+    },
+    {
+      "table_name": "book_copies",
+      "column_name": "Location",
+      "ordinal_position": 8,
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "book_copies",
+      "column_name": "IsHidden",
+      "ordinal_position": 9,
+      "udt_name": "bool",
+      "is_nullable": "NO",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "book_copies",
+      "column_name": "ReservationSagaId",
+      "ordinal_position": 10,
+      "udt_name": "uuid",
+      "is_nullable": "YES",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "book_copies",
+      "column_name": "ReservedForUserId",
+      "ordinal_position": 11,
+      "udt_name": "uuid",
+      "is_nullable": "YES",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "book_copies",
+      "column_name": "ReservationExpiresAt",
+      "ordinal_position": 12,
+      "udt_name": "timestamptz",
+      "is_nullable": "YES",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "book_copies",
+      "column_name": "Version",
+      "ordinal_position": 13,
+      "udt_name": "int8",
+      "is_nullable": "NO",
+      "character_maximum_length": null,
+      "numeric_precision": 64,
+      "numeric_scale": 0
+    },
+    {
+      "table_name": "book_copies",
+      "column_name": "CreatedAt",
+      "ordinal_position": 14,
+      "udt_name": "timestamptz",
+      "is_nullable": "NO",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "book_search_projection",
+      "column_name": "BookId",
+      "ordinal_position": 1,
+      "udt_name": "uuid",
+      "is_nullable": "NO",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "book_search_projection",
+      "column_name": "Isbn",
+      "ordinal_position": 2,
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "book_search_projection",
+      "column_name": "Title",
+      "ordinal_position": 3,
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "book_search_projection",
+      "column_name": "AuthorsText",
+      "ordinal_position": 4,
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "book_search_projection",
+      "column_name": "GenresText",
+      "ordinal_position": 5,
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "book_search_projection",
+      "column_name": "AvailableCopies",
+      "ordinal_position": 6,
+      "udt_name": "int4",
+      "is_nullable": "NO",
+      "character_maximum_length": null,
+      "numeric_precision": 32,
+      "numeric_scale": 0
+    },
+    {
+      "table_name": "book_search_projection",
+      "column_name": "MinimumPrice",
+      "ordinal_position": 7,
+      "udt_name": "numeric",
+      "is_nullable": "YES",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "book_search_projection",
+      "column_name": "UpdatedAt",
+      "ordinal_position": 8,
+      "udt_name": "timestamptz",
+      "is_nullable": "NO",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "books",
+      "column_name": "Id",
+      "ordinal_position": 1,
+      "udt_name": "uuid",
+      "is_nullable": "NO",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "books",
+      "column_name": "Isbn",
+      "ordinal_position": 2,
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "books",
+      "column_name": "Title",
+      "ordinal_position": 3,
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "books",
+      "column_name": "Description",
+      "ordinal_position": 4,
+      "udt_name": "text",
+      "is_nullable": "NO",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "books",
+      "column_name": "AuthorsJson",
+      "ordinal_position": 5,
+      "udt_name": "jsonb",
+      "is_nullable": "NO",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "books",
+      "column_name": "GenresJson",
+      "ordinal_position": 6,
+      "udt_name": "jsonb",
+      "is_nullable": "NO",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "books",
+      "column_name": "Publisher",
+      "ordinal_position": 7,
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "books",
+      "column_name": "PublicationYear",
+      "ordinal_position": 8,
+      "udt_name": "int4",
+      "is_nullable": "YES",
+      "character_maximum_length": null,
+      "numeric_precision": 32,
+      "numeric_scale": 0
+    },
+    {
+      "table_name": "books",
+      "column_name": "CoverUrl",
+      "ordinal_position": 9,
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "books",
+      "column_name": "CreatedAt",
+      "ordinal_position": 10,
+      "udt_name": "timestamptz",
+      "is_nullable": "NO",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "inbox_messages",
+      "column_name": "MessageId",
+      "ordinal_position": 1,
+      "udt_name": "uuid",
+      "is_nullable": "NO",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "inbox_messages",
+      "column_name": "Consumer",
+      "ordinal_position": 2,
+      "udt_name": "varchar",
+      "is_nullable": "NO",
+      "character_maximum_length": 200,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "inbox_messages",
+      "column_name": "ProcessedAt",
+      "ordinal_position": 3,
+      "udt_name": "timestamptz",
+      "is_nullable": "NO",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "outbox_messages",
+      "column_name": "Id",
+      "ordinal_position": 1,
+      "udt_name": "uuid",
+      "is_nullable": "NO",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "outbox_messages",
+      "column_name": "Exchange",
+      "ordinal_position": 2,
+      "udt_name": "varchar",
+      "is_nullable": "NO",
+      "character_maximum_length": 100,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "outbox_messages",
+      "column_name": "RoutingKey",
+      "ordinal_position": 3,
+      "udt_name": "varchar",
+      "is_nullable": "NO",
+      "character_maximum_length": 200,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "outbox_messages",
+      "column_name": "Type",
+      "ordinal_position": 4,
+      "udt_name": "varchar",
+      "is_nullable": "NO",
+      "character_maximum_length": 200,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "outbox_messages",
+      "column_name": "Payload",
+      "ordinal_position": 5,
+      "udt_name": "jsonb",
+      "is_nullable": "NO",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "outbox_messages",
+      "column_name": "OccurredAt",
+      "ordinal_position": 6,
+      "udt_name": "timestamptz",
+      "is_nullable": "NO",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "outbox_messages",
+      "column_name": "PublishedAt",
+      "ordinal_position": 7,
+      "udt_name": "timestamptz",
+      "is_nullable": "YES",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    },
+    {
+      "table_name": "outbox_messages",
+      "column_name": "RetryCount",
+      "ordinal_position": 8,
+      "udt_name": "int4",
+      "is_nullable": "NO",
+      "character_maximum_length": null,
+      "numeric_precision": 32,
+      "numeric_scale": 0
+    },
+    {
+      "table_name": "outbox_messages",
+      "column_name": "LastError",
+      "ordinal_position": 9,
+      "udt_name": "text",
+      "is_nullable": "YES",
+      "character_maximum_length": null,
+      "numeric_precision": null,
+      "numeric_scale": null
+    }
+  ],
+  "indexes_snapshot": [
+    {
+      "table_name": "book_copies",
+      "index_name": "IX_book_copies_BookId",
+      "is_primary": false,
+      "is_unique": false,
+      "columns": [
+        "BookId"
+      ]
+    },
+    {
+      "table_name": "book_copies",
+      "index_name": "IX_book_copies_Status_IsHidden",
+      "is_primary": false,
+      "is_unique": false,
+      "columns": [
+        "Status",
+        "IsHidden"
+      ]
+    },
+    {
+      "table_name": "book_copies",
+      "index_name": "PK_book_copies",
+      "is_primary": true,
+      "is_unique": true,
+      "columns": [
+        "Id"
+      ]
+    },
+    {
+      "table_name": "book_search_projection",
+      "index_name": "PK_book_search_projection",
+      "is_primary": true,
+      "is_unique": true,
+      "columns": [
+        "BookId"
+      ]
+    },
+    {
+      "table_name": "books",
+      "index_name": "IX_books_Isbn",
+      "is_primary": false,
+      "is_unique": true,
+      "columns": [
+        "Isbn"
+      ]
+    },
+    {
+      "table_name": "books",
+      "index_name": "PK_books",
+      "is_primary": true,
+      "is_unique": true,
+      "columns": [
+        "Id"
+      ]
+    },
+    {
+      "table_name": "inbox_messages",
+      "index_name": "PK_inbox_messages",
+      "is_primary": true,
+      "is_unique": true,
+      "columns": [
+        "MessageId",
+        "Consumer"
+      ]
+    },
+    {
+      "table_name": "outbox_messages",
+      "index_name": "IX_outbox_messages_PublishedAt_OccurredAt",
+      "is_primary": false,
+      "is_unique": false,
+      "columns": [
+        "PublishedAt",
+        "OccurredAt"
+      ]
+    },
+    {
+      "table_name": "outbox_messages",
+      "index_name": "PK_outbox_messages",
+      "is_primary": true,
+      "is_unique": true,
+      "columns": [
+        "Id"
+      ]
+    }
+  ],
+  "checks": [
+    "table coverage",
+    "column coverage and types",
+    "nullability",
+    "varchar lengths and numeric precision",
+    "index columns and uniqueness",
+    "virtual links only",
+    "no saved database connections"
+  ]
+}

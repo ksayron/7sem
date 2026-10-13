@@ -1,0 +1,1288 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="Burmalda — базы всех сервисов" database="PostgreSQL" id="2223efa9-e96a-4ee8-bcf9-548e4bb87fc6" >
+	<schema name="public" catalogname="catalog_db" >
+		<comment><![CDATA[standard public schema]]></comment>
+		<table name="book_copies" row_count="0" spec="" >
+			<column name="Id" type="uuid" mandatory="y" />
+			<column name="BookId" type="uuid" mandatory="y" >
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь. → catalog_db.public.books.Id]]></comment>
+			</column>
+			<column name="OwnerId" type="uuid" mandatory="y" >
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов. → identity_db.public.users.Id]]></comment>
+			</column>
+			<column name="Condition" type="integer" length="32" mandatory="y" />
+			<column name="Status" type="integer" length="32" mandatory="y" />
+			<column name="LendingPrice" type="decimal" length="18" decimal="2" mandatory="y" />
+			<column name="MaximumLoanDays" type="integer" length="32" mandatory="y" />
+			<column name="Location" type="text" mandatory="y" />
+			<column name="IsHidden" type="boolean" mandatory="y" />
+			<column name="ReservationSagaId" type="uuid" >
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов. → lending_db.public.loan_request_sagas.Id]]></comment>
+			</column>
+			<column name="ReservedForUserId" type="uuid" >
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов. → identity_db.public.users.Id]]></comment>
+			</column>
+			<column name="ReservationExpiresAt" type="timestamptz" />
+			<column name="Version" type="bigint" length="64" mandatory="y" />
+			<column name="CreatedAt" type="timestamptz" mandatory="y" />
+			<index name="PK_book_copies" unique="PRIMARY_KEY" >
+				<column name="Id" />
+			</index>
+			<index name="IX_book_copies_BookId" unique="NORMAL" spec="USING  btree" >
+				<column name="BookId" />
+			</index>
+			<index name="IX_book_copies_Status_IsHidden" unique="NORMAL" spec="USING  btree" >
+				<column name="Status" />
+				<column name="IsHidden" />
+			</index>
+			<fk name="virtual_book_copies_BookId" virtual="y" to_schema="catalog_db.public" to_table="books" >
+				<fk_column name="BookId" pk="Id" />
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь.]]></comment>
+			</fk>
+			<fk name="virtual_book_copies_OwnerId" virtual="y" to_schema="identity_db.public" to_table="users" >
+				<fk_column name="OwnerId" pk="Id" />
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов.]]></comment>
+			</fk>
+			<fk name="virtual_book_copies_ReservedForUserId" virtual="y" to_schema="identity_db.public" to_table="users" >
+				<fk_column name="ReservedForUserId" pk="Id" />
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов.]]></comment>
+			</fk>
+			<fk name="virtual_book_copies_ReservationSagaId" virtual="y" to_schema="lending_db.public" to_table="loan_request_sagas" >
+				<fk_column name="ReservationSagaId" pk="Id" />
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов.]]></comment>
+			</fk>
+		</table>
+		<table name="book_search_projection" row_count="0" spec="" >
+			<comment><![CDATA[Поисковая проекция Catalog; одна строка на BookId. Логическая связь с books, FK в БД отсутствует.]]></comment>
+			<column name="BookId" type="uuid" mandatory="y" >
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь. → catalog_db.public.books.Id]]></comment>
+			</column>
+			<column name="Isbn" type="text" mandatory="y" />
+			<column name="Title" type="text" mandatory="y" />
+			<column name="AuthorsText" type="text" mandatory="y" />
+			<column name="GenresText" type="text" mandatory="y" />
+			<column name="AvailableCopies" type="integer" length="32" mandatory="y" />
+			<column name="MinimumPrice" type="decimal" />
+			<column name="UpdatedAt" type="timestamptz" mandatory="y" />
+			<index name="PK_book_search_projection" unique="PRIMARY_KEY" >
+				<column name="BookId" />
+			</index>
+			<fk name="virtual_book_search_projection_BookId" virtual="y" to_schema="catalog_db.public" to_table="books" >
+				<fk_column name="BookId" pk="Id" />
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь.]]></comment>
+			</fk>
+		</table>
+		<table name="books" row_count="0" spec="" >
+			<comment><![CDATA[Библиографические записи. Авторы и жанры хранятся в JSONB, отдельных таблиц нет.]]></comment>
+			<column name="Id" type="uuid" mandatory="y" />
+			<column name="Isbn" type="text" mandatory="y" />
+			<column name="Title" type="text" mandatory="y" />
+			<column name="Description" type="text" mandatory="y" />
+			<column name="AuthorsJson" type="jsonb" mandatory="y" />
+			<column name="GenresJson" type="jsonb" mandatory="y" />
+			<column name="Publisher" type="text" />
+			<column name="PublicationYear" type="integer" length="32" />
+			<column name="CoverUrl" type="text" />
+			<column name="CreatedAt" type="timestamptz" mandatory="y" />
+			<index name="PK_books" unique="PRIMARY_KEY" >
+				<column name="Id" />
+			</index>
+			<index name="IX_books_Isbn" unique="UNIQUE_INDEX" spec="USING  btree" >
+				<column name="Isbn" />
+			</index>
+		</table>
+		<table name="inbox_messages" row_count="0" spec="" >
+			<comment><![CDATA[Дедупликация входящих сообщений по составному PK (MessageId, Consumer).]]></comment>
+			<column name="MessageId" type="uuid" mandatory="y" />
+			<column name="Consumer" type="varchar" length="200" mandatory="y" />
+			<column name="ProcessedAt" type="timestamptz" mandatory="y" />
+			<index name="PK_inbox_messages" unique="PRIMARY_KEY" >
+				<column name="MessageId" />
+				<column name="Consumer" />
+			</index>
+		</table>
+		<table name="outbox_messages" row_count="0" spec="" >
+			<comment><![CDATA[Исходящие сообщения этого сервиса. RabbitMQ публикует их асинхронно. Прямая FK-связь с inbox другого сервиса отсутствует.]]></comment>
+			<column name="Id" type="uuid" mandatory="y" />
+			<column name="Exchange" type="varchar" length="100" mandatory="y" />
+			<column name="RoutingKey" type="varchar" length="200" mandatory="y" />
+			<column name="Type" type="varchar" length="200" mandatory="y" />
+			<column name="Payload" type="jsonb" mandatory="y" />
+			<column name="OccurredAt" type="timestamptz" mandatory="y" />
+			<column name="PublishedAt" type="timestamptz" />
+			<column name="RetryCount" type="integer" length="32" mandatory="y" />
+			<column name="LastError" type="text" />
+			<index name="PK_outbox_messages" unique="PRIMARY_KEY" >
+				<column name="Id" />
+			</index>
+			<index name="IX_outbox_messages_PublishedAt_OccurredAt" unique="NORMAL" spec="USING  btree" >
+				<column name="PublishedAt" />
+				<column name="OccurredAt" />
+			</index>
+		</table>
+	</schema>
+	<schema name="public" catalogname="concurrency_lab_db" >
+		<comment><![CDATA[standard public schema]]></comment>
+		<table name="lab_copies" row_count="120" spec="" >
+			<comment><![CDATA[Изолированные учебные данные. CHECK ReservedPoints >= 0. Не ссылается на реальные книги и пользователей.]]></comment>
+			<column name="Id" type="uuid" mandatory="y" />
+			<column name="Title" type="varchar" length="200" mandatory="y" />
+			<column name="Available" type="boolean" mandatory="y" />
+			<column name="ReservedPoints" type="integer" length="32" mandatory="y" />
+			<index name="PK_lab_copies" unique="PRIMARY_KEY" >
+				<column name="Id" />
+			</index>
+			<constraint name="ck_points" type="CHECK" options="" >
+				<string><![CDATA["ReservedPoints" >= 0]]></string>
+			</constraint>
+		</table>
+		<table name="lab_loans" row_count="0" spec="" >
+			<column name="Id" type="uuid" mandatory="y" />
+			<column name="CopyId" type="uuid" mandatory="y" />
+			<column name="ClientId" type="varchar" length="32" mandatory="y" />
+			<index name="PK_lab_loans" unique="PRIMARY_KEY" >
+				<column name="Id" />
+			</index>
+			<index name="IX_lab_loans_CopyId" unique="NORMAL" spec="USING  btree" >
+				<column name="CopyId" />
+			</index>
+			<fk name="FK_lab_loans_lab_copies_CopyId" to_schema="concurrency_lab_db.public" to_table="lab_copies" delete_action="cascade" options="" >
+				<fk_column name="CopyId" pk="Id" />
+			</fk>
+		</table>
+	</schema>
+	<schema name="public" catalogname="economy_db" >
+		<comment><![CDATA[standard public schema]]></comment>
+		<table name="balance_transactions" row_count="0" spec="" >
+			<comment><![CDATA[Журнал операций баллов; IdempotencyKey защищает от повторной обработки.]]></comment>
+			<column name="Id" type="uuid" mandatory="y" />
+			<column name="UserId" type="uuid" mandatory="y" >
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь. → economy_db.public.wallets.UserId]]></comment>
+			</column>
+			<column name="Amount" type="decimal" length="18" decimal="2" mandatory="y" />
+			<column name="Type" type="integer" length="32" mandatory="y" />
+			<column name="LoanId" type="uuid" >
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов. → lending_db.public.loans.Id]]></comment>
+			</column>
+			<column name="Description" type="text" mandatory="y" />
+			<column name="CreatedAt" type="timestamptz" mandatory="y" />
+			<column name="IdempotencyKey" type="text" mandatory="y" />
+			<index name="PK_balance_transactions" unique="PRIMARY_KEY" >
+				<column name="Id" />
+			</index>
+			<index name="IX_balance_transactions_IdempotencyKey" unique="UNIQUE_INDEX" spec="USING  btree" >
+				<column name="IdempotencyKey" />
+			</index>
+			<index name="IX_balance_transactions_UserId_CreatedAt" unique="NORMAL" spec="USING  btree" >
+				<column name="UserId" />
+				<column name="CreatedAt" />
+			</index>
+			<fk name="virtual_balance_transactions_UserId" virtual="y" to_schema="economy_db.public" to_table="wallets" >
+				<fk_column name="UserId" pk="UserId" />
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь.]]></comment>
+			</fk>
+			<fk name="virtual_balance_transactions_LoanId" virtual="y" to_schema="lending_db.public" to_table="loans" >
+				<fk_column name="LoanId" pk="Id" />
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов.]]></comment>
+			</fk>
+		</table>
+		<table name="fines" row_count="0" spec="" >
+			<column name="Id" type="uuid" mandatory="y" />
+			<column name="LoanId" type="uuid" mandatory="y" >
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов. → lending_db.public.loans.Id]]></comment>
+			</column>
+			<column name="UserId" type="uuid" mandatory="y" >
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь. → economy_db.public.wallets.UserId]]></comment>
+			</column>
+			<column name="Amount" type="decimal" length="18" decimal="2" mandatory="y" />
+			<column name="Reason" type="text" mandatory="y" />
+			<column name="Status" type="integer" length="32" mandatory="y" />
+			<column name="CreatedAt" type="timestamptz" mandatory="y" />
+			<index name="PK_fines" unique="PRIMARY_KEY" >
+				<column name="Id" />
+			</index>
+			<index name="IX_fines_LoanId" unique="UNIQUE_INDEX" spec="USING  btree" >
+				<column name="LoanId" />
+			</index>
+			<fk name="virtual_fines_UserId" virtual="y" to_schema="economy_db.public" to_table="wallets" >
+				<fk_column name="UserId" pk="UserId" />
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь.]]></comment>
+			</fk>
+			<fk name="virtual_fines_LoanId" virtual="y" to_schema="lending_db.public" to_table="loans" >
+				<fk_column name="LoanId" pk="Id" />
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов.]]></comment>
+			</fk>
+		</table>
+		<table name="inbox_messages" row_count="0" spec="" >
+			<comment><![CDATA[Дедупликация входящих сообщений по составному PK (MessageId, Consumer).]]></comment>
+			<column name="MessageId" type="uuid" mandatory="y" />
+			<column name="Consumer" type="varchar" length="200" mandatory="y" />
+			<column name="ProcessedAt" type="timestamptz" mandatory="y" />
+			<index name="PK_inbox_messages" unique="PRIMARY_KEY" >
+				<column name="MessageId" />
+				<column name="Consumer" />
+			</index>
+		</table>
+		<table name="outbox_messages" row_count="0" spec="" >
+			<comment><![CDATA[Исходящие сообщения этого сервиса. RabbitMQ публикует их асинхронно. Прямая FK-связь с inbox другого сервиса отсутствует.]]></comment>
+			<column name="Id" type="uuid" mandatory="y" />
+			<column name="Exchange" type="varchar" length="100" mandatory="y" />
+			<column name="RoutingKey" type="varchar" length="200" mandatory="y" />
+			<column name="Type" type="varchar" length="200" mandatory="y" />
+			<column name="Payload" type="jsonb" mandatory="y" />
+			<column name="OccurredAt" type="timestamptz" mandatory="y" />
+			<column name="PublishedAt" type="timestamptz" />
+			<column name="RetryCount" type="integer" length="32" mandatory="y" />
+			<column name="LastError" type="text" />
+			<index name="PK_outbox_messages" unique="PRIMARY_KEY" >
+				<column name="Id" />
+			</index>
+			<index name="IX_outbox_messages_PublishedAt_OccurredAt" unique="NORMAL" spec="USING  btree" >
+				<column name="PublishedAt" />
+				<column name="OccurredAt" />
+			</index>
+		</table>
+		<table name="point_reservations" row_count="0" spec="" >
+			<column name="Id" type="uuid" mandatory="y" />
+			<column name="SagaId" type="uuid" mandatory="y" >
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов. → lending_db.public.loan_request_sagas.Id]]></comment>
+			</column>
+			<column name="UserId" type="uuid" mandatory="y" >
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь. → economy_db.public.wallets.UserId]]></comment>
+			</column>
+			<column name="Amount" type="decimal" length="18" decimal="2" mandatory="y" />
+			<column name="Status" type="integer" length="32" mandatory="y" />
+			<column name="ExpiresAt" type="timestamptz" mandatory="y" />
+			<column name="CreatedAt" type="timestamptz" mandatory="y" />
+			<column name="UpdatedAt" type="timestamptz" mandatory="y" />
+			<index name="PK_point_reservations" unique="PRIMARY_KEY" >
+				<column name="Id" />
+			</index>
+			<index name="IX_point_reservations_SagaId" unique="UNIQUE_INDEX" spec="USING  btree" >
+				<column name="SagaId" />
+			</index>
+			<index name="IX_point_reservations_UserId_Status" unique="NORMAL" spec="USING  btree" >
+				<column name="UserId" />
+				<column name="Status" />
+			</index>
+			<fk name="virtual_point_reservations_UserId" virtual="y" to_schema="economy_db.public" to_table="wallets" >
+				<fk_column name="UserId" pk="UserId" />
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь.]]></comment>
+			</fk>
+			<fk name="virtual_point_reservations_SagaId" virtual="y" to_schema="lending_db.public" to_table="loan_request_sagas" >
+				<fk_column name="SagaId" pk="Id" />
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов.]]></comment>
+			</fk>
+		</table>
+		<table name="wallets" row_count="0" spec="" >
+			<column name="UserId" type="uuid" mandatory="y" >
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов. → identity_db.public.users.Id]]></comment>
+			</column>
+			<column name="Balance" type="decimal" length="18" decimal="2" mandatory="y" />
+			<column name="UpdatedAt" type="timestamptz" mandatory="y" />
+			<column name="Version" type="bigint" length="64" mandatory="y" />
+			<index name="PK_wallets" unique="PRIMARY_KEY" >
+				<column name="UserId" />
+			</index>
+			<fk name="virtual_wallets_UserId" virtual="y" to_schema="identity_db.public" to_table="users" >
+				<fk_column name="UserId" pk="Id" />
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов.]]></comment>
+			</fk>
+		</table>
+	</schema>
+	<schema name="public" catalogname="identity_db" >
+		<comment><![CDATA[standard public schema]]></comment>
+		<table name="inbox_messages" row_count="0" spec="" >
+			<comment><![CDATA[Дедупликация входящих сообщений по составному PK (MessageId, Consumer).]]></comment>
+			<column name="MessageId" type="uuid" mandatory="y" />
+			<column name="Consumer" type="varchar" length="200" mandatory="y" />
+			<column name="ProcessedAt" type="timestamptz" mandatory="y" />
+			<index name="PK_inbox_messages" unique="PRIMARY_KEY" >
+				<column name="MessageId" />
+				<column name="Consumer" />
+			</index>
+		</table>
+		<table name="outbox_messages" row_count="0" spec="" >
+			<comment><![CDATA[Исходящие сообщения этого сервиса. RabbitMQ публикует их асинхронно. Прямая FK-связь с inbox другого сервиса отсутствует.]]></comment>
+			<column name="Id" type="uuid" mandatory="y" />
+			<column name="Exchange" type="varchar" length="100" mandatory="y" />
+			<column name="RoutingKey" type="varchar" length="200" mandatory="y" />
+			<column name="Type" type="varchar" length="200" mandatory="y" />
+			<column name="Payload" type="jsonb" mandatory="y" />
+			<column name="OccurredAt" type="timestamptz" mandatory="y" />
+			<column name="PublishedAt" type="timestamptz" />
+			<column name="RetryCount" type="integer" length="32" mandatory="y" />
+			<column name="LastError" type="text" />
+			<index name="PK_outbox_messages" unique="PRIMARY_KEY" >
+				<column name="Id" />
+			</index>
+			<index name="IX_outbox_messages_PublishedAt_OccurredAt" unique="NORMAL" spec="USING  btree" >
+				<column name="PublishedAt" />
+				<column name="OccurredAt" />
+			</index>
+		</table>
+		<table name="refresh_tokens" row_count="0" spec="" >
+			<column name="Id" type="uuid" mandatory="y" />
+			<column name="UserId" type="uuid" mandatory="y" >
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь. → identity_db.public.users.Id]]></comment>
+			</column>
+			<column name="TokenHash" type="varchar" length="128" mandatory="y" />
+			<column name="ExpiresAt" type="timestamptz" mandatory="y" />
+			<column name="RevokedAt" type="timestamptz" />
+			<index name="PK_refresh_tokens" unique="PRIMARY_KEY" >
+				<column name="Id" />
+			</index>
+			<index name="IX_refresh_tokens_TokenHash" unique="UNIQUE_INDEX" spec="USING  btree" >
+				<column name="TokenHash" />
+			</index>
+			<index name="IX_refresh_tokens_UserId" unique="NORMAL" spec="USING  btree" >
+				<column name="UserId" />
+			</index>
+			<fk name="virtual_refresh_tokens_UserId" virtual="y" to_schema="identity_db.public" to_table="users" >
+				<fk_column name="UserId" pk="Id" />
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь.]]></comment>
+			</fk>
+		</table>
+		<table name="users" row_count="0" spec="" >
+			<column name="Id" type="uuid" mandatory="y" />
+			<column name="Email" type="varchar" length="320" mandatory="y" />
+			<column name="NormalizedEmail" type="varchar" length="320" mandatory="y" />
+			<column name="DisplayName" type="varchar" length="120" mandatory="y" />
+			<column name="PasswordHash" type="text" mandatory="y" />
+			<column name="Role" type="varchar" length="32" mandatory="y" />
+			<column name="IsActive" type="boolean" mandatory="y" />
+			<column name="CreatedAt" type="timestamptz" mandatory="y" />
+			<index name="PK_users" unique="PRIMARY_KEY" >
+				<column name="Id" />
+			</index>
+			<index name="IX_users_NormalizedEmail" unique="UNIQUE_INDEX" spec="USING  btree" >
+				<column name="NormalizedEmail" />
+			</index>
+		</table>
+	</schema>
+	<schema name="hangfire" catalogname="lending_db" >
+		<table name="aggregatedcounter" row_count="7" spec="" >
+			<comment><![CDATA[Служебная таблица планировщика Hangfire. Принадлежит Lending; не является самостоятельным сервисом.]]></comment>
+			<column name="id" type="bigint" length="64" mandatory="y" >
+				<defo><![CDATA[nextval('hangfire.aggregatedcounter_id_seq'::regclass)]]></defo>
+			</column>
+			<column name="key" type="text" mandatory="y" />
+			<column name="value" type="bigint" length="64" mandatory="y" />
+			<column name="expireat" type="timestamptz" />
+			<index name="aggregatedcounter_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="aggregatedcounter_key_key" unique="UNIQUE_KEY" >
+				<column name="key" />
+			</index>
+		</table>
+		<table name="counter" row_count="0" spec="" >
+			<comment><![CDATA[Служебная таблица планировщика Hangfire. Принадлежит Lending; не является самостоятельным сервисом.]]></comment>
+			<column name="id" type="bigint" length="64" mandatory="y" >
+				<defo><![CDATA[nextval('hangfire.counter_id_seq'::regclass)]]></defo>
+			</column>
+			<column name="key" type="text" mandatory="y" />
+			<column name="value" type="bigint" length="64" mandatory="y" />
+			<column name="expireat" type="timestamptz" />
+			<index name="counter_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="ix_hangfire_counter_key" unique="NORMAL" spec="USING  btree" >
+				<column name="key" />
+			</index>
+			<index name="ix_hangfire_counter_expireat" unique="NORMAL" spec="USING  btree" >
+				<column name="expireat" />
+			</index>
+		</table>
+		<table name="hash" row_count="27" spec="" >
+			<comment><![CDATA[Служебная таблица планировщика Hangfire. Принадлежит Lending; не является самостоятельным сервисом.]]></comment>
+			<column name="id" type="bigint" length="64" mandatory="y" >
+				<defo><![CDATA[nextval('hangfire.hash_id_seq'::regclass)]]></defo>
+			</column>
+			<column name="key" type="text" mandatory="y" />
+			<column name="field" type="text" mandatory="y" />
+			<column name="value" type="text" />
+			<column name="expireat" type="timestamptz" />
+			<column name="updatecount" type="integer" length="32" mandatory="y" >
+				<defo><![CDATA[0]]></defo>
+			</column>
+			<index name="hash_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="hash_key_field_key" unique="UNIQUE_KEY" >
+				<column name="key" />
+				<column name="field" />
+			</index>
+			<index name="ix_hangfire_hash_expireat" unique="NORMAL" spec="USING  btree" >
+				<column name="expireat" />
+			</index>
+		</table>
+		<table name="job" row_count="102" spec="" >
+			<comment><![CDATA[Служебная таблица планировщика Hangfire. Принадлежит Lending; не является самостоятельным сервисом.]]></comment>
+			<column name="id" type="bigint" length="64" mandatory="y" >
+				<defo><![CDATA[nextval('hangfire.job_id_seq'::regclass)]]></defo>
+			</column>
+			<column name="stateid" type="bigint" length="64" />
+			<column name="statename" type="text" />
+			<column name="invocationdata" type="jsonb" mandatory="y" >
+				<column name="Type" type="_string" virtual="y" />
+				<column name="Method" type="_string" virtual="y" />
+				<column name="Arguments" type="_string" virtual="y" />
+				<column name="ParameterTypes" type="_string" virtual="y" />
+			</column>
+			<column name="arguments" type="jsonb" mandatory="y" />
+			<column name="createdat" type="timestamptz" mandatory="y" />
+			<column name="expireat" type="timestamptz" />
+			<column name="updatecount" type="integer" length="32" mandatory="y" >
+				<defo><![CDATA[0]]></defo>
+			</column>
+			<index name="job_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="ix_hangfire_job_statename" unique="NORMAL" spec="USING  btree" >
+				<column name="statename" />
+			</index>
+			<index name="ix_hangfire_job_expireat" unique="NORMAL" spec="USING  btree" >
+				<column name="expireat" />
+			</index>
+			<index name="ix_hangfire_job_statename_is_not_null" unique="NORMAL" spec="USING  btree" options="INCLUDE (id) WHERE (statename IS NOT NULL)" >
+				<column name="statename" />
+			</index>
+		</table>
+		<table name="jobparameter" row_count="368" spec="" >
+			<comment><![CDATA[Служебная таблица планировщика Hangfire. Принадлежит Lending; не является самостоятельным сервисом.]]></comment>
+			<column name="id" type="bigint" length="64" mandatory="y" >
+				<defo><![CDATA[nextval('hangfire.jobparameter_id_seq'::regclass)]]></defo>
+			</column>
+			<column name="jobid" type="bigint" length="64" mandatory="y" />
+			<column name="name" type="text" mandatory="y" />
+			<column name="value" type="text" />
+			<column name="updatecount" type="integer" length="32" mandatory="y" >
+				<defo><![CDATA[0]]></defo>
+			</column>
+			<index name="jobparameter_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="ix_hangfire_jobparameter_jobidandname" unique="NORMAL" spec="USING  btree" >
+				<column name="jobid" />
+				<column name="name" />
+			</index>
+			<fk name="jobparameter_jobid_fkey" to_schema="lending_db.hangfire" to_table="job" delete_action="cascade" update_action="cascade" options="" >
+				<fk_column name="jobid" pk="id" />
+			</fk>
+		</table>
+		<table name="jobqueue" row_count="0" spec="" >
+			<comment><![CDATA[Служебная таблица планировщика Hangfire. Принадлежит Lending; не является самостоятельным сервисом.]]></comment>
+			<column name="id" type="bigint" length="64" mandatory="y" >
+				<defo><![CDATA[nextval('hangfire.jobqueue_id_seq'::regclass)]]></defo>
+			</column>
+			<column name="jobid" type="bigint" length="64" mandatory="y" />
+			<column name="queue" type="text" mandatory="y" />
+			<column name="fetchedat" type="timestamptz" />
+			<column name="updatecount" type="integer" length="32" mandatory="y" >
+				<defo><![CDATA[0]]></defo>
+			</column>
+			<index name="jobqueue_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="ix_hangfire_jobqueue_jobidandqueue" unique="NORMAL" spec="USING  btree" >
+				<column name="jobid" />
+				<column name="queue" />
+			</index>
+			<index name="ix_hangfire_jobqueue_queueandfetchedat" unique="NORMAL" spec="USING  btree" >
+				<column name="queue" />
+				<column name="fetchedat" />
+			</index>
+			<index name="ix_hangfire_jobqueue_fetchedat_queue_jobid" unique="NORMAL" spec="USING  btree" >
+				<column name="fetchedat" options=" NULLS FIRST" />
+				<column name="queue" />
+				<column name="jobid" />
+			</index>
+		</table>
+		<table name="list" row_count="0" spec="" >
+			<comment><![CDATA[Служебная таблица планировщика Hangfire. Принадлежит Lending; не является самостоятельным сервисом.]]></comment>
+			<column name="id" type="bigint" length="64" mandatory="y" >
+				<defo><![CDATA[nextval('hangfire.list_id_seq'::regclass)]]></defo>
+			</column>
+			<column name="key" type="text" mandatory="y" />
+			<column name="value" type="text" />
+			<column name="expireat" type="timestamptz" />
+			<column name="updatecount" type="integer" length="32" mandatory="y" >
+				<defo><![CDATA[0]]></defo>
+			</column>
+			<index name="list_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="ix_hangfire_list_expireat" unique="NORMAL" spec="USING  btree" >
+				<column name="expireat" />
+			</index>
+		</table>
+		<table name="lock" row_count="0" spec="" >
+			<comment><![CDATA[Служебная таблица планировщика Hangfire. Принадлежит Lending; не является самостоятельным сервисом.]]></comment>
+			<column name="resource" type="text" mandatory="y" />
+			<column name="updatecount" type="integer" length="32" mandatory="y" >
+				<defo><![CDATA[0]]></defo>
+			</column>
+			<column name="acquired" type="timestamptz" />
+			<index name="lock_resource_key" unique="UNIQUE_KEY" >
+				<column name="resource" />
+			</index>
+		</table>
+		<table name="schema" row_count="0" spec="" >
+			<comment><![CDATA[Служебная таблица планировщика Hangfire. Принадлежит Lending; не является самостоятельным сервисом.]]></comment>
+			<column name="version" type="integer" length="32" mandatory="y" />
+			<index name="schema_pkey" unique="PRIMARY_KEY" >
+				<column name="version" />
+			</index>
+		</table>
+		<table name="server" row_count="1" spec="" >
+			<comment><![CDATA[Служебная таблица планировщика Hangfire. Принадлежит Lending; не является самостоятельным сервисом.]]></comment>
+			<column name="id" type="text" mandatory="y" />
+			<column name="data" type="jsonb" >
+				<column name="Queues" type="_array" content_type="JSON_ARRAY" virtual="y" />
+				<column name="StartedAt" type="_string" virtual="y" />
+				<column name="WorkerCount" type="_number" virtual="y" />
+			</column>
+			<column name="lastheartbeat" type="timestamptz" mandatory="y" />
+			<column name="updatecount" type="integer" length="32" mandatory="y" >
+				<defo><![CDATA[0]]></defo>
+			</column>
+			<index name="server_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+		</table>
+		<table name="set" row_count="3" spec="" >
+			<comment><![CDATA[Служебная таблица планировщика Hangfire. Принадлежит Lending; не является самостоятельным сервисом.]]></comment>
+			<column name="id" type="bigint" length="64" mandatory="y" >
+				<defo><![CDATA[nextval('hangfire.set_id_seq'::regclass)]]></defo>
+			</column>
+			<column name="key" type="text" mandatory="y" />
+			<column name="score" type="double precision" mandatory="y" />
+			<column name="value" type="text" mandatory="y" />
+			<column name="expireat" type="timestamptz" />
+			<column name="updatecount" type="integer" length="32" mandatory="y" >
+				<defo><![CDATA[0]]></defo>
+			</column>
+			<index name="set_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="set_key_value_key" unique="UNIQUE_KEY" >
+				<column name="key" />
+				<column name="value" />
+			</index>
+			<index name="ix_hangfire_set_key_score" unique="NORMAL" spec="USING  btree" >
+				<column name="key" />
+				<column name="score" />
+			</index>
+			<index name="ix_hangfire_set_expireat" unique="NORMAL" spec="USING  btree" >
+				<column name="expireat" />
+			</index>
+		</table>
+		<table name="state" row_count="264" spec="" >
+			<comment><![CDATA[Служебная таблица планировщика Hangfire. Принадлежит Lending; не является самостоятельным сервисом.]]></comment>
+			<column name="id" type="bigint" length="64" mandatory="y" >
+				<defo><![CDATA[nextval('hangfire.state_id_seq'::regclass)]]></defo>
+			</column>
+			<column name="jobid" type="bigint" length="64" mandatory="y" />
+			<column name="name" type="text" mandatory="y" />
+			<column name="reason" type="text" />
+			<column name="createdat" type="timestamptz" mandatory="y" />
+			<column name="data" type="jsonb" >
+				<column name="ServerId" type="_string" virtual="y" />
+				<column name="WorkerId" type="_string" virtual="y" />
+				<column name="StartedAt" type="_string" virtual="y" />
+				<column name="Queue" type="_string" virtual="y" />
+				<column name="EnqueuedAt" type="_string" virtual="y" />
+				<column name="Latency" type="_string" virtual="y" />
+				<column name="SucceededAt" type="_string" virtual="y" />
+				<column name="PerformanceDuration" type="_string" virtual="y" />
+			</column>
+			<column name="updatecount" type="integer" length="32" mandatory="y" >
+				<defo><![CDATA[0]]></defo>
+			</column>
+			<index name="state_pkey" unique="PRIMARY_KEY" >
+				<column name="id" />
+			</index>
+			<index name="ix_hangfire_state_jobid" unique="NORMAL" spec="USING  btree" >
+				<column name="jobid" />
+			</index>
+			<fk name="state_jobid_fkey" to_schema="lending_db.hangfire" to_table="job" delete_action="cascade" update_action="cascade" options="" >
+				<fk_column name="jobid" pk="id" />
+			</fk>
+		</table>
+		<sequence name="aggregatedcounter_id_seq" options="START WITH 1 INCREMENT BY 1" />
+		<sequence name="counter_id_seq" options="START WITH 1 INCREMENT BY 1" />
+		<sequence name="hash_id_seq" options="START WITH 1 INCREMENT BY 1" />
+		<sequence name="job_id_seq" options="START WITH 1 INCREMENT BY 1" />
+		<sequence name="jobparameter_id_seq" options="START WITH 1 INCREMENT BY 1" />
+		<sequence name="jobqueue_id_seq" options="START WITH 1 INCREMENT BY 1" />
+		<sequence name="list_id_seq" options="START WITH 1 INCREMENT BY 1" />
+		<sequence name="set_id_seq" options="START WITH 1 INCREMENT BY 1" />
+		<sequence name="state_id_seq" options="START WITH 1 INCREMENT BY 1" />
+	</schema>
+	<schema name="public" catalogname="lending_db" >
+		<comment><![CDATA[standard public schema]]></comment>
+		<table name="inbox_messages" row_count="0" spec="" >
+			<comment><![CDATA[Дедупликация входящих сообщений по составному PK (MessageId, Consumer).]]></comment>
+			<column name="MessageId" type="uuid" mandatory="y" />
+			<column name="Consumer" type="varchar" length="200" mandatory="y" />
+			<column name="ProcessedAt" type="timestamptz" mandatory="y" />
+			<index name="PK_inbox_messages" unique="PRIMARY_KEY" >
+				<column name="MessageId" />
+				<column name="Consumer" />
+			</index>
+		</table>
+		<table name="loan_request_sagas" row_count="0" spec="" >
+			<comment><![CDATA[Состояние саги выдачи. Соединяет резерв экземпляра, резерв баллов и созданную выдачу через сообщения сервисов.]]></comment>
+			<column name="Id" type="uuid" mandatory="y" />
+			<column name="CopyId" type="uuid" mandatory="y" >
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов. → catalog_db.public.book_copies.Id]]></comment>
+			</column>
+			<column name="BorrowerId" type="uuid" mandatory="y" >
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов. → identity_db.public.users.Id]]></comment>
+			</column>
+			<column name="OwnerId" type="uuid" >
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов. → identity_db.public.users.Id]]></comment>
+			</column>
+			<column name="PointsReservationId" type="uuid" >
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов. → economy_db.public.point_reservations.Id]]></comment>
+			</column>
+			<column name="LoanId" type="uuid" >
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь. → lending_db.public.loans.Id]]></comment>
+			</column>
+			<column name="Price" type="decimal" length="18" decimal="2" />
+			<column name="MaximumLoanDays" type="integer" length="32" />
+			<column name="State" type="integer" length="32" mandatory="y" />
+			<column name="FailureReason" type="text" />
+			<column name="Deadline" type="timestamptz" mandatory="y" />
+			<column name="CreatedAt" type="timestamptz" mandatory="y" />
+			<column name="UpdatedAt" type="timestamptz" mandatory="y" />
+			<index name="PK_loan_request_sagas" unique="PRIMARY_KEY" >
+				<column name="Id" />
+			</index>
+			<index name="IX_loan_request_sagas_CopyId_State" unique="NORMAL" spec="USING  btree" >
+				<column name="CopyId" />
+				<column name="State" />
+			</index>
+			<fk name="virtual_loan_request_sagas_CopyId" virtual="y" to_schema="catalog_db.public" to_table="book_copies" >
+				<fk_column name="CopyId" pk="Id" />
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов.]]></comment>
+			</fk>
+			<fk name="virtual_loan_request_sagas_BorrowerId" virtual="y" to_schema="identity_db.public" to_table="users" >
+				<fk_column name="BorrowerId" pk="Id" />
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов.]]></comment>
+			</fk>
+			<fk name="virtual_loan_request_sagas_OwnerId" virtual="y" to_schema="identity_db.public" to_table="users" >
+				<fk_column name="OwnerId" pk="Id" />
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов.]]></comment>
+			</fk>
+			<fk name="virtual_loan_request_sagas_PointsReservationId" virtual="y" to_schema="economy_db.public" to_table="point_reservations" >
+				<fk_column name="PointsReservationId" pk="Id" />
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов.]]></comment>
+			</fk>
+			<fk name="virtual_loan_request_sagas_LoanId" virtual="y" to_schema="lending_db.public" to_table="loans" >
+				<fk_column name="LoanId" pk="Id" />
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь.]]></comment>
+			</fk>
+		</table>
+		<table name="loan_status_history" row_count="0" spec="" >
+			<column name="Id" type="bigint" length="64" mandatory="y" >
+				<identity><![CDATA[GENERATED  BY DEFAULT AS IDENTITY]]></identity>
+			</column>
+			<column name="LoanId" type="uuid" mandatory="y" >
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь. → lending_db.public.loans.Id]]></comment>
+			</column>
+			<column name="Status" type="integer" length="32" mandatory="y" />
+			<column name="ActorId" type="uuid" >
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов. → identity_db.public.users.Id]]></comment>
+			</column>
+			<column name="Reason" type="text" mandatory="y" />
+			<column name="OccurredAt" type="timestamptz" mandatory="y" />
+			<index name="PK_loan_status_history" unique="PRIMARY_KEY" >
+				<column name="Id" />
+			</index>
+			<index name="IX_loan_status_history_LoanId" unique="NORMAL" spec="USING  btree" >
+				<column name="LoanId" />
+			</index>
+			<fk name="virtual_loan_status_history_LoanId" virtual="y" to_schema="lending_db.public" to_table="loans" >
+				<fk_column name="LoanId" pk="Id" />
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь.]]></comment>
+			</fk>
+			<fk name="virtual_loan_status_history_ActorId" virtual="y" to_schema="identity_db.public" to_table="users" >
+				<fk_column name="ActorId" pk="Id" />
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов.]]></comment>
+			</fk>
+		</table>
+		<table name="loans" row_count="0" spec="" >
+			<column name="Id" type="uuid" mandatory="y" />
+			<column name="SagaId" type="uuid" mandatory="y" >
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь. → lending_db.public.loan_request_sagas.Id]]></comment>
+			</column>
+			<column name="CopyId" type="uuid" mandatory="y" >
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов. → catalog_db.public.book_copies.Id]]></comment>
+			</column>
+			<column name="BorrowerId" type="uuid" mandatory="y" >
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов. → identity_db.public.users.Id]]></comment>
+			</column>
+			<column name="OwnerId" type="uuid" mandatory="y" >
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов. → identity_db.public.users.Id]]></comment>
+			</column>
+			<column name="ReservationId" type="uuid" mandatory="y" >
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов. → economy_db.public.point_reservations.Id]]></comment>
+			</column>
+			<column name="Price" type="decimal" length="18" decimal="2" mandatory="y" />
+			<column name="MaximumLoanDays" type="integer" length="32" mandatory="y" />
+			<column name="Status" type="integer" length="32" mandatory="y" />
+			<column name="HandoverCodeHash" type="text" />
+			<column name="HandoverExpiresAt" type="timestamptz" />
+			<column name="ActivatedAt" type="timestamptz" />
+			<column name="DueAt" type="timestamptz" />
+			<column name="CompletedAt" type="timestamptz" />
+			<column name="ReminderFlags" type="integer" length="32" mandatory="y" />
+			<column name="Version" type="bigint" length="64" mandatory="y" />
+			<column name="CreatedAt" type="timestamptz" mandatory="y" />
+			<column name="UpdatedAt" type="timestamptz" mandatory="y" />
+			<index name="PK_loans" unique="PRIMARY_KEY" >
+				<column name="Id" />
+			</index>
+			<index name="IX_loans_BorrowerId_Status" unique="NORMAL" spec="USING  btree" >
+				<column name="BorrowerId" />
+				<column name="Status" />
+			</index>
+			<index name="IX_loans_CopyId" unique="NORMAL" spec="USING  btree" >
+				<column name="CopyId" />
+			</index>
+			<index name="IX_loans_OwnerId_Status" unique="NORMAL" spec="USING  btree" >
+				<column name="OwnerId" />
+				<column name="Status" />
+			</index>
+			<index name="IX_loans_SagaId" unique="UNIQUE_INDEX" spec="USING  btree" >
+				<column name="SagaId" />
+			</index>
+			<fk name="virtual_loans_SagaId" virtual="y" to_schema="lending_db.public" to_table="loan_request_sagas" >
+				<fk_column name="SagaId" pk="Id" />
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь.]]></comment>
+			</fk>
+			<fk name="virtual_loans_CopyId" virtual="y" to_schema="catalog_db.public" to_table="book_copies" >
+				<fk_column name="CopyId" pk="Id" />
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов.]]></comment>
+			</fk>
+			<fk name="virtual_loans_BorrowerId" virtual="y" to_schema="identity_db.public" to_table="users" >
+				<fk_column name="BorrowerId" pk="Id" />
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов.]]></comment>
+			</fk>
+			<fk name="virtual_loans_OwnerId" virtual="y" to_schema="identity_db.public" to_table="users" >
+				<fk_column name="OwnerId" pk="Id" />
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов.]]></comment>
+			</fk>
+			<fk name="virtual_loans_ReservationId" virtual="y" to_schema="economy_db.public" to_table="point_reservations" >
+				<fk_column name="ReservationId" pk="Id" />
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов.]]></comment>
+			</fk>
+		</table>
+		<table name="outbox_messages" row_count="86" spec="" >
+			<comment><![CDATA[Исходящие сообщения этого сервиса. RabbitMQ публикует их асинхронно. Прямая FK-связь с inbox другого сервиса отсутствует.]]></comment>
+			<column name="Id" type="uuid" mandatory="y" />
+			<column name="Exchange" type="varchar" length="100" mandatory="y" />
+			<column name="RoutingKey" type="varchar" length="200" mandatory="y" />
+			<column name="Type" type="varchar" length="200" mandatory="y" />
+			<column name="Payload" type="jsonb" mandatory="y" />
+			<column name="OccurredAt" type="timestamptz" mandatory="y" />
+			<column name="PublishedAt" type="timestamptz" />
+			<column name="RetryCount" type="integer" length="32" mandatory="y" />
+			<column name="LastError" type="text" />
+			<index name="PK_outbox_messages" unique="PRIMARY_KEY" >
+				<column name="Id" />
+			</index>
+			<index name="IX_outbox_messages_PublishedAt_OccurredAt" unique="NORMAL" spec="USING  btree" >
+				<column name="PublishedAt" />
+				<column name="OccurredAt" />
+			</index>
+		</table>
+	</schema>
+	<schema name="public" catalogname="notification_db" >
+		<comment><![CDATA[standard public schema]]></comment>
+		<table name="inbox_messages" row_count="0" spec="" >
+			<comment><![CDATA[Дедупликация входящих сообщений по составному PK (MessageId, Consumer).]]></comment>
+			<column name="MessageId" type="uuid" mandatory="y" />
+			<column name="Consumer" type="varchar" length="200" mandatory="y" />
+			<column name="ProcessedAt" type="timestamptz" mandatory="y" />
+			<index name="PK_inbox_messages" unique="PRIMARY_KEY" >
+				<column name="MessageId" />
+				<column name="Consumer" />
+			</index>
+		</table>
+		<table name="notifications" row_count="0" spec="" >
+			<column name="Id" type="uuid" mandatory="y" />
+			<column name="UserId" type="uuid" mandatory="y" >
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов. → identity_db.public.users.Id]]></comment>
+			</column>
+			<column name="Type" type="text" mandatory="y" />
+			<column name="Title" type="text" mandatory="y" />
+			<column name="Body" type="text" mandatory="y" />
+			<column name="DataJson" type="jsonb" />
+			<column name="CreatedAt" type="timestamptz" mandatory="y" />
+			<column name="ReadAt" type="timestamptz" />
+			<index name="PK_notifications" unique="PRIMARY_KEY" >
+				<column name="Id" />
+			</index>
+			<index name="IX_notifications_UserId_ReadAt_CreatedAt" unique="NORMAL" spec="USING  btree" >
+				<column name="UserId" />
+				<column name="ReadAt" />
+				<column name="CreatedAt" />
+			</index>
+			<fk name="virtual_notifications_UserId" virtual="y" to_schema="identity_db.public" to_table="users" >
+				<fk_column name="UserId" pk="Id" />
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов.]]></comment>
+			</fk>
+		</table>
+		<table name="outbox_messages" row_count="0" spec="" >
+			<comment><![CDATA[Исходящие сообщения этого сервиса. RabbitMQ публикует их асинхронно. Прямая FK-связь с inbox другого сервиса отсутствует.]]></comment>
+			<column name="Id" type="uuid" mandatory="y" />
+			<column name="Exchange" type="varchar" length="100" mandatory="y" />
+			<column name="RoutingKey" type="varchar" length="200" mandatory="y" />
+			<column name="Type" type="varchar" length="200" mandatory="y" />
+			<column name="Payload" type="jsonb" mandatory="y" />
+			<column name="OccurredAt" type="timestamptz" mandatory="y" />
+			<column name="PublishedAt" type="timestamptz" />
+			<column name="RetryCount" type="integer" length="32" mandatory="y" />
+			<column name="LastError" type="text" />
+			<index name="PK_outbox_messages" unique="PRIMARY_KEY" >
+				<column name="Id" />
+			</index>
+			<index name="IX_outbox_messages_PublishedAt_OccurredAt" unique="NORMAL" spec="USING  btree" >
+				<column name="PublishedAt" />
+				<column name="OccurredAt" />
+			</index>
+		</table>
+	</schema>
+	<schema name="public" catalogname="reputation_db" >
+		<comment><![CDATA[standard public schema]]></comment>
+		<table name="inbox_messages" row_count="0" spec="" >
+			<comment><![CDATA[Дедупликация входящих сообщений по составному PK (MessageId, Consumer).]]></comment>
+			<column name="MessageId" type="uuid" mandatory="y" />
+			<column name="Consumer" type="varchar" length="200" mandatory="y" />
+			<column name="ProcessedAt" type="timestamptz" mandatory="y" />
+			<index name="PK_inbox_messages" unique="PRIMARY_KEY" >
+				<column name="MessageId" />
+				<column name="Consumer" />
+			</index>
+		</table>
+		<table name="outbox_messages" row_count="0" spec="" >
+			<comment><![CDATA[Исходящие сообщения этого сервиса. RabbitMQ публикует их асинхронно. Прямая FK-связь с inbox другого сервиса отсутствует.]]></comment>
+			<column name="Id" type="uuid" mandatory="y" />
+			<column name="Exchange" type="varchar" length="100" mandatory="y" />
+			<column name="RoutingKey" type="varchar" length="200" mandatory="y" />
+			<column name="Type" type="varchar" length="200" mandatory="y" />
+			<column name="Payload" type="jsonb" mandatory="y" />
+			<column name="OccurredAt" type="timestamptz" mandatory="y" />
+			<column name="PublishedAt" type="timestamptz" />
+			<column name="RetryCount" type="integer" length="32" mandatory="y" />
+			<column name="LastError" type="text" />
+			<index name="PK_outbox_messages" unique="PRIMARY_KEY" >
+				<column name="Id" />
+			</index>
+			<index name="IX_outbox_messages_PublishedAt_OccurredAt" unique="NORMAL" spec="USING  btree" >
+				<column name="PublishedAt" />
+				<column name="OccurredAt" />
+			</index>
+		</table>
+		<table name="reputation_adjustments" row_count="0" spec="" >
+			<column name="Id" type="uuid" mandatory="y" />
+			<column name="UserId" type="uuid" mandatory="y" >
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь. → reputation_db.public.user_reputations.UserId]]></comment>
+			</column>
+			<column name="Delta" type="integer" length="32" mandatory="y" />
+			<column name="Reason" type="text" mandatory="y" />
+			<column name="IdempotencyKey" type="text" />
+			<column name="ActorId" type="uuid" >
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов. → identity_db.public.users.Id]]></comment>
+			</column>
+			<column name="CreatedAt" type="timestamptz" mandatory="y" />
+			<index name="PK_reputation_adjustments" unique="PRIMARY_KEY" >
+				<column name="Id" />
+			</index>
+			<index name="IX_reputation_adjustments_IdempotencyKey" unique="UNIQUE_INDEX" spec="USING  btree" >
+				<column name="IdempotencyKey" />
+			</index>
+			<index name="IX_reputation_adjustments_UserId_CreatedAt" unique="NORMAL" spec="USING  btree" >
+				<column name="UserId" />
+				<column name="CreatedAt" />
+			</index>
+			<fk name="virtual_reputation_adjustments_UserId" virtual="y" to_schema="reputation_db.public" to_table="user_reputations" >
+				<fk_column name="UserId" pk="UserId" />
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь.]]></comment>
+			</fk>
+			<fk name="virtual_reputation_adjustments_ActorId" virtual="y" to_schema="identity_db.public" to_table="users" >
+				<fk_column name="ActorId" pk="Id" />
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов.]]></comment>
+			</fk>
+		</table>
+		<table name="user_reputations" row_count="0" spec="" >
+			<column name="UserId" type="uuid" mandatory="y" >
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов. → identity_db.public.users.Id]]></comment>
+			</column>
+			<column name="Score" type="integer" length="32" mandatory="y" />
+			<column name="SuccessfulLoans" type="integer" length="32" mandatory="y" />
+			<column name="SuccessfulReturns" type="integer" length="32" mandatory="y" />
+			<column name="OverdueLoans" type="integer" length="32" mandatory="y" />
+			<column name="CancelledLoans" type="integer" length="32" mandatory="y" />
+			<column name="AverageRating" type="decimal" length="3" decimal="2" />
+			<column name="UpdatedAt" type="timestamptz" mandatory="y" />
+			<column name="Version" type="bigint" length="64" mandatory="y" />
+			<index name="PK_user_reputations" unique="PRIMARY_KEY" >
+				<column name="UserId" />
+			</index>
+			<fk name="virtual_user_reputations_UserId" virtual="y" to_schema="identity_db.public" to_table="users" >
+				<fk_column name="UserId" pk="Id" />
+				<comment><![CDATA[Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов.]]></comment>
+			</fk>
+		</table>
+	</schema>
+	<layout name="01 — Обзор: блоки сервисов" id="daad907c-3691-4ff8-b853-a426b249b8c0" hide_fks="virtual_book_copies_ReservedForUserId,virtual_book_copies_ReservationSagaId,virtual_loans_OwnerId,virtual_loan_request_sagas_CopyId,virtual_loan_request_sagas_BorrowerId,virtual_loan_request_sagas_OwnerId,virtual_loan_request_sagas_PointsReservationId,virtual_loan_status_history_ActorId,virtual_balance_transactions_LoanId,virtual_point_reservations_SagaId,virtual_reputation_adjustments_ActorId," show_column_type="y" show_schema_name="y" show_relation="columns" >
+		<entity schema="identity_db.public" name="users" color="D9E7FA" x="57" y="95" />
+		<entity schema="identity_db.public" name="refresh_tokens" color="D9E7FA" x="447" y="95" />
+		<entity schema="identity_db.public" name="outbox_messages" color="D9E7FA" x="57" y="373" />
+		<entity schema="identity_db.public" name="inbox_messages" color="D9E7FA" x="447" y="373" />
+		<entity schema="catalog_db.public" name="books" color="CFE8E1" x="977" y="95" />
+		<entity schema="catalog_db.public" name="book_copies" color="CFE8E1" x="1367" y="95" />
+		<entity schema="catalog_db.public" name="book_search_projection" color="CFE8E1" x="1757" y="95" />
+		<entity schema="catalog_db.public" name="outbox_messages" color="CFE8E1" x="977" y="499" />
+		<entity schema="catalog_db.public" name="inbox_messages" color="CFE8E1" x="1367" y="499" />
+		<entity schema="economy_db.public" name="wallets" color="F7E6BE" x="2277" y="95" />
+		<entity schema="economy_db.public" name="point_reservations" color="F7E6BE" x="2667" y="95" />
+		<entity schema="economy_db.public" name="fines" color="F7E6BE" x="3057" y="95" />
+		<entity schema="economy_db.public" name="balance_transactions" color="F7E6BE" x="2277" y="373" />
+		<entity schema="economy_db.public" name="outbox_messages" color="F7E6BE" x="2667" y="373" />
+		<entity schema="economy_db.public" name="inbox_messages" color="F7E6BE" x="3057" y="373" />
+		<entity schema="reputation_db.public" name="user_reputations" color="E9DDF5" x="57" y="945" />
+		<entity schema="reputation_db.public" name="reputation_adjustments" color="E9DDF5" x="447" y="945" />
+		<entity schema="reputation_db.public" name="outbox_messages" color="E9DDF5" x="57" y="1244" />
+		<entity schema="reputation_db.public" name="inbox_messages" color="E9DDF5" x="447" y="1244" />
+		<entity schema="notification_db.public" name="notifications" color="F7DDE3" x="57" y="1655" />
+		<entity schema="notification_db.public" name="outbox_messages" color="F7DDE3" x="447" y="1655" />
+		<entity schema="notification_db.public" name="inbox_messages" color="F7DDE3" x="57" y="1954" />
+		<entity schema="concurrency_lab_db.public" name="lab_copies" color="DFE8ED" x="57" y="2385" />
+		<entity schema="concurrency_lab_db.public" name="lab_loans" color="DFE8ED" x="447" y="2385" />
+		<entity schema="lending_db.public" name="loans" color="D8E8F5" x="977" y="1115" />
+		<entity schema="lending_db.public" name="loan_request_sagas" color="D8E8F5" x="1367" y="1115" />
+		<entity schema="lending_db.public" name="loan_status_history" color="D8E8F5" x="1757" y="1115" />
+		<entity schema="lending_db.public" name="outbox_messages" color="D8E8F5" x="2147" y="1115" />
+		<entity schema="lending_db.public" name="inbox_messages" color="D8E8F5" x="977" y="1603" />
+		<entity schema="lending_db.hangfire" name="aggregatedcounter" color="E6E8EC" x="977" y="1856" >
+			<column name="id" />
+		</entity>
+		<entity schema="lending_db.hangfire" name="counter" color="E6E8EC" x="1367" y="1856" >
+			<column name="id" />
+		</entity>
+		<entity schema="lending_db.hangfire" name="hash" color="E6E8EC" x="1757" y="1856" >
+			<column name="id" />
+		</entity>
+		<entity schema="lending_db.hangfire" name="job" color="E6E8EC" x="2147" y="1856" >
+			<column name="id" />
+		</entity>
+		<entity schema="lending_db.hangfire" name="jobparameter" color="E6E8EC" x="977" y="2134" >
+			<column name="id" />
+			<column name="jobid" />
+		</entity>
+		<entity schema="lending_db.hangfire" name="jobqueue" color="E6E8EC" x="1367" y="2134" >
+			<column name="id" />
+		</entity>
+		<entity schema="lending_db.hangfire" name="list" color="E6E8EC" x="1757" y="2134" >
+			<column name="id" />
+		</entity>
+		<entity schema="lending_db.hangfire" name="lock" color="E6E8EC" x="2147" y="2134" hide_all="y" />
+		<entity schema="lending_db.hangfire" name="schema" color="E6E8EC" x="977" y="2349" />
+		<entity schema="lending_db.hangfire" name="server" color="E6E8EC" x="1367" y="2349" >
+			<column name="id" />
+		</entity>
+		<entity schema="lending_db.hangfire" name="set" color="E6E8EC" x="1757" y="2349" >
+			<column name="id" />
+		</entity>
+		<entity schema="lending_db.hangfire" name="state" color="E6E8EC" x="2147" y="2349" >
+			<column name="id" />
+			<column name="jobid" />
+		</entity>
+		<callout x="2577" y="1505" pointer="Round" >
+			<comment><![CDATA[BURMALDA · 7 баз / 41 таблица / 270 полей
+Цветной блок = сервис и принадлежащая ему БД.
+Фиолетовая линия = виртуальная ссылка приложения.
+Реальных FK: 3; виртуальных ссылок: 29.
+На обзоре показаны 8 основных межсервисных ссылок.
+Полный набор связей: вкладка 02.
+Hangfire: 12 таблиц внутри Lending, показаны ключи.
+Все поля Hangfire: вкладки 02 и Lending.
+Учебная БД изолирована от бизнес-данных.]]></comment>
+		</callout>
+		<group name="Identity · учётные записи | identity_db" color="D9E7FA" >
+			<entity schema="identity_db.public" name="users" />
+			<entity schema="identity_db.public" name="refresh_tokens" />
+			<entity schema="identity_db.public" name="outbox_messages" />
+			<entity schema="identity_db.public" name="inbox_messages" />
+		</group>
+		<group name="Catalog · книги и экземпляры | catalog_db" color="CFE8E1" >
+			<entity schema="catalog_db.public" name="books" />
+			<entity schema="catalog_db.public" name="book_copies" />
+			<entity schema="catalog_db.public" name="book_search_projection" />
+			<entity schema="catalog_db.public" name="outbox_messages" />
+			<entity schema="catalog_db.public" name="inbox_messages" />
+		</group>
+		<group name="Economy · баллы и расчёты | economy_db" color="F7E6BE" >
+			<entity schema="economy_db.public" name="wallets" />
+			<entity schema="economy_db.public" name="point_reservations" />
+			<entity schema="economy_db.public" name="fines" />
+			<entity schema="economy_db.public" name="balance_transactions" />
+			<entity schema="economy_db.public" name="outbox_messages" />
+			<entity schema="economy_db.public" name="inbox_messages" />
+		</group>
+		<group name="Reputation · репутация | reputation_db" color="E9DDF5" >
+			<entity schema="reputation_db.public" name="user_reputations" />
+			<entity schema="reputation_db.public" name="reputation_adjustments" />
+			<entity schema="reputation_db.public" name="outbox_messages" />
+			<entity schema="reputation_db.public" name="inbox_messages" />
+		</group>
+		<group name="Notifications · уведомления | notification_db" color="F7DDE3" >
+			<entity schema="notification_db.public" name="notifications" />
+			<entity schema="notification_db.public" name="outbox_messages" />
+			<entity schema="notification_db.public" name="inbox_messages" />
+		</group>
+		<group name="ConcurrencyLab · учебная БД | concurrency_lab_db" color="DFE8ED" >
+			<entity schema="concurrency_lab_db.public" name="lab_copies" />
+			<entity schema="concurrency_lab_db.public" name="lab_loans" />
+		</group>
+		<group name="Lending · выдачи, сага и Hangfire | lending_db" color="D8E8F5" >
+			<entity schema="lending_db.public" name="loans" />
+			<entity schema="lending_db.public" name="loan_request_sagas" />
+			<entity schema="lending_db.public" name="loan_status_history" />
+			<entity schema="lending_db.public" name="outbox_messages" />
+			<entity schema="lending_db.public" name="inbox_messages" />
+			<entity schema="lending_db.hangfire" name="aggregatedcounter" />
+			<entity schema="lending_db.hangfire" name="counter" />
+			<entity schema="lending_db.hangfire" name="hash" />
+			<entity schema="lending_db.hangfire" name="job" />
+			<entity schema="lending_db.hangfire" name="jobparameter" />
+			<entity schema="lending_db.hangfire" name="jobqueue" />
+			<entity schema="lending_db.hangfire" name="list" />
+			<entity schema="lending_db.hangfire" name="lock" />
+			<entity schema="lending_db.hangfire" name="schema" />
+			<entity schema="lending_db.hangfire" name="server" />
+			<entity schema="lending_db.hangfire" name="set" />
+			<entity schema="lending_db.hangfire" name="state" />
+		</group>
+	</layout>
+	<layout name="02 — Полная схема: все поля и связи" id="27a99f58-818d-4ec5-9d51-2a3a8b20eb41" show_column_type="y" show_schema_name="y" show_relation="columns" >
+		<entity schema="identity_db.public" name="users" color="D9E7FA" x="57" y="95" />
+		<entity schema="identity_db.public" name="refresh_tokens" color="D9E7FA" x="447" y="95" />
+		<entity schema="identity_db.public" name="outbox_messages" color="D9E7FA" x="57" y="373" />
+		<entity schema="identity_db.public" name="inbox_messages" color="D9E7FA" x="447" y="373" />
+		<entity schema="catalog_db.public" name="books" color="CFE8E1" x="977" y="95" />
+		<entity schema="catalog_db.public" name="book_copies" color="CFE8E1" x="1367" y="95" />
+		<entity schema="catalog_db.public" name="book_search_projection" color="CFE8E1" x="1757" y="95" />
+		<entity schema="catalog_db.public" name="outbox_messages" color="CFE8E1" x="977" y="499" />
+		<entity schema="catalog_db.public" name="inbox_messages" color="CFE8E1" x="1367" y="499" />
+		<entity schema="economy_db.public" name="wallets" color="F7E6BE" x="2277" y="95" />
+		<entity schema="economy_db.public" name="point_reservations" color="F7E6BE" x="2667" y="95" />
+		<entity schema="economy_db.public" name="fines" color="F7E6BE" x="3057" y="95" />
+		<entity schema="economy_db.public" name="balance_transactions" color="F7E6BE" x="2277" y="373" />
+		<entity schema="economy_db.public" name="outbox_messages" color="F7E6BE" x="2667" y="373" />
+		<entity schema="economy_db.public" name="inbox_messages" color="F7E6BE" x="3057" y="373" />
+		<entity schema="reputation_db.public" name="user_reputations" color="E9DDF5" x="57" y="945" />
+		<entity schema="reputation_db.public" name="reputation_adjustments" color="E9DDF5" x="447" y="945" />
+		<entity schema="reputation_db.public" name="outbox_messages" color="E9DDF5" x="57" y="1244" />
+		<entity schema="reputation_db.public" name="inbox_messages" color="E9DDF5" x="447" y="1244" />
+		<entity schema="notification_db.public" name="notifications" color="F7DDE3" x="57" y="1655" />
+		<entity schema="notification_db.public" name="outbox_messages" color="F7DDE3" x="447" y="1655" />
+		<entity schema="notification_db.public" name="inbox_messages" color="F7DDE3" x="57" y="1954" />
+		<entity schema="concurrency_lab_db.public" name="lab_copies" color="DFE8ED" x="57" y="2385" />
+		<entity schema="concurrency_lab_db.public" name="lab_loans" color="DFE8ED" x="447" y="2385" />
+		<entity schema="lending_db.public" name="loans" color="D8E8F5" x="977" y="1115" />
+		<entity schema="lending_db.public" name="loan_request_sagas" color="D8E8F5" x="1367" y="1115" />
+		<entity schema="lending_db.public" name="loan_status_history" color="D8E8F5" x="1757" y="1115" />
+		<entity schema="lending_db.public" name="outbox_messages" color="D8E8F5" x="2147" y="1115" />
+		<entity schema="lending_db.public" name="inbox_messages" color="D8E8F5" x="977" y="1603" />
+		<entity schema="lending_db.hangfire" name="aggregatedcounter" color="E6E8EC" x="977" y="1856" />
+		<entity schema="lending_db.hangfire" name="counter" color="E6E8EC" x="1367" y="1856" />
+		<entity schema="lending_db.hangfire" name="hash" color="E6E8EC" x="1757" y="1856" />
+		<entity schema="lending_db.hangfire" name="job" color="E6E8EC" x="2147" y="1856" />
+		<entity schema="lending_db.hangfire" name="jobparameter" color="E6E8EC" x="977" y="2134" />
+		<entity schema="lending_db.hangfire" name="jobqueue" color="E6E8EC" x="1367" y="2134" />
+		<entity schema="lending_db.hangfire" name="list" color="E6E8EC" x="1757" y="2134" />
+		<entity schema="lending_db.hangfire" name="lock" color="E6E8EC" x="2147" y="2134" />
+		<entity schema="lending_db.hangfire" name="schema" color="E6E8EC" x="977" y="2349" />
+		<entity schema="lending_db.hangfire" name="server" color="E6E8EC" x="1367" y="2349" />
+		<entity schema="lending_db.hangfire" name="set" color="E6E8EC" x="1757" y="2349" />
+		<entity schema="lending_db.hangfire" name="state" color="E6E8EC" x="2147" y="2349" />
+		<callout x="2577" y="1505" pointer="Round" >
+			<comment><![CDATA[Полная схема текущего PostgreSQL.
+7 сервисных блоков; 41 таблица, включая Hangfire.
+29 виртуальных ссылок приложения + 3 реальных FK.
+Связи между БД не создают JOIN-доступа для сервисов.
+Приложение использует API, события и саги.]]></comment>
+		</callout>
+		<group name="Identity · учётные записи | identity_db" color="D9E7FA" >
+			<entity schema="identity_db.public" name="users" />
+			<entity schema="identity_db.public" name="refresh_tokens" />
+			<entity schema="identity_db.public" name="outbox_messages" />
+			<entity schema="identity_db.public" name="inbox_messages" />
+		</group>
+		<group name="Catalog · книги и экземпляры | catalog_db" color="CFE8E1" >
+			<entity schema="catalog_db.public" name="books" />
+			<entity schema="catalog_db.public" name="book_copies" />
+			<entity schema="catalog_db.public" name="book_search_projection" />
+			<entity schema="catalog_db.public" name="outbox_messages" />
+			<entity schema="catalog_db.public" name="inbox_messages" />
+		</group>
+		<group name="Economy · баллы и расчёты | economy_db" color="F7E6BE" >
+			<entity schema="economy_db.public" name="wallets" />
+			<entity schema="economy_db.public" name="point_reservations" />
+			<entity schema="economy_db.public" name="fines" />
+			<entity schema="economy_db.public" name="balance_transactions" />
+			<entity schema="economy_db.public" name="outbox_messages" />
+			<entity schema="economy_db.public" name="inbox_messages" />
+		</group>
+		<group name="Reputation · репутация | reputation_db" color="E9DDF5" >
+			<entity schema="reputation_db.public" name="user_reputations" />
+			<entity schema="reputation_db.public" name="reputation_adjustments" />
+			<entity schema="reputation_db.public" name="outbox_messages" />
+			<entity schema="reputation_db.public" name="inbox_messages" />
+		</group>
+		<group name="Notifications · уведомления | notification_db" color="F7DDE3" >
+			<entity schema="notification_db.public" name="notifications" />
+			<entity schema="notification_db.public" name="outbox_messages" />
+			<entity schema="notification_db.public" name="inbox_messages" />
+		</group>
+		<group name="ConcurrencyLab · учебная БД | concurrency_lab_db" color="DFE8ED" >
+			<entity schema="concurrency_lab_db.public" name="lab_copies" />
+			<entity schema="concurrency_lab_db.public" name="lab_loans" />
+		</group>
+		<group name="Lending · выдачи, сага и Hangfire | lending_db" color="D8E8F5" >
+			<entity schema="lending_db.public" name="loans" />
+			<entity schema="lending_db.public" name="loan_request_sagas" />
+			<entity schema="lending_db.public" name="loan_status_history" />
+			<entity schema="lending_db.public" name="outbox_messages" />
+			<entity schema="lending_db.public" name="inbox_messages" />
+			<entity schema="lending_db.hangfire" name="aggregatedcounter" />
+			<entity schema="lending_db.hangfire" name="counter" />
+			<entity schema="lending_db.hangfire" name="hash" />
+			<entity schema="lending_db.hangfire" name="job" />
+			<entity schema="lending_db.hangfire" name="jobparameter" />
+			<entity schema="lending_db.hangfire" name="jobqueue" />
+			<entity schema="lending_db.hangfire" name="list" />
+			<entity schema="lending_db.hangfire" name="lock" />
+			<entity schema="lending_db.hangfire" name="schema" />
+			<entity schema="lending_db.hangfire" name="server" />
+			<entity schema="lending_db.hangfire" name="set" />
+			<entity schema="lending_db.hangfire" name="state" />
+		</group>
+	</layout>
+	<layout name="03 — Identity · учётные записи" id="608f7128-ba62-495f-be18-492b55fa6bce" show_column_type="y" show_schema_name="y" show_relation="columns" >
+		<entity schema="identity_db.public" name="users" color="D9E7FA" x="57" y="95" />
+		<entity schema="identity_db.public" name="refresh_tokens" color="D9E7FA" x="447" y="95" />
+		<entity schema="identity_db.public" name="outbox_messages" color="D9E7FA" x="57" y="373" />
+		<entity schema="identity_db.public" name="inbox_messages" color="D9E7FA" x="447" y="373" />
+		<group name="Identity · учётные записи | identity_db" color="D9E7FA" >
+			<entity schema="identity_db.public" name="users" />
+			<entity schema="identity_db.public" name="refresh_tokens" />
+			<entity schema="identity_db.public" name="outbox_messages" />
+			<entity schema="identity_db.public" name="inbox_messages" />
+		</group>
+	</layout>
+	<layout name="04 — Catalog · книги и экземпляры" id="db44fbc9-6297-4aaa-87d1-1adc9819d019" show_column_type="y" show_schema_name="y" show_relation="columns" >
+		<entity schema="catalog_db.public" name="books" color="CFE8E1" x="57" y="95" />
+		<entity schema="catalog_db.public" name="book_copies" color="CFE8E1" x="447" y="95" />
+		<entity schema="catalog_db.public" name="book_search_projection" color="CFE8E1" x="837" y="95" />
+		<entity schema="catalog_db.public" name="outbox_messages" color="CFE8E1" x="57" y="499" />
+		<entity schema="catalog_db.public" name="inbox_messages" color="CFE8E1" x="447" y="499" />
+		<group name="Catalog · книги и экземпляры | catalog_db" color="CFE8E1" >
+			<entity schema="catalog_db.public" name="books" />
+			<entity schema="catalog_db.public" name="book_copies" />
+			<entity schema="catalog_db.public" name="book_search_projection" />
+			<entity schema="catalog_db.public" name="outbox_messages" />
+			<entity schema="catalog_db.public" name="inbox_messages" />
+		</group>
+	</layout>
+	<layout name="05 — Economy · баллы и расчёты" id="c313bca1-693e-42c7-9d41-841394179f0c" show_column_type="y" show_schema_name="y" show_relation="columns" >
+		<entity schema="economy_db.public" name="wallets" color="F7E6BE" x="57" y="95" />
+		<entity schema="economy_db.public" name="point_reservations" color="F7E6BE" x="447" y="95" />
+		<entity schema="economy_db.public" name="fines" color="F7E6BE" x="837" y="95" />
+		<entity schema="economy_db.public" name="balance_transactions" color="F7E6BE" x="57" y="373" />
+		<entity schema="economy_db.public" name="outbox_messages" color="F7E6BE" x="447" y="373" />
+		<entity schema="economy_db.public" name="inbox_messages" color="F7E6BE" x="837" y="373" />
+		<group name="Economy · баллы и расчёты | economy_db" color="F7E6BE" >
+			<entity schema="economy_db.public" name="wallets" />
+			<entity schema="economy_db.public" name="point_reservations" />
+			<entity schema="economy_db.public" name="fines" />
+			<entity schema="economy_db.public" name="balance_transactions" />
+			<entity schema="economy_db.public" name="outbox_messages" />
+			<entity schema="economy_db.public" name="inbox_messages" />
+		</group>
+	</layout>
+	<layout name="06 — Reputation · репутация" id="546225a0-8853-4a6b-868d-168f18b635d4" show_column_type="y" show_schema_name="y" show_relation="columns" >
+		<entity schema="reputation_db.public" name="user_reputations" color="E9DDF5" x="57" y="95" />
+		<entity schema="reputation_db.public" name="reputation_adjustments" color="E9DDF5" x="447" y="95" />
+		<entity schema="reputation_db.public" name="outbox_messages" color="E9DDF5" x="57" y="394" />
+		<entity schema="reputation_db.public" name="inbox_messages" color="E9DDF5" x="447" y="394" />
+		<group name="Reputation · репутация | reputation_db" color="E9DDF5" >
+			<entity schema="reputation_db.public" name="user_reputations" />
+			<entity schema="reputation_db.public" name="reputation_adjustments" />
+			<entity schema="reputation_db.public" name="outbox_messages" />
+			<entity schema="reputation_db.public" name="inbox_messages" />
+		</group>
+	</layout>
+	<layout name="07 — Notifications · уведомления" id="ac6ade60-49f7-4e40-9467-32972cfe6f85" show_column_type="y" show_schema_name="y" show_relation="columns" >
+		<entity schema="notification_db.public" name="notifications" color="F7DDE3" x="57" y="95" />
+		<entity schema="notification_db.public" name="outbox_messages" color="F7DDE3" x="447" y="95" />
+		<entity schema="notification_db.public" name="inbox_messages" color="F7DDE3" x="57" y="394" />
+		<group name="Notifications · уведомления | notification_db" color="F7DDE3" >
+			<entity schema="notification_db.public" name="notifications" />
+			<entity schema="notification_db.public" name="outbox_messages" />
+			<entity schema="notification_db.public" name="inbox_messages" />
+		</group>
+	</layout>
+	<layout name="08 — ConcurrencyLab · учебная БД" id="1aaa37f7-9477-46db-9754-51af2de52c1c" show_column_type="y" show_schema_name="y" show_relation="columns" >
+		<entity schema="concurrency_lab_db.public" name="lab_copies" color="DFE8ED" x="57" y="95" />
+		<entity schema="concurrency_lab_db.public" name="lab_loans" color="DFE8ED" x="447" y="95" />
+		<group name="ConcurrencyLab · учебная БД | concurrency_lab_db" color="DFE8ED" >
+			<entity schema="concurrency_lab_db.public" name="lab_copies" />
+			<entity schema="concurrency_lab_db.public" name="lab_loans" />
+		</group>
+	</layout>
+	<layout name="09 — Lending · выдачи, сага и Hangfire" id="b706dda4-cac6-4bba-b60d-90cc854f2414" show_column_type="y" show_schema_name="y" show_relation="columns" >
+		<entity schema="lending_db.public" name="loans" color="D8E8F5" x="57" y="95" />
+		<entity schema="lending_db.public" name="loan_request_sagas" color="D8E8F5" x="447" y="95" />
+		<entity schema="lending_db.public" name="loan_status_history" color="D8E8F5" x="837" y="95" />
+		<entity schema="lending_db.public" name="outbox_messages" color="D8E8F5" x="1227" y="95" />
+		<entity schema="lending_db.public" name="inbox_messages" color="D8E8F5" x="57" y="583" />
+		<entity schema="lending_db.hangfire" name="aggregatedcounter" color="E6E8EC" x="57" y="836" />
+		<entity schema="lending_db.hangfire" name="counter" color="E6E8EC" x="447" y="836" />
+		<entity schema="lending_db.hangfire" name="hash" color="E6E8EC" x="837" y="836" />
+		<entity schema="lending_db.hangfire" name="job" color="E6E8EC" x="1227" y="836" />
+		<entity schema="lending_db.hangfire" name="jobparameter" color="E6E8EC" x="57" y="1114" />
+		<entity schema="lending_db.hangfire" name="jobqueue" color="E6E8EC" x="447" y="1114" />
+		<entity schema="lending_db.hangfire" name="list" color="E6E8EC" x="837" y="1114" />
+		<entity schema="lending_db.hangfire" name="lock" color="E6E8EC" x="1227" y="1114" />
+		<entity schema="lending_db.hangfire" name="schema" color="E6E8EC" x="57" y="1329" />
+		<entity schema="lending_db.hangfire" name="server" color="E6E8EC" x="447" y="1329" />
+		<entity schema="lending_db.hangfire" name="set" color="E6E8EC" x="837" y="1329" />
+		<entity schema="lending_db.hangfire" name="state" color="E6E8EC" x="1227" y="1329" />
+		<group name="Lending · выдачи, сага и Hangfire | lending_db" color="D8E8F5" >
+			<entity schema="lending_db.public" name="loans" />
+			<entity schema="lending_db.public" name="loan_request_sagas" />
+			<entity schema="lending_db.public" name="loan_status_history" />
+			<entity schema="lending_db.public" name="outbox_messages" />
+			<entity schema="lending_db.public" name="inbox_messages" />
+			<entity schema="lending_db.hangfire" name="aggregatedcounter" />
+			<entity schema="lending_db.hangfire" name="counter" />
+			<entity schema="lending_db.hangfire" name="hash" />
+			<entity schema="lending_db.hangfire" name="job" />
+			<entity schema="lending_db.hangfire" name="jobparameter" />
+			<entity schema="lending_db.hangfire" name="jobqueue" />
+			<entity schema="lending_db.hangfire" name="list" />
+			<entity schema="lending_db.hangfire" name="lock" />
+			<entity schema="lending_db.hangfire" name="schema" />
+			<entity schema="lending_db.hangfire" name="server" />
+			<entity schema="lending_db.hangfire" name="set" />
+			<entity schema="lending_db.hangfire" name="state" />
+		</group>
+	</layout>
+</project>

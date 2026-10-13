@@ -1,0 +1,743 @@
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'   width='1482' height='1725' viewBox='0 0 1482 1725' >
+  <script type='text/ecmascript'>
+  <![CDATA[
+  function hghl(el) { for ( var i in el ){ var elem = document.getElementById(el[i]); if ( elem != null ) elem.setAttribute('class','highlight');  }  }
+  function uhghl(el) { for ( var i in el ){ var elem = document.getElementById(el[i]); if ( elem != null ) elem.setAttribute('class','unhighlight'); }  } 
+  ]]>
+  </script> 
+
+<style type='text/css'>
+  text                { fill:#6e798a; font-weight:normal;stroke:#2a2b2c;stroke-width:.1px; font-family: Candara, 'Segoe UI', Dialog; font-size:13px; }
+  text.tableHeader    { fill:#576b57; font-weight:normal;stroke:#2a2b2c;stroke-width:.1px; font-family: Candara, 'Segoe UI', Dialog; font-size:13px;  font-weight: bold; }
+  a text:hover        { font-weight:500; }
+  text.highlight      { font-weight:500; }
+  text.white          { fill:#ffffff; }
+  text.colType        { fill:#bac1cb; }
+  text.relName        { fill:#9c9a9a; stroke-width:0; }
+  text.dataType       { stroke:0; font-size:12px; text-anchor: end;}
+  text.legendTitle    { fill:#2b3b64; font-weight:500; }
+  text.legendSubTitle { fill:#616161; font-size:12px; }
+  path, circle        { stroke:#b2b3b4; stroke-width:1.5; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+  .filled             { fill:#7f7971; }
+  path.virtual        { stroke:#71527b; }
+  path.logo           { fill:#fbeac0;fill-opacity:1;stroke-width:0.3;stroke:#222222; }
+  path.dotted         { stroke-dasharray:3,3; }
+  path.unhighlight    { stroke-width:12; opacity:0; pointer-events:all; }
+  path.highlight      { stroke-width:2; stroke:#061e3f; opacity:1; pointer-events:all; }
+  path.line           { stroke-width:10; stroke-linecap:round; stroke-linejoin:round; }
+  rect.entity         { fill:#fafafb; stroke-width:1; shape-rendering:crispEdges; filter:url(#shadow); }
+  line.delim          { stroke-width:1px; shape-rendering:crispEdges; }
+  text.callout        { fill:#201a10; font-family: Candara, 'Segoe UI', Dialog; font-size:14px; }
+  rect.callout        { fill:url(#calloutGradient); stroke-width:1px; stroke:#d0cec3; }
+  rect.shape          { stroke:#bebdbd; stroke-width:0.5; }
+  rect.legend         { fill:url(#legendGradient); stroke-width:1px; stroke:#d6dbe4; }
+  text.grp            { fill:#b1b1b1; }
+  rect.grp            { stroke:#aee1ab; stroke-width:2; opacity:0.7; }
+  path.bgPattern      { fill:none;stroke-width:0.6;stroke:#e5e9ee; }
+  path.eval           { fill:#efefef;fill-opacity:1;stroke-width:0.6;stroke:#e9e9e9; }
+  rect.palpable       { fill:#fffbe5; }
+</style>
+<defs>
+  <pattern id="layoutBgA" width="60" height="34.64" patternUnits="userSpaceOnUse">
+    <rect x="0" y="0"  width="60" height="34.64" fill="#eaecf1" />
+  </pattern>
+  <pattern id='layoutBgEval'  width='300' height='300' x='0' y='0' patternUnits="userSpaceOnUse">
+    <g transform='scale(1.5)'>
+    <path class='eval' d='m 62.011835,91.267143 c 3.536475,3.175214 2.262669,8.705999 -1.637711,11.015197 -3.594697,5.8423 -6.34682,-2.892623 -9.715478,-4.653898 -5.609222,-2.838926 2.050802,-6.680123 4.77004,-8.319046 2.334696,-0.724067 4.935143,0.312302 6.583149,1.957747 z m -2.720492,2.538595 c -2.698397,-3.517732 -9.282815,1.269287 -3.69635,3.568637 2.765331,5.605665 7.052809,-0.56184 3.69635,-3.568637 z' />
+    <path class='eval' d='m 72.25864,84.624638 c 4.108046,3.143003 -0.737059,6.895259 -1.994918,8.323564 -3.586718,5.561143 -6.495079,-4.197379 -10.07759,-5.582178 -4.443422,-1.088878 1.349298,-7.249213 2.503526,-2.503449 2.464639,4.517161 2.304019,-3.70697 6.291113,-1.995914 1.280083,0.137865 2.410691,0.864819 3.277869,1.757977 z m -2.646109,2.323242 c -4.797162,-3.078383 -2.810517,6.305507 0.515161,1.990646 0.296432,-0.688582 0.01209,-1.493412 -0.515161,-1.990646 z' />
+    <path class='eval' d='m 78.230641,79.436735 c 4.142121,3.027466 -2.020102,10.435276 -3.450543,5.477315 3.306312,-5.248112 -9.186019,-2.220094 -5.805994,-8.77679 -0.544141,-3.93011 6.797826,-2.102227 3.386015,0.245477 -0.181085,2.915838 4.637371,1.019311 5.870522,3.053982 z' />
+    <path class='eval' d='m 82.744502,72.597397 c -4.901605,1.926521 1.146497,6.285555 2.559694,2.225783 6.21817,3.539297 -6.640186,8.416664 -7.590325,1.997457 -2.24365,-2.914883 4.026676,-10.148618 5.030631,-4.22324 z' />
+    <path class='eval' d='m 90.727458,64.259158 c 1.583987,1.690029 3.321317,3.2696 4.81267,5.026353 -2.535706,6.849794 -6.445583,-5.918773 -8.388458,-0.167017 0.782768,2.03426 5.877405,3.752079 2.670979,5.711199 -3.315119,1.519161 -5.782422,-5.157931 -8.858893,-6.780537 -4.229842,-1.139816 1.510134,-7.074128 2.586227,-2.385939 3.141198,5.495193 1.840537,-5.598295 7.177489,-1.404062 z' />
+    <path class='eval' d='m 99.622027,58.374253 c 1.493293,1.9548 -6.281936,7.024659 -0.885258,4.740447 0.386238,-4.434477 6.131941,-1.133173 2.175851,1.618005 -4.421491,6.12739 -13.666659,-3.151506 -7.058299,-7.136537 1.785129,-1.119329 4.348209,-0.743179 5.767706,0.778085 z m -2.900824,1.89746 c -3.608188,-2.208543 -2.280489,5.00803 -0.12563,0.329531 z' />
+    <path class='eval' d='m 115.18023,50.570441 c -1.61703,5.201678 -4.6204,-0.364502 -7.01598,-1.749619 -4.40977,2.122562 4.89641,4.913939 1.89606,7.018157 -2.48061,3.877635 -4.11404,-4.060614 -7.01192,-2.6391 -1.76318,3.107252 7.28394,6.252304 0.87346,7.876177 -1.74515,-2.956649 -9.055498,-5.610518 -3.950378,-8.66062 1.696478,1.897023 1.770418,-5.43503 5.347308,-3.072411 -0.44014,-5.474701 6.11995,-4.950882 7.7846,-0.815355 0.69076,0.682329 1.39587,1.351469 2.07685,2.042771 z' />
+    <path class='eval' d='m 120.54891,39.417125 c 2.50681,1.334124 4.80466,4.941837 0.75044,5.297362 -0.46414,1.89865 -5.25369,5.602652 -8.01742,1.815475 -3.87345,-2.809139 -0.0676,-7.603869 2.3036,-8.133924 1.6795,-3.853018 3.16703,-1.199465 4.96338,1.021087 z m -2.2464,2.175828 c -4.8049,-2.992167 -3.08987,6.380358 0.42374,2.036159 0.33052,-0.677508 0.12099,-1.525836 -0.42374,-2.036159 z' />
+    <path class='eval' d='m 128.50836,24.06821 c -5.10403,3.035506 3.20535,6.383175 5.05938,9.450276 -0.91853,2.95886 -4.06493,3.650723 -5.34691,0.265618 -2.25715,-2.089033 -4.65672,-6.948595 -7.07024,-2.584686 -4.71758,-3.764394 3.81217,-5.812054 5.12382,-9.226328 0.75738,0.677487 1.38637,1.498638 2.23389,2.095175 z' />
+    <path class='eval' d='m 137.14366,22.299812 c -3.09615,2.259885 0.71537,4.412454 1.99042,6.435866 -3.08975,5.080354 -5.91384,-2.98648 -8.92144,-4.094939 1.44369,-3.219573 3.3497,-1.335928 4.27156,-4.41058 0.97822,-0.894325 1.75044,1.871047 2.65946,2.069653 z' />
+    <path class='eval' d='m 136.85093,14.890174 c 2.31562,5.283511 -7.17975,1.771993 -1.29675,-0.475107 l 0.7108,0.08973 z m 4.867,5.317354 c 2.56912,1.439678 4.26517,4.725219 0.30678,5.233637 -1.56592,-3.098864 -9.51683,-5.749448 -3.64502,-8.633714 1.17746,0.325095 2.15375,2.591149 3.33824,3.400077 z' />
+    <path class='eval' d='m 149.95578,11.976423 c 2.50679,1.334142 4.80455,4.94192 0.75041,5.297394 -0.4641,1.898604 -5.25368,5.602645 -8.0174,1.81545 -3.87347,-2.80918 -0.0676,-7.603844 2.30366,-8.133968 1.67949,-3.8530525 3.16695,-1.1993573 4.96333,1.021124 z m -2.24641,2.175828 c -4.80489,-2.992177 -3.08986,6.380343 0.42374,2.036167 0.33055,-0.677518 0.121,-1.52585 -0.42374,-2.036167 z' />
+    <path class='eval' d='m 153.26135,7.538431 c 2.60497,1.5799548 6.03999,5.944272 1.08117,6.050232 -2.53319,-3.231828 -7.20316,-6.4304525 -8.84748,-9.4582682 1.89121,-2.8664883 3.78452,-2.247699 5.38514,0.8929426 0.78017,0.8503859 1.57195,1.6911437 2.38118,2.5150667 z' />
+    </g>
+  </pattern>
+  <linearGradient id='legendGradient' x1='0%' y1='0%' x2='100%' y2='0%'>
+    <stop offset='0%' stop-color='#eef5fc' />
+    <stop offset='100%' stop-color='#f7fafe' />
+  </linearGradient>
+  <!-- https://norbat.de/svg-pattern-3d-webmuster/ -->
+  <linearGradient id='calloutGradient' x1='0%' y1='0%' x2='100%' y2='0%'>
+    <stop offset='0%' stop-color='#efeae1dd' />
+    <stop offset='100%' stop-color='#e8e9eadd' />
+  </linearGradient>
+  <filter id="shadow">
+    <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#a0a0a0" flood-opacity="0.4" />
+  </filter>
+  <!--
+  <filter id='shadow2' width='120%' height='120%'>
+    <feOffset result='offOut' in='SourceGraphic' dx='0' dy='0' />
+    <feColorMatrix result='matrixOut' in='offOut'
+                   values='0.5 0 0 0 0 0 0.5 0 0 0 0 0 0.5 0 0 0 0 0 0.5 0' />
+    <feGaussianBlur result='blurOut' in='matrixOut' stdDeviation='3' />
+    <feBlend in='SourceGraphic' in2='blurOut' />
+  </filter>
+  -->
+  <filter id='fkShadow' height='130%'>
+    <feGaussianBlur in='SourceAlpha' stdDeviation='1.5'/> <!-- stdDeviation is how much to blur -->
+    <feOffset dx='1.2' dy='1.2' result='offsetblur'/> <!-- how much to offset -->
+    <feMerge>
+      <feMergeNode/> <!-- this contains the offset blurred image -->
+      <feMergeNode in='SourceGraphic'/> <!-- this contains the element that the filter is applied to -->
+    </feMerge>
+  </filter>
+  <symbol id='calloutArrowDown' >
+    <path d='M 0,0 L 8,12 L 16,0 z' style='fill:#f8f6d1;stroke:none; filter: url(#shadow);' />
+    <path d='M 0,0 L 8,12 L 16,0' style='stroke:#bebdbd; stroke-width:0.5;' />
+  </symbol>
+  <symbol id='calloutArrowUp' >
+    <path d='M 0,16 L 8,4 L 16,16 z' style='fill:#ffffff; stroke:none; filter: url(#shadow);' />
+    <path d='M 0,16 L 8,4 L 16,16' style='stroke:#bebdbd; stroke-width:0.5;' />
+  </symbol>
+  <symbol id='pk' width="13" height="13">
+    <g>
+      <path style='fill:#b4a717;stroke:#b4a717;stroke-width:0.2;stroke-linecap:round;stroke-linejoin:round;'
+            d='M 9.3678877,3.5695485 C 9.1030218,3.2729386 9.0796382,2.7628519 9.3396185,2.4517097 9.5449651,2.1956495 9.9040386,2.0980533 10.199638,2.2169415 10.533525,2.3415459 10.775153,2.706942 10.750675,3.0842709 10.737029,3.3980003 10.541153,3.699122 10.258248,3.8066067 9.966649,3.9250429 9.6169668,3.8418805 9.4008073,3.6062324 9.3894892,3.5943518 9.3785264,3.582104 9.3678886,3.5695487 z M 11.226617,6.9916004 C 11.888137,6.3548946 12.293488,5.4172188 12.311087,4.442353 12.378144,2.7379364 11.248678,1.0541269 9.7322318,0.44767357 8.3887112,-0.1280313 6.7865012,0.26822889 5.8918395,1.4007929 5.080823,2.3839145 4.9336815,3.8452096 5.3635544,5.101615 L 4.3670905,5.315913 C 4.0664984,5.3682645 4.0967703,5.6316724 4.2574957,5.8208829 L 4.9124,6.5655244 4.1543436,7.2512357 3.2136002,7.2163506 3.1674775,8.5586827 2.0406832,8.5086512 1.5965306,8.9299953 1.5471661,10.179833 0.75616674,10.195223 0.2112857,10.758575 0.15354288,11.735988 0.07199052,12.765553 c 0.36440953,0.238225 0.79006967,0.195492 1.44938278,-0.02675 L 6.3033562,8.1282037 6.8217102,8.6765688 C 6.9985465,8.8799427 7.3003699,8.7497574 7.358381,8.5016252 L 7.4938877,7.5084164 c 0.8537488,0.3985387 1.8303125,0.4711541 2.6851793,0.1427713 0.393927,-0.1407258 0.746858,-0.3701772 1.04755,-0.6595873 z'/>
+      <path d='M 6.8014948,6.3102123 0.15369063,13.024481 0.21560535,12.141962 6.0062342,6.2683782 z'
+            style='fill:#b4a717;fill-opacity:1;stroke:#b4a717;stroke-width:0.06912433;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:3.00300009'/>
+    </g>
+  </symbol>
+  <symbol id='idx1' width="13" height="13">
+    <g transform='scale(0.99)'>
+      <rect width='4' height='4' x='7' y='1' style='fill:#ffff3f;stroke:#b48333;stroke-width:0.6;' ry='0.83'/>
+      <rect width='4' height='4' x='1' y='7' style='fill:#ffff3f;stroke:#b48333;stroke-width:0.6;' ry='0.832'/>
+      <rect width='4' height='4' x='7' y='7' style='fill:#ffff3f;stroke:#b48333;stroke-width:0.6;' ry='0.832'/>
+    </g>
+  </symbol>
+  <symbol id='idx2' width="13" height="13">
+    <g transform='scale(0.99)'>
+      <rect width='4' height='3' x='6' y='1' style='fill:#7fc8e9;stroke:#2f6f8c;stroke-width:0.6;' ry='0.83'/>
+      <rect width='7' height='3' x='3' y='6' style='fill:#7fc8e9;stroke:#2f6f8c;stroke-width:0.6;' ry='0.832'/>
+    </g>
+  </symbol>
+  <symbol id='unq' width="13" height="13">
+    <g transform='scale(0.75)'>
+      <path style="fill:#999999;stroke:none;" d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+      <text x='4' y='9' style='font-size:8px;fill:#999999;'>1</text>
+    </g>
+  </symbol>
+  <symbol id='idx' width="13" height="13">
+    <g transform='scale(0.75)'>
+      <path style="fill:#999999;stroke:none;" d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+    </g>
+  </symbol>
+  <symbol id='fk' width="13" height="13">
+    <g transform='scale(0.87)'>
+      <path style='fill:none;stroke:#5a72a8;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+            d='M 1.1,11 1,5.3 C 1,3.6 1.6,3.3 2.9,3.3 l 7.9,0' />
+      <path style='fill:#5a72a8;stroke:#5a72a8;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+            d='M 6.3,0.8 11.3,3.4 6.3,5.6 Z' />
+    </g>
+  </symbol>
+  <symbol id='ref' width="13" height="13">
+    <g transform='scale(0.87)'>
+      <path style='fill:none;stroke:#b4a717;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+            d='m 10.9,11.2 0,-5.8 C 10,3.7 10,3 9,3 l -7.9,0'/>
+      <path style='fill:#b4a717;stroke:#b4a717;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+            d='M 5.7,0.8 0.7,3.4 5.7,5.6 Z'/>
+    </g>
+  </symbol>
+  <symbol id='flagBlue' width="16" height="16">
+    <g transform='scale(0.75)'>
+      <path style="fill:#b7d0f6;stroke:none;" d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12 12 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A20 20 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a20 20 0 0 0 1.349-.476l.019-.007.004-.002h.001"/>
+    </g>
+  </symbol>
+  <symbol id='flagRed' width="16" height="16">
+    <g transform='scale(0.75)'>
+      <path style="fill:#f4a393;stroke:none;" d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12 12 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A20 20 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a20 20 0 0 0 1.349-.476l.019-.007.004-.002h.001"/>
+    </g>
+  </symbol>
+  <symbol id='flagGreen' width="16" height="16">
+    <g transform='scale(0.75)'>
+      <path style="fill:#77ec8b;stroke:none;" d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12 12 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A20 20 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a20 20 0 0 0 1.349-.476l.019-.007.004-.002h.001"/>
+    </g>
+  </symbol>
+  <symbol id='nn' width="3" height="3">
+    <path style='stroke:#da897b;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+          d='M 0,0 3,3 M 0,3 3,0 z'/>
+  </symbol>
+  <symbol id='virtual' width="16" height="16">
+    <g transform='scale(0.99)'>
+      <path style='stroke:#5394b8;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;' d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7 7 0 0 0-2.79.588l.77.771A6 6 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13 13 0 0 1 14.828 8q-.086.13-.195.288c-.335.48-.83 1.12-1.465 1.755q-.247.248-.517.486z"/>
+      <path style='stroke:#5394b8;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;' d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829"/>
+      <path style='stroke:#5394b8;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;' d="M3.35 5.47q-.27.24-.518.487A13 13 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7 7 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12z"/>
+    </g>
+  </symbol>
+  <symbol id='shield' width="16" height="16">
+    <g transform='scale(0.99)'>
+      <path style='stroke:#5394b8;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+            d="M5.338 1.59a61 61 0 0 0-2.837.856.48.48 0 0 0-.328.39c-.554 4.157.726 7.19 2.253 9.188a10.7 10.7 0 0 0 2.287 2.233c.346.244.652.42.893.533q.18.085.293.118a1 1 0 0 0 .101.025 1 1 0 0 0 .1-.025q.114-.034.294-.118c.24-.113.547-.29.893-.533a10.7 10.7 0 0 0 2.287-2.233c1.527-1.997 2.807-5.031 2.253-9.188a.48.48 0 0 0-.328-.39c-.651-.213-1.75-.56-2.837-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524zM5.072.56C6.157.265 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.596 4.477-.787 7.795-2.465 9.99a11.8 11.8 0 0 1-2.517 2.453 7 7 0 0 1-1.048.625c-.28.132-.581.24-.829.24s-.548-.108-.829-.24a7 7 0 0 1-1.048-.625 11.8 11.8 0 0 1-2.517-2.453C1.928 10.487.545 7.169 1.141 2.692A1.54 1.54 0 0 1 2.185 1.43 63 63 0 0 1 5.072.56"/>
+      <path style='stroke:#5394b8;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+            d="M10.854 5.146a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L7.5 7.793l2.646-2.647a.5.5 0 0 1 .708 0"/>
+    </g>
+  </symbol>
+  <symbol id='shield-slash' width="16" height="16">
+    <g transform='scale(0.99)'>
+      <path style='stroke:#5394b8;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+            d="M1.093 3.093c-.465 4.275.885 7.46 2.513 9.589a11.8 11.8 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7 7 0 0 0 1.048-.625 11.3 11.3 0 0 0 1.733-1.525l-.745-.745a10.3 10.3 0 0 1-1.578 1.392c-.346.244-.652.42-.893.533q-.18.085-.293.118a1 1 0 0 1-.101.025 1 1 0 0 1-.1-.025 2 2 0 0 1-.294-.118 6 6 0 0 1-.893-.533 10.7 10.7 0 0 1-2.287-2.233C3.053 10.228 1.879 7.594 2.06 4.06zM3.98 1.98l-.852-.852A59 59 0 0 1 5.072.559C6.157.266 7.31 0 8 0s1.843.265 2.928.56c1.11.3 2.229.655 2.887.87a1.54 1.54 0 0 1 1.044 1.262c.483 3.626-.332 6.491-1.551 8.616l-.77-.77c1.042-1.915 1.72-4.469 1.29-7.702a.48.48 0 0 0-.33-.39c-.65-.213-1.75-.56-2.836-.855C9.552 1.29 8.531 1.067 8 1.067c-.53 0-1.552.223-2.662.524a50 50 0 0 0-1.357.39zm9.666 12.374-13-13 .708-.708 13 13z"/>
+    </g>
+  </symbol>
+  <symbol id='view' width="13" height="13">
+    <g transform='scale(0.81)'>
+      <path style="fill:#999999;stroke:none;" d="M3 2.5A1.5 1.5 0 0 1 4.5 1h1A1.5 1.5 0 0 1 7 2.5V5h2V2.5A1.5 1.5 0 0 1 10.5 1h1A1.5 1.5 0 0 1 13 2.5v2.382a.5.5 0 0 0 .276.447l.895.447A1.5 1.5 0 0 1 15 7.118V14.5a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 14.5v-3a.5.5 0 0 1 .146-.354l.854-.853V9.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v.793l.854.853A.5.5 0 0 1 7 11.5v3A1.5 1.5 0 0 1 5.5 16h-3A1.5 1.5 0 0 1 1 14.5V7.118a1.5 1.5 0 0 1 .83-1.342l.894-.447A.5.5 0 0 0 3 4.882zM4.5 2a.5.5 0 0 0-.5.5V3h2v-.5a.5.5 0 0 0-.5-.5zM6 4H4v.882a1.5 1.5 0 0 1-.83 1.342l-.894.447A.5.5 0 0 0 2 7.118V13h4v-1.293l-.854-.853A.5.5 0 0 1 5 10.5v-1A1.5 1.5 0 0 1 6.5 8h3A1.5 1.5 0 0 1 11 9.5v1a.5.5 0 0 1-.146.354l-.854.853V13h4V7.118a.5.5 0 0 0-.276-.447l-.895-.447A1.5 1.5 0 0 1 12 4.882V4h-2v1.5a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5zm4-1h2v-.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5zm4 11h-4v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5zm-8 0H2v.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5z"/>
+    </g>
+  </symbol>
+  <symbol id='logo' width="100" height="100" style="filter:url(#shadow);">
+    <path style='stroke:none;fill:#5d5d5d' d='M2.41,6.80 17.39,0.35 26.83,7.21 28.32,24.45 12.62,29.77 1.74,23.96'/>
+    <path style='stroke:none;fill:#efefef' d='M 2.21, 6.45  9.36, 3.49  9.42,11.63  2.04,14.42'/>
+    <path style='stroke:none;fill:#efefef' d='M10.23, 3.14 17.39, 0.17 17.68, 8.59 10.29,11.28'/>
+    <path style='stroke:none;fill:#d2d2d2' d='M17.44, 0.17 21.59, 3.55 22.36,11.43 17.76,8.63'/>
+    <path style='stroke:none;fill:#d2d2d2' d='M22.67, 4.33 26.98, 7.06 27.65,14.77 23.20,11.77'/>
+    <path style='stroke:none;fill:#efefef' d='M1.89,15.58  9.39,12.65  9.48,21.14  1.57,24.10'/>
+    <path style='stroke:none;fill:#17afde' d='M10.38,12.36 17.70, 9.51 18.11,18.37 10.32 20.96'/>
+    <path style='stroke:none;fill:#1389ad' d='M17.73, 9.59 22.41,12.47 22.82,21.14 18.05,18.34'/>
+    <path style='stroke:none;fill:#d2d2d2' d='M23.26,12.94 27.62,15.70 28.42,24.54 23.69,21.60'/>
+    <path style='stroke:none;fill:#828282' d='M1.57,24.19  9.45,21.22 14.30,24.40  6.80,26.80'/>
+    <path style='stroke:none;fill:#0c485c' d='M10.47,20.90 18.11,18.32 22.82,21.19 15.20,23.81'/>
+    <path style='stroke:none;fill:#828282' d='M23.69,21.63 28.32,24.65 20.87,27.07 15.84,24.30'/>
+    <path style='stroke:none;fill:#828282' d='M14.94,24.68 19.80,27.41 12.59,29.97  7.73,27.21'/>
+  </symbol>
+    <symbol id="bulb" viewBox="0 0 24 24">
+      <rect x="10" y="16" width="4" height="6" rx="1.5" ry="1.5" style='fill:#c4ae85;stroke:#c3ad44;stroke-width:0.3;stroke-linecap:round;stroke-linejoin:round;filter:url(#shadow);' />
+      <circle cx="12" cy="12" r="5" style='fill:#fff9c1;stroke:#c3ad44;stroke-width:0.3;filter:url(#shadow);'/>
+    </symbol>
+</defs>
+
+<defs>  <marker id='ZeroMore' viewBox='0 0 9.50 9.50' refX='4.75' refY='4.75' markerWidth='9.50' markerHeight='9.50' orient='auto-start-reverse'>
+    <circle cx='2.38' cy='4.75' r='2.38' style='stroke-width:1;' />
+    <path d='M 9.50,0.00 L 4.75,4.75 L 9.50,9.50' style='stroke-width:1;'/>
+    <path d='M 0.00,4.75 L 9.50,4.75 z' style='stroke-width:1;'/>
+  </marker>
+  <marker id='ZeroOne' viewBox='0 0 9.50 9.50' refX='4.75' refY='4.75' markerWidth='9.50' markerHeight='9.50' orient='auto-start-reverse'>
+    <path d='M 0.00,4.75 L 9.50,4.75 z' style='stroke-width:1;'/>
+    <circle cx='2.38' cy='4.75' r='2.38' style='stroke-width:1;' />
+    <path d='M 4.75,0.00 L 4.75, 9.50 z' style='stroke-width:1;'/>
+  </marker>
+  <marker id='OneMore' viewBox='0 0 9.50 9.50' refX='4.75' refY='4.75' markerWidth='9.50' markerHeight='9.50' orient='auto-start-reverse'>
+    <path d='M 0.00,4.75 L 9.50,4.75 z' style='stroke-width:1;'/>
+    <path d='M 4.75,0.00 L 4.75, 9.50 z' style='stroke-width:1;'/>
+    <path d='M 9.50,0.00 L 4.75,4.75 L 9.50,9.50' style='stroke-width:1;'/>
+    <path d='M 0.00,4.75 L 9.50,4.75 z' style='stroke-width:1;'/>
+  </marker>
+  <marker id='One' viewBox='0 0 9.50 9.50' refX='4.75' refY='4.75' markerWidth='9.50' markerHeight='9.50' orient='auto-start-reverse'>
+    <path d='M 0.00,4.75 L 9.50,4.75 z' style='stroke-width:1;'/>
+    <path d='M 4.75,0.00 L 4.75, 9.50 z' style='stroke-width:1;'/>
+  </marker>
+  <marker id='Range' viewBox='0 0 9.50 9.50' refX='4.75' refY='4.75' markerWidth='9.50' markerHeight='9.50' orient='auto-start-reverse'>
+    <path d='M 0.00,4.75 L 9.50,4.75 z' style='stroke-width:1;'/>
+  </marker>
+  <marker id='Arrow' viewBox='0 0 9.50 9.50' refX='4.75' refY='4.75' markerWidth='9.50' markerHeight='9.50' orient='auto-start-reverse'>
+    <path d='M 4.750,2.375 L 9.500,4.750 L 4.750,7.125 z' style='stroke-width:1;' class='filled'/>
+  </marker>
+  <linearGradient id='ttl_D8E8F5' x1='0%' y1='0%' x2='100%' y2='0%' >
+     <stop offset='0%' stop-color='#6CAADE' /> 
+     <stop offset='100%' stop-color='#A0C1DD' /> 
+  </linearGradient>
+  <linearGradient id='tbg_D8E8F5' x1='0%' y1='0%' x2='100%' y2='0%' >
+     <stop offset='0%' stop-color='#E3E4E5' /> 
+     <stop offset='100%' stop-color='#F4F5F7' /> 
+  </linearGradient>
+  <linearGradient id='ttl_E6E8EC' x1='0%' y1='0%' x2='100%' y2='0%' >
+     <stop offset='0%' stop-color='#6C92DE' /> 
+     <stop offset='100%' stop-color='#A0B4DD' /> 
+  </linearGradient>
+  <linearGradient id='tbg_E6E8EC' x1='0%' y1='0%' x2='100%' y2='0%' >
+     <stop offset='0%' stop-color='#E3E3E5' /> 
+     <stop offset='100%' stop-color='#F4F5F7' /> 
+  </linearGradient>
+</defs>
+
+<!-- == Shape Colors == -->
+<!-- == Desktop == -->
+<rect x='0' y='0' width='1482' height='1725' rx='10' ry='10' style='fill:url(#layoutBgA); stroke:#ccc; stroke-width:.7px; cursor:move;' />
+<rect x='1' y='1' width='1480' height='1723' rx='10' ry='10' style='fill:url(#layoutBgEval);' />
+
+<!-- == Legend == -->
+<g transform='translate(10,10)'>
+  <rect x='10' y='10' width='360' height='70' rx='7' ry='7' class='legend'/> 
+  <use x='349' y='28' xlink:href='#bulb' width='24' height='24'><title>Read column and table comments by hovering the columns and tables.
+Zoom with CTRL+whell mouse button, pan by dragging the diagram with the right-mouse button</title></use>
+  <use x='20' y='40' xlink:href='#logo'><title>DbSchema Database Designer </title></use>  <text x='20' y='30' class='legendTitle' >Burmalda &#8212; базы данных всех сервисов</text> 
+  <text x='57' y='47' class='legendSubTitle'><tspan>Read schema comments as mouse-over tooltips</tspan></text>
+  <a xlink:href='https://dbschema.com'><text x='57' y='61' class='legendSubTitle'><tspan>DbSchema.com © 2026-10-09 Wise Coders<title>DbSchema.com © 2026-10-09 Wise Coders</title></tspan></text></a> 
+</g>
+
+<g transform='translate(0,110)'>
+<!-- == Group 'Lending · выдачи, сага и Hangfire | lending_db' == -->
+<rect class='grp' style='fill:#FDFEFF;stroke:#AECAE2' x='41' y='31' width='1400' height='1505' rx='8' ry='8' />
+<text x='55' y='50' style='fill:#90ADC5;'>Lending · выдачи&#44; сага и Hangfire &#124; lending&#95;db</text>
+<!-- == Fk 'loans_virtual_loans_SagaId' == -->
+<path id='loans_virtual_loans_SagaId'  onmouseover="hghl(['loans_virtual_loans_SagaId','public.loans.SagaId','public.loan_request_sagas.Id'])" onmouseout="uhghl(['loans_virtual_loans_SagaId','public.loans.SagaId','public.loan_request_sagas.Id'])" transform='translate(10,0)' class='unhighlight' d='M 285,133L 437,133' >
+	<title>&#x1F517;  Foreign Key virtual_loans_SagaId
+loans ref loan_request_sagas ( SagaId -&gt; Id )
+ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь.</title>
+</path>
+<path transform='translate(10,0)' marker-start='url(#One)' marker-end='url(#Arrow)'  class='virtual'  d='M 285,133L 437,133' ><title>&#x1F517;  Foreign Key virtual_loans_SagaId
+loans ref loan_request_sagas ( SagaId -&gt; Id )
+ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь.</title></path>
+<text x='294' y='127' transform='rotate(0 294,127)' class='relName'>SagaId</text>
+<!-- == Fk 'loan_request_sagas_virtual_loan_request_sagas_LoanId' == -->
+<path id='loan_request_sagas_virtual_loan_request_sagas_LoanId'  onmouseover="hghl(['loan_request_sagas_virtual_loan_request_sagas_LoanId','public.loan_request_sagas.LoanId','public.loans.Id'])" onmouseout="uhghl(['loan_request_sagas_virtual_loan_request_sagas_LoanId','public.loan_request_sagas.LoanId','public.loans.Id'])" transform='translate(10,0)' class='unhighlight' d='M 437,114L 285,114' >
+	<title>&#x1F517;  Foreign Key virtual_loan_request_sagas_LoanId
+loan_request_sagas ref loans ( LoanId -&gt; Id )
+ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь.</title>
+</path>
+<path transform='translate(10,0)' marker-start='url(#ZeroMore)' marker-end='url(#Arrow)'  class='dotted virtual'  d='M 437,114L 285,114' ><title>&#x1F517;  Foreign Key virtual_loan_request_sagas_LoanId
+loan_request_sagas ref loans ( LoanId -&gt; Id )
+ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь.</title></path>
+<text x='410' y='108' transform='rotate(0 410,108)' class='relName'>LoanId</text>
+<!-- == Fk 'loan_status_history_virtual_loan_status_history_LoanId' == -->
+<path id='loan_status_history_virtual_loan_status_history_LoanId'  onmouseover="hghl(['loan_status_history_virtual_loan_status_history_LoanId','public.loan_status_history.LoanId','public.loans.Id'])" onmouseout="uhghl(['loan_status_history_virtual_loan_status_history_LoanId','public.loan_status_history.LoanId','public.loans.Id'])" transform='translate(10,0)' class='unhighlight' d='M 817,95L 675,95Q 665,95 665,86L 665,67Q 665,57 656,57L 276,57Q 266,57 266,67L 266,76' >
+	<title>&#x1F517;  Foreign Key virtual_loan_status_history_LoanId
+loan_status_history ref loans ( LoanId -&gt; Id )
+ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь.</title>
+</path>
+<path transform='translate(10,0)' marker-start='url(#OneMore)' marker-end='url(#Arrow)'  class='virtual'  d='M 817,95L 675,95Q 665,95 665,86L 665,67Q 665,57 656,57L 276,57Q 266,57 266,67L 266,76' ><title>&#x1F517;  Foreign Key virtual_loan_status_history_LoanId
+loan_status_history ref loans ( LoanId -&gt; Id )
+ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь.</title></path>
+<text x='790' y='89' transform='rotate(0 790,89)' class='relName'>LoanId</text>
+<!-- == Fk 'jobparameter_jobparameter_jobid_fkey' == -->
+<path id='jobparameter_jobparameter_jobid_fkey'  onmouseover="hghl(['jobparameter_jobparameter_jobid_fkey','hangfire.jobparameter.jobid','hangfire.job.id'])" onmouseout="uhghl(['jobparameter_jobparameter_jobid_fkey','hangfire.jobparameter.jobid','hangfire.job.id'])" transform='translate(10,0)' class='unhighlight' d='M 190,1102L 190,1074Q 190,1064 200,1064L 1245,1064Q 1254,1064 1254,1055L 1254,1045' >
+	<title>&#x1F517;  Foreign Key jobparameter_jobid_fkey
+jobparameter ref job ( jobid -&gt; id )</title>
+</path>
+<path transform='translate(10,0)' marker-start='url(#OneMore)' marker-end='url(#Arrow)'    d='M 190,1102L 190,1074Q 190,1064 200,1064L 1245,1064Q 1254,1064 1254,1055L 1254,1045' ><title>&#x1F517;  Foreign Key jobparameter_jobid_fkey
+jobparameter ref job ( jobid -&gt; id )</title></path>
+<text x='193' y='1099' transform='rotate(270 193,1099)' class='relName'>jobid</text>
+<!-- == Fk 'state_state_jobid_fkey' == -->
+<path id='state_state_jobid_fkey'  onmouseover="hghl(['state_state_jobid_fkey','hangfire.state.jobid','hangfire.job.id'])" onmouseout="uhghl(['state_state_jobid_fkey','hangfire.state.jobid','hangfire.job.id'])" transform='translate(10,0)' class='unhighlight' d='M 1216,1330L 1207,1330Q 1197,1330 1197,1321L 1197,1017Q 1197,1007 1207,1007L 1216,1007' >
+	<title>&#x1F517;  Foreign Key state_jobid_fkey
+state ref job ( jobid -&gt; id )</title>
+</path>
+<path transform='translate(10,0)' marker-start='url(#OneMore)' marker-end='url(#Arrow)'    d='M 1216,1330L 1207,1330Q 1197,1330 1197,1321L 1197,1017Q 1197,1007 1207,1007L 1216,1007' ><title>&#x1F517;  Foreign Key state_jobid_fkey
+state ref job ( jobid -&gt; id )</title></path>
+<text x='1197' y='1324' transform='rotate(0 1197,1324)' class='relName'>jobid</text>
+<!-- == Table 'loans' == -->
+<rect id='depict_public&#46;loans' class='entity' style='stroke:#F9FAFC' x='57' y='86' width='228' height='399' rx='4' ry='4' />
+<rect x='57' y='86' width='228' height='8' rx='4' ry='4' style='stroke-width:0;fill:url(#ttl_D8E8F5);'/>
+<rect x='57' y='90' width='228' height='29' style='stroke-width:0;fill:url(#tbg_D8E8F5);'/>
+<a xlink:href='#public.loans'><text id='depict&#45;public&#46;loans' x='135' y='108' class='tableHeader' style='fill:#414448;'>public&#46;loans</text><title>Table public.loans</title></a>
+  <use x='58' y='129' xlink:href='#nn'/><use x='59' y='128' xlink:href='#pk'><title>&#x1F511;  Pk PK_loans ( Id ) </title></use><a xlink:href='#public.loans.Id'><text id='public&#46;loans&#46;Id' x='80' y='142' onmouseover="hghl(['loan_request_sagas_virtual_loan_request_sagas_LoanId','public.loan_request_sagas.LoanId','loan_status_history_virtual_loan_status_history_LoanId','public.loan_status_history.LoanId','balance_transactions_virtual_balance_transactions_LoanId','public.balance_transactions.LoanId','fines_virtual_fines_LoanId','public.fines.LoanId'])" onmouseout="uhghl(['loan_request_sagas_virtual_loan_request_sagas_LoanId','public.loan_request_sagas.LoanId','loan_status_history_virtual_loan_status_history_LoanId','public.loan_status_history.LoanId','balance_transactions_virtual_balance_transactions_LoanId','public.balance_transactions.LoanId','fines_virtual_fines_LoanId','public.fines.LoanId'])" class='colPk'>Id</text><title>&#10697;  Id
+     * uuid
+ &#8601; loan_request_sagas( LoanId )
+ &#8601; loan_status_history( LoanId )
+ &#8601; balance_transactions( LoanId )
+ &#8601; fines( LoanId )</title></a>
+<text x='266' y='143' class='dataType' style='fill:#B2B9C0;'>uuid</text><a xlink:href='#public.loans.Id'><use x='271' y='128' xlink:href='#ref'/><title>&#x1F517;  Referred by public.loan_request_sagas ( LoanId -&gt; Id ) 
+Referred by public.loan_status_history ( LoanId -&gt; Id ) 
+Referred by public.balance_transactions ( LoanId -&gt; Id ) 
+Referred by public.fines ( LoanId -&gt; Id ) </title></a>
+  <use x='58' y='148' xlink:href='#nn'/><use x='59' y='147' xlink:href='#unq'><title>&#x1F50D;  Unq IX_loans_SagaId ( SagaId ) </title></use><a xlink:href='#public.loans.SagaId'><text id='public&#46;loans&#46;SagaId' x='80' y='161' onmouseover="hghl(['loans_virtual_loans_SagaId','public.loan_request_sagas.Id'])" onmouseout="uhghl(['loans_virtual_loans_SagaId','public.loan_request_sagas.Id'])">SagaId</text><title>&#10697;  SagaId
+     * uuid
+ &#8599; loan_request_sagas( Id )
+ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+      Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь. → lending_db.public.loan_request_sagas.Id</title></a>
+<text x='266' y='162' class='dataType' style='fill:#B2B9C0;'>uuid</text><a xlink:href='#public.loans.SagaId'><use x='271' y='147' xlink:href='#fk'/><title>&#x1F517;  References public.loan_request_sagas ( SagaId -&gt; Id ) </title></a>
+  <use x='58' y='167' xlink:href='#nn'/><use x='59' y='166' xlink:href='#idx'><title>&#x1F50D;  IX_loans_CopyId ( CopyId ) </title></use><a xlink:href='#public.loans.CopyId'><text id='public&#46;loans&#46;CopyId' x='80' y='180' onmouseover="hghl(['loans_virtual_loans_CopyId','public.book_copies.Id'])" onmouseout="uhghl(['loans_virtual_loans_CopyId','public.book_copies.Id'])">CopyId</text><title>&#10697;  CopyId
+     * uuid
+ &#8599; book_copies( Id )
+ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+      Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов. → catalog_db.public.book_copies.Id</title></a>
+<text x='266' y='181' class='dataType' style='fill:#B2B9C0;'>uuid</text><a xlink:href='#public.loans.CopyId'><use x='271' y='166' xlink:href='#fk'/><title>&#x1F517;  References public.book_copies ( CopyId -&gt; Id ) </title></a>
+  <use x='58' y='186' xlink:href='#nn'/><use x='59' y='185' xlink:href='#idx'><title>&#x1F50D;  IX_loans_BorrowerId_Status ( BorrowerId, Status ) </title></use><a xlink:href='#public.loans.BorrowerId'><text id='public&#46;loans&#46;BorrowerId' x='80' y='199' onmouseover="hghl(['loans_virtual_loans_BorrowerId','public.users.Id'])" onmouseout="uhghl(['loans_virtual_loans_BorrowerId','public.users.Id'])">BorrowerId</text><title>&#10697;  BorrowerId
+     * uuid
+ &#8599; users( Id )
+ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+      Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов. → identity_db.public.users.Id</title></a>
+<text x='266' y='200' class='dataType' style='fill:#B2B9C0;'>uuid</text><a xlink:href='#public.loans.BorrowerId'><use x='271' y='185' xlink:href='#fk'/><title>&#x1F517;  References public.users ( BorrowerId -&gt; Id ) </title></a>
+  <use x='58' y='205' xlink:href='#nn'/><use x='59' y='204' xlink:href='#idx'><title>&#x1F50D;  IX_loans_OwnerId_Status ( OwnerId, Status ) </title></use><a xlink:href='#public.loans.OwnerId'><text id='public&#46;loans&#46;OwnerId' x='80' y='218' onmouseover="hghl(['loans_virtual_loans_OwnerId','public.users.Id'])" onmouseout="uhghl(['loans_virtual_loans_OwnerId','public.users.Id'])">OwnerId</text><title>&#10697;  OwnerId
+     * uuid
+ &#8599; users( Id )
+ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+      Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов. → identity_db.public.users.Id</title></a>
+<text x='266' y='219' class='dataType' style='fill:#B2B9C0;'>uuid</text><a xlink:href='#public.loans.OwnerId'><use x='271' y='204' xlink:href='#fk'/><title>&#x1F517;  References public.users ( OwnerId -&gt; Id ) </title></a>
+  <use x='58' y='224' xlink:href='#nn'/><a xlink:href='#public.loans.ReservationId'><text id='public&#46;loans&#46;ReservationId' x='80' y='237' onmouseover="hghl(['loans_virtual_loans_ReservationId','public.point_reservations.Id'])" onmouseout="uhghl(['loans_virtual_loans_ReservationId','public.point_reservations.Id'])">ReservationId</text><title>&#10697;  ReservationId
+     * uuid
+ &#8599; point_reservations( Id )
+ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+      Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов. → economy_db.public.point_reservations.Id</title></a>
+<text x='266' y='238' class='dataType' style='fill:#B2B9C0;'>uuid</text><a xlink:href='#public.loans.ReservationId'><use x='271' y='223' xlink:href='#fk'/><title>&#x1F517;  References public.point_reservations ( ReservationId -&gt; Id ) </title></a>
+  <use x='58' y='243' xlink:href='#nn'/><a xlink:href='#public.loans.Price'><text id='public&#46;loans&#46;Price' x='80' y='256'>Price</text><title>&#10697;  Price
+     * decimal(18,2)</title></a>
+<text x='266' y='257' class='dataType' style='fill:#B2B9C0;'>decimal&#40;18&#44;2&#41;</text>  <use x='58' y='262' xlink:href='#nn'/><a xlink:href='#public.loans.MaximumLoanDays'><text id='public&#46;loans&#46;MaximumLoanDays' x='80' y='275'>MaximumLoanDays</text><title>&#10697;  MaximumLoanDays
+     * integer</title></a>
+<text x='266' y='276' class='dataType' style='fill:#B2B9C0;'>integer</text>  <use x='58' y='281' xlink:href='#nn'/><use x='59' y='280' xlink:href='#idx'><title>&#x1F50D;  IX_loans_BorrowerId_Status ( BorrowerId, Status ) &#x1F50D;  IX_loans_OwnerId_Status ( OwnerId, Status ) </title></use><a xlink:href='#public.loans.Status'><text id='public&#46;loans&#46;Status' x='80' y='294'>Status</text><title>&#10697;  Status
+     * integer</title></a>
+<text x='266' y='295' class='dataType' style='fill:#B2B9C0;'>integer</text>  <a xlink:href='#public.loans.HandoverCodeHash'><text id='public&#46;loans&#46;HandoverCodeHash' x='80' y='313'>HandoverCodeHash</text><title>&#10697;  HandoverCodeHash
+     text</title></a>
+<text x='266' y='314' class='dataType' style='fill:#B2B9C0;'>text</text>  <a xlink:href='#public.loans.HandoverExpiresAt'><text id='public&#46;loans&#46;HandoverExpiresAt' x='80' y='332'>HandoverExpiresAt</text><title>&#10697;  HandoverExpiresAt
+     timestamptz</title></a>
+<text x='266' y='333' class='dataType' style='fill:#B2B9C0;'>timestamptz</text>  <a xlink:href='#public.loans.ActivatedAt'><text id='public&#46;loans&#46;ActivatedAt' x='80' y='351'>ActivatedAt</text><title>&#10697;  ActivatedAt
+     timestamptz</title></a>
+<text x='266' y='352' class='dataType' style='fill:#B2B9C0;'>timestamptz</text>  <a xlink:href='#public.loans.DueAt'><text id='public&#46;loans&#46;DueAt' x='80' y='370'>DueAt</text><title>&#10697;  DueAt
+     timestamptz</title></a>
+<text x='266' y='371' class='dataType' style='fill:#B2B9C0;'>timestamptz</text>  <a xlink:href='#public.loans.CompletedAt'><text id='public&#46;loans&#46;CompletedAt' x='80' y='389'>CompletedAt</text><title>&#10697;  CompletedAt
+     timestamptz</title></a>
+<text x='266' y='390' class='dataType' style='fill:#B2B9C0;'>timestamptz</text>  <use x='58' y='395' xlink:href='#nn'/><a xlink:href='#public.loans.ReminderFlags'><text id='public&#46;loans&#46;ReminderFlags' x='80' y='408'>ReminderFlags</text><title>&#10697;  ReminderFlags
+     * integer</title></a>
+<text x='266' y='409' class='dataType' style='fill:#B2B9C0;'>integer</text>  <use x='58' y='414' xlink:href='#nn'/><a xlink:href='#public.loans.Version'><text id='public&#46;loans&#46;Version' x='80' y='427'>Version</text><title>&#10697;  Version
+     * bigint</title></a>
+<text x='266' y='428' class='dataType' style='fill:#B2B9C0;'>bigint</text>  <use x='58' y='433' xlink:href='#nn'/><a xlink:href='#public.loans.CreatedAt'><text id='public&#46;loans&#46;CreatedAt' x='80' y='446'>CreatedAt</text><title>&#10697;  CreatedAt
+     * timestamptz</title></a>
+<text x='266' y='447' class='dataType' style='fill:#B2B9C0;'>timestamptz</text>  <use x='58' y='452' xlink:href='#nn'/><a xlink:href='#public.loans.UpdatedAt'><text id='public&#46;loans&#46;UpdatedAt' x='80' y='465'>UpdatedAt</text><title>&#10697;  UpdatedAt
+     * timestamptz</title></a>
+<text x='266' y='466' class='dataType' style='fill:#B2B9C0;'>timestamptz</text>
+<!-- == Table 'loan_request_sagas' == -->
+<rect id='depict_public&#46;loan&#95;request&#95;sagas' class='entity' style='stroke:#F9FAFC' x='456' y='86' width='190' height='304' rx='4' ry='4' />
+<rect x='456' y='86' width='190' height='8' rx='4' ry='4' style='stroke-width:0;fill:url(#ttl_D8E8F5);'/>
+<rect x='456' y='90' width='190' height='29' style='stroke-width:0;fill:url(#tbg_D8E8F5);'/>
+<a xlink:href='#public.loan_request_sagas'><text id='depict&#45;public&#46;loan&#95;request&#95;sagas' x='478' y='108' class='tableHeader' style='fill:#414448;'>public&#46;loan&#95;request&#95;sagas</text><title>Table public.loan_request_sagas
+ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+      Состояние саги выдачи. Соединяет резерв экземпляра, резерв баллов и созданную выдачу через сообщения сервисов.</title></a>
+  <use x='457' y='129' xlink:href='#nn'/><use x='458' y='128' xlink:href='#pk'><title>&#x1F511;  Pk PK_loan_request_sagas ( Id ) </title></use><a xlink:href='#public.loan_request_sagas.Id'><text id='public&#46;loan&#95;request&#95;sagas&#46;Id' x='479' y='142' onmouseover="hghl(['book_copies_virtual_book_copies_ReservationSagaId','public.book_copies.ReservationSagaId','loans_virtual_loans_SagaId','public.loans.SagaId','point_reservations_virtual_point_reservations_SagaId','public.point_reservations.SagaId'])" onmouseout="uhghl(['book_copies_virtual_book_copies_ReservationSagaId','public.book_copies.ReservationSagaId','loans_virtual_loans_SagaId','public.loans.SagaId','point_reservations_virtual_point_reservations_SagaId','public.point_reservations.SagaId'])" class='colPk'>Id</text><title>&#10697;  Id
+     * uuid
+ &#8601; book_copies( ReservationSagaId )
+ &#8601; loans( SagaId )
+ &#8601; point_reservations( SagaId )</title></a>
+<text x='627' y='143' class='dataType' style='fill:#B2B9C0;'>uuid</text><a xlink:href='#public.loan_request_sagas.Id'><use x='632' y='128' xlink:href='#ref'/><title>&#x1F517;  Referred by public.book_copies ( ReservationSagaId -&gt; Id ) 
+Referred by public.loans ( SagaId -&gt; Id ) 
+Referred by public.point_reservations ( SagaId -&gt; Id ) </title></a>
+  <use x='457' y='148' xlink:href='#nn'/><use x='458' y='147' xlink:href='#idx'><title>&#x1F50D;  IX_loan_request_sagas_CopyId_State ( CopyId, State ) </title></use><a xlink:href='#public.loan_request_sagas.CopyId'><text id='public&#46;loan&#95;request&#95;sagas&#46;CopyId' x='479' y='161' onmouseover="hghl(['loan_request_sagas_virtual_loan_request_sagas_CopyId','public.book_copies.Id'])" onmouseout="uhghl(['loan_request_sagas_virtual_loan_request_sagas_CopyId','public.book_copies.Id'])">CopyId</text><title>&#10697;  CopyId
+     * uuid
+ &#8599; book_copies( Id )
+ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+      Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов. → catalog_db.public.book_copies.Id</title></a>
+<text x='627' y='162' class='dataType' style='fill:#B2B9C0;'>uuid</text><a xlink:href='#public.loan_request_sagas.CopyId'><use x='632' y='147' xlink:href='#fk'/><title>&#x1F517;  References public.book_copies ( CopyId -&gt; Id ) </title></a>
+  <use x='457' y='167' xlink:href='#nn'/><a xlink:href='#public.loan_request_sagas.BorrowerId'><text id='public&#46;loan&#95;request&#95;sagas&#46;BorrowerId' x='479' y='180' onmouseover="hghl(['loan_request_sagas_virtual_loan_request_sagas_BorrowerId','public.users.Id'])" onmouseout="uhghl(['loan_request_sagas_virtual_loan_request_sagas_BorrowerId','public.users.Id'])">BorrowerId</text><title>&#10697;  BorrowerId
+     * uuid
+ &#8599; users( Id )
+ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+      Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов. → identity_db.public.users.Id</title></a>
+<text x='627' y='181' class='dataType' style='fill:#B2B9C0;'>uuid</text><a xlink:href='#public.loan_request_sagas.BorrowerId'><use x='632' y='166' xlink:href='#fk'/><title>&#x1F517;  References public.users ( BorrowerId -&gt; Id ) </title></a>
+  <a xlink:href='#public.loan_request_sagas.OwnerId'><text id='public&#46;loan&#95;request&#95;sagas&#46;OwnerId' x='479' y='199' onmouseover="hghl(['loan_request_sagas_virtual_loan_request_sagas_OwnerId','public.users.Id'])" onmouseout="uhghl(['loan_request_sagas_virtual_loan_request_sagas_OwnerId','public.users.Id'])">OwnerId</text><title>&#10697;  OwnerId
+     uuid
+ &#8599; users( Id )
+ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+      Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов. → identity_db.public.users.Id</title></a>
+<text x='627' y='200' class='dataType' style='fill:#B2B9C0;'>uuid</text><a xlink:href='#public.loan_request_sagas.OwnerId'><use x='632' y='185' xlink:href='#fk'/><title>&#x1F517;  References public.users ( OwnerId -&gt; Id ) </title></a>
+  <a xlink:href='#public.loan_request_sagas.PointsReservationId'><text id='public&#46;loan&#95;request&#95;sagas&#46;PointsReservationId' x='479' y='218' onmouseover="hghl(['loan_request_sagas_virtual_loan_request_sagas_PointsReservationId','public.point_reservations.Id'])" onmouseout="uhghl(['loan_request_sagas_virtual_loan_request_sagas_PointsReservationId','public.point_reservations.Id'])">PointsReservationId</text><title>&#10697;  PointsReservationId
+     uuid
+ &#8599; point_reservations( Id )
+ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+      Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов. → economy_db.public.point_reservations.Id</title></a>
+<text x='627' y='219' class='dataType' style='fill:#B2B9C0;'>uuid</text><a xlink:href='#public.loan_request_sagas.PointsReservationId'><use x='632' y='204' xlink:href='#fk'/><title>&#x1F517;  References public.point_reservations ( PointsReservationId -&gt; Id ) </title></a>
+  <a xlink:href='#public.loan_request_sagas.LoanId'><text id='public&#46;loan&#95;request&#95;sagas&#46;LoanId' x='479' y='237' onmouseover="hghl(['loan_request_sagas_virtual_loan_request_sagas_LoanId','public.loans.Id'])" onmouseout="uhghl(['loan_request_sagas_virtual_loan_request_sagas_LoanId','public.loans.Id'])">LoanId</text><title>&#10697;  LoanId
+     uuid
+ &#8599; loans( Id )
+ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+      Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь. → lending_db.public.loans.Id</title></a>
+<text x='627' y='238' class='dataType' style='fill:#B2B9C0;'>uuid</text><a xlink:href='#public.loan_request_sagas.LoanId'><use x='632' y='223' xlink:href='#fk'/><title>&#x1F517;  References public.loans ( LoanId -&gt; Id ) </title></a>
+  <a xlink:href='#public.loan_request_sagas.Price'><text id='public&#46;loan&#95;request&#95;sagas&#46;Price' x='479' y='256'>Price</text><title>&#10697;  Price
+     decimal(18,2)</title></a>
+<text x='627' y='257' class='dataType' style='fill:#B2B9C0;'>decimal&#40;18&#44;2&#41;</text>  <a xlink:href='#public.loan_request_sagas.MaximumLoanDays'><text id='public&#46;loan&#95;request&#95;sagas&#46;MaximumLoanDays' x='479' y='275'>MaximumLoanDays</text><title>&#10697;  MaximumLoanDays
+     integer</title></a>
+<text x='627' y='276' class='dataType' style='fill:#B2B9C0;'>integer</text>  <use x='457' y='281' xlink:href='#nn'/><use x='458' y='280' xlink:href='#idx'><title>&#x1F50D;  IX_loan_request_sagas_CopyId_State ( CopyId, State ) </title></use><a xlink:href='#public.loan_request_sagas.State'><text id='public&#46;loan&#95;request&#95;sagas&#46;State' x='479' y='294'>State</text><title>&#10697;  State
+     * integer</title></a>
+<text x='627' y='295' class='dataType' style='fill:#B2B9C0;'>integer</text>  <a xlink:href='#public.loan_request_sagas.FailureReason'><text id='public&#46;loan&#95;request&#95;sagas&#46;FailureReason' x='479' y='313'>FailureReason</text><title>&#10697;  FailureReason
+     text</title></a>
+<text x='627' y='314' class='dataType' style='fill:#B2B9C0;'>text</text>  <use x='457' y='319' xlink:href='#nn'/><a xlink:href='#public.loan_request_sagas.Deadline'><text id='public&#46;loan&#95;request&#95;sagas&#46;Deadline' x='479' y='332'>Deadline</text><title>&#10697;  Deadline
+     * timestamptz</title></a>
+<text x='627' y='333' class='dataType' style='fill:#B2B9C0;'>timestamptz</text>  <use x='457' y='338' xlink:href='#nn'/><a xlink:href='#public.loan_request_sagas.CreatedAt'><text id='public&#46;loan&#95;request&#95;sagas&#46;CreatedAt' x='479' y='351'>CreatedAt</text><title>&#10697;  CreatedAt
+     * timestamptz</title></a>
+<text x='627' y='352' class='dataType' style='fill:#B2B9C0;'>timestamptz</text>  <use x='457' y='357' xlink:href='#nn'/><a xlink:href='#public.loan_request_sagas.UpdatedAt'><text id='public&#46;loan&#95;request&#95;sagas&#46;UpdatedAt' x='479' y='370'>UpdatedAt</text><title>&#10697;  UpdatedAt
+     * timestamptz</title></a>
+<text x='627' y='371' class='dataType' style='fill:#B2B9C0;'>timestamptz</text>
+<!-- == Table 'loan_status_history' == -->
+<rect id='depict_public&#46;loan&#95;status&#95;history' class='entity' style='stroke:#F9FAFC' x='836' y='86' width='190' height='171' rx='4' ry='4' />
+<rect x='836' y='86' width='190' height='8' rx='4' ry='4' style='stroke-width:0;fill:url(#ttl_D8E8F5);'/>
+<rect x='836' y='90' width='190' height='29' style='stroke-width:0;fill:url(#tbg_D8E8F5);'/>
+<a xlink:href='#public.loan_status_history'><text id='depict&#45;public&#46;loan&#95;status&#95;history' x='859' y='108' class='tableHeader' style='fill:#414448;'>public&#46;loan&#95;status&#95;history</text><title>Table public.loan_status_history</title></a>
+  <use x='837' y='129' xlink:href='#nn'/><use x='838' y='128' xlink:href='#pk'><title>&#x1F511;  Pk PK_loan_status_history ( Id ) </title></use><a xlink:href='#public.loan_status_history.Id'><text id='public&#46;loan&#95;status&#95;history&#46;Id' x='859' y='142' class='colPk'>Id</text><title>&#10697;  Id
+     * bigint</title></a>
+<text x='1007' y='143' class='dataType' style='fill:#B2B9C0;'>bigint</text>  <use x='837' y='148' xlink:href='#nn'/><use x='838' y='147' xlink:href='#idx'><title>&#x1F50D;  IX_loan_status_history_LoanId ( LoanId ) </title></use><a xlink:href='#public.loan_status_history.LoanId'><text id='public&#46;loan&#95;status&#95;history&#46;LoanId' x='859' y='161' onmouseover="hghl(['loan_status_history_virtual_loan_status_history_LoanId','public.loans.Id'])" onmouseout="uhghl(['loan_status_history_virtual_loan_status_history_LoanId','public.loans.Id'])">LoanId</text><title>&#10697;  LoanId
+     * uuid
+ &#8599; loans( Id )
+ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+      Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь. → lending_db.public.loans.Id</title></a>
+<text x='1007' y='162' class='dataType' style='fill:#B2B9C0;'>uuid</text><a xlink:href='#public.loan_status_history.LoanId'><use x='1012' y='147' xlink:href='#fk'/><title>&#x1F517;  References public.loans ( LoanId -&gt; Id ) </title></a>
+  <use x='837' y='167' xlink:href='#nn'/><a xlink:href='#public.loan_status_history.Status'><text id='public&#46;loan&#95;status&#95;history&#46;Status' x='859' y='180'>Status</text><title>&#10697;  Status
+     * integer</title></a>
+<text x='1007' y='181' class='dataType' style='fill:#B2B9C0;'>integer</text>  <a xlink:href='#public.loan_status_history.ActorId'><text id='public&#46;loan&#95;status&#95;history&#46;ActorId' x='859' y='199' onmouseover="hghl(['loan_status_history_virtual_loan_status_history_ActorId','public.users.Id'])" onmouseout="uhghl(['loan_status_history_virtual_loan_status_history_ActorId','public.users.Id'])">ActorId</text><title>&#10697;  ActorId
+     uuid
+ &#8599; users( Id )
+ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+      Логическая ссылка приложения. PostgreSQL не обеспечивает эту связь; ссылка пересекает границы баз сервисов. → identity_db.public.users.Id</title></a>
+<text x='1007' y='200' class='dataType' style='fill:#B2B9C0;'>uuid</text><a xlink:href='#public.loan_status_history.ActorId'><use x='1012' y='185' xlink:href='#fk'/><title>&#x1F517;  References public.users ( ActorId -&gt; Id ) </title></a>
+  <use x='837' y='205' xlink:href='#nn'/><a xlink:href='#public.loan_status_history.Reason'><text id='public&#46;loan&#95;status&#95;history&#46;Reason' x='859' y='218'>Reason</text><title>&#10697;  Reason
+     * text</title></a>
+<text x='1007' y='219' class='dataType' style='fill:#B2B9C0;'>text</text>  <use x='837' y='224' xlink:href='#nn'/><a xlink:href='#public.loan_status_history.OccurredAt'><text id='public&#46;loan&#95;status&#95;history&#46;OccurredAt' x='859' y='237'>OccurredAt</text><title>&#10697;  OccurredAt
+     * timestamptz</title></a>
+<text x='1007' y='238' class='dataType' style='fill:#B2B9C0;'>timestamptz</text>
+<!-- == Table 'outbox_messages' == -->
+<rect id='depict_public&#46;outbox&#95;messages' class='entity' style='stroke:#F9FAFC' x='1235' y='86' width='190' height='228' rx='4' ry='4' />
+<rect x='1235' y='86' width='190' height='8' rx='4' ry='4' style='stroke-width:0;fill:url(#ttl_D8E8F5);'/>
+<rect x='1235' y='90' width='190' height='29' style='stroke-width:0;fill:url(#tbg_D8E8F5);'/>
+<a xlink:href='#public.outbox_messages'><text id='depict&#45;public&#46;outbox&#95;messages' x='1261' y='108' class='tableHeader' style='fill:#414448;'>public&#46;outbox&#95;messages</text><title>Table public.outbox_messages
+ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+      Исходящие сообщения этого сервиса. RabbitMQ публикует их асинхронно. Прямая FK-связь с inbox другого сервиса отсутствует.</title></a>
+  <use x='1236' y='129' xlink:href='#nn'/><use x='1237' y='128' xlink:href='#pk'><title>&#x1F511;  Pk PK_outbox_messages ( Id ) </title></use><a xlink:href='#public.outbox_messages.Id'><text id='public&#46;outbox&#95;messages&#46;Id' x='1258' y='142' class='colPk'>Id</text><title>&#10697;  Id
+     * uuid</title></a>
+<text x='1406' y='143' class='dataType' style='fill:#B2B9C0;'>uuid</text>  <use x='1236' y='148' xlink:href='#nn'/><a xlink:href='#public.outbox_messages.Exchange'><text id='public&#46;outbox&#95;messages&#46;Exchange' x='1258' y='161'>Exchange</text><title>&#10697;  Exchange
+     * varchar(100)</title></a>
+<text x='1406' y='162' class='dataType' style='fill:#B2B9C0;'>varchar&#40;100&#41;</text>  <use x='1236' y='167' xlink:href='#nn'/><a xlink:href='#public.outbox_messages.RoutingKey'><text id='public&#46;outbox&#95;messages&#46;RoutingKey' x='1258' y='180'>RoutingKey</text><title>&#10697;  RoutingKey
+     * varchar(200)</title></a>
+<text x='1406' y='181' class='dataType' style='fill:#B2B9C0;'>varchar&#40;200&#41;</text>  <use x='1236' y='186' xlink:href='#nn'/><a xlink:href='#public.outbox_messages.Type'><text id='public&#46;outbox&#95;messages&#46;Type' x='1258' y='199'>Type</text><title>&#10697;  Type
+     * varchar(200)</title></a>
+<text x='1406' y='200' class='dataType' style='fill:#B2B9C0;'>varchar&#40;200&#41;</text>  <use x='1236' y='205' xlink:href='#nn'/><a xlink:href='#public.outbox_messages.Payload'><text id='public&#46;outbox&#95;messages&#46;Payload' x='1258' y='218'>Payload</text><title>&#10697;  Payload
+     * jsonb</title></a>
+<text x='1406' y='219' class='dataType' style='fill:#B2B9C0;'>jsonb</text>  <use x='1236' y='224' xlink:href='#nn'/><use x='1237' y='223' xlink:href='#idx'><title>&#x1F50D;  IX_outbox_messages_PublishedAt_OccurredAt ( PublishedAt, OccurredAt ) </title></use><a xlink:href='#public.outbox_messages.OccurredAt'><text id='public&#46;outbox&#95;messages&#46;OccurredAt' x='1258' y='237'>OccurredAt</text><title>&#10697;  OccurredAt
+     * timestamptz</title></a>
+<text x='1406' y='238' class='dataType' style='fill:#B2B9C0;'>timestamptz</text>  <use x='1237' y='242' xlink:href='#idx'><title>&#x1F50D;  IX_outbox_messages_PublishedAt_OccurredAt ( PublishedAt, OccurredAt ) </title></use><a xlink:href='#public.outbox_messages.PublishedAt'><text id='public&#46;outbox&#95;messages&#46;PublishedAt' x='1258' y='256'>PublishedAt</text><title>&#10697;  PublishedAt
+     timestamptz</title></a>
+<text x='1406' y='257' class='dataType' style='fill:#B2B9C0;'>timestamptz</text>  <use x='1236' y='262' xlink:href='#nn'/><a xlink:href='#public.outbox_messages.RetryCount'><text id='public&#46;outbox&#95;messages&#46;RetryCount' x='1258' y='275'>RetryCount</text><title>&#10697;  RetryCount
+     * integer</title></a>
+<text x='1406' y='276' class='dataType' style='fill:#B2B9C0;'>integer</text>  <a xlink:href='#public.outbox_messages.LastError'><text id='public&#46;outbox&#95;messages&#46;LastError' x='1258' y='294'>LastError</text><title>&#10697;  LastError
+     text</title></a>
+<text x='1406' y='295' class='dataType' style='fill:#B2B9C0;'>text</text>
+<!-- == Table 'inbox_messages' == -->
+<rect id='depict_public&#46;inbox&#95;messages' class='entity' style='stroke:#F9FAFC' x='57' y='580' width='190' height='114' rx='4' ry='4' />
+<rect x='57' y='580' width='190' height='8' rx='4' ry='4' style='stroke-width:0;fill:url(#ttl_D8E8F5);'/>
+<rect x='57' y='584' width='190' height='29' style='stroke-width:0;fill:url(#tbg_D8E8F5);'/>
+<a xlink:href='#public.inbox_messages'><text id='depict&#45;public&#46;inbox&#95;messages' x='87' y='602' class='tableHeader' style='fill:#414448;'>public&#46;inbox&#95;messages</text><title>Table public.inbox_messages
+ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+      Дедупликация входящих сообщений по составному PK (MessageId, Consumer).</title></a>
+  <use x='58' y='623' xlink:href='#nn'/><use x='59' y='622' xlink:href='#pk'><title>&#x1F511;  Pk PK_inbox_messages ( MessageId, Consumer ) </title></use><a xlink:href='#public.inbox_messages.MessageId'><text id='public&#46;inbox&#95;messages&#46;MessageId' x='80' y='636' class='colPk'>MessageId</text><title>&#10697;  MessageId
+     * uuid</title></a>
+<text x='228' y='637' class='dataType' style='fill:#B2B9C0;'>uuid</text>  <use x='58' y='642' xlink:href='#nn'/><use x='59' y='641' xlink:href='#pk'><title>&#x1F511;  Pk PK_inbox_messages ( MessageId, Consumer ) </title></use><a xlink:href='#public.inbox_messages.Consumer'><text id='public&#46;inbox&#95;messages&#46;Consumer' x='80' y='655' class='colPk'>Consumer</text><title>&#10697;  Consumer
+     * varchar(200)</title></a>
+<text x='228' y='656' class='dataType' style='fill:#B2B9C0;'>varchar&#40;200&#41;</text>  <use x='58' y='661' xlink:href='#nn'/><a xlink:href='#public.inbox_messages.ProcessedAt'><text id='public&#46;inbox&#95;messages&#46;ProcessedAt' x='80' y='674'>ProcessedAt</text><title>&#10697;  ProcessedAt
+     * timestamptz</title></a>
+<text x='228' y='675' class='dataType' style='fill:#B2B9C0;'>timestamptz</text>
+<!-- == Table 'aggregatedcounter' == -->
+<rect id='depict_hangfire&#46;aggregatedcounter' class='entity' style='stroke:#F9FAFC' x='57' y='827' width='190' height='133' rx='4' ry='4' />
+<rect x='57' y='827' width='190' height='8' rx='4' ry='4' style='stroke-width:0;fill:url(#ttl_E6E8EC);'/>
+<rect x='57' y='831' width='190' height='29' style='stroke-width:0;fill:url(#tbg_E6E8EC);'/>
+<a xlink:href='#hangfire.aggregatedcounter'><text id='depict&#45;hangfire&#46;aggregatedcounter' x='73' y='849' class='tableHeader' style='fill:#414348;'>hangfire&#46;aggregatedcounter</text><title>Table hangfire.aggregatedcounter
+ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+      Служебная таблица планировщика Hangfire. Принадлежит Lending; не является самостоятельным сервисом.</title></a>
+  <use x='58' y='870' xlink:href='#nn'/><use x='59' y='869' xlink:href='#pk'><title>&#x1F511;  Pk aggregatedcounter_pkey ( id ) </title></use><a xlink:href='#hangfire.aggregatedcounter.id'><text id='hangfire&#46;aggregatedcounter&#46;id' x='80' y='883' class='colPk'>id</text><title>&#10697;  id
+     * bigint default nextval(&apos;hangfire.aggregatedcounter_id_seq&apos;::regclass)</title></a>
+<text x='228' y='884' class='dataType' style='fill:#B2B6C0;'>bigint</text>  <use x='58' y='889' xlink:href='#nn'/><use x='59' y='888' xlink:href='#unq'><title>&#x1F50D;  Unq aggregatedcounter_key_key ( key ) </title></use><a xlink:href='#hangfire.aggregatedcounter.key'><text id='hangfire&#46;aggregatedcounter&#46;key' x='80' y='902'>key</text><title>&#10697;  key
+     * text</title></a>
+<text x='228' y='903' class='dataType' style='fill:#B2B6C0;'>text</text>  <use x='58' y='908' xlink:href='#nn'/><a xlink:href='#hangfire.aggregatedcounter.value'><text id='hangfire&#46;aggregatedcounter&#46;value' x='80' y='921'>value</text><title>&#10697;  value
+     * bigint</title></a>
+<text x='228' y='922' class='dataType' style='fill:#B2B6C0;'>bigint</text>  <a xlink:href='#hangfire.aggregatedcounter.expireat'><text id='hangfire&#46;aggregatedcounter&#46;expireat' x='80' y='940'>expireat</text><title>&#10697;  expireat
+     timestamptz</title></a>
+<text x='228' y='941' class='dataType' style='fill:#B2B6C0;'>timestamptz</text>
+<!-- == Table 'counter' == -->
+<rect id='depict_hangfire&#46;counter' class='entity' style='stroke:#F9FAFC' x='456' y='827' width='171' height='133' rx='4' ry='4' />
+<rect x='456' y='827' width='171' height='8' rx='4' ry='4' style='stroke-width:0;fill:url(#ttl_E6E8EC);'/>
+<rect x='456' y='831' width='171' height='29' style='stroke-width:0;fill:url(#tbg_E6E8EC);'/>
+<a xlink:href='#hangfire.counter'><text id='depict&#45;hangfire&#46;counter' x='493' y='849' class='tableHeader' style='fill:#414348;'>hangfire&#46;counter</text><title>Table hangfire.counter
+ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+      Служебная таблица планировщика Hangfire. Принадлежит Lending; не является самостоятельным сервисом.</title></a>
+  <use x='457' y='870' xlink:href='#nn'/><use x='458' y='869' xlink:href='#pk'><title>&#x1F511;  Pk counter_pkey ( id ) </title></use><a xlink:href='#hangfire.counter.id'><text id='hangfire&#46;counter&#46;id' x='479' y='883' class='colPk'>id</text><title>&#10697;  id
+     * bigint default nextval(&apos;hangfire.counter_id_seq&apos;::regclass)</title></a>
+<text x='608' y='884' class='dataType' style='fill:#B2B6C0;'>bigint</text>  <use x='457' y='889' xlink:href='#nn'/><use x='458' y='888' xlink:href='#idx'><title>&#x1F50D;  ix_hangfire_counter_key ( key ) </title></use><a xlink:href='#hangfire.counter.key'><text id='hangfire&#46;counter&#46;key' x='479' y='902'>key</text><title>&#10697;  key
+     * text</title></a>
+<text x='608' y='903' class='dataType' style='fill:#B2B6C0;'>text</text>  <use x='457' y='908' xlink:href='#nn'/><a xlink:href='#hangfire.counter.value'><text id='hangfire&#46;counter&#46;value' x='479' y='921'>value</text><title>&#10697;  value
+     * bigint</title></a>
+<text x='608' y='922' class='dataType' style='fill:#B2B6C0;'>bigint</text>  <use x='458' y='926' xlink:href='#idx'><title>&#x1F50D;  ix_hangfire_counter_expireat ( expireat ) </title></use><a xlink:href='#hangfire.counter.expireat'><text id='hangfire&#46;counter&#46;expireat' x='479' y='940'>expireat</text><title>&#10697;  expireat
+     timestamptz</title></a>
+<text x='608' y='941' class='dataType' style='fill:#B2B6C0;'>timestamptz</text>
+<!-- == Table 'hash' == -->
+<rect id='depict_hangfire&#46;hash' class='entity' style='stroke:#F9FAFC' x='836' y='827' width='171' height='171' rx='4' ry='4' />
+<rect x='836' y='827' width='171' height='8' rx='4' ry='4' style='stroke-width:0;fill:url(#ttl_E6E8EC);'/>
+<rect x='836' y='831' width='171' height='29' style='stroke-width:0;fill:url(#tbg_E6E8EC);'/>
+<a xlink:href='#hangfire.hash'><text id='depict&#45;hangfire&#46;hash' x='881' y='849' class='tableHeader' style='fill:#414348;'>hangfire&#46;hash</text><title>Table hangfire.hash
+ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+      Служебная таблица планировщика Hangfire. Принадлежит Lending; не является самостоятельным сервисом.</title></a>
+  <use x='837' y='870' xlink:href='#nn'/><use x='838' y='869' xlink:href='#pk'><title>&#x1F511;  Pk hash_pkey ( id ) </title></use><a xlink:href='#hangfire.hash.id'><text id='hangfire&#46;hash&#46;id' x='859' y='883' class='colPk'>id</text><title>&#10697;  id
+     * bigint default nextval(&apos;hangfire.hash_id_seq&apos;::regclass)</title></a>
+<text x='988' y='884' class='dataType' style='fill:#B2B6C0;'>bigint</text>  <use x='837' y='889' xlink:href='#nn'/><use x='838' y='888' xlink:href='#unq'><title>&#x1F50D;  Unq hash_key_field_key ( key, field ) </title></use><a xlink:href='#hangfire.hash.key'><text id='hangfire&#46;hash&#46;key' x='859' y='902'>key</text><title>&#10697;  key
+     * text</title></a>
+<text x='988' y='903' class='dataType' style='fill:#B2B6C0;'>text</text>  <use x='837' y='908' xlink:href='#nn'/><use x='838' y='907' xlink:href='#unq'><title>&#x1F50D;  Unq hash_key_field_key ( key, field ) </title></use><a xlink:href='#hangfire.hash.field'><text id='hangfire&#46;hash&#46;field' x='859' y='921'>field</text><title>&#10697;  field
+     * text</title></a>
+<text x='988' y='922' class='dataType' style='fill:#B2B6C0;'>text</text>  <a xlink:href='#hangfire.hash.value'><text id='hangfire&#46;hash&#46;value' x='859' y='940'>value</text><title>&#10697;  value
+     text</title></a>
+<text x='988' y='941' class='dataType' style='fill:#B2B6C0;'>text</text>  <use x='838' y='945' xlink:href='#idx'><title>&#x1F50D;  ix_hangfire_hash_expireat ( expireat ) </title></use><a xlink:href='#hangfire.hash.expireat'><text id='hangfire&#46;hash&#46;expireat' x='859' y='959'>expireat</text><title>&#10697;  expireat
+     timestamptz</title></a>
+<text x='988' y='960' class='dataType' style='fill:#B2B6C0;'>timestamptz</text>  <use x='837' y='965' xlink:href='#nn'/><a xlink:href='#hangfire.hash.updatecount'><text id='hangfire&#46;hash&#46;updatecount' x='859' y='978'>updatecount</text><title>&#10697;  updatecount
+     * integer default 0</title></a>
+<text x='988' y='979' class='dataType' style='fill:#B2B6C0;'>integer</text>
+<!-- == Table 'job' == -->
+<rect id='depict_hangfire&#46;job' class='entity' style='stroke:#F9FAFC' x='1235' y='827' width='171' height='209' rx='4' ry='4' />
+<rect x='1235' y='827' width='171' height='8' rx='4' ry='4' style='stroke-width:0;fill:url(#ttl_E6E8EC);'/>
+<rect x='1235' y='831' width='171' height='29' style='stroke-width:0;fill:url(#tbg_E6E8EC);'/>
+<a xlink:href='#hangfire.job'><text id='depict&#45;hangfire&#46;job' x='1284' y='849' class='tableHeader' style='fill:#414348;'>hangfire&#46;job</text><title>Table hangfire.job
+ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+      Служебная таблица планировщика Hangfire. Принадлежит Lending; не является самостоятельным сервисом.</title></a>
+  <use x='1236' y='870' xlink:href='#nn'/><use x='1237' y='869' xlink:href='#pk'><title>&#x1F511;  Pk job_pkey ( id ) </title></use><a xlink:href='#hangfire.job.id'><text id='hangfire&#46;job&#46;id' x='1258' y='883' onmouseover="hghl(['jobparameter_jobparameter_jobid_fkey','hangfire.jobparameter.jobid','state_state_jobid_fkey','hangfire.state.jobid'])" onmouseout="uhghl(['jobparameter_jobparameter_jobid_fkey','hangfire.jobparameter.jobid','state_state_jobid_fkey','hangfire.state.jobid'])" class='colPk'>id</text><title>&#10697;  id
+     * bigint default nextval(&apos;hangfire.job_id_seq&apos;::regclass)
+ &#8601; jobparameter( jobid )
+ &#8601; state( jobid )</title></a>
+<text x='1387' y='884' class='dataType' style='fill:#B2B6C0;'>bigint</text><a xlink:href='#hangfire.job.id'><use x='1392' y='869' xlink:href='#ref'/><title>&#x1F517;  Referred by hangfire.jobparameter ( jobid -&gt; id ) 
+Referred by hangfire.state ( jobid -&gt; id ) </title></a>
+  <a xlink:href='#hangfire.job.stateid'><text id='hangfire&#46;job&#46;stateid' x='1258' y='902'>stateid</text><title>&#10697;  stateid
+     bigint</title></a>
+<text x='1387' y='903' class='dataType' style='fill:#B2B6C0;'>bigint</text>  <use x='1237' y='907' xlink:href='#idx'><title>&#x1F50D;  ix_hangfire_job_statename ( statename ) &#x1F50D;  ix_hangfire_job_statename_is_not_null ( statename ) </title></use><a xlink:href='#hangfire.job.statename'><text id='hangfire&#46;job&#46;statename' x='1258' y='921'>statename</text><title>&#10697;  statename
+     text</title></a>
+<text x='1387' y='922' class='dataType' style='fill:#B2B6C0;'>text</text>  <use x='1236' y='927' xlink:href='#nn'/><text x='1239' y='940'>&#9654;</text><a xlink:href='#hangfire.job.invocationdata'><text id='hangfire&#46;job&#46;invocationdata' x='1258' y='940'>invocationdata</text><title>&#10697;  invocationdata
+     * jsonb</title></a>
+<text x='1387' y='941' class='dataType' style='fill:#B2B6C0;'>jsonb</text>  <use x='1236' y='946' xlink:href='#nn'/><a xlink:href='#hangfire.job.arguments'><text id='hangfire&#46;job&#46;arguments' x='1258' y='959'>arguments</text><title>&#10697;  arguments
+     * jsonb</title></a>
+<text x='1387' y='960' class='dataType' style='fill:#B2B6C0;'>jsonb</text>  <use x='1236' y='965' xlink:href='#nn'/><a xlink:href='#hangfire.job.createdat'><text id='hangfire&#46;job&#46;createdat' x='1258' y='978'>createdat</text><title>&#10697;  createdat
+     * timestamptz</title></a>
+<text x='1387' y='979' class='dataType' style='fill:#B2B6C0;'>timestamptz</text>  <use x='1237' y='983' xlink:href='#idx'><title>&#x1F50D;  ix_hangfire_job_expireat ( expireat ) </title></use><a xlink:href='#hangfire.job.expireat'><text id='hangfire&#46;job&#46;expireat' x='1258' y='997'>expireat</text><title>&#10697;  expireat
+     timestamptz</title></a>
+<text x='1387' y='998' class='dataType' style='fill:#B2B6C0;'>timestamptz</text>  <use x='1236' y='1003' xlink:href='#nn'/><a xlink:href='#hangfire.job.updatecount'><text id='hangfire&#46;job&#46;updatecount' x='1258' y='1016'>updatecount</text><title>&#10697;  updatecount
+     * integer default 0</title></a>
+<text x='1387' y='1017' class='dataType' style='fill:#B2B6C0;'>integer</text>
+<!-- == Table 'jobparameter' == -->
+<rect id='depict_hangfire&#46;jobparameter' class='entity' style='stroke:#F9FAFC' x='57' y='1112' width='152' height='152' rx='4' ry='4' />
+<rect x='57' y='1112' width='152' height='8' rx='4' ry='4' style='stroke-width:0;fill:url(#ttl_E6E8EC);'/>
+<rect x='57' y='1116' width='152' height='29' style='stroke-width:0;fill:url(#tbg_E6E8EC);'/>
+<a xlink:href='#hangfire.jobparameter'><text id='depict&#45;hangfire&#46;jobparameter' x='69' y='1134' class='tableHeader' style='fill:#414348;'>hangfire&#46;jobparameter</text><title>Table hangfire.jobparameter
+ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+      Служебная таблица планировщика Hangfire. Принадлежит Lending; не является самостоятельным сервисом.</title></a>
+  <use x='58' y='1155' xlink:href='#nn'/><use x='59' y='1154' xlink:href='#pk'><title>&#x1F511;  Pk jobparameter_pkey ( id ) </title></use><a xlink:href='#hangfire.jobparameter.id'><text id='hangfire&#46;jobparameter&#46;id' x='80' y='1168' class='colPk'>id</text><title>&#10697;  id
+     * bigint default nextval(&apos;hangfire.jobparameter_id_seq&apos;::regclass)</title></a>
+<text x='190' y='1169' class='dataType' style='fill:#B2B6C0;'>bigint</text>  <use x='58' y='1174' xlink:href='#nn'/><use x='59' y='1173' xlink:href='#idx'><title>&#x1F50D;  ix_hangfire_jobparameter_jobidandname ( jobid, name ) </title></use><a xlink:href='#hangfire.jobparameter.jobid'><text id='hangfire&#46;jobparameter&#46;jobid' x='80' y='1187' onmouseover="hghl(['jobparameter_jobparameter_jobid_fkey','hangfire.job.id'])" onmouseout="uhghl(['jobparameter_jobparameter_jobid_fkey','hangfire.job.id'])">jobid</text><title>&#10697;  jobid
+     * bigint
+ &#8599; job( id )</title></a>
+<text x='190' y='1188' class='dataType' style='fill:#B2B6C0;'>bigint</text><a xlink:href='#hangfire.jobparameter.jobid'><use x='195' y='1173' xlink:href='#fk'/><title>&#x1F517;  References hangfire.job ( jobid -&gt; id ) </title></a>
+  <use x='58' y='1193' xlink:href='#nn'/><use x='59' y='1192' xlink:href='#idx'><title>&#x1F50D;  ix_hangfire_jobparameter_jobidandname ( jobid, name ) </title></use><a xlink:href='#hangfire.jobparameter.name'><text id='hangfire&#46;jobparameter&#46;name' x='80' y='1206'>name</text><title>&#10697;  name
+     * text</title></a>
+<text x='190' y='1207' class='dataType' style='fill:#B2B6C0;'>text</text>  <a xlink:href='#hangfire.jobparameter.value'><text id='hangfire&#46;jobparameter&#46;value' x='80' y='1225'>value</text><title>&#10697;  value
+     text</title></a>
+<text x='190' y='1226' class='dataType' style='fill:#B2B6C0;'>text</text>  <use x='58' y='1231' xlink:href='#nn'/><a xlink:href='#hangfire.jobparameter.updatecount'><text id='hangfire&#46;jobparameter&#46;updatecount' x='80' y='1244'>updatecount</text><title>&#10697;  updatecount
+     * integer default 0</title></a>
+<text x='190' y='1245' class='dataType' style='fill:#B2B6C0;'>integer</text>
+<!-- == Table 'jobqueue' == -->
+<rect id='depict_hangfire&#46;jobqueue' class='entity' style='stroke:#F9FAFC' x='456' y='1112' width='171' height='152' rx='4' ry='4' />
+<rect x='456' y='1112' width='171' height='8' rx='4' ry='4' style='stroke-width:0;fill:url(#ttl_E6E8EC);'/>
+<rect x='456' y='1116' width='171' height='29' style='stroke-width:0;fill:url(#tbg_E6E8EC);'/>
+<a xlink:href='#hangfire.jobqueue'><text id='depict&#45;hangfire&#46;jobqueue' x='488' y='1134' class='tableHeader' style='fill:#414348;'>hangfire&#46;jobqueue</text><title>Table hangfire.jobqueue
+ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+      Служебная таблица планировщика Hangfire. Принадлежит Lending; не является самостоятельным сервисом.</title></a>
+  <use x='457' y='1155' xlink:href='#nn'/><use x='458' y='1154' xlink:href='#pk'><title>&#x1F511;  Pk jobqueue_pkey ( id ) </title></use><a xlink:href='#hangfire.jobqueue.id'><text id='hangfire&#46;jobqueue&#46;id' x='479' y='1168' class='colPk'>id</text><title>&#10697;  id
+     * bigint default nextval(&apos;hangfire.jobqueue_id_seq&apos;::regclass)</title></a>
+<text x='608' y='1169' class='dataType' style='fill:#B2B6C0;'>bigint</text>  <use x='457' y='1174' xlink:href='#nn'/><use x='458' y='1173' xlink:href='#idx'><title>&#x1F50D;  ix_hangfire_jobqueue_jobidandqueue ( jobid, queue ) &#x1F50D;  ix_hangfire_jobqueue_fetchedat_queue_jobid ( fetchedat, queue, jobid ) </title></use><a xlink:href='#hangfire.jobqueue.jobid'><text id='hangfire&#46;jobqueue&#46;jobid' x='479' y='1187'>jobid</text><title>&#10697;  jobid
+     * bigint</title></a>
+<text x='608' y='1188' class='dataType' style='fill:#B2B6C0;'>bigint</text>  <use x='457' y='1193' xlink:href='#nn'/><use x='458' y='1192' xlink:href='#idx'><title>&#x1F50D;  ix_hangfire_jobqueue_jobidandqueue ( jobid, queue ) &#x1F50D;  ix_hangfire_jobqueue_queueandfetchedat ( queue, fetchedat ) &#x1F50D;  ix_hangfire_jobqueue_fetchedat_queue_jobid ( fetchedat, queue, jobid ) </title></use><a xlink:href='#hangfire.jobqueue.queue'><text id='hangfire&#46;jobqueue&#46;queue' x='479' y='1206'>queue</text><title>&#10697;  queue
+     * text</title></a>
+<text x='608' y='1207' class='dataType' style='fill:#B2B6C0;'>text</text>  <use x='458' y='1211' xlink:href='#idx'><title>&#x1F50D;  ix_hangfire_jobqueue_queueandfetchedat ( queue, fetchedat ) &#x1F50D;  ix_hangfire_jobqueue_fetchedat_queue_jobid ( fetchedat, queue, jobid ) </title></use><a xlink:href='#hangfire.jobqueue.fetchedat'><text id='hangfire&#46;jobqueue&#46;fetchedat' x='479' y='1225'>fetchedat</text><title>&#10697;  fetchedat
+     timestamptz</title></a>
+<text x='608' y='1226' class='dataType' style='fill:#B2B6C0;'>timestamptz</text>  <use x='457' y='1231' xlink:href='#nn'/><a xlink:href='#hangfire.jobqueue.updatecount'><text id='hangfire&#46;jobqueue&#46;updatecount' x='479' y='1244'>updatecount</text><title>&#10697;  updatecount
+     * integer default 0</title></a>
+<text x='608' y='1245' class='dataType' style='fill:#B2B6C0;'>integer</text>
+<!-- == Table 'list' == -->
+<rect id='depict_hangfire&#46;list' class='entity' style='stroke:#F9FAFC' x='836' y='1112' width='171' height='152' rx='4' ry='4' />
+<rect x='836' y='1112' width='171' height='8' rx='4' ry='4' style='stroke-width:0;fill:url(#ttl_E6E8EC);'/>
+<rect x='836' y='1116' width='171' height='29' style='stroke-width:0;fill:url(#tbg_E6E8EC);'/>
+<a xlink:href='#hangfire.list'><text id='depict&#45;hangfire&#46;list' x='886' y='1134' class='tableHeader' style='fill:#414348;'>hangfire&#46;list</text><title>Table hangfire.list
+ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+      Служебная таблица планировщика Hangfire. Принадлежит Lending; не является самостоятельным сервисом.</title></a>
+  <use x='837' y='1155' xlink:href='#nn'/><use x='838' y='1154' xlink:href='#pk'><title>&#x1F511;  Pk list_pkey ( id ) </title></use><a xlink:href='#hangfire.list.id'><text id='hangfire&#46;list&#46;id' x='859' y='1168' class='colPk'>id</text><title>&#10697;  id
+     * bigint default nextval(&apos;hangfire.list_id_seq&apos;::regclass)</title></a>
+<text x='988' y='1169' class='dataType' style='fill:#B2B6C0;'>bigint</text>  <use x='837' y='1174' xlink:href='#nn'/><a xlink:href='#hangfire.list.key'><text id='hangfire&#46;list&#46;key' x='859' y='1187'>key</text><title>&#10697;  key
+     * text</title></a>
+<text x='988' y='1188' class='dataType' style='fill:#B2B6C0;'>text</text>  <a xlink:href='#hangfire.list.value'><text id='hangfire&#46;list&#46;value' x='859' y='1206'>value</text><title>&#10697;  value
+     text</title></a>
+<text x='988' y='1207' class='dataType' style='fill:#B2B6C0;'>text</text>  <use x='838' y='1211' xlink:href='#idx'><title>&#x1F50D;  ix_hangfire_list_expireat ( expireat ) </title></use><a xlink:href='#hangfire.list.expireat'><text id='hangfire&#46;list&#46;expireat' x='859' y='1225'>expireat</text><title>&#10697;  expireat
+     timestamptz</title></a>
+<text x='988' y='1226' class='dataType' style='fill:#B2B6C0;'>timestamptz</text>  <use x='837' y='1231' xlink:href='#nn'/><a xlink:href='#hangfire.list.updatecount'><text id='hangfire&#46;list&#46;updatecount' x='859' y='1244'>updatecount</text><title>&#10697;  updatecount
+     * integer default 0</title></a>
+<text x='988' y='1245' class='dataType' style='fill:#B2B6C0;'>integer</text>
+<!-- == Table 'lock' == -->
+<rect id='depict_hangfire&#46;lock' class='entity' style='stroke:#F9FAFC' x='1235' y='1112' width='171' height='114' rx='4' ry='4' />
+<rect x='1235' y='1112' width='171' height='8' rx='4' ry='4' style='stroke-width:0;fill:url(#ttl_E6E8EC);'/>
+<rect x='1235' y='1116' width='171' height='29' style='stroke-width:0;fill:url(#tbg_E6E8EC);'/>
+<a xlink:href='#hangfire.lock'><text id='depict&#45;hangfire&#46;lock' x='1282' y='1134' class='tableHeader' style='fill:#414348;'>hangfire&#46;lock</text><title>Table hangfire.lock
+ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+      Служебная таблица планировщика Hangfire. Принадлежит Lending; не является самостоятельным сервисом.</title></a>
+  <use x='1236' y='1155' xlink:href='#nn'/><use x='1237' y='1154' xlink:href='#unq'><title>&#x1F50D;  Unq lock_resource_key ( resource ) </title></use><a xlink:href='#hangfire.lock.resource'><text id='hangfire&#46;lock&#46;resource' x='1258' y='1168'>resource</text><title>&#10697;  resource
+     * text</title></a>
+<text x='1387' y='1169' class='dataType' style='fill:#B2B6C0;'>text</text>  <use x='1236' y='1174' xlink:href='#nn'/><a xlink:href='#hangfire.lock.updatecount'><text id='hangfire&#46;lock&#46;updatecount' x='1258' y='1187'>updatecount</text><title>&#10697;  updatecount
+     * integer default 0</title></a>
+<text x='1387' y='1188' class='dataType' style='fill:#B2B6C0;'>integer</text>  <a xlink:href='#hangfire.lock.acquired'><text id='hangfire&#46;lock&#46;acquired' x='1258' y='1206'>acquired</text><title>&#10697;  acquired
+     timestamptz</title></a>
+<text x='1387' y='1207' class='dataType' style='fill:#B2B6C0;'>timestamptz</text>
+<!-- == Table 'schema' == -->
+<rect id='depict_hangfire&#46;schema' class='entity' style='stroke:#F9FAFC' x='57' y='1321' width='133' height='76' rx='4' ry='4' />
+<rect x='57' y='1321' width='133' height='8' rx='4' ry='4' style='stroke-width:0;fill:url(#ttl_E6E8EC);'/>
+<rect x='57' y='1325' width='133' height='29' style='stroke-width:0;fill:url(#tbg_E6E8EC);'/>
+<a xlink:href='#hangfire.schema'><text id='depict&#45;hangfire&#46;schema' x='75' y='1343' class='tableHeader' style='fill:#414348;'>hangfire&#46;schema</text><title>Table hangfire.schema
+ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+      Служебная таблица планировщика Hangfire. Принадлежит Lending; не является самостоятельным сервисом.</title></a>
+  <use x='58' y='1364' xlink:href='#nn'/><use x='59' y='1363' xlink:href='#pk'><title>&#x1F511;  Pk schema_pkey ( version ) </title></use><a xlink:href='#hangfire.schema.version'><text id='hangfire&#46;schema&#46;version' x='80' y='1377' class='colPk'>version</text><title>&#10697;  version
+     * integer</title></a>
+<text x='171' y='1378' class='dataType' style='fill:#B2B6C0;'>integer</text>
+<!-- == Table 'server' == -->
+<rect id='depict_hangfire&#46;server' class='entity' style='stroke:#F9FAFC' x='456' y='1321' width='190' height='133' rx='4' ry='4' />
+<rect x='456' y='1321' width='190' height='8' rx='4' ry='4' style='stroke-width:0;fill:url(#ttl_E6E8EC);'/>
+<rect x='456' y='1325' width='190' height='29' style='stroke-width:0;fill:url(#tbg_E6E8EC);'/>
+<a xlink:href='#hangfire.server'><text id='depict&#45;hangfire&#46;server' x='507' y='1343' class='tableHeader' style='fill:#414348;'>hangfire&#46;server</text><title>Table hangfire.server
+ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+      Служебная таблица планировщика Hangfire. Принадлежит Lending; не является самостоятельным сервисом.</title></a>
+  <use x='457' y='1364' xlink:href='#nn'/><use x='458' y='1363' xlink:href='#pk'><title>&#x1F511;  Pk server_pkey ( id ) </title></use><a xlink:href='#hangfire.server.id'><text id='hangfire&#46;server&#46;id' x='479' y='1377' class='colPk'>id</text><title>&#10697;  id
+     * text</title></a>
+<text x='627' y='1378' class='dataType' style='fill:#B2B6C0;'>text</text>  <text x='460' y='1396'>&#9654;</text><a xlink:href='#hangfire.server.data'><text id='hangfire&#46;server&#46;data' x='479' y='1396'>data</text><title>&#10697;  data
+     jsonb</title></a>
+<text x='627' y='1397' class='dataType' style='fill:#B2B6C0;'>jsonb</text>  <use x='457' y='1402' xlink:href='#nn'/><a xlink:href='#hangfire.server.lastheartbeat'><text id='hangfire&#46;server&#46;lastheartbeat' x='479' y='1415'>lastheartbeat</text><title>&#10697;  lastheartbeat
+     * timestamptz</title></a>
+<text x='627' y='1416' class='dataType' style='fill:#B2B6C0;'>timestamptz</text>  <use x='457' y='1421' xlink:href='#nn'/><a xlink:href='#hangfire.server.updatecount'><text id='hangfire&#46;server&#46;updatecount' x='479' y='1434'>updatecount</text><title>&#10697;  updatecount
+     * integer default 0</title></a>
+<text x='627' y='1435' class='dataType' style='fill:#B2B6C0;'>integer</text>
+<!-- == Table 'set' == -->
+<rect id='depict_hangfire&#46;set' class='entity' style='stroke:#F9FAFC' x='836' y='1321' width='171' height='171' rx='4' ry='4' />
+<rect x='836' y='1321' width='171' height='8' rx='4' ry='4' style='stroke-width:0;fill:url(#ttl_E6E8EC);'/>
+<rect x='836' y='1325' width='171' height='29' style='stroke-width:0;fill:url(#tbg_E6E8EC);'/>
+<a xlink:href='#hangfire.set'><text id='depict&#45;hangfire&#46;set' x='886' y='1343' class='tableHeader' style='fill:#414348;'>hangfire&#46;set</text><title>Table hangfire.set
+ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+      Служебная таблица планировщика Hangfire. Принадлежит Lending; не является самостоятельным сервисом.</title></a>
+  <use x='837' y='1364' xlink:href='#nn'/><use x='838' y='1363' xlink:href='#pk'><title>&#x1F511;  Pk set_pkey ( id ) </title></use><a xlink:href='#hangfire.set.id'><text id='hangfire&#46;set&#46;id' x='859' y='1377' class='colPk'>id</text><title>&#10697;  id
+     * bigint default nextval(&apos;hangfire.set_id_seq&apos;::regclass)</title></a>
+<text x='988' y='1378' class='dataType' style='fill:#B2B6C0;'>bigint</text>  <use x='837' y='1383' xlink:href='#nn'/><use x='838' y='1382' xlink:href='#unq'><title>&#x1F50D;  Unq set_key_value_key ( key, value ) &#x1F50D;  ix_hangfire_set_key_score ( key, score ) </title></use><a xlink:href='#hangfire.set.key'><text id='hangfire&#46;set&#46;key' x='859' y='1396'>key</text><title>&#10697;  key
+     * text</title></a>
+<text x='988' y='1397' class='dataType' style='fill:#B2B6C0;'>text</text>  <use x='837' y='1402' xlink:href='#nn'/><use x='838' y='1401' xlink:href='#idx'><title>&#x1F50D;  ix_hangfire_set_key_score ( key, score ) </title></use><a xlink:href='#hangfire.set.score'><text id='hangfire&#46;set&#46;score' x='859' y='1415'>score</text><title>&#10697;  score
+     * double precision</title></a>
+<text x='988' y='1416' class='dataType' style='fill:#B2B6C0;'>double precision</text>  <use x='837' y='1421' xlink:href='#nn'/><use x='838' y='1420' xlink:href='#unq'><title>&#x1F50D;  Unq set_key_value_key ( key, value ) </title></use><a xlink:href='#hangfire.set.value'><text id='hangfire&#46;set&#46;value' x='859' y='1434'>value</text><title>&#10697;  value
+     * text</title></a>
+<text x='988' y='1435' class='dataType' style='fill:#B2B6C0;'>text</text>  <use x='838' y='1439' xlink:href='#idx'><title>&#x1F50D;  ix_hangfire_set_expireat ( expireat ) </title></use><a xlink:href='#hangfire.set.expireat'><text id='hangfire&#46;set&#46;expireat' x='859' y='1453'>expireat</text><title>&#10697;  expireat
+     timestamptz</title></a>
+<text x='988' y='1454' class='dataType' style='fill:#B2B6C0;'>timestamptz</text>  <use x='837' y='1459' xlink:href='#nn'/><a xlink:href='#hangfire.set.updatecount'><text id='hangfire&#46;set&#46;updatecount' x='859' y='1472'>updatecount</text><title>&#10697;  updatecount
+     * integer default 0</title></a>
+<text x='988' y='1473' class='dataType' style='fill:#B2B6C0;'>integer</text>
+<!-- == Table 'state' == -->
+<rect id='depict_hangfire&#46;state' class='entity' style='stroke:#F9FAFC' x='1235' y='1321' width='171' height='190' rx='4' ry='4' />
+<rect x='1235' y='1321' width='171' height='8' rx='4' ry='4' style='stroke-width:0;fill:url(#ttl_E6E8EC);'/>
+<rect x='1235' y='1325' width='171' height='29' style='stroke-width:0;fill:url(#tbg_E6E8EC);'/>
+<a xlink:href='#hangfire.state'><text id='depict&#45;hangfire&#46;state' x='1280' y='1343' class='tableHeader' style='fill:#414348;'>hangfire&#46;state</text><title>Table hangfire.state
+ ⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+      Служебная таблица планировщика Hangfire. Принадлежит Lending; не является самостоятельным сервисом.</title></a>
+  <use x='1236' y='1364' xlink:href='#nn'/><use x='1237' y='1363' xlink:href='#pk'><title>&#x1F511;  Pk state_pkey ( id ) </title></use><a xlink:href='#hangfire.state.id'><text id='hangfire&#46;state&#46;id' x='1258' y='1377' class='colPk'>id</text><title>&#10697;  id
+     * bigint default nextval(&apos;hangfire.state_id_seq&apos;::regclass)</title></a>
+<text x='1387' y='1378' class='dataType' style='fill:#B2B6C0;'>bigint</text>  <use x='1236' y='1383' xlink:href='#nn'/><use x='1237' y='1382' xlink:href='#idx'><title>&#x1F50D;  ix_hangfire_state_jobid ( jobid ) </title></use><a xlink:href='#hangfire.state.jobid'><text id='hangfire&#46;state&#46;jobid' x='1258' y='1396' onmouseover="hghl(['state_state_jobid_fkey','hangfire.job.id'])" onmouseout="uhghl(['state_state_jobid_fkey','hangfire.job.id'])">jobid</text><title>&#10697;  jobid
+     * bigint
+ &#8599; job( id )</title></a>
+<text x='1387' y='1397' class='dataType' style='fill:#B2B6C0;'>bigint</text><a xlink:href='#hangfire.state.jobid'><use x='1392' y='1382' xlink:href='#fk'/><title>&#x1F517;  References hangfire.job ( jobid -&gt; id ) </title></a>
+  <use x='1236' y='1402' xlink:href='#nn'/><a xlink:href='#hangfire.state.name'><text id='hangfire&#46;state&#46;name' x='1258' y='1415'>name</text><title>&#10697;  name
+     * text</title></a>
+<text x='1387' y='1416' class='dataType' style='fill:#B2B6C0;'>text</text>  <a xlink:href='#hangfire.state.reason'><text id='hangfire&#46;state&#46;reason' x='1258' y='1434'>reason</text><title>&#10697;  reason
+     text</title></a>
+<text x='1387' y='1435' class='dataType' style='fill:#B2B6C0;'>text</text>  <use x='1236' y='1440' xlink:href='#nn'/><a xlink:href='#hangfire.state.createdat'><text id='hangfire&#46;state&#46;createdat' x='1258' y='1453'>createdat</text><title>&#10697;  createdat
+     * timestamptz</title></a>
+<text x='1387' y='1454' class='dataType' style='fill:#B2B6C0;'>timestamptz</text>  <text x='1239' y='1472'>&#9654;</text><a xlink:href='#hangfire.state.data'><text id='hangfire&#46;state&#46;data' x='1258' y='1472'>data</text><title>&#10697;  data
+     jsonb</title></a>
+<text x='1387' y='1473' class='dataType' style='fill:#B2B6C0;'>jsonb</text>  <use x='1236' y='1478' xlink:href='#nn'/><a xlink:href='#hangfire.state.updatecount'><text id='hangfire&#46;state&#46;updatecount' x='1258' y='1491'>updatecount</text><title>&#10697;  updatecount
+     * integer default 0</title></a>
+<text x='1387' y='1492' class='dataType' style='fill:#B2B6C0;'>integer</text>
+</g></svg>

@@ -1,0 +1,5615 @@
+{
+  "checked_at_utc": "2026-10-09T07:29:51.225925+00:00",
+  "databases": {
+    "identity_db": {
+      "columns": [
+        {
+          "table_schema": "public",
+          "table_name": "inbox_messages",
+          "column_name": "MessageId",
+          "ordinal_position": 1,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "inbox_messages",
+          "column_name": "Consumer",
+          "ordinal_position": 2,
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "character_maximum_length": 200,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "inbox_messages",
+          "column_name": "ProcessedAt",
+          "ordinal_position": 3,
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "Id",
+          "ordinal_position": 1,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "Exchange",
+          "ordinal_position": 2,
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "character_maximum_length": 100,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "RoutingKey",
+          "ordinal_position": 3,
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "character_maximum_length": 200,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "Type",
+          "ordinal_position": 4,
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "character_maximum_length": 200,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "Payload",
+          "ordinal_position": 5,
+          "udt_name": "jsonb",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "OccurredAt",
+          "ordinal_position": 6,
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "PublishedAt",
+          "ordinal_position": 7,
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "RetryCount",
+          "ordinal_position": 8,
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 32,
+          "numeric_scale": 0,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "LastError",
+          "ordinal_position": 9,
+          "udt_name": "text",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "refresh_tokens",
+          "column_name": "Id",
+          "ordinal_position": 1,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "refresh_tokens",
+          "column_name": "UserId",
+          "ordinal_position": 2,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "refresh_tokens",
+          "column_name": "TokenHash",
+          "ordinal_position": 3,
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "character_maximum_length": 128,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "refresh_tokens",
+          "column_name": "ExpiresAt",
+          "ordinal_position": 4,
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "refresh_tokens",
+          "column_name": "RevokedAt",
+          "ordinal_position": 5,
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "users",
+          "column_name": "Id",
+          "ordinal_position": 1,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "users",
+          "column_name": "Email",
+          "ordinal_position": 2,
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "character_maximum_length": 320,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "users",
+          "column_name": "NormalizedEmail",
+          "ordinal_position": 3,
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "character_maximum_length": 320,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "users",
+          "column_name": "DisplayName",
+          "ordinal_position": 4,
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "character_maximum_length": 120,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "users",
+          "column_name": "PasswordHash",
+          "ordinal_position": 5,
+          "udt_name": "text",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "users",
+          "column_name": "Role",
+          "ordinal_position": 6,
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "character_maximum_length": 32,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "users",
+          "column_name": "IsActive",
+          "ordinal_position": 7,
+          "udt_name": "bool",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "users",
+          "column_name": "CreatedAt",
+          "ordinal_position": 8,
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        }
+      ],
+      "indexes": [
+        {
+          "table_schema": "public",
+          "table_name": "inbox_messages",
+          "index_name": "PK_inbox_messages",
+          "is_primary": true,
+          "is_unique": true,
+          "columns": [
+            "MessageId",
+            "Consumer"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX \"PK_inbox_messages\" ON public.inbox_messages USING btree (\"MessageId\", \"Consumer\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "index_name": "IX_outbox_messages_PublishedAt_OccurredAt",
+          "is_primary": false,
+          "is_unique": false,
+          "columns": [
+            "PublishedAt",
+            "OccurredAt"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE INDEX \"IX_outbox_messages_PublishedAt_OccurredAt\" ON public.outbox_messages USING btree (\"PublishedAt\", \"OccurredAt\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "index_name": "PK_outbox_messages",
+          "is_primary": true,
+          "is_unique": true,
+          "columns": [
+            "Id"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX \"PK_outbox_messages\" ON public.outbox_messages USING btree (\"Id\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "refresh_tokens",
+          "index_name": "IX_refresh_tokens_TokenHash",
+          "is_primary": false,
+          "is_unique": true,
+          "columns": [
+            "TokenHash"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX \"IX_refresh_tokens_TokenHash\" ON public.refresh_tokens USING btree (\"TokenHash\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "refresh_tokens",
+          "index_name": "IX_refresh_tokens_UserId",
+          "is_primary": false,
+          "is_unique": false,
+          "columns": [
+            "UserId"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE INDEX \"IX_refresh_tokens_UserId\" ON public.refresh_tokens USING btree (\"UserId\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "refresh_tokens",
+          "index_name": "PK_refresh_tokens",
+          "is_primary": true,
+          "is_unique": true,
+          "columns": [
+            "Id"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX \"PK_refresh_tokens\" ON public.refresh_tokens USING btree (\"Id\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "users",
+          "index_name": "IX_users_NormalizedEmail",
+          "is_primary": false,
+          "is_unique": true,
+          "columns": [
+            "NormalizedEmail"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX \"IX_users_NormalizedEmail\" ON public.users USING btree (\"NormalizedEmail\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "users",
+          "index_name": "PK_users",
+          "is_primary": true,
+          "is_unique": true,
+          "columns": [
+            "Id"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX \"PK_users\" ON public.users USING btree (\"Id\")"
+        }
+      ],
+      "constraints": [
+        {
+          "table_schema": "public",
+          "table_name": "inbox_messages",
+          "name": "PK_inbox_messages",
+          "kind": "p",
+          "definition": "PRIMARY KEY (\"MessageId\", \"Consumer\")",
+          "columns": [
+            "MessageId",
+            "Consumer"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "name": "PK_outbox_messages",
+          "kind": "p",
+          "definition": "PRIMARY KEY (\"Id\")",
+          "columns": [
+            "Id"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        },
+        {
+          "table_schema": "public",
+          "table_name": "refresh_tokens",
+          "name": "PK_refresh_tokens",
+          "kind": "p",
+          "definition": "PRIMARY KEY (\"Id\")",
+          "columns": [
+            "Id"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        },
+        {
+          "table_schema": "public",
+          "table_name": "users",
+          "name": "PK_users",
+          "kind": "p",
+          "definition": "PRIMARY KEY (\"Id\")",
+          "columns": [
+            "Id"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        }
+      ]
+    },
+    "catalog_db": {
+      "columns": [
+        {
+          "table_schema": "public",
+          "table_name": "book_copies",
+          "column_name": "Id",
+          "ordinal_position": 1,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "book_copies",
+          "column_name": "BookId",
+          "ordinal_position": 2,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "book_copies",
+          "column_name": "OwnerId",
+          "ordinal_position": 3,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "book_copies",
+          "column_name": "Condition",
+          "ordinal_position": 4,
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 32,
+          "numeric_scale": 0,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "book_copies",
+          "column_name": "Status",
+          "ordinal_position": 5,
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 32,
+          "numeric_scale": 0,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "book_copies",
+          "column_name": "LendingPrice",
+          "ordinal_position": 6,
+          "udt_name": "numeric",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 18,
+          "numeric_scale": 2,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "book_copies",
+          "column_name": "MaximumLoanDays",
+          "ordinal_position": 7,
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 32,
+          "numeric_scale": 0,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "book_copies",
+          "column_name": "Location",
+          "ordinal_position": 8,
+          "udt_name": "text",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "book_copies",
+          "column_name": "IsHidden",
+          "ordinal_position": 9,
+          "udt_name": "bool",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "book_copies",
+          "column_name": "ReservationSagaId",
+          "ordinal_position": 10,
+          "udt_name": "uuid",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "book_copies",
+          "column_name": "ReservedForUserId",
+          "ordinal_position": 11,
+          "udt_name": "uuid",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "book_copies",
+          "column_name": "ReservationExpiresAt",
+          "ordinal_position": 12,
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "book_copies",
+          "column_name": "Version",
+          "ordinal_position": 13,
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "book_copies",
+          "column_name": "CreatedAt",
+          "ordinal_position": 14,
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "book_search_projection",
+          "column_name": "BookId",
+          "ordinal_position": 1,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "book_search_projection",
+          "column_name": "Isbn",
+          "ordinal_position": 2,
+          "udt_name": "text",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "book_search_projection",
+          "column_name": "Title",
+          "ordinal_position": 3,
+          "udt_name": "text",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "book_search_projection",
+          "column_name": "AuthorsText",
+          "ordinal_position": 4,
+          "udt_name": "text",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "book_search_projection",
+          "column_name": "GenresText",
+          "ordinal_position": 5,
+          "udt_name": "text",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "book_search_projection",
+          "column_name": "AvailableCopies",
+          "ordinal_position": 6,
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 32,
+          "numeric_scale": 0,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "book_search_projection",
+          "column_name": "MinimumPrice",
+          "ordinal_position": 7,
+          "udt_name": "numeric",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "book_search_projection",
+          "column_name": "UpdatedAt",
+          "ordinal_position": 8,
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "books",
+          "column_name": "Id",
+          "ordinal_position": 1,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "books",
+          "column_name": "Isbn",
+          "ordinal_position": 2,
+          "udt_name": "text",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "books",
+          "column_name": "Title",
+          "ordinal_position": 3,
+          "udt_name": "text",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "books",
+          "column_name": "Description",
+          "ordinal_position": 4,
+          "udt_name": "text",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "books",
+          "column_name": "AuthorsJson",
+          "ordinal_position": 5,
+          "udt_name": "jsonb",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "books",
+          "column_name": "GenresJson",
+          "ordinal_position": 6,
+          "udt_name": "jsonb",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "books",
+          "column_name": "Publisher",
+          "ordinal_position": 7,
+          "udt_name": "text",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "books",
+          "column_name": "PublicationYear",
+          "ordinal_position": 8,
+          "udt_name": "int4",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": 32,
+          "numeric_scale": 0,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "books",
+          "column_name": "CoverUrl",
+          "ordinal_position": 9,
+          "udt_name": "text",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "books",
+          "column_name": "CreatedAt",
+          "ordinal_position": 10,
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "inbox_messages",
+          "column_name": "MessageId",
+          "ordinal_position": 1,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "inbox_messages",
+          "column_name": "Consumer",
+          "ordinal_position": 2,
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "character_maximum_length": 200,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "inbox_messages",
+          "column_name": "ProcessedAt",
+          "ordinal_position": 3,
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "Id",
+          "ordinal_position": 1,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "Exchange",
+          "ordinal_position": 2,
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "character_maximum_length": 100,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "RoutingKey",
+          "ordinal_position": 3,
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "character_maximum_length": 200,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "Type",
+          "ordinal_position": 4,
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "character_maximum_length": 200,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "Payload",
+          "ordinal_position": 5,
+          "udt_name": "jsonb",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "OccurredAt",
+          "ordinal_position": 6,
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "PublishedAt",
+          "ordinal_position": 7,
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "RetryCount",
+          "ordinal_position": 8,
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 32,
+          "numeric_scale": 0,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "LastError",
+          "ordinal_position": 9,
+          "udt_name": "text",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        }
+      ],
+      "indexes": [
+        {
+          "table_schema": "public",
+          "table_name": "book_copies",
+          "index_name": "IX_book_copies_BookId",
+          "is_primary": false,
+          "is_unique": false,
+          "columns": [
+            "BookId"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE INDEX \"IX_book_copies_BookId\" ON public.book_copies USING btree (\"BookId\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "book_copies",
+          "index_name": "IX_book_copies_Status_IsHidden",
+          "is_primary": false,
+          "is_unique": false,
+          "columns": [
+            "Status",
+            "IsHidden"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE INDEX \"IX_book_copies_Status_IsHidden\" ON public.book_copies USING btree (\"Status\", \"IsHidden\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "book_copies",
+          "index_name": "PK_book_copies",
+          "is_primary": true,
+          "is_unique": true,
+          "columns": [
+            "Id"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX \"PK_book_copies\" ON public.book_copies USING btree (\"Id\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "book_search_projection",
+          "index_name": "PK_book_search_projection",
+          "is_primary": true,
+          "is_unique": true,
+          "columns": [
+            "BookId"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX \"PK_book_search_projection\" ON public.book_search_projection USING btree (\"BookId\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "books",
+          "index_name": "IX_books_Isbn",
+          "is_primary": false,
+          "is_unique": true,
+          "columns": [
+            "Isbn"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX \"IX_books_Isbn\" ON public.books USING btree (\"Isbn\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "books",
+          "index_name": "PK_books",
+          "is_primary": true,
+          "is_unique": true,
+          "columns": [
+            "Id"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX \"PK_books\" ON public.books USING btree (\"Id\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "inbox_messages",
+          "index_name": "PK_inbox_messages",
+          "is_primary": true,
+          "is_unique": true,
+          "columns": [
+            "MessageId",
+            "Consumer"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX \"PK_inbox_messages\" ON public.inbox_messages USING btree (\"MessageId\", \"Consumer\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "index_name": "IX_outbox_messages_PublishedAt_OccurredAt",
+          "is_primary": false,
+          "is_unique": false,
+          "columns": [
+            "PublishedAt",
+            "OccurredAt"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE INDEX \"IX_outbox_messages_PublishedAt_OccurredAt\" ON public.outbox_messages USING btree (\"PublishedAt\", \"OccurredAt\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "index_name": "PK_outbox_messages",
+          "is_primary": true,
+          "is_unique": true,
+          "columns": [
+            "Id"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX \"PK_outbox_messages\" ON public.outbox_messages USING btree (\"Id\")"
+        }
+      ],
+      "constraints": [
+        {
+          "table_schema": "public",
+          "table_name": "book_copies",
+          "name": "PK_book_copies",
+          "kind": "p",
+          "definition": "PRIMARY KEY (\"Id\")",
+          "columns": [
+            "Id"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        },
+        {
+          "table_schema": "public",
+          "table_name": "book_search_projection",
+          "name": "PK_book_search_projection",
+          "kind": "p",
+          "definition": "PRIMARY KEY (\"BookId\")",
+          "columns": [
+            "BookId"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        },
+        {
+          "table_schema": "public",
+          "table_name": "books",
+          "name": "PK_books",
+          "kind": "p",
+          "definition": "PRIMARY KEY (\"Id\")",
+          "columns": [
+            "Id"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        },
+        {
+          "table_schema": "public",
+          "table_name": "inbox_messages",
+          "name": "PK_inbox_messages",
+          "kind": "p",
+          "definition": "PRIMARY KEY (\"MessageId\", \"Consumer\")",
+          "columns": [
+            "MessageId",
+            "Consumer"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "name": "PK_outbox_messages",
+          "kind": "p",
+          "definition": "PRIMARY KEY (\"Id\")",
+          "columns": [
+            "Id"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        }
+      ]
+    },
+    "lending_db": {
+      "columns": [
+        {
+          "table_schema": "hangfire",
+          "table_name": "aggregatedcounter",
+          "column_name": "id",
+          "ordinal_position": 1,
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0,
+          "column_default": "nextval('hangfire.aggregatedcounter_id_seq'::regclass)",
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "aggregatedcounter",
+          "column_name": "key",
+          "ordinal_position": 2,
+          "udt_name": "text",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "aggregatedcounter",
+          "column_name": "value",
+          "ordinal_position": 3,
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "aggregatedcounter",
+          "column_name": "expireat",
+          "ordinal_position": 4,
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "counter",
+          "column_name": "id",
+          "ordinal_position": 1,
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0,
+          "column_default": "nextval('hangfire.counter_id_seq'::regclass)",
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "counter",
+          "column_name": "key",
+          "ordinal_position": 2,
+          "udt_name": "text",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "counter",
+          "column_name": "value",
+          "ordinal_position": 3,
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "counter",
+          "column_name": "expireat",
+          "ordinal_position": 4,
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "hash",
+          "column_name": "id",
+          "ordinal_position": 1,
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0,
+          "column_default": "nextval('hangfire.hash_id_seq'::regclass)",
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "hash",
+          "column_name": "key",
+          "ordinal_position": 2,
+          "udt_name": "text",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "hash",
+          "column_name": "field",
+          "ordinal_position": 3,
+          "udt_name": "text",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "hash",
+          "column_name": "value",
+          "ordinal_position": 4,
+          "udt_name": "text",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "hash",
+          "column_name": "expireat",
+          "ordinal_position": 5,
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "hash",
+          "column_name": "updatecount",
+          "ordinal_position": 6,
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 32,
+          "numeric_scale": 0,
+          "column_default": "0",
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "job",
+          "column_name": "id",
+          "ordinal_position": 1,
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0,
+          "column_default": "nextval('hangfire.job_id_seq'::regclass)",
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "job",
+          "column_name": "stateid",
+          "ordinal_position": 2,
+          "udt_name": "int8",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "job",
+          "column_name": "statename",
+          "ordinal_position": 3,
+          "udt_name": "text",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "job",
+          "column_name": "invocationdata",
+          "ordinal_position": 4,
+          "udt_name": "jsonb",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "job",
+          "column_name": "arguments",
+          "ordinal_position": 5,
+          "udt_name": "jsonb",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "job",
+          "column_name": "createdat",
+          "ordinal_position": 6,
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "job",
+          "column_name": "expireat",
+          "ordinal_position": 7,
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "job",
+          "column_name": "updatecount",
+          "ordinal_position": 8,
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 32,
+          "numeric_scale": 0,
+          "column_default": "0",
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "jobparameter",
+          "column_name": "id",
+          "ordinal_position": 1,
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0,
+          "column_default": "nextval('hangfire.jobparameter_id_seq'::regclass)",
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "jobparameter",
+          "column_name": "jobid",
+          "ordinal_position": 2,
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "jobparameter",
+          "column_name": "name",
+          "ordinal_position": 3,
+          "udt_name": "text",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "jobparameter",
+          "column_name": "value",
+          "ordinal_position": 4,
+          "udt_name": "text",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "jobparameter",
+          "column_name": "updatecount",
+          "ordinal_position": 5,
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 32,
+          "numeric_scale": 0,
+          "column_default": "0",
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "jobqueue",
+          "column_name": "id",
+          "ordinal_position": 1,
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0,
+          "column_default": "nextval('hangfire.jobqueue_id_seq'::regclass)",
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "jobqueue",
+          "column_name": "jobid",
+          "ordinal_position": 2,
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "jobqueue",
+          "column_name": "queue",
+          "ordinal_position": 3,
+          "udt_name": "text",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "jobqueue",
+          "column_name": "fetchedat",
+          "ordinal_position": 4,
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "jobqueue",
+          "column_name": "updatecount",
+          "ordinal_position": 5,
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 32,
+          "numeric_scale": 0,
+          "column_default": "0",
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "list",
+          "column_name": "id",
+          "ordinal_position": 1,
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0,
+          "column_default": "nextval('hangfire.list_id_seq'::regclass)",
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "list",
+          "column_name": "key",
+          "ordinal_position": 2,
+          "udt_name": "text",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "list",
+          "column_name": "value",
+          "ordinal_position": 3,
+          "udt_name": "text",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "list",
+          "column_name": "expireat",
+          "ordinal_position": 4,
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "list",
+          "column_name": "updatecount",
+          "ordinal_position": 5,
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 32,
+          "numeric_scale": 0,
+          "column_default": "0",
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "lock",
+          "column_name": "resource",
+          "ordinal_position": 1,
+          "udt_name": "text",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "lock",
+          "column_name": "updatecount",
+          "ordinal_position": 2,
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 32,
+          "numeric_scale": 0,
+          "column_default": "0",
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "lock",
+          "column_name": "acquired",
+          "ordinal_position": 3,
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "schema",
+          "column_name": "version",
+          "ordinal_position": 1,
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 32,
+          "numeric_scale": 0,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "server",
+          "column_name": "id",
+          "ordinal_position": 1,
+          "udt_name": "text",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "server",
+          "column_name": "data",
+          "ordinal_position": 2,
+          "udt_name": "jsonb",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "server",
+          "column_name": "lastheartbeat",
+          "ordinal_position": 3,
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "server",
+          "column_name": "updatecount",
+          "ordinal_position": 4,
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 32,
+          "numeric_scale": 0,
+          "column_default": "0",
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "set",
+          "column_name": "id",
+          "ordinal_position": 1,
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0,
+          "column_default": "nextval('hangfire.set_id_seq'::regclass)",
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "set",
+          "column_name": "key",
+          "ordinal_position": 2,
+          "udt_name": "text",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "set",
+          "column_name": "score",
+          "ordinal_position": 3,
+          "udt_name": "float8",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 53,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "set",
+          "column_name": "value",
+          "ordinal_position": 4,
+          "udt_name": "text",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "set",
+          "column_name": "expireat",
+          "ordinal_position": 5,
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "set",
+          "column_name": "updatecount",
+          "ordinal_position": 6,
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 32,
+          "numeric_scale": 0,
+          "column_default": "0",
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "state",
+          "column_name": "id",
+          "ordinal_position": 1,
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0,
+          "column_default": "nextval('hangfire.state_id_seq'::regclass)",
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "state",
+          "column_name": "jobid",
+          "ordinal_position": 2,
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "state",
+          "column_name": "name",
+          "ordinal_position": 3,
+          "udt_name": "text",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "state",
+          "column_name": "reason",
+          "ordinal_position": 4,
+          "udt_name": "text",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "state",
+          "column_name": "createdat",
+          "ordinal_position": 5,
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "state",
+          "column_name": "data",
+          "ordinal_position": 6,
+          "udt_name": "jsonb",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "state",
+          "column_name": "updatecount",
+          "ordinal_position": 7,
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 32,
+          "numeric_scale": 0,
+          "column_default": "0",
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "inbox_messages",
+          "column_name": "MessageId",
+          "ordinal_position": 1,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "inbox_messages",
+          "column_name": "Consumer",
+          "ordinal_position": 2,
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "character_maximum_length": 200,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "inbox_messages",
+          "column_name": "ProcessedAt",
+          "ordinal_position": 3,
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loan_request_sagas",
+          "column_name": "Id",
+          "ordinal_position": 1,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loan_request_sagas",
+          "column_name": "CopyId",
+          "ordinal_position": 2,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loan_request_sagas",
+          "column_name": "BorrowerId",
+          "ordinal_position": 3,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loan_request_sagas",
+          "column_name": "OwnerId",
+          "ordinal_position": 4,
+          "udt_name": "uuid",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loan_request_sagas",
+          "column_name": "PointsReservationId",
+          "ordinal_position": 5,
+          "udt_name": "uuid",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loan_request_sagas",
+          "column_name": "LoanId",
+          "ordinal_position": 6,
+          "udt_name": "uuid",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loan_request_sagas",
+          "column_name": "Price",
+          "ordinal_position": 7,
+          "udt_name": "numeric",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": 18,
+          "numeric_scale": 2,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loan_request_sagas",
+          "column_name": "MaximumLoanDays",
+          "ordinal_position": 8,
+          "udt_name": "int4",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": 32,
+          "numeric_scale": 0,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loan_request_sagas",
+          "column_name": "State",
+          "ordinal_position": 9,
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 32,
+          "numeric_scale": 0,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loan_request_sagas",
+          "column_name": "FailureReason",
+          "ordinal_position": 10,
+          "udt_name": "text",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loan_request_sagas",
+          "column_name": "Deadline",
+          "ordinal_position": 11,
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loan_request_sagas",
+          "column_name": "CreatedAt",
+          "ordinal_position": 12,
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loan_request_sagas",
+          "column_name": "UpdatedAt",
+          "ordinal_position": 13,
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loan_status_history",
+          "column_name": "Id",
+          "ordinal_position": 1,
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0,
+          "column_default": null,
+          "is_identity": "YES",
+          "identity_generation": "BY DEFAULT"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loan_status_history",
+          "column_name": "LoanId",
+          "ordinal_position": 2,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loan_status_history",
+          "column_name": "Status",
+          "ordinal_position": 3,
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 32,
+          "numeric_scale": 0,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loan_status_history",
+          "column_name": "ActorId",
+          "ordinal_position": 4,
+          "udt_name": "uuid",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loan_status_history",
+          "column_name": "Reason",
+          "ordinal_position": 5,
+          "udt_name": "text",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loan_status_history",
+          "column_name": "OccurredAt",
+          "ordinal_position": 6,
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loans",
+          "column_name": "Id",
+          "ordinal_position": 1,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loans",
+          "column_name": "SagaId",
+          "ordinal_position": 2,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loans",
+          "column_name": "CopyId",
+          "ordinal_position": 3,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loans",
+          "column_name": "BorrowerId",
+          "ordinal_position": 4,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loans",
+          "column_name": "OwnerId",
+          "ordinal_position": 5,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loans",
+          "column_name": "ReservationId",
+          "ordinal_position": 6,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loans",
+          "column_name": "Price",
+          "ordinal_position": 7,
+          "udt_name": "numeric",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 18,
+          "numeric_scale": 2,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loans",
+          "column_name": "MaximumLoanDays",
+          "ordinal_position": 8,
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 32,
+          "numeric_scale": 0,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loans",
+          "column_name": "Status",
+          "ordinal_position": 9,
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 32,
+          "numeric_scale": 0,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loans",
+          "column_name": "HandoverCodeHash",
+          "ordinal_position": 10,
+          "udt_name": "text",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loans",
+          "column_name": "HandoverExpiresAt",
+          "ordinal_position": 11,
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loans",
+          "column_name": "ActivatedAt",
+          "ordinal_position": 12,
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loans",
+          "column_name": "DueAt",
+          "ordinal_position": 13,
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loans",
+          "column_name": "CompletedAt",
+          "ordinal_position": 14,
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loans",
+          "column_name": "ReminderFlags",
+          "ordinal_position": 15,
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 32,
+          "numeric_scale": 0,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loans",
+          "column_name": "Version",
+          "ordinal_position": 16,
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loans",
+          "column_name": "CreatedAt",
+          "ordinal_position": 17,
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loans",
+          "column_name": "UpdatedAt",
+          "ordinal_position": 18,
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "Id",
+          "ordinal_position": 1,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "Exchange",
+          "ordinal_position": 2,
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "character_maximum_length": 100,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "RoutingKey",
+          "ordinal_position": 3,
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "character_maximum_length": 200,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "Type",
+          "ordinal_position": 4,
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "character_maximum_length": 200,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "Payload",
+          "ordinal_position": 5,
+          "udt_name": "jsonb",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "OccurredAt",
+          "ordinal_position": 6,
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "PublishedAt",
+          "ordinal_position": 7,
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "RetryCount",
+          "ordinal_position": 8,
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 32,
+          "numeric_scale": 0,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "LastError",
+          "ordinal_position": 9,
+          "udt_name": "text",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        }
+      ],
+      "indexes": [
+        {
+          "table_schema": "hangfire",
+          "table_name": "aggregatedcounter",
+          "index_name": "aggregatedcounter_key_key",
+          "is_primary": false,
+          "is_unique": true,
+          "columns": [
+            "key"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX aggregatedcounter_key_key ON hangfire.aggregatedcounter USING btree (key)"
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "aggregatedcounter",
+          "index_name": "aggregatedcounter_pkey",
+          "is_primary": true,
+          "is_unique": true,
+          "columns": [
+            "id"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX aggregatedcounter_pkey ON hangfire.aggregatedcounter USING btree (id)"
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "counter",
+          "index_name": "counter_pkey",
+          "is_primary": true,
+          "is_unique": true,
+          "columns": [
+            "id"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX counter_pkey ON hangfire.counter USING btree (id)"
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "counter",
+          "index_name": "ix_hangfire_counter_expireat",
+          "is_primary": false,
+          "is_unique": false,
+          "columns": [
+            "expireat"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE INDEX ix_hangfire_counter_expireat ON hangfire.counter USING btree (expireat)"
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "counter",
+          "index_name": "ix_hangfire_counter_key",
+          "is_primary": false,
+          "is_unique": false,
+          "columns": [
+            "key"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE INDEX ix_hangfire_counter_key ON hangfire.counter USING btree (key)"
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "hash",
+          "index_name": "hash_key_field_key",
+          "is_primary": false,
+          "is_unique": true,
+          "columns": [
+            "key",
+            "field"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX hash_key_field_key ON hangfire.hash USING btree (key, field)"
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "hash",
+          "index_name": "hash_pkey",
+          "is_primary": true,
+          "is_unique": true,
+          "columns": [
+            "id"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX hash_pkey ON hangfire.hash USING btree (id)"
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "hash",
+          "index_name": "ix_hangfire_hash_expireat",
+          "is_primary": false,
+          "is_unique": false,
+          "columns": [
+            "expireat"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE INDEX ix_hangfire_hash_expireat ON hangfire.hash USING btree (expireat)"
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "job",
+          "index_name": "ix_hangfire_job_expireat",
+          "is_primary": false,
+          "is_unique": false,
+          "columns": [
+            "expireat"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE INDEX ix_hangfire_job_expireat ON hangfire.job USING btree (expireat)"
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "job",
+          "index_name": "ix_hangfire_job_statename",
+          "is_primary": false,
+          "is_unique": false,
+          "columns": [
+            "statename"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE INDEX ix_hangfire_job_statename ON hangfire.job USING btree (statename)"
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "job",
+          "index_name": "ix_hangfire_job_statename_is_not_null",
+          "is_primary": false,
+          "is_unique": false,
+          "columns": [
+            "statename"
+          ],
+          "include_columns": [
+            "id"
+          ],
+          "predicate": "(statename IS NOT NULL)",
+          "definition": "CREATE INDEX ix_hangfire_job_statename_is_not_null ON hangfire.job USING btree (statename) INCLUDE (id) WHERE (statename IS NOT NULL)"
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "job",
+          "index_name": "job_pkey",
+          "is_primary": true,
+          "is_unique": true,
+          "columns": [
+            "id"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX job_pkey ON hangfire.job USING btree (id)"
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "jobparameter",
+          "index_name": "ix_hangfire_jobparameter_jobidandname",
+          "is_primary": false,
+          "is_unique": false,
+          "columns": [
+            "jobid",
+            "name"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE INDEX ix_hangfire_jobparameter_jobidandname ON hangfire.jobparameter USING btree (jobid, name)"
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "jobparameter",
+          "index_name": "jobparameter_pkey",
+          "is_primary": true,
+          "is_unique": true,
+          "columns": [
+            "id"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX jobparameter_pkey ON hangfire.jobparameter USING btree (id)"
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "jobqueue",
+          "index_name": "ix_hangfire_jobqueue_fetchedat_queue_jobid",
+          "is_primary": false,
+          "is_unique": false,
+          "columns": [
+            "fetchedat",
+            "queue",
+            "jobid"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE INDEX ix_hangfire_jobqueue_fetchedat_queue_jobid ON hangfire.jobqueue USING btree (fetchedat NULLS FIRST, queue, jobid)"
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "jobqueue",
+          "index_name": "ix_hangfire_jobqueue_jobidandqueue",
+          "is_primary": false,
+          "is_unique": false,
+          "columns": [
+            "jobid",
+            "queue"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE INDEX ix_hangfire_jobqueue_jobidandqueue ON hangfire.jobqueue USING btree (jobid, queue)"
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "jobqueue",
+          "index_name": "ix_hangfire_jobqueue_queueandfetchedat",
+          "is_primary": false,
+          "is_unique": false,
+          "columns": [
+            "queue",
+            "fetchedat"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE INDEX ix_hangfire_jobqueue_queueandfetchedat ON hangfire.jobqueue USING btree (queue, fetchedat)"
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "jobqueue",
+          "index_name": "jobqueue_pkey",
+          "is_primary": true,
+          "is_unique": true,
+          "columns": [
+            "id"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX jobqueue_pkey ON hangfire.jobqueue USING btree (id)"
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "list",
+          "index_name": "ix_hangfire_list_expireat",
+          "is_primary": false,
+          "is_unique": false,
+          "columns": [
+            "expireat"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE INDEX ix_hangfire_list_expireat ON hangfire.list USING btree (expireat)"
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "list",
+          "index_name": "list_pkey",
+          "is_primary": true,
+          "is_unique": true,
+          "columns": [
+            "id"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX list_pkey ON hangfire.list USING btree (id)"
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "lock",
+          "index_name": "lock_resource_key",
+          "is_primary": false,
+          "is_unique": true,
+          "columns": [
+            "resource"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX lock_resource_key ON hangfire.lock USING btree (resource)"
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "schema",
+          "index_name": "schema_pkey",
+          "is_primary": true,
+          "is_unique": true,
+          "columns": [
+            "version"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX schema_pkey ON hangfire.schema USING btree (version)"
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "server",
+          "index_name": "server_pkey",
+          "is_primary": true,
+          "is_unique": true,
+          "columns": [
+            "id"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX server_pkey ON hangfire.server USING btree (id)"
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "set",
+          "index_name": "ix_hangfire_set_expireat",
+          "is_primary": false,
+          "is_unique": false,
+          "columns": [
+            "expireat"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE INDEX ix_hangfire_set_expireat ON hangfire.set USING btree (expireat)"
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "set",
+          "index_name": "ix_hangfire_set_key_score",
+          "is_primary": false,
+          "is_unique": false,
+          "columns": [
+            "key",
+            "score"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE INDEX ix_hangfire_set_key_score ON hangfire.set USING btree (key, score)"
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "set",
+          "index_name": "set_key_value_key",
+          "is_primary": false,
+          "is_unique": true,
+          "columns": [
+            "key",
+            "value"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX set_key_value_key ON hangfire.set USING btree (key, value)"
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "set",
+          "index_name": "set_pkey",
+          "is_primary": true,
+          "is_unique": true,
+          "columns": [
+            "id"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX set_pkey ON hangfire.set USING btree (id)"
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "state",
+          "index_name": "ix_hangfire_state_jobid",
+          "is_primary": false,
+          "is_unique": false,
+          "columns": [
+            "jobid"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE INDEX ix_hangfire_state_jobid ON hangfire.state USING btree (jobid)"
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "state",
+          "index_name": "state_pkey",
+          "is_primary": true,
+          "is_unique": true,
+          "columns": [
+            "id"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX state_pkey ON hangfire.state USING btree (id)"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "inbox_messages",
+          "index_name": "PK_inbox_messages",
+          "is_primary": true,
+          "is_unique": true,
+          "columns": [
+            "MessageId",
+            "Consumer"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX \"PK_inbox_messages\" ON public.inbox_messages USING btree (\"MessageId\", \"Consumer\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loan_request_sagas",
+          "index_name": "IX_loan_request_sagas_CopyId_State",
+          "is_primary": false,
+          "is_unique": false,
+          "columns": [
+            "CopyId",
+            "State"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE INDEX \"IX_loan_request_sagas_CopyId_State\" ON public.loan_request_sagas USING btree (\"CopyId\", \"State\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loan_request_sagas",
+          "index_name": "PK_loan_request_sagas",
+          "is_primary": true,
+          "is_unique": true,
+          "columns": [
+            "Id"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX \"PK_loan_request_sagas\" ON public.loan_request_sagas USING btree (\"Id\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loan_status_history",
+          "index_name": "IX_loan_status_history_LoanId",
+          "is_primary": false,
+          "is_unique": false,
+          "columns": [
+            "LoanId"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE INDEX \"IX_loan_status_history_LoanId\" ON public.loan_status_history USING btree (\"LoanId\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loan_status_history",
+          "index_name": "PK_loan_status_history",
+          "is_primary": true,
+          "is_unique": true,
+          "columns": [
+            "Id"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX \"PK_loan_status_history\" ON public.loan_status_history USING btree (\"Id\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loans",
+          "index_name": "IX_loans_BorrowerId_Status",
+          "is_primary": false,
+          "is_unique": false,
+          "columns": [
+            "BorrowerId",
+            "Status"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE INDEX \"IX_loans_BorrowerId_Status\" ON public.loans USING btree (\"BorrowerId\", \"Status\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loans",
+          "index_name": "IX_loans_CopyId",
+          "is_primary": false,
+          "is_unique": false,
+          "columns": [
+            "CopyId"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE INDEX \"IX_loans_CopyId\" ON public.loans USING btree (\"CopyId\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loans",
+          "index_name": "IX_loans_OwnerId_Status",
+          "is_primary": false,
+          "is_unique": false,
+          "columns": [
+            "OwnerId",
+            "Status"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE INDEX \"IX_loans_OwnerId_Status\" ON public.loans USING btree (\"OwnerId\", \"Status\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loans",
+          "index_name": "IX_loans_SagaId",
+          "is_primary": false,
+          "is_unique": true,
+          "columns": [
+            "SagaId"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX \"IX_loans_SagaId\" ON public.loans USING btree (\"SagaId\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loans",
+          "index_name": "PK_loans",
+          "is_primary": true,
+          "is_unique": true,
+          "columns": [
+            "Id"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX \"PK_loans\" ON public.loans USING btree (\"Id\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "index_name": "IX_outbox_messages_PublishedAt_OccurredAt",
+          "is_primary": false,
+          "is_unique": false,
+          "columns": [
+            "PublishedAt",
+            "OccurredAt"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE INDEX \"IX_outbox_messages_PublishedAt_OccurredAt\" ON public.outbox_messages USING btree (\"PublishedAt\", \"OccurredAt\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "index_name": "PK_outbox_messages",
+          "is_primary": true,
+          "is_unique": true,
+          "columns": [
+            "Id"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX \"PK_outbox_messages\" ON public.outbox_messages USING btree (\"Id\")"
+        }
+      ],
+      "constraints": [
+        {
+          "table_schema": "hangfire",
+          "table_name": "aggregatedcounter",
+          "name": "aggregatedcounter_key_key",
+          "kind": "u",
+          "definition": "UNIQUE (key)",
+          "columns": [
+            "key"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "aggregatedcounter",
+          "name": "aggregatedcounter_pkey",
+          "kind": "p",
+          "definition": "PRIMARY KEY (id)",
+          "columns": [
+            "id"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "counter",
+          "name": "counter_pkey",
+          "kind": "p",
+          "definition": "PRIMARY KEY (id)",
+          "columns": [
+            "id"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "hash",
+          "name": "hash_key_field_key",
+          "kind": "u",
+          "definition": "UNIQUE (key, field)",
+          "columns": [
+            "key",
+            "field"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "hash",
+          "name": "hash_pkey",
+          "kind": "p",
+          "definition": "PRIMARY KEY (id)",
+          "columns": [
+            "id"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "job",
+          "name": "job_pkey",
+          "kind": "p",
+          "definition": "PRIMARY KEY (id)",
+          "columns": [
+            "id"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "jobparameter",
+          "name": "jobparameter_jobid_fkey",
+          "kind": "f",
+          "definition": "FOREIGN KEY (jobid) REFERENCES hangfire.job(id) ON UPDATE CASCADE ON DELETE CASCADE",
+          "columns": [
+            "jobid"
+          ],
+          "target_schema": "hangfire",
+          "target_table": "job",
+          "target_columns": [
+            "id"
+          ]
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "jobparameter",
+          "name": "jobparameter_pkey",
+          "kind": "p",
+          "definition": "PRIMARY KEY (id)",
+          "columns": [
+            "id"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "jobqueue",
+          "name": "jobqueue_pkey",
+          "kind": "p",
+          "definition": "PRIMARY KEY (id)",
+          "columns": [
+            "id"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "list",
+          "name": "list_pkey",
+          "kind": "p",
+          "definition": "PRIMARY KEY (id)",
+          "columns": [
+            "id"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "lock",
+          "name": "lock_resource_key",
+          "kind": "u",
+          "definition": "UNIQUE (resource)",
+          "columns": [
+            "resource"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "schema",
+          "name": "schema_pkey",
+          "kind": "p",
+          "definition": "PRIMARY KEY (version)",
+          "columns": [
+            "version"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "server",
+          "name": "server_pkey",
+          "kind": "p",
+          "definition": "PRIMARY KEY (id)",
+          "columns": [
+            "id"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "set",
+          "name": "set_key_value_key",
+          "kind": "u",
+          "definition": "UNIQUE (key, value)",
+          "columns": [
+            "key",
+            "value"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "set",
+          "name": "set_pkey",
+          "kind": "p",
+          "definition": "PRIMARY KEY (id)",
+          "columns": [
+            "id"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "state",
+          "name": "state_jobid_fkey",
+          "kind": "f",
+          "definition": "FOREIGN KEY (jobid) REFERENCES hangfire.job(id) ON UPDATE CASCADE ON DELETE CASCADE",
+          "columns": [
+            "jobid"
+          ],
+          "target_schema": "hangfire",
+          "target_table": "job",
+          "target_columns": [
+            "id"
+          ]
+        },
+        {
+          "table_schema": "hangfire",
+          "table_name": "state",
+          "name": "state_pkey",
+          "kind": "p",
+          "definition": "PRIMARY KEY (id)",
+          "columns": [
+            "id"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        },
+        {
+          "table_schema": "public",
+          "table_name": "inbox_messages",
+          "name": "PK_inbox_messages",
+          "kind": "p",
+          "definition": "PRIMARY KEY (\"MessageId\", \"Consumer\")",
+          "columns": [
+            "MessageId",
+            "Consumer"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loan_request_sagas",
+          "name": "PK_loan_request_sagas",
+          "kind": "p",
+          "definition": "PRIMARY KEY (\"Id\")",
+          "columns": [
+            "Id"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loan_status_history",
+          "name": "PK_loan_status_history",
+          "kind": "p",
+          "definition": "PRIMARY KEY (\"Id\")",
+          "columns": [
+            "Id"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        },
+        {
+          "table_schema": "public",
+          "table_name": "loans",
+          "name": "PK_loans",
+          "kind": "p",
+          "definition": "PRIMARY KEY (\"Id\")",
+          "columns": [
+            "Id"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "name": "PK_outbox_messages",
+          "kind": "p",
+          "definition": "PRIMARY KEY (\"Id\")",
+          "columns": [
+            "Id"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        }
+      ]
+    },
+    "economy_db": {
+      "columns": [
+        {
+          "table_schema": "public",
+          "table_name": "balance_transactions",
+          "column_name": "Id",
+          "ordinal_position": 1,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "balance_transactions",
+          "column_name": "UserId",
+          "ordinal_position": 2,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "balance_transactions",
+          "column_name": "Amount",
+          "ordinal_position": 3,
+          "udt_name": "numeric",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 18,
+          "numeric_scale": 2,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "balance_transactions",
+          "column_name": "Type",
+          "ordinal_position": 4,
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 32,
+          "numeric_scale": 0,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "balance_transactions",
+          "column_name": "LoanId",
+          "ordinal_position": 5,
+          "udt_name": "uuid",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "balance_transactions",
+          "column_name": "Description",
+          "ordinal_position": 6,
+          "udt_name": "text",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "balance_transactions",
+          "column_name": "CreatedAt",
+          "ordinal_position": 7,
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "balance_transactions",
+          "column_name": "IdempotencyKey",
+          "ordinal_position": 8,
+          "udt_name": "text",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "fines",
+          "column_name": "Id",
+          "ordinal_position": 1,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "fines",
+          "column_name": "LoanId",
+          "ordinal_position": 2,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "fines",
+          "column_name": "UserId",
+          "ordinal_position": 3,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "fines",
+          "column_name": "Amount",
+          "ordinal_position": 4,
+          "udt_name": "numeric",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 18,
+          "numeric_scale": 2,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "fines",
+          "column_name": "Reason",
+          "ordinal_position": 5,
+          "udt_name": "text",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "fines",
+          "column_name": "Status",
+          "ordinal_position": 6,
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 32,
+          "numeric_scale": 0,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "fines",
+          "column_name": "CreatedAt",
+          "ordinal_position": 7,
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "inbox_messages",
+          "column_name": "MessageId",
+          "ordinal_position": 1,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "inbox_messages",
+          "column_name": "Consumer",
+          "ordinal_position": 2,
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "character_maximum_length": 200,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "inbox_messages",
+          "column_name": "ProcessedAt",
+          "ordinal_position": 3,
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "Id",
+          "ordinal_position": 1,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "Exchange",
+          "ordinal_position": 2,
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "character_maximum_length": 100,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "RoutingKey",
+          "ordinal_position": 3,
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "character_maximum_length": 200,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "Type",
+          "ordinal_position": 4,
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "character_maximum_length": 200,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "Payload",
+          "ordinal_position": 5,
+          "udt_name": "jsonb",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "OccurredAt",
+          "ordinal_position": 6,
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "PublishedAt",
+          "ordinal_position": 7,
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "RetryCount",
+          "ordinal_position": 8,
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 32,
+          "numeric_scale": 0,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "LastError",
+          "ordinal_position": 9,
+          "udt_name": "text",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "point_reservations",
+          "column_name": "Id",
+          "ordinal_position": 1,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "point_reservations",
+          "column_name": "SagaId",
+          "ordinal_position": 2,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "point_reservations",
+          "column_name": "UserId",
+          "ordinal_position": 3,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "point_reservations",
+          "column_name": "Amount",
+          "ordinal_position": 4,
+          "udt_name": "numeric",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 18,
+          "numeric_scale": 2,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "point_reservations",
+          "column_name": "Status",
+          "ordinal_position": 5,
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 32,
+          "numeric_scale": 0,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "point_reservations",
+          "column_name": "ExpiresAt",
+          "ordinal_position": 6,
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "point_reservations",
+          "column_name": "CreatedAt",
+          "ordinal_position": 7,
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "point_reservations",
+          "column_name": "UpdatedAt",
+          "ordinal_position": 8,
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "wallets",
+          "column_name": "UserId",
+          "ordinal_position": 1,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "wallets",
+          "column_name": "Balance",
+          "ordinal_position": 2,
+          "udt_name": "numeric",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 18,
+          "numeric_scale": 2,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "wallets",
+          "column_name": "UpdatedAt",
+          "ordinal_position": 3,
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "wallets",
+          "column_name": "Version",
+          "ordinal_position": 4,
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        }
+      ],
+      "indexes": [
+        {
+          "table_schema": "public",
+          "table_name": "balance_transactions",
+          "index_name": "IX_balance_transactions_IdempotencyKey",
+          "is_primary": false,
+          "is_unique": true,
+          "columns": [
+            "IdempotencyKey"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX \"IX_balance_transactions_IdempotencyKey\" ON public.balance_transactions USING btree (\"IdempotencyKey\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "balance_transactions",
+          "index_name": "IX_balance_transactions_UserId_CreatedAt",
+          "is_primary": false,
+          "is_unique": false,
+          "columns": [
+            "UserId",
+            "CreatedAt"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE INDEX \"IX_balance_transactions_UserId_CreatedAt\" ON public.balance_transactions USING btree (\"UserId\", \"CreatedAt\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "balance_transactions",
+          "index_name": "PK_balance_transactions",
+          "is_primary": true,
+          "is_unique": true,
+          "columns": [
+            "Id"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX \"PK_balance_transactions\" ON public.balance_transactions USING btree (\"Id\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "fines",
+          "index_name": "IX_fines_LoanId",
+          "is_primary": false,
+          "is_unique": true,
+          "columns": [
+            "LoanId"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX \"IX_fines_LoanId\" ON public.fines USING btree (\"LoanId\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "fines",
+          "index_name": "PK_fines",
+          "is_primary": true,
+          "is_unique": true,
+          "columns": [
+            "Id"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX \"PK_fines\" ON public.fines USING btree (\"Id\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "inbox_messages",
+          "index_name": "PK_inbox_messages",
+          "is_primary": true,
+          "is_unique": true,
+          "columns": [
+            "MessageId",
+            "Consumer"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX \"PK_inbox_messages\" ON public.inbox_messages USING btree (\"MessageId\", \"Consumer\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "index_name": "IX_outbox_messages_PublishedAt_OccurredAt",
+          "is_primary": false,
+          "is_unique": false,
+          "columns": [
+            "PublishedAt",
+            "OccurredAt"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE INDEX \"IX_outbox_messages_PublishedAt_OccurredAt\" ON public.outbox_messages USING btree (\"PublishedAt\", \"OccurredAt\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "index_name": "PK_outbox_messages",
+          "is_primary": true,
+          "is_unique": true,
+          "columns": [
+            "Id"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX \"PK_outbox_messages\" ON public.outbox_messages USING btree (\"Id\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "point_reservations",
+          "index_name": "IX_point_reservations_SagaId",
+          "is_primary": false,
+          "is_unique": true,
+          "columns": [
+            "SagaId"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX \"IX_point_reservations_SagaId\" ON public.point_reservations USING btree (\"SagaId\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "point_reservations",
+          "index_name": "IX_point_reservations_UserId_Status",
+          "is_primary": false,
+          "is_unique": false,
+          "columns": [
+            "UserId",
+            "Status"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE INDEX \"IX_point_reservations_UserId_Status\" ON public.point_reservations USING btree (\"UserId\", \"Status\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "point_reservations",
+          "index_name": "PK_point_reservations",
+          "is_primary": true,
+          "is_unique": true,
+          "columns": [
+            "Id"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX \"PK_point_reservations\" ON public.point_reservations USING btree (\"Id\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "wallets",
+          "index_name": "PK_wallets",
+          "is_primary": true,
+          "is_unique": true,
+          "columns": [
+            "UserId"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX \"PK_wallets\" ON public.wallets USING btree (\"UserId\")"
+        }
+      ],
+      "constraints": [
+        {
+          "table_schema": "public",
+          "table_name": "balance_transactions",
+          "name": "PK_balance_transactions",
+          "kind": "p",
+          "definition": "PRIMARY KEY (\"Id\")",
+          "columns": [
+            "Id"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        },
+        {
+          "table_schema": "public",
+          "table_name": "fines",
+          "name": "PK_fines",
+          "kind": "p",
+          "definition": "PRIMARY KEY (\"Id\")",
+          "columns": [
+            "Id"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        },
+        {
+          "table_schema": "public",
+          "table_name": "inbox_messages",
+          "name": "PK_inbox_messages",
+          "kind": "p",
+          "definition": "PRIMARY KEY (\"MessageId\", \"Consumer\")",
+          "columns": [
+            "MessageId",
+            "Consumer"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "name": "PK_outbox_messages",
+          "kind": "p",
+          "definition": "PRIMARY KEY (\"Id\")",
+          "columns": [
+            "Id"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        },
+        {
+          "table_schema": "public",
+          "table_name": "point_reservations",
+          "name": "PK_point_reservations",
+          "kind": "p",
+          "definition": "PRIMARY KEY (\"Id\")",
+          "columns": [
+            "Id"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        },
+        {
+          "table_schema": "public",
+          "table_name": "wallets",
+          "name": "PK_wallets",
+          "kind": "p",
+          "definition": "PRIMARY KEY (\"UserId\")",
+          "columns": [
+            "UserId"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        }
+      ]
+    },
+    "reputation_db": {
+      "columns": [
+        {
+          "table_schema": "public",
+          "table_name": "inbox_messages",
+          "column_name": "MessageId",
+          "ordinal_position": 1,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "inbox_messages",
+          "column_name": "Consumer",
+          "ordinal_position": 2,
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "character_maximum_length": 200,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "inbox_messages",
+          "column_name": "ProcessedAt",
+          "ordinal_position": 3,
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "Id",
+          "ordinal_position": 1,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "Exchange",
+          "ordinal_position": 2,
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "character_maximum_length": 100,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "RoutingKey",
+          "ordinal_position": 3,
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "character_maximum_length": 200,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "Type",
+          "ordinal_position": 4,
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "character_maximum_length": 200,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "Payload",
+          "ordinal_position": 5,
+          "udt_name": "jsonb",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "OccurredAt",
+          "ordinal_position": 6,
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "PublishedAt",
+          "ordinal_position": 7,
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "RetryCount",
+          "ordinal_position": 8,
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 32,
+          "numeric_scale": 0,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "LastError",
+          "ordinal_position": 9,
+          "udt_name": "text",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "reputation_adjustments",
+          "column_name": "Id",
+          "ordinal_position": 1,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "reputation_adjustments",
+          "column_name": "UserId",
+          "ordinal_position": 2,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "reputation_adjustments",
+          "column_name": "Delta",
+          "ordinal_position": 3,
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 32,
+          "numeric_scale": 0,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "reputation_adjustments",
+          "column_name": "Reason",
+          "ordinal_position": 4,
+          "udt_name": "text",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "reputation_adjustments",
+          "column_name": "IdempotencyKey",
+          "ordinal_position": 5,
+          "udt_name": "text",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "reputation_adjustments",
+          "column_name": "ActorId",
+          "ordinal_position": 6,
+          "udt_name": "uuid",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "reputation_adjustments",
+          "column_name": "CreatedAt",
+          "ordinal_position": 7,
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "user_reputations",
+          "column_name": "UserId",
+          "ordinal_position": 1,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "user_reputations",
+          "column_name": "Score",
+          "ordinal_position": 2,
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 32,
+          "numeric_scale": 0,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "user_reputations",
+          "column_name": "SuccessfulLoans",
+          "ordinal_position": 3,
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 32,
+          "numeric_scale": 0,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "user_reputations",
+          "column_name": "SuccessfulReturns",
+          "ordinal_position": 4,
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 32,
+          "numeric_scale": 0,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "user_reputations",
+          "column_name": "OverdueLoans",
+          "ordinal_position": 5,
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 32,
+          "numeric_scale": 0,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "user_reputations",
+          "column_name": "CancelledLoans",
+          "ordinal_position": 6,
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 32,
+          "numeric_scale": 0,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "user_reputations",
+          "column_name": "AverageRating",
+          "ordinal_position": 7,
+          "udt_name": "numeric",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": 3,
+          "numeric_scale": 2,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "user_reputations",
+          "column_name": "UpdatedAt",
+          "ordinal_position": 8,
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "user_reputations",
+          "column_name": "Version",
+          "ordinal_position": 9,
+          "udt_name": "int8",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 64,
+          "numeric_scale": 0,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        }
+      ],
+      "indexes": [
+        {
+          "table_schema": "public",
+          "table_name": "inbox_messages",
+          "index_name": "PK_inbox_messages",
+          "is_primary": true,
+          "is_unique": true,
+          "columns": [
+            "MessageId",
+            "Consumer"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX \"PK_inbox_messages\" ON public.inbox_messages USING btree (\"MessageId\", \"Consumer\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "index_name": "IX_outbox_messages_PublishedAt_OccurredAt",
+          "is_primary": false,
+          "is_unique": false,
+          "columns": [
+            "PublishedAt",
+            "OccurredAt"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE INDEX \"IX_outbox_messages_PublishedAt_OccurredAt\" ON public.outbox_messages USING btree (\"PublishedAt\", \"OccurredAt\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "index_name": "PK_outbox_messages",
+          "is_primary": true,
+          "is_unique": true,
+          "columns": [
+            "Id"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX \"PK_outbox_messages\" ON public.outbox_messages USING btree (\"Id\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "reputation_adjustments",
+          "index_name": "IX_reputation_adjustments_IdempotencyKey",
+          "is_primary": false,
+          "is_unique": true,
+          "columns": [
+            "IdempotencyKey"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX \"IX_reputation_adjustments_IdempotencyKey\" ON public.reputation_adjustments USING btree (\"IdempotencyKey\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "reputation_adjustments",
+          "index_name": "IX_reputation_adjustments_UserId_CreatedAt",
+          "is_primary": false,
+          "is_unique": false,
+          "columns": [
+            "UserId",
+            "CreatedAt"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE INDEX \"IX_reputation_adjustments_UserId_CreatedAt\" ON public.reputation_adjustments USING btree (\"UserId\", \"CreatedAt\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "reputation_adjustments",
+          "index_name": "PK_reputation_adjustments",
+          "is_primary": true,
+          "is_unique": true,
+          "columns": [
+            "Id"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX \"PK_reputation_adjustments\" ON public.reputation_adjustments USING btree (\"Id\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "user_reputations",
+          "index_name": "PK_user_reputations",
+          "is_primary": true,
+          "is_unique": true,
+          "columns": [
+            "UserId"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX \"PK_user_reputations\" ON public.user_reputations USING btree (\"UserId\")"
+        }
+      ],
+      "constraints": [
+        {
+          "table_schema": "public",
+          "table_name": "inbox_messages",
+          "name": "PK_inbox_messages",
+          "kind": "p",
+          "definition": "PRIMARY KEY (\"MessageId\", \"Consumer\")",
+          "columns": [
+            "MessageId",
+            "Consumer"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "name": "PK_outbox_messages",
+          "kind": "p",
+          "definition": "PRIMARY KEY (\"Id\")",
+          "columns": [
+            "Id"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        },
+        {
+          "table_schema": "public",
+          "table_name": "reputation_adjustments",
+          "name": "PK_reputation_adjustments",
+          "kind": "p",
+          "definition": "PRIMARY KEY (\"Id\")",
+          "columns": [
+            "Id"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        },
+        {
+          "table_schema": "public",
+          "table_name": "user_reputations",
+          "name": "PK_user_reputations",
+          "kind": "p",
+          "definition": "PRIMARY KEY (\"UserId\")",
+          "columns": [
+            "UserId"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        }
+      ]
+    },
+    "notification_db": {
+      "columns": [
+        {
+          "table_schema": "public",
+          "table_name": "inbox_messages",
+          "column_name": "MessageId",
+          "ordinal_position": 1,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "inbox_messages",
+          "column_name": "Consumer",
+          "ordinal_position": 2,
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "character_maximum_length": 200,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "inbox_messages",
+          "column_name": "ProcessedAt",
+          "ordinal_position": 3,
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "notifications",
+          "column_name": "Id",
+          "ordinal_position": 1,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "notifications",
+          "column_name": "UserId",
+          "ordinal_position": 2,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "notifications",
+          "column_name": "Type",
+          "ordinal_position": 3,
+          "udt_name": "text",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "notifications",
+          "column_name": "Title",
+          "ordinal_position": 4,
+          "udt_name": "text",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "notifications",
+          "column_name": "Body",
+          "ordinal_position": 5,
+          "udt_name": "text",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "notifications",
+          "column_name": "DataJson",
+          "ordinal_position": 6,
+          "udt_name": "jsonb",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "notifications",
+          "column_name": "CreatedAt",
+          "ordinal_position": 7,
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "notifications",
+          "column_name": "ReadAt",
+          "ordinal_position": 8,
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "Id",
+          "ordinal_position": 1,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "Exchange",
+          "ordinal_position": 2,
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "character_maximum_length": 100,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "RoutingKey",
+          "ordinal_position": 3,
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "character_maximum_length": 200,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "Type",
+          "ordinal_position": 4,
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "character_maximum_length": 200,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "Payload",
+          "ordinal_position": 5,
+          "udt_name": "jsonb",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "OccurredAt",
+          "ordinal_position": 6,
+          "udt_name": "timestamptz",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "PublishedAt",
+          "ordinal_position": 7,
+          "udt_name": "timestamptz",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "RetryCount",
+          "ordinal_position": 8,
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 32,
+          "numeric_scale": 0,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "column_name": "LastError",
+          "ordinal_position": 9,
+          "udt_name": "text",
+          "is_nullable": "YES",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        }
+      ],
+      "indexes": [
+        {
+          "table_schema": "public",
+          "table_name": "inbox_messages",
+          "index_name": "PK_inbox_messages",
+          "is_primary": true,
+          "is_unique": true,
+          "columns": [
+            "MessageId",
+            "Consumer"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX \"PK_inbox_messages\" ON public.inbox_messages USING btree (\"MessageId\", \"Consumer\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "notifications",
+          "index_name": "IX_notifications_UserId_ReadAt_CreatedAt",
+          "is_primary": false,
+          "is_unique": false,
+          "columns": [
+            "UserId",
+            "ReadAt",
+            "CreatedAt"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE INDEX \"IX_notifications_UserId_ReadAt_CreatedAt\" ON public.notifications USING btree (\"UserId\", \"ReadAt\", \"CreatedAt\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "notifications",
+          "index_name": "PK_notifications",
+          "is_primary": true,
+          "is_unique": true,
+          "columns": [
+            "Id"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX \"PK_notifications\" ON public.notifications USING btree (\"Id\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "index_name": "IX_outbox_messages_PublishedAt_OccurredAt",
+          "is_primary": false,
+          "is_unique": false,
+          "columns": [
+            "PublishedAt",
+            "OccurredAt"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE INDEX \"IX_outbox_messages_PublishedAt_OccurredAt\" ON public.outbox_messages USING btree (\"PublishedAt\", \"OccurredAt\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "index_name": "PK_outbox_messages",
+          "is_primary": true,
+          "is_unique": true,
+          "columns": [
+            "Id"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX \"PK_outbox_messages\" ON public.outbox_messages USING btree (\"Id\")"
+        }
+      ],
+      "constraints": [
+        {
+          "table_schema": "public",
+          "table_name": "inbox_messages",
+          "name": "PK_inbox_messages",
+          "kind": "p",
+          "definition": "PRIMARY KEY (\"MessageId\", \"Consumer\")",
+          "columns": [
+            "MessageId",
+            "Consumer"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        },
+        {
+          "table_schema": "public",
+          "table_name": "notifications",
+          "name": "PK_notifications",
+          "kind": "p",
+          "definition": "PRIMARY KEY (\"Id\")",
+          "columns": [
+            "Id"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        },
+        {
+          "table_schema": "public",
+          "table_name": "outbox_messages",
+          "name": "PK_outbox_messages",
+          "kind": "p",
+          "definition": "PRIMARY KEY (\"Id\")",
+          "columns": [
+            "Id"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        }
+      ]
+    },
+    "concurrency_lab_db": {
+      "columns": [
+        {
+          "table_schema": "public",
+          "table_name": "lab_copies",
+          "column_name": "Id",
+          "ordinal_position": 1,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "lab_copies",
+          "column_name": "Title",
+          "ordinal_position": 2,
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "character_maximum_length": 200,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "lab_copies",
+          "column_name": "Available",
+          "ordinal_position": 3,
+          "udt_name": "bool",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "lab_copies",
+          "column_name": "ReservedPoints",
+          "ordinal_position": 4,
+          "udt_name": "int4",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": 32,
+          "numeric_scale": 0,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "lab_loans",
+          "column_name": "Id",
+          "ordinal_position": 1,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "lab_loans",
+          "column_name": "CopyId",
+          "ordinal_position": 2,
+          "udt_name": "uuid",
+          "is_nullable": "NO",
+          "character_maximum_length": null,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        },
+        {
+          "table_schema": "public",
+          "table_name": "lab_loans",
+          "column_name": "ClientId",
+          "ordinal_position": 3,
+          "udt_name": "varchar",
+          "is_nullable": "NO",
+          "character_maximum_length": 32,
+          "numeric_precision": null,
+          "numeric_scale": null,
+          "column_default": null,
+          "is_identity": "NO",
+          "identity_generation": null
+        }
+      ],
+      "indexes": [
+        {
+          "table_schema": "public",
+          "table_name": "lab_copies",
+          "index_name": "PK_lab_copies",
+          "is_primary": true,
+          "is_unique": true,
+          "columns": [
+            "Id"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX \"PK_lab_copies\" ON public.lab_copies USING btree (\"Id\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "lab_loans",
+          "index_name": "IX_lab_loans_CopyId",
+          "is_primary": false,
+          "is_unique": false,
+          "columns": [
+            "CopyId"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE INDEX \"IX_lab_loans_CopyId\" ON public.lab_loans USING btree (\"CopyId\")"
+        },
+        {
+          "table_schema": "public",
+          "table_name": "lab_loans",
+          "index_name": "PK_lab_loans",
+          "is_primary": true,
+          "is_unique": true,
+          "columns": [
+            "Id"
+          ],
+          "include_columns": [],
+          "predicate": null,
+          "definition": "CREATE UNIQUE INDEX \"PK_lab_loans\" ON public.lab_loans USING btree (\"Id\")"
+        }
+      ],
+      "constraints": [
+        {
+          "table_schema": "public",
+          "table_name": "lab_copies",
+          "name": "PK_lab_copies",
+          "kind": "p",
+          "definition": "PRIMARY KEY (\"Id\")",
+          "columns": [
+            "Id"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        },
+        {
+          "table_schema": "public",
+          "table_name": "lab_copies",
+          "name": "ck_points",
+          "kind": "c",
+          "definition": "CHECK ((\"ReservedPoints\" >= 0))",
+          "columns": [
+            "ReservedPoints"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        },
+        {
+          "table_schema": "public",
+          "table_name": "lab_loans",
+          "name": "FK_lab_loans_lab_copies_CopyId",
+          "kind": "f",
+          "definition": "FOREIGN KEY (\"CopyId\") REFERENCES lab_copies(\"Id\") ON DELETE CASCADE",
+          "columns": [
+            "CopyId"
+          ],
+          "target_schema": "public",
+          "target_table": "lab_copies",
+          "target_columns": [
+            "Id"
+          ]
+        },
+        {
+          "table_schema": "public",
+          "table_name": "lab_loans",
+          "name": "PK_lab_loans",
+          "kind": "p",
+          "definition": "PRIMARY KEY (\"Id\")",
+          "columns": [
+            "Id"
+          ],
+          "target_schema": null,
+          "target_table": null,
+          "target_columns": []
+        }
+      ]
+    }
+  }
+}

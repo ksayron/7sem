@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="Burmalda - catalog_db demo" database="PostgreSQL" id="9ee6ddc5-2135-47d7-84c4-1e6e9dacdcfb" >
+	<schema name="public" catalogname="catalog_db" >
+		<comment><![CDATA[standard public schema]]></comment>
+		<table name="book_copies" row_count="0" spec="" >
+			<comment><![CDATA[Physical copies and lending terms. BookId is a logical reference to books.Id; PostgreSQL does not enforce an FK. OwnerId and ReservedForUserId identify Identity users. ReservationSagaId identifies a Lending saga; these cross-database references are application-level only.]]></comment>
+			<column name="Id" type="uuid" mandatory="y" />
+			<column name="BookId" type="uuid" mandatory="y" />
+			<column name="OwnerId" type="uuid" mandatory="y" >
+				<comment><![CDATA[Logical cross-database reference to Identity user; target omitted in this Catalog-only demo.]]></comment>
+			</column>
+			<column name="Condition" type="integer" length="32" mandatory="y" >
+				<comment><![CDATA[Stored integer enum: 0 New, 1 Excellent, 2 Good, 3 Used, 4 Poor.]]></comment>
+			</column>
+			<column name="Status" type="integer" length="32" mandatory="y" >
+				<comment><![CDATA[Stored integer enum: 0 Available, 1 Reserved, 2 OnLoan, 3 Unavailable.]]></comment>
+			</column>
+			<column name="LendingPrice" type="decimal" length="18" decimal="2" mandatory="y" />
+			<column name="MaximumLoanDays" type="integer" length="32" mandatory="y" />
+			<column name="Location" type="text" mandatory="y" />
+			<column name="IsHidden" type="boolean" mandatory="y" />
+			<column name="ReservationSagaId" type="uuid" >
+				<comment><![CDATA[Optional logical cross-database reference to Lending saga.]]></comment>
+			</column>
+			<column name="ReservedForUserId" type="uuid" >
+				<comment><![CDATA[Optional logical cross-database reference to Identity user.]]></comment>
+			</column>
+			<column name="ReservationExpiresAt" type="timestamptz" />
+			<column name="Version" type="bigint" length="64" mandatory="y" >
+				<comment><![CDATA[Application optimistic concurrency token; bigint, not a PostgreSQL-generated row version.]]></comment>
+			</column>
+			<column name="CreatedAt" type="timestamptz" mandatory="y" />
+			<index name="PK_book_copies" unique="PRIMARY_KEY" >
+				<column name="Id" />
+			</index>
+			<index name="IX_book_copies_BookId" unique="NORMAL" spec="USING  btree" >
+				<column name="BookId" />
+			</index>
+			<index name="IX_book_copies_Status_IsHidden" unique="NORMAL" spec="USING  btree" >
+				<column name="Status" />
+				<column name="IsHidden" />
+			</index>
+			<fk name="virtual_book_copies_book" virtual="y" to_schema="catalog_db.public" to_table="books" >
+				<fk_column name="BookId" pk="Id" />
+				<comment><![CDATA[Logical relationship only. Not an enforced PostgreSQL foreign key.]]></comment>
+			</fk>
+		</table>
+		<table name="book_search_projection" row_count="0" spec="" >
+			<comment><![CDATA[Replaceable search read model, maintained by Catalog. BookId logically refers to books.Id; no PostgreSQL FK exists.]]></comment>
+			<column name="BookId" type="uuid" mandatory="y" />
+			<column name="Isbn" type="text" mandatory="y" />
+			<column name="Title" type="text" mandatory="y" />
+			<column name="AuthorsText" type="text" mandatory="y" />
+			<column name="GenresText" type="text" mandatory="y" />
+			<column name="AvailableCopies" type="integer" length="32" mandatory="y" />
+			<column name="MinimumPrice" type="decimal" />
+			<column name="UpdatedAt" type="timestamptz" mandatory="y" />
+			<index name="PK_book_search_projection" unique="PRIMARY_KEY" >
+				<column name="BookId" />
+			</index>
+			<fk name="virtual_search_projection_book" virtual="y" to_schema="catalog_db.public" to_table="books" >
+				<fk_column name="BookId" pk="Id" />
+				<comment><![CDATA[Logical relationship only. Not an enforced PostgreSQL foreign key.]]></comment>
+			</fk>
+		</table>
+		<table name="books" row_count="0" spec="" >
+			<comment><![CDATA[Bibliographic records. Authors and genres are stored as JSONB values, not separate tables.]]></comment>
+			<column name="Id" type="uuid" mandatory="y" />
+			<column name="Isbn" type="text" mandatory="y" />
+			<column name="Title" type="text" mandatory="y" />
+			<column name="Description" type="text" mandatory="y" />
+			<column name="AuthorsJson" type="jsonb" mandatory="y" />
+			<column name="GenresJson" type="jsonb" mandatory="y" />
+			<column name="Publisher" type="text" />
+			<column name="PublicationYear" type="integer" length="32" />
+			<column name="CoverUrl" type="text" />
+			<column name="CreatedAt" type="timestamptz" mandatory="y" />
+			<index name="PK_books" unique="PRIMARY_KEY" >
+				<column name="Id" />
+			</index>
+			<index name="IX_books_Isbn" unique="UNIQUE_INDEX" spec="USING  btree" >
+				<column name="Isbn" />
+			</index>
+		</table>
+		<table name="inbox_messages" row_count="0" spec="" >
+			<comment><![CDATA[Deduplication of incoming messages by the composite primary key (MessageId, Consumer). No declared FK to the outbox.]]></comment>
+			<column name="MessageId" type="uuid" mandatory="y" />
+			<column name="Consumer" type="varchar" length="200" mandatory="y" />
+			<column name="ProcessedAt" type="timestamptz" mandatory="y" />
+			<index name="PK_inbox_messages" unique="PRIMARY_KEY" >
+				<column name="MessageId" />
+				<column name="Consumer" />
+			</index>
+		</table>
+		<table name="outbox_messages" row_count="0" spec="" >
+			<comment><![CDATA[Persisted outgoing integration messages. Published asynchronously to RabbitMQ; no table-level foreign key to domain records.]]></comment>
+			<column name="Id" type="uuid" mandatory="y" />
+			<column name="Exchange" type="varchar" length="100" mandatory="y" />
+			<column name="RoutingKey" type="varchar" length="200" mandatory="y" />
+			<column name="Type" type="varchar" length="200" mandatory="y" />
+			<column name="Payload" type="jsonb" mandatory="y" />
+			<column name="OccurredAt" type="timestamptz" mandatory="y" />
+			<column name="PublishedAt" type="timestamptz" />
+			<column name="RetryCount" type="integer" length="32" mandatory="y" />
+			<column name="LastError" type="text" />
+			<index name="PK_outbox_messages" unique="PRIMARY_KEY" >
+				<column name="Id" />
+			</index>
+			<index name="IX_outbox_messages_PublishedAt_OccurredAt" unique="NORMAL" spec="USING  btree" >
+				<column name="PublishedAt" />
+				<column name="OccurredAt" />
+			</index>
+		</table>
+	</schema>
+	<layout name="Catalog - tables and logical relationships" id="89f5fb3f-7f45-4d9a-8eff-f1a4bbed74f3" show_column_type="y" show_schema_name="y" show_relation="columns" >
+		<entity schema="catalog_db.public" name="book_copies" color="CFE8E1" x="57" y="57" />
+		<entity schema="catalog_db.public" name="book_search_projection" color="CFE8E1" x="1037" y="57" />
+		<entity schema="catalog_db.public" name="books" color="CFE8E1" x="547" y="57" />
+		<entity schema="catalog_db.public" name="inbox_messages" color="DDE5EF" x="1037" y="447" />
+		<entity schema="catalog_db.public" name="outbox_messages" color="DDE5EF" x="547" y="447" />
+		<callout x="57" y="447" pointer="Round" >
+			<comment><![CDATA[CATALOG_DB / public
+Live PostgreSQL schema: 5 tables.
+Two virtual book relationships; no physical foreign keys.
+PK = primary key; nullable columns are optional.
+Inbox/outbox have no invented table relationships.
+External Identity/Lending references are in column comments.]]></comment>
+		</callout>
+	</layout>
+</project>

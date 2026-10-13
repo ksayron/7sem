@@ -1,0 +1,263 @@
+[
+    {
+        "name": "virtual_refresh_tokens_UserId",
+        "database": "identity_db",
+        "table": "refresh_tokens",
+        "column": "UserId",
+        "target_database": "identity_db",
+        "target_table": "users",
+        "target_column": "Id"
+    },
+    {
+        "name": "virtual_book_copies_BookId",
+        "database": "catalog_db",
+        "table": "book_copies",
+        "column": "BookId",
+        "target_database": "catalog_db",
+        "target_table": "books",
+        "target_column": "Id"
+    },
+    {
+        "name": "virtual_book_search_projection_BookId",
+        "database": "catalog_db",
+        "table": "book_search_projection",
+        "column": "BookId",
+        "target_database": "catalog_db",
+        "target_table": "books",
+        "target_column": "Id"
+    },
+    {
+        "name": "virtual_book_copies_OwnerId",
+        "database": "catalog_db",
+        "table": "book_copies",
+        "column": "OwnerId",
+        "target_database": "identity_db",
+        "target_table": "users",
+        "target_column": "Id"
+    },
+    {
+        "name": "virtual_book_copies_ReservedForUserId",
+        "database": "catalog_db",
+        "table": "book_copies",
+        "column": "ReservedForUserId",
+        "target_database": "identity_db",
+        "target_table": "users",
+        "target_column": "Id"
+    },
+    {
+        "name": "virtual_book_copies_ReservationSagaId",
+        "database": "catalog_db",
+        "table": "book_copies",
+        "column": "ReservationSagaId",
+        "target_database": "lending_db",
+        "target_table": "loan_request_sagas",
+        "target_column": "Id"
+    },
+    {
+        "name": "virtual_loans_SagaId",
+        "database": "lending_db",
+        "table": "loans",
+        "column": "SagaId",
+        "target_database": "lending_db",
+        "target_table": "loan_request_sagas",
+        "target_column": "Id"
+    },
+    {
+        "name": "virtual_loans_CopyId",
+        "database": "lending_db",
+        "table": "loans",
+        "column": "CopyId",
+        "target_database": "catalog_db",
+        "target_table": "book_copies",
+        "target_column": "Id"
+    },
+    {
+        "name": "virtual_loans_BorrowerId",
+        "database": "lending_db",
+        "table": "loans",
+        "column": "BorrowerId",
+        "target_database": "identity_db",
+        "target_table": "users",
+        "target_column": "Id"
+    },
+    {
+        "name": "virtual_loans_OwnerId",
+        "database": "lending_db",
+        "table": "loans",
+        "column": "OwnerId",
+        "target_database": "identity_db",
+        "target_table": "users",
+        "target_column": "Id"
+    },
+    {
+        "name": "virtual_loans_ReservationId",
+        "database": "lending_db",
+        "table": "loans",
+        "column": "ReservationId",
+        "target_database": "economy_db",
+        "target_table": "point_reservations",
+        "target_column": "Id"
+    },
+    {
+        "name": "virtual_loan_request_sagas_CopyId",
+        "database": "lending_db",
+        "table": "loan_request_sagas",
+        "column": "CopyId",
+        "target_database": "catalog_db",
+        "target_table": "book_copies",
+        "target_column": "Id"
+    },
+    {
+        "name": "virtual_loan_request_sagas_BorrowerId",
+        "database": "lending_db",
+        "table": "loan_request_sagas",
+        "column": "BorrowerId",
+        "target_database": "identity_db",
+        "target_table": "users",
+        "target_column": "Id"
+    },
+    {
+        "name": "virtual_loan_request_sagas_OwnerId",
+        "database": "lending_db",
+        "table": "loan_request_sagas",
+        "column": "OwnerId",
+        "target_database": "identity_db",
+        "target_table": "users",
+        "target_column": "Id"
+    },
+    {
+        "name": "virtual_loan_request_sagas_PointsReservationId",
+        "database": "lending_db",
+        "table": "loan_request_sagas",
+        "column": "PointsReservationId",
+        "target_database": "economy_db",
+        "target_table": "point_reservations",
+        "target_column": "Id"
+    },
+    {
+        "name": "virtual_loan_request_sagas_LoanId",
+        "database": "lending_db",
+        "table": "loan_request_sagas",
+        "column": "LoanId",
+        "target_database": "lending_db",
+        "target_table": "loans",
+        "target_column": "Id"
+    },
+    {
+        "name": "virtual_loan_status_history_LoanId",
+        "database": "lending_db",
+        "table": "loan_status_history",
+        "column": "LoanId",
+        "target_database": "lending_db",
+        "target_table": "loans",
+        "target_column": "Id"
+    },
+    {
+        "name": "virtual_loan_status_history_ActorId",
+        "database": "lending_db",
+        "table": "loan_status_history",
+        "column": "ActorId",
+        "target_database": "identity_db",
+        "target_table": "users",
+        "target_column": "Id"
+    },
+    {
+        "name": "virtual_wallets_UserId",
+        "database": "economy_db",
+        "table": "wallets",
+        "column": "UserId",
+        "target_database": "identity_db",
+        "target_table": "users",
+        "target_column": "Id"
+    },
+    {
+        "name": "virtual_balance_transactions_UserId",
+        "database": "economy_db",
+        "table": "balance_transactions",
+        "column": "UserId",
+        "target_database": "economy_db",
+        "target_table": "wallets",
+        "target_column": "UserId"
+    },
+    {
+        "name": "virtual_balance_transactions_LoanId",
+        "database": "economy_db",
+        "table": "balance_transactions",
+        "column": "LoanId",
+        "target_database": "lending_db",
+        "target_table": "loans",
+        "target_column": "Id"
+    },
+    {
+        "name": "virtual_point_reservations_UserId",
+        "database": "economy_db",
+        "table": "point_reservations",
+        "column": "UserId",
+        "target_database": "economy_db",
+        "target_table": "wallets",
+        "target_column": "UserId"
+    },
+    {
+        "name": "virtual_point_reservations_SagaId",
+        "database": "economy_db",
+        "table": "point_reservations",
+        "column": "SagaId",
+        "target_database": "lending_db",
+        "target_table": "loan_request_sagas",
+        "target_column": "Id"
+    },
+    {
+        "name": "virtual_fines_UserId",
+        "database": "economy_db",
+        "table": "fines",
+        "column": "UserId",
+        "target_database": "economy_db",
+        "target_table": "wallets",
+        "target_column": "UserId"
+    },
+    {
+        "name": "virtual_fines_LoanId",
+        "database": "economy_db",
+        "table": "fines",
+        "column": "LoanId",
+        "target_database": "lending_db",
+        "target_table": "loans",
+        "target_column": "Id"
+    },
+    {
+        "name": "virtual_user_reputations_UserId",
+        "database": "reputation_db",
+        "table": "user_reputations",
+        "column": "UserId",
+        "target_database": "identity_db",
+        "target_table": "users",
+        "target_column": "Id"
+    },
+    {
+        "name": "virtual_reputation_adjustments_UserId",
+        "database": "reputation_db",
+        "table": "reputation_adjustments",
+        "column": "UserId",
+        "target_database": "reputation_db",
+        "target_table": "user_reputations",
+        "target_column": "UserId"
+    },
+    {
+        "name": "virtual_reputation_adjustments_ActorId",
+        "database": "reputation_db",
+        "table": "reputation_adjustments",
+        "column": "ActorId",
+        "target_database": "identity_db",
+        "target_table": "users",
+        "target_column": "Id"
+    },
+    {
+        "name": "virtual_notifications_UserId",
+        "database": "notification_db",
+        "table": "notifications",
+        "column": "UserId",
+        "target_database": "identity_db",
+        "target_table": "users",
+        "target_column": "Id"
+    }
+]

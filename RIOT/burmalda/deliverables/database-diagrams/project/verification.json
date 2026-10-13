@@ -1,0 +1,25 @@
+{
+  "checked_at_utc": "2026-10-09T07:30:06.235792+00:00",
+  "status": "passed",
+  "databases": 7,
+  "tables": 41,
+  "columns": 270,
+  "indexes": 85,
+  "physical_foreign_keys": 3,
+  "virtual_relationships": 29,
+  "overview_service_blocks": 7,
+  "layouts": 9,
+  "postgresql_metadata_unchanged": true,
+  "checks": [
+    "all table names and namespaces",
+    "all column types and nullability",
+    "varchar lengths and numeric precision",
+    "generated identity",
+    "all index columns and uniqueness",
+    "all physical FK targets and cascades",
+    "lab CHECK constraint",
+    "logical-reference manifest",
+    "each table grouped exactly once under its owning service",
+    "no saved database connections"
+  ]
+}
