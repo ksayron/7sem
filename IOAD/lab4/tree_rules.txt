@@ -1,0 +1,22 @@
+|--- is_remote <= 0.50
+|   |--- collected_area_id_1 <= 0.50
+|   |   |--- collected_area_id_2 <= 0.50
+|   |   |   |--- class: 0
+|   |   |--- collected_area_id_2 >  0.50
+|   |   |   |--- class: 0
+|   |--- collected_area_id_1 >  0.50
+|   |   |--- age_days <= -0.99
+|   |   |   |--- class: 0
+|   |   |--- age_days >  -0.99
+|   |   |   |--- class: 1
+|--- is_remote >  0.50
+|   |--- age_days <= -1.00
+|   |   |--- gross_False <= 0.50
+|   |   |   |--- class: 0
+|   |   |--- gross_False >  0.50
+|   |   |   |--- class: 1
+|   |--- age_days >  -1.00
+|   |   |--- role_другое <= 0.50
+|   |   |   |--- class: 1
+|   |   |--- role_другое >  0.50
+|   |   |   |--- class: 1
