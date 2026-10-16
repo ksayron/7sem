@@ -1,0 +1,29 @@
+{
+  "file": "D:\\BSTU\\7sem\\PIS\\lab4-single.drawio",
+  "pages": 1,
+  "use_cases": 36,
+  "actors": 3,
+  "includes": 7,
+  "extends": 7,
+  "generalizations": 2,
+  "oval_styles_copied_verbatim": true,
+  "actor_styles_copied_verbatim": true,
+  "boundary_style_and_geometry_copied_verbatim": true,
+  "reference": "D:\\BSTU\\Projects\\NODEJS_6SEM\\Docs\\MediaGiant-UseCase.drawio",
+  "protected_input_hashes": {
+    "D:\\BSTU\\Projects\\NODEJS_6SEM\\Docs\\MediaGiant-UseCase.drawio": "3cb5e0039e459e5623a0874f2965b22ade90813c0200a053c6a588faf055ca2d",
+    "D:\\BSTU\\7sem\\PIS\\lab4.drawio": "dd25e54fd569322a30283797033488ad89cf85f545b08a242e61bac0ee3cda8e",
+    "D:\\BSTU\\7sem\\PIS\\lab5.drawio": "d41b764ece1fb2990e8fc176a19d295224417044605d3f5eabc81180575ed770",
+    "D:\\BSTU\\7sem\\PIS\\lab6.drawio": "81cc0f77f1e455d8fe1028d7dd4a8786dffc90e170d05dc39043069b9118d86e",
+    "D:\\BSTU\\7sem\\PIS\\Sensei-UML.drawio": "2c0b4f7d0c38da2948a81015c1b9f6e562e0ea3cf9181af9eecd3b5d2b45747c"
+  },
+  "inputs_unchanged": true,
+  "rendering": {
+    "engine": "mxGraph 4.2.2 in Chromium; UML actor reproduced for preview",
+    "labels": 36,
+    "unrelated_oval_crossings": 0,
+    "png": "lab4-single.png",
+    "width": 2422,
+    "height": 4382
+  }
+}

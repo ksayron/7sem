@@ -1,0 +1,323 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36 Edg/145.0.0.0" version="29.6.1" pages="1" compressed="false">
+  <diagram id="sensei-lab4-single" name="Страница 1">
+    <mxGraphModel dx="5490" dy="4669" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="system" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="" vertex="1">
+          <mxGeometry x="467.28" y="-180.0" width="895.81" height="2110.0" as="geometry" />
+        </mxCell>
+        <mxCell id="admin" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;shadow=0;glass=0;sketch=0;strokeColor=default;strokeWidth=1;fillColor=default;gradientColor=none;direction=west;flipV=1;" value="Администратор&lt;br&gt;системы" vertex="1" role="admin">
+          <mxGeometry x="360" y="120" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="dev" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;shadow=0;glass=0;sketch=0;strokeColor=default;strokeWidth=1;fillColor=default;gradientColor=none;" value="Разработчик&lt;br&gt;(пользователь)" vertex="1" role="dev">
+          <mxGeometry x="350" y="1065" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="author" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;shadow=0;glass=0;sketch=0;strokeColor=default;strokeWidth=1;fillColor=default;gradientColor=none;" value="Автор учебных&lt;br&gt;материалов" vertex="1" role="author">
+          <mxGeometry x="350" y="1670" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="uc1" parent="1" style="ellipse;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;strokeColor=default;strokeWidth=1;fillColor=default;gradientColor=none;" value="Зарегистрироваться" vertex="1" useCase="1" requirements="FR18; ПТ-01" description="Создать учётную запись для самостоятельного обучения.">
+          <mxGeometry x="540" y="30" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="uc2" parent="1" style="ellipse;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;strokeColor=default;strokeWidth=1;fillColor=default;gradientColor=none;" value="Войти в систему" vertex="1" useCase="2" requirements="FR18; ПТ-01" description="Получить доступ к функциям своей роли и собственным данным.">
+          <mxGeometry x="540" y="115" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="uc3" parent="1" style="ellipse;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;strokeColor=default;strokeWidth=1;fillColor=default;gradientColor=none;" value="Управлять профилем&lt;br&gt;и приватностью" vertex="1" useCase="3" requirements="FR18–FR19; ПТ-01, ПТ-05" description="Настроить язык и часовой пояс, разрешения на раскрытие; выгрузить или удалить собственные данные с просмотром зависимостей.">
+          <mxGeometry x="540" y="200" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="uc4" parent="1" style="ellipse;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;strokeColor=default;strokeWidth=1;fillColor=default;gradientColor=none;" value="Выбрать цели и&lt;br&gt;маршрут обучения" vertex="1" useCase="4" requirements="FR04, FR09" description="Выбрать цель и маршрут по общим понятиям, увидеть объяснимые рекомендации тем без копирования личного прогресса.">
+          <mxGeometry x="540" y="285" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="uc5" parent="1" style="ellipse;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;strokeColor=default;strokeWidth=1;fillColor=default;gradientColor=none;" value="Изучить тему и&lt;br&gt;материалы" vertex="1" useCase="5" requirements="FR05" description="Открыть опубликованный материал и справочное объяснение выбранного понятия.">
+          <mxGeometry x="540" y="370" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="uc6" parent="1" style="ellipse;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;strokeColor=default;strokeWidth=1;fillColor=default;gradientColor=none;" value="Пройти учебную&lt;br&gt;сессию" vertex="1" useCase="6" requirements="FR06, FR08" description="Пройти сессию на 3, 5 или 10 заданий; приостановить её, пропустить задание или завершить. Выбрать обычную практику, интенсивный или экзаменационный режим.">
+          <mxGeometry x="540" y="455" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="uc7" parent="1" style="ellipse;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;strokeColor=default;strokeWidth=1;fillColor=default;gradientColor=none;" value="Выполнить упражнение" vertex="1" useCase="7" requirements="FR03, FR07" description="Предоставить ответ на закреплённую версию упражнения; получить детерминированную проверку объективного ответа либо явно обозначенную самооценку.">
+          <mxGeometry x="540" y="540" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="uc8" parent="1" style="ellipse;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;strokeColor=default;strokeWidth=1;fillColor=default;gradientColor=none;" value="Сохранить попытку,&lt;br&gt;результат и помощь" vertex="1" useCase="8" requirements="FR07, FR13" description="Зафиксировать ответ, версию упражнения, вид результата и использованную помощь; не приравнивать самооценку к объективному доказательству знания.">
+          <mxGeometry x="1070" y="540" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="uc9" parent="1" style="ellipse;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;strokeColor=default;strokeWidth=1;fillColor=default;gradientColor=none;" value="Получить подсказку" vertex="1" useCase="9" requirements="FR07" description="По запросу раскрыть авторскую подсказку или эталон и сохранить факт помощи, если режим допускает её.">
+          <mxGeometry x="810" y="455" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="uc10" parent="1" style="ellipse;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;strokeColor=default;strokeWidth=1;fillColor=default;gradientColor=none;" value="Запросить объяснение&lt;br&gt;ИИ по ответу" vertex="1" useCase="10" requirements="FR24; ПТ-04" description="После результата по запросу получить отдельную модельную интерпретацию; отсутствие ИИ не блокирует упражнение.">
+          <mxGeometry x="810" y="620" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="uc11" parent="1" style="ellipse;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;strokeColor=default;strokeWidth=1;fillColor=default;gradientColor=none;" value="Просмотр истории,&lt;br&gt;свидетельств и профиля" vertex="1" useCase="11" requirements="FR13; ПТ-03" description="Просмотреть личные попытки и наблюдения с источником, условиями, уровнем помощи и состоянием; различить модельную оценку и одобренный факт.">
+          <mxGeometry x="540" y="700" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="uc12" parent="1" style="ellipse;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;strokeColor=default;strokeWidth=1;fillColor=default;gradientColor=none;" value="Повторить тему&lt;br&gt;по рекомендации" vertex="1" useCase="12" requirements="FR09" description="Выбрать рекомендованное повторение, перенести или отклонить его; выполнить практику по выбранной теме.">
+          <mxGeometry x="540" y="785" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="uc13" parent="1" style="ellipse;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;strokeColor=default;strokeWidth=1;fillColor=default;gradientColor=none;" value="Вести рабочие&lt;br&gt;и учебные эпизоды" vertex="1" useCase="13" requirements="FR10" description="Создать, исправить или архивировать эпизод, указать контекст, личную роль, ограничения и вклад.">
+          <mxGeometry x="540" y="870" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="uc14" parent="1" style="ellipse;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;strokeColor=default;strokeWidth=1;fillColor=default;gradientColor=none;" value="Обсудить контекст&lt;br&gt;и инженерные&lt;br&gt;решения" vertex="1" useCase="14" requirements="FR11" description="Уточнить цель и ограничения, сохранить объяснения принятых решений, альтернативы и нерешённые вопросы.">
+          <mxGeometry x="540" y="955" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="uc15" parent="1" style="ellipse;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;strokeColor=default;strokeWidth=1;fillColor=default;gradientColor=none;" value="Подтвердить&lt;br&gt;рассмотренную версию&lt;br&gt;контекста" vertex="1" useCase="15" requirements="FR12" description="Явно подтвердить точный снимок контекста и рассмотренное обсуждение; подтверждение не доказывает безусловную правильность решений.">
+          <mxGeometry x="540" y="1040" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="uc16" parent="1" style="ellipse;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;strokeColor=default;strokeWidth=1;fillColor=default;gradientColor=none;" value="Оспорить, исправить&lt;br&gt;или отозвать&lt;br&gt;наблюдение" vertex="1" useCase="16" requirements="FR14" description="При просмотре выбранного наблюдения подать возражение, исправить сведения или отозвать наблюдение, сохранив его происхождение и историю.">
+          <mxGeometry x="830" y="700" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="uc17" parent="1" style="ellipse;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;strokeColor=default;strokeWidth=1;fillColor=default;gradientColor=none;" value="Запросить&lt;br&gt;интерпретацию&lt;br&gt;контекста у ИИ" vertex="1" useCase="17" requirements="FR24; ПТ-04" description="По запросу получить отдельную интерпретацию разрешённого рабочего контекста и затем самостоятельно оценить её.">
+          <mxGeometry x="830" y="970" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="uc18" parent="1" style="ellipse;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;strokeColor=default;strokeWidth=1;fillColor=default;gradientColor=none;" value="Создать и&lt;br&gt;редактировать запись&lt;br&gt;опыта" vertex="1" useCase="18" requirements="FR15–FR16" description="Создать запись вручную либо из эпизода и свидетельств; вести редакции контекста, действий, личного вклада и результата.">
+          <mxGeometry x="540" y="1150" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="uc19" parent="1" style="ellipse;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;strokeColor=default;strokeWidth=1;fillColor=default;gradientColor=none;" value="Запросить черновик&lt;br&gt;опыта у ИИ" vertex="1" useCase="19" requirements="FR15, FR24" description="По запросу получить редактируемый черновик из выбранной активности. ИИ не подтверждает факты и не заменяет решение владельца.">
+          <mxGeometry x="830" y="1150" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="uc20" parent="1" style="ellipse;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;strokeColor=default;strokeWidth=1;fillColor=default;gradientColor=none;" value="Подтвердить точную&lt;br&gt;редакцию опыта" vertex="1" useCase="20" requirements="FR16" description="Рассмотреть факты, вклад и известный результат и одобрить текущую точную редакцию. Изменение фактов создаёт новый неподтверждённый черновик.">
+          <mxGeometry x="540" y="1235" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="uc21" parent="1" style="ellipse;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;strokeColor=default;strokeWidth=1;fillColor=default;gradientColor=none;" value="Подготовить и&lt;br&gt;репетировать рассказ" vertex="1" useCase="21" requirements="FR17" description="Подготовить представление опыта для собеседования или ревью, отредактировать и отдельно просмотреть точную версию рассказа.">
+          <mxGeometry x="540" y="1320" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="uc22" parent="1" style="ellipse;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;strokeColor=default;strokeWidth=1;fillColor=default;gradientColor=none;" value="Экспортировать&lt;br&gt;проверенный рассказ" vertex="1" useCase="22" requirements="FR17" description="Сохранить выбранную проверенную версию рассказа, основанную на одобренной редакции опыта; устаревшее одобрение не применяется к новым фактам.">
+          <mxGeometry x="540" y="1405" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="uc23" parent="1" style="ellipse;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;strokeColor=default;strokeWidth=1;fillColor=default;gradientColor=none;" value="Вести каталог&lt;br&gt;понятий и их связей" vertex="1" useCase="23" requirements="FR01" description="Создавать понятия, связи и предпосылки; каталог не ограничивается одним языком программирования.">
+          <mxGeometry x="540" y="1780" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="uc24" parent="1" style="ellipse;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;strokeColor=default;strokeWidth=1;fillColor=default;gradientColor=none;" value="Подготовить версии&lt;br&gt;материалов и&lt;br&gt;упражнений" vertex="1" useCase="24" requirements="FR02–FR03" description="Подготовить материалы, упражнения шести типов, ответы, правила проверки, подсказки, переводы и маршруты.">
+          <mxGeometry x="780" y="1760" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="uc25" parent="1" style="ellipse;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;strokeColor=default;strokeWidth=1;fillColor=default;gradientColor=none;" value="Проверить и&lt;br&gt;опубликовать контент" vertex="1" useCase="25" requirements="FR02–FR03" description="Опубликовать корректную проверенную версию; уже назначенные упражнения и прежние результаты продолжают ссылаться на старые версии.">
+          <mxGeometry x="1030" y="1780" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="uc26" parent="1" style="ellipse;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;strokeColor=default;strokeWidth=1;fillColor=default;gradientColor=none;" value="Вывести дефектный&lt;br&gt;контент из&lt;br&gt;использования" vertex="1" useCase="26" requirements="FR02" description="Исключить версию из новых сессий и пакетов, сохранив старые попытки и историю.">
+          <mxGeometry x="780" y="1855" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="uc27" parent="1" style="ellipse;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;strokeColor=default;strokeWidth=1;fillColor=default;gradientColor=none;" value="Управлять учётными&lt;br&gt;записями и ролями" vertex="1" useCase="27" requirements="FR18" description="Управлять учётными записями, доступом и назначением ролей; административные права не дают права подтверждать чужой опыт.">
+          <mxGeometry x="730" y="-130" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="uc28" parent="1" style="ellipse;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;strokeColor=default;strokeWidth=1;fillColor=default;gradientColor=none;" value="Контроль системы,&lt;br&gt;резервное копирование&lt;br&gt;и восстановление" vertex="1" useCase="28" requirements="FR22" description="Контролировать приложение, БД и очереди; настраивать эксплуатационные параметры и ИИ-маршрут, вести безопасный аудит, создавать и проверять резервные копии и восстановление.">
+          <mxGeometry x="1070" y="-130" width="173.46" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="uc29" parent="1" style="ellipse;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;strokeColor=default;strokeWidth=1;fillColor=default;gradientColor=none;" value="Загрузить учебный&lt;br&gt;пакет" vertex="1" useCase="29" requirements="FR20; СТ-ОФЛ-01" description="Загрузить полный пакет закреплённых версий материалов; проверить целостность перед активацией.">
+          <mxGeometry x="540" y="1500" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="uc30" parent="1" style="ellipse;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;strokeColor=default;strokeWidth=1;fillColor=default;gradientColor=none;" value="Выполнить&lt;br&gt;упражнение без сети" vertex="1" useCase="30" requirements="FR20; СТ-ОФЛ-02, СТ-ОФЛ-08" description="Выполнить упражнение по ранее загруженному пакету и сохранить попытку локально. Авторские подсказки доступны; новая модельная оценка требует подключения и отдельного запроса.">
+          <mxGeometry x="540" y="1585" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="uc31" parent="1" style="ellipse;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;strokeColor=default;strokeWidth=1;fillColor=default;gradientColor=none;" value="Синхронизировать&lt;br&gt;личные данные" vertex="1" useCase="31" requirements="FR20–FR21; ПТ-02" description="Передать локальные операции и получить изменения; повторная отправка не создаёт дубликаты, статусы принятия и конфликта видны пользователю.">
+          <mxGeometry x="540" y="1670" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="uc32" parent="1" style="ellipse;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;strokeColor=default;strokeWidth=1;fillColor=default;gradientColor=none;" value="Разрешить конфликт&lt;br&gt;версий" vertex="1" useCase="32" requirements="FR21; СТ-ОФЛ-06" description="При конфликте выбрать либо объединить сохранённые черновики; подтверждение применяется только к явно выбранной версии.">
+          <mxGeometry x="830" y="1670" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="uc33" parent="1" style="ellipse;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;strokeColor=default;strokeWidth=1;fillColor=default;gradientColor=none;" value="Проверить ответы,&lt;br&gt;версии и связи&lt;br&gt;контента" vertex="1" useCase="33" requirements="FR02–FR03" description="Обязательно проверить корректность опубликованных ответов, правила проверки и ссылки на понятия и версии.">
+          <mxGeometry x="1110" y="1860" width="173.46" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="uc34" parent="1" style="ellipse;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;strokeColor=default;strokeWidth=1;fillColor=default;gradientColor=none;" value="Просмотреть и разрешить&lt;br&gt;передачу контекста" vertex="1" useCase="34" requirements="FR19, FR24; ПТ-04" description="Показать минимальные данные и ИИ-маршрут перед внешней передачей, исключить ненужное или отменить запрос. Предыдущее разрешение учитывается только для того же состава и назначения.">
+          <mxGeometry x="1110" y="850" width="173.46" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="uc35" parent="1" style="ellipse;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;strokeColor=default;strokeWidth=1;fillColor=default;gradientColor=none;" value="Проверить одобрение&lt;br&gt;редакции опыта&lt;br&gt;и версии рассказа" vertex="1" useCase="35" requirements="FR16–FR17" description="Проверить точную одобренную редакцию опыта и отдельный просмотр экспортируемого материала. При отсутствии подходящего одобрения экспорт блокируется; система не одобряет факты автоматически.">
+          <mxGeometry x="830" y="1405" width="173.46" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="uc36" parent="1" style="ellipse;whiteSpace=wrap;html=1;shadow=0;glass=0;sketch=0;strokeColor=default;strokeWidth=1;fillColor=default;gradientColor=none;" value="Импортировать&lt;br&gt;выбранный контекст&lt;br&gt;из интеграции" vertex="1" useCase="36" requirements="FR23" description="По выбору владельца добавить разрешённый фрагмент контекста с источником и происхождением. Подключение интеграции не обязательно для ведения эпизода.">
+          <mxGeometry x="830" y="870" width="140" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="edge1" parent="1" source="dev" target="uc1" style="endArrow=none;html=1;strokeWidth=1;curved=1;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" value="" edge="1" relation="association">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge2" parent="1" source="dev" target="uc2" style="endArrow=none;html=1;strokeWidth=1;curved=1;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" value="" edge="1" relation="association">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge3" parent="1" source="dev" target="uc3" style="endArrow=none;html=1;strokeWidth=1;curved=1;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" value="" edge="1" relation="association">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge4" parent="1" source="dev" target="uc4" style="endArrow=none;html=1;strokeWidth=1;curved=1;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" value="" edge="1" relation="association">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge5" parent="1" source="dev" target="uc5" style="endArrow=none;html=1;strokeWidth=1;curved=1;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" value="" edge="1" relation="association">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge6" parent="1" source="dev" target="uc6" style="endArrow=none;html=1;strokeWidth=1;curved=1;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" value="" edge="1" relation="association">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge7" parent="1" source="dev" target="uc7" style="endArrow=none;html=1;strokeWidth=1;curved=1;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" value="" edge="1" relation="association">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge8" parent="1" source="dev" target="uc11" style="endArrow=none;html=1;strokeWidth=1;curved=1;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" value="" edge="1" relation="association">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge9" parent="1" source="dev" target="uc12" style="endArrow=none;html=1;strokeWidth=1;curved=1;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" value="" edge="1" relation="association">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge10" parent="1" source="dev" target="uc13" style="endArrow=none;html=1;strokeWidth=1;curved=1;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" value="" edge="1" relation="association">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge11" parent="1" source="dev" target="uc14" style="endArrow=none;html=1;strokeWidth=1;curved=1;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" value="" edge="1" relation="association">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge12" parent="1" source="dev" target="uc15" style="endArrow=none;html=1;strokeWidth=1;curved=1;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" value="" edge="1" relation="association">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge13" parent="1" source="dev" target="uc18" style="endArrow=none;html=1;strokeWidth=1;curved=1;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" value="" edge="1" relation="association">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge14" parent="1" source="dev" target="uc20" style="endArrow=none;html=1;strokeWidth=1;curved=1;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" value="" edge="1" relation="association">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge15" parent="1" source="dev" target="uc21" style="endArrow=none;html=1;strokeWidth=1;curved=1;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" value="" edge="1" relation="association">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge16" parent="1" source="dev" target="uc22" style="endArrow=none;html=1;strokeWidth=1;curved=1;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" value="" edge="1" relation="association">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge17" parent="1" source="dev" target="uc29" style="endArrow=none;html=1;strokeWidth=1;curved=1;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" value="" edge="1" relation="association">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge18" parent="1" source="dev" target="uc30" style="endArrow=none;html=1;strokeWidth=1;curved=1;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" value="" edge="1" relation="association">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge19" parent="1" source="dev" target="uc31" style="endArrow=none;html=1;strokeWidth=1;curved=1;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" value="" edge="1" relation="association">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge20" parent="1" source="admin" target="uc27" style="endArrow=none;html=1;strokeWidth=1;curved=1;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" value="" edge="1" relation="association">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge21" parent="1" source="admin" target="uc28" style="endArrow=none;html=1;strokeWidth=1;curved=1;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" value="" edge="1" relation="association">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="445" y="-25" />
+              <mxPoint x="1156.73" y="-25" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge22" parent="1" source="author" target="uc23" style="endArrow=none;html=1;strokeWidth=1;curved=1;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" value="" edge="1" relation="association">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge23" parent="1" source="author" target="uc24" style="endArrow=none;html=1;strokeWidth=1;curved=1;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" value="" edge="1" relation="association">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="475" y="1750" />
+              <mxPoint x="740" y="1750" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge24" parent="1" source="author" target="uc25" style="endArrow=none;html=1;strokeWidth=1;curved=1;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" value="" edge="1" relation="association">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="475" y="1750" />
+              <mxPoint x="1100" y="1750" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge25" parent="1" source="author" target="uc26" style="endArrow=none;html=1;strokeWidth=1;curved=1;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" value="" edge="1" relation="association">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="450" y="1890" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge26" parent="1" source="admin" target="dev" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" value="" edge="1" relation="generalization">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="260" y="150" />
+              <mxPoint x="260" y="1095" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge27" parent="1" source="author" target="dev" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=block;endFill=0;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" value="" edge="1" relation="generalization">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="295" y="1700" />
+              <mxPoint x="295" y="1095" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge28" parent="1" source="uc7" target="uc8" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" edge="1" relation="include">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge29" parent="1" source="uc30" target="uc8" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" edge="1" relation="include">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1305" y="1620" />
+              <mxPoint x="1305" y="575" />
+            </Array>
+            <mxPoint x="45" y="0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge30" parent="1" source="uc10" target="uc34" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" edge="1" relation="include">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1030" y="655.0" />
+              <mxPoint x="1030" y="895.0" />
+            </Array>
+            <mxPoint x="-40" y="0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge31" parent="1" source="uc17" target="uc34" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" edge="1" relation="include">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1055" y="1005.0" />
+              <mxPoint x="1055" y="895.0" />
+            </Array>
+            <mxPoint x="0" y="15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge32" parent="1" source="uc19" target="uc34" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" edge="1" relation="include">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1080" y="1185.0" />
+              <mxPoint x="1080" y="895.0" />
+            </Array>
+            <mxPoint x="45" y="0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge33" parent="1" source="uc22" target="uc35" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" edge="1" relation="include">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge34" parent="1" source="uc25" target="uc33" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" edge="1" relation="include">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="60" y="0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge35" parent="1" source="uc9" target="uc7" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" edge="1" relation="extend" condition="пользователь запросил помощь и режим разрешает подсказки" extensionPoint="до отправки ответа">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge36" parent="1" source="uc10" target="uc7" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" edge="1" relation="extend" condition="пользователь запросил ИИ и доступна сеть" extensionPoint="после получения результата">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge37" parent="1" source="uc16" target="uc11" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" edge="1" relation="extend" condition="пользователь выбрал действие над наблюдением" extensionPoint="после выбора наблюдения">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge38" parent="1" source="uc17" target="uc14" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" edge="1" relation="extend" condition="пользователь запросил интерпретацию ИИ и доступна сеть" extensionPoint="при уточнении контекста">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge39" parent="1" source="uc19" target="uc18" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" edge="1" relation="extend" condition="пользователь запросил черновик ИИ и доступна сеть" extensionPoint="при подготовке черновика">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge40" parent="1" source="uc32" target="uc31" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" edge="1" relation="extend" condition="обнаружен конфликт изменяемых версий" extensionPoint="при обработке конфликтующего чека">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge41" parent="1" source="uc36" target="uc13" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;dashed=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;exitPerimeter=0;entryPerimeter=0;" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" edge="1" relation="extend" condition="пользователь выбрал разрешённый источник" extensionPoint="при вводе контекста эпизода">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0" y="-10" as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
