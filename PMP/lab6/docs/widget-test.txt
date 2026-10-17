@@ -1,0 +1,10 @@
+00:00 +0: loading D:/BSTU/7sem/PMP/lab6/test/device_test.dart
+00:00 +0: D:/BSTU/7sem/PMP/lab6/test/device_test.dart: recovered photo opens device route and camera errors are visible
+00:01 +1: D:/BSTU/7sem/PMP/lab6/test/navigation_test.dart: three products, PageView, named arguments and cancellation Size(320.0, 640.0)
+00:01 +2: D:/BSTU/7sem/PMP/lab6/test/navigation_test.dart: three products, PageView, named arguments and cancellation Size(320.0, 640.0)
+00:03 +3: D:/BSTU/7sem/PMP/lab6/test/navigation_test.dart: three products, PageView, named arguments and cancellation Size(320.0, 640.0)
+00:04 +4: D:/BSTU/7sem/PMP/lab6/test/navigation_test.dart: three products, PageView, named arguments and cancellation Size(320.0, 640.0)
+00:04 +5: D:/BSTU/7sem/PMP/lab6/test/navigation_test.dart: pop returns actual order, preview retains selection, popUntil clears stack Size(320.0, 640.0)
+00:06 +6: D:/BSTU/7sem/PMP/lab6/test/navigation_test.dart: three products, PageView, named arguments and cancellation Size(393.0, 873.0)
+00:07 +7: D:/BSTU/7sem/PMP/lab6/test/navigation_test.dart: pop returns actual order, preview retains selection, popUntil clears stack Size(393.0, 873.0)
+00:08 +8: All tests passed!
