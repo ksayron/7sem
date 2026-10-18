@@ -1,0 +1,921 @@
+<mxfile host="app.diagrams.net" compressed="false" pages="5">
+  <diagram id="packages" name="07 Диаграмма пакетов">
+    <mxGraphModel dx="2104" dy="1287" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1280" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="identity" kind="package" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=24;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=folder;tabWidth=150;tabHeight=30;align=center;verticalAlign=middle;" value="Identity&#xa;Учётные записи и приватность" vertex="1">
+          <mxGeometry height="145" width="380" x="70" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="learning" kind="package" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=24;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=folder;tabWidth=150;tabHeight=30;align=center;verticalAlign=middle;" value="Learning&#xa;Контент, практика и маршруты" vertex="1">
+          <mxGeometry height="145" width="380" x="70" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="work" kind="package" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=24;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=folder;tabWidth=150;tabHeight=30;align=center;verticalAlign=middle;" value="WorkReflection&#xa;Эпизоды и осмысление работы" vertex="1">
+          <mxGeometry height="145" width="380" x="70" y="760" as="geometry" />
+        </mxCell>
+        <mxCell id="experience" kind="package" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=24;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=folder;tabWidth=150;tabHeight=30;align=center;verticalAlign=middle;" value="Experience&#xa;Редакции опыта и представления" vertex="1">
+          <mxGeometry height="145" width="380" x="710" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="evidence" kind="package" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=24;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=folder;tabWidth=150;tabHeight=30;align=center;verticalAlign=middle;" value="Evidence&#xa;Свидетельства и профиль" vertex="1">
+          <mxGeometry height="145" width="380" x="710" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="sync" kind="package" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=24;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=folder;tabWidth=150;tabHeight=30;align=center;verticalAlign=middle;" value="ClientSync&#xa;Пакеты и повтор операций" vertex="1">
+          <mxGeometry height="145" width="380" x="710" y="760" as="geometry" />
+        </mxCell>
+        <mxCell id="shared" kind="package" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=24;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=folder;tabWidth=150;tabHeight=30;align=center;verticalAlign=middle;" value="Shared.Contracts&#xa;Владелец, ID, версии, порты" vertex="1">
+          <mxGeometry height="145" width="380" x="1350" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="infra" kind="package" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=24;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=folder;tabWidth=150;tabHeight=30;align=center;verticalAlign=middle;" value="Infrastructure&#xa;EF Core, ИИ, задания, метрики" vertex="1">
+          <mxGeometry height="145" width="380" x="1350" y="760" as="geometry" />
+        </mxCell>
+        <mxCell id="packages-e1" edge="1" parent="1" relation="dependency" source="learning" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=open;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;" target="evidence" value="история / наблюдения">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="packages-e2" edge="1" parent="1" relation="dependency" source="work" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=open;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;" target="evidence" value="наблюдения">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="12.000520749707903" y="-35" as="offset" />
+            <Array as="points">
+              <mxPoint x="480" y="832" />
+              <mxPoint x="480" y="680" />
+              <mxPoint x="670" y="680" />
+              <mxPoint x="670" y="542" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="packages-e3" edge="1" parent="1" relation="dependency" source="experience" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=open;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;" target="evidence" value="проверяемые&#xa;источники">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="150" y="-37.5" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="packages-e4" edge="1" parent="1" relation="dependency" source="experience" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=open;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=0;exitY=0.5;entryX=1;entryY=0.25;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;" target="work" value="контекст эпизода">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-15" as="offset" />
+            <Array as="points">
+              <mxPoint x="510" y="252" />
+              <mxPoint x="510" y="796" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="packages-e5" edge="1" parent="1" relation="dependency" source="sync" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=open;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=0;exitY=0.25;entryX=1;entryY=1;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;" target="learning" value="учебные команды">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-25.500173610776187" y="30" as="offset" />
+            <Array as="points">
+              <mxPoint x="620" y="796" />
+              <mxPoint x="620" y="725" />
+              <mxPoint x="450" y="725" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="packages-e6" edge="1" parent="1" relation="dependency" source="learning" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=open;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=0.5;exitY=0;entryX=0.5;entryY=1;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;" target="shared" value="общие контракты">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-15" as="offset" />
+            <Array as="points">
+              <mxPoint x="260" y="400" />
+              <mxPoint x="1540" y="400" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="packages-e7" edge="1" parent="1" relation="dependency" source="identity" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=open;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=1;exitY=0.5;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;" target="shared" value="контекст владельца">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-15" as="offset" />
+            <Array as="points">
+              <mxPoint x="490" y="252" />
+              <mxPoint x="490" y="137" />
+              <mxPoint x="1540" y="137" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="packages-e8" edge="1" parent="1" relation="dependency" source="evidence" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=open;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;" target="shared" value="ID и версии">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-15" as="offset" />
+            <Array as="points">
+              <mxPoint x="1225" y="542" />
+              <mxPoint x="1225" y="252" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="packages-e9" edge="1" parent="1" relation="dependency" source="infra" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=open;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=0.5;exitY=0;entryX=0.5;entryY=1;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;" target="shared" value="реализует порты">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="content" name="08 Классы: контент и учебные цели">
+    <mxGraphModel dx="2431" dy="1487" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1500" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="concept" className="Concept" external="false" kind="class" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;swimlane;horizontal=1;startSize=42;collapsible=0;align=center;fontStyle=1;" value="Concept" vertex="1">
+          <mxGeometry height="186" width="420" x="70" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="concept-a" kind="attrs" parent="concept" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="− id: Guid&#xa;− title: String&#xa;− difficulty: Difficulty" vertex="1">
+          <mxGeometry height="99" width="420" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="concept-m" kind="methods" parent="concept" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=partialRectangle;top=1;left=0;right=0;bottom=0;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="+ rename(title): void" vertex="1">
+          <mxGeometry height="45" width="420" y="141" as="geometry" />
+        </mxCell>
+        <mxCell id="relation" className="ConceptRelation" external="false" kind="class" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;swimlane;horizontal=1;startSize=42;collapsible=0;align=center;fontStyle=1;" value="ConceptRelation" vertex="1">
+          <mxGeometry height="186" width="420" x="690" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="relation-a" kind="attrs" parent="relation" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="− sourceId: Guid&#xa;− targetId: Guid&#xa;− kind: RelationKind" vertex="1">
+          <mxGeometry height="99" width="420" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="relation-m" kind="methods" parent="relation" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=partialRectangle;top=1;left=0;right=0;bottom=0;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="+ create(source, target): Relation" vertex="1">
+          <mxGeometry height="45" width="420" y="141" as="geometry" />
+        </mxCell>
+        <mxCell id="material" className="MaterialVersion" external="false" kind="class" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;swimlane;horizontal=1;startSize=42;collapsible=0;align=center;fontStyle=1;" value="MaterialVersion" vertex="1">
+          <mxGeometry height="213" width="420" x="1310" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="material-a" kind="attrs" parent="material" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="− id: Guid&#xa;− locale: String&#xa;− content: ContentBlock[]&#xa;− available: Boolean" vertex="1">
+          <mxGeometry height="126" width="420" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="material-m" kind="methods" parent="material" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=partialRectangle;top=1;left=0;right=0;bottom=0;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="+ deactivate(): void" vertex="1">
+          <mxGeometry height="45" width="420" y="168" as="geometry" />
+        </mxCell>
+        <mxCell id="goal" className="LearningGoal" external="false" kind="class" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;swimlane;horizontal=1;startSize=42;collapsible=0;align=center;fontStyle=1;" value="LearningGoal" vertex="1">
+          <mxGeometry height="186" width="420" x="70" y="615" as="geometry" />
+        </mxCell>
+        <mxCell id="goal-a" kind="attrs" parent="goal" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="− ownerId: Guid&#xa;− title: String&#xa;− status: GoalStatus" vertex="1">
+          <mxGeometry height="99" width="420" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="goal-m" kind="methods" parent="goal" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=partialRectangle;top=1;left=0;right=0;bottom=0;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="+ setTarget(conceptId): void" vertex="1">
+          <mxGeometry height="45" width="420" y="141" as="geometry" />
+        </mxCell>
+        <mxCell id="exercise" className="ExerciseVersion" external="false" kind="class" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;swimlane;horizontal=1;startSize=42;collapsible=0;align=center;fontStyle=1;" value="ExerciseVersion" vertex="1">
+          <mxGeometry height="240" width="420" x="690" y="615" as="geometry" />
+        </mxCell>
+        <mxCell id="exercise-a" kind="attrs" parent="exercise" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="− id: Guid; revision: Int&#xa;− type: ExerciseType&#xa;− locale: String&#xa;− evaluation: EvaluationDefinition" vertex="1">
+          <mxGeometry height="126" width="420" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="exercise-m" kind="methods" parent="exercise" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=partialRectangle;top=1;left=0;right=0;bottom=0;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="+ validate(): ValidationResult&#xa;+ deactivate(): void" vertex="1">
+          <mxGeometry height="72" width="420" y="168" as="geometry" />
+        </mxCell>
+        <mxCell id="family" className="ExerciseFamily" external="false" kind="class" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;swimlane;horizontal=1;startSize=42;collapsible=0;align=center;fontStyle=1;" value="ExerciseFamily" vertex="1">
+          <mxGeometry height="159" width="420" x="1310" y="615" as="geometry" />
+        </mxCell>
+        <mxCell id="family-a" kind="attrs" parent="family" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="− id: Guid&#xa;− key: String" vertex="1">
+          <mxGeometry height="72" width="420" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="family-m" kind="methods" parent="family" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=partialRectangle;top=1;left=0;right=0;bottom=0;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="+ addVersion(): ExerciseVersion" vertex="1">
+          <mxGeometry height="45" width="420" y="114" as="geometry" />
+        </mxCell>
+        <mxCell id="roadmap" className="RoadmapVersion" external="false" kind="class" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;swimlane;horizontal=1;startSize=42;collapsible=0;align=center;fontStyle=1;" value="RoadmapVersion" vertex="1">
+          <mxGeometry height="186" width="420" x="70" y="1040" as="geometry" />
+        </mxCell>
+        <mxCell id="roadmap-a" kind="attrs" parent="roadmap" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="− id: Guid&#xa;− revision: Int&#xa;− title: String" vertex="1">
+          <mxGeometry height="99" width="420" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="roadmap-m" kind="methods" parent="roadmap" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=partialRectangle;top=1;left=0;right=0;bottom=0;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="+ publish(): void" vertex="1">
+          <mxGeometry height="45" width="420" y="141" as="geometry" />
+        </mxCell>
+        <mxCell id="stage" className="RoadmapStage" external="false" kind="class" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;swimlane;horizontal=1;startSize=42;collapsible=0;align=center;fontStyle=1;" value="RoadmapStage" vertex="1">
+          <mxGeometry height="186" width="420" x="690" y="1040" as="geometry" />
+        </mxCell>
+        <mxCell id="stage-a" kind="attrs" parent="stage" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="− order: Int&#xa;− title: String&#xa;− conceptIds: Guid[]" vertex="1">
+          <mxGeometry height="99" width="420" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="stage-m" kind="methods" parent="stage" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=partialRectangle;top=1;left=0;right=0;bottom=0;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="+ reorder(position): void" vertex="1">
+          <mxGeometry height="45" width="420" y="141" as="geometry" />
+        </mxCell>
+        <mxCell id="content-e1" edge="1" parent="1" relation="association" source="relation" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=none;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=0;exitY=0.5376344086021505;entryX=1;entryY=0.5376344086021505;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;" target="concept" value="source / target">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-30" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="content-e1-mult0" connectable="0" kind="multiplicity" parent="content-e1" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="-0.7" as="geometry">
+            <mxPoint y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="content-e1-mult1" connectable="0" kind="multiplicity" parent="content-e1" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="0.7" as="geometry">
+            <mxPoint y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="content-e2" edge="1" parent="1" relation="association" source="concept" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=none;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=0.5;exitY=0;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;" target="material" value="основная тема">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-15" as="offset" />
+            <Array as="points">
+              <mxPoint x="280" y="132" />
+              <mxPoint x="1520" y="132" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="content-e2-mult0" connectable="0" kind="multiplicity" parent="content-e2" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.9513677811550152" as="geometry">
+            <mxPoint x="23" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="content-e2-mult1" connectable="0" kind="multiplicity" parent="content-e2" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="0.9513677811550152" as="geometry">
+            <mxPoint x="23" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="content-e3" edge="1" parent="1" relation="association" source="concept" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=none;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=1;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;" target="exercise" value="основная тема">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-15" as="offset" />
+            <Array as="points">
+              <mxPoint x="575" y="356" />
+              <mxPoint x="575" y="555" />
+              <mxPoint x="900" y="555" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="content-e3-mult0" connectable="0" kind="multiplicity" parent="content-e3" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.9043348281016442" as="geometry">
+            <mxPoint y="-16" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="content-e3-mult1" connectable="0" kind="multiplicity" parent="content-e3" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="0.9043348281016442" as="geometry">
+            <mxPoint x="23" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="content-e4" edge="1" parent="1" relation="association" source="goal" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=none;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=0.5;exitY=0;entryX=0.5;entryY=1;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;" target="concept" value="цели по понятиям">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="120" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="content-e4-mult0" connectable="0" kind="multiplicity" parent="content-e4" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="-0.752895752895753" as="geometry">
+            <mxPoint x="23" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="content-e4-mult1" connectable="0" kind="multiplicity" parent="content-e4" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="1..*" vertex="1">
+          <mxGeometry relative="1" x="0.752895752895753" as="geometry">
+            <mxPoint x="23" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="content-e5" edge="1" parent="1" relation="association" source="family" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=none;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=0;exitY=0.6289308176100629;entryX=1;entryY=0.4166666666666667;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;" target="exercise" value="версии">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-30" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="content-e5-mult0" connectable="0" kind="multiplicity" parent="content-e5" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.7" as="geometry">
+            <mxPoint y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="content-e5-mult1" connectable="0" kind="multiplicity" parent="content-e5" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="1..*" vertex="1">
+          <mxGeometry relative="1" x="0.7" as="geometry">
+            <mxPoint y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="content-e6" edge="1" parent="1" relation="association" source="exercise" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=none;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=1;exitY=0.2;entryX=0.5;entryY=1;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;" target="material" value="справочный&#xa;материал">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="138" y="35" as="offset" />
+            <Array as="points">
+              <mxPoint x="1200" y="663" />
+              <mxPoint x="1200" y="450" />
+              <mxPoint x="1520" y="450" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="content-e6-mult0" connectable="0" kind="multiplicity" parent="content-e6" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="-0.9072463768115941" as="geometry">
+            <mxPoint y="-16" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="content-e6-mult1" connectable="0" kind="multiplicity" parent="content-e6" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="0..1" vertex="1">
+          <mxGeometry relative="1" x="0.9072463768115941" as="geometry">
+            <mxPoint x="23" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="content-e7" edge="1" parent="1" relation="composition" source="roadmap" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=none;endFill=0;startArrow=diamond;startFill=1;startSize=13;endSize=13;exitX=1;exitY=0.5376344086021505;entryX=0;entryY=0.5376344086021505;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;" target="stage" value="этапы">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-30" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="content-e7-mult0" connectable="0" kind="multiplicity" parent="content-e7" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.7" as="geometry">
+            <mxPoint y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="content-e7-mult1" connectable="0" kind="multiplicity" parent="content-e7" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="1..*" vertex="1">
+          <mxGeometry relative="1" x="0.7" as="geometry">
+            <mxPoint y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="content-e8" edge="1" parent="1" relation="association" source="stage" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=none;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;" target="concept" value="общие понятия">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-15" as="offset" />
+            <Array as="points">
+              <mxPoint x="1180" y="1133" />
+              <mxPoint x="1180" y="980" />
+              <mxPoint x="35" y="980" />
+              <mxPoint x="35" y="263" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="content-e8-mult0" connectable="0" kind="multiplicity" parent="content-e8" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="-0.969811320754717" as="geometry">
+            <mxPoint y="-16" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="content-e8-mult1" connectable="0" kind="multiplicity" parent="content-e8" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="1..*" vertex="1">
+          <mxGeometry relative="1" x="0.969811320754717" as="geometry">
+            <mxPoint y="-16" as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="practice-evidence" name="09 Классы: практика и свидетельства">
+    <mxGraphModel dx="2431" dy="1487" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1500" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="user" className="UserAccount «ref»" external="true" kind="class" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;swimlane;horizontal=1;startSize=42;collapsible=0;align=center;fontStyle=1;" value="UserAccount «ref»" vertex="1">
+          <mxGeometry height="132" width="420" x="70" y="175" as="geometry" />
+        </mxCell>
+        <mxCell id="user-a" kind="attrs" parent="user" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="− id: Guid" vertex="1">
+          <mxGeometry height="45" width="420" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="user-m" kind="methods" parent="user" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=partialRectangle;top=1;left=0;right=0;bottom=0;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="+ authorize(resource): Boolean" vertex="1">
+          <mxGeometry height="45" width="420" y="87" as="geometry" />
+        </mxCell>
+        <mxCell id="session" className="LearningSession" external="false" kind="class" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;swimlane;horizontal=1;startSize=42;collapsible=0;align=center;fontStyle=1;" value="LearningSession" vertex="1">
+          <mxGeometry height="213" width="420" x="690" y="175" as="geometry" />
+        </mxCell>
+        <mxCell id="session-a" kind="attrs" parent="session" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="− id: Guid; ownerId: Guid&#xa;− state: SessionState&#xa;− mode: LearningMode" vertex="1">
+          <mxGeometry height="99" width="420" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="session-m" kind="methods" parent="session" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=partialRectangle;top=1;left=0;right=0;bottom=0;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="+ pause(): void&#xa;+ complete(): void" vertex="1">
+          <mxGeometry height="72" width="420" y="141" as="geometry" />
+        </mxCell>
+        <mxCell id="exercise" className="ExerciseVersion «ref»" external="true" kind="class" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;swimlane;horizontal=1;startSize=42;collapsible=0;align=center;fontStyle=1;" value="ExerciseVersion «ref»" vertex="1">
+          <mxGeometry height="132" width="420" x="1310" y="175" as="geometry" />
+        </mxCell>
+        <mxCell id="exercise-a" kind="attrs" parent="exercise" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="− id: Guid; revision: Int" vertex="1">
+          <mxGeometry height="45" width="420" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="exercise-m" kind="methods" parent="exercise" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=partialRectangle;top=1;left=0;right=0;bottom=0;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="+ validate(): ValidationResult" vertex="1">
+          <mxGeometry height="45" width="420" y="87" as="geometry" />
+        </mxCell>
+        <mxCell id="observation" className="EvidenceObservation" external="false" kind="class" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;swimlane;horizontal=1;startSize=42;collapsible=0;align=center;fontStyle=1;" value="EvidenceObservation" vertex="1">
+          <mxGeometry height="240" width="420" x="70" y="605" as="geometry" />
+        </mxCell>
+        <mxCell id="observation-a" kind="attrs" parent="observation" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="− ownerId: Guid; conceptId: Guid&#xa;− sourceKind: SourceKind&#xa;− sourceId: Guid; assistance: Level&#xa;− conditions: String; status: Status" vertex="1">
+          <mxGeometry height="126" width="420" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="observation-m" kind="methods" parent="observation" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=partialRectangle;top=1;left=0;right=0;bottom=0;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="+ dispute(): void&#xa;+ withdraw(): void" vertex="1">
+          <mxGeometry height="72" width="420" y="168" as="geometry" />
+        </mxCell>
+        <mxCell id="attempt" className="LearningAttempt" external="false" kind="class" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;swimlane;horizontal=1;startSize=42;collapsible=0;align=center;fontStyle=1;" value="LearningAttempt" vertex="1">
+          <mxGeometry height="186" width="420" x="690" y="605" as="geometry" />
+        </mxCell>
+        <mxCell id="attempt-a" kind="attrs" parent="attempt" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="− id: Guid; operationId: Guid&#xa;− answer: Answer&#xa;− submittedAt: Instant" vertex="1">
+          <mxGeometry height="99" width="420" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="attempt-m" kind="methods" parent="attempt" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=partialRectangle;top=1;left=0;right=0;bottom=0;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="+ submit(): ExerciseResult" vertex="1">
+          <mxGeometry height="45" width="420" y="141" as="geometry" />
+        </mxCell>
+        <mxCell id="item" className="SessionItem" external="false" kind="class" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;swimlane;horizontal=1;startSize=42;collapsible=0;align=center;fontStyle=1;" value="SessionItem" vertex="1">
+          <mxGeometry height="186" width="420" x="1310" y="605" as="geometry" />
+        </mxCell>
+        <mxCell id="item-a" kind="attrs" parent="item" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="− id: Guid; order: Int&#xa;− exerciseVersionId: Guid&#xa;− outcome: ItemOutcome" vertex="1">
+          <mxGeometry height="99" width="420" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="item-m" kind="methods" parent="item" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=partialRectangle;top=1;left=0;right=0;bottom=0;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="+ skip(): void" vertex="1">
+          <mxGeometry height="45" width="420" y="141" as="geometry" />
+        </mxCell>
+        <mxCell id="profile" className="ProfileProjection" external="false" kind="class" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;swimlane;horizontal=1;startSize=42;collapsible=0;align=center;fontStyle=1;" value="ProfileProjection" vertex="1">
+          <mxGeometry height="186" width="420" x="70" y="1080" as="geometry" />
+        </mxCell>
+        <mxCell id="profile-a" kind="attrs" parent="profile" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="− ownerId: Guid&#xa;− conceptId: Guid&#xa;− calculatedAt: Instant" vertex="1">
+          <mxGeometry height="99" width="420" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="profile-m" kind="methods" parent="profile" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=partialRectangle;top=1;left=0;right=0;bottom=0;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="+ rebuild(observations): void" vertex="1">
+          <mxGeometry height="45" width="420" y="141" as="geometry" />
+        </mxCell>
+        <mxCell id="result" className="ExerciseResult" external="false" kind="class" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;swimlane;horizontal=1;startSize=42;collapsible=0;align=center;fontStyle=1;" value="ExerciseResult" vertex="1">
+          <mxGeometry height="186" width="420" x="690" y="1080" as="geometry" />
+        </mxCell>
+        <mxCell id="result-a" kind="attrs" parent="result" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="− kind: ResultKind&#xa;− score: Decimal?&#xa;− evaluatorVersion: String" vertex="1">
+          <mxGeometry height="99" width="420" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="result-m" kind="methods" parent="result" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=partialRectangle;top=1;left=0;right=0;bottom=0;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="+ explain(): String" vertex="1">
+          <mxGeometry height="45" width="420" y="141" as="geometry" />
+        </mxCell>
+        <mxCell id="help" className="AssistanceEvent" external="false" kind="class" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;swimlane;horizontal=1;startSize=42;collapsible=0;align=center;fontStyle=1;" value="AssistanceEvent" vertex="1">
+          <mxGeometry height="159" width="420" x="1310" y="1080" as="geometry" />
+        </mxCell>
+        <mxCell id="help-a" kind="attrs" parent="help" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="− kind: AssistanceKind&#xa;− occurredAt: Instant" vertex="1">
+          <mxGeometry height="72" width="420" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="help-m" kind="methods" parent="help" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=partialRectangle;top=1;left=0;right=0;bottom=0;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="+ record(): void" vertex="1">
+          <mxGeometry height="45" width="420" y="114" as="geometry" />
+        </mxCell>
+        <mxCell id="practice-evidence-e1" edge="1" parent="1" relation="association" source="user" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=none;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=1;exitY=0.7575757575757576;entryX=0;entryY=0.4694835680751174;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;" target="session" value="владелец">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-30" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="practice-evidence-e1-mult0" connectable="0" kind="multiplicity" parent="practice-evidence-e1" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.7" as="geometry">
+            <mxPoint y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="practice-evidence-e1-mult1" connectable="0" kind="multiplicity" parent="practice-evidence-e1" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="0.7" as="geometry">
+            <mxPoint y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="practice-evidence-e2" edge="1" parent="1" relation="composition" source="session" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=none;endFill=0;startArrow=diamond;startFill=1;startSize=13;endSize=13;exitX=0.75;exitY=1;entryX=0;entryY=0.25;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;" target="item" value="элементы">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-87.25" y="-28" as="offset" />
+            <Array as="points">
+              <mxPoint x="1005" y="480" />
+              <mxPoint x="1210" y="480" />
+              <mxPoint x="1210" y="651.5" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="practice-evidence-e2-mult0" connectable="0" kind="multiplicity" parent="practice-evidence-e2" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.8874230430958663" as="geometry">
+            <mxPoint x="23" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="practice-evidence-e2-mult1" connectable="0" kind="multiplicity" parent="practice-evidence-e2" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="1..*" vertex="1">
+          <mxGeometry relative="1" x="0.8874230430958663" as="geometry">
+            <mxPoint y="-16" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="practice-evidence-e3" edge="1" parent="1" relation="association" source="item" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=none;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=0.5;exitY=0;entryX=0.5;entryY=1;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;" target="exercise" value="назначенная версия">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="120" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="practice-evidence-e3-mult0" connectable="0" kind="multiplicity" parent="practice-evidence-e3" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="-0.785234899328859" as="geometry">
+            <mxPoint x="23" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="practice-evidence-e3-mult1" connectable="0" kind="multiplicity" parent="practice-evidence-e3" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="0.785234899328859" as="geometry">
+            <mxPoint x="23" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="practice-evidence-e4" edge="1" parent="1" relation="composition" source="item" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=none;endFill=0;startArrow=diamond;startFill=1;startSize=13;endSize=13;exitX=0;exitY=0.5376344086021505;entryX=1;entryY=0.5376344086021505;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;" target="attempt" value="попытки">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-30" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="practice-evidence-e4-mult0" connectable="0" kind="multiplicity" parent="practice-evidence-e4" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.7" as="geometry">
+            <mxPoint y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="practice-evidence-e4-mult1" connectable="0" kind="multiplicity" parent="practice-evidence-e4" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="0.7" as="geometry">
+            <mxPoint y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="practice-evidence-e5" edge="1" parent="1" relation="composition" source="attempt" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=none;endFill=0;startArrow=diamond;startFill=1;startSize=13;endSize=13;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;" target="result" value="результат">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="120" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="practice-evidence-e5-mult0" connectable="0" kind="multiplicity" parent="practice-evidence-e5" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.7785467128027681" as="geometry">
+            <mxPoint x="23" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="practice-evidence-e5-mult1" connectable="0" kind="multiplicity" parent="practice-evidence-e5" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="0..1" vertex="1">
+          <mxGeometry relative="1" x="0.7785467128027681" as="geometry">
+            <mxPoint x="23" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="practice-evidence-e6" edge="1" parent="1" relation="composition" source="attempt" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=none;endFill=0;startArrow=diamond;startFill=1;startSize=13;endSize=13;exitX=1;exitY=0.9;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;" target="help" value="помощь">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-15" as="offset" />
+            <Array as="points">
+              <mxPoint x="1180" y="772.4" />
+              <mxPoint x="1180" y="980" />
+              <mxPoint x="1520" y="980" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="practice-evidence-e6-mult0" connectable="0" kind="multiplicity" parent="practice-evidence-e6" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.9108138238573021" as="geometry">
+            <mxPoint y="-16" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="practice-evidence-e6-mult1" connectable="0" kind="multiplicity" parent="practice-evidence-e6" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="0.9108138238573021" as="geometry">
+            <mxPoint x="23" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="practice-evidence-e7" edge="1" parent="1" relation="association" source="observation" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=none;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;" target="result" value="источник&#xa;результата">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="21" as="offset" />
+            <Array as="points">
+              <mxPoint x="580" y="725" />
+              <mxPoint x="580" y="1173" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="practice-evidence-e7-mult0" connectable="0" kind="multiplicity" parent="practice-evidence-e7" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="-0.9012345679012346" as="geometry">
+            <mxPoint y="-16" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="practice-evidence-e7-mult1" connectable="0" kind="multiplicity" parent="practice-evidence-e7" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="0..1" vertex="1">
+          <mxGeometry relative="1" x="0.9012345679012346" as="geometry">
+            <mxPoint y="-16" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="practice-evidence-e8" edge="1" parent="1" relation="dependency" source="profile" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=open;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=0.5;exitY=0;entryX=0.5;entryY=1;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;" target="observation" value="производный профиль">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="120" as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="work-experience" name="10 Классы: рабочие эпизоды и опыт">
+    <mxGraphModel dx="2431" dy="1487" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1500" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="episode" className="WorkEpisode" external="false" kind="class" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;swimlane;horizontal=1;startSize=42;collapsible=0;align=center;fontStyle=1;" value="WorkEpisode" vertex="1">
+          <mxGeometry height="240" width="420" x="70" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="episode-a" kind="attrs" parent="episode" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="− id: Guid; ownerId: Guid&#xa;− context: String&#xa;− contribution: String&#xa;− archived: Boolean" vertex="1">
+          <mxGeometry height="126" width="420" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="episode-m" kind="methods" parent="episode" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=partialRectangle;top=1;left=0;right=0;bottom=0;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="+ reviseContext(): ContextRevision&#xa;+ archive(): void" vertex="1">
+          <mxGeometry height="72" width="420" y="168" as="geometry" />
+        </mxCell>
+        <mxCell id="reflection" className="ReflectionSession" external="false" kind="class" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;swimlane;horizontal=1;startSize=42;collapsible=0;align=center;fontStyle=1;" value="ReflectionSession" vertex="1">
+          <mxGeometry height="186" width="420" x="690" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="reflection-a" kind="attrs" parent="reflection" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="− id: Guid; ownerId: Guid&#xa;− contextRevisionId: Guid&#xa;− openQuestions: String[]" vertex="1">
+          <mxGeometry height="99" width="420" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="reflection-m" kind="methods" parent="reflection" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=partialRectangle;top=1;left=0;right=0;bottom=0;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="+ discuss(): void" vertex="1">
+          <mxGeometry height="45" width="420" y="141" as="geometry" />
+        </mxCell>
+        <mxCell id="ack" className="ReviewAcknowledgement" external="false" kind="class" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;swimlane;horizontal=1;startSize=42;collapsible=0;align=center;fontStyle=1;" value="ReviewAcknowledgement" vertex="1">
+          <mxGeometry height="213" width="420" x="1310" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="ack-a" kind="attrs" parent="ack" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="− contextRevisionId: Guid&#xa;− discussionRevisionId: Guid&#xa;− acknowledgedBy: Guid&#xa;− acknowledgedAt: Instant" vertex="1">
+          <mxGeometry height="126" width="420" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="ack-m" kind="methods" parent="ack" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=partialRectangle;top=1;left=0;right=0;bottom=0;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="+ recordExactRevision(): void" vertex="1">
+          <mxGeometry height="45" width="420" y="168" as="geometry" />
+        </mxCell>
+        <mxCell id="entry" className="ExperienceEntry" external="false" kind="class" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;swimlane;horizontal=1;startSize=42;collapsible=0;align=center;fontStyle=1;" value="ExperienceEntry" vertex="1">
+          <mxGeometry height="159" width="420" x="70" y="625" as="geometry" />
+        </mxCell>
+        <mxCell id="entry-a" kind="attrs" parent="entry" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="− id: Guid; ownerId: Guid&#xa;− sourceEpisodeId: Guid?" vertex="1">
+          <mxGeometry height="72" width="420" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="entry-m" kind="methods" parent="entry" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=partialRectangle;top=1;left=0;right=0;bottom=0;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="+ createRevision(): ExperienceRevision" vertex="1">
+          <mxGeometry height="45" width="420" y="114" as="geometry" />
+        </mxCell>
+        <mxCell id="revision" className="ExperienceRevision" external="false" kind="class" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;swimlane;horizontal=1;startSize=42;collapsible=0;align=center;fontStyle=1;" value="ExperienceRevision" vertex="1">
+          <mxGeometry height="213" width="420" x="690" y="625" as="geometry" />
+        </mxCell>
+        <mxCell id="revision-a" kind="attrs" parent="revision" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="− id: Guid; revision: Int&#xa;− context: String; actions: String&#xa;− contribution: String&#xa;− outcome: String" vertex="1">
+          <mxGeometry height="126" width="420" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="revision-m" kind="methods" parent="revision" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=partialRectangle;top=1;left=0;right=0;bottom=0;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="+ createSuccessor(): Revision" vertex="1">
+          <mxGeometry height="45" width="420" y="168" as="geometry" />
+        </mxCell>
+        <mxCell id="approval" className="ExperienceApproval" external="false" kind="class" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;swimlane;horizontal=1;startSize=42;collapsible=0;align=center;fontStyle=1;" value="ExperienceApproval" vertex="1">
+          <mxGeometry height="213" width="420" x="1310" y="625" as="geometry" />
+        </mxCell>
+        <mxCell id="approval-a" kind="attrs" parent="approval" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="− revisionId: Guid&#xa;− ownerId: Guid&#xa;− contentHash: String&#xa;− approvedAt: Instant" vertex="1">
+          <mxGeometry height="126" width="420" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="approval-m" kind="methods" parent="approval" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=partialRectangle;top=1;left=0;right=0;bottom=0;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="+ approveExactRevision(): void" vertex="1">
+          <mxGeometry height="45" width="420" y="168" as="geometry" />
+        </mxCell>
+        <mxCell id="evidence" className="EvidenceObservation «ref»" external="true" kind="class" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;swimlane;horizontal=1;startSize=42;collapsible=0;align=center;fontStyle=1;" value="EvidenceObservation «ref»" vertex="1">
+          <mxGeometry height="159" width="420" x="70" y="1115" as="geometry" />
+        </mxCell>
+        <mxCell id="evidence-a" kind="attrs" parent="evidence" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="− id: Guid&#xa;− sourceId: Guid; status: Status" vertex="1">
+          <mxGeometry height="72" width="420" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="evidence-m" kind="methods" parent="evidence" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=partialRectangle;top=1;left=0;right=0;bottom=0;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="+ dispute(): void" vertex="1">
+          <mxGeometry height="45" width="420" y="114" as="geometry" />
+        </mxCell>
+        <mxCell id="story" className="PresentationRevision" external="false" kind="class" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;swimlane;horizontal=1;startSize=42;collapsible=0;align=center;fontStyle=1;" value="PresentationRevision" vertex="1">
+          <mxGeometry height="186" width="420" x="690" y="1115" as="geometry" />
+        </mxCell>
+        <mxCell id="story-a" kind="attrs" parent="story" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="− id: Guid; content: String&#xa;− experienceRevisionId: Guid" vertex="1">
+          <mxGeometry height="72" width="420" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="story-m" kind="methods" parent="story" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=partialRectangle;top=1;left=0;right=0;bottom=0;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="+ createSuccessor(): Revision&#xa;+ exportReviewed(): File" vertex="1">
+          <mxGeometry height="72" width="420" y="114" as="geometry" />
+        </mxCell>
+        <mxCell id="review" className="PresentationReview" external="false" kind="class" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;swimlane;horizontal=1;startSize=42;collapsible=0;align=center;fontStyle=1;" value="PresentationReview" vertex="1">
+          <mxGeometry height="186" width="420" x="1310" y="1115" as="geometry" />
+        </mxCell>
+        <mxCell id="review-a" kind="attrs" parent="review" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="− presentationRevisionId: Guid&#xa;− ownerId: Guid&#xa;− reviewedAt: Instant" vertex="1">
+          <mxGeometry height="99" width="420" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="review-m" kind="methods" parent="review" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=partialRectangle;top=1;left=0;right=0;bottom=0;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="+ reviewExactRevision(): void" vertex="1">
+          <mxGeometry height="45" width="420" y="141" as="geometry" />
+        </mxCell>
+        <mxCell id="work-experience-e1" edge="1" parent="1" relation="composition" source="episode" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=none;endFill=0;startArrow=diamond;startFill=1;startSize=13;endSize=13;exitX=1;exitY=0.4166666666666667;entryX=0;entryY=0.5376344086021505;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;" target="reflection" value="обсуждения">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-30" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="work-experience-e1-mult0" connectable="0" kind="multiplicity" parent="work-experience-e1" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.7" as="geometry">
+            <mxPoint y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="work-experience-e1-mult1" connectable="0" kind="multiplicity" parent="work-experience-e1" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="0.7" as="geometry">
+            <mxPoint y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="work-experience-e2" edge="1" parent="1" relation="association" source="reflection" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=none;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=1;exitY=0.5376344086021505;entryX=0;entryY=0.4694835680751174;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;" target="ack" value="рассмотренная&#xa;версия">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-30" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="work-experience-e2-mult0" connectable="0" kind="multiplicity" parent="work-experience-e2" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.7" as="geometry">
+            <mxPoint y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="work-experience-e2-mult1" connectable="0" kind="multiplicity" parent="work-experience-e2" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="0.7" as="geometry">
+            <mxPoint y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="work-experience-e3" edge="1" parent="1" relation="association" source="entry" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=none;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=0.5;exitY=0;entryX=0.5;entryY=1;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;" target="episode" value="необязательный источник">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="120" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="work-experience-e3-mult0" connectable="0" kind="multiplicity" parent="work-experience-e3" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="-0.7023255813953488" as="geometry">
+            <mxPoint x="23" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="work-experience-e3-mult1" connectable="0" kind="multiplicity" parent="work-experience-e3" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="0..1" vertex="1">
+          <mxGeometry relative="1" x="0.7023255813953488" as="geometry">
+            <mxPoint x="23" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="work-experience-e4" edge="1" parent="1" relation="composition" source="entry" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=none;endFill=0;startArrow=diamond;startFill=1;startSize=13;endSize=13;exitX=1;exitY=0.6289308176100629;entryX=0;entryY=0.4694835680751174;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;" target="revision" value="редакции">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-30" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="work-experience-e4-mult0" connectable="0" kind="multiplicity" parent="work-experience-e4" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.7" as="geometry">
+            <mxPoint y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="work-experience-e4-mult1" connectable="0" kind="multiplicity" parent="work-experience-e4" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="1..*" vertex="1">
+          <mxGeometry relative="1" x="0.7" as="geometry">
+            <mxPoint y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="work-experience-e5" edge="1" parent="1" relation="association" source="revision" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=none;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=1;exitY=0.4694835680751174;entryX=0;entryY=0.4694835680751174;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;" target="approval" value="одобрение&#xa;владельца">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-30" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="work-experience-e5-mult0" connectable="0" kind="multiplicity" parent="work-experience-e5" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.7" as="geometry">
+            <mxPoint y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="work-experience-e5-mult1" connectable="0" kind="multiplicity" parent="work-experience-e5" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="0..1" vertex="1">
+          <mxGeometry relative="1" x="0.7" as="geometry">
+            <mxPoint y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="work-experience-e6" edge="1" parent="1" relation="association" source="revision" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=none;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;" target="story" value="основание рассказа">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="120" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="work-experience-e6-mult0" connectable="0" kind="multiplicity" parent="work-experience-e6" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.7689530685920578" as="geometry">
+            <mxPoint x="23" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="work-experience-e6-mult1" connectable="0" kind="multiplicity" parent="work-experience-e6" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="0.7689530685920578" as="geometry">
+            <mxPoint x="23" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="work-experience-e7" edge="1" parent="1" relation="association" source="story" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=none;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=1;exitY=0.5376344086021505;entryX=0;entryY=0.5376344086021505;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;" target="review" value="просмотр версии">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-30" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="work-experience-e7-mult0" connectable="0" kind="multiplicity" parent="work-experience-e7" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.7" as="geometry">
+            <mxPoint y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="work-experience-e7-mult1" connectable="0" kind="multiplicity" parent="work-experience-e7" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="0..1" vertex="1">
+          <mxGeometry relative="1" x="0.7" as="geometry">
+            <mxPoint y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="work-experience-e8" edge="1" parent="1" relation="association" source="revision" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=none;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=0;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;" target="evidence" value="свидетельства">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-15" as="offset" />
+            <Array as="points">
+              <mxPoint x="580" y="953" />
+              <mxPoint x="280" y="953" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="work-experience-e8-mult0" connectable="0" kind="multiplicity" parent="work-experience-e8" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="-0.8969633662533678" as="geometry">
+            <mxPoint x="23" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="work-experience-e8-mult1" connectable="0" kind="multiplicity" parent="work-experience-e8" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="0.8969633662533678" as="geometry">
+            <mxPoint x="23" as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="identity-sync" name="11 Классы: доступ и автономная работа">
+    <mxGraphModel dx="2378" dy="1454" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1800" pageHeight="1450" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="user" className="UserAccount" external="false" kind="class" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;swimlane;horizontal=1;startSize=42;collapsible=0;align=center;fontStyle=1;" value="UserAccount" vertex="1">
+          <mxGeometry height="213" width="420" x="70" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="user-a" kind="attrs" parent="user" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="− id: Guid; email: String&#xa;− status: AccountStatus&#xa;− locale: String" vertex="1">
+          <mxGeometry height="99" width="420" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="user-m" kind="methods" parent="user" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=partialRectangle;top=1;left=0;right=0;bottom=0;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="+ changeProfile(): void&#xa;+ deactivate(): void" vertex="1">
+          <mxGeometry height="72" width="420" y="141" as="geometry" />
+        </mxCell>
+        <mxCell id="role" className="Role" external="false" kind="class" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;swimlane;horizontal=1;startSize=42;collapsible=0;align=center;fontStyle=1;" value="Role" vertex="1">
+          <mxGeometry height="159" width="420" x="690" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="role-a" kind="attrs" parent="role" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="− id: Guid&#xa;− name: RoleName" vertex="1">
+          <mxGeometry height="72" width="420" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="role-m" kind="methods" parent="role" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=partialRectangle;top=1;left=0;right=0;bottom=0;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="+ allows(action): Boolean" vertex="1">
+          <mxGeometry height="45" width="420" y="114" as="geometry" />
+        </mxCell>
+        <mxCell id="privacy" className="PrivacySettings" external="false" kind="class" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;swimlane;horizontal=1;startSize=42;collapsible=0;align=center;fontStyle=1;" value="PrivacySettings" vertex="1">
+          <mxGeometry height="186" width="420" x="1310" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="privacy-a" kind="attrs" parent="privacy" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="− ownerId: Guid&#xa;− allowedContext: String[]" vertex="1">
+          <mxGeometry height="72" width="420" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="privacy-m" kind="methods" parent="privacy" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=partialRectangle;top=1;left=0;right=0;bottom=0;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="+ grant(scope): void&#xa;+ revoke(scope): void" vertex="1">
+          <mxGeometry height="72" width="420" y="114" as="geometry" />
+        </mxCell>
+        <mxCell id="device" className="ClientDevice" external="false" kind="class" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;swimlane;horizontal=1;startSize=42;collapsible=0;align=center;fontStyle=1;" value="ClientDevice" vertex="1">
+          <mxGeometry height="159" width="420" x="70" y="640" as="geometry" />
+        </mxCell>
+        <mxCell id="device-a" kind="attrs" parent="device" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="− id: Guid; ownerId: Guid&#xa;− changeCursor: String" vertex="1">
+          <mxGeometry height="72" width="420" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="device-m" kind="methods" parent="device" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=partialRectangle;top=1;left=0;right=0;bottom=0;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="+ register(): void" vertex="1">
+          <mxGeometry height="45" width="420" y="114" as="geometry" />
+        </mxCell>
+        <mxCell id="operation" className="LocalOperation" external="false" kind="class" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;swimlane;horizontal=1;startSize=42;collapsible=0;align=center;fontStyle=1;" value="LocalOperation" vertex="1">
+          <mxGeometry height="240" width="420" x="690" y="640" as="geometry" />
+        </mxCell>
+        <mxCell id="operation-a" kind="attrs" parent="operation" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="− operationId: Guid&#xa;− resourceId: Guid&#xa;− expectedVersion: String&#xa;− payload: Json; state: SyncState" vertex="1">
+          <mxGeometry height="126" width="420" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="operation-m" kind="methods" parent="operation" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=partialRectangle;top=1;left=0;right=0;bottom=0;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="+ queue(): void&#xa;+ retrySameId(): void" vertex="1">
+          <mxGeometry height="72" width="420" y="168" as="geometry" />
+        </mxCell>
+        <mxCell id="receipt" className="OperationReceipt" external="false" kind="class" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;swimlane;horizontal=1;startSize=42;collapsible=0;align=center;fontStyle=1;" value="OperationReceipt" vertex="1">
+          <mxGeometry height="213" width="420" x="1310" y="640" as="geometry" />
+        </mxCell>
+        <mxCell id="receipt-a" kind="attrs" parent="receipt" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="− ownerId: Guid&#xa;− operationId: Guid&#xa;− payloadHash: String&#xa;− status: ReceiptStatus" vertex="1">
+          <mxGeometry height="126" width="420" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="receipt-m" kind="methods" parent="receipt" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=partialRectangle;top=1;left=0;right=0;bottom=0;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="+ replayResult(): Json" vertex="1">
+          <mxGeometry height="45" width="420" y="168" as="geometry" />
+        </mxCell>
+        <mxCell id="pack" className="OfflinePackage" external="false" kind="class" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;swimlane;horizontal=1;startSize=42;collapsible=0;align=center;fontStyle=1;" value="OfflinePackage" vertex="1">
+          <mxGeometry height="213" width="420" x="70" y="1070" as="geometry" />
+        </mxCell>
+        <mxCell id="pack-a" kind="attrs" parent="pack" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;text;strokeColor=none;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="− id: Guid; version: Int&#xa;− contentHash: String&#xa;− manifest: VersionRef[]" vertex="1">
+          <mxGeometry height="99" width="420" y="42" as="geometry" />
+        </mxCell>
+        <mxCell id="pack-m" kind="methods" parent="pack" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=partialRectangle;top=1;left=0;right=0;bottom=0;fillColor=none;align=left;spacingLeft=12;verticalAlign=top;spacingTop=9;" value="+ verifyIntegrity(): Boolean&#xa;+ activate(): void" vertex="1">
+          <mxGeometry height="72" width="420" y="141" as="geometry" />
+        </mxCell>
+        <mxCell id="identity-sync-e1" edge="1" parent="1" relation="association" source="user" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=none;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=1;exitY=0.4694835680751174;entryX=0;entryY=0.6289308176100629;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;" target="role" value="назначенные роли">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-30" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="identity-sync-e1-mult0" connectable="0" kind="multiplicity" parent="identity-sync-e1" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="-0.7" as="geometry">
+            <mxPoint y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="identity-sync-e1-mult1" connectable="0" kind="multiplicity" parent="identity-sync-e1" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="1..*" vertex="1">
+          <mxGeometry relative="1" x="0.7" as="geometry">
+            <mxPoint y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="identity-sync-e2" edge="1" parent="1" relation="composition" source="user" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=none;endFill=0;startArrow=diamond;startFill=1;startSize=13;endSize=13;exitX=0.5;exitY=0;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;" target="privacy" value="настройки">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-15" as="offset" />
+            <Array as="points">
+              <mxPoint x="280" y="135" />
+              <mxPoint x="1520" y="135" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="identity-sync-e2-mult0" connectable="0" kind="multiplicity" parent="identity-sync-e2" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.9511450381679389" as="geometry">
+            <mxPoint x="23" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="identity-sync-e2-mult1" connectable="0" kind="multiplicity" parent="identity-sync-e2" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="0.9511450381679389" as="geometry">
+            <mxPoint x="23" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="identity-sync-e3" edge="1" parent="1" relation="association" source="user" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=none;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;" target="device" value="владелец">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="120" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="identity-sync-e3-mult0" connectable="0" kind="multiplicity" parent="identity-sync-e3" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.7509727626459144" as="geometry">
+            <mxPoint x="23" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="identity-sync-e3-mult1" connectable="0" kind="multiplicity" parent="identity-sync-e3" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="0.7509727626459144" as="geometry">
+            <mxPoint x="23" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="identity-sync-e4" edge="1" parent="1" relation="composition" source="device" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=none;endFill=0;startArrow=diamond;startFill=1;startSize=13;endSize=13;exitX=1;exitY=0.6289308176100629;entryX=0;entryY=0.4166666666666667;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;" target="operation" value="очередь">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-30" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="identity-sync-e4-mult0" connectable="0" kind="multiplicity" parent="identity-sync-e4" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.7" as="geometry">
+            <mxPoint y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="identity-sync-e4-mult1" connectable="0" kind="multiplicity" parent="identity-sync-e4" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="0.7" as="geometry">
+            <mxPoint y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="identity-sync-e5" edge="1" parent="1" relation="association" source="operation" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=none;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=1;exitY=0.4166666666666667;entryX=0;entryY=0.4694835680751174;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;" target="receipt" value="серверный ответ">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-30" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="identity-sync-e5-mult0" connectable="0" kind="multiplicity" parent="identity-sync-e5" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="1" vertex="1">
+          <mxGeometry relative="1" x="-0.7" as="geometry">
+            <mxPoint y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="identity-sync-e5-mult1" connectable="0" kind="multiplicity" parent="identity-sync-e5" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="0..1" vertex="1">
+          <mxGeometry relative="1" x="0.7" as="geometry">
+            <mxPoint y="18" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="identity-sync-e6" edge="1" parent="1" relation="association" source="device" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=none;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;" target="pack" value="загруженные пакеты">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="120" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="identity-sync-e6-mult0" connectable="0" kind="multiplicity" parent="identity-sync-e6" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="-0.7638376383763837" as="geometry">
+            <mxPoint x="23" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="identity-sync-e6-mult1" connectable="0" kind="multiplicity" parent="identity-sync-e6" style="edgeLabel;html=0;align=center;verticalAlign=middle;fontFamily=Times New Roman;fontSize=20;labelBackgroundColor=#FFFFFF;" value="0..*" vertex="1">
+          <mxGeometry relative="1" x="0.7638376383763837" as="geometry">
+            <mxPoint x="23" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="sync-rules" kind="note" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=note;align=left;spacing=12;" value="Правила синхронизации&#xa;&#xa;Повтор: тот же OperationId и PayloadHash.&#xa;Конфликт версии: данные сохраняются до выбора.&#xa;Локальная операция может не иметь чека.&#xa;Пакет ссылается на закреплённые версии.&#xa;Ключ чека: (OwnerId, OperationId)." vertex="1">
+          <mxGeometry height="215" width="1040" x="690" y="1080" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

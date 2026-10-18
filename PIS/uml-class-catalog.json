@@ -1,0 +1,437 @@
+[
+  {
+    "page": "content",
+    "name": "Concept",
+    "attributes": [
+      "− id: Guid",
+      "− title: String",
+      "− difficulty: Difficulty"
+    ],
+    "operations": [
+      "+ rename(title): void"
+    ],
+    "external": false
+  },
+  {
+    "page": "content",
+    "name": "ConceptRelation",
+    "attributes": [
+      "− sourceId: Guid",
+      "− targetId: Guid",
+      "− kind: RelationKind"
+    ],
+    "operations": [
+      "+ create(source, target): Relation"
+    ],
+    "external": false
+  },
+  {
+    "page": "content",
+    "name": "MaterialVersion",
+    "attributes": [
+      "− id: Guid",
+      "− locale: String",
+      "− content: ContentBlock[]",
+      "− available: Boolean"
+    ],
+    "operations": [
+      "+ deactivate(): void"
+    ],
+    "external": false
+  },
+  {
+    "page": "content",
+    "name": "LearningGoal",
+    "attributes": [
+      "− ownerId: Guid",
+      "− title: String",
+      "− status: GoalStatus"
+    ],
+    "operations": [
+      "+ setTarget(conceptId): void"
+    ],
+    "external": false
+  },
+  {
+    "page": "content",
+    "name": "ExerciseVersion",
+    "attributes": [
+      "− id: Guid; revision: Int",
+      "− type: ExerciseType",
+      "− locale: String",
+      "− evaluation: EvaluationDefinition"
+    ],
+    "operations": [
+      "+ validate(): ValidationResult",
+      "+ deactivate(): void"
+    ],
+    "external": false
+  },
+  {
+    "page": "content",
+    "name": "ExerciseFamily",
+    "attributes": [
+      "− id: Guid",
+      "− key: String"
+    ],
+    "operations": [
+      "+ addVersion(): ExerciseVersion"
+    ],
+    "external": false
+  },
+  {
+    "page": "content",
+    "name": "RoadmapVersion",
+    "attributes": [
+      "− id: Guid",
+      "− revision: Int",
+      "− title: String"
+    ],
+    "operations": [
+      "+ publish(): void"
+    ],
+    "external": false
+  },
+  {
+    "page": "content",
+    "name": "RoadmapStage",
+    "attributes": [
+      "− order: Int",
+      "− title: String",
+      "− conceptIds: Guid[]"
+    ],
+    "operations": [
+      "+ reorder(position): void"
+    ],
+    "external": false
+  },
+  {
+    "page": "practice-evidence",
+    "name": "UserAccount «ref»",
+    "attributes": [
+      "− id: Guid"
+    ],
+    "operations": [
+      "+ authorize(resource): Boolean"
+    ],
+    "external": true
+  },
+  {
+    "page": "practice-evidence",
+    "name": "LearningSession",
+    "attributes": [
+      "− id: Guid; ownerId: Guid",
+      "− state: SessionState",
+      "− mode: LearningMode"
+    ],
+    "operations": [
+      "+ pause(): void",
+      "+ complete(): void"
+    ],
+    "external": false
+  },
+  {
+    "page": "practice-evidence",
+    "name": "ExerciseVersion «ref»",
+    "attributes": [
+      "− id: Guid; revision: Int"
+    ],
+    "operations": [
+      "+ validate(): ValidationResult"
+    ],
+    "external": true
+  },
+  {
+    "page": "practice-evidence",
+    "name": "EvidenceObservation",
+    "attributes": [
+      "− ownerId: Guid; conceptId: Guid",
+      "− sourceKind: SourceKind",
+      "− sourceId: Guid; assistance: Level",
+      "− conditions: String; status: Status"
+    ],
+    "operations": [
+      "+ dispute(): void",
+      "+ withdraw(): void"
+    ],
+    "external": false
+  },
+  {
+    "page": "practice-evidence",
+    "name": "LearningAttempt",
+    "attributes": [
+      "− id: Guid; operationId: Guid",
+      "− answer: Answer",
+      "− submittedAt: Instant"
+    ],
+    "operations": [
+      "+ submit(): ExerciseResult"
+    ],
+    "external": false
+  },
+  {
+    "page": "practice-evidence",
+    "name": "SessionItem",
+    "attributes": [
+      "− id: Guid; order: Int",
+      "− exerciseVersionId: Guid",
+      "− outcome: ItemOutcome"
+    ],
+    "operations": [
+      "+ skip(): void"
+    ],
+    "external": false
+  },
+  {
+    "page": "practice-evidence",
+    "name": "ProfileProjection",
+    "attributes": [
+      "− ownerId: Guid",
+      "− conceptId: Guid",
+      "− calculatedAt: Instant"
+    ],
+    "operations": [
+      "+ rebuild(observations): void"
+    ],
+    "external": false
+  },
+  {
+    "page": "practice-evidence",
+    "name": "ExerciseResult",
+    "attributes": [
+      "− kind: ResultKind",
+      "− score: Decimal?",
+      "− evaluatorVersion: String"
+    ],
+    "operations": [
+      "+ explain(): String"
+    ],
+    "external": false
+  },
+  {
+    "page": "practice-evidence",
+    "name": "AssistanceEvent",
+    "attributes": [
+      "− kind: AssistanceKind",
+      "− occurredAt: Instant"
+    ],
+    "operations": [
+      "+ record(): void"
+    ],
+    "external": false
+  },
+  {
+    "page": "work-experience",
+    "name": "WorkEpisode",
+    "attributes": [
+      "− id: Guid; ownerId: Guid",
+      "− context: String",
+      "− contribution: String",
+      "− archived: Boolean"
+    ],
+    "operations": [
+      "+ reviseContext(): ContextRevision",
+      "+ archive(): void"
+    ],
+    "external": false
+  },
+  {
+    "page": "work-experience",
+    "name": "ReflectionSession",
+    "attributes": [
+      "− id: Guid; ownerId: Guid",
+      "− contextRevisionId: Guid",
+      "− openQuestions: String[]"
+    ],
+    "operations": [
+      "+ discuss(): void"
+    ],
+    "external": false
+  },
+  {
+    "page": "work-experience",
+    "name": "ReviewAcknowledgement",
+    "attributes": [
+      "− contextRevisionId: Guid",
+      "− discussionRevisionId: Guid",
+      "− acknowledgedBy: Guid",
+      "− acknowledgedAt: Instant"
+    ],
+    "operations": [
+      "+ recordExactRevision(): void"
+    ],
+    "external": false
+  },
+  {
+    "page": "work-experience",
+    "name": "ExperienceEntry",
+    "attributes": [
+      "− id: Guid; ownerId: Guid",
+      "− sourceEpisodeId: Guid?"
+    ],
+    "operations": [
+      "+ createRevision(): ExperienceRevision"
+    ],
+    "external": false
+  },
+  {
+    "page": "work-experience",
+    "name": "ExperienceRevision",
+    "attributes": [
+      "− id: Guid; revision: Int",
+      "− context: String; actions: String",
+      "− contribution: String",
+      "− outcome: String"
+    ],
+    "operations": [
+      "+ createSuccessor(): Revision"
+    ],
+    "external": false
+  },
+  {
+    "page": "work-experience",
+    "name": "ExperienceApproval",
+    "attributes": [
+      "− revisionId: Guid",
+      "− ownerId: Guid",
+      "− contentHash: String",
+      "− approvedAt: Instant"
+    ],
+    "operations": [
+      "+ approveExactRevision(): void"
+    ],
+    "external": false
+  },
+  {
+    "page": "work-experience",
+    "name": "EvidenceObservation «ref»",
+    "attributes": [
+      "− id: Guid",
+      "− sourceId: Guid; status: Status"
+    ],
+    "operations": [
+      "+ dispute(): void"
+    ],
+    "external": true
+  },
+  {
+    "page": "work-experience",
+    "name": "PresentationRevision",
+    "attributes": [
+      "− id: Guid; content: String",
+      "− experienceRevisionId: Guid"
+    ],
+    "operations": [
+      "+ createSuccessor(): Revision",
+      "+ exportReviewed(): File"
+    ],
+    "external": false
+  },
+  {
+    "page": "work-experience",
+    "name": "PresentationReview",
+    "attributes": [
+      "− presentationRevisionId: Guid",
+      "− ownerId: Guid",
+      "− reviewedAt: Instant"
+    ],
+    "operations": [
+      "+ reviewExactRevision(): void"
+    ],
+    "external": false
+  },
+  {
+    "page": "identity-sync",
+    "name": "UserAccount",
+    "attributes": [
+      "− id: Guid; email: String",
+      "− status: AccountStatus",
+      "− locale: String"
+    ],
+    "operations": [
+      "+ changeProfile(): void",
+      "+ deactivate(): void"
+    ],
+    "external": false
+  },
+  {
+    "page": "identity-sync",
+    "name": "Role",
+    "attributes": [
+      "− id: Guid",
+      "− name: RoleName"
+    ],
+    "operations": [
+      "+ allows(action): Boolean"
+    ],
+    "external": false
+  },
+  {
+    "page": "identity-sync",
+    "name": "PrivacySettings",
+    "attributes": [
+      "− ownerId: Guid",
+      "− allowedContext: String[]"
+    ],
+    "operations": [
+      "+ grant(scope): void",
+      "+ revoke(scope): void"
+    ],
+    "external": false
+  },
+  {
+    "page": "identity-sync",
+    "name": "ClientDevice",
+    "attributes": [
+      "− id: Guid; ownerId: Guid",
+      "− changeCursor: String"
+    ],
+    "operations": [
+      "+ register(): void"
+    ],
+    "external": false
+  },
+  {
+    "page": "identity-sync",
+    "name": "LocalOperation",
+    "attributes": [
+      "− operationId: Guid",
+      "− resourceId: Guid",
+      "− expectedVersion: String",
+      "− payload: Json; state: SyncState"
+    ],
+    "operations": [
+      "+ queue(): void",
+      "+ retrySameId(): void"
+    ],
+    "external": false
+  },
+  {
+    "page": "identity-sync",
+    "name": "OperationReceipt",
+    "attributes": [
+      "− ownerId: Guid",
+      "− operationId: Guid",
+      "− payloadHash: String",
+      "− status: ReceiptStatus"
+    ],
+    "operations": [
+      "+ replayResult(): Json"
+    ],
+    "external": false
+  },
+  {
+    "page": "identity-sync",
+    "name": "OfflinePackage",
+    "attributes": [
+      "− id: Guid; version: Int",
+      "− contentHash: String",
+      "− manifest: VersionRef[]"
+    ],
+    "operations": [
+      "+ verifyIntegrity(): Boolean",
+      "+ activate(): void"
+    ],
+    "external": false
+  }
+]
