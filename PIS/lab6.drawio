@@ -1,0 +1,252 @@
+<mxfile host="app.diagrams.net" compressed="false" pages="2">
+  <diagram id="components" name="12 Диаграмма компонентов">
+    <mxGraphModel dx="2145" dy="1312" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1550" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="web" kind="component" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=25;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=module;align=center;spacingLeft=20;" value="Веб-клиент / PWA&#xa;React + TypeScript" vertex="1">
+          <mxGeometry height="125" width="400" x="60" y="180" as="geometry" />
+        </mxCell>
+        <mxCell id="local" kind="component" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=24;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=module;align=center;spacingLeft=20;" value="Автономное хранилище&#xa;IndexedDB: пакеты и операции" vertex="1">
+          <mxGeometry height="125" width="400" x="60" y="450" as="geometry" />
+        </mxCell>
+        <mxCell id="agent" kind="component" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=24;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=module;align=center;spacingLeft=20;" value="Локальный агент&#xa;.NET" vertex="1">
+          <mxGeometry height="125" width="400" x="60" y="790" as="geometry" />
+        </mxCell>
+        <mxCell id="server" kind="frame" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=26;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;rounded=0;align=center;verticalAlign=top;spacingTop=14;fillColor=none;fontStyle=1;" value="Сервер Sensei++ ASP.NET Core" vertex="1">
+          <mxGeometry height="1060" width="1250" x="580" y="135" as="geometry" />
+        </mxCell>
+        <mxCell id="api" kind="interface" parent="server" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=24;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;rounded=0;align=center;" value="«interface»&#xa;HTTPS JSON API /api/v1" vertex="1">
+          <mxGeometry height="80" width="1120" x="50" y="65" as="geometry" />
+        </mxCell>
+        <mxCell id="identity" kind="component" parent="server" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=module;align=center;spacingLeft=20;" value="Identity&#xa;Вход, роли, приватность" vertex="1">
+          <mxGeometry height="120" width="310" x="50" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="learning" kind="component" parent="server" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=module;align=center;spacingLeft=20;" value="Learning&#xa;Контент, практика, проверка" vertex="1">
+          <mxGeometry height="120" width="310" x="440" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="work" kind="component" parent="server" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=module;align=center;spacingLeft=20;" value="WorkReflection&#xa;Контекст и обсуждения" vertex="1">
+          <mxGeometry height="120" width="310" x="830" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="sync" kind="component" parent="server" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=22;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=module;align=center;spacingLeft=20;" value="ClientSync (целевой)&#xa;Пакеты, повторы, конфликты" vertex="1">
+          <mxGeometry height="120" width="310" x="50" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="evidence" kind="component" parent="server" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=module;align=center;spacingLeft=20;" value="Evidence&#xa;Наблюдения и профиль" vertex="1">
+          <mxGeometry height="120" width="310" x="440" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="experience" kind="component" parent="server" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=module;align=center;spacingLeft=20;" value="Experience&#xa;Опыт и представления" vertex="1">
+          <mxGeometry height="120" width="310" x="830" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="persist" kind="component" parent="server" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=module;align=center;spacingLeft=20;" value="Persistence&#xa;EF Core / Npgsql / Unit of Work" vertex="1">
+          <mxGeometry height="120" width="510" x="50" y="820" as="geometry" />
+        </mxCell>
+        <mxCell id="ai" kind="component" parent="server" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=module;align=center;spacingLeft=20;" value="Задания и адаптер ИИ&#xa;BackgroundService / HTTP client" vertex="1">
+          <mxGeometry height="120" width="460" x="680" y="820" as="geometry" />
+        </mxCell>
+        <mxCell id="db" kind="component" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=24;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=module;align=center;spacingLeft=20;" value="PostgreSQL&#xa;Данные модулей и чеки операций" vertex="1">
+          <mxGeometry height="110" width="500" x="680" y="1260" as="geometry" />
+        </mxCell>
+        <mxCell id="provider" kind="component" parent="1" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=24;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=module;align=center;spacingLeft=20;" value="Внешний ИИ-провайдер&#xa;только разрешённый контекст" vertex="1">
+          <mxGeometry height="110" width="480" x="1350" y="1260" as="geometry" />
+        </mxCell>
+        <mxCell id="components-e1" edge="1" parent="1" relation="dependency" source="web" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=open;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=1;exitY=0.5;entryX=0;entryY=0.5;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;" target="api" value="HTTPS / JSON">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-15" as="offset" />
+            <Array as="points">
+              <mxPoint x="500" y="242" />
+              <mxPoint x="500" y="240" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="components-e2" edge="1" parent="1" relation="dependency" source="web" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=open;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;" target="local" value="локальный API">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="components-e3" edge="1" parent="1" relation="dependency" source="agent" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=open;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=1;exitY=0.5;entryX=0;entryY=1;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;" target="api" value="HTTPS / выбранные&#xa;события">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-180" y="136.8067224154613" as="offset" />
+            <Array as="points">
+              <mxPoint x="520" y="852" />
+              <mxPoint x="520" y="285" />
+              <mxPoint x="610" y="285" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="components-e4" edge="1" parent="1" relation="dependency" source="api" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=open;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;" target="identity" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-15" as="offset" />
+            <Array as="points">
+              <mxPoint x="1190" y="320" />
+              <mxPoint x="785" y="320" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="components-e5" edge="1" parent="1" relation="dependency" source="api" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=open;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;" target="learning" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-15" as="offset" />
+            <Array as="points">
+              <mxPoint x="1190" y="320" />
+              <mxPoint x="1175" y="320" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="components-e6" edge="1" parent="1" relation="dependency" source="api" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=open;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;" target="work" value="">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-15" as="offset" />
+            <Array as="points">
+              <mxPoint x="1190" y="320" />
+              <mxPoint x="1565" y="320" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="components-e7" edge="1" parent="1" relation="dependency" source="learning" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=open;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;" target="evidence" value="IEvidenceWriter">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="components-e8" edge="1" parent="1" relation="dependency" source="work" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=open;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;" target="experience" value="IExperienceDraft">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="components-e9" edge="1" parent="1" relation="dependency" source="experience" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=open;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=0;exitY=0.5;entryX=1;entryY=0.5;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;" target="evidence" value="IEvidenceReader">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-100" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="components-e10" edge="1" parent="1" relation="dependency" source="sync" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=open;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=0.5;exitY=0;entryX=0;entryY=0.6;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;" target="learning" value="ILearningCommands">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-15" as="offset" />
+            <Array as="points">
+              <mxPoint x="785" y="565" />
+              <mxPoint x="970" y="565" />
+              <mxPoint x="970" y="417" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="components-e11" edge="1" parent="1" relation="dependency" source="evidence" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=open;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;" target="persist" value="IRepository / IUnitOfWork">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-15" as="offset" />
+            <Array as="points">
+              <mxPoint x="1175" y="840" />
+              <mxPoint x="885" y="840" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="components-e12" edge="1" parent="1" relation="dependency" source="experience" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=open;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;" target="ai" value="IDraftGenerator">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="components-e13" edge="1" parent="1" relation="dependency" source="persist" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=open;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;" target="db" value="Npgsql / SQL">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="components-e14" edge="1" parent="1" relation="dependency" source="ai" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=open;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;dashed=1;dashPattern=6 4;" target="provider" value="HTTPS / JSON (опц.)">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-15" as="offset" />
+          </mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="deployment" name="13 Диаграмма развёртывания">
+    <mxGraphModel dx="1900" dy="1560" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1900" pageHeight="1560" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="13 Диаграмма развёртывания" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=30;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;text;strokeColor=none;fillColor=none;align=center;fontStyle=1;" vertex="1" parent="1" kind="text">
+          <mxGeometry x="35" y="18" width="1830" height="44" as="geometry" />
+        </mxCell>
+        <mxCell id="subtitle" value="ЛР6 · вариант размещения для небольшой группы; характеристики сервера предварительные" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;text;strokeColor=none;fillColor=none;align=center;" vertex="1" parent="1" kind="text">
+          <mxGeometry x="35" y="65" width="1830" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="footer" value="Sensei++  |  UML: проектная модель «как будет»  |  ПИС · лабораторные работы 4-6" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=18;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;text;strokeColor=none;fillColor=none;align=center;" vertex="1" parent="1" kind="text">
+          <mxGeometry x="35" y="1513" width="1830" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="client" value="«device»&#xa;Компьютер / смартфон пользователя" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=25;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=cube;size=16;direction=south;align=center;verticalAlign=top;spacingTop=23;" vertex="1" parent="1" kind="node">
+          <mxGeometry x="70" y="170" width="560" height="770" as="geometry" />
+        </mxCell>
+        <mxCell id="browser" value="«executionEnvironment»&#xa;Современный веб-браузер" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;rounded=0;align=center;verticalAlign=top;spacingTop=12;" vertex="1" parent="client" kind="runtime">
+          <mxGeometry x="40" y="115" width="470" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="spa" value="«artifact»&#xa;React SPA / PWA bundle" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;rounded=0;align=center;" vertex="1" parent="browser" kind="artifact">
+          <mxGeometry x="35" y="85" width="400" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="idb" value="«executionEnvironment»&#xa;IndexedDB / Cache Storage" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;rounded=0;align=center;verticalAlign=top;spacingTop=12;" vertex="1" parent="client" kind="runtime">
+          <mxGeometry x="40" y="340" width="470" height="115" as="geometry" />
+        </mxCell>
+        <mxCell id="agent-runtime" value="«executionEnvironment»&#xa;.NET 10 · только ПК (опц.)" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;rounded=0;align=center;verticalAlign=top;spacingTop=12;" vertex="1" parent="client" kind="runtime">
+          <mxGeometry x="40" y="525" width="470" height="185" as="geometry" />
+        </mxCell>
+        <mxCell id="agent-exe" value="«artifact»&#xa;Sensei.LocalAgent" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=22;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;rounded=0;align=center;" vertex="1" parent="agent-runtime" kind="artifact">
+          <mxGeometry x="25" y="95" width="420" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="server" value="«device» Сервер приложений и БД&#xa;4 ядра · 16 ГБ RAM · ≥20 ГБ свободно" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=25;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=cube;size=16;direction=south;align=center;verticalAlign=top;spacingTop=23;" vertex="1" parent="1" kind="node">
+          <mxGeometry x="820" y="170" width="1000" height="850" as="geometry" />
+        </mxCell>
+        <mxCell id="dotnet" value="«executionEnvironment»&#xa;.NET 10 / ASP.NET Core (Kestrel)" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=24;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;rounded=0;align=center;verticalAlign=top;spacingTop=12;" vertex="1" parent="server" kind="runtime">
+          <mxGeometry x="50" y="135" width="880" height="295" as="geometry" />
+        </mxCell>
+        <mxCell id="host" value="«artifact» Sensei.Host&#xa;API + Identity + Learning + WorkReflection&#xa;Evidence + Experience + ClientSync (целевой)" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=24;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;rounded=0;align=center;" vertex="1" parent="dotnet" kind="artifact">
+          <mxGeometry x="40" y="85" width="800" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="webdist" value="«artifact»&#xa;Статический клиент (wwwroot)" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;rounded=0;align=center;" vertex="1" parent="dotnet" kind="artifact">
+          <mxGeometry x="40" y="220" width="390" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="pg" value="«executionEnvironment»&#xa;PostgreSQL 18" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=24;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;rounded=0;align=center;verticalAlign=top;spacingTop=12;" vertex="1" parent="server" kind="runtime">
+          <mxGeometry x="50" y="525" width="880" height="245" as="geometry" />
+        </mxCell>
+        <mxCell id="database" value="«artifact»&#xa;База Sensei: схемы модулей, задания, чеки" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=24;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;rounded=0;align=center;" vertex="1" parent="pg" kind="artifact">
+          <mxGeometry x="40" y="90" width="800" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="backup" value="«device» Отдельное хранилище&#xa;Существующий диск / сетевой ресурс" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=24;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=cube;size=16;direction=south;align=center;verticalAlign=top;spacingTop=23;" vertex="1" parent="1" kind="node">
+          <mxGeometry x="70" y="1090" width="560" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="dump" value="«artifact»&#xa;Зашифрованная резервная копия" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=24;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;rounded=0;align=center;" vertex="1" parent="backup" kind="artifact">
+          <mxGeometry x="40" y="115" width="470" height="95" as="geometry" />
+        </mxCell>
+        <mxCell id="external" value="«external device»&#xa;Опциональный ИИ-провайдер" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=24;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=cube;size=16;direction=south;align=center;verticalAlign=top;spacingTop=23;" vertex="1" parent="1" kind="node">
+          <mxGeometry x="1190" y="1130" width="630" height="230" as="geometry" />
+        </mxCell>
+        <mxCell id="ai-service" value="«executionEnvironment»&#xa;HTTPS API" style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=23;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;rounded=0;align=center;verticalAlign=top;spacingTop=12;" vertex="1" parent="external" kind="runtime">
+          <mxGeometry x="45" y="105" width="540" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="deployment-e1" value="HTTPS / TLS · TCP 443&#xa;SPA + JSON /api/v1" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=none;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=1;exitY=0.25;entryX=0;entryY=0.22647058823529412;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="client" target="server" relation="association">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="0" y="-35" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="deployment-e2" value="SQL / Npgsql · TCP 5432&#xa;локальное соединение" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=none;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=0.75;exitY=1;entryX=0.75;entryY=0;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="host" target="database" relation="association">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="150" y="0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="deployment-e3" value="локальный browser API" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=none;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=0.5;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="browser" target="idb" relation="association">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="145" y="0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="deployment-e4" value="pg_dump → шифрование → копия&#xa;файловый ввод-вывод / SMB 3" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=none;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=0;exitY=0.8;entryX=1;entryY=0.45;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="server" target="backup" relation="association">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-170" y="0" as="offset" />
+            <Array as="points">
+              <mxPoint x="720" y="850" />
+              <mxPoint x="720" y="1212" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="deployment-e5" value="HTTPS / TLS · TCP 443 (опц.)" style="edgeStyle=none;rounded=0;html=0;fontFamily=Times New Roman;fontSize=20;strokeColor=#000000;strokeWidth=1.2;endArrow=none;endFill=0;startArrow=none;startFill=1;startSize=13;endSize=13;exitX=0.7;exitY=1;entryX=0.5;entryY=0;exitPerimeter=0;entryPerimeter=0;labelBackgroundColor=#FFFFFF;" edge="1" parent="1" source="server" target="external" relation="association">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="160" y="0" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="notes" value="Сервер и клиент могут работать на одном учебном компьютере. БД не публикуется клиентам.&#xa;Копия — не реже 1 раза в сутки; целевые RPO ≤ 24 ч и RTO ≤ 2 ч требуют проверки восстановлением.&#xa;ОС сервера: Windows или Linux. Автономные пакеты требуют свободного места на клиенте; GPU для базового обучения не нужен." style="whiteSpace=wrap;html=0;fontFamily=Times New Roman;fontSize=21;fontColor=#000000;fontStyle=0;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.2;shape=note;align=left;spacing=12;" vertex="1" parent="1" kind="note">
+          <mxGeometry x="45" y="1400" width="1810" height="95" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

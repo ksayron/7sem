@@ -1,0 +1,89 @@
+{
+  "source_integrity": {
+    "checked": 21,
+    "unchanged": true
+  },
+  "files": {
+    "lab4.drawio": {
+      "pages": 6,
+      "vertices": 89,
+      "edges": 53,
+      "routes_checked": 0,
+      "previews": [
+        "uml-previews\\uc-overview.png",
+        "uml-previews\\uc-actors.png",
+        "uml-previews\\uc-learning.png",
+        "uml-previews\\uc-work-experience.png",
+        "uml-previews\\uc-content-operations.png",
+        "uml-previews\\uc-access-offline.png"
+      ]
+    },
+    "lab5.drawio": {
+      "pages": 5,
+      "vertices": 186,
+      "edges": 39,
+      "routes_checked": 39,
+      "previews": [
+        "uml-previews\\packages.png",
+        "uml-previews\\content.png",
+        "uml-previews\\practice-evidence.png",
+        "uml-previews\\work-experience.png",
+        "uml-previews\\identity-sync.png"
+      ]
+    },
+    "lab6.drawio": {
+      "pages": 2,
+      "vertices": 39,
+      "edges": 19,
+      "routes_checked": 19,
+      "previews": [
+        "uml-previews\\components.png",
+        "uml-previews\\deployment.png"
+      ]
+    }
+  },
+  "limitations": [
+    "PNG previews are rendered from saved mxGraph XML with the included renderer; they are not screenshots of diagrams.net.",
+    "UML classes and optional offline/AI capabilities describe the target design, not a claim of completed implementation."
+  ],
+  "use_cases": {
+    "unique": 36,
+    "roles": [
+      "admin",
+      "author",
+      "dev"
+    ],
+    "includes": 7,
+    "extends": 7
+  },
+  "requirements_covered": [
+    "FR01",
+    "FR02",
+    "FR03",
+    "FR04",
+    "FR05",
+    "FR06",
+    "FR07",
+    "FR08",
+    "FR09",
+    "FR10",
+    "FR11",
+    "FR12",
+    "FR13",
+    "FR14",
+    "FR15",
+    "FR16",
+    "FR17",
+    "FR18",
+    "FR19",
+    "FR20",
+    "FR21",
+    "FR22",
+    "FR23",
+    "FR24"
+  ],
+  "classes": {
+    "unique": 30,
+    "cards": 33
+  }
+}
