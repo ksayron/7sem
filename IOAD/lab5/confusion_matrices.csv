@@ -1,0 +1,5 @@
+model,TN,FP,FN,TP
+LogisticRegression,346,165,132,515
+SVC,341,170,121,526
+DecisionTree,341,170,196,451
+kNN,348,163,155,492
