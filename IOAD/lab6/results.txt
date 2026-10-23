@@ -1,0 +1,113 @@
+1) Объекты — IT-вакансии, X: (5790, 63)
+Признаки:
+ ['age_days', 'title_len', 'salary_from_rub', 'is_on_site', 'is_remote', 'is_hybrid', 'is_field_work', 'internship', 'night_shifts', 'accept_temporary', 'accept_labor_contract', 'response_letter_required', 'salary_shown', 'role_1с', 'role_devops и инфраструктура', 'role_qa и тестирование', 'role_безопасность', 'role_бэкенд', 'role_данные и аналитика', 'role_дизайн', 'role_другое', 'role_мобильная разработка', 'role_управление разработкой', 'role_фронтенд', 'experience_1-3 года', 'experience_3-6 лет', 'experience_Без опыта', 'experience_Более 6 лет', 'collected_area_id_1', 'collected_area_id_2', 'collected_area_id_22', 'collected_area_id_3', 'collected_area_id_4', 'collected_area_id_53', 'collected_area_id_66', 'collected_area_id_76', 'collected_area_id_88', 'employment_form_Вахта', 'employment_form_Подработка', 'employment_form_Полная занятость', 'employment_form_Проектная работа', 'employment_form_Частичная занятость', 'salary_period_За месяц', 'salary_period_За услугу', 'salary_period_За час', 'salary_period_не указано', 'gross_False', 'gross_True', 'gross_не указано', 'work_schedule_2/2', 'work_schedule_5/2', 'work_schedule_5/2,Свободный', 'work_schedule_Другое', 'work_schedule_Свободный', 'work_schedule_другое', 'work_schedule_не указано', 'working_hours_12 часов', 'working_hours_8 часов', 'working_hours_8 часов,По договорённости', 'working_hours_9 часов', 'working_hours_Другое', 'working_hours_По договорённости', 'working_hours_другое']
+Метка overloaded и дата исключены; роль уже закодирована в role_*.
+2) Пропусков: 0 — заполнение и кодирование выполнены при сборке CSV.
+3) Диапазон после MinMax: 0.0 1.0000000000000002
+4) По локтю выбрано k= 3
+График сохранён: step4_elbow.png
+График сохранён: step5_kmeans.png
+6) По дендрограмме выбрано k= 2 высота разреза= 76.071
+График сохранён: step6_dendrogram.png
+График сохранён: step7_hierarchical.png
+
+8) K-means качество отдельных кластеров:
+          count  mean_silhouette  negative_share
+cluster                                        
+0         1743           0.1451          0.0000
+1         2151           0.1681          0.0000
+2         1896           0.0615          0.0142
+
+8) Ward качество отдельных кластеров:
+          count  mean_silhouette  negative_share
+cluster                                        
+0         4047           0.2777             0.0
+1         1743           0.1691             0.0
+График сохранён: step8_silhouette.png
+
+Сравнение методов:
+          clusters  silhouette  davies_bouldin  calinski_harabasz
+method                                                          
+K-means         3      0.1263          2.4657          1055.3692
+Ward            2      0.2450          1.7837          1564.4332
+Лучший по силуэту: Ward
+Силуэт и Calinski-Harabasz: больше лучше; Davies-Bouldin: меньше лучше.
+
+Средние исходные показатели kmeans :
+          age_days  salary_from_rub  is_remote  is_hybrid
+cluster                                                 
+0          -0.111            0.143      0.361      0.225
+1           0.055           -0.062      0.380      0.466
+2           0.040           -0.062      0.336      0.436
+
+Средние исходные показатели ward :
+          age_days  salary_from_rub  is_remote  is_hybrid
+cluster                                                 
+0           0.048           -0.062      0.360      0.452
+1          -0.111            0.143      0.361      0.225
+9) Выбрана строка CSV: 0 дата: 2026-06-10 роль: управление разработкой
+Кластер K-means: 1 кластер Ward: 0
+Показатели выбранной вакансии:
+ age_days                                   2.218
+title_len                                  1.467
+salary_from_rub                           -0.062
+is_on_site                                 1.000
+is_remote                                  0.000
+is_hybrid                                  0.000
+is_field_work                              0.000
+internship                                 0.000
+night_shifts                               0.000
+accept_temporary                           0.000
+accept_labor_contract                      0.000
+response_letter_required                   0.000
+salary_shown                               0.000
+role_1с                                    0.000
+role_devops и инфраструктура               0.000
+role_qa и тестирование                     0.000
+role_безопасность                          0.000
+role_бэкенд                                0.000
+role_данные и аналитика                    0.000
+role_дизайн                                0.000
+role_другое                                0.000
+role_мобильная разработка                  0.000
+role_управление разработкой                1.000
+role_фронтенд                              0.000
+experience_1-3 года                        0.000
+experience_3-6 лет                         1.000
+experience_Без опыта                       0.000
+experience_Более 6 лет                     0.000
+collected_area_id_1                        1.000
+collected_area_id_2                        0.000
+collected_area_id_22                       0.000
+collected_area_id_3                        0.000
+collected_area_id_4                        0.000
+collected_area_id_53                       0.000
+collected_area_id_66                       0.000
+collected_area_id_76                       0.000
+collected_area_id_88                       0.000
+employment_form_Вахта                      0.000
+employment_form_Подработка                 0.000
+employment_form_Полная занятость           1.000
+employment_form_Проектная работа           0.000
+employment_form_Частичная занятость        0.000
+salary_period_За месяц                     0.000
+salary_period_За услугу                    0.000
+salary_period_За час                       0.000
+salary_period_не указано                   1.000
+gross_False                                0.000
+gross_True                                 0.000
+gross_не указано                           1.000
+work_schedule_2/2                          0.000
+work_schedule_5/2                          1.000
+work_schedule_5/2,Свободный                0.000
+work_schedule_Другое                       0.000
+work_schedule_Свободный                    0.000
+work_schedule_другое                       0.000
+work_schedule_не указано                   0.000
+working_hours_12 часов                     0.000
+working_hours_8 часов                      1.000
+working_hours_8 часов,По договорённости    0.000
+working_hours_9 часов                      0.000
+working_hours_Другое                       0.000
+working_hours_По договорённости            0.000
+working_hours_другое                       0.000
