@@ -1,0 +1,64 @@
+1) train: (4632, 63) test: (1158, 63)
+Готовый CSV: пропусков 0 — повторное заполнение и кодирование не нужны.
+График сохранён: step2_all_weights.png
+2) raw_PC1 наибольшие веса:
+ age_days                    0.6451
+salary_from_rub            -0.3467
+salary_shown               -0.3070
+salary_period_не указано    0.3070
+gross_не указано            0.3070
+salary_period_За месяц     -0.3062
+gross_False                -0.2048
+gross_True                 -0.1022
+collected_area_id_1         0.0904
+is_hybrid                   0.0874
+2) raw_PC2 наибольшие веса:
+ title_len                      0.8257
+salary_from_rub                0.4793
+age_days                       0.2488
+experience_1-3 года           -0.0854
+role_управление разработкой    0.0707
+experience_3-6 лет             0.0594
+experience_Более 6 лет         0.0452
+collected_area_id_1            0.0415
+role_данные и аналитика       -0.0316
+is_remote                     -0.0315
+2) scaled_PC1 наибольшие веса:
+ salary_period_не указано            0.3822
+gross_не указано                    0.3822
+salary_shown                       -0.3822
+salary_period_За месяц             -0.3768
+gross_False                        -0.2896
+gross_True                         -0.1964
+working_hours_8 часов               0.1902
+accept_temporary                   -0.1473
+employment_form_Полная занятость    0.1453
+work_schedule_5/2                   0.1387
+2) scaled_PC2 наибольшие веса:
+ working_hours_8 часов                  0.3290
+employment_form_Полная занятость       0.3245
+work_schedule_5/2                      0.3239
+employment_form_Частичная занятость   -0.2764
+working_hours_По договорённости       -0.2258
+work_schedule_Свободный               -0.2248
+working_hours_другое                  -0.2134
+salary_period_За месяц                 0.1971
+salary_shown                           0.1844
+salary_period_не указано              -0.1844
+График сохранён: step2_top_weights.png
+Дисперсия двух компонент в шкалах готового CSV: [0.14852806 0.1355606 ]
+Дисперсия двух компонент после StandardScaler: [0.08953432 0.06186747]
+График сохранён: step3_pca_classes.png
+4) SVC без PCA: accuracy test= 0.7271 fit секунд= 1.055
+5) Для 90% дисперсии нужно компонент: 42 из 63
+Сохранено: 0.9053
+График сохранён: step5_variance.png
+
+Итог:
+            features  accuracy     auc  pca_seconds  svc_seconds  total_seconds
+model                                                                         
+SVC              63    0.7271  0.8120       0.0000       1.0551         1.0551
+PCA + SVC        42    0.7237  0.8061       0.0201       0.8982         0.9183
+Изменение accuracy: -0.0035
+Отношение времени SVC / (PCA + SVC): 1.149
+График сохранён: step5_comparison.png
