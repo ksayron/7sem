@@ -1,0 +1,35 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "policy": "sticky",
+      "passed": true,
+      "instances": [
+        "WS01-01-B",
+        "WS01-01-B",
+        "WS01-01-B",
+        "WS01-01-B",
+        "WS01-01-B"
+      ],
+      "viewportWidths": [
+        1440,
+        390
+      ]
+    },
+    {
+      "policy": "round-robin",
+      "passed": true,
+      "instances": [
+        "WS01-02-B",
+        "WS01-02-A",
+        "WS01-02-B",
+        "WS01-02-A",
+        "WS01-02-B"
+      ],
+      "viewportWidths": [
+        1440,
+        390
+      ]
+    }
+  ]
+}

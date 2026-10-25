@@ -9,8 +9,8 @@ if (mode is not ("sticky" or "round-robin"))
 var sticky = mode == "sticky";
 var destinations = new Dictionary<string, DestinationConfig>
 {
-    ["replica-a"] = new() { Address = builder.Configuration["BACKEND_A"] ?? "http://localhost:8111/" },
-    ["replica-b"] = new() { Address = builder.Configuration["BACKEND_B"] ?? "http://localhost:8112/" }
+    ["replica-a"] = new() { Address = builder.Configuration["BACKEND_A"] ?? (sticky ? "http://localhost:8111/" : "http://localhost:8121/") },
+    ["replica-b"] = new() { Address = builder.Configuration["BACKEND_B"] ?? (sticky ? "http://localhost:8112/" : "http://localhost:8122/") }
 };
 builder.Services.AddReverseProxy().LoadFromMemory(
     [new RouteConfig { RouteId = "stack", ClusterId = "stack-cluster", Match = new RouteMatch { Path = "/stack" } }],

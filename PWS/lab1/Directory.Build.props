@@ -5,5 +5,8 @@
     <Nullable>enable</Nullable>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <UseSharedCompilation>false</UseSharedCompilation>
+    <!-- The demo is an embedded resource; single-file hosts need no external
+         static web assets manifest beside their executable. -->
+    <StaticWebAssetsEnabled Condition="'$(PublishSingleFile)' == 'true'">false</StaticWebAssetsEnabled>
   </PropertyGroup>
 </Project>

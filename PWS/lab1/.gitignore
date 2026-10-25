@@ -4,5 +4,6 @@ artifacts/publish/
 artifacts/*.log
 artifacts/local-processes.json
 artifacts/nuget/
+artifacts/offline-nuget/
 artifacts/download_runtime.py
 .env

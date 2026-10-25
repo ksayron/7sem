@@ -8,10 +8,10 @@ RUN dotnet publish src/${PROJECT}/${PROJECT}.csproj -c Release -r linux-x64 \
     -p:IncludeNativeLibrariesForSelfExtract=true -p:DebugType=None \
     -p:DebugSymbols=false -p:EnableCompressionInSingleFile=true \
     -m:1 -o /publish \
+    && ls -lh /publish \
     && test "$(find /publish -maxdepth 1 -type f | wc -l)" -eq 1 \
     && mv /publish/${PROJECT} /publish/service
 
-# Native OS dependencies only: no installed dotnet or ASP.NET runtime.
 FROM mcr.microsoft.com/dotnet/runtime-deps:10.0
 WORKDIR /app
 COPY --from=build --chown=app:app /publish/service ./service

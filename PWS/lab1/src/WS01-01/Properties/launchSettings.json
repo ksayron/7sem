@@ -4,9 +4,19 @@
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "INSTANCE_NAME": "WS01-01-A"
       },
-      "applicationUrl": "https://localhost:58033;http://localhost:58035"
+      "applicationUrl": "http://localhost:8111"
+    },
+    "WS01-01-B": {
+      "commandName": "Project",
+      "launchBrowser": false,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "INSTANCE_NAME": "WS01-01-B"
+      },
+      "applicationUrl": "http://localhost:8112"
     }
   }
 }

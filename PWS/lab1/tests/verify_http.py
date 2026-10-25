@@ -17,7 +17,7 @@ TRACE = []
 
 class Client:
     def __init__(self, port):
-        self.url = f"http://localhost:{port}"
+        self.url = f"http://127.0.0.1:{port}"
         self.cookies = http.cookiejar.CookieJar()
         self.opener = urllib.request.build_opener(
             urllib.request.ProxyHandler({}), urllib.request.HTTPCookieProcessor(self.cookies))
@@ -151,12 +151,12 @@ def cookie_portability():
     assert decoded == {"BaseValue": 40, "Stack": [2]}, decoded
     assert len(cookie.value) < 3000
     assert any(name.lower() == "httponly" for name in cookie._rest), cookie._rest
-    client.url = "http://localhost:8122"
+    client.url = "http://127.0.0.1:8122"
     state, instance, _ = client.request()
     assert state["RESULT"] == 42 and instance == "WS01-02-B"
     state, _, _ = client.request("PUT", "?ADD=7")
     assert state["RESULT"] == 47
-    client.url = "http://localhost:8121"
+    client.url = "http://127.0.0.1:8121"
     assert client.request()[0]["RESULT"] == 47
     cookie = next(cookie for cookie in client.cookies if cookie.name == "WS02.State")
     # Change the JSON payload while keeping the original signature.
@@ -180,11 +180,11 @@ def server_concurrency():
 def routing_and_ui():
     for port in (8101, 8102, 8111, 8112, 8121, 8122):
         opener = urllib.request.build_opener(urllib.request.ProxyHandler({}))
-        with opener.open(f"http://localhost:{port}/", timeout=10) as response:
+        with opener.open(f"http://127.0.0.1:{port}/", timeout=10) as response:
             html = response.read().decode()
             assert response.status == 200 and "Лабораторная 1" in html and "__MODE__" not in html
         for method, path, status in (("GET", "/missing", 404), ("PATCH", "/stack", 405)):
-            request = urllib.request.Request(f"http://localhost:{port}{path}", method=method)
+            request = urllib.request.Request(f"http://127.0.0.1:{port}{path}", method=method)
             try:
                 response = opener.open(request, timeout=10)
             except urllib.error.HTTPError as error:

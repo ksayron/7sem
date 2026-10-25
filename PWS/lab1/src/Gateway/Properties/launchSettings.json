@@ -4,9 +4,23 @@
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "GATEWAY_MODE": "sticky",
+        "BACKEND_A": "http://localhost:8111/",
+        "BACKEND_B": "http://localhost:8112/"
       },
-      "applicationUrl": "https://localhost:58037;http://localhost:58038"
+      "applicationUrl": "http://localhost:8101"
+    },
+    "Round Robin": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "GATEWAY_MODE": "round-robin",
+        "BACKEND_A": "http://localhost:8121/",
+        "BACKEND_B": "http://localhost:8122/"
+      },
+      "applicationUrl": "http://localhost:8102"
     }
   }
 }

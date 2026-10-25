@@ -1,0 +1,24 @@
+[
+  {
+    "Passed": true,
+    "Instances": [
+      "WS01-01-B",
+      "WS01-01-B",
+      "WS01-01-B",
+      "WS01-01-B"
+    ],
+    "RESULT": 15,
+    "Port": 8101
+  },
+  {
+    "Passed": true,
+    "Instances": [
+      "WS01-02-B",
+      "WS01-02-A",
+      "WS01-02-B",
+      "WS01-02-A"
+    ],
+    "RESULT": 15,
+    "Port": 8102
+  }
+]

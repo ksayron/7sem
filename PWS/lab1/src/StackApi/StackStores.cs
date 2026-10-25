@@ -25,8 +25,6 @@ public static class LabCookies
     };
 }
 
-// Only an opaque identifier goes to the client. The data lives in this process.
-// A per-session lock prevents lost updates when requests arrive concurrently.
 public sealed class ServerStackStore(IMemoryCache cache) : IStackStore
 {
     public const string CookieName = "WS01.Session";
@@ -52,7 +50,6 @@ public sealed class ServerStackStore(IMemoryCache cache) : IStackStore
             else
             {
                 entry = existing;
-                // Refresh the idle timeout; the session cookie lasts until browser closure.
                 cache.Set(id, entry, TimeSpan.FromMinutes(30));
             }
         }
@@ -67,13 +64,11 @@ public sealed class ServerStackStore(IMemoryCache cache) : IStackStore
     }
 }
 
-// Entire state travels in the cookie. Both replicas must use the same signing key.
-// The signature authenticates the bytes; it does not encrypt the state.
 public sealed class CookieStackStore(IConfiguration configuration) : IStackStore
 {
     public const string CookieName = "WS02.State";
     private readonly byte[] key = Encoding.UTF8.GetBytes(configuration["COOKIE_SIGNING_KEY"]
-        ?? "pws-lab1-local-demo-key-change-before-production");
+        ?? "secret-key");
 
     public StackState Apply(HttpContext context, Func<StackState, StackState> operation)
     {
@@ -87,17 +82,22 @@ public sealed class CookieStackStore(IConfiguration configuration) : IStackStore
 
     private StackState Read(string? cookie)
     {
-        if (cookie is null) return StackState.Empty();
+        if (cookie is null) 
+            return StackState.Empty();
         try
         {
-            if (cookie.Length > 3000) throw new FormatException();
+            if (cookie.Length > 3000) 
+                throw new FormatException();
             var parts = cookie.Split('.');
-            if (parts.Length != 2) throw new FormatException();
+            if (parts.Length != 2) 
+                throw new FormatException();
             var actual = WebEncoders.Base64UrlDecode(parts[1]);
             var expected = HMACSHA256.HashData(key, Encoding.UTF8.GetBytes(parts[0]));
-            if (!CryptographicOperations.FixedTimeEquals(actual, expected)) throw new FormatException();
+            if (!CryptographicOperations.FixedTimeEquals(actual, expected)) 
+                throw new FormatException();
             var state = JsonSerializer.Deserialize<StackState>(WebEncoders.Base64UrlDecode(parts[0]));
-            if (state?.Stack is null || state.Stack.Count > LabEndpoints.MaxStackSize) throw new FormatException();
+            if (state?.Stack is null || state.Stack.Count > LabEndpoints.MaxStackSize) 
+                throw new FormatException();
             return state;
         }
         catch (Exception error) when (error is FormatException or JsonException or ArgumentException)
