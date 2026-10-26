@@ -1,0 +1,45 @@
+const {chromium}=require('playwright');
+const assert=require('node:assert/strict');
+const fs=require('node:fs/promises');
+const path=require('node:path');
+(async()=>{
+    const folder=path.resolve('lab-results/streaming-replication-verification'); await fs.mkdir(folder,{recursive:true});
+    const browser=await chromium.launch({headless:true,channel:process.env.BURMALDA_BROWSER??'msedge'});
+    const errors=[],checks=[];
+    try {
+        const page=await browser.newPage({viewport:{width:1440,height:1000}}); page.on('pageerror',e=>errors.push(e.message));
+        await page.goto('http://localhost:5300/replication-lab');
+        await page.getByRole('button',{name:'Новый опыт',exact:true}).click();
+        await page.getByTestId('postgres').waitFor();
+        await page.getByRole('button',{name:'Полный цикл ЛР №5',exact:true}).waitFor();
+        const first=page.getByLabel('Экземпляр Client 1',{exact:true});
+        assert.notEqual(await first.inputValue(),'00000000-0000-0000-0000-000000000000');
+        assert.equal(await page.locator('select.rep-fault').count(),0); checks.push('real-catalog-copy-selector-and-role-panels');
+        await page.locator('.rep-join summary').click(); const id=await page.getByLabel('ID опыта',{exact:true}).inputValue();
+        const second=await browser.newPage({viewport:{width:1440,height:1000}}); second.on('pageerror',e=>errors.push(e.message));
+        await second.goto('http://localhost:5300/replication-lab'); await second.locator('.rep-join summary').click();
+        await second.getByLabel('ID опыта',{exact:true}).fill(id); await second.getByRole('button',{name:'Подключиться',exact:true}).click();
+        await second.getByTestId('postgres-replica').waitFor(); checks.push('two-windows-share-database-and-session');
+        const before=await page.getByTestId('active-instance').textContent();
+        await page.getByRole('button',{name:'Полный цикл ЛР №5',exact:true}).click();
+        await page.getByTestId('action-status').filter({hasText:'Completed'}).waitFor({timeout:360000});
+        assert.notEqual(await page.getByTestId('active-instance').textContent(),before);
+        await second.getByTestId('action-status').filter({hasText:'Completed'}).waitFor({timeout:30000});
+        assert.ok(await page.getByTestId('recovery-table').locator('tbody tr').count()>=9);
+        await page.getByTestId('consistency').filter({hasText:'Данные согласованы'}).waitFor({timeout:30000}); checks.push('ui-real-failover-rejoin-cycle-and-polled-progress');
+        const download=await page.getByRole('link',{name:'Скачать JSON',exact:true}).getAttribute('href');
+        const report=JSON.parse(Buffer.from(download.split(',')[1],'base64').toString()); assert.equal(report.id,id); assert.ok(report.milestones.length>=9); checks.push('json-download-measured-evidence');
+        await page.screenshot({path:path.join(folder,'cycle-desktop.png'),fullPage:true});
+        await page.setViewportSize({width:390,height:844});
+        const dimensions=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,width:innerWidth}));
+        assert.ok(dimensions.scroll<=dimensions.width,JSON.stringify(dimensions));
+        await page.getByRole('button',{name:'Обновить состояние',exact:true}).focus();
+        assert.equal(await page.getByRole('button',{name:'Обновить состояние',exact:true}).evaluate(e=>e===document.activeElement),true);
+        await page.screenshot({path:path.join(folder,'cycle-mobile.png'),fullPage:true}); checks.push('mobile-width-and-keyboard-focus');
+        await page.route('**/api/concurrency-lab/replication/**',r=>r.abort());
+        await page.getByRole('button',{name:'Обновить состояние',exact:true}).click(); await page.getByRole('alert').first().waitFor(); checks.push('network-error-visible-without-write-retry');
+        assert.deepEqual(errors,[]);
+        await fs.writeFile(path.join(folder,'ui-verification.json'),JSON.stringify({verifiedAtUtc:new Date().toISOString(),checks,pageErrors:errors,sessionId:id},null,2));
+        console.log(`[info] UI verification: ${checks.length} checks passed`);
+    } finally {await browser.close();}
+})().catch(e=>{console.error(e);process.exitCode=1;});

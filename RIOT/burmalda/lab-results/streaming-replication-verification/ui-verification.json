@@ -1,0 +1,13 @@
+{
+  "verifiedAtUtc": "2026-10-22T14:25:59.979Z",
+  "checks": [
+    "real-catalog-copy-selector-and-role-panels",
+    "two-windows-share-database-and-session",
+    "ui-real-failover-rejoin-cycle-and-polled-progress",
+    "json-download-measured-evidence",
+    "mobile-width-and-keyboard-focus",
+    "network-error-visible-without-write-retry"
+  ],
+  "pageErrors": [],
+  "sessionId": "0d05fbf5-3b57-4a20-8e08-627d06b65071"
+}

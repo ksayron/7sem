@@ -1,0 +1,9 @@
+{
+  "verifiedAtUtc": "2026-10-22T14:26:09.495Z",
+  "passed": true,
+  "checks": [
+    "instances/postgres-missing-required-fields-400",
+    "replication-missing-required-fields-400",
+    "update-missing-required-fields-400"
+  ]
+}

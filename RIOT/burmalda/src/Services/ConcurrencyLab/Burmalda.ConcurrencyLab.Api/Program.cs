@@ -8,12 +8,35 @@ builder.Services.AddSingleton<ExperimentStore>();
 builder.Services.AddHealthChecks();
 builder.Services.AddDbContextFactory<LabDbContext>(o => o.UseNpgsql(builder.Configuration.GetConnectionString("Database")));
 builder.Services.AddSingleton<DatabaseLabStore>();
+builder.Services.AddSingleton<IReplicationCluster, PostgresReplicationCluster>();
+builder.Services.AddSingleton(sp => new ReplicationLabStore(
+    builder.Configuration["ReplicationLab:JournalRoot"] ?? Path.Combine(PostgresReplicationCluster.ResolveRoot(builder.Configuration["ReplicationLab:ComposeRoot"]), ".artifacts", "streaming-replication"),
+    sp.GetRequiredService<IReplicationCluster>(), sp.GetRequiredService<ILogger<ReplicationLabStore>>(),
+    sp.GetRequiredService<IHostApplicationLifetime>().ApplicationStopping));
 
 var app = builder.Build();
 app.Lifetime.ApplicationStarted.Register(() => app.Logger.LogInformation("Laboratory ready · {Urls}", string.Join(", ", app.Urls)));
 app.Use(async (context, next) =>
 {
     try { await next(); }
+    catch (BadHttpRequestException) when (context.Request.Path.StartsWithSegments("/api/concurrency-lab/replication"))
+    {
+        context.Response.StatusCode = 400;
+        await context.Response.WriteAsJsonAsync(new { message = "Некорректный запрос. Проверьте JSON, ClientId, CopyId, Available и ExpectedVersion." });
+    }
+    catch (ReplicationLabException ex)
+    {
+        app.Logger.LogWarning("LR5 HTTP {Status}: {Message}", ex.Status, ex.Message);
+        context.Response.StatusCode = ex.Status;
+        await context.Response.WriteAsJsonAsync(new { message = ex.Message });
+    }
+    catch (Exception ex) when (context.Request.Path.StartsWithSegments("/api/concurrency-lab/replication") &&
+        ex is IOException or UnauthorizedAccessException or System.Text.Json.JsonException)
+    {
+        app.Logger.LogWarning("LR5 storage error: {Kind}", ex.GetType().Name);
+        context.Response.StatusCode = 503;
+        await context.Response.WriteAsJsonAsync(new { message = "Журнал координатора недоступен. Проверьте права доступа и состояние кластера." });
+    }
     catch (Exception ex) when (ex is LabNotFoundException or LabConflictException or DbUpdateException or System.Data.Common.DbException or TimeoutException)
     {
         var constraint = ex is Npgsql.PostgresException { SqlState: var code } && code.StartsWith("23", StringComparison.Ordinal) ||
@@ -30,6 +53,7 @@ if (app.Environment.IsDevelopment())
 {
     app.MapConcurrencyLab();
     app.MapDatabaseLab();
+    app.MapReplicationLab();
 }
 
 await app.RunAsync();

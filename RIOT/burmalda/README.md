@@ -36,7 +36,7 @@ docker compose up -d
 docker compose ps
 ```
 
-`docker-compose.yml` intentionally contains infrastructure only: PostgreSQL,
+`docker-compose.yml` intentionally contains infrastructure only: two PostgreSQL servers,
 RabbitMQ, Jaeger, and the OpenTelemetry Collector. Application services run as
 ordinary .NET processes. Consequently, rebuilding or stopping the solution does
 not restart infrastructure, and restarting infrastructure does not manage any
@@ -110,9 +110,33 @@ Lending Saga after a book request.
 ./tools/Stop-Lab.ps1
 ```
 
-Choose a free PostgreSQL port; 5432 is the normal default. The script provisions
+PostgreSQL host ports default to 5547 and 5548 (`-PostgresPort` / `-ReplicaPort`);
+both containers listen internally on 5432. The script provisions
 the isolated lab database on existing volumes. API logs use compact colored
 `[info]`, `[warn]`, `[error]` labels. See [the lab guide and measured results](docs/lab-4-database-transactions.md).
+
+## Replication and failover lab (LR5)
+
+`http://localhost:5300/replication-lab` uses two real PostgreSQL 17 servers in
+Compose with physical WAL streaming. It reads existing Catalog books and copies,
+updates copy availability transactionally, stops actual containers, promotes the
+standby, and rejoins the former primary with `pg_rewind`. The promoted server
+remains writable; application connections follow the current primary.
+
+```powershell
+./tools/Start-Lab.ps1 -ReplicationOnly
+dotnet run --project tools/ConcurrencyLab.Client --no-build -- rep-create
+# Use an actual Copy ID printed by rep-create:
+dotnet run --project tools/ConcurrencyLab.Client --no-build -- rep-cycle <copy-guid> 2
+./tools/Stop-Lab.ps1
+```
+
+Docker is required, including for `-ReplicationOnly`. Use `-Full` to run the
+business services and add Catalog data through the application. Existing database
+volumes are preserved; a new lab session creates only a journal. Physical
+replication includes every service database. See [the LR5 guide and measured
+results](docs/lab-5-replication-failover.md). Historical file-model evidence remains
+under `lab-results/replication-*`; current evidence uses `streaming-replication-*`.
 
 ## Administration and monitoring
 

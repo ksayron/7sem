@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "verifiedAtUtc": "2026-10-22T14:25:44.5961189+00:00",
+  "checks": [
+    "isolated-new-volumes",
+    "init-databases-and-replication-role",
+    "pg-basebackup-bootstrap",
+    "standby-recovery-mode",
+    "real-sql-wal-replay"
+  ],
+  "project": "burmalda-lr5-bootstrap-28120"
+}

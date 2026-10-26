@@ -13,6 +13,10 @@ try
 {
     switch (action)
     {
+        case "rep-create": case "rep-read": case "rep-update": case "rep-instance":
+        case "rep-sync": case "rep-pause": case "rep-resume": case "rep-report": case "rep-cycle":
+            await ReplicationCommands.Run(http, args);
+            break;
         case "db-create":
         {
             var mode = args.ElementAtOrDefault(1)?.ToLowerInvariant() switch
@@ -122,10 +126,10 @@ try
             WriteLog("info", $"JSON report: {clockFile}");
             break;
         }
-        default: throw new ArgumentException("Use compare [count] [delayMs], create <mode> <count> <delayMs>, join <id> <count> <label>, report <id>, or clock [clientSkewMs] [serverSkewMs].");
+        default: throw new ArgumentException("Use compare/create/join/report/clock; db-create/db-reserve/db-execute/db-step/db-report; or rep-create/rep-read/rep-update/rep-instance/rep-sync/rep-pause/rep-resume/rep-report/rep-cycle <copy-guid> [repeats].");
     }
 }
-catch (Exception ex) when (ex is ArgumentException or HttpRequestException or InvalidOperationException or TaskCanceledException)
+catch (Exception ex) when (ex is ArgumentException or HttpRequestException or InvalidOperationException or TaskCanceledException or TimeoutException or JsonException)
 {
     WriteLog("error", ex.Message);
     Environment.ExitCode = 1;

@@ -1,0 +1,16 @@
+{
+  "verifiedAtUtc": "2026-10-12T20:52:13.018Z",
+  "checks": [
+    "complete-cycle-tables",
+    "two-independent-browser-clients",
+    "polling-shared-state",
+    "replica-write",
+    "recovery-sync",
+    "both-unavailable-message",
+    "repeated-cycle",
+    "mobile-overflow",
+    "keyboard-focus",
+    "unreachable-gateway"
+  ],
+  "pageErrors": []
+}

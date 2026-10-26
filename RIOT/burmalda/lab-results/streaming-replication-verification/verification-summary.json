@@ -1,0 +1,74 @@
+{
+  "verifiedAtUtc": "2026-10-22T20:51:33.852992+00:00",
+  "passed": true,
+  "build": {
+    "errors": 0,
+    "warnings": 0
+  },
+  "dotnetTests": {
+    "total": "40",
+    "executed": "40",
+    "passed": "40",
+    "failed": "0",
+    "error": "0",
+    "timeout": "0",
+    "aborted": "0",
+    "inconclusive": "0",
+    "passedButRunAborted": "0",
+    "notRunnable": "0",
+    "notExecuted": "0",
+    "disconnected": "0",
+    "warning": "0",
+    "completed": "0",
+    "inProgress": "0",
+    "pending": "0"
+  },
+  "httpChecks": 12,
+  "browserChecks": 6,
+  "pageErrors": [],
+  "bootstrapChecks": [
+    "isolated-new-volumes",
+    "init-databases-and-replication-role",
+    "pg-basebackup-bootstrap",
+    "standby-recovery-mode",
+    "real-sql-wal-replay"
+  ],
+  "requiredFieldChecks": [
+    "instances/postgres-missing-required-fields-400",
+    "replication-missing-required-fields-400",
+    "update-missing-required-fields-400"
+  ],
+  "fenceObservation": true,
+  "cliReport": "lab-results/streaming-replication-20261022-142642/cycle-1.json",
+  "catalog": {
+    "books": 9,
+    "copies": 14
+  },
+  "nodes": [
+    {
+      "id": "postgres",
+      "role": "Standby",
+      "state": "AVAILABLE",
+      "walLsn": null,
+      "replayLsn": "0/74B5A78"
+    },
+    {
+      "id": "postgres-replica",
+      "role": "Primary",
+      "state": "AVAILABLE",
+      "walLsn": "0/74B5A78",
+      "replayLsn": "0/729EED0"
+    }
+  ],
+  "sourceSha256": {
+    "docker-compose.yml": "90e90fc806cf9d49dd5c94589932077816cb2c053f9d456bcf1ebf482c04d93f",
+    "src/Services/ConcurrencyLab/Burmalda.ConcurrencyLab.Api/ReplicationCluster.cs": "ff118935a4d39f86cc1fbb483bb58db86ef40801f2f6da7375bf2edd73669919",
+    "src/Services/ConcurrencyLab/Burmalda.ConcurrencyLab.Api/ReplicationLab.cs": "50486a291f11cc21d2d95e21e05be2be3feaf2243ea5567627904bf76369596f",
+    "src/Clients/Burmalda.Web/Pages/ReplicationLab.razor": "96ee61e65f6c5e2dbeefe6c138a0428db26dcfc2537645978def83e3c880a8ce",
+    "tools/ConcurrencyLab.Client/ReplicationCommands.cs": "a078d2945b8d5b3a291ca5c281f00a131ba6b54661906967eb0044d9de958b39"
+  },
+  "limits": [
+    "Asynchronous streaming; arbitrary crash does not guarantee zero data loss.",
+    "Real recovery retry after unavailable source and coordinator restart tested; mid-pg_rewind process kill is covered only by adapter tests, not a destructive live-volume test."
+  ]
+}

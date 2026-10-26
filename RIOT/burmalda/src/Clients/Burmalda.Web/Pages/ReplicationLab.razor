@@ -1,0 +1,183 @@
+@page "/replication-lab"
+@implements IDisposable
+@inject HttpClient Http
+
+<PageTitle>ЛР №5 · Репликация и отказоустойчивость · Burmalda</PageTitle>
+<main class="replication-lab">
+    <header class="rep-heading">
+        <h1>Репликация и<br /><em>отказоустойчивость</em></h1>
+        <p>ЛР №5 · PostgreSQL streaming replication.<br />Два сервера в Docker, реальные книги и экземпляры Catalog. Измените доступность экземпляра и проследите передачу WAL.</p>
+    </header>
+    <div class="rep-actions">
+        <button class="button button-primary" disabled="@Blocked" @onclick="() => Guard(Create)">Новый опыт</button>
+        <button class="button" disabled="@(Blocked || current is null || clients[0].Copy == Guid.Empty)" @onclick="() => Guard(Cycle)">Полный цикл ЛР №5</button>
+        @if (Blocked) { <span role="status">Выполняется операция кластера… состояние обновляется автоматически.</span> }
+    </div>
+    <details class="rep-join">
+        <summary>Подключить второй клиент к общему опыту</summary>
+        <div class="rep-actions">
+            <label>ID опыта<input @bind="joinId" /></label>
+            <button class="button" disabled="@busy" @onclick="() => Guard(Join)">Подключиться</button>
+        </div>
+        <p>Журнал опыта общий для двух окон. Все опыты используют один реальный кластер и одни данные Catalog; новый опыт не сбрасывает книги.</p>
+    </details>
+    @if (error is not null) { <p class="rep-error" role="alert">@error</p> }
+    @if (current is null)
+    {
+        <p class="rep-empty">Создайте журнал опыта. Затем выберите экземпляр из Catalog для ручной работы или полного цикла.</p>
+    }
+    else
+    {
+        @if (current.ActionError is not null) { <p class="rep-error" role="alert">@current.ActionError</p> }
+        <section class="rep-state" aria-labelledby="rep-state-title">
+            <div class="rep-section-heading">
+                <h2 id="rep-state-title">Writable primary: <strong data-testid="active-instance">@(current.ActiveInstance ?? "недоступен")</strong></h2>
+                <span class="rep-status @(current.Consistent ? "good" : "bad")" data-testid="consistency">@(current.Consistent ? "Данные согласованы" : "Согласованность не подтверждена")</span>
+            </div>
+            <p class="rep-id">ID: <code>@current.Id</code> · действие: <strong data-testid="action-status">@current.ActionStatus</strong> · WAL lag: @(current.ReplayLagBytes?.ToString() ?? "неизвестен") байт</p>
+            <p class="rep-note">Имя контейнера постоянно, роль меняется после promotion. Для недоступного узла показаны последние наблюдавшиеся значения и время проверки. Остановка primary влияет на все базы Burmalda.</p>
+            <div class="rep-instances">
+                @foreach (var node in current.Nodes)
+                {
+                    <section class="rep-instance" data-testid="@node.Id">
+                        <div class="rep-section-heading"><h3>@node.Id</h3><strong class="@(node.State == "AVAILABLE" ? "good" : "bad")">@node.State</strong></div>
+                        <p>@node.Role · @(node.ReadOnly ? "read-only" : "read/write") · @(node.Fenced ? "FENCED" : "без fence")</p>
+                        <p>WAL: <code>@(node.WalLsn ?? "—")</code><br />Replay: <code>@(node.ReplayLsn ?? "—")</code> · @(node.ReplayPaused ? "PAUSED" : node.StreamingState ?? "нет потока")</p>
+                        <p>Наблюдение UTC: @(node.ObservedAtUtc?.ToString("HH:mm:ss.fff") ?? "нет данных")</p>
+                        <dl>@foreach (var book in node.Books) { <div><dt>@book.Title</dt><dd data-book="@book.Id">@book.Available</dd></div> }</dl>
+                        <div class="rep-actions">
+                            <button class="button" disabled="@(Blocked || node.State != "AVAILABLE")" @onclick="() => Guard(() => SetInstance(node.Id, false))">Остановить @node.Id</button>
+                            <button class="button" disabled="@(Blocked || (node.State == "AVAILABLE" && !node.Fenced))" @onclick="() => Guard(() => SetInstance(node.Id, true))">Восстановить @node.Id</button>
+                        </div>
+                        @if (node.Error is not null) { <p class="bad">@node.Error</p> }
+                    </section>
+                }
+            </div>
+            <div class="rep-actions">
+                <button class="button button-primary" disabled="@Blocked" @onclick="() => Guard(Synchronize)">Дождаться WAL replay</button>
+                <button class="button" disabled="@(Blocked || !current.Nodes.Any(n => n.Role == "Standby" && n.State == "AVAILABLE"))" @onclick="() => Guard(Configure)">@(current.Nodes.Any(n => n.ReplayPaused) ? "Возобновить WAL replay" : "Приостановить WAL replay")</button>
+                <button class="button" disabled="@busy" @onclick="() => Guard(Refresh)">Обновить состояние</button>
+                <a class="button" href="@ExportUrl(current)" download="@($"streaming-replication-{current.Id}.json")">Скачать JSON</a>
+            </div>
+            <p class="rep-note">Standby принимает только чтение до promotion. Восстановление использует pg_rewind и возвращает старый primary как standby. Новым primary остаётся повышенный сервер.</p>
+        </section>
+        @if (!Eligible.Any())
+        {
+            <p class="rep-empty" role="status">В Catalog нет доступных для опыта экземпляров. Добавьте книгу и экземпляр через приложение или восстановите primary. Зарезервированные и выданные экземпляры лаборатория не изменяет.</p>
+        }
+        <section class="rep-clients" aria-label="Два клиента">
+            @foreach (var input in clients)
+            {
+                <section data-client="@input.Id">
+                    <h2>@input.Id</h2>
+                    <label>Экземпляр @input.Id<select aria-label="@($"Экземпляр {input.Id}")" @bind="input.Copy" disabled="@Blocked"><option value="@Guid.Empty">Выберите экземпляр</option>
+                        @foreach (var copy in Eligible) { <option value="@copy.Id">@copy.Title · @copy.Id.ToString()[..8] · @copy.Status · v@(copy.Version)</option> }
+                    </select></label>
+                    <label>Новая доступность @input.Id<select aria-label="@($"Новая доступность {input.Id}")" @bind="input.Available" disabled="@Blocked"><option value="true">Available</option><option value="false">Unavailable</option></select></label>
+                    <div class="rep-actions">
+                        <button class="button" disabled="@Blocked" @onclick="() => Guard(() => ReadCatalog(input.Id))">Читать @input.Id</button>
+                        <button class="button" disabled="@(Blocked || input.Copy == Guid.Empty)" @onclick="() => Guard(() => Update(input))">Изменить @input.Id</button>
+                    </div>
+                    @if (current.Operations.LastOrDefault(x => x.ClientId == input.Id) is { } row)
+                    { <p class="rep-receipt @(row.Result == "FAIL" ? "bad" : "good")" role="status">@row.Result · @row.Message</p> }
+                </section>
+            }
+        </section>
+        <div class="rep-table-scroll" tabindex="0" aria-label="Таблица операций, прокручивается горизонтально">
+            <table data-testid="replication-table"><caption>Реальные запросы и репликация</caption>
+                <thead><tr><th>№</th><th>Клиент / операция</th><th>Copy ID</th><th>Узел</th><th>COMMIT</th><th>Replay после записи</th><th>Результат</th></tr></thead>
+                <tbody>@foreach (var row in current.Operations) { <tr><td>@row.Number</td><td>@row.ClientId · @row.Operation</td><td>@row.CopyId</td><td>@row.UsedInstance</td><td>@(row.Committed?.ToString() ?? "неизвестен")</td><td>@row.Replication</td><td>@row.Result</td></tr> }</tbody>
+            </table>
+        </div>
+        @if (current.Milestones.Count > 0)
+        {
+            <div class="rep-table-scroll" tabindex="0" aria-label="Этапы полного цикла">
+                <table data-testid="recovery-table"><caption>Полный цикл · наблюдения PostgreSQL</caption>
+                    <thead><tr><th>Этап</th><th>Writer</th><th>postgres</th><th>postgres-replica</th></tr></thead>
+                    <tbody>@foreach (var step in current.Milestones) { <tr><td>@step.Label</td><td>@step.Writer</td>@foreach (var node in step.Nodes) { <td>@node.Role · @node.State<br />WAL @(node.WalLsn ?? node.ReplayLsn)</td> }</tr> }</tbody>
+                </table>
+            </div>
+        }
+        <details class="rep-journal" open><summary>Журнал сервера · UTC · @current.Events.Count событий</summary>
+            <ol aria-label="События сервера">@foreach (var entry in current.Events.Reverse()) { <li class="@(entry.Result == "FAIL" ? "bad" : "")"><time>@entry.AtUtc.ToString("HH:mm:ss.fff")</time><span><strong>@entry.ClientId · @entry.Operation · @entry.Instance → @entry.Result</strong><small>@entry.Detail</small></span></li> }</ol>
+        </details>
+    }
+</main>
+
+@code {
+    private const string Base = "/api/concurrency-lab/replication/runs";
+    private readonly CancellationTokenSource lifetime = new();
+    private readonly ClientInput[] clients = [new("Client 1"), new("Client 2")];
+    private ReplicationLabSnapshot? current;
+    private string joinId = "";
+    private string? error;
+    private bool busy;
+    private bool Blocked => busy || current?.ClusterBusy == true;
+    private IEnumerable<ReplicationCopy> Eligible => (current?.Nodes.FirstOrDefault(n => n.Id == current.ActiveInstance)?.Copies
+        ?? current?.Nodes.FirstOrDefault(n => n.Copies.Count > 0)?.Copies ?? []).Where(c => c.Status is "Available" or "Unavailable");
+    protected override void OnInitialized() => _ = Poll();
+    private async Task Create() { current = await Post(Base, new { }); joinId = current.Id.ToString(); SelectDefaults(); }
+    private void SelectDefaults() { foreach (var client in clients) if (!Eligible.Any(c => c.Id == client.Copy)) client.Copy = Eligible.FirstOrDefault()?.Id ?? Guid.Empty; }
+    private async Task Join()
+    {
+        if (!Guid.TryParse(joinId, out var id)) throw new InvalidOperationException("Введите корректный ID опыта.");
+        current = await Get(id); SelectDefaults();
+    }
+    private async Task Refresh() { if (current is not null) current = await Get(current.Id); }
+    private async Task SetInstance(string node, bool available) => current = await Post($"{Base}/{current!.Id}/instances/{node}", new { available });
+    private async Task Synchronize() => current = await Post($"{Base}/{current!.Id}/synchronize", new { });
+    private async Task Configure() => current = await Post($"{Base}/{current!.Id}/replication", new { enabled = current.Nodes.Any(n => n.ReplayPaused) });
+    private async Task ReadCatalog(string client) => current = await Post($"{Base}/{current!.Id}/read", new { clientId = client });
+    private async Task Update(ClientInput input)
+    {
+        var copy = Eligible.SingleOrDefault(c => c.Id == input.Copy) ?? throw new InvalidOperationException("Обновите состояние и выберите экземпляр.");
+        current = await Post($"{Base}/{current!.Id}/update", new { clientId = input.Id, copyId = copy.Id, available = input.Available, expectedVersion = copy.Version });
+    }
+    private async Task Cycle() => current = await Post($"{Base}/{current!.Id}/cycle", new { copyId = clients[0].Copy });
+    private async Task Guard(Func<Task> action)
+    {
+        if (busy) return; busy = true; error = null;
+        try { await action(); }
+        catch (OperationCanceledException) when (lifetime.IsCancellationRequested) { }
+        catch (Exception ex) when (ex is HttpRequestException or InvalidOperationException or System.Text.Json.JsonException or OperationCanceledException)
+        {
+            error = ex is OperationCanceledException ? "Сервер не ответил вовремя. Обновите состояние перед следующим действием." : ex.Message;
+            try { await Refresh(); } catch (Exception e) when (e is HttpRequestException or OperationCanceledException or System.Text.Json.JsonException) { }
+        }
+        finally { busy = false; }
+    }
+    private async Task<ReplicationLabSnapshot> Post(string url, object body)
+    { using var response = await Http.PostAsJsonAsync(url, body, lifetime.Token); return await Read(response); }
+    private async Task<ReplicationLabSnapshot> Get(Guid id)
+    { using var response = await Http.GetAsync($"{Base}/{id}", lifetime.Token); return await Read(response); }
+    private async Task<ReplicationLabSnapshot> Read(HttpResponseMessage response)
+    {
+        if (!response.IsSuccessStatusCode)
+        {
+            var message = $"HTTP {(int)response.StatusCode}: запрос отклонён. Проверьте Gateway и учебный API.";
+            try { using var json = System.Text.Json.JsonDocument.Parse(await response.Content.ReadAsStringAsync(lifetime.Token)); if (json.RootElement.TryGetProperty("message", out var value)) message = value.GetString() ?? message; }
+            catch (System.Text.Json.JsonException) { }
+            throw new HttpRequestException(message);
+        }
+        return await response.Content.ReadFromJsonAsync<ReplicationLabSnapshot>(lifetime.Token) ?? throw new InvalidOperationException("Пустой ответ сервера.");
+    }
+    private async Task Poll()
+    {
+        using var timer = new PeriodicTimer(TimeSpan.FromSeconds(1));
+        try
+        {
+            while (await timer.WaitForNextTickAsync(lifetime.Token))
+            {
+                if (busy || current is null) continue;
+                var id = current.Id;
+                try { var next = await Get(id); if (!busy && current?.Id == id) { current = next; await InvokeAsync(StateHasChanged); } }
+                catch (Exception ex) when (ex is HttpRequestException or System.Text.Json.JsonException or OperationCanceledException)
+                { if (!lifetime.IsCancellationRequested) { error = "Не удалось обновить состояние. Проверьте Gateway/API; незавершённые изменения автоматически не повторяются."; await InvokeAsync(StateHasChanged); } }
+            }
+        }
+        catch (OperationCanceledException) when (lifetime.IsCancellationRequested) { }
+    }
+    private static string ExportUrl(ReplicationLabSnapshot s) => "data:application/json;base64," + Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(System.Text.Json.JsonSerializer.Serialize(s, new System.Text.Json.JsonSerializerOptions(System.Text.Json.JsonSerializerDefaults.Web) { WriteIndented = true })));
+    public void Dispose() { lifetime.Cancel(); lifetime.Dispose(); }
+    private sealed class ClientInput(string id) { public string Id { get; } = id; public Guid Copy { get; set; } public bool Available { get; set; } }
+}

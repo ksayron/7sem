@@ -1,0 +1,4498 @@
+{
+  "id": "2e4732bb-6ac5-4abb-b3e6-d02c9f3af09f",
+  "activeInstance": "postgres-replica",
+  "consistent": true,
+  "replayLagBytes": 0,
+  "clusterBusy": false,
+  "actionStatus": "Completed",
+  "actionError": null,
+  "nodes": [
+    {
+      "id": "postgres",
+      "state": "AVAILABLE",
+      "role": "Standby",
+      "readOnly": true,
+      "fenced": false,
+      "walLsn": null,
+      "replayLsn": "0/72A69E8",
+      "replayPaused": false,
+      "streamingState": "streaming",
+      "observedAtUtc": "2026-10-22T14:27:02.7449989\u002B00:00",
+      "books": [
+        {
+          "id": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+          "title": "Burmalda E2E",
+          "available": 2
+        },
+        {
+          "id": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+          "title": "Clean Code",
+          "available": 1
+        },
+        {
+          "id": "9913bfa9-ddde-45e0-8d92-99584e451c09",
+          "title": "Integration Test Book",
+          "available": 0
+        },
+        {
+          "id": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+          "title": "Integration Test Book",
+          "available": 2
+        },
+        {
+          "id": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+          "title": "ROIT",
+          "available": 1
+        },
+        {
+          "id": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+          "title": "Solaris",
+          "available": 1
+        },
+        {
+          "id": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+          "title": "saga-demo-1791216178294",
+          "available": 2
+        },
+        {
+          "id": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+          "title": "saga-demo-1791216279822",
+          "available": 2
+        },
+        {
+          "id": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+          "title": "saga-demo-1791216443481",
+          "available": 2
+        }
+      ],
+      "copies": [
+        {
+          "id": "2605a106-83ee-42cc-8459-6f850256e46e",
+          "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+          "title": "Burmalda E2E",
+          "status": "Available",
+          "isHidden": false,
+          "version": 27
+        },
+        {
+          "id": "e5d8433e-ea34-4b5c-848f-fc993a8f9dea",
+          "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+          "title": "Burmalda E2E",
+          "status": "Available",
+          "isHidden": false,
+          "version": 4
+        },
+        {
+          "id": "917b3688-272d-4882-9595-687de07d7112",
+          "bookId": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+          "title": "Clean Code",
+          "status": "Available",
+          "isHidden": false,
+          "version": 3
+        },
+        {
+          "id": "48788376-7a1e-49ca-8c0f-934d2bda0fc1",
+          "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+          "title": "Integration Test Book",
+          "status": "Available",
+          "isHidden": false,
+          "version": 3
+        },
+        {
+          "id": "ee5c3406-4b2b-4ef0-bc21-5db498ec8b81",
+          "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+          "title": "Integration Test Book",
+          "status": "Available",
+          "isHidden": false,
+          "version": 4
+        },
+        {
+          "id": "528b027e-4b54-4e8f-98e8-d09ea1830fc0",
+          "bookId": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+          "title": "ROIT",
+          "status": "Available",
+          "isHidden": false,
+          "version": 4
+        },
+        {
+          "id": "da96e01f-3f8c-4525-b5ea-1982013df6b7",
+          "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+          "title": "Solaris",
+          "status": "OnLoan",
+          "isHidden": false,
+          "version": 3
+        },
+        {
+          "id": "dcc91440-a082-46b0-86a8-55b588269469",
+          "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+          "title": "Solaris",
+          "status": "Available",
+          "isHidden": false,
+          "version": 1
+        },
+        {
+          "id": "b733c4fc-e895-48c0-b499-37a9c731e9d8",
+          "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+          "title": "saga-demo-1791216178294",
+          "status": "Available",
+          "isHidden": false,
+          "version": 5
+        },
+        {
+          "id": "f3c7acc5-840b-45a9-bf44-516e05a5dff8",
+          "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+          "title": "saga-demo-1791216178294",
+          "status": "Available",
+          "isHidden": false,
+          "version": 3
+        },
+        {
+          "id": "8e4c2648-f414-4f7e-9837-d195326ebd3f",
+          "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+          "title": "saga-demo-1791216279822",
+          "status": "Available",
+          "isHidden": false,
+          "version": 3
+        },
+        {
+          "id": "a560e8ca-c79f-4626-ae98-ed9ccae08ed7",
+          "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+          "title": "saga-demo-1791216279822",
+          "status": "Available",
+          "isHidden": false,
+          "version": 5
+        },
+        {
+          "id": "01e7800a-64f1-4729-9430-c759e7dc84a1",
+          "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+          "title": "saga-demo-1791216443481",
+          "status": "Available",
+          "isHidden": false,
+          "version": 5
+        },
+        {
+          "id": "35248fb9-9bf7-48f6-93b1-a53aa1ce73b3",
+          "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+          "title": "saga-demo-1791216443481",
+          "status": "Available",
+          "isHidden": false,
+          "version": 5
+        }
+      ],
+      "error": null
+    },
+    {
+      "id": "postgres-replica",
+      "state": "AVAILABLE",
+      "role": "Primary",
+      "readOnly": false,
+      "fenced": false,
+      "walLsn": "0/72A69E8",
+      "replayLsn": "0/729EED0",
+      "replayPaused": false,
+      "streamingState": "streaming",
+      "observedAtUtc": "2026-10-22T14:27:02.7996273\u002B00:00",
+      "books": [
+        {
+          "id": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+          "title": "Burmalda E2E",
+          "available": 2
+        },
+        {
+          "id": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+          "title": "Clean Code",
+          "available": 1
+        },
+        {
+          "id": "9913bfa9-ddde-45e0-8d92-99584e451c09",
+          "title": "Integration Test Book",
+          "available": 0
+        },
+        {
+          "id": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+          "title": "Integration Test Book",
+          "available": 2
+        },
+        {
+          "id": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+          "title": "ROIT",
+          "available": 1
+        },
+        {
+          "id": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+          "title": "Solaris",
+          "available": 1
+        },
+        {
+          "id": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+          "title": "saga-demo-1791216178294",
+          "available": 2
+        },
+        {
+          "id": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+          "title": "saga-demo-1791216279822",
+          "available": 2
+        },
+        {
+          "id": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+          "title": "saga-demo-1791216443481",
+          "available": 2
+        }
+      ],
+      "copies": [
+        {
+          "id": "2605a106-83ee-42cc-8459-6f850256e46e",
+          "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+          "title": "Burmalda E2E",
+          "status": "Available",
+          "isHidden": false,
+          "version": 27
+        },
+        {
+          "id": "e5d8433e-ea34-4b5c-848f-fc993a8f9dea",
+          "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+          "title": "Burmalda E2E",
+          "status": "Available",
+          "isHidden": false,
+          "version": 4
+        },
+        {
+          "id": "917b3688-272d-4882-9595-687de07d7112",
+          "bookId": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+          "title": "Clean Code",
+          "status": "Available",
+          "isHidden": false,
+          "version": 3
+        },
+        {
+          "id": "48788376-7a1e-49ca-8c0f-934d2bda0fc1",
+          "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+          "title": "Integration Test Book",
+          "status": "Available",
+          "isHidden": false,
+          "version": 3
+        },
+        {
+          "id": "ee5c3406-4b2b-4ef0-bc21-5db498ec8b81",
+          "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+          "title": "Integration Test Book",
+          "status": "Available",
+          "isHidden": false,
+          "version": 4
+        },
+        {
+          "id": "528b027e-4b54-4e8f-98e8-d09ea1830fc0",
+          "bookId": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+          "title": "ROIT",
+          "status": "Available",
+          "isHidden": false,
+          "version": 4
+        },
+        {
+          "id": "da96e01f-3f8c-4525-b5ea-1982013df6b7",
+          "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+          "title": "Solaris",
+          "status": "OnLoan",
+          "isHidden": false,
+          "version": 3
+        },
+        {
+          "id": "dcc91440-a082-46b0-86a8-55b588269469",
+          "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+          "title": "Solaris",
+          "status": "Available",
+          "isHidden": false,
+          "version": 1
+        },
+        {
+          "id": "b733c4fc-e895-48c0-b499-37a9c731e9d8",
+          "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+          "title": "saga-demo-1791216178294",
+          "status": "Available",
+          "isHidden": false,
+          "version": 5
+        },
+        {
+          "id": "f3c7acc5-840b-45a9-bf44-516e05a5dff8",
+          "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+          "title": "saga-demo-1791216178294",
+          "status": "Available",
+          "isHidden": false,
+          "version": 3
+        },
+        {
+          "id": "8e4c2648-f414-4f7e-9837-d195326ebd3f",
+          "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+          "title": "saga-demo-1791216279822",
+          "status": "Available",
+          "isHidden": false,
+          "version": 3
+        },
+        {
+          "id": "a560e8ca-c79f-4626-ae98-ed9ccae08ed7",
+          "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+          "title": "saga-demo-1791216279822",
+          "status": "Available",
+          "isHidden": false,
+          "version": 5
+        },
+        {
+          "id": "01e7800a-64f1-4729-9430-c759e7dc84a1",
+          "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+          "title": "saga-demo-1791216443481",
+          "status": "Available",
+          "isHidden": false,
+          "version": 5
+        },
+        {
+          "id": "35248fb9-9bf7-48f6-93b1-a53aa1ce73b3",
+          "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+          "title": "saga-demo-1791216443481",
+          "status": "Available",
+          "isHidden": false,
+          "version": 5
+        }
+      ],
+      "error": null
+    }
+  ],
+  "operations": [
+    {
+      "number": 1,
+      "clientId": "Client 1",
+      "operation": "Update",
+      "copyId": "2605a106-83ee-42cc-8459-6f850256e46e",
+      "usedInstance": "postgres",
+      "committed": true,
+      "replication": "REPLAYED",
+      "result": "SUCCESS",
+      "message": "COMMIT: Copy 2605a106-83ee-42cc-8459-6f850256e46e; version 22; WAL 0/729EA58. Standby: replayed."
+    },
+    {
+      "number": 2,
+      "clientId": "Client 2",
+      "operation": "Update",
+      "copyId": "2605a106-83ee-42cc-8459-6f850256e46e",
+      "usedInstance": "postgres",
+      "committed": true,
+      "replication": "REPLAYED",
+      "result": "SUCCESS",
+      "message": "COMMIT: Copy 2605a106-83ee-42cc-8459-6f850256e46e; version 23; WAL 0/729EC58. Standby: replayed."
+    },
+    {
+      "number": 3,
+      "clientId": "Client 1",
+      "operation": "Update",
+      "copyId": "2605a106-83ee-42cc-8459-6f850256e46e",
+      "usedInstance": "postgres",
+      "committed": true,
+      "replication": "REPLAYED",
+      "result": "SUCCESS",
+      "message": "COMMIT: Copy 2605a106-83ee-42cc-8459-6f850256e46e; version 24; WAL 0/729EE58. Standby: replayed."
+    },
+    {
+      "number": 4,
+      "clientId": "Client 1",
+      "operation": "Read",
+      "copyId": "2605a106-83ee-42cc-8459-6f850256e46e",
+      "usedInstance": "postgres-replica",
+      "committed": false,
+      "replication": "NOT_REQUIRED",
+      "result": "SUCCESS",
+      "message": "\u0427\u0442\u0435\u043D\u0438\u0435 \u043F\u043E\u0441\u043B\u0435 promotion."
+    },
+    {
+      "number": 5,
+      "clientId": "Client 2",
+      "operation": "Update",
+      "copyId": "2605a106-83ee-42cc-8459-6f850256e46e",
+      "usedInstance": "postgres-replica",
+      "committed": true,
+      "replication": "PENDING",
+      "result": "SUCCESS",
+      "message": "COMMIT: Copy 2605a106-83ee-42cc-8459-6f850256e46e; version 25; WAL 0/72A6070. Standby: pending/unavailable."
+    },
+    {
+      "number": 6,
+      "clientId": "Client 1",
+      "operation": "Update",
+      "copyId": "2605a106-83ee-42cc-8459-6f850256e46e",
+      "usedInstance": "postgres-replica",
+      "committed": true,
+      "replication": "REPLAYED",
+      "result": "SUCCESS",
+      "message": "COMMIT: Copy 2605a106-83ee-42cc-8459-6f850256e46e; version 26; WAL 0/72A67E8. Standby: replayed."
+    },
+    {
+      "number": 7,
+      "clientId": "Client 2",
+      "operation": "Update",
+      "copyId": "2605a106-83ee-42cc-8459-6f850256e46e",
+      "usedInstance": "postgres-replica",
+      "committed": true,
+      "replication": "REPLAYED",
+      "result": "SUCCESS",
+      "message": "COMMIT: Copy 2605a106-83ee-42cc-8459-6f850256e46e; version 27; WAL 0/72A69E8. Standby: replayed."
+    }
+  ],
+  "events": [
+    {
+      "sequence": 1,
+      "atUtc": "2026-10-22T14:26:42.3662822\u002B00:00",
+      "clientId": "operator",
+      "operation": "Session",
+      "instance": "cluster",
+      "result": "SUCCESS",
+      "detail": "\u0416\u0443\u0440\u043D\u0430\u043B \u0441\u043E\u0437\u0434\u0430\u043D. Catalog \u0438 \u0440\u043E\u043B\u0438 \u0443\u0437\u043B\u043E\u0432 \u043D\u0435 \u0438\u0437\u043C\u0435\u043D\u0435\u043D\u044B."
+    },
+    {
+      "sequence": 2,
+      "atUtc": "2026-10-22T14:26:42.955006\u002B00:00",
+      "clientId": "Client 1",
+      "operation": "Update",
+      "instance": "postgres",
+      "result": "SUCCESS",
+      "detail": "COMMIT: Copy 2605a106-83ee-42cc-8459-6f850256e46e; version 22; WAL 0/729EA58. Standby: replayed."
+    },
+    {
+      "sequence": 3,
+      "atUtc": "2026-10-22T14:26:43.3271172\u002B00:00",
+      "clientId": "operator",
+      "operation": "CatchUp",
+      "instance": "postgres-replica",
+      "result": "SUCCESS",
+      "detail": "Standby \u0432\u043E\u0441\u043F\u0440\u043E\u0438\u0437\u0432\u0451\u043B WAL \u0434\u043E 0/729EA58."
+    },
+    {
+      "sequence": 4,
+      "atUtc": "2026-10-22T14:26:43.6027328\u002B00:00",
+      "clientId": "Client 2",
+      "operation": "Update",
+      "instance": "postgres",
+      "result": "SUCCESS",
+      "detail": "COMMIT: Copy 2605a106-83ee-42cc-8459-6f850256e46e; version 23; WAL 0/729EC58. Standby: replayed."
+    },
+    {
+      "sequence": 5,
+      "atUtc": "2026-10-22T14:26:43.8365874\u002B00:00",
+      "clientId": "operator",
+      "operation": "CatchUp",
+      "instance": "postgres-replica",
+      "result": "SUCCESS",
+      "detail": "Standby \u0432\u043E\u0441\u043F\u0440\u043E\u0438\u0437\u0432\u0451\u043B WAL \u0434\u043E 0/729EC58."
+    },
+    {
+      "sequence": 6,
+      "atUtc": "2026-10-22T14:26:44.1053182\u002B00:00",
+      "clientId": "Client 1",
+      "operation": "Update",
+      "instance": "postgres",
+      "result": "SUCCESS",
+      "detail": "COMMIT: Copy 2605a106-83ee-42cc-8459-6f850256e46e; version 24; WAL 0/729EE58. Standby: replayed."
+    },
+    {
+      "sequence": 7,
+      "atUtc": "2026-10-22T14:26:44.3206829\u002B00:00",
+      "clientId": "operator",
+      "operation": "CatchUp",
+      "instance": "postgres-replica",
+      "result": "SUCCESS",
+      "detail": "Standby \u0432\u043E\u0441\u043F\u0440\u043E\u0438\u0437\u0432\u0451\u043B WAL \u0434\u043E 0/729EE58."
+    },
+    {
+      "sequence": 8,
+      "atUtc": "2026-10-22T14:26:49.3588106\u002B00:00",
+      "clientId": "operator",
+      "operation": "Stop",
+      "instance": "postgres",
+      "result": "SUCCESS",
+      "detail": "\u0420\u0435\u0430\u043B\u044C\u043D\u044B\u0439 Docker stop \u043F\u043E\u0434\u0442\u0432\u0435\u0440\u0436\u0434\u0451\u043D. Fenced source: postgres; required WAL: 0/729EE58."
+    },
+    {
+      "sequence": 9,
+      "atUtc": "2026-10-22T14:26:52.6171709\u002B00:00",
+      "clientId": "operator",
+      "operation": "Failover",
+      "instance": "postgres-replica",
+      "result": "SUCCESS",
+      "detail": "\u0420\u0435\u0430\u043B\u044C\u043D\u044B\u0439 pg_promote; \u043F\u0440\u0435\u0436\u043D\u0438\u0439 primary postgres \u043E\u0441\u0442\u0430\u043D\u043E\u0432\u043B\u0435\u043D \u0438 fenced."
+    },
+    {
+      "sequence": 10,
+      "atUtc": "2026-10-22T14:26:52.6284331\u002B00:00",
+      "clientId": "Client 1",
+      "operation": "Read",
+      "instance": "postgres-replica",
+      "result": "SUCCESS",
+      "detail": "\u0427\u0442\u0435\u043D\u0438\u0435 \u043F\u043E\u0441\u043B\u0435 promotion."
+    },
+    {
+      "sequence": 11,
+      "atUtc": "2026-10-22T14:26:56.8595684\u002B00:00",
+      "clientId": "Client 2",
+      "operation": "Update",
+      "instance": "postgres-replica",
+      "result": "SUCCESS",
+      "detail": "COMMIT: Copy 2605a106-83ee-42cc-8459-6f850256e46e; version 25; WAL 0/72A6070. Standby: pending/unavailable."
+    },
+    {
+      "sequence": 12,
+      "atUtc": "2026-10-22T14:27:00.6898791\u002B00:00",
+      "clientId": "operator",
+      "operation": "CatchUp",
+      "instance": "postgres",
+      "result": "SUCCESS",
+      "detail": "Standby \u0432\u043E\u0441\u043F\u0440\u043E\u0438\u0437\u0432\u0451\u043B WAL \u0434\u043E 0/72A65E8."
+    },
+    {
+      "sequence": 13,
+      "atUtc": "2026-10-22T14:27:00.6926317\u002B00:00",
+      "clientId": "operator",
+      "operation": "Recovery",
+      "instance": "postgres",
+      "result": "SUCCESS",
+      "detail": "\u0423\u0437\u0435\u043B \u0432\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u043B\u0435\u043D; \u0444\u0430\u043A\u0442\u0438\u0447\u0435\u0441\u043A\u0438\u0435 \u0440\u043E\u043B\u0438 \u043F\u0440\u043E\u0432\u0435\u0440\u0435\u043D\u044B. \u041F\u0440\u0438\u043D\u0443\u0434\u0438\u0442\u0435\u043B\u044C\u043D\u043E\u0433\u043E failback \u043D\u0435\u0442."
+    },
+    {
+      "sequence": 14,
+      "atUtc": "2026-10-22T14:27:00.9106011\u002B00:00",
+      "clientId": "operator",
+      "operation": "CatchUp",
+      "instance": "postgres",
+      "result": "SUCCESS",
+      "detail": "Standby \u0432\u043E\u0441\u043F\u0440\u043E\u0438\u0437\u0432\u0451\u043B WAL \u0434\u043E 0/72A65E8."
+    },
+    {
+      "sequence": 15,
+      "atUtc": "2026-10-22T14:27:01.1424697\u002B00:00",
+      "clientId": "Client 1",
+      "operation": "Update",
+      "instance": "postgres-replica",
+      "result": "SUCCESS",
+      "detail": "COMMIT: Copy 2605a106-83ee-42cc-8459-6f850256e46e; version 26; WAL 0/72A67E8. Standby: replayed."
+    },
+    {
+      "sequence": 16,
+      "atUtc": "2026-10-22T14:27:01.3528401\u002B00:00",
+      "clientId": "operator",
+      "operation": "CatchUp",
+      "instance": "postgres",
+      "result": "SUCCESS",
+      "detail": "Standby \u0432\u043E\u0441\u043F\u0440\u043E\u0438\u0437\u0432\u0451\u043B WAL \u0434\u043E 0/72A67E8."
+    },
+    {
+      "sequence": 17,
+      "atUtc": "2026-10-22T14:27:01.6083569\u002B00:00",
+      "clientId": "Client 2",
+      "operation": "Update",
+      "instance": "postgres-replica",
+      "result": "SUCCESS",
+      "detail": "COMMIT: Copy 2605a106-83ee-42cc-8459-6f850256e46e; version 27; WAL 0/72A69E8. Standby: replayed."
+    },
+    {
+      "sequence": 18,
+      "atUtc": "2026-10-22T14:27:01.8199278\u002B00:00",
+      "clientId": "operator",
+      "operation": "CatchUp",
+      "instance": "postgres",
+      "result": "SUCCESS",
+      "detail": "Standby \u0432\u043E\u0441\u043F\u0440\u043E\u0438\u0437\u0432\u0451\u043B WAL \u0434\u043E 0/72A69E8."
+    }
+  ],
+  "milestones": [
+    {
+      "label": "\u041D\u0430\u0447\u0430\u043B\u044C\u043D\u044B\u0435 \u0434\u0430\u043D\u043D\u044B\u0435 Catalog",
+      "writer": "postgres",
+      "nodes": [
+        {
+          "id": "postgres",
+          "state": "AVAILABLE",
+          "role": "Primary",
+          "readOnly": false,
+          "fenced": false,
+          "walLsn": "0/729E858",
+          "replayLsn": "0/7261058",
+          "replayPaused": false,
+          "streamingState": "streaming",
+          "observedAtUtc": "2026-10-22T14:26:42.5569775\u002B00:00",
+          "books": [
+            {
+              "id": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "available": 2
+            },
+            {
+              "id": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "available": 1
+            },
+            {
+              "id": "9913bfa9-ddde-45e0-8d92-99584e451c09",
+              "title": "Integration Test Book",
+              "available": 0
+            },
+            {
+              "id": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "available": 2
+            },
+            {
+              "id": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "available": 1
+            },
+            {
+              "id": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "available": 1
+            },
+            {
+              "id": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "available": 2
+            },
+            {
+              "id": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "available": 2
+            },
+            {
+              "id": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "available": 2
+            }
+          ],
+          "copies": [
+            {
+              "id": "2605a106-83ee-42cc-8459-6f850256e46e",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Available",
+              "isHidden": false,
+              "version": 21
+            },
+            {
+              "id": "e5d8433e-ea34-4b5c-848f-fc993a8f9dea",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "917b3688-272d-4882-9595-687de07d7112",
+              "bookId": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "48788376-7a1e-49ca-8c0f-934d2bda0fc1",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "ee5c3406-4b2b-4ef0-bc21-5db498ec8b81",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "528b027e-4b54-4e8f-98e8-d09ea1830fc0",
+              "bookId": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "da96e01f-3f8c-4525-b5ea-1982013df6b7",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "OnLoan",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "dcc91440-a082-46b0-86a8-55b588269469",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "Available",
+              "isHidden": false,
+              "version": 1
+            },
+            {
+              "id": "b733c4fc-e895-48c0-b499-37a9c731e9d8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "f3c7acc5-840b-45a9-bf44-516e05a5dff8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "8e4c2648-f414-4f7e-9837-d195326ebd3f",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "a560e8ca-c79f-4626-ae98-ed9ccae08ed7",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "01e7800a-64f1-4729-9430-c759e7dc84a1",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "35248fb9-9bf7-48f6-93b1-a53aa1ce73b3",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            }
+          ],
+          "error": null
+        },
+        {
+          "id": "postgres-replica",
+          "state": "AVAILABLE",
+          "role": "Standby",
+          "readOnly": true,
+          "fenced": false,
+          "walLsn": null,
+          "replayLsn": "0/729E858",
+          "replayPaused": false,
+          "streamingState": "streaming",
+          "observedAtUtc": "2026-10-22T14:26:42.604012\u002B00:00",
+          "books": [
+            {
+              "id": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "available": 2
+            },
+            {
+              "id": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "available": 1
+            },
+            {
+              "id": "9913bfa9-ddde-45e0-8d92-99584e451c09",
+              "title": "Integration Test Book",
+              "available": 0
+            },
+            {
+              "id": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "available": 2
+            },
+            {
+              "id": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "available": 1
+            },
+            {
+              "id": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "available": 1
+            },
+            {
+              "id": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "available": 2
+            },
+            {
+              "id": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "available": 2
+            },
+            {
+              "id": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "available": 2
+            }
+          ],
+          "copies": [
+            {
+              "id": "2605a106-83ee-42cc-8459-6f850256e46e",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Available",
+              "isHidden": false,
+              "version": 21
+            },
+            {
+              "id": "e5d8433e-ea34-4b5c-848f-fc993a8f9dea",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "917b3688-272d-4882-9595-687de07d7112",
+              "bookId": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "48788376-7a1e-49ca-8c0f-934d2bda0fc1",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "ee5c3406-4b2b-4ef0-bc21-5db498ec8b81",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "528b027e-4b54-4e8f-98e8-d09ea1830fc0",
+              "bookId": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "da96e01f-3f8c-4525-b5ea-1982013df6b7",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "OnLoan",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "dcc91440-a082-46b0-86a8-55b588269469",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "Available",
+              "isHidden": false,
+              "version": 1
+            },
+            {
+              "id": "b733c4fc-e895-48c0-b499-37a9c731e9d8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "f3c7acc5-840b-45a9-bf44-516e05a5dff8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "8e4c2648-f414-4f7e-9837-d195326ebd3f",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "a560e8ca-c79f-4626-ae98-ed9ccae08ed7",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "01e7800a-64f1-4729-9430-c759e7dc84a1",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "35248fb9-9bf7-48f6-93b1-a53aa1ce73b3",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            }
+          ],
+          "error": null
+        }
+      ]
+    },
+    {
+      "label": "Client 1: Available=False",
+      "writer": "postgres",
+      "nodes": [
+        {
+          "id": "postgres",
+          "state": "AVAILABLE",
+          "role": "Primary",
+          "readOnly": false,
+          "fenced": false,
+          "walLsn": "0/729EA58",
+          "replayLsn": "0/7261058",
+          "replayPaused": false,
+          "streamingState": "streaming",
+          "observedAtUtc": "2026-10-22T14:26:42.8000521\u002B00:00",
+          "books": [
+            {
+              "id": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "available": 1
+            },
+            {
+              "id": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "available": 1
+            },
+            {
+              "id": "9913bfa9-ddde-45e0-8d92-99584e451c09",
+              "title": "Integration Test Book",
+              "available": 0
+            },
+            {
+              "id": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "available": 2
+            },
+            {
+              "id": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "available": 1
+            },
+            {
+              "id": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "available": 1
+            },
+            {
+              "id": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "available": 2
+            },
+            {
+              "id": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "available": 2
+            },
+            {
+              "id": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "available": 2
+            }
+          ],
+          "copies": [
+            {
+              "id": "2605a106-83ee-42cc-8459-6f850256e46e",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Unavailable",
+              "isHidden": false,
+              "version": 22
+            },
+            {
+              "id": "e5d8433e-ea34-4b5c-848f-fc993a8f9dea",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "917b3688-272d-4882-9595-687de07d7112",
+              "bookId": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "48788376-7a1e-49ca-8c0f-934d2bda0fc1",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "ee5c3406-4b2b-4ef0-bc21-5db498ec8b81",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "528b027e-4b54-4e8f-98e8-d09ea1830fc0",
+              "bookId": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "da96e01f-3f8c-4525-b5ea-1982013df6b7",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "OnLoan",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "dcc91440-a082-46b0-86a8-55b588269469",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "Available",
+              "isHidden": false,
+              "version": 1
+            },
+            {
+              "id": "b733c4fc-e895-48c0-b499-37a9c731e9d8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "f3c7acc5-840b-45a9-bf44-516e05a5dff8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "8e4c2648-f414-4f7e-9837-d195326ebd3f",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "a560e8ca-c79f-4626-ae98-ed9ccae08ed7",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "01e7800a-64f1-4729-9430-c759e7dc84a1",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "35248fb9-9bf7-48f6-93b1-a53aa1ce73b3",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            }
+          ],
+          "error": null
+        },
+        {
+          "id": "postgres-replica",
+          "state": "AVAILABLE",
+          "role": "Standby",
+          "readOnly": true,
+          "fenced": false,
+          "walLsn": null,
+          "replayLsn": "0/729EA58",
+          "replayPaused": false,
+          "streamingState": "streaming",
+          "observedAtUtc": "2026-10-22T14:26:42.9547221\u002B00:00",
+          "books": [
+            {
+              "id": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "available": 1
+            },
+            {
+              "id": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "available": 1
+            },
+            {
+              "id": "9913bfa9-ddde-45e0-8d92-99584e451c09",
+              "title": "Integration Test Book",
+              "available": 0
+            },
+            {
+              "id": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "available": 2
+            },
+            {
+              "id": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "available": 1
+            },
+            {
+              "id": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "available": 1
+            },
+            {
+              "id": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "available": 2
+            },
+            {
+              "id": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "available": 2
+            },
+            {
+              "id": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "available": 2
+            }
+          ],
+          "copies": [
+            {
+              "id": "2605a106-83ee-42cc-8459-6f850256e46e",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Unavailable",
+              "isHidden": false,
+              "version": 22
+            },
+            {
+              "id": "e5d8433e-ea34-4b5c-848f-fc993a8f9dea",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "917b3688-272d-4882-9595-687de07d7112",
+              "bookId": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "48788376-7a1e-49ca-8c0f-934d2bda0fc1",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "ee5c3406-4b2b-4ef0-bc21-5db498ec8b81",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "528b027e-4b54-4e8f-98e8-d09ea1830fc0",
+              "bookId": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "da96e01f-3f8c-4525-b5ea-1982013df6b7",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "OnLoan",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "dcc91440-a082-46b0-86a8-55b588269469",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "Available",
+              "isHidden": false,
+              "version": 1
+            },
+            {
+              "id": "b733c4fc-e895-48c0-b499-37a9c731e9d8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "f3c7acc5-840b-45a9-bf44-516e05a5dff8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "8e4c2648-f414-4f7e-9837-d195326ebd3f",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "a560e8ca-c79f-4626-ae98-ed9ccae08ed7",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "01e7800a-64f1-4729-9430-c759e7dc84a1",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "35248fb9-9bf7-48f6-93b1-a53aa1ce73b3",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            }
+          ],
+          "error": null
+        }
+      ]
+    },
+    {
+      "label": "Client 2: Available=True",
+      "writer": "postgres",
+      "nodes": [
+        {
+          "id": "postgres",
+          "state": "AVAILABLE",
+          "role": "Primary",
+          "readOnly": false,
+          "fenced": false,
+          "walLsn": "0/729EC58",
+          "replayLsn": "0/7261058",
+          "replayPaused": false,
+          "streamingState": "streaming",
+          "observedAtUtc": "2026-10-22T14:26:43.5546155\u002B00:00",
+          "books": [
+            {
+              "id": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "available": 2
+            },
+            {
+              "id": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "available": 1
+            },
+            {
+              "id": "9913bfa9-ddde-45e0-8d92-99584e451c09",
+              "title": "Integration Test Book",
+              "available": 0
+            },
+            {
+              "id": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "available": 2
+            },
+            {
+              "id": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "available": 1
+            },
+            {
+              "id": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "available": 1
+            },
+            {
+              "id": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "available": 2
+            },
+            {
+              "id": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "available": 2
+            },
+            {
+              "id": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "available": 2
+            }
+          ],
+          "copies": [
+            {
+              "id": "2605a106-83ee-42cc-8459-6f850256e46e",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Available",
+              "isHidden": false,
+              "version": 23
+            },
+            {
+              "id": "e5d8433e-ea34-4b5c-848f-fc993a8f9dea",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "917b3688-272d-4882-9595-687de07d7112",
+              "bookId": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "48788376-7a1e-49ca-8c0f-934d2bda0fc1",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "ee5c3406-4b2b-4ef0-bc21-5db498ec8b81",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "528b027e-4b54-4e8f-98e8-d09ea1830fc0",
+              "bookId": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "da96e01f-3f8c-4525-b5ea-1982013df6b7",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "OnLoan",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "dcc91440-a082-46b0-86a8-55b588269469",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "Available",
+              "isHidden": false,
+              "version": 1
+            },
+            {
+              "id": "b733c4fc-e895-48c0-b499-37a9c731e9d8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "f3c7acc5-840b-45a9-bf44-516e05a5dff8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "8e4c2648-f414-4f7e-9837-d195326ebd3f",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "a560e8ca-c79f-4626-ae98-ed9ccae08ed7",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "01e7800a-64f1-4729-9430-c759e7dc84a1",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "35248fb9-9bf7-48f6-93b1-a53aa1ce73b3",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            }
+          ],
+          "error": null
+        },
+        {
+          "id": "postgres-replica",
+          "state": "AVAILABLE",
+          "role": "Standby",
+          "readOnly": true,
+          "fenced": false,
+          "walLsn": null,
+          "replayLsn": "0/729EC58",
+          "replayPaused": false,
+          "streamingState": "streaming",
+          "observedAtUtc": "2026-10-22T14:26:43.6024838\u002B00:00",
+          "books": [
+            {
+              "id": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "available": 2
+            },
+            {
+              "id": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "available": 1
+            },
+            {
+              "id": "9913bfa9-ddde-45e0-8d92-99584e451c09",
+              "title": "Integration Test Book",
+              "available": 0
+            },
+            {
+              "id": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "available": 2
+            },
+            {
+              "id": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "available": 1
+            },
+            {
+              "id": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "available": 1
+            },
+            {
+              "id": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "available": 2
+            },
+            {
+              "id": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "available": 2
+            },
+            {
+              "id": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "available": 2
+            }
+          ],
+          "copies": [
+            {
+              "id": "2605a106-83ee-42cc-8459-6f850256e46e",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Available",
+              "isHidden": false,
+              "version": 23
+            },
+            {
+              "id": "e5d8433e-ea34-4b5c-848f-fc993a8f9dea",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "917b3688-272d-4882-9595-687de07d7112",
+              "bookId": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "48788376-7a1e-49ca-8c0f-934d2bda0fc1",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "ee5c3406-4b2b-4ef0-bc21-5db498ec8b81",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "528b027e-4b54-4e8f-98e8-d09ea1830fc0",
+              "bookId": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "da96e01f-3f8c-4525-b5ea-1982013df6b7",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "OnLoan",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "dcc91440-a082-46b0-86a8-55b588269469",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "Available",
+              "isHidden": false,
+              "version": 1
+            },
+            {
+              "id": "b733c4fc-e895-48c0-b499-37a9c731e9d8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "f3c7acc5-840b-45a9-bf44-516e05a5dff8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "8e4c2648-f414-4f7e-9837-d195326ebd3f",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "a560e8ca-c79f-4626-ae98-ed9ccae08ed7",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "01e7800a-64f1-4729-9430-c759e7dc84a1",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "35248fb9-9bf7-48f6-93b1-a53aa1ce73b3",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            }
+          ],
+          "error": null
+        }
+      ]
+    },
+    {
+      "label": "Client 1: Available=False",
+      "writer": "postgres",
+      "nodes": [
+        {
+          "id": "postgres",
+          "state": "AVAILABLE",
+          "role": "Primary",
+          "readOnly": false,
+          "fenced": false,
+          "walLsn": "0/729EE58",
+          "replayLsn": "0/7261058",
+          "replayPaused": false,
+          "streamingState": "streaming",
+          "observedAtUtc": "2026-10-22T14:26:44.0559805\u002B00:00",
+          "books": [
+            {
+              "id": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "available": 1
+            },
+            {
+              "id": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "available": 1
+            },
+            {
+              "id": "9913bfa9-ddde-45e0-8d92-99584e451c09",
+              "title": "Integration Test Book",
+              "available": 0
+            },
+            {
+              "id": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "available": 2
+            },
+            {
+              "id": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "available": 1
+            },
+            {
+              "id": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "available": 1
+            },
+            {
+              "id": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "available": 2
+            },
+            {
+              "id": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "available": 2
+            },
+            {
+              "id": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "available": 2
+            }
+          ],
+          "copies": [
+            {
+              "id": "2605a106-83ee-42cc-8459-6f850256e46e",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Unavailable",
+              "isHidden": false,
+              "version": 24
+            },
+            {
+              "id": "e5d8433e-ea34-4b5c-848f-fc993a8f9dea",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "917b3688-272d-4882-9595-687de07d7112",
+              "bookId": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "48788376-7a1e-49ca-8c0f-934d2bda0fc1",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "ee5c3406-4b2b-4ef0-bc21-5db498ec8b81",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "528b027e-4b54-4e8f-98e8-d09ea1830fc0",
+              "bookId": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "da96e01f-3f8c-4525-b5ea-1982013df6b7",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "OnLoan",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "dcc91440-a082-46b0-86a8-55b588269469",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "Available",
+              "isHidden": false,
+              "version": 1
+            },
+            {
+              "id": "b733c4fc-e895-48c0-b499-37a9c731e9d8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "f3c7acc5-840b-45a9-bf44-516e05a5dff8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "8e4c2648-f414-4f7e-9837-d195326ebd3f",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "a560e8ca-c79f-4626-ae98-ed9ccae08ed7",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "01e7800a-64f1-4729-9430-c759e7dc84a1",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "35248fb9-9bf7-48f6-93b1-a53aa1ce73b3",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            }
+          ],
+          "error": null
+        },
+        {
+          "id": "postgres-replica",
+          "state": "AVAILABLE",
+          "role": "Standby",
+          "readOnly": true,
+          "fenced": false,
+          "walLsn": null,
+          "replayLsn": "0/729EE58",
+          "replayPaused": false,
+          "streamingState": "streaming",
+          "observedAtUtc": "2026-10-22T14:26:44.1050045\u002B00:00",
+          "books": [
+            {
+              "id": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "available": 1
+            },
+            {
+              "id": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "available": 1
+            },
+            {
+              "id": "9913bfa9-ddde-45e0-8d92-99584e451c09",
+              "title": "Integration Test Book",
+              "available": 0
+            },
+            {
+              "id": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "available": 2
+            },
+            {
+              "id": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "available": 1
+            },
+            {
+              "id": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "available": 1
+            },
+            {
+              "id": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "available": 2
+            },
+            {
+              "id": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "available": 2
+            },
+            {
+              "id": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "available": 2
+            }
+          ],
+          "copies": [
+            {
+              "id": "2605a106-83ee-42cc-8459-6f850256e46e",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Unavailable",
+              "isHidden": false,
+              "version": 24
+            },
+            {
+              "id": "e5d8433e-ea34-4b5c-848f-fc993a8f9dea",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "917b3688-272d-4882-9595-687de07d7112",
+              "bookId": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "48788376-7a1e-49ca-8c0f-934d2bda0fc1",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "ee5c3406-4b2b-4ef0-bc21-5db498ec8b81",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "528b027e-4b54-4e8f-98e8-d09ea1830fc0",
+              "bookId": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "da96e01f-3f8c-4525-b5ea-1982013df6b7",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "OnLoan",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "dcc91440-a082-46b0-86a8-55b588269469",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "Available",
+              "isHidden": false,
+              "version": 1
+            },
+            {
+              "id": "b733c4fc-e895-48c0-b499-37a9c731e9d8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "f3c7acc5-840b-45a9-bf44-516e05a5dff8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "8e4c2648-f414-4f7e-9837-d195326ebd3f",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "a560e8ca-c79f-4626-ae98-ed9ccae08ed7",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "01e7800a-64f1-4729-9430-c759e7dc84a1",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "35248fb9-9bf7-48f6-93b1-a53aa1ce73b3",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            }
+          ],
+          "error": null
+        }
+      ]
+    },
+    {
+      "label": "\u041A\u043E\u043D\u0442\u0435\u0439\u043D\u0435\u0440 postgres \u043E\u0441\u0442\u0430\u043D\u043E\u0432\u043B\u0435\u043D",
+      "writer": null,
+      "nodes": [
+        {
+          "id": "postgres",
+          "state": "UNAVAILABLE",
+          "role": "Unknown",
+          "readOnly": true,
+          "fenced": true,
+          "walLsn": "0/729EE58",
+          "replayLsn": "0/7261058",
+          "replayPaused": false,
+          "streamingState": "streaming",
+          "observedAtUtc": "2026-10-22T14:26:44.2708417\u002B00:00",
+          "books": [
+            {
+              "id": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "available": 1
+            },
+            {
+              "id": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "available": 1
+            },
+            {
+              "id": "9913bfa9-ddde-45e0-8d92-99584e451c09",
+              "title": "Integration Test Book",
+              "available": 0
+            },
+            {
+              "id": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "available": 2
+            },
+            {
+              "id": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "available": 1
+            },
+            {
+              "id": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "available": 1
+            },
+            {
+              "id": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "available": 2
+            },
+            {
+              "id": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "available": 2
+            },
+            {
+              "id": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "available": 2
+            }
+          ],
+          "copies": [
+            {
+              "id": "2605a106-83ee-42cc-8459-6f850256e46e",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Unavailable",
+              "isHidden": false,
+              "version": 24
+            },
+            {
+              "id": "e5d8433e-ea34-4b5c-848f-fc993a8f9dea",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "917b3688-272d-4882-9595-687de07d7112",
+              "bookId": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "48788376-7a1e-49ca-8c0f-934d2bda0fc1",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "ee5c3406-4b2b-4ef0-bc21-5db498ec8b81",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "528b027e-4b54-4e8f-98e8-d09ea1830fc0",
+              "bookId": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "da96e01f-3f8c-4525-b5ea-1982013df6b7",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "OnLoan",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "dcc91440-a082-46b0-86a8-55b588269469",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "Available",
+              "isHidden": false,
+              "version": 1
+            },
+            {
+              "id": "b733c4fc-e895-48c0-b499-37a9c731e9d8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "f3c7acc5-840b-45a9-bf44-516e05a5dff8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "8e4c2648-f414-4f7e-9837-d195326ebd3f",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "a560e8ca-c79f-4626-ae98-ed9ccae08ed7",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "01e7800a-64f1-4729-9430-c759e7dc84a1",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "35248fb9-9bf7-48f6-93b1-a53aa1ce73b3",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            }
+          ],
+          "error": "PostgreSQL/Catalog \u043D\u0435\u0434\u043E\u0441\u0442\u0443\u043F\u0435\u043D. \u041F\u043E\u043A\u0430\u0437\u0430\u043D\u044B \u043F\u043E\u0441\u043B\u0435\u0434\u043D\u0438\u0435 \u043D\u0430\u0431\u043B\u044E\u0434\u0430\u0432\u0448\u0438\u0435\u0441\u044F \u0434\u0430\u043D\u043D\u044B\u0435."
+        },
+        {
+          "id": "postgres-replica",
+          "state": "AVAILABLE",
+          "role": "Standby",
+          "readOnly": true,
+          "fenced": false,
+          "walLsn": null,
+          "replayLsn": "0/729EED0",
+          "replayPaused": false,
+          "streamingState": null,
+          "observedAtUtc": "2026-10-22T14:26:49.3527164\u002B00:00",
+          "books": [
+            {
+              "id": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "available": 1
+            },
+            {
+              "id": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "available": 1
+            },
+            {
+              "id": "9913bfa9-ddde-45e0-8d92-99584e451c09",
+              "title": "Integration Test Book",
+              "available": 0
+            },
+            {
+              "id": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "available": 2
+            },
+            {
+              "id": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "available": 1
+            },
+            {
+              "id": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "available": 1
+            },
+            {
+              "id": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "available": 2
+            },
+            {
+              "id": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "available": 2
+            },
+            {
+              "id": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "available": 2
+            }
+          ],
+          "copies": [
+            {
+              "id": "2605a106-83ee-42cc-8459-6f850256e46e",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Unavailable",
+              "isHidden": false,
+              "version": 24
+            },
+            {
+              "id": "e5d8433e-ea34-4b5c-848f-fc993a8f9dea",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "917b3688-272d-4882-9595-687de07d7112",
+              "bookId": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "48788376-7a1e-49ca-8c0f-934d2bda0fc1",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "ee5c3406-4b2b-4ef0-bc21-5db498ec8b81",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "528b027e-4b54-4e8f-98e8-d09ea1830fc0",
+              "bookId": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "da96e01f-3f8c-4525-b5ea-1982013df6b7",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "OnLoan",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "dcc91440-a082-46b0-86a8-55b588269469",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "Available",
+              "isHidden": false,
+              "version": 1
+            },
+            {
+              "id": "b733c4fc-e895-48c0-b499-37a9c731e9d8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "f3c7acc5-840b-45a9-bf44-516e05a5dff8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "8e4c2648-f414-4f7e-9837-d195326ebd3f",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "a560e8ca-c79f-4626-ae98-ed9ccae08ed7",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "01e7800a-64f1-4729-9430-c759e7dc84a1",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "35248fb9-9bf7-48f6-93b1-a53aa1ce73b3",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            }
+          ],
+          "error": null
+        }
+      ]
+    },
+    {
+      "label": "Failover: standby \u043F\u043E\u0432\u044B\u0448\u0435\u043D \u0434\u043E primary",
+      "writer": "postgres-replica",
+      "nodes": [
+        {
+          "id": "postgres",
+          "state": "UNAVAILABLE",
+          "role": "Unknown",
+          "readOnly": true,
+          "fenced": true,
+          "walLsn": "0/729EE58",
+          "replayLsn": "0/7261058",
+          "replayPaused": false,
+          "streamingState": "streaming",
+          "observedAtUtc": "2026-10-22T14:26:44.2708417\u002B00:00",
+          "books": [
+            {
+              "id": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "available": 1
+            },
+            {
+              "id": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "available": 1
+            },
+            {
+              "id": "9913bfa9-ddde-45e0-8d92-99584e451c09",
+              "title": "Integration Test Book",
+              "available": 0
+            },
+            {
+              "id": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "available": 2
+            },
+            {
+              "id": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "available": 1
+            },
+            {
+              "id": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "available": 1
+            },
+            {
+              "id": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "available": 2
+            },
+            {
+              "id": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "available": 2
+            },
+            {
+              "id": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "available": 2
+            }
+          ],
+          "copies": [
+            {
+              "id": "2605a106-83ee-42cc-8459-6f850256e46e",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Unavailable",
+              "isHidden": false,
+              "version": 24
+            },
+            {
+              "id": "e5d8433e-ea34-4b5c-848f-fc993a8f9dea",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "917b3688-272d-4882-9595-687de07d7112",
+              "bookId": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "48788376-7a1e-49ca-8c0f-934d2bda0fc1",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "ee5c3406-4b2b-4ef0-bc21-5db498ec8b81",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "528b027e-4b54-4e8f-98e8-d09ea1830fc0",
+              "bookId": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "da96e01f-3f8c-4525-b5ea-1982013df6b7",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "OnLoan",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "dcc91440-a082-46b0-86a8-55b588269469",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "Available",
+              "isHidden": false,
+              "version": 1
+            },
+            {
+              "id": "b733c4fc-e895-48c0-b499-37a9c731e9d8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "f3c7acc5-840b-45a9-bf44-516e05a5dff8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "8e4c2648-f414-4f7e-9837-d195326ebd3f",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "a560e8ca-c79f-4626-ae98-ed9ccae08ed7",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "01e7800a-64f1-4729-9430-c759e7dc84a1",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "35248fb9-9bf7-48f6-93b1-a53aa1ce73b3",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            }
+          ],
+          "error": "PostgreSQL/Catalog \u043D\u0435\u0434\u043E\u0441\u0442\u0443\u043F\u0435\u043D. \u041F\u043E\u043A\u0430\u0437\u0430\u043D\u044B \u043F\u043E\u0441\u043B\u0435\u0434\u043D\u0438\u0435 \u043D\u0430\u0431\u043B\u044E\u0434\u0430\u0432\u0448\u0438\u0435\u0441\u044F \u0434\u0430\u043D\u043D\u044B\u0435."
+        },
+        {
+          "id": "postgres-replica",
+          "state": "AVAILABLE",
+          "role": "Primary",
+          "readOnly": false,
+          "fenced": false,
+          "walLsn": "0/72A11A0",
+          "replayLsn": "0/729EED0",
+          "replayPaused": false,
+          "streamingState": null,
+          "observedAtUtc": "2026-10-22T14:26:52.6168466\u002B00:00",
+          "books": [
+            {
+              "id": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "available": 1
+            },
+            {
+              "id": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "available": 1
+            },
+            {
+              "id": "9913bfa9-ddde-45e0-8d92-99584e451c09",
+              "title": "Integration Test Book",
+              "available": 0
+            },
+            {
+              "id": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "available": 2
+            },
+            {
+              "id": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "available": 1
+            },
+            {
+              "id": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "available": 1
+            },
+            {
+              "id": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "available": 2
+            },
+            {
+              "id": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "available": 2
+            },
+            {
+              "id": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "available": 2
+            }
+          ],
+          "copies": [
+            {
+              "id": "2605a106-83ee-42cc-8459-6f850256e46e",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Unavailable",
+              "isHidden": false,
+              "version": 24
+            },
+            {
+              "id": "e5d8433e-ea34-4b5c-848f-fc993a8f9dea",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "917b3688-272d-4882-9595-687de07d7112",
+              "bookId": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "48788376-7a1e-49ca-8c0f-934d2bda0fc1",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "ee5c3406-4b2b-4ef0-bc21-5db498ec8b81",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "528b027e-4b54-4e8f-98e8-d09ea1830fc0",
+              "bookId": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "da96e01f-3f8c-4525-b5ea-1982013df6b7",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "OnLoan",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "dcc91440-a082-46b0-86a8-55b588269469",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "Available",
+              "isHidden": false,
+              "version": 1
+            },
+            {
+              "id": "b733c4fc-e895-48c0-b499-37a9c731e9d8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "f3c7acc5-840b-45a9-bf44-516e05a5dff8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "8e4c2648-f414-4f7e-9837-d195326ebd3f",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "a560e8ca-c79f-4626-ae98-ed9ccae08ed7",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "01e7800a-64f1-4729-9430-c759e7dc84a1",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "35248fb9-9bf7-48f6-93b1-a53aa1ce73b3",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            }
+          ],
+          "error": null
+        }
+      ]
+    },
+    {
+      "label": "Client 2: Available=True",
+      "writer": "postgres-replica",
+      "nodes": [
+        {
+          "id": "postgres",
+          "state": "UNAVAILABLE",
+          "role": "Unknown",
+          "readOnly": true,
+          "fenced": true,
+          "walLsn": "0/729EE58",
+          "replayLsn": "0/7261058",
+          "replayPaused": false,
+          "streamingState": "streaming",
+          "observedAtUtc": "2026-10-22T14:26:44.2708417\u002B00:00",
+          "books": [
+            {
+              "id": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "available": 1
+            },
+            {
+              "id": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "available": 1
+            },
+            {
+              "id": "9913bfa9-ddde-45e0-8d92-99584e451c09",
+              "title": "Integration Test Book",
+              "available": 0
+            },
+            {
+              "id": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "available": 2
+            },
+            {
+              "id": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "available": 1
+            },
+            {
+              "id": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "available": 1
+            },
+            {
+              "id": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "available": 2
+            },
+            {
+              "id": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "available": 2
+            },
+            {
+              "id": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "available": 2
+            }
+          ],
+          "copies": [
+            {
+              "id": "2605a106-83ee-42cc-8459-6f850256e46e",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Unavailable",
+              "isHidden": false,
+              "version": 24
+            },
+            {
+              "id": "e5d8433e-ea34-4b5c-848f-fc993a8f9dea",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "917b3688-272d-4882-9595-687de07d7112",
+              "bookId": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "48788376-7a1e-49ca-8c0f-934d2bda0fc1",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "ee5c3406-4b2b-4ef0-bc21-5db498ec8b81",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "528b027e-4b54-4e8f-98e8-d09ea1830fc0",
+              "bookId": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "da96e01f-3f8c-4525-b5ea-1982013df6b7",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "OnLoan",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "dcc91440-a082-46b0-86a8-55b588269469",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "Available",
+              "isHidden": false,
+              "version": 1
+            },
+            {
+              "id": "b733c4fc-e895-48c0-b499-37a9c731e9d8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "f3c7acc5-840b-45a9-bf44-516e05a5dff8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "8e4c2648-f414-4f7e-9837-d195326ebd3f",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "a560e8ca-c79f-4626-ae98-ed9ccae08ed7",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "01e7800a-64f1-4729-9430-c759e7dc84a1",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "35248fb9-9bf7-48f6-93b1-a53aa1ce73b3",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            }
+          ],
+          "error": "PostgreSQL/Catalog \u043D\u0435\u0434\u043E\u0441\u0442\u0443\u043F\u0435\u043D. \u041F\u043E\u043A\u0430\u0437\u0430\u043D\u044B \u043F\u043E\u0441\u043B\u0435\u0434\u043D\u0438\u0435 \u043D\u0430\u0431\u043B\u044E\u0434\u0430\u0432\u0448\u0438\u0435\u0441\u044F \u0434\u0430\u043D\u043D\u044B\u0435."
+        },
+        {
+          "id": "postgres-replica",
+          "state": "AVAILABLE",
+          "role": "Primary",
+          "readOnly": false,
+          "fenced": false,
+          "walLsn": "0/72A6538",
+          "replayLsn": "0/729EED0",
+          "replayPaused": false,
+          "streamingState": null,
+          "observedAtUtc": "2026-10-22T14:26:56.8592407\u002B00:00",
+          "books": [
+            {
+              "id": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "available": 2
+            },
+            {
+              "id": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "available": 1
+            },
+            {
+              "id": "9913bfa9-ddde-45e0-8d92-99584e451c09",
+              "title": "Integration Test Book",
+              "available": 0
+            },
+            {
+              "id": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "available": 2
+            },
+            {
+              "id": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "available": 1
+            },
+            {
+              "id": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "available": 1
+            },
+            {
+              "id": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "available": 2
+            },
+            {
+              "id": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "available": 2
+            },
+            {
+              "id": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "available": 2
+            }
+          ],
+          "copies": [
+            {
+              "id": "2605a106-83ee-42cc-8459-6f850256e46e",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Available",
+              "isHidden": false,
+              "version": 25
+            },
+            {
+              "id": "e5d8433e-ea34-4b5c-848f-fc993a8f9dea",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "917b3688-272d-4882-9595-687de07d7112",
+              "bookId": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "48788376-7a1e-49ca-8c0f-934d2bda0fc1",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "ee5c3406-4b2b-4ef0-bc21-5db498ec8b81",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "528b027e-4b54-4e8f-98e8-d09ea1830fc0",
+              "bookId": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "da96e01f-3f8c-4525-b5ea-1982013df6b7",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "OnLoan",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "dcc91440-a082-46b0-86a8-55b588269469",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "Available",
+              "isHidden": false,
+              "version": 1
+            },
+            {
+              "id": "b733c4fc-e895-48c0-b499-37a9c731e9d8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "f3c7acc5-840b-45a9-bf44-516e05a5dff8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "8e4c2648-f414-4f7e-9837-d195326ebd3f",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "a560e8ca-c79f-4626-ae98-ed9ccae08ed7",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "01e7800a-64f1-4729-9430-c759e7dc84a1",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "35248fb9-9bf7-48f6-93b1-a53aa1ce73b3",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            }
+          ],
+          "error": null
+        }
+      ]
+    },
+    {
+      "label": "\u0412\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u043B\u0435\u043D\u0438\u0435 \u0438 streaming replication",
+      "writer": "postgres-replica",
+      "nodes": [
+        {
+          "id": "postgres",
+          "state": "AVAILABLE",
+          "role": "Standby",
+          "readOnly": true,
+          "fenced": false,
+          "walLsn": null,
+          "replayLsn": "0/72A65E8",
+          "replayPaused": false,
+          "streamingState": "streaming",
+          "observedAtUtc": "2026-10-22T14:27:00.6356571\u002B00:00",
+          "books": [
+            {
+              "id": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "available": 2
+            },
+            {
+              "id": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "available": 1
+            },
+            {
+              "id": "9913bfa9-ddde-45e0-8d92-99584e451c09",
+              "title": "Integration Test Book",
+              "available": 0
+            },
+            {
+              "id": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "available": 2
+            },
+            {
+              "id": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "available": 1
+            },
+            {
+              "id": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "available": 1
+            },
+            {
+              "id": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "available": 2
+            },
+            {
+              "id": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "available": 2
+            },
+            {
+              "id": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "available": 2
+            }
+          ],
+          "copies": [
+            {
+              "id": "2605a106-83ee-42cc-8459-6f850256e46e",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Available",
+              "isHidden": false,
+              "version": 25
+            },
+            {
+              "id": "e5d8433e-ea34-4b5c-848f-fc993a8f9dea",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "917b3688-272d-4882-9595-687de07d7112",
+              "bookId": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "48788376-7a1e-49ca-8c0f-934d2bda0fc1",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "ee5c3406-4b2b-4ef0-bc21-5db498ec8b81",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "528b027e-4b54-4e8f-98e8-d09ea1830fc0",
+              "bookId": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "da96e01f-3f8c-4525-b5ea-1982013df6b7",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "OnLoan",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "dcc91440-a082-46b0-86a8-55b588269469",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "Available",
+              "isHidden": false,
+              "version": 1
+            },
+            {
+              "id": "b733c4fc-e895-48c0-b499-37a9c731e9d8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "f3c7acc5-840b-45a9-bf44-516e05a5dff8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "8e4c2648-f414-4f7e-9837-d195326ebd3f",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "a560e8ca-c79f-4626-ae98-ed9ccae08ed7",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "01e7800a-64f1-4729-9430-c759e7dc84a1",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "35248fb9-9bf7-48f6-93b1-a53aa1ce73b3",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            }
+          ],
+          "error": null
+        },
+        {
+          "id": "postgres-replica",
+          "state": "AVAILABLE",
+          "role": "Primary",
+          "readOnly": false,
+          "fenced": false,
+          "walLsn": "0/72A65E8",
+          "replayLsn": "0/729EED0",
+          "replayPaused": false,
+          "streamingState": "streaming",
+          "observedAtUtc": "2026-10-22T14:27:00.6896478\u002B00:00",
+          "books": [
+            {
+              "id": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "available": 2
+            },
+            {
+              "id": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "available": 1
+            },
+            {
+              "id": "9913bfa9-ddde-45e0-8d92-99584e451c09",
+              "title": "Integration Test Book",
+              "available": 0
+            },
+            {
+              "id": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "available": 2
+            },
+            {
+              "id": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "available": 1
+            },
+            {
+              "id": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "available": 1
+            },
+            {
+              "id": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "available": 2
+            },
+            {
+              "id": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "available": 2
+            },
+            {
+              "id": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "available": 2
+            }
+          ],
+          "copies": [
+            {
+              "id": "2605a106-83ee-42cc-8459-6f850256e46e",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Available",
+              "isHidden": false,
+              "version": 25
+            },
+            {
+              "id": "e5d8433e-ea34-4b5c-848f-fc993a8f9dea",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "917b3688-272d-4882-9595-687de07d7112",
+              "bookId": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "48788376-7a1e-49ca-8c0f-934d2bda0fc1",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "ee5c3406-4b2b-4ef0-bc21-5db498ec8b81",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "528b027e-4b54-4e8f-98e8-d09ea1830fc0",
+              "bookId": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "da96e01f-3f8c-4525-b5ea-1982013df6b7",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "OnLoan",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "dcc91440-a082-46b0-86a8-55b588269469",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "Available",
+              "isHidden": false,
+              "version": 1
+            },
+            {
+              "id": "b733c4fc-e895-48c0-b499-37a9c731e9d8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "f3c7acc5-840b-45a9-bf44-516e05a5dff8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "8e4c2648-f414-4f7e-9837-d195326ebd3f",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "a560e8ca-c79f-4626-ae98-ed9ccae08ed7",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "01e7800a-64f1-4729-9430-c759e7dc84a1",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "35248fb9-9bf7-48f6-93b1-a53aa1ce73b3",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            }
+          ],
+          "error": null
+        }
+      ]
+    },
+    {
+      "label": "Client 1: Available=False",
+      "writer": "postgres-replica",
+      "nodes": [
+        {
+          "id": "postgres",
+          "state": "AVAILABLE",
+          "role": "Standby",
+          "readOnly": true,
+          "fenced": false,
+          "walLsn": null,
+          "replayLsn": "0/72A67E8",
+          "replayPaused": false,
+          "streamingState": "streaming",
+          "observedAtUtc": "2026-10-22T14:27:01.0916213\u002B00:00",
+          "books": [
+            {
+              "id": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "available": 1
+            },
+            {
+              "id": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "available": 1
+            },
+            {
+              "id": "9913bfa9-ddde-45e0-8d92-99584e451c09",
+              "title": "Integration Test Book",
+              "available": 0
+            },
+            {
+              "id": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "available": 2
+            },
+            {
+              "id": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "available": 1
+            },
+            {
+              "id": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "available": 1
+            },
+            {
+              "id": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "available": 2
+            },
+            {
+              "id": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "available": 2
+            },
+            {
+              "id": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "available": 2
+            }
+          ],
+          "copies": [
+            {
+              "id": "2605a106-83ee-42cc-8459-6f850256e46e",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Unavailable",
+              "isHidden": false,
+              "version": 26
+            },
+            {
+              "id": "e5d8433e-ea34-4b5c-848f-fc993a8f9dea",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "917b3688-272d-4882-9595-687de07d7112",
+              "bookId": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "48788376-7a1e-49ca-8c0f-934d2bda0fc1",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "ee5c3406-4b2b-4ef0-bc21-5db498ec8b81",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "528b027e-4b54-4e8f-98e8-d09ea1830fc0",
+              "bookId": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "da96e01f-3f8c-4525-b5ea-1982013df6b7",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "OnLoan",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "dcc91440-a082-46b0-86a8-55b588269469",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "Available",
+              "isHidden": false,
+              "version": 1
+            },
+            {
+              "id": "b733c4fc-e895-48c0-b499-37a9c731e9d8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "f3c7acc5-840b-45a9-bf44-516e05a5dff8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "8e4c2648-f414-4f7e-9837-d195326ebd3f",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "a560e8ca-c79f-4626-ae98-ed9ccae08ed7",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "01e7800a-64f1-4729-9430-c759e7dc84a1",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "35248fb9-9bf7-48f6-93b1-a53aa1ce73b3",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            }
+          ],
+          "error": null
+        },
+        {
+          "id": "postgres-replica",
+          "state": "AVAILABLE",
+          "role": "Primary",
+          "readOnly": false,
+          "fenced": false,
+          "walLsn": "0/72A67E8",
+          "replayLsn": "0/729EED0",
+          "replayPaused": false,
+          "streamingState": "streaming",
+          "observedAtUtc": "2026-10-22T14:27:01.1421779\u002B00:00",
+          "books": [
+            {
+              "id": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "available": 1
+            },
+            {
+              "id": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "available": 1
+            },
+            {
+              "id": "9913bfa9-ddde-45e0-8d92-99584e451c09",
+              "title": "Integration Test Book",
+              "available": 0
+            },
+            {
+              "id": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "available": 2
+            },
+            {
+              "id": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "available": 1
+            },
+            {
+              "id": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "available": 1
+            },
+            {
+              "id": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "available": 2
+            },
+            {
+              "id": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "available": 2
+            },
+            {
+              "id": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "available": 2
+            }
+          ],
+          "copies": [
+            {
+              "id": "2605a106-83ee-42cc-8459-6f850256e46e",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Unavailable",
+              "isHidden": false,
+              "version": 26
+            },
+            {
+              "id": "e5d8433e-ea34-4b5c-848f-fc993a8f9dea",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "917b3688-272d-4882-9595-687de07d7112",
+              "bookId": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "48788376-7a1e-49ca-8c0f-934d2bda0fc1",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "ee5c3406-4b2b-4ef0-bc21-5db498ec8b81",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "528b027e-4b54-4e8f-98e8-d09ea1830fc0",
+              "bookId": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "da96e01f-3f8c-4525-b5ea-1982013df6b7",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "OnLoan",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "dcc91440-a082-46b0-86a8-55b588269469",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "Available",
+              "isHidden": false,
+              "version": 1
+            },
+            {
+              "id": "b733c4fc-e895-48c0-b499-37a9c731e9d8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "f3c7acc5-840b-45a9-bf44-516e05a5dff8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "8e4c2648-f414-4f7e-9837-d195326ebd3f",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "a560e8ca-c79f-4626-ae98-ed9ccae08ed7",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "01e7800a-64f1-4729-9430-c759e7dc84a1",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "35248fb9-9bf7-48f6-93b1-a53aa1ce73b3",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            }
+          ],
+          "error": null
+        }
+      ]
+    },
+    {
+      "label": "Client 2: Available=True",
+      "writer": "postgres-replica",
+      "nodes": [
+        {
+          "id": "postgres",
+          "state": "AVAILABLE",
+          "role": "Standby",
+          "readOnly": true,
+          "fenced": false,
+          "walLsn": null,
+          "replayLsn": "0/72A69E8",
+          "replayPaused": false,
+          "streamingState": "streaming",
+          "observedAtUtc": "2026-10-22T14:27:01.5589192\u002B00:00",
+          "books": [
+            {
+              "id": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "available": 2
+            },
+            {
+              "id": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "available": 1
+            },
+            {
+              "id": "9913bfa9-ddde-45e0-8d92-99584e451c09",
+              "title": "Integration Test Book",
+              "available": 0
+            },
+            {
+              "id": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "available": 2
+            },
+            {
+              "id": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "available": 1
+            },
+            {
+              "id": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "available": 1
+            },
+            {
+              "id": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "available": 2
+            },
+            {
+              "id": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "available": 2
+            },
+            {
+              "id": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "available": 2
+            }
+          ],
+          "copies": [
+            {
+              "id": "2605a106-83ee-42cc-8459-6f850256e46e",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Available",
+              "isHidden": false,
+              "version": 27
+            },
+            {
+              "id": "e5d8433e-ea34-4b5c-848f-fc993a8f9dea",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "917b3688-272d-4882-9595-687de07d7112",
+              "bookId": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "48788376-7a1e-49ca-8c0f-934d2bda0fc1",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "ee5c3406-4b2b-4ef0-bc21-5db498ec8b81",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "528b027e-4b54-4e8f-98e8-d09ea1830fc0",
+              "bookId": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "da96e01f-3f8c-4525-b5ea-1982013df6b7",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "OnLoan",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "dcc91440-a082-46b0-86a8-55b588269469",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "Available",
+              "isHidden": false,
+              "version": 1
+            },
+            {
+              "id": "b733c4fc-e895-48c0-b499-37a9c731e9d8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "f3c7acc5-840b-45a9-bf44-516e05a5dff8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "8e4c2648-f414-4f7e-9837-d195326ebd3f",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "a560e8ca-c79f-4626-ae98-ed9ccae08ed7",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "01e7800a-64f1-4729-9430-c759e7dc84a1",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "35248fb9-9bf7-48f6-93b1-a53aa1ce73b3",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            }
+          ],
+          "error": null
+        },
+        {
+          "id": "postgres-replica",
+          "state": "AVAILABLE",
+          "role": "Primary",
+          "readOnly": false,
+          "fenced": false,
+          "walLsn": "0/72A69E8",
+          "replayLsn": "0/729EED0",
+          "replayPaused": false,
+          "streamingState": "streaming",
+          "observedAtUtc": "2026-10-22T14:27:01.6081587\u002B00:00",
+          "books": [
+            {
+              "id": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "available": 2
+            },
+            {
+              "id": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "available": 1
+            },
+            {
+              "id": "9913bfa9-ddde-45e0-8d92-99584e451c09",
+              "title": "Integration Test Book",
+              "available": 0
+            },
+            {
+              "id": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "available": 2
+            },
+            {
+              "id": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "available": 1
+            },
+            {
+              "id": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "available": 1
+            },
+            {
+              "id": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "available": 2
+            },
+            {
+              "id": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "available": 2
+            },
+            {
+              "id": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "available": 2
+            }
+          ],
+          "copies": [
+            {
+              "id": "2605a106-83ee-42cc-8459-6f850256e46e",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Available",
+              "isHidden": false,
+              "version": 27
+            },
+            {
+              "id": "e5d8433e-ea34-4b5c-848f-fc993a8f9dea",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "917b3688-272d-4882-9595-687de07d7112",
+              "bookId": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "48788376-7a1e-49ca-8c0f-934d2bda0fc1",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "ee5c3406-4b2b-4ef0-bc21-5db498ec8b81",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "528b027e-4b54-4e8f-98e8-d09ea1830fc0",
+              "bookId": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "da96e01f-3f8c-4525-b5ea-1982013df6b7",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "OnLoan",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "dcc91440-a082-46b0-86a8-55b588269469",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "Available",
+              "isHidden": false,
+              "version": 1
+            },
+            {
+              "id": "b733c4fc-e895-48c0-b499-37a9c731e9d8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "f3c7acc5-840b-45a9-bf44-516e05a5dff8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "8e4c2648-f414-4f7e-9837-d195326ebd3f",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "a560e8ca-c79f-4626-ae98-ed9ccae08ed7",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "01e7800a-64f1-4729-9430-c759e7dc84a1",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "35248fb9-9bf7-48f6-93b1-a53aa1ce73b3",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            }
+          ],
+          "error": null
+        }
+      ]
+    },
+    {
+      "label": "\u0426\u0438\u043A\u043B \u0437\u0430\u0432\u0435\u0440\u0448\u0451\u043D; \u0438\u0441\u0445\u043E\u0434\u043D\u0430\u044F \u0434\u043E\u0441\u0442\u0443\u043F\u043D\u043E\u0441\u0442\u044C \u0432\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u043B\u0435\u043D\u0430",
+      "writer": "postgres-replica",
+      "nodes": [
+        {
+          "id": "postgres",
+          "state": "AVAILABLE",
+          "role": "Standby",
+          "readOnly": true,
+          "fenced": false,
+          "walLsn": null,
+          "replayLsn": "0/72A69E8",
+          "replayPaused": false,
+          "streamingState": "streaming",
+          "observedAtUtc": "2026-10-22T14:27:01.7723597\u002B00:00",
+          "books": [
+            {
+              "id": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "available": 2
+            },
+            {
+              "id": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "available": 1
+            },
+            {
+              "id": "9913bfa9-ddde-45e0-8d92-99584e451c09",
+              "title": "Integration Test Book",
+              "available": 0
+            },
+            {
+              "id": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "available": 2
+            },
+            {
+              "id": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "available": 1
+            },
+            {
+              "id": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "available": 1
+            },
+            {
+              "id": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "available": 2
+            },
+            {
+              "id": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "available": 2
+            },
+            {
+              "id": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "available": 2
+            }
+          ],
+          "copies": [
+            {
+              "id": "2605a106-83ee-42cc-8459-6f850256e46e",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Available",
+              "isHidden": false,
+              "version": 27
+            },
+            {
+              "id": "e5d8433e-ea34-4b5c-848f-fc993a8f9dea",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "917b3688-272d-4882-9595-687de07d7112",
+              "bookId": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "48788376-7a1e-49ca-8c0f-934d2bda0fc1",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "ee5c3406-4b2b-4ef0-bc21-5db498ec8b81",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "528b027e-4b54-4e8f-98e8-d09ea1830fc0",
+              "bookId": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "da96e01f-3f8c-4525-b5ea-1982013df6b7",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "OnLoan",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "dcc91440-a082-46b0-86a8-55b588269469",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "Available",
+              "isHidden": false,
+              "version": 1
+            },
+            {
+              "id": "b733c4fc-e895-48c0-b499-37a9c731e9d8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "f3c7acc5-840b-45a9-bf44-516e05a5dff8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "8e4c2648-f414-4f7e-9837-d195326ebd3f",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "a560e8ca-c79f-4626-ae98-ed9ccae08ed7",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "01e7800a-64f1-4729-9430-c759e7dc84a1",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "35248fb9-9bf7-48f6-93b1-a53aa1ce73b3",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            }
+          ],
+          "error": null
+        },
+        {
+          "id": "postgres-replica",
+          "state": "AVAILABLE",
+          "role": "Primary",
+          "readOnly": false,
+          "fenced": false,
+          "walLsn": "0/72A69E8",
+          "replayLsn": "0/729EED0",
+          "replayPaused": false,
+          "streamingState": "streaming",
+          "observedAtUtc": "2026-10-22T14:27:01.8195086\u002B00:00",
+          "books": [
+            {
+              "id": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "available": 2
+            },
+            {
+              "id": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "available": 1
+            },
+            {
+              "id": "9913bfa9-ddde-45e0-8d92-99584e451c09",
+              "title": "Integration Test Book",
+              "available": 0
+            },
+            {
+              "id": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "available": 2
+            },
+            {
+              "id": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "available": 1
+            },
+            {
+              "id": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "available": 1
+            },
+            {
+              "id": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "available": 2
+            },
+            {
+              "id": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "available": 2
+            },
+            {
+              "id": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "available": 2
+            }
+          ],
+          "copies": [
+            {
+              "id": "2605a106-83ee-42cc-8459-6f850256e46e",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Available",
+              "isHidden": false,
+              "version": 27
+            },
+            {
+              "id": "e5d8433e-ea34-4b5c-848f-fc993a8f9dea",
+              "bookId": "6fd3ab87-9eae-4e0d-9f43-29d1641f2d34",
+              "title": "Burmalda E2E",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "917b3688-272d-4882-9595-687de07d7112",
+              "bookId": "0ea79ecd-ed9f-4191-846f-9cc5ff8bece5",
+              "title": "Clean Code",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "48788376-7a1e-49ca-8c0f-934d2bda0fc1",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "ee5c3406-4b2b-4ef0-bc21-5db498ec8b81",
+              "bookId": "e77e1abb-af0b-4dd5-9ddd-dbbd165568af",
+              "title": "Integration Test Book",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "528b027e-4b54-4e8f-98e8-d09ea1830fc0",
+              "bookId": "6e8ad1f6-be7e-4b94-8e31-ff53702ec8f9",
+              "title": "ROIT",
+              "status": "Available",
+              "isHidden": false,
+              "version": 4
+            },
+            {
+              "id": "da96e01f-3f8c-4525-b5ea-1982013df6b7",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "OnLoan",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "dcc91440-a082-46b0-86a8-55b588269469",
+              "bookId": "2dbeda77-01c8-4dcf-90a9-535841c69858",
+              "title": "Solaris",
+              "status": "Available",
+              "isHidden": false,
+              "version": 1
+            },
+            {
+              "id": "b733c4fc-e895-48c0-b499-37a9c731e9d8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "f3c7acc5-840b-45a9-bf44-516e05a5dff8",
+              "bookId": "ff257de8-83a0-445c-bc5f-69ccb417d793",
+              "title": "saga-demo-1791216178294",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "8e4c2648-f414-4f7e-9837-d195326ebd3f",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 3
+            },
+            {
+              "id": "a560e8ca-c79f-4626-ae98-ed9ccae08ed7",
+              "bookId": "dd2b5ce3-cbf7-4db8-a8c2-dfd61a18bbe3",
+              "title": "saga-demo-1791216279822",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "01e7800a-64f1-4729-9430-c759e7dc84a1",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            },
+            {
+              "id": "35248fb9-9bf7-48f6-93b1-a53aa1ce73b3",
+              "bookId": "4305acd9-94a6-49f2-9eae-32f8105b00db",
+              "title": "saga-demo-1791216443481",
+              "status": "Available",
+              "isHidden": false,
+              "version": 5
+            }
+          ],
+          "error": null
+        }
+      ]
+    }
+  ]
+}
