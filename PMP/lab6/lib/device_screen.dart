@@ -1,11 +1,9 @@
 import 'dart:io';
 
-import 'package:battery_plus/battery_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 
-import 'coffee_theme.dart';
 import 'device_services.dart';
 
 class DeviceScreen extends StatefulWidget {
@@ -114,16 +112,12 @@ class _DeviceScreenState extends State<DeviceScreen> {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-    appBar: AppBar(title: const Text('Lab 6 · Устройство')),
+    appBar: AppBar(title: const Text('Lab 6')),
     body: SafeArea(
       child: ListView(
         padding: const EdgeInsets.all(16),
         children: [
-          _section('Производитель · вариант 8', [
-            const Text(
-              'Собственный Android MethodChannel → Build.MANUFACTURER',
-              style: TextStyle(color: coffeeMuted),
-            ),
+          _section('Производитель', [
             const SizedBox(height: 12),
             _button(
               'manufacturer',
@@ -133,10 +127,6 @@ class _DeviceScreenState extends State<DeviceScreen> {
             _message('manufacturer'),
           ]),
           _section('Заряд батареи', [
-            const Text(
-              'battery_plus: общий Dart API для Android и iOS. На экране показаны данные текущего устройства.',
-              style: TextStyle(color: coffeeMuted),
-            ),
             const SizedBox(height: 12),
             _button(
               'battery',
@@ -151,15 +141,17 @@ class _DeviceScreenState extends State<DeviceScreen> {
                     'подключена, не заряжается',
                   BatteryState.unknown => 'состояние неизвестно',
                 };
-                return '${reading.level}% · $state';
+                return '${reading.level}% $state';
               }),
             ),
             _message('battery'),
           ]),
-          _section('Будильник · вариант 8', [
-            const Text(
-              'Параметры передаются из полей через собственный MethodChannel. Подтвердите будильник в приложении часов.',
-            ),
+          _section('Будильник', [
+            if (widget.services.usesAlarmKit)
+              const Text(
+                'iOS 26+: будильник приложения через AlarmKit. '
+                'Потребуется разрешение на будильники.',
+              ),
             const SizedBox(height: 16),
             Form(
               key: _form,
@@ -205,7 +197,7 @@ class _DeviceScreenState extends State<DeviceScreen> {
                 ],
               ),
             ),
-            _button('alarm', 'Открыть часы', () {
+            _button('alarm', widget.services.usesAlarmKit ? 'Установить будильник' : 'Открыть часы', () {
               if (!_form.currentState!.validate()) return;
               final hour = int.parse(_hour.text.trim());
               final minute = int.parse(_minute.text.trim());
@@ -213,7 +205,11 @@ class _DeviceScreenState extends State<DeviceScreen> {
               FocusManager.instance.primaryFocus?.unfocus();
               _run('alarm', () async {
                 await widget.services.openAlarm(hour, minute, label);
-                return 'Часы открыты: ${hour.toString().padLeft(2, '0')}:${minute.toString().padLeft(2, '0')} · $label. Подтвердите установку в часах.';
+                final time =
+                    '${hour.toString().padLeft(2, '0')}:${minute.toString().padLeft(2, '0')}';
+                return widget.services.usesAlarmKit
+                    ? 'Будильник приложения установлен: $time · $label. Ближайшее наступление выбранного времени.'
+                    : 'Часы открыты: $time · $label. Подтвердите установку в часах.';
               });
             }),
             _message('alarm'),

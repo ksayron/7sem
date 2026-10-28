@@ -630,7 +630,7 @@ class _OfferBanner extends StatelessWidget {
                 ),
                 const SizedBox(height: 8),
                 const Text(
-                  'Today Only · Limited Time Offer',
+                  'Limited Time Offer',
                   style: TextStyle(color: coffeeMuted, fontSize: 10),
                 ),
                 const SizedBox(height: 18),

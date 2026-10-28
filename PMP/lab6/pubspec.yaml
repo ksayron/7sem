@@ -1,5 +1,5 @@
 name: coffee_lab6
-description: 'Лабораторная 6. Navigator, PageView и Platform MethodChannel.'
+description: 'lab6'
 publish_to: 'none'
 version: 1.0.0+1
 
@@ -10,7 +10,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-  battery_plus: ^7.1.2
   image_picker: ^1.2.4
 
 dev_dependencies:
@@ -32,7 +31,8 @@ flutter:
 
 flutter_launcher_icons:
   android: true
-  ios: false
-  image_path: assets/icon/coffee_icon.png
+  ios: true
+  remove_alpha_ios: true
+  image_path: assets/icon/coffee_icon_alt.png
   adaptive_icon_background: "#111111"
-  adaptive_icon_foreground: assets/icon/coffee_foreground.png
+  adaptive_icon_foreground: assets/icon/coffee_icon_alt.png
