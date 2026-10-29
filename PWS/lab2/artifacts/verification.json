@@ -1,0 +1,11 @@
+{
+  "verifiedAt": "2026-10-28T11:20:00.3303423+00:00",
+  "endpoint": "http://127.0.0.1:8200/rpc",
+  "passed": 80,
+  "failed": 0,
+  "skipped": 0,
+  "serverBuild": "passed",
+  "goVet": "passed",
+  "clientBuild": "passed",
+  "goDemo": "passed"
+}

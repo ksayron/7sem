@@ -1,0 +1,10 @@
+[
+  {"jsonrpc":"2.0","method":"SUM","params":[2,3],"id":"sum"},
+  {"jsonrpc":"2.0","method":"SUB","params":{"y":3,"x":10},"id":"sub"},
+  {"jsonrpc":"2.0","method":"MUL","params":[3,4],"id":"mul"},
+  {"jsonrpc":"2.0","method":"DIV","params":{"x":7,"y":2},"id":"div"},
+  {"jsonrpc":"2.0","method":"FACT","params":[5],"id":"fact"},
+  {"jsonrpc":"2.0","method":"DIV","params":[1,0],"id":"division-error"},
+  {"jsonrpc":"2.0","method":"FACT","params":{"x":13},"id":"overflow"},
+  {"jsonrpc":"2.0","method":"SUM","params":[1,2]}
+]
