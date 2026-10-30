@@ -1,0 +1,32 @@
+{
+  "startedAt": "2026-10-29T09:11:16.9446600+03:00",
+  "completedAt": "2026-10-29T09:12:28.1379363+03:00",
+  "success": true,
+  "combinations": [
+    {
+      "pair": "CSharp-to-ASPNET",
+      "passed": true,
+      "exitCode": 0,
+      "checks": 23
+    },
+    {
+      "pair": "Go-to-Node",
+      "passed": true,
+      "exitCode": 0,
+      "checks": 23
+    },
+    {
+      "pair": "Go-to-ASPNET",
+      "passed": true,
+      "exitCode": 0,
+      "checks": 23
+    },
+    {
+      "pair": "CSharp-to-Node",
+      "passed": true,
+      "exitCode": 0,
+      "checks": 23
+    }
+  ],
+  "error": null
+}

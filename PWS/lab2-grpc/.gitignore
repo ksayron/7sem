@@ -1,0 +1,6 @@
+artifacts/
+**/bin/
+**/obj/
+**/node_modules/
+gRPCClient02/gRPCClient02
+gRPCClient02/gRPCClient02.exe

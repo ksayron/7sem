@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <ItemGroup>
+    <PackageReference Include="Grpc.AspNetCore" Version="2.85.0" />
+    <Protobuf Include="../protos/calculator.proto" GrpcServices="Server" Link="Protos/calculator.proto" />
+  </ItemGroup>
+</Project>

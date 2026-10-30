@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Grpc.Net.Client" Version="2.85.0" />
+    <PackageReference Include="Google.Protobuf" Version="3.36.2" />
+    <PackageReference Include="Grpc.Tools" Version="2.85.0" PrivateAssets="All" />
+    <Protobuf Include="../protos/calculator.proto" GrpcServices="Client" Link="Protos/calculator.proto" />
+  </ItemGroup>
+</Project>
