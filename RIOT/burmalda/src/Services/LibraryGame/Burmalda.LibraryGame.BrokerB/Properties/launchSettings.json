@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "BrokerB": {
+      "commandName": "Project", "launchBrowser": false,
+      "applicationUrl": "http://localhost:5110",
+      "environmentVariables": { "ASPNETCORE_ENVIRONMENT": "Development", "Broker__Id": "B" }
+    }
+  }
+}

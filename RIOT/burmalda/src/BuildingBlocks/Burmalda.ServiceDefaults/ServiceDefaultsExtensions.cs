@@ -1,3 +1,4 @@
+using Burmalda.Persistence;
 using System.Diagnostics;
 using System.Security.Claims;
 using System.Text;
@@ -29,6 +30,7 @@ public static class ServiceDefaultsExtensions
     public static IServiceCollection AddBurmaldaDefaults(this IServiceCollection services, IConfiguration configuration, string serviceName)
     {
         services.AddProblemDetails();
+        services.AddExceptionHandler<DatabaseUnavailableHandler>();
         services.AddHealthChecks();
         services.Configure<RabbitMqOptions>(configuration.GetSection(RabbitMqOptions.SectionName));
         services.AddSingleton<RabbitMqConnection>();

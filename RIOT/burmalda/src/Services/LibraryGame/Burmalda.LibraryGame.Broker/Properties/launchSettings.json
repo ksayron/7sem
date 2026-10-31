@@ -1,0 +1,24 @@
+{
+  "profiles": {
+    "Broker": {
+      "launchBrowser": false,
+      "commandName": "Project",
+      "environmentVariables": {
+        "Broker__Id": "A",
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "http://localhost:5109"
+    },
+    "BrokerB": {
+      "launchBrowser": false,
+      "commandName": "Project",
+      "environmentVariables": {
+        "Broker__Id": "B",
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "http://localhost:5110"
+    }
+  }
+}

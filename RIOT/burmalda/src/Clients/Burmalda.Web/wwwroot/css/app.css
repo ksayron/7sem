@@ -37,7 +37,9 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 500; }
 .brand-mark strong { display: block; font-family: var(--serif); font-size: 23px; line-height: .9; font-weight: 500; }
 .brand-mark small { color: #d9aa92; text-transform: uppercase; letter-spacing: .22em; font-size: 9px; }
 .brand-lockup > p { margin: 24px 0 0 61px; color: rgba(255,255,255,.46); font-family: var(--serif); font-style: italic; line-height: 1.4; }
-.primary-nav { display: flex; flex-direction: column; gap: 5px; margin-top: 55px; }
+.primary-nav { display: flex; flex-direction: column; gap: 5px; margin-top: 55px; min-height: 0; overflow-y: auto; scrollbar-width: thin; scrollbar-color: #8aa18f transparent; }
+.primary-nav > a { flex-shrink: 0; }
+.brand-lockup, .sidebar-foot { flex-shrink: 0; }
 .primary-nav a { display: flex; align-items: center; gap: 13px; padding: 11px 12px; color: rgba(255,255,255,.62); text-decoration: none; font-size: 13px; letter-spacing: .02em; border-left: 2px solid transparent; transition: .2s ease; }
 .primary-nav a span { width: 19px; text-align: center; font-size: 19px; color: rgba(255,255,255,.4); }
 .primary-nav a:hover, .primary-nav a.active { color: white; border-left-color: var(--red); background: rgba(255,255,255,.055); transform: translateX(3px); }

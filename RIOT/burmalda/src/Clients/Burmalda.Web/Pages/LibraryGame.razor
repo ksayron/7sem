@@ -1,0 +1,178 @@
+@page "/library-game"
+@implements IAsyncDisposable
+@using Burmalda.LibraryGame
+@using Kebechet.Blazor.ThreeJS.Components
+@using Kebechet.Blazor.ThreeJS.Core
+@inject LibraryGameClient Api
+@inject AuthSession Auth
+@inject IJSRuntime JS
+
+<PageTitle>Тихая библиотека · Burmalda</PageTitle>
+<section class="library-page">
+    <header class="library-heading"><div><h1>Тихая библиотека</h1><p>У каждой книги есть своё место. Помогите ей вернуться домой.</p></div><a href="pubsub-lab" class="button button-small">Лаборатория Pub/Sub</a></header>
+    @if (!Auth.IsAuthenticated)
+    {
+        <div class="library-welcome"><h2>Ваша маленькая магия порядка</h2><p>72 книги, шесть собраний и библиотека, которая постепенно оживает. Войдите в аккаунт, чтобы сохранять прогресс.</p><a class="button button-primary" href="login">Войти в Burmalda</a></div>
+    }
+    else if (state is null)
+    {
+        <p role="status">@(error ?? "Открываем библиотеку…")</p>
+        @if (error is not null) { <button class="button" @onclick="Load">Повторить подключение</button> }
+    }
+    else
+    {
+        <div class="library-progress"><span><strong data-testid="sorted-count">@state.Shelved.Count</strong> / 72 книг на своих местах</span><progress value="@state.Shelved.Count" max="72" aria-label="Порядок в библиотеке"></progress><span>@state.Sparks искр · руки @state.Held.Count/@state.Capacity</span></div>
+        <div class="library-mobile-note">Для прогулки нужны клавиатура и мышь. Откройте библиотеку на компьютере.</div>
+        <div class="library-stage" @ref="surface" data-testid="game-surface" data-position="@PositionText">
+            <ThreeCanvas Style="width:100%;height:100%;display:block" OnReady="Ready" />
+            <div class="library-crosshair" aria-hidden="true"></div>
+            <div class="library-scene-caption"><strong>Секция @(state.OpenSeries / 2) из 3</strong><span>@(state.Complete ? "Все истории вернулись домой" : state.Shelved.Count < 24 ? "Следующая секция — после 24 книг" : state.Shelved.Count < 48 ? "Последняя секция — после 48 книг" : "Осталось совсем немного")</span></div>
+            <div class="library-hand" aria-live="polite">@(state.Held.LastOrDefault() is { } held ? $"В руках: {LibraryWorld.Series[GameRules.ParseBook(held).Series].Name}, том {GameRules.ParseBook(held).Volume}" : "В руках пока нет книг")</div>
+            @if (!locked || panel is not null)
+            {
+                <div class="library-gate" data-testid="game-pause">
+                    <h2>@(state.Complete ? "Хранитель библиотеки" : panel == "upgrades" ? "Маленькие помощники" : panel == "achievements" ? "Ваша история" : "Всё начинается с одной книги")</h2>
+                    @if (panel == "upgrades")
+                    {
+                        <p>Искры появляются, когда книга возвращается на полку.</p>
+                        <div class="library-upgrade"><div><strong>Больше книг в руках</strong><span>Сейчас: @state.Capacity · максимум 5</span></div><button class="button" disabled="@(busy || state.Capacity == 5 || state.Sparks < (state.Capacity == 1 ? 4 : 12))" @onclick='() => Command("BuyUpgrade", upgrade: "hands")'>@(state.Capacity == 5 ? "Изучено" : $"Изучить · {(state.Capacity == 1 ? 4 : 12)} искр")</button></div>
+                        <div class="library-upgrade"><div><strong>Сильное притяжение</strong><span>До четырёх подходящих книг</span></div><button class="button" disabled="@(busy || state.AttractionLimit == 4 || state.Sparks < 10)" @onclick='() => Command("BuyUpgrade", upgrade: "attraction")'>@(state.AttractionLimit == 4 ? "Изучено" : "Изучить · 10 искр")</button></div>
+                    }
+                    else if (panel == "achievements")
+                    {
+                        @foreach (var achievement in AchievementNames)
+                        {
+                            var unlocked = projections?.Achievements.Any(x => x.Key == achievement.Key) == true;
+                            <div class="library-achievement @(unlocked ? "unlocked" : "")"><strong>@achievement.Value</strong><span>@(unlocked ? "Открыто" : "Ещё впереди")</span></div>
+                        }
+                        @if (projections?.Available == false) { <p>Обработчик достижений временно недоступен. Результаты появятся после восстановления связи.</p> }
+                    }
+                    else
+                    {
+                        <p>@(state.Complete ? "Вы расставили все 72 книги. Можно остаться здесь ещё немного или начать новую историю." : "Возьмите книгу с пола и найдите полку её серии. Шесть книг откроют притяжение, а искры помогут нести больше.")</p>
+                        <div class="library-instructions"><span><kbd>W A S D</kbd> идти</span><span><kbd>Мышь</kbd> смотреть</span><span><kbd>E</kbd> взять / поставить</span><span><kbd>Q</kbd> притянуть</span><span><kbd>F</kbd> подсветить полку</span><span><kbd>Esc</kbd> пауза</span></div>
+                    }
+                    <button class="button button-primary" data-testid="enter-library" disabled="@(!ready)" @onclick="Enter">@(ready ? "Вернуться к книгам" : "Зажигаем лампы…")</button>
+                </div>
+            }
+            <div class="library-target" data-testid="target-label">@(scene?.TargetLabel ?? "Готовим библиотеку…")</div>
+        </div>
+        <div class="library-toolbar">
+            <button class="button" @onclick='() => Open("upgrades")'>Улучшения · @state.Sparks искр</button>
+            <button class="button" @onclick='() => Open("achievements")'>Достижения · @(projections?.Achievements.Count ?? 0)/4</button>
+            <button class="button" disabled="@(busy || state.Shelved.Count < 6 || state.Held.Count == 0 || state.Held.Count == state.Capacity || AbilityPending)" @onclick='() => Command("UseAbility")'>@(AbilityPending ? "Притяжение в очереди…" : state.Shelved.Count < 6 ? "Притяжение · после 6 книг" : "Притяжение · Q")</button>
+            <label class="library-motion"><input type="checkbox" @bind="reducedMotion" /> Меньше движения</label>
+        </div>
+        @if (error is not null) { <p class="library-message error" role="alert">@error</p> }
+        else if (message is not null) { <p class="library-message" role="status">@message</p> }
+        @if (AbilityPending) { <p class="library-message">Если помощник был недоступен и очередь исчерпала попытки, <button class="text-button" disabled="@busy" @onclick="RetryDelivery">повторить доставку</button>.</p> }
+        @if (projections?.Notifications.FirstOrDefault() is { } notice) { <p class="library-notice">@notice.Text</p> }
+        <details class="library-collections"><summary>Собрания библиотеки и сохранение</summary>
+            <div class="library-series-list">@foreach (var series in LibraryWorld.Series) { <div><i style="background:#@series.Color.ToString("X6")"></i><strong>@series.Name</strong><span>@series.Symbol · @(state.Shelved.Count(x => x.StartsWith($"{series.Id}:")))/12 · @(series.Id < state.OpenSeries ? "открыто" : "закрыто")</span></div> }</div>
+            <p>Прогресс сохраняется автоматически. Сохранение: <code>@state.SessionId</code>. Притяжение и достижения обрабатываются асинхронно.</p>
+            @if (!confirmReset) { <button class="button" @onclick="() => confirmReset = true">Начать заново…</button> }
+            else { <p>Начать новое прохождение? Текущее расположение книг и улучшения будут сброшены.</p><button class="button" disabled="@busy" @onclick="Reset">Да, новая история</button><button class="button" @onclick="() => confirmReset = false">Продолжить текущую</button> }
+        </details>
+    }
+</section>
+
+@code {
+    private GameState? state;
+    private ProjectionView? projections;
+    private LibraryScene? scene;
+    private ElementReference surface;
+    private IJSObjectReference? input, module;
+    private readonly CancellationTokenSource stopping = new();
+    private Task? loop, polling;
+    private bool busy, ready, locked, reducedMotion, confirmReset;
+    private string? error, message, panel;
+    private bool AbilityPending => state?.Operations.Any(x => x.Status == "Pending") == true;
+    private bool hint;
+    private string PositionText => scene is null ? "" : $"{scene.Position.X:F2},{scene.Position.Z:F2}";
+    private readonly Dictionary<string, string> AchievementNames = new() { ["first-book"] = "Первая страница", ["first-series"] = "Собрание сочинений", ["first-attraction"] = "Книги, ко мне!", ["librarian"] = "Хранитель библиотеки" };
+    protected override async Task OnInitializedAsync() { if (Auth.IsAuthenticated) await Load(); }
+    private async Task Load()
+    {
+        try { var snapshot = await Api.Snapshot(); state = snapshot.State; projections = snapshot.Projections; error = null; }
+        catch (Exception ex) when (ex is ApiException or HttpRequestException) { error = ex.Message; }
+    }
+    private async Task Ready(ThreeContext context)
+    {
+        try {
+            scene = new(context); await scene.Build(state!);
+            module = await JS.InvokeAsync<IJSObjectReference>("import", "./js/library-input.js");
+            input = await module.InvokeAsync<IJSObjectReference>("attach", surface);
+            ready = true; loop = Run(); polling = Poll();
+        } catch (Exception ex) { error = $"Не удалось открыть 3D-сцену: {ex.Message}"; }
+        await InvokeAsync(StateHasChanged);
+    }
+    private async Task Enter() { panel = null; if (input is not null) await input.InvokeVoidAsync("lock"); }
+    private async Task Open(string name) { panel = name; if (input is not null) await input.InvokeVoidAsync("unlock"); }
+    private async Task Command(string type, string? book = null, int? series = null, string? upgrade = null)
+    {
+        if (busy || state is null) return;
+        busy = true; error = null;
+        try {
+            state = await Api.Command(state, type, book, series, upgrade);
+            message = type switch { "PlaceBook" => state.Complete ? "Все книги дома. Спасибо, хранитель!" : "Книга на своём месте. +1 искра", "UseAbility" => "Заклинание отправлено. Ожидаем помощника…", "BuyUpgrade" => "Новый навык изучен", _ => null };
+        } catch (Exception ex) when (ex is ApiException or HttpRequestException) { error = ex.Message; await Refresh(); }
+        finally { busy = false; }
+    }
+    private async Task Refresh()
+    {
+        try {
+            var s = await Api.Snapshot();
+            if (state is null || s.State.SessionId != state.SessionId || s.State.Version >= state.Version) {
+                var completed = s.State.Operations.LastOrDefault(x => x.Status != "Pending" && state?.Operations.Any(p => p.Id == x.Id && p.Status == "Pending") == true);
+                if (completed is not null) message = completed.Status == "Completed" ? $"Притяжение завершено: книг в руки — {completed.Moved}." : "Заклинание завершено: свободных мест или подходящих книг уже нет.";
+                state = s.State;
+            }
+            projections = s.Projections;
+        }
+        catch (Exception ex) when (ex is ApiException or HttpRequestException) { error = ex.Message; }
+    }
+    private async Task Reset() { if (state is null) return; busy = true; try { state = await Api.Reset(state); confirmReset = false; await Refresh(); } catch (Exception ex) { error = ex.Message; } finally { busy = false; } }
+    private async Task RetryDelivery() { if (state is null || busy) return; busy = true; try { await Api.RetryDelivery(state.Demo); message = "Доставка возвращена в очередь. Если сервис уже доступен, помощник скоро ответит."; error = null; } catch (Exception ex) { error = ex.Message; } finally { busy = false; } }
+    private async Task Run()
+    {
+        using var timer = new PeriodicTimer(TimeSpan.FromMilliseconds(20));
+        var last = System.Diagnostics.Stopwatch.GetTimestamp(); var uiAt = DateTime.UtcNow;
+        try {
+            while (await timer.WaitForNextTickAsync(stopping.Token)) {
+                var now = System.Diagnostics.Stopwatch.GetTimestamp(); var dt = Math.Clamp((float)System.Diagnostics.Stopwatch.GetElapsedTime(last, now).TotalSeconds, 0, .08f); last = now;
+                var frame = await input!.InvokeAsync<InputFrame>("read");
+                if (frame.Pressed.Contains("Escape")) { await input!.InvokeVoidAsync("unlock"); frame = frame with { Locked = false }; }
+                locked = frame.Locked;
+                scene!.Move(frame, dt); scene.Update(state!, dt, hint, reducedMotion);
+                if (locked && panel is null && !busy) {
+                    if (frame.Pressed.Contains("KeyE") || frame.Click) {
+                        if (scene.TargetBook is { } id) await Command("PickBook", book: id);
+                        else if (scene.TargetShelf is { } s && state!.Held.Count > 0) await Command("PlaceBook", series: s);
+                    }
+                    if (frame.Pressed.Contains("KeyQ")) await Command("UseAbility");
+                    if (frame.Pressed.Contains("KeyF")) hint = !hint;
+                }
+                await scene.Flush();
+                if (DateTime.UtcNow >= uiAt) { uiAt = DateTime.UtcNow.AddMilliseconds(120); await InvokeAsync(StateHasChanged); }
+            }
+        } catch (OperationCanceledException) when (stopping.IsCancellationRequested) { }
+        catch (JSDisconnectedException) { }
+        catch (Exception ex) { if (!stopping.IsCancellationRequested) { error = $"Сцена приостановлена: {ex.Message}"; await InvokeAsync(StateHasChanged); } }
+    }
+    private async Task Poll()
+    {
+        using var timer = new PeriodicTimer(TimeSpan.FromSeconds(2));
+        try { while (await timer.WaitForNextTickAsync(stopping.Token)) if (!busy) { await Refresh(); await InvokeAsync(StateHasChanged); } }
+        catch (OperationCanceledException) when (stopping.IsCancellationRequested) { }
+    }
+    public async ValueTask DisposeAsync()
+    {
+        await stopping.CancelAsync();
+        if (loop is not null) await loop;
+        if (polling is not null) await polling;
+        try { if (input is not null) { await input.InvokeVoidAsync("dispose"); await input.DisposeAsync(); } if (module is not null) await module.DisposeAsync(); }
+        catch (JSDisconnectedException) { }
+        stopping.Dispose();
+    }
+}
+

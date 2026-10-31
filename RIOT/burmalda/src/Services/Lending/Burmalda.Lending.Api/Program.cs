@@ -1,3 +1,4 @@
+using Burmalda.Persistence;
 using Burmalda.Contracts;
 using Burmalda.Lending.Api;
 using Burmalda.ServiceDefaults;
@@ -9,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Logging.AddBurmaldaConsole(builder.Configuration);
 builder.Services.AddBurmaldaDefaults(builder.Configuration, "lending-service");
 var connection = builder.Configuration.GetConnectionString("Database")!;
-builder.Services.AddDbContext<LendingDbContext>(o => o.UseNpgsql(connection));
+builder.Services.AddDbContext<LendingDbContext>(o => o.UseNpgsql(connection).WithDatabaseFailover());
 builder.Services.AddServiceMessaging<LendingDbContext, LendingQueue>();
 foreach (var type in new[] { MessageNames.BookCopyReserved, MessageNames.BookCopyReservationFailed, MessageNames.BookCopyReleased, MessageNames.PointsReserved, MessageNames.PointsReservationFailed })
     builder.Services.AddScoped<IIntegrationMessageHandler>(sp => new LendingMessageHandler(sp.GetRequiredService<LendingDbContext>(), type));

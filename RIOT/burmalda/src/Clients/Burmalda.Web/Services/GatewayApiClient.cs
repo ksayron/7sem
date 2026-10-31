@@ -95,8 +95,9 @@ public sealed class GatewayApiClient(HttpClient http, AuthSession auth)
         using var request = new HttpRequestMessage(method, path);
         request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", auth.Current!.AccessToken);
         if (body is not null) request.Content = JsonContent.Create(body);
-        var response = await http.SendAsync(request, ct);
-        await AuthSession.EnsureSuccess(response, ct);
+        var response = await http.SendAvailableAsync(request, ct);
+        try { await AuthSession.EnsureSuccess(response, ct); }
+        catch { response.Dispose(); throw; }
         return response;
     }
 

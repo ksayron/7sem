@@ -1,3 +1,4 @@
+using Burmalda.Persistence;
 using Burmalda.ConcurrencyLab.Api;
 using Burmalda.ServiceDefaults;
 using Microsoft.EntityFrameworkCore;
@@ -6,13 +7,15 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Logging.AddBurmaldaConsole(builder.Configuration);
 builder.Services.AddSingleton<ExperimentStore>();
 builder.Services.AddHealthChecks();
-builder.Services.AddDbContextFactory<LabDbContext>(o => o.UseNpgsql(builder.Configuration.GetConnectionString("Database")));
+builder.Services.AddDbContextFactory<LabDbContext>(o => o.UseNpgsql(builder.Configuration.GetConnectionString("Database")).WithDatabaseFailover());
 builder.Services.AddSingleton<DatabaseLabStore>();
 builder.Services.AddSingleton<IReplicationCluster, PostgresReplicationCluster>();
 builder.Services.AddSingleton(sp => new ReplicationLabStore(
     builder.Configuration["ReplicationLab:JournalRoot"] ?? Path.Combine(PostgresReplicationCluster.ResolveRoot(builder.Configuration["ReplicationLab:ComposeRoot"]), ".artifacts", "streaming-replication"),
     sp.GetRequiredService<IReplicationCluster>(), sp.GetRequiredService<ILogger<ReplicationLabStore>>(),
     sp.GetRequiredService<IHostApplicationLifetime>().ApplicationStopping));
+if (builder.Environment.IsDevelopment() && builder.Configuration.GetValue("ReplicationLab:AutomaticFailover", true))
+    builder.Services.AddHostedService<ReplicationFailoverWorker>();
 
 var app = builder.Build();
 app.Lifetime.ApplicationStarted.Register(() => app.Logger.LogInformation("Laboratory ready · {Urls}", string.Join(", ", app.Urls)));

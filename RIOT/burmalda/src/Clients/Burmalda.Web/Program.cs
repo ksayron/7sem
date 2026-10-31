@@ -11,6 +11,7 @@ var apiBaseUrl = builder.Configuration["ApiBaseUrl"] ?? "http://localhost:5000";
 builder.Services.AddScoped(_ => new HttpClient { BaseAddress = new Uri(apiBaseUrl) });
 builder.Services.AddScoped<AuthSession>();
 builder.Services.AddScoped<GatewayApiClient>();
+builder.Services.AddScoped<LibraryGameClient>();
 
 var host = builder.Build();
 await host.Services.GetRequiredService<AuthSession>().InitializeAsync();

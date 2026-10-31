@@ -123,6 +123,59 @@ public sealed class ReplicationLabTests : IDisposable
     }
     [Fact]
     public void Second_coordinator_cannot_open_same_journal_root() => Assert.Throws<IOException>(() => Open());
+    [Fact]
+    public async Task Background_failover_promotes_without_a_lab_read_or_update()
+    {
+        var run = await store.Create();
+        store.StartAction(run.Id, "stop", "postgres"); await Wait(store, run.Id);
+        await Task.WhenAll(store.MaintainWriter(default), store.MaintainWriter(default));
+        var result = await store.Snapshot(run.Id);
+        Assert.Equal("postgres-replica", result.ActiveInstance);
+        Assert.Single(cluster.Calls, x => x == "promote");
+        Assert.Contains(result.Events, e => e.Operation == "Failover" && e.Result == "SUCCESS");
+        Assert.Empty(result.Operations); Assert.Equal(0, cluster.Updates);
+    }
+    [Fact]
+    public async Task Background_failover_resumes_from_durable_authority_after_restart()
+    {
+        var run = await store.Create();
+        store.StartAction(run.Id, "stop", "postgres"); await Wait(store, run.Id);
+        store.Dispose(); store = Open();
+        await store.MaintainWriter(default);
+        Assert.Equal("postgres-replica", (await store.Snapshot(run.Id)).ActiveInstance);
+    }
+    [Fact]
+    public async Task Background_monitor_does_not_promote_unplanned_or_unfenced_loss()
+    {
+        await store.Create(); await cluster.Stop("postgres", default);
+        await store.MaintainWriter(default);
+        Assert.DoesNotContain("promote", cluster.Calls);
+    }
+    [Fact]
+    public async Task Background_failover_preserves_replay_and_fencing_guards()
+    {
+        var run = await store.Create(); await store.Configure(run.Id, new(false), default);
+        store.StartAction(run.Id, "stop", "postgres"); await Wait(store, run.Id);
+        await Assert.ThrowsAsync<ReplicationLabException>(() => store.MaintainWriter(default));
+        await store.Configure(run.Id, new(true), default);
+        cluster.RefuseFenceProof = true;
+        await Assert.ThrowsAsync<ReplicationLabException>(() => store.MaintainWriter(default));
+        Assert.DoesNotContain("promote", cluster.Calls);
+        cluster.RefuseFenceProof = false; await store.MaintainWriter(default);
+        Assert.Equal("postgres-replica", (await store.Snapshot(run.Id)).ActiveInstance);
+    }
+    [Fact]
+    public async Task Monitor_does_not_interrupt_an_operator_action()
+    {
+        var run = await store.Create();
+        cluster.StopBarrier = new(TaskCreationOptions.RunContinuationsAsynchronously);
+        store.StartAction(run.Id, "stop", "postgres");
+        await store.MaintainWriter(default);
+        Assert.DoesNotContain("promote", cluster.Calls);
+        cluster.StopBarrier.SetResult(); await Wait(store, run.Id);
+        await store.MaintainWriter(default);
+        Assert.Single(cluster.Calls, x => x == "promote");
+    }
     [Theory]
     [InlineData("", 400)] [InlineData("bogus-node", 400)]
     public void Docker_node_arguments_are_allowlisted(string node, int status)

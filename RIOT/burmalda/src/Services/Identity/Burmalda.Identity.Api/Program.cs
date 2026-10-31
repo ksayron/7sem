@@ -1,3 +1,4 @@
+using Burmalda.Persistence;
 using Burmalda.Identity.Api;
 using Burmalda.ServiceDefaults;
 using Microsoft.AspNetCore.Identity;
@@ -6,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 builder.Logging.AddBurmaldaConsole(builder.Configuration);
 builder.Services.AddBurmaldaDefaults(builder.Configuration, "identity-service");
-builder.Services.AddDbContext<IdentityDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("Database")));
+builder.Services.AddDbContext<IdentityDbContext>(options => options.UseNpgsql(builder.Configuration.GetConnectionString("Database")).WithDatabaseFailover());
 builder.Services.AddScoped<IPasswordHasher<AppUser>, PasswordHasher<AppUser>>();
 builder.Services.AddSingleton<TokenService>();
 builder.Services.AddHostedService<OutboxPublisher<IdentityDbContext>>();

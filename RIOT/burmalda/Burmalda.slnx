@@ -19,10 +19,25 @@
     <Project Path="src/Services/Notifications/Burmalda.Notifications.Api/Burmalda.Notifications.Api.csproj" />
     <Project Path="src/Services/Reputation/Burmalda.Reputation.Api/Burmalda.Reputation.Api.csproj" />
   </Folder>
+  <Folder Name="/src/" />
+  <Folder Name="/src/BuildingBlocks/">
+    <Project Path="src/BuildingBlocks/Burmalda.LibraryGame.Server/Burmalda.LibraryGame.Server.csproj" />
+    <Project Path="src/BuildingBlocks/Burmalda.LibraryGame/Burmalda.LibraryGame.csproj" />
+    <Project Path="src/BuildingBlocks/Burmalda.Persistence/Burmalda.Persistence.csproj" />
+    <Project Path="src/Services/LibraryGame/Burmalda.LibraryGame.Api/Burmalda.LibraryGame.Api.csproj" />
+    <Project Path="src/Services/LibraryGame/Burmalda.LibraryGame.Broker/Burmalda.LibraryGame.Broker.csproj" />
+    <Project Path="src/Services/LibraryGame/Burmalda.LibraryGame.Subscribers/Burmalda.LibraryGame.Subscribers.csproj" />
+  </Folder>
+  <Folder Name="/src/Services/" />
+  <Folder Name="/src/Services/LibraryGame/">
+    <Project Path="src/Services/LibraryGame/Burmalda.LibraryGame.BrokerB/Burmalda.LibraryGame.BrokerB.csproj" />
+  </Folder>
   <Folder Name="/Tests/">
     <Project Path="tests/Burmalda.Domain.Tests/Burmalda.Domain.Tests.csproj" />
+    <Project Path="tests/Burmalda.LibraryGame.Tests/Burmalda.LibraryGame.Tests.csproj" />
   </Folder>
   <Folder Name="/Tools/">
     <Project Path="tools/ConcurrencyLab.Client/ConcurrencyLab.Client.csproj" />
+    <Project Path="tools/LibraryGame.Verify/LibraryGame.Verify.csproj" />
   </Folder>
 </Solution>

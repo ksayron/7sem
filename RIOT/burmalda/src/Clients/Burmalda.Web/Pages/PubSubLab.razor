@@ -1,0 +1,106 @@
+@page "/pubsub-lab"
+@implements IAsyncDisposable
+@using System.Text.Json
+@using Burmalda.LibraryGame
+@inject AuthSession Auth
+@inject LibraryGameClient Api
+
+<PageTitle>ЛР №6 · Pub/Sub · Burmalda</PageTitle>
+<section class="pubsub-lab">
+    <header class="ps-heading"><h1>Одна история.<br /><em>Несколько слушателей.</em></h1><div><p>ЛР №6 · Собственные C#-брокеры.<br />Действие в библиотеке становится событием. Каждый подписчик выполняет свою работу независимо.</p><a class="button" href="library-game">Открыть 3D-библиотеку</a></div></header>
+    @if (!Auth.IsAuthenticated) { <p>Для персонального лабораторного опыта <a href="login">войдите в Burmalda</a>.</p> }
+    else if (state is null) { <p role="status">@(error ?? "Подключаем компоненты…")</p><button class="button" @onclick="Refresh">Повторить</button> }
+    else
+    {
+        <div class="ps-flow" aria-label="Схема доставки"><span>Blazor / C#<small>Команда игрока</small></span><b>→</b><span>Game API<small>Publisher + outbox</small></span><b>→</b><span>Broker A<small>Журнал · достижения · способности</small></span><b>→</b><span>Broker B<small>Уведомления · аналитика</small></span></div>
+        <p class="ps-session">Отдельное сохранение опыта: <code>@state.SessionId</code> · @state.Shelved.Count / 72 книг · @state.Sparks искр · outbox: @outbox</p>
+        <section class="ps-experiment"><h2>Опубликовать настоящее игровое событие</h2><p>Эти кнопки вызывают те же C#-правила, что и 3D-игра. Команда завершается после сохранения, обработка подписчиков продолжается в фоне.</p>
+            <div class="ps-actions"><button class="button button-primary" disabled="@busy" @onclick="SortOne">Расставить одну книгу</button><button class="button" disabled="@(busy || state.Sparks < (state.Capacity == 1 ? 4 : 12) || state.Capacity == 5)" @onclick="Upgrade">Купить улучшение рук</button><button class="button" disabled="@(busy || state.Capacity == 1 || state.Shelved.Count < 6)" @onclick="Attract">Применить притяжение</button><button class="button" disabled="@busy" @onclick="NewDemo">Новый опыт</button></div>
+            <p class="ps-tip">Для трёх типов событий: расставьте шесть книг → купите улучшение рук → примените притяжение. Достижение дополнительно создаёт AchievementUnlocked.</p>
+        </section>
+        <section><div class="ps-section-head"><h2>Независимые подписчики</h2><button class="button button-small" disabled="@busy" @onclick="Delays">Задержки 1 / 3 / 2 секунды</button></div>
+            <div class="ps-table-wrap"><table><thead><tr><th>Subscriber</th><th>Подписка</th><th>Состояние</th><th>Действие в опыте</th></tr></thead><tbody>
+                @foreach (var sub in SubscriberNames)
+                {
+                    var setting = projection?.Controls.GetValueOrDefault(sub) ?? new SubscriberControl();
+                    <tr><td><strong>@sub</strong></td><td>@SubscriptionText(sub)</td><td><span class="@(setting.Available && !setting.Throw ? "ps-good" : "ps-bad")">@(setting.Available ? setting.Throw ? "EXCEPTION" : "AVAILABLE" : "UNAVAILABLE")</span><small>@setting.DelayMs мс</small></td><td><div class="ps-actions"><button class="button button-small" disabled="@busy" @onclick="() => Control(sub, setting with { Available = !setting.Available })">@(setting.Available ? "Отключить" : "Восстановить")</button><button class="button button-small" disabled="@busy" @onclick="() => Control(sub, setting with { Throw = !setting.Throw })">@(setting.Throw ? "Убрать исключение" : "Исключение")</button></div></td></tr>
+                }
+            </tbody></table></div>
+            <div class="ps-actions ps-after"><button class="button" disabled="@busy" @onclick="ConnectAnalytics">Подключить AnalyticsSubscriber</button><button class="button" disabled="@busy" @onclick="Replay">Повторить недоставленные</button></div>
+            <p class="ps-tip">Настройки отказов действуют только на этот опыт. Новый подписчик получает будущие события. После пяти неудач доставка переходит в DeadLetter; восстановите обработчик и запустите повтор.</p>
+        </section>
+        @if (error is not null) { <p class="ps-error" role="alert">@error</p> }
+        @if (message is not null) { <p role="status" class="ps-message">@message</p> }
+        <section class="ps-brokers">@foreach (var broker in brokers) {
+            <div><h2>Broker @broker.BrokerId</h2><p>@broker.Subscriptions.Count подписок · последние @broker.Deliveries.Count доставок</p><ul>@foreach (var sub in broker.Subscriptions) { <li><strong>@sub.Id</strong><small>@string.Join(", ", sub.EventTypes)</small></li> }</ul><p><strong>@broker.Deliveries.Count(x => x.Status == "Pending" || x.Status == "InFlight")</strong> ожидают · <strong>@broker.Deliveries.Count(x => x.Status == "Success")</strong> успешны · <strong>@broker.Deliveries.Count(x => x.Status == "DeadLetter")</strong> недоставлены</p></div>
+        }</section>
+        @foreach (var unavailable in unavailableBrokers) { <p class="ps-error">@unavailable недоступен. Его локальная очередь восстановится при запуске процесса.</p> }
+        <section><div class="ps-section-head"><h2>Журнал доставки</h2><a class="button button-small" href="@ExportUrl" download="pubsub-lab.json">Скачать JSON</a></div>
+            <div class="ps-filters"><label>Событие<select @bind="eventFilter"><option value="">Все события</option>@foreach (var e in EventTypes) { <option>@e</option> }</select></label><label>Подписчик<select @bind="subscriberFilter"><option value="">Все подписчики</option>@foreach (var s in SubscriberNames.Append("bridge-B")) { <option>@s</option> }</select></label></div>
+            <div class="ps-table-wrap ps-journal"><table><thead><tr><th>Время / Client</th><th>Событие / EventId</th><th>Publisher → Broker → Subscriber</th><th>Результат / ошибка</th></tr></thead><tbody>@foreach (var row in Journal.Where(x => (eventFilter.Length == 0 || x.EventType == eventFilter) && (subscriberFilter.Length == 0 || x.Subscriber == subscriberFilter))) { <tr><td>@row.Time.ToLocalTime().ToString("HH:mm:ss.fff")<small>@row.ClientId</small></td><td>@row.EventType<small>@row.EventId</small></td><td>@row.Publisher → @row.Broker → @(row.Subscriber.Length == 0 ? "приём" : row.Subscriber)</td><td class="@(row.Error is null ? "" : "ps-bad")">@row.Result<small>@row.Error</small></td></tr> }</tbody></table>@if (!Journal.Any()) { <p>Журнал пока пуст. Расставьте первую книгу.</p> }</div>
+        </section>
+        <section class="ps-analysis"><h2>Почему Publisher не меняется?</h2><p>При прямом взаимодействии сервер вызывал бы журнал, достижения, способности и аналитику по отдельности. Здесь он сохраняет факт действия и публикует событие. Состав получателей определяет Broker, поэтому AnalyticsSubscriber подключается без изменения игрового Publisher.</p><p>Подтверждение брокера означает сохранение сообщения в очереди. Успешная обработка фиксируется отдельно для каждого подписчика. Доставка допускает повторы; inbox защищает достижения, статистику и эффекты от дублирования.</p><p>Реальный сетевой отказ: <code>./tools/Set-PubSubComponent.ps1 -Component Subscribers -Action Stop</code>; восстановление — тот же вызов с <code>-Action Start</code>. Брокеры A и B управляются параметрами BrokerA и BrokerB.</p></section>
+    }
+</section>
+
+@code {
+    private GameState? state;
+    private ProjectionView? projection;
+    private List<BrokerSnapshot> brokers = [];
+    private List<string> unavailableBrokers = [];
+    private int outbox;
+    private string? error, message;
+    private string eventFilter = "", subscriberFilter = "";
+    private bool busy;
+    private readonly CancellationTokenSource stopping = new();
+    private Task? polling;
+    private readonly string[] SubscriberNames = ["EventLogger", "AchievementTracker", "AbilityHandler", "NotificationSubscriber", "AnalyticsSubscriber"];
+    private readonly string[] EventTypes = ["BookPickedUp", "BookShelved", "AbilityUsed", "UpgradePurchased", "AchievementUnlocked"];
+    private IEnumerable<JournalEntry> Journal => brokers.SelectMany(x => x.Journal).OrderByDescending(x => x.Time).Take(400);
+    private string ExportUrl => "data:application/json;base64," + Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(GameJson.Write(new { state, brokers, projection, outbox, exportedAt = DateTimeOffset.UtcNow })));
+    protected override async Task OnInitializedAsync() { if (Auth.IsAuthenticated) { await Refresh(); polling = Poll(); } }
+    private async Task Refresh()
+    {
+        try {
+            var s = await Api.Snapshot(true); state = s.State; projection = s.Projections;
+            var lab = await Api.Lab(); outbox = lab.GetProperty("outboxPending").GetInt32();
+            brokers = []; unavailableBrokers = [];
+            foreach (var b in lab.GetProperty("brokers").EnumerateArray()) {
+                if (b.TryGetProperty("subscriptions", out _)) brokers.Add(GameJson.Read<BrokerSnapshot>(b.GetRawText()));
+                else unavailableBrokers.Add(b.GetProperty("brokerId").GetString()!);
+            }
+        } catch (Exception ex) when (ex is ApiException or HttpRequestException) { error = ex.Message; }
+    }
+    private async Task Guard(Func<Task> action)
+    {
+        if (busy) return; busy = true; error = null;
+        try { await action(); await Refresh(); } catch (Exception ex) { error = ex.Message; } finally { busy = false; }
+    }
+    private Task SortOne() => Guard(async () => {
+        if (state!.Held.Count == 0) {
+            var id = Enumerable.Range(0, state.OpenSeries).SelectMany(s => Enumerable.Range(1, 12).Select(v => LibraryWorld.BookId(s, v))).FirstOrDefault(state.IsWorldBook);
+            if (id is null) { message = "Все книги на местах."; return; }
+            state = await Api.Command(state, "PickBook", book: id);
+        }
+        state = await Api.Command(state, "PlaceBook", series: GameRules.ParseBook(state.Held.Last()).Series);
+        message = "BookPickedUp / BookShelved опубликованы; следите за независимой доставкой.";
+    });
+    private Task Upgrade() => Guard(async () => { state = await Api.Command(state!, "BuyUpgrade", upgrade: "hands"); message = "UpgradePurchased опубликовано."; });
+    private Task Attract() => Guard(async () => {
+        if (state!.Held.Count == 0) {
+            var id = Enumerable.Range(0, state.OpenSeries).SelectMany(s => Enumerable.Range(1, 12).Select(v => LibraryWorld.BookId(s, v))).First(state.IsWorldBook);
+            state = await Api.Command(state, "PickBook", book: id);
+        }
+        state = await Api.Command(state, "UseAbility"); message = "AbilityUsed опубликовано. Эффект применит отдельный C#-подписчик.";
+    });
+    private Task NewDemo() => Guard(async () => { state = await Api.Reset(state!); message = "Создано новое демонстрационное сохранение. Основная игра сохранена."; });
+    private Task Control(string id, SubscriberControl value) => Guard(async () => { await Api.Control(id, value); message = $"Настройки {id} сохранены."; });
+    private Task Delays() => Guard(async () => {
+        await Api.Control("EventLogger", new(DelayMs: 1000)); await Api.Control("AchievementTracker", new(DelayMs: 3000)); await Api.Control("AbilityHandler", new(DelayMs: 2000)); message = "Задержки включены: Logger 1 с, Achievements 3 с, Ability 2 с.";
+    });
+    private Task ConnectAnalytics() => Guard(async () => { await Api.Analytics(); message = "AnalyticsSubscriber зарегистрирован на Broker B. Publisher не изменялся."; });
+    private Task Replay() => Guard(async () => { await Api.Replay(); message = "Недоставленные сообщения возвращены в очередь."; });
+    private static string SubscriptionText(string id) => id switch { "AchievementTracker" => "BookShelved, AbilityUsed", "AbilityHandler" => "AbilityUsed", "NotificationSubscriber" => "AchievementUnlocked, UpgradePurchased", "AnalyticsSubscriber" => "BookPickedUp, BookShelved, AbilityUsed, UpgradePurchased", _ => "Все пять типов событий" };
+    private async Task Poll() { using var timer = new PeriodicTimer(TimeSpan.FromSeconds(2)); try { while (await timer.WaitForNextTickAsync(stopping.Token)) { if (!busy) { await Refresh(); await InvokeAsync(StateHasChanged); } } } catch (OperationCanceledException) { } }
+    public async ValueTask DisposeAsync() { await stopping.CancelAsync(); if (polling is not null) await polling; stopping.Dispose(); }
+}

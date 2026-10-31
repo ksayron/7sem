@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <!-- Thin second launch target: the entire broker implementation is shared. -->
+  <ItemGroup>
+    <ProjectReference Include="../Burmalda.LibraryGame.Broker/Burmalda.LibraryGame.Broker.csproj" />
+    <Compile Include="../Burmalda.LibraryGame.Broker/Program.cs" Link="Program.cs" />
+  </ItemGroup>
+</Project>

@@ -30,6 +30,7 @@ public sealed class ReplicationSession
 }
 public sealed class ReplicationAuthority
 {
+    public Guid? SessionId { get; set; }
     public string? FencedSource { get; set; }
     public string? RequiredLsn { get; set; }
     public bool Promoted { get; set; }
@@ -214,6 +215,37 @@ public sealed class ReplicationLabStore : IDisposable
         Log(run, "operator", "Failover", target.Id, "SUCCESS", $"Реальный pg_promote; прежний primary {authority.FencedSource} остановлен и fenced.");
         return Writer ?? throw new ReplicationLabException(503, "Promotion отправлен; writable роль пока не подтверждена. Обновите состояние.");
     }
+    // The same exclusive gate protects operator actions and automatic failover.
+    // A lost TCP connection alone is never permission to promote an async standby.
+    public async Task MaintainWriter(CancellationToken ct)
+    {
+        if (authority.FencedSource is null || authority.RequiredLsn is null || authority.Promoted) return;
+        if (actionRunning || !await gate.WaitAsync(0, ct)) return;
+        try
+        {
+            if (authority.FencedSource is null || authority.RequiredLsn is null || authority.Promoted) return;
+            await Refresh(ct);
+            if (Writer is { } writer)
+            {
+                // Reconcile a crash after pg_promote but before authority.json was saved.
+                if (authority.FencedSource is { } old && old != writer.Id && !authority.Promoted)
+                { authority.Promoted = true; SaveAuthority(); }
+                return;
+            }
+            if (authority.FencedSource is null || authority.RequiredLsn is null || authority.Promoted) return;
+            var run = authority.SessionId is { } id && sessions.TryGetValue(id, out var owner) ? owner
+                : sessions.Values.OrderByDescending(s => s.Events.LastOrDefault()?.AtUtc)
+                    .FirstOrDefault(s => s.Events.Any(e => e.Operation == "Stop" && e.Instance == authority.FencedSource));
+            if (run is null)
+            {
+                run = new ReplicationSession(); sessions[run.Id] = run;
+                authority.SessionId = run.Id; SaveAuthority();
+            }
+            await EnsureWriter(run, ct);
+            Mark(run, "Автоматический failover: standby повышен до primary");
+        }
+        finally { gate.Release(); }
+    }
     public async Task<ReplicationSnapshot> Configure(Guid id, ReplicationControl input, CancellationToken ct)
     {
         var run = Get(id); if (actionRunning || !await gate.WaitAsync(TimeSpan.FromSeconds(5), ct)) throw new ReplicationLabException(409, "Кластер занят.");
@@ -229,7 +261,7 @@ public sealed class ReplicationLabStore : IDisposable
     public ReplicationSnapshot StartAction(Guid id, string action, string? node = null, Guid? copy = null)
     {
         var run = Get(id); if (node is not null) PostgresReplicationCluster.CheckNode(node);
-        if (actionRunning || !gate.Wait(TimeSpan.FromSeconds(5))) throw new ReplicationLabException(409, "Кластер занят другим действием/циклом.");
+        if (actionRunning || !gate.Wait(TimeSpan.FromSeconds(15))) throw new ReplicationLabException(409, "Кластер занят другим действием/циклом.");
         actionRunning = true;
         lock (run) { run.ActionStatus = "Running"; run.ActionError = null; }
         try { Save(run); } catch { actionRunning = false; gate.Release(); throw; }
@@ -263,7 +295,7 @@ public sealed class ReplicationLabStore : IDisposable
         {
             if (authority.FencedSource is not null && authority.Promoted)
                 throw new ReplicationLabException(409, "Сначала восстановите прежний primary как standby.");
-            authority.FencedSource = node; authority.Promoted = false; authority.RequiredLsn = null; SaveAuthority();
+            authority.SessionId = run.Id; authority.FencedSource = node; authority.Promoted = false; authority.RequiredLsn = null; SaveAuthority();
             authority.RequiredLsn = await cluster.QuiesceAndFence(node, ct); SaveAuthority();
         }
         await cluster.Stop(node, ct);

@@ -138,6 +138,25 @@ replication includes every service database. See [the LR5 guide and measured
 results](docs/lab-5-replication-failover.md). Historical file-model evidence remains
 under `lab-results/replication-*`; current evidence uses `streaming-replication-*`.
 
+## Library game and C# Pub/Sub lab (LR6)
+
+`http://localhost:5300/library-game` adds a small first-person library game to the
+existing Blazor WebAssembly client. Scene control and game rules use C# through
+Blazor.ThreeJS; only browser input and the library's graphics backend use JavaScript.
+Two custom C# brokers and a separate subscriber service deliver achievements,
+abilities, notifications and analytics without changing existing RabbitMQ contracts.
+
+```powershell
+./tools/Start-PubSubLab.ps1
+# Experiment panel: http://localhost:5300/pubsub-lab
+dotnet test tests/Burmalda.LibraryGame.Tests
+dotnet run --project tools/LibraryGame.Verify -- .
+./tools/Stop-PubSubLab.ps1
+```
+
+See [the LR6 guide](docs/lab-6-pubsub-library.md) for controls, process failures,
+durable queues, retry semantics and a requirement-by-requirement demonstration.
+
 ## Administration and monitoring
 
 Admin and moderator endpoints are routed under `/api/admin/*`. They cover user
@@ -149,3 +168,4 @@ requires an Admin JWT.
 
 Operational APIs intentionally do not query foreign databases. Each control is
 performed by the service that owns the affected data.
+

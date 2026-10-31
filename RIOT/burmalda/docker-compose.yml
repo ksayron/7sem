@@ -20,6 +20,8 @@ services:
       REPUTATION_DB_PASSWORD: ${REPUTATION_DB_PASSWORD:-reputation_dev}
       NOTIFICATION_DB_PASSWORD: ${NOTIFICATION_DB_PASSWORD:-notification_dev}
       CONCURRENCY_LAB_DB_PASSWORD: ${CONCURRENCY_LAB_DB_PASSWORD:-concurrency_lab_dev}
+      LIBRARY_GAME_DB_PASSWORD: ${LIBRARY_GAME_DB_PASSWORD:-library_game_dev}
+      LIBRARY_SUBSCRIBERS_DB_PASSWORD: ${LIBRARY_SUBSCRIBERS_DB_PASSWORD:-library_subscribers_dev}
     ports:
       - "127.0.0.1:${POSTGRES_PORT:-5547}:5432"
     volumes:
@@ -47,6 +49,8 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_ADMIN_PASSWORD:-burmalda_admin_dev}
       REPLICATION_USER: ${REPLICATION_USER:-burmalda_replicator}
       REPLICATION_PASSWORD: ${REPLICATION_PASSWORD:-replication_dev}
+      LIBRARY_GAME_DB_PASSWORD: ${LIBRARY_GAME_DB_PASSWORD:-library_game_dev}
+      LIBRARY_SUBSCRIBERS_DB_PASSWORD: ${LIBRARY_SUBSCRIBERS_DB_PASSWORD:-library_subscribers_dev}
     ports:
       - "127.0.0.1:${POSTGRES_REPLICA_PORT:-5548}:5432"
     volumes:
@@ -123,3 +127,4 @@ volumes:
 networks:
   burmalda:
     name: burmalda
+

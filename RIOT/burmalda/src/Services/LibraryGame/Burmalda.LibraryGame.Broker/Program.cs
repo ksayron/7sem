@@ -1,0 +1,22 @@
+using Burmalda.LibraryGame;
+using Burmalda.LibraryGame.Broker;
+using Burmalda.LibraryGame.Server;
+using Microsoft.EntityFrameworkCore;
+
+var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddLibraryHost(builder.Configuration);
+var file = Path.GetFullPath(builder.Configuration["Broker:Storage"] ?? Path.Combine(builder.Environment.ContentRootPath, ".data", $"broker-{builder.Configuration["Broker:Id"] ?? "A"}.db"));
+Directory.CreateDirectory(Path.GetDirectoryName(file)!);
+builder.Services.AddDbContextFactory<BrokerDb>(o => o.UseSqlite($"Data Source={file}"));
+builder.Services.AddSingleton<BrokerStore>();
+builder.Services.AddHostedService<DeliveryWorker>();
+var app = builder.Build();
+app.UseLibraryHost();
+await using (var db = await app.Services.GetRequiredService<IDbContextFactory<BrokerDb>>().CreateDbContextAsync()) await db.Database.EnsureCreatedAsync();
+var store = app.Services.GetRequiredService<BrokerStore>();
+if (store.Id == "A") await store.Subscribe(new("bridge-B", BrokerStore.EventTypes, $"{LibraryHost.Url(app.Configuration, "BrokerB")}/internal/events"));
+app.MapPost("/internal/events", (GameEvent e, BrokerStore s, CancellationToken ct) => s.Publish(e, ct));
+app.MapPost("/internal/subscriptions", async (SubscriberRegistration r, BrokerStore s, CancellationToken ct) => { await s.Subscribe(r, ct); return Results.Ok(); });
+app.MapGet("/internal/snapshot/{session:guid}", (Guid session, BrokerStore s, CancellationToken ct) => s.Snapshot(session, ct));
+if (app.Environment.IsDevelopment()) app.MapPost("/internal/replay/{session:guid}", async (Guid session, BrokerStore s, CancellationToken ct) => Results.Ok(new { replayed = await s.Replay(session, ct) }));
+await app.RunAsync();

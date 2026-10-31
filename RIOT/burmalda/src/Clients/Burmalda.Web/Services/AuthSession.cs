@@ -32,7 +32,8 @@ public sealed class AuthSession(HttpClient http, IJSRuntime js)
 
     public async Task LoginAsync(LoginForm form, CancellationToken ct = default)
     {
-        using var response = await http.PostAsJsonAsync("/api/identity/login", form, ct);
+        using var request = new HttpRequestMessage(HttpMethod.Post, "/api/identity/login") { Content = JsonContent.Create(form) };
+        using var response = await http.SendAvailableAsync(request, ct);
         await EnsureSuccess(response, ct);
         Current = await response.Content.ReadFromJsonAsync<UserSession>(JsonOptions, ct)
             ?? throw new ApiException("The server returned an empty session.");
@@ -41,7 +42,8 @@ public sealed class AuthSession(HttpClient http, IJSRuntime js)
 
     public async Task RegisterAsync(RegisterForm form, CancellationToken ct = default)
     {
-        using var response = await http.PostAsJsonAsync("/api/identity/register", form, ct);
+        using var request = new HttpRequestMessage(HttpMethod.Post, "/api/identity/register") { Content = JsonContent.Create(form) };
+        using var response = await http.SendAvailableAsync(request, ct);
         await EnsureSuccess(response, ct);
         await LoginAsync(new LoginForm { Email = form.Email, Password = form.Password }, ct);
     }

@@ -85,5 +85,50 @@
         "Action": "Start"
       }
     ]
+  },
+  {
+    "Projects": [
+      {
+        "Path": "src\\Services\\ConcurrencyLab\\Burmalda.ConcurrencyLab.Api\\Burmalda.ConcurrencyLab.Api.csproj",
+        "Action": "Start",
+        "DebugTarget": "Burmalda.ConcurrencyLab.Api"
+      },
+      {
+        "Path": "src\\Services\\LibraryGame\\Burmalda.LibraryGame.Api\\Burmalda.LibraryGame.Api.csproj",
+        "Action": "Start",
+        "DebugTarget": "Api"
+      },
+      {
+        "Path": "src\\Services\\LibraryGame\\Burmalda.LibraryGame.Broker\\Burmalda.LibraryGame.Broker.csproj",
+        "Action": "Start",
+        "DebugTarget": "Broker"
+      },
+      {
+        "Path": "src\\Services\\LibraryGame\\Burmalda.LibraryGame.BrokerB\\Burmalda.LibraryGame.BrokerB.csproj",
+        "Action": "Start",
+        "DebugTarget": "BrokerB"
+      },
+      {
+        "Path": "src\\Services\\LibraryGame\\Burmalda.LibraryGame.Subscribers\\Burmalda.LibraryGame.Subscribers.csproj",
+        "Action": "Start",
+        "DebugTarget": "Subscribers"
+      },
+      {
+        "Path": "src\\Services\\Identity\\Burmalda.Identity.Api\\Burmalda.Identity.Api.csproj",
+        "Action": "Start",
+        "DebugTarget": "Burmalda.Identity.Api"
+      },
+      {
+        "Path": "src\\Gateway\\Burmalda.Gateway\\Burmalda.Gateway.csproj",
+        "Action": "Start",
+        "DebugTarget": "Burmalda.Gateway"
+      },
+      {
+        "Path": "src\\Clients\\Burmalda.Web\\Burmalda.Web.csproj",
+        "Action": "Start",
+        "DebugTarget": "http"
+      }
+    ],
+    "Name": "ЛР №6 · библиотека и Pub/Sub"
   }
 ]

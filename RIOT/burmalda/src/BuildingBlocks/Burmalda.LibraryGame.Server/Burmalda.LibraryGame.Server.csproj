@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <ProjectReference Include="../Burmalda.LibraryGame/Burmalda.LibraryGame.csproj" />
+  </ItemGroup>
+  <ItemGroup><ProjectReference Include="../Burmalda.Persistence/Burmalda.Persistence.csproj" /></ItemGroup>
+</Project>

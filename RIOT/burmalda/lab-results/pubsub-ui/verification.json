@@ -1,0 +1,24 @@
+{
+  "checks": [
+    "one-blazor-canvas-and-pointer-lock",
+    "real-wasd-updates-csharp-camera",
+    "escape-releases-pointer-and-pauses",
+    "navigation-disposes-canvas",
+    "csharp-ray-picking-finds-book-using-real-input",
+    "real-e-picks-book-through-authenticated-api",
+    "csharp-ray-picking-finds-correct-shelf",
+    "real-input-completes-pick-and-shelve",
+    "upgrade-insufficient-funds-state",
+    "asynchronous-achievement-appears-in-blazor-hud",
+    "1280-no-horizontal-overflow",
+    "save-restored-after-browser-reload",
+    "lab-controls-delay-failure-and-dynamic-subscription",
+    "event-journal-filter",
+    "journal-export-is-demo-only",
+    "narrow-screen-keyboard-and-mouse-guidance",
+    "390-no-horizontal-overflow",
+    "no-browser-runtime-errors"
+  ],
+  "errors": [],
+  "at": "2026-10-29T20:23:24.554Z"
+}
