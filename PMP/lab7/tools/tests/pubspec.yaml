@@ -1,0 +1,16 @@
+name: sports_lab7_checks
+description: Host-side SQLite and file service tests for Sports Lab 7
+publish_to: none
+environment:
+  sdk: ^3.13.2
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  sqflite_common_ffi: 2.4.5
+dependencies:
+  sports_lab7:
+    path: ../..
+  flutter:
+    sdk: flutter
+flutter:
+  uses-material-design: true
