@@ -1,0 +1,18 @@
+{
+  "original.png": {
+    "url": "https://raw.githubusercontent.com/opencv/opencv/4.13.0/samples/data/sudoku.png",
+    "sha256": "3cd9ab173f7178c0a16bba9f867062b58b5d60918d5aeb8ced85cba0b24c353a"
+  },
+  "objects.png": {
+    "url": "https://raw.githubusercontent.com/opencv/opencv/4.13.0/samples/data/smarties.png",
+    "sha256": "ad3f751c053fdcf432687c1bc0e56a61a9119d2bb2ae29365f8aa6534fc77417"
+  },
+  "dark.jpg": {
+    "url": "https://raw.githubusercontent.com/Li-Chongyi/Zero-DCE/master/Zero-DCE_code/data/test_data/DICM/01.jpg",
+    "sha256": "7423c3aa679add5a7021e47acf106d3c1f2b5ac5ea4548088b0e2eac894415fa"
+  },
+  "noisy.png": {
+    "url": "https://raw.githubusercontent.com/megvii-research/NAFNet/2b4af71ebe098a92a75910c233a3965a3e93ede4/demo/noisy.png",
+    "sha256": "403034182fa320130dae0d75b92e85e0850771378e674d65455c403a4958e29c"
+  }
+}

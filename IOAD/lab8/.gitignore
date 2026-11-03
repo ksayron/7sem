@@ -1,0 +1,10 @@
+# Только включённые демонстрационные исходники; личные снимки не добавляем.
+!images/
+images/*
+!images/original.png
+!images/dark.jpg
+!images/noisy.png
+!images/objects.png
+!images/readme.md
+!images/sources.json
+!output/histograms.csv
