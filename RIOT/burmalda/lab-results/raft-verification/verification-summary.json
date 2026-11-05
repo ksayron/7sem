@@ -1,0 +1,52 @@
+{
+  "verifiedAtUtc": "2026-11-04T17:54:50.579173+00:00",
+  "build": {
+    "success": true,
+    "warnings": 0,
+    "errors": 0
+  },
+  "unit": {
+    "raft": {
+      "passed": 30,
+      "total": 30
+    },
+    "domain": {
+      "passed": 50,
+      "total": 50
+    },
+    "library-game": {
+      "passed": 29,
+      "total": 29
+    }
+  },
+  "unitTotal": 109,
+  "raftIntegration": {
+    "passed": 15,
+    "success": true
+  },
+  "lr5Regression": {
+    "passed": 12,
+    "success": true
+  },
+  "lr6Regression": {
+    "passed": 33,
+    "completedAt": "2026-11-04T17:50:42.1493617+00:00"
+  },
+  "ui": {
+    "passed": 7,
+    "pageErrors": []
+  },
+  "final": {
+    "leader": 1,
+    "primary": "postgres",
+    "availableNodes": 5,
+    "activeOperation": null,
+    "catalogBooks": 13,
+    "catalogCopies": 28
+  },
+  "boundaries": [
+    "Fixed five-member Raft configuration on one Docker host",
+    "Asynchronous PostgreSQL replication; promotion requires fencing and required WAL",
+    "Raft stores control-plane decisions, not Catalog data"
+  ]
+}

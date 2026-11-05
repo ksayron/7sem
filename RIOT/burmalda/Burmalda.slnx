@@ -24,9 +24,13 @@
     <Project Path="src/BuildingBlocks/Burmalda.LibraryGame.Server/Burmalda.LibraryGame.Server.csproj" />
     <Project Path="src/BuildingBlocks/Burmalda.LibraryGame/Burmalda.LibraryGame.csproj" />
     <Project Path="src/BuildingBlocks/Burmalda.Persistence/Burmalda.Persistence.csproj" />
+    <Project Path="src/BuildingBlocks/Burmalda.PostgresControl/Burmalda.PostgresControl.csproj" />
+    <Project Path="src/BuildingBlocks/Burmalda.Raft/Burmalda.Raft.csproj" />
+    <Project Path="src/Services/ClusterControl/Burmalda.ClusterControl.Node/Burmalda.ClusterControl.Node.csproj" />
     <Project Path="src/Services/LibraryGame/Burmalda.LibraryGame.Api/Burmalda.LibraryGame.Api.csproj" />
     <Project Path="src/Services/LibraryGame/Burmalda.LibraryGame.Broker/Burmalda.LibraryGame.Broker.csproj" />
     <Project Path="src/Services/LibraryGame/Burmalda.LibraryGame.Subscribers/Burmalda.LibraryGame.Subscribers.csproj" />
+    <Project Path="tests/Burmalda.Raft.Tests/Burmalda.Raft.Tests.csproj" />
   </Folder>
   <Folder Name="/src/Services/" />
   <Folder Name="/src/Services/LibraryGame/">

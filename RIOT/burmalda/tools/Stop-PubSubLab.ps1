@@ -4,3 +4,4 @@ foreach($taskComponent in @('Web','Gateway','Identity','GameApi','Subscribers','
     & "$PSScriptRoot/Set-PubSubComponent.ps1" -Component $taskComponent -Action Stop
 }
 # Keep PostgreSQL, RabbitMQ and all durable application data intact.
+& "$PSScriptRoot/Stop-RaftCluster.ps1"

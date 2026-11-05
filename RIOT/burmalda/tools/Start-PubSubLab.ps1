@@ -9,6 +9,7 @@ try {
     if ($LASTEXITCODE) { throw 'Docker PostgreSQL startup failed.' }
     $taskConfig = docker compose config --format json | ConvertFrom-Json
     $taskAdmin = $taskConfig.services.postgres.environment.POSTGRES_USER
+    & "$PSScriptRoot/Start-RaftCluster.ps1" -NoBuild
     & "$PSScriptRoot/Set-PubSubComponent.ps1" -Component Coordinator -Action Start
     $taskWriter = $null
     for ($taskAttempt=0; $taskAttempt -lt 15 -and !$taskWriter; $taskAttempt++) {

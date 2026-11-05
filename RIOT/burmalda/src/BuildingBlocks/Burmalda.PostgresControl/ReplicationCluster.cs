@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using Microsoft.Extensions.Configuration;
 using Npgsql;
 using System.Text.Json.Serialization;
 
@@ -28,7 +29,7 @@ public interface IReplicationCluster
 }
 
 // All command arguments are constructed here, never from request-supplied shell text.
-public sealed class PostgresReplicationCluster(IConfiguration config) : IReplicationCluster
+public sealed class PostgresReplicationCluster(IConfiguration config) : IReplicationCluster, Burmalda.PostgresControl.IMaintenanceCleanup
 {
     public static readonly string[] NodeIds = ["postgres", "postgres-replica"];
     private readonly string root = ResolveRoot(config["ReplicationLab:ComposeRoot"]);
@@ -63,6 +64,7 @@ public sealed class PostgresReplicationCluster(IConfiguration config) : IReplica
             RedirectStandardError = true, UseShellExecute = false, CreateNoWindow = true };
         foreach (var arg in args) start.ArgumentList.Add(arg);
         using var process = Process.Start(start) ?? throw new ReplicationLabException(503, "Docker CLI недоступен.");
+        Burmalda.PostgresControl.ExecutionScope.Current?.Started(process, start);
         using var timeout = CancellationTokenSource.CreateLinkedTokenSource(ct);
         timeout.CancelAfter(TimeSpan.FromMinutes(3));
         var output = process.StandardOutput.ReadToEndAsync(timeout.Token);
@@ -200,13 +202,14 @@ public sealed class PostgresReplicationCluster(IConfiguration config) : IReplica
     public async Task<bool> IsStopped(string node, CancellationToken ct)
     {
         CheckNode(node);
-        var id = await Docker(ct, "compose", "ps", "-aq", node);
-        if (string.IsNullOrWhiteSpace(id)) throw new ReplicationLabException(503, "Контейнер узла не найден; fencing не подтверждён.");
-        return await Docker(ct, "inspect", "--format", "{{.State.Running}}", id) == "false";
+        // Compose ps includes retained one-off maintenance jobs for the same service.
+        // Only the explicitly named database container is evidence of source fencing.
+        return await Docker(ct, "inspect", "--format", "{{.State.Running}}", $"burmalda-{node}") == "false";
     }
     public async Task Promote(string node, CancellationToken ct)
     {
-        if (!Equals(await Scalar(node, "SELECT pg_promote(true, 30)", ct), true)) throw new ReplicationLabException(503, "Promotion не завершён.");
+        if (Equals(await Scalar(node, "SELECT pg_is_in_recovery()", ct), true) &&
+            !Equals(await Scalar(node, "SELECT pg_promote(true, 30)", ct), true)) throw new ReplicationLabException(503, "Promotion не завершён.");
         await Scalar(node, "ALTER SYSTEM RESET default_transaction_read_only", ct);
         await Scalar(node, "SELECT pg_reload_conf()", ct);
     }
@@ -214,16 +217,40 @@ public sealed class PostgresReplicationCluster(IConfiguration config) : IReplica
     {
         CheckNode(node); CheckNode(source); if (node == source) throw new ReplicationLabException(400, "Источник совпадает с целью.");
         if (!await IsStopped(node, ct)) throw new ReplicationLabException(409, "pg_rewind требует остановленный целевой узел.");
-        await Docker(ct, "compose", "run", "--rm", "--no-deps", "--name", $"burmalda-lr5-maintenance-{node}", "-e", $"SOURCE_NODE={source}", "--entrypoint", "sh", node, "/opt/replication/rejoin.sh");
+        await Maintenance(node, source, "/opt/replication/rejoin.sh", ct);
         await Start(node, ct);
     }
     public async Task RestoreSource(string node, CancellationToken ct)
     {
         CheckNode(node); await Stop(node, ct);
-        await Docker(ct, "compose", "run", "--rm", "--no-deps", "--name", $"burmalda-lr5-maintenance-{node}", "--entrypoint", "sh", node, "/opt/replication/restore-source.sh");
+        await Maintenance(node, null, "/opt/replication/restore-source.sh", ct);
         await Start(node, ct);
     }
-    public async Task Start(string node, CancellationToken ct) { CheckNode(node); await Docker(ct, "compose", "start", node); }
+    public async Task Start(string node, CancellationToken ct) { CheckNode(node); await Docker(ct, "start", $"burmalda-{node}"); }
+    private async Task Maintenance(string node, string? source, string script, CancellationToken ct)
+    {
+        var scope = Burmalda.PostgresControl.ExecutionScope.Current;
+        if (scope is null)
+        {
+            var args = new List<string> { "compose", "run", "--rm", "--no-deps", "--name", $"burmalda-lr5-maintenance-{node}" };
+            if (source is not null) args.AddRange(["-e", $"SOURCE_NODE={source}"]);
+            args.AddRange(["--entrypoint", "sh", node, script]); await Docker(ct, args.ToArray()); return;
+        }
+        var name = $"burmalda-raft-maintenance-{scope.OperationId:N}";
+        var containers = await Docker(ct, "ps", "-a", "--filter", $"name=^{name}$", "--format", "{{.Names}}");
+        if (containers == name)
+        {
+            if (await Docker(ct, "inspect", "--format", "{{.State.Running}}", name) == "true") await Docker(ct, "wait", name);
+            if (await Docker(ct, "inspect", "--format", "{{.State.ExitCode}}", name) != "0")
+                throw new ReplicationLabException(503, "Maintenance завершился ошибкой; требуется проверка, повтор pg_rewind запрещён.");
+            return;
+        }
+        var command = new List<string> { "compose", "run", "--no-deps", "--name", name, "--label", $"burmalda.raft.operation={scope.OperationId}" };
+        if (source is not null) command.AddRange(["-e", $"SOURCE_NODE={source}"]);
+        command.AddRange(["--entrypoint", "sh", node, script]); await Docker(ct, command.ToArray());
+    }
     public async Task Pause(string node, bool paused, CancellationToken ct)
     { await Scalar(node, paused ? "SELECT pg_wal_replay_pause()" : "SELECT pg_wal_replay_resume()", ct); }
+    public Task<int> CleanupCompletedMaintenance(IReadOnlySet<Guid> completedRecoveries, CancellationToken ct)
+        => Burmalda.PostgresControl.MaintenanceCleanup.Run(Docker, completedRecoveries, ct);
 }

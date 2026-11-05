@@ -45,7 +45,6 @@ public sealed class SubscriberHandlers(IDbContextFactory<SubscriberDb> factory, 
             if (setting.DelayMs > 0) await Task.Delay(setting.DelayMs, ct);
             if (setting.Throw) throw new GameRuleException($"{id}: искусственное исключение обработки", 503);
         }
-        // HTTP effects have their own transactional idempotency key in the owning service.
         if (id == "AbilityHandler") {
             using var response = await clients.CreateClient("library-internal").PostAsJsonAsync($"{LibraryHost.Url(config, "GameApi")}/internal/effects", new EffectRequest(e), ct);
             response.EnsureSuccessStatusCode();

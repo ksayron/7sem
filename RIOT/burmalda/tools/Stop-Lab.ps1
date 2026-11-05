@@ -1,6 +1,7 @@
 $ErrorActionPreference = 'Stop'
 $taskRoot = Split-Path $PSScriptRoot -Parent
 $taskManifest = Join-Path $taskRoot '.artifacts/lab-runtime/processes.json'
+& "$PSScriptRoot/Stop-RaftCluster.ps1"
 if (!(Test-Path $taskManifest)) { Write-Host '[info] No managed lab processes.'; return }
 foreach ($taskEntry in (Get-Content $taskManifest -Raw | ConvertFrom-Json)) {
     $taskProcess = Get-CimInstance Win32_Process -Filter "ProcessId=$($taskEntry.Pid)"

@@ -157,6 +157,22 @@ dotnet run --project tools/LibraryGame.Verify -- .
 See [the LR6 guide](docs/lab-6-pubsub-library.md) for controls, process failures,
 durable queues, retry semantics and a requirement-by-requirement demonstration.
 
+## Raft PostgreSQL control (LR7)
+
+`http://localhost:5300/raft-lab` shows five independent C# Raft participants,
+their persistent logs, elections, quorum reads, snapshots and real PostgreSQL
+switchover. Catalog data remains in PostgreSQL. LR5 infrastructure controls now
+use the same Raft cluster; reads never promote a database.
+
+```powershell
+./tools/Start-RaftLab.ps1
+dotnet test tests/Burmalda.Raft.Tests
+node tools/verify-raft-lab.cjs
+```
+
+See [the LR7 guide](docs/lab-7-raft.md) for protocol rules, safe async failover,
+recovery, process/network experiments and the single-host boundary.
+
 ## Administration and monitoring
 
 Admin and moderator endpoints are routed under `/api/admin/*`. They cover user

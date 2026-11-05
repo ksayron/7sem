@@ -51,7 +51,7 @@ public sealed class ReplicationLabTests : IDisposable
         await store.Update(run.Id, Change(7), default);
         store.StartAction(run.Id, "stop", "postgres"); await Wait(store, run.Id);
         var ex = await Assert.ThrowsAsync<ReplicationLabException>(() => store.Read(run.Id, new("Client 2"), default));
-        Assert.Equal(409, ex.Status); Assert.DoesNotContain("promote", cluster.Calls);
+        Assert.Equal(503, ex.Status); Assert.DoesNotContain("promote", cluster.Calls);
         store.StartAction(run.Id, "recover", "postgres");
         Assert.Equal("Completed", (await Wait(store, run.Id)).ActionStatus);
         Assert.Equal("postgres", (await store.Snapshot(run.Id)).ActiveInstance);
@@ -69,7 +69,7 @@ public sealed class ReplicationLabTests : IDisposable
         var run = await store.Create(); store.StartAction(run.Id, "stop", "postgres"); await Wait(store, run.Id);
         cluster.RefuseFenceProof = true;
         var ex = await Assert.ThrowsAsync<ReplicationLabException>(() => store.Read(run.Id, new("Client"), default));
-        Assert.Equal(409, ex.Status); Assert.DoesNotContain("promote", cluster.Calls);
+        Assert.Equal(503, ex.Status); Assert.DoesNotContain("promote", cluster.Calls);
     }
     [Fact]
     public async Task Two_cycles_reverse_roles_and_restore_measured_availability()
@@ -89,6 +89,7 @@ public sealed class ReplicationLabTests : IDisposable
     public async Task Recovery_failure_preserves_authority_and_can_resume_after_coordinator_restart()
     {
         var run = await store.Create(); store.StartAction(run.Id, "stop", "postgres"); await Wait(store, run.Id);
+        await store.MaintainWriter(default);
         await store.Read(run.Id, new("Client"), default);
         cluster.FailRecovery = true; store.StartAction(run.Id, "recover", "postgres");
         Assert.Equal("Failed", (await Wait(store, run.Id)).ActionStatus);

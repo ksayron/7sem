@@ -43,6 +43,11 @@ async function aligned(run) {
     throw new Error('No aligned PostgreSQL observation within the verification deadline.');
 }
 const sync = async run => aligned(await settled(await post(run, 'synchronize', {}, 202)));
+async function waitWriter(run) {
+    const deadline=Date.now()+45000;
+    do { run=await get(run);if(run.activeInstance)return run;await new Promise(r=>setTimeout(r,300)); } while(Date.now()<deadline);
+    throw new Error('Raft did not complete the authorized promotion.');
+}
 async function catalogRead(bookId) {
     const config = JSON.parse(await fs.readFile('src/Services/Catalog/Burmalda.Catalog.Api/appsettings.json', 'utf8'));
     const enc = obj => Buffer.from(JSON.stringify(obj)).toString('base64url');
@@ -88,11 +93,11 @@ let fixtureCreated = false, current, success = false;
     let version = writer(current).copies.find(c=>c.id===copyId).version;
     current = await update(version, false); assert.equal(current.operations.at(-1).replication,'PENDING');
     const old = current.activeInstance; current = await control(current, old, false);
-    await post(current, 'read', { clientId:'Client 2' },409);
+    await post(current, 'read', { clientId:'Client 2' },503);
     assert.equal(sql(standby(current).id,'SELECT pg_is_in_recovery();').stdout.trim(),'t');
     const guardedStart = docker(['compose','start',old]);
     await new Promise(r=>setTimeout(r,1000));
-    const nodeId = docker(['compose','ps','-aq',old]).stdout.trim();
+    const nodeId = `burmalda-${old}`;
     assert.notEqual(docker(['inspect','--format','{{.State.Health.Status}}',nodeId]).stdout.trim(),'healthy');
     current = await control(current, old, true); current = await sync(current); check('paused-replay-stale-promotion-rejected-and-startup-fence-enforced');
     version = writer(current).copies.find(c=>c.id===copyId).version; current = await update(version,true); current = await sync(current);
@@ -107,12 +112,13 @@ let fixtureCreated = false, current, success = false;
     }
     const former = current.activeInstance;
     current = await control(current,former,false);
+    current = await waitWriter(current);
     current = await post(current,'read',{clientId:'Client 2'});
     const promoted = current.activeInstance;
     docker(['compose','stop','--timeout','30',promoted]);
     current = await settled(await post(current,`instances/${former}`,{available:true},202),'Failed');
     evidence.interruptedRecovery = current;
-    const restart = spawnSync('pwsh',['-NoProfile','-File','tools/Restart-LabApi.ps1'],{encoding:'utf8',timeout:60000,windowsHide:true});
+    const restart = spawnSync('pwsh',['-NoProfile','-File','tools/Restart-LabApi.ps1'],{stdio:'ignore',timeout:60000,windowsHide:true});
     assert.equal(restart.status,0,restart.stderr);
     current = await get(current); assert.equal(current.actionStatus,'Failed');
     current = await control(current,promoted,true);
@@ -133,13 +139,13 @@ let fixtureCreated = false, current, success = false;
     success = true;
     console.log(`[info] ${checks.length} real PostgreSQL integration checks passed`);
 })().finally(async()=>{
-    if(fixtureCreated) {
+    try { if(fixtureCreated) {
         current=await get(current);
         if(!current.activeInstance) throw new Error('Fixture retained for diagnosis; recover writable database before cleanup.');
         sql(current.activeInstance,`BEGIN; DELETE FROM book_search_projection WHERE "BookId"='${bookId}'; DELETE FROM book_copies WHERE "Id"='${copyId}'; DELETE FROM books WHERE "Id"='${bookId}'; COMMIT;`);
         current=await sync(current);
         assert.deepEqual({books:writer(current).books.length,copies:writer(current).copies.length},evidence.initialCounts);
         evidence.afterFixtureCleanup=current;
-    }
+    } } catch(error) { evidence.cleanupError=error.stack; success=false; process.exitCode=1; console.error(error); }
     await fs.writeFile(path.join(folder,'http-verification.json'),JSON.stringify({verifiedAtUtc:new Date().toISOString(),passed:success,base,checks,evidence},null,2));
 }).catch(e=>{console.error(e);process.exitCode=1;});

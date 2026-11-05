@@ -5,8 +5,6 @@ using System.Text.Json.Serialization;
 
 namespace Burmalda.ConcurrencyLab.Api;
 
-public sealed class ReplicationLabException(int status, string message) : Exception(message)
-{ public int Status { get; } = status; }
 public sealed record ReplicationRequest(string ClientId);
 public sealed record InstanceControl([property: JsonRequired] bool Available);
 public sealed record ReplicationControl([property: JsonRequired] bool Enabled);
@@ -202,9 +200,11 @@ public sealed class ReplicationLabStore : IDisposable
             Row(run, input.ClientId, "Update", input.CopyId, used, committed, "UNKNOWN", "FAIL", ex.Message); throw;
         }
     }
-    private async Task<ReplicationNode> EnsureWriter(ReplicationSession run, CancellationToken ct)
+    private async Task<ReplicationNode> EnsureWriter(ReplicationSession run, CancellationToken ct, bool allowPromotion = false)
     {
         if (Writer is { } writer) return writer;
+        if (!allowPromotion || cluster is RaftManagedReplicationCluster)
+            throw new ReplicationLabException(503, "Writable primary недоступен. Чтение не запускает promotion; состояние переключения смотрите в Raft.");
         if (authority.FencedSource is null || authority.RequiredLsn is null || authority.Promoted)
             throw new ReplicationLabException(503, "Writable primary недоступен. Без подтверждённого WAL/fencing promotion запрещён; восстановите исходный узел.");
         if (!await cluster.IsStopped(authority.FencedSource, ct)) throw new ReplicationLabException(409, "Fencing не подтверждён: прежний primary ещё работает.");
@@ -219,6 +219,7 @@ public sealed class ReplicationLabStore : IDisposable
     // A lost TCP connection alone is never permission to promote an async standby.
     public async Task MaintainWriter(CancellationToken ct)
     {
+        if (cluster is RaftManagedReplicationCluster) return;
         if (authority.FencedSource is null || authority.RequiredLsn is null || authority.Promoted) return;
         if (actionRunning || !await gate.WaitAsync(0, ct)) return;
         try
@@ -241,7 +242,7 @@ public sealed class ReplicationLabStore : IDisposable
                 run = new ReplicationSession(); sessions[run.Id] = run;
                 authority.SessionId = run.Id; SaveAuthority();
             }
-            await EnsureWriter(run, ct);
+            await EnsureWriter(run, ct, allowPromotion: true);
             Mark(run, "Автоматический failover: standby повышен до primary");
         }
         finally { gate.Release(); }
@@ -355,7 +356,9 @@ public sealed class ReplicationLabStore : IDisposable
         await Toggle("Client 2", baseline); await CatchUp(run, ct);
         await Toggle("Client 1", !baseline); await CatchUp(run, ct);
         var old = writer.Id; await StopNode(run, old, ct);
-        await EnsureWriter(run, ct); Mark(run, "Failover: standby повышен до primary");
+        if (cluster is RaftManagedReplicationCluster)
+            await WaitFor(async () => { await Refresh(ct); return Writer is not null; }, ct);
+        await EnsureWriter(run, ct, allowPromotion: true); Mark(run, "Failover: standby повышен до primary");
         Row(run, "Client 1", "Read", copyId, Writer!.Id, false, "NOT_REQUIRED", "SUCCESS", "Чтение после promotion.");
         await Toggle("Client 2", baseline);
         await RecoverNode(run, old, ct); await CatchUp(run, ct);

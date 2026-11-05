@@ -1,0 +1,40 @@
+.raft-lab { max-width: 1350px; margin-inline: auto; }
+.raft-heading { display: grid; grid-template-columns: 1fr 1fr; align-items: end; gap: 2rem; margin-bottom: 2rem; }
+.raft-heading h1 { font-size: clamp(2.4rem, 4.4vw, 4.8rem); line-height: 1.02; margin: 0; text-wrap: balance; }
+.raft-heading em { color: var(--green); }
+.raft-heading p { line-height: 1.65; max-width: 65ch; }
+.raft-lab section { margin-top: 2.8rem; }
+.raft-lab h2 { font-size: clamp(1.5rem, 2.2vw, 2.1rem); margin-bottom: 1rem; }
+.raft-lab h3 { font-size: 1.5rem; }
+.raft-summary { padding-block: 1.5rem; border-block: 1px solid var(--line); }
+.raft-summary h2 { margin-bottom: .5rem; }
+.raft-toolbar, .raft-section-heading { display: flex; flex-wrap: wrap; align-items: center; gap: .7rem 1.2rem; }
+.raft-toolbar { margin-block: 1.2rem; }
+.raft-section-heading { justify-content: space-between; margin-bottom: .8rem; }
+.raft-section-heading h2 { margin-bottom: 0; }
+.raft-section-heading span, .raft-toolbar > span, .raft-note { color: var(--ink-soft); font-size: .875rem; line-height: 1.65; }
+.raft-scroll { max-width: 100%; overflow-x: auto; scrollbar-color: var(--green) var(--paper-deep); scrollbar-width: thin; }
+.raft-lab table { width: 100%; border-collapse: collapse; font-size: .84rem; font-variant-numeric: tabular-nums; text-align: left; }
+.raft-lab th { font-weight: 700; color: var(--ink); }
+.raft-lab th, .raft-lab td { padding: .85rem .7rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+.raft-lab thead { background: var(--paper-deep); }
+.raft-lab td .button { margin: 0 .4rem .4rem 0; white-space: nowrap; }
+.raft-lab code { overflow-wrap: anywhere; font-size: .8rem; }
+.raft-lab pre { max-width: 42ch; white-space: pre-wrap; overflow-wrap: anywhere; }
+.raft-lab summary { cursor: pointer; }
+.raft-postgres { display: grid; grid-template-columns: 1fr 1fr; border-block: 1px solid var(--line); }
+.raft-postgres article { padding: 1.4rem 1.4rem 1.4rem 0; }
+.raft-postgres article + article { border-left: 1px solid var(--line); padding-left: 1.4rem; }
+.raft-good { color: var(--green); }
+.raft-bad, .raft-error { color: var(--red-dark); }
+.raft-error { padding-block: .8rem; overflow-wrap: anywhere; line-height: 1.6; }
+.raft-lab label { display: flex; align-items: center; gap: .65rem; font-size: .875rem; }
+.raft-lab select { background: var(--paper-light); color: var(--ink); border: 1px solid var(--line); padding: .5rem; }
+.raft-lab :is(button, a, select, summary, [tabindex]):focus-visible { outline: 2px solid var(--green); outline-offset: 4px; }
+.raft-lab ::selection { background: var(--green); color: var(--paper-light); }
+@media (max-width: 760px) {
+    .raft-heading { grid-template-columns: 1fr; gap: 1.4rem; }
+    .raft-postgres { grid-template-columns: 1fr; }
+    .raft-postgres article + article { border-left: 0; border-top: 1px solid var(--line); padding-left: 0; }
+    .raft-toolbar > .button { flex-grow: 1; }
+}

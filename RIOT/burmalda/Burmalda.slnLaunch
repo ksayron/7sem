@@ -87,6 +87,7 @@
     ]
   },
   {
+    "Name": "ЛР №6 · библиотека и Pub/Sub",
     "Projects": [
       {
         "Path": "src\\Services\\ConcurrencyLab\\Burmalda.ConcurrencyLab.Api\\Burmalda.ConcurrencyLab.Api.csproj",
@@ -128,7 +129,6 @@
         "Action": "Start",
         "DebugTarget": "http"
       }
-    ],
-    "Name": "ЛР №6 · библиотека и Pub/Sub"
+    ]
   }
 ]

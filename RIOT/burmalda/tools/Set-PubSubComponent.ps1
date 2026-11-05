@@ -1,4 +1,3 @@
-#requires -Version 7.4
 param(
     [Parameter(Mandatory)][ValidateSet('Coordinator','GameApi','BrokerA','BrokerB','Subscribers','Identity','Gateway','Web')][string]$Component,
     [Parameter(Mandatory)][ValidateSet('Start','Stop','Restart')][string]$Action

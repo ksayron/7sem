@@ -26,12 +26,13 @@ public static class LibraryWorld
     }
     public static Vector3 Move(Vector3 position, Vector3 delta)
     {
-        // Axis-separated capsule approximation for the compact, static room.
         var next = position;
         bool Free(Vector3 p) => MathF.Abs(p.X) < 9.3f && MathF.Abs(p.Z) < 8.5f &&
             !Enumerable.Range(0, 6).Any(i => MathF.Abs(p.X - Shelf(i).X) < 2.15f && MathF.Abs(p.Z - Shelf(i).Z) < .8f);
-        if (Free(position + new Vector3(delta.X, 0, 0))) next.X += delta.X;
-        if (Free(next + new Vector3(0, 0, delta.Z))) next.Z += delta.Z;
+        if (Free(position + new Vector3(delta.X, 0, 0))) 
+            next.X += delta.X;
+        if (Free(next + new Vector3(0, 0, delta.Z))) 
+            next.Z += delta.Z;
         return next;
     }
     public static float? RayBox(Vector3 origin, Vector3 direction, Vector3 center, Vector3 half)
@@ -44,9 +45,12 @@ public static class LibraryWorld
             var c = axis == 0 ? center.X : axis == 1 ? center.Y : center.Z;
             var h = axis == 0 ? half.X : axis == 1 ? half.Y : half.Z;
             if (MathF.Abs(d) < .0001f) { if (o < c - h || o > c + h) return null; continue; }
-            var a = (c - h - o) / d; var b = (c + h - o) / d;
-            near = MathF.Max(near, MathF.Min(a, b)); far = MathF.Min(far, MathF.Max(a, b));
-            if (near > far) return null;
+            var a = (c - h - o) / d; 
+            var b = (c + h - o) / d;
+            near = MathF.Max(near, MathF.Min(a, b));
+            far = MathF.Min(far, MathF.Max(a, b));
+            if (near > far) 
+                return null;
         }
         return near;
     }
@@ -90,7 +94,8 @@ public static class GameRules
     {
         if (cmd.CommandId == Guid.Empty || string.IsNullOrWhiteSpace(cmd.ClientId) || cmd.ClientId.Length > 80)
             throw new GameRuleException("Команде необходимы CommandId и ClientId (до 80 символов).");
-        if (cmd.ExpectedVersion != previous.Version) throw new GameRuleException("Сохранение изменилось в другой вкладке. Состояние обновлено, повторите действие.", 409);
+        if (cmd.ExpectedVersion != previous.Version) 
+            throw new GameRuleException("Сохранение изменилось в другой вкладке. Состояние обновлено, повторите действие.", 409);
         var state = previous.Copy();
         var events = new List<GameEvent>();
         void Emit(string type, string entity, EventData data) => events.Add(new(Guid.NewGuid(), type, entity, now,
@@ -100,9 +105,12 @@ public static class GameRules
             case "PickBook":
             {
                 var (series, _) = ParseBook(cmd.BookId);
-                if (series >= state.OpenSeries) throw new GameRuleException("Эта секция ещё закрыта.");
-                if (!state.IsWorldBook(cmd.BookId!)) throw new GameRuleException("Эту книгу уже забрали.", 409);
-                if (state.Held.Count >= state.Capacity) throw new GameRuleException("Руки заняты. Отнесите книги на полку.");
+                if (series >= state.OpenSeries) 
+                        throw new GameRuleException("Эта секция ещё закрыта.");
+                if (!state.IsWorldBook(cmd.BookId!)) 
+                        throw new GameRuleException("Эту книгу уже забрали.", 409);
+                if (state.Held.Count >= state.Capacity) 
+                        throw new GameRuleException("Руки заняты. Отнесите книги на полку.");
                 state.Held.Add(cmd.BookId!);
                 Emit("BookPickedUp", cmd.BookId!, new(cmd.BookId, series));
                 break;
@@ -111,19 +119,28 @@ public static class GameRules
             {
                 var id = cmd.BookId ?? state.Held.LastOrDefault();
                 var (series, _) = ParseBook(id);
-                if (!state.Held.Contains(id!)) throw new GameRuleException("Сначала возьмите книгу.");
-                if (cmd.SeriesId != series) throw new GameRuleException($"Нужна полка «{LibraryWorld.Series[series].Name}».");
-                state.Held.Remove(id!); state.Shelved.Add(id!); state.Sparks++;
+                if (!state.Held.Contains(id!)) 
+                        throw new GameRuleException("Сначала возьмите книгу.");
+                if (cmd.SeriesId != series) 
+                        throw new GameRuleException($"Нужна полка «{LibraryWorld.Series[series].Name}».");
+                state.Held.Remove(id!); 
+                    state.Shelved.Add(id!); 
+                    state.Sparks++;
                 Emit("BookShelved", id!, new(id, series, state.Shelved.Count, state.Shelved.Count(x => x.StartsWith($"{series}:"))));
                 break;
             }
             case "UseAbility":
             {
-                if (state.Shelved.Count < 6) throw new GameRuleException("Притяжение откроется после шестой книги.");
-                if (state.Held.Count == 0) throw new GameRuleException("Возьмите книгу: её серия определяет притяжение.");
-                if (state.Held.Count >= state.Capacity) throw new GameRuleException("Для притяжения нужно свободное место в руках.");
-                if (state.Operations.Any(x => x.Status == "Pending")) throw new GameRuleException("Предыдущее притяжение ещё обрабатывается.", 409);
-                if (state.LastAbilityAt is { } last && now - last < TimeSpan.FromSeconds(10)) throw new GameRuleException("Заклинание восстанавливается 10 секунд.");
+                if (state.Shelved.Count < 6) 
+                        throw new GameRuleException("Притяжение откроется после шестой книги.");
+                if (state.Held.Count == 0) 
+                        throw new GameRuleException("Возьмите книгу: её серия определяет притяжение.");
+                if (state.Held.Count >= state.Capacity) 
+                        throw new GameRuleException("Для притяжения нужно свободное место в руках.");
+                if (state.Operations.Any(x => x.Status == "Pending")) 
+                        throw new GameRuleException("Предыдущее притяжение ещё обрабатывается.", 409);
+                if (state.LastAbilityAt is { } last && now - last < TimeSpan.FromSeconds(10)) 
+                        throw new GameRuleException("Заклинание восстанавливается 10 секунд.");
                 var (series, _) = ParseBook(state.Held.Last());
                 state.LastAbilityAt = now;
                 state.Operations.Add(new(cmd.CommandId, series, "Pending"));
@@ -133,9 +150,13 @@ public static class GameRules
             case "BuyUpgrade":
             {
                 var cost = cmd.Upgrade switch { "hands" when state.Capacity == 1 => 4, "hands" when state.Capacity == 3 => 12, "attraction" when state.AttractionLimit == 2 => 10, _ => throw new GameRuleException("Это улучшение недоступно.") };
-                if (state.Sparks < cost) throw new GameRuleException($"Нужно {cost} искр.");
+                if (state.Sparks < cost) 
+                        throw new GameRuleException($"Нужно {cost} искр.");
                 state.Sparks -= cost;
-                if (cmd.Upgrade == "hands") state.Capacity = state.Capacity == 1 ? 3 : 5; else state.AttractionLimit = 4;
+                if (cmd.Upgrade == "hands") 
+                        state.Capacity = state.Capacity == 1 ? 3 : 5; 
+                else 
+                    state.AttractionLimit = 4;
                 Emit("UpgradePurchased", cmd.Upgrade!, new(Upgrade: cmd.Upgrade));
                 break;
             }

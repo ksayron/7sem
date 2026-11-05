@@ -1,0 +1,13 @@
+{
+  "verifiedAtUtc": "2026-11-04T17:52:05.919Z",
+  "checks": [
+    "five-real-nodes-visible",
+    "quorum-postgres-log-and-operation-panels",
+    "real-process-stop-and-restart-through-ui",
+    "json-export-includes-source-observations",
+    "keyboard-focus",
+    "mobile-no-page-overflow",
+    "network-error-visible"
+  ],
+  "pageErrors": []
+}

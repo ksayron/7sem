@@ -20,7 +20,7 @@ try {
     $taskPort = $taskCompose.services.postgres.ports[0].published
     $taskReplicaPort = $taskCompose.services.'postgres-replica'.ports[0].published
     $env:ASPNETCORE_ENVIRONMENT = 'Development'
-    $env:ReplicationLab__JournalRoot = Join-Path $taskRoot '.artifacts/streaming-replication'
+    $env:ReplicationLab__JournalRoot = Join-Path $taskRoot '.artifacts/streaming-replication-raft'
     $env:ReplicationLab__ComposeRoot = $taskRoot
     $env:ReplicationLab__Nodes__postgres = "Host=127.0.0.1;Port=$taskPort;Database=postgres;Username=$taskAdmin;Password=$taskPassword"
     Set-Item 'Env:ReplicationLab__Nodes__postgres-replica' "Host=127.0.0.1;Port=$taskReplicaPort;Database=postgres;Username=$taskAdmin;Password=$taskPassword"

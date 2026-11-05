@@ -53,11 +53,12 @@ try {
     if ($Full) { $taskProjects += @('src/Services/Identity/Burmalda.Identity.Api', 'src/Services/Catalog/Burmalda.Catalog.Api', 'src/Services/Lending/Burmalda.Lending.Api', 'src/Services/Economy/Burmalda.Economy.Api', 'src/Services/Reputation/Burmalda.Reputation.Api', 'src/Services/Notifications/Burmalda.Notifications.Api') }
     $taskProcesses = @()
     $env:ASPNETCORE_ENVIRONMENT = 'Development'
-    $env:ReplicationLab__JournalRoot = Join-Path $taskRoot '.artifacts/streaming-replication'
+    $env:ReplicationLab__JournalRoot = Join-Path $taskRoot '.artifacts/streaming-replication-raft'
     $env:ReplicationLab__ComposeRoot = $taskRoot
     $env:ReplicationLab__Nodes__postgres = "Host=127.0.0.1;Port=$PostgresPort;Database=postgres;Username=$taskAdmin;Password=$taskPassword"
     Set-Item 'Env:ReplicationLab__Nodes__postgres-replica' "Host=127.0.0.1;Port=$ReplicaPort;Database=postgres;Username=$taskAdmin;Password=$taskPassword"
     $env:ReplicationLab__CatalogPassword = $taskCompose.services.postgres.environment.CATALOG_DB_PASSWORD
+    & "$PSScriptRoot/Start-RaftCluster.ps1" -NoBuild -PostgresPort $PostgresPort -ReplicaPort $ReplicaPort
     foreach ($taskProject in $taskProjects) {
         $taskDirectory = Join-Path $taskRoot $taskProject
         $taskName = Split-Path $taskDirectory -Leaf

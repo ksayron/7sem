@@ -3,6 +3,7 @@
     <AssemblyName>Burmalda.ConcurrencyLab.Api</AssemblyName>
   </PropertyGroup>
   <ItemGroup>
+    <ProjectReference Include="../../../BuildingBlocks/Burmalda.PostgresControl/Burmalda.PostgresControl.csproj" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
     <ProjectReference Include="../../../BuildingBlocks/Burmalda.ServiceDefaults/Burmalda.ServiceDefaults.csproj" />
   </ItemGroup>
