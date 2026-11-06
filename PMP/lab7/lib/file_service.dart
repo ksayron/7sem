@@ -88,7 +88,6 @@ class FileService {
       platform = platform ?? currentPlatform;
   final DirectoryResolver _resolver;
   final String platform;
-  // Plugins run on the root isolate. Workers receive paths and maps only.
   static Future<List<String>> _resolve(StorageLocation location) async {
     final List<Directory?> directories = switch (location) {
       StorageLocation.temporary => [await getTemporaryDirectory()],
@@ -146,13 +145,12 @@ class FileService {
     return results;
   }
 
-  // Some APIs share a base directory (e.g. Android temp/cache). Namespace each
-  // API so its distinct entity cannot overwrite a sample from another API.
+
   static String folder(String base, StorageLocation location) =>
       Directory(base).uri.resolve('sports_lab7/${location.name}/').toFilePath();
   Future<FileWriteResult> write(DirectoryResult directory, Footballer player) {
     if (directory.error != null || directory.paths.isEmpty) {
-      throw FileSystemException(directory.error ?? 'Директория недоступна');
+      throw FileSystemException(directory.error ?? 'Папка недоступна');
     }
     return _writeIsolated(directory.paths, directory.location, player.toMap());
   }
@@ -162,7 +160,6 @@ class FileService {
   Future<FileReadResult> read(String path) => _readIsolated(path);
 }
 
-// Top-level boundaries keep database handles, services and UI out of captures.
 Future<FileWriteResult> _writeIsolated(
   List<String> bases,
   StorageLocation location,
@@ -197,6 +194,7 @@ Future<FileWriteResult> _writeIsolated(
     watch.elapsedMicroseconds,
   );
 }, debugName: 'lab7-file-writer');
+
 Future<List<FileEntry>> _scanIsolated(
   List<String> bases,
   StorageLocation location,
@@ -216,6 +214,7 @@ Future<List<FileEntry>> _scanIsolated(
   entries.sort((a, b) => a.path.compareTo(b.path));
   return entries;
 }, debugName: 'lab7-file-scanner');
+
 Future<FileReadResult> _readIsolated(String path) => Isolate.run(() async {
   final watch = Stopwatch()..start();
   final file = File(path);

@@ -136,7 +136,6 @@ class _SportsHomeState extends State<SportsHome> {
             padding: const EdgeInsets.fromLTRB(20, 18, 20, 16),
             child: Row(
               children: [
-                const Icon(Icons.sports_soccer, color: coffeeOrange, size: 28),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
@@ -194,37 +193,6 @@ class _SportsHomeState extends State<SportsHome> {
         padding: const EdgeInsets.symmetric(horizontal: 18),
         child: Column(
           children: [
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: coffeeCard,
-                borderRadius: BorderRadius.circular(16),
-              ),
-              child: const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'СОСТАВ КОМАНД',
-                    style: TextStyle(
-                      color: coffeeOrange,
-                      fontSize: 12,
-                      letterSpacing: 1.5,
-                    ),
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    'Игроки и их рейтинг',
-                    style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
-                  ),
-                  SizedBox(height: 5),
-                  Text(
-                    'Выберите игрока, чтобы посмотреть карточку.',
-                    style: TextStyle(color: coffeeMuted),
-                  ),
-                ],
-              ),
-            ),
             const SizedBox(height: 14),
             Row(
               children: [
@@ -266,8 +234,18 @@ class _SportsHomeState extends State<SportsHome> {
                     Padding(
                       padding: const EdgeInsets.only(right: 8),
                       child: ChoiceChip(
-                        label: Text(value ?? 'Все'),
+                        label: Text(
+                          value ?? 'Все',
+                          style: TextStyle(
+                            color: position == value ? coffeeBlack : Colors.white,
+                          ),
+                        ),
                         selected: position == value,
+                        selectedColor: coffeeOrange,
+                        backgroundColor: coffeeCard,
+                        checkmarkColor: coffeeBlack,
+                        side: BorderSide.none,
+                        showCheckmark: true,
                         onSelected: (_) {
                           position = value;
                           refresh();
@@ -323,7 +301,7 @@ class _SportsHomeState extends State<SportsHome> {
             onRefresh: refresh,
             child: ListView.builder(
               key: const Key('players-list'),
-              itemExtent: 104,
+              itemExtent: 120,
               itemCount: players.length,
               itemBuilder: (context, index) {
                 final player = players[index];
@@ -343,15 +321,6 @@ class _SportsHomeState extends State<SportsHome> {
                         padding: const EdgeInsets.all(14),
                         child: Row(
                           children: [
-                            CircleAvatar(
-                              backgroundColor: coffeeOrange.withValues(
-                                alpha: .18,
-                              ),
-                              child: Text(
-                                player.name.characters.first,
-                                style: const TextStyle(color: coffeeOrange),
-                              ),
-                            ),
                             const SizedBox(width: 13),
                             Expanded(
                               child: Column(
@@ -419,11 +388,6 @@ class _SortSheetState extends State<SortSheet> {
           const Text(
             'Сортировка',
             style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-          ),
-          const SizedBox(height: 8),
-          const Text(
-            'Поля применяются сверху вниз.',
-            style: TextStyle(color: coffeeMuted),
           ),
           const SizedBox(height: 12),
           for (var index = 0; index < rules.length; index++)

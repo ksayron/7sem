@@ -131,13 +131,8 @@ class _FileScreenState extends State<FileScreen> {
             padding: const EdgeInsets.fromLTRB(18, 0, 18, 24),
             children: [
               const Text(
-                'Директории Android / iOS',
+                'Работа с папками',
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 6),
-              const Text(
-                'Выберите игрока и запишите отличающуюся копию в каждую доступную директорию.',
-                style: TextStyle(color: coffeeMuted),
               ),
               const SizedBox(height: 14),
               if (players.isEmpty)
@@ -146,7 +141,7 @@ class _FileScreenState extends State<FileScreen> {
                 DropdownButtonFormField<int>(
                   initialValue: selectedId,
                   decoration: const InputDecoration(
-                    labelText: 'Исходная сущность из SQLite',
+                    labelText: 'SQLite',
                   ),
                   items: players
                       .map(
@@ -175,14 +170,7 @@ class _FileScreenState extends State<FileScreen> {
                   ),
                 ],
               ),
-              if (worker != null)
-                Padding(
-                  padding: const EdgeInsets.only(top: 8),
-                  child: Text(
-                    'Изолят: $worker',
-                    style: const TextStyle(color: coffeeOrange),
-                  ),
-                ),
+
               const SizedBox(height: 16),
               for (final directory in directories) _directory(directory),
             ],
@@ -232,7 +220,7 @@ class _FileScreenState extends State<FileScreen> {
             else ...[
               for (final base in directory.paths)
                 SelectableText(
-                  'Директория: $base',
+                  'Папка: $base',
                   style: const TextStyle(color: coffeeMuted, fontSize: 12),
                 ),
               if (entries.isEmpty)

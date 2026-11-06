@@ -1,5 +1,4 @@
-/// Footballer из lab2: name, discipline, rating, position.
-/// club добавлен для группировки, id — ключ SQLite.
+
 class Footballer {
   Footballer({
     this.id,
@@ -61,37 +60,37 @@ class Footballer {
 
 List<Footballer> demoFootballers() => [
   Footballer(
-    name: 'Алексей Волков',
+    name: 'Митя Дупкин',
     position: 'Нападающий',
     rating: 9,
     club: 'Динамо',
   ),
   Footballer(
-    name: 'Илья Соколов',
+    name: 'Илья Лупкин',
     position: 'Вратарь',
     rating: 8,
     club: 'Динамо',
   ),
   Footballer(
-    name: 'Максим Орлов',
+    name: 'Максим Орупкин',
     position: 'Защитник',
     rating: 7,
     club: 'Неман',
   ),
   Footballer(
-    name: 'Даниил Козлов',
+    name: 'Даниил Козупкин',
     position: 'Полузащитник',
     rating: 8,
     club: 'БАТЭ',
   ),
   Footballer(
-    name: 'Никита Белов',
+    name: 'Никита Белупкин',
     position: 'Защитник',
     rating: 6,
     club: 'Неман',
   ),
   Footballer(
-    name: 'Артём Морозов',
+    name: 'Артём Морупкин',
     position: 'Нападающий',
     rating: 9,
     club: 'БАТЭ',

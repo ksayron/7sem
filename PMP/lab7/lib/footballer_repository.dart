@@ -76,7 +76,6 @@ class FootballerRepository {
     List<SortRule> sort = const [SortRule(SortField.name)],
   }) async {
     final db = await database;
-    // Dart case folding also handles Cyrillic; SQLite's default NOCASE is ASCII.
     final rows = await db.query(
       'footballers',
       orderBy: [...sort.map((rule) => rule.sql), 'id ASC'].join(', '),
