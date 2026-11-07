@@ -1,0 +1,6 @@
+{
+  "keyResult": "Wrong key rejected:\nHiveError: Wrong checksum in hive file. Box may be corrupted.\n\nCorrect key read:\nCoffee Lab 8: encrypted control record",
+  "compactResult": "users: 239 → 239 bytes (3 records)\nproducts: 2352 → 2095 bytes (8 records)\nfavorites: 104 → 104 bytes (1 records)\nsettings: 459 → 155 bytes (3 records)",
+  "demoResult": "Demo box: 84080 → 753 bytes\n100 revisions, 100 deletions.\n1 current record preserved.",
+  "verified": "Android UI CRUD, role guards, favorite isolation, persisted reopen, empty catalog restart"
+}

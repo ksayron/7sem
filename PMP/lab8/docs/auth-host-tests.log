@@ -1,0 +1,21 @@
+00:00 +0: loading D:/BSTU/7sem/PMP/lab8/test/auth_widget_test.dart
+00:00 +0: D:/BSTU/7sem/PMP/lab8/test/auth_widget_test.dart: login validates, reveals password and rejects invalid credentials
+00:00 +1: D:/BSTU/7sem/PMP/lab8/test/auth_widget_test.dart: login validates, reveals password and rejects invalid credentials
+00:00 +2: D:/BSTU/7sem/PMP/lab8/test/auth_widget_test.dart: login validates, reveals password and rejects invalid credentials
+00:00 +3: D:/BSTU/7sem/PMP/lab8/test/auth_widget_test.dart: login validates, reveals password and rejects invalid credentials
+00:00 +4: D:/BSTU/7sem/PMP/lab8/test/auth_widget_test.dart: login validates, reveals password and rejects invalid credentials
+00:00 +5: D:/BSTU/7sem/PMP/lab8/test/auth_widget_test.dart: login validates, reveals password and rejects invalid credentials
+00:00 +6: D:/BSTU/7sem/PMP/lab8/test/auth_widget_test.dart: login validates, reveals password and rejects invalid credentials
+00:00 +7: D:/BSTU/7sem/PMP/lab8/test/auth_widget_test.dart: login validates, reveals password and rejects invalid credentials
+00:00 +8: D:/BSTU/7sem/PMP/lab8/test/auth_widget_test.dart: login validates, reveals password and rejects invalid credentials
+00:00 +9: D:/BSTU/7sem/PMP/lab8/test/auth_widget_test.dart: login validates, reveals password and rejects invalid credentials
+00:00 +10: D:/BSTU/7sem/PMP/lab8/test/auth_widget_test.dart: login validates, reveals password and rejects invalid credentials
+00:00 +11: D:/BSTU/7sem/PMP/lab8/test/auth_widget_test.dart: login validates, reveals password and rejects invalid credentials
+00:00 +12: D:/BSTU/7sem/PMP/lab8/test/auth_widget_test.dart: login validates, reveals password and rejects invalid credentials
+00:01 +13: D:/BSTU/7sem/PMP/lab8/test/widget_test.dart: catalog, details and favorites at Size(320.0, 640.0)
+00:01 +14: D:/BSTU/7sem/PMP/lab8/test/auth_widget_test.dart: profile cancels logout and clears all previous routes
+00:02 +15: D:/BSTU/7sem/PMP/lab8/test/auth_widget_test.dart: profile cancels logout and clears all previous routes
+00:02 +16: D:/BSTU/7sem/PMP/lab8/test/widget_test.dart: admin form validates and saves with keyboard at narrow width
+00:02 +17: D:/BSTU/7sem/PMP/lab8/test/widget_test.dart: admin form validates and saves with keyboard at narrow width
+00:03 +18: D:/BSTU/7sem/PMP/lab8/test/auth_widget_test.dart: auth layout with keyboard and large text at Size(667.0, 375.0)
+00:03 +19: All tests passed!

@@ -1,0 +1,691 @@
+Running Gradle task 'assembleDebug'...                          
+WARNING: A restricted method in java.lang.System has been called
+WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.internal.NativeLibraryLoader in an unnamed module (file:/D:/Android/gradle-coffee/wrapper/dists/gradle-9.3.1-all/9ot9r568e8zfvvd4mn8rbu1j0/gradle-9.3.1/lib/native-platform-0.22-milestone-29.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+Running Gradle task 'assembleDebug'...                             12,2s
+√ Built build\app\outputs\flutter-apk\app-debug.apk
+Installing build\app\outputs\flutter-apk\app-debug.apk...           3,7s
+I/stu.coffee_lab8(10618): Compiler allocated 5559KB to compile void android.view.ViewRootImpl.performTraversals(long)
+I/Choreographer(10618): Skipped 38 frames!  The application may be doing too much work on its main thread.
+D/WindowLayoutComponentImpl(10618): Register WindowLayoutInfoListener on Context=by.bstu.coffee_lab8.MainActivity@63ec91c, of which baseContext=android.app.ContextImpl@1cc62a1
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+VMServiceFlutterDriver: Connecting to Flutter application at http://127.0.0.1:53989/mDRkuZ25y8o=/
+VMServiceFlutterDriver: Isolate found with number: 8360666753140319
+VMServiceFlutterDriver: Isolate 8360666753140319 is runnable.
+VMServiceFlutterDriver: Isolate is paused at start.
+VMServiceFlutterDriver: Attempting to resume isolate
+I/flutter (10618): 00:00 +0: Android: roles, CRUD, favorites, reopen, keys and compaction
+VMServiceFlutterDriver: Connected to Flutter application.
+D/InsetsController(10618): hide(ime())
+I/ImeTracker(10618): by.bstu.coffee_lab8:af8a4dbe: onCancelled at PHASE_CLIENT_ALREADY_HIDDEN
+D/ProfileInstaller(10618): Installing profile for by.bstu.coffee_lab8
+I/Surface (10618): Creating surface for consumer unnamed-10618-2 with slotExpansion=1 for 64 slots
+I/Surface (10618): Creating surface for consumer ImageReader-1080x2400f1m3-10618-0 with slotExpansion=1 for 64 slots
+I/stu.coffee_lab8(10618): NativeAlloc concurrent mark compact GC freed 2069KB AllocSpace bytes, 3(96KB) LOS objects, 49% free, 2820KB/5640KB, paused 1.419ms,8.436ms total 100.318ms
+I/ImeTracker(10618): by.bstu.coffee_lab8:0ed69c0b: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+I/HWUI    (10618): Using FreeType backend (prop=Auto)
+D/InsetsController(10618): show(ime())
+D/InsetsController(10618): Setting requestedVisibleTypes to 511 (was 503)
+I/ImeTracker(10618): by.bstu.coffee_lab8:90f7de63: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+I/ImeTracker(10618): by.bstu.coffee_lab8:90f7de63: onCancelled at PHASE_CLIENT_REPORT_REQUESTED_VISIBLE_TYPES
+I/AssistStructure(10618): Flattened final assist data: 624 bytes, containing 1 windows, 4 views
+D/InputConnectionAdaptor(10618): The input method toggled cursor monitoring on
+I/ImeTracker(10618): by.bstu.coffee_lab8:90372eab: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+I/ImeTracker(10618): by.bstu.coffee_lab8:90372eab: onCancelled at PHASE_CLIENT_REPORT_REQUESTED_VISIBLE_TYPES
+I/ImeTracker(10618): by.bstu.coffee_lab8:7fe81c52: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+I/ImeTracker(10618): by.bstu.coffee_lab8:7fe81c52: onCancelled at PHASE_CLIENT_REPORT_REQUESTED_VISIBLE_TYPES
+I/AssistStructure(10618): Flattened final assist data: 628 bytes, containing 1 windows, 4 views
+I/ImeTracker(10618): by.bstu.coffee_lab8:74cd2834: onRequestHide at ORIGIN_CLIENT reason HIDE_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): hide(ime())
+D/InsetsController(10618): Setting requestedVisibleTypes to 503 (was 511)
+D/CompatChangeReporter(10618): Compat change id reported: 395521150; UID 10232; state: ENABLED
+I/ImeTracker(10618): by.bstu.coffee_lab8:85e537b2: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+D/InsetsController(10618): Setting requestedVisibleTypes to 511 (was 503)
+VMServiceFlutterDriver: request_data message is taking a long time to complete...
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): android.view.ImeBackAnimationController@4c7a074
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: android.view.ImeBackAnimationController@4c7a074
+I/ImeTracker(10618): by.bstu.coffee_lab8:1db53c28: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+I/ImeTracker(10618): by.bstu.coffee_lab8:1db53c28: onCancelled at PHASE_CLIENT_REPORT_REQUESTED_VISIBLE_TYPES
+I/ImeTracker(10618): by.bstu.coffee_lab8:40e9c548: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+I/ImeTracker(10618): by.bstu.coffee_lab8:40e9c548: onCancelled at PHASE_CLIENT_REPORT_REQUESTED_VISIBLE_TYPES
+I/ImeTracker(10618): by.bstu.coffee_lab8:c9398a48: onRequestHide at ORIGIN_CLIENT reason HIDE_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): hide(ime())
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@857c253
+D/InsetsController(10618): Setting requestedVisibleTypes to 503 (was 511)
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: android.app.Activity$$ExternalSyntheticLambda0@857c253
+W/RemoteInputConnectionImpl(10618): requestCursorUpdates on inactive InputConnection
+W/RemoteInputConnectionImpl(10618): getSurroundingText on inactive InputConnection
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): android.view.ImeBackAnimationController@4c7a074
+W/RemoteInputConnectionImpl(10618): requestCursorUpdates on inactive InputConnection
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: android.view.ImeBackAnimationController@4c7a074
+W/RemoteInputConnectionImpl(10618): getSurroundingText on inactive InputConnection
+I/ImeTracker(10618): by.bstu.coffee_lab8:85e537b2: onCancelled at PHASE_CLIENT_ON_CONTROLS_CHANGED
+I/stu.coffee_lab8(10618): Background young concurrent mark compact GC freed 513KB AllocSpace bytes, 13(1744KB) LOS objects, 31% free, 3956KB/5736KB, paused 960us,6.542ms total 21.220ms
+W/RemoteInputConnectionImpl(10618): requestCursorUpdates on inactive InputConnection
+W/RemoteInputConnectionImpl(10618): getSurroundingText on inactive InputConnection
+W/RemoteInputConnectionImpl(10618): requestCursorUpdates on inactive InputConnection
+W/RemoteInputConnectionImpl(10618): getSurroundingText on inactive InputConnection
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@857c253
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: android.app.Activity$$ExternalSyntheticLambda0@857c253
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): io.flutter.embedding.android.FlutterActivity$1@986e059
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: io.flutter.embedding.android.FlutterActivity$1@986e059
+I/stu.coffee_lab8(10618): NativeAlloc concurrent mark compact GC freed 368KB AllocSpace bytes, 21(8752KB) LOS objects, 49% free, 2884KB/5768KB, paused 715us,5.592ms total 21.849ms
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@857c253
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: android.app.Activity$$ExternalSyntheticLambda0@857c253
+I/ImeTracker(10618): by.bstu.coffee_lab8:3256ad60: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+D/InsetsController(10618): Setting requestedVisibleTypes to 511 (was 503)
+I/ImeTracker(10618): by.bstu.coffee_lab8:7f8b822d: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+I/ImeTracker(10618): by.bstu.coffee_lab8:7f8b822d: onCancelled at PHASE_CLIENT_REPORT_REQUESTED_VISIBLE_TYPES
+I/AssistStructure(10618): Flattened final assist data: 624 bytes, containing 1 windows, 4 views
+D/InputConnectionAdaptor(10618): The input method toggled cursor monitoring on
+I/ImeTracker(10618): by.bstu.coffee_lab8:93e1fa4f: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+I/ImeTracker(10618): by.bstu.coffee_lab8:93e1fa4f: onCancelled at PHASE_CLIENT_REPORT_REQUESTED_VISIBLE_TYPES
+I/ImeTracker(10618): by.bstu.coffee_lab8:266d3c53: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+I/ImeTracker(10618): by.bstu.coffee_lab8:266d3c53: onCancelled at PHASE_CLIENT_REPORT_REQUESTED_VISIBLE_TYPES
+I/AssistStructure(10618): Flattened final assist data: 628 bytes, containing 1 windows, 4 views
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): android.view.ImeBackAnimationController@4c7a074
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: android.view.ImeBackAnimationController@4c7a074
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+W/InteractionJankMonitor(10618): Initializing without READ_DEVICE_CONFIG permission. enabled=false, interval=1, missedFrameThreshold=3, frameTimeThreshold=64, package=by.bstu.coffee_lab8
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/InputConnectionAdaptor(10618): The input method toggled cursor monitoring on
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+I/ImeTracker(10618): by.bstu.coffee_lab8:a6d83400: onRequestHide at ORIGIN_CLIENT reason HIDE_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): hide(ime())
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@857c253
+D/InsetsController(10618): Setting requestedVisibleTypes to 503 (was 511)
+I/ImeTracker(10618): by.bstu.coffee_lab8:3256ad60: onCancelled at PHASE_CLIENT_ANIMATION_CANCEL
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: android.app.Activity$$ExternalSyntheticLambda0@857c253
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+I/ImeTracker(10618): system_server:44ba672b: onCancelled at PHASE_CLIENT_ON_CONTROLS_CHANGED
+I/ImeTracker(10618): system_server:b45a316a: onCancelled at PHASE_CLIENT_ON_CONTROLS_CHANGED
+I/ImeTracker(10618): system_server:8da74d62: onCancelled at PHASE_CLIENT_ON_CONTROLS_CHANGED
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+I/ImeTracker(10618): system_server:ffa61e1f: onCancelled at PHASE_CLIENT_ON_CONTROLS_CHANGED
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): io.flutter.embedding.android.FlutterActivity$1@986e059
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: io.flutter.embedding.android.FlutterActivity$1@986e059
+I/ImeTracker(10618): by.bstu.coffee_lab8:59520780: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+D/InsetsController(10618): Setting requestedVisibleTypes to 511 (was 503)
+I/ImeTracker(10618): by.bstu.coffee_lab8:b3da03c6: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+I/ImeTracker(10618): by.bstu.coffee_lab8:b3da03c6: onCancelled at PHASE_CLIENT_REPORT_REQUESTED_VISIBLE_TYPES
+D/InputConnectionAdaptor(10618): The input method toggled cursor monitoring on
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): android.view.ImeBackAnimationController@4c7a074
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: android.view.ImeBackAnimationController@4c7a074
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+I/ImeTracker(10618): by.bstu.coffee_lab8:59520780: onShown
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+I/ImeTracker(10618): by.bstu.coffee_lab8:9d42d9f9: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+I/ImeTracker(10618): by.bstu.coffee_lab8:9d42d9f9: onCancelled at PHASE_CLIENT_APPLY_ANIMATION
+I/ImeTracker(10618): by.bstu.coffee_lab8:0060bf1f: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+I/ImeTracker(10618): by.bstu.coffee_lab8:0060bf1f: onCancelled at PHASE_CLIENT_APPLY_ANIMATION
+D/InputConnectionAdaptor(10618): The input method toggled cursor monitoring on
+I/ImeTracker(10618): by.bstu.coffee_lab8:6d7cb821: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+I/ImeTracker(10618): by.bstu.coffee_lab8:6d7cb821: onCancelled at PHASE_CLIENT_APPLY_ANIMATION
+I/ImeTracker(10618): by.bstu.coffee_lab8:3765ba32: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+I/ImeTracker(10618): by.bstu.coffee_lab8:3765ba32: onCancelled at PHASE_CLIENT_APPLY_ANIMATION
+D/InputConnectionAdaptor(10618): The input method toggled cursor monitoring on
+I/ImeTracker(10618): by.bstu.coffee_lab8:0a658dce: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+I/ImeTracker(10618): by.bstu.coffee_lab8:0a658dce: onCancelled at PHASE_CLIENT_APPLY_ANIMATION
+I/ImeTracker(10618): by.bstu.coffee_lab8:c1e3d297: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+I/ImeTracker(10618): by.bstu.coffee_lab8:c1e3d297: onCancelled at PHASE_CLIENT_APPLY_ANIMATION
+D/InputConnectionAdaptor(10618): The input method toggled cursor monitoring on
+I/ImeTracker(10618): by.bstu.coffee_lab8:031b1af8: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+I/ImeTracker(10618): by.bstu.coffee_lab8:031b1af8: onCancelled at PHASE_CLIENT_APPLY_ANIMATION
+I/ImeTracker(10618): by.bstu.coffee_lab8:033574ef: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+I/ImeTracker(10618): by.bstu.coffee_lab8:033574ef: onCancelled at PHASE_CLIENT_APPLY_ANIMATION
+D/InputConnectionAdaptor(10618): The input method toggled cursor monitoring on
+I/ImeTracker(10618): by.bstu.coffee_lab8:64f8e458: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+I/ImeTracker(10618): by.bstu.coffee_lab8:64f8e458: onCancelled at PHASE_CLIENT_APPLY_ANIMATION
+I/ImeTracker(10618): by.bstu.coffee_lab8:6e02f0df: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+I/ImeTracker(10618): by.bstu.coffee_lab8:6e02f0df: onCancelled at PHASE_CLIENT_APPLY_ANIMATION
+D/InputConnectionAdaptor(10618): The input method toggled cursor monitoring on
+I/ImeTracker(10618): by.bstu.coffee_lab8:b521d727: onRequestHide at ORIGIN_CLIENT reason HIDE_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): hide(ime())
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): io.flutter.embedding.android.FlutterActivity$1@986e059
+D/InsetsController(10618): Setting requestedVisibleTypes to 503 (was 511)
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: io.flutter.embedding.android.FlutterActivity$1@986e059
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+I/ImeTracker(10618): system_server:e5f31ee3: onCancelled at PHASE_CLIENT_ON_CONTROLS_CHANGED
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@857c253
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: android.app.Activity$$ExternalSyntheticLambda0@857c253
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+I/ImeTracker(10618): by.bstu.coffee_lab8:b492cd5b: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+D/InsetsController(10618): Setting requestedVisibleTypes to 511 (was 503)
+I/ImeTracker(10618): by.bstu.coffee_lab8:b2a7a771: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+I/ImeTracker(10618): by.bstu.coffee_lab8:b2a7a771: onCancelled at PHASE_CLIENT_REPORT_REQUESTED_VISIBLE_TYPES
+D/InputConnectionAdaptor(10618): The input method toggled cursor monitoring on
+I/AssistStructure(10618): Flattened final assist data: 500 bytes, containing 1 windows, 3 views
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): android.view.ImeBackAnimationController@4c7a074
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: android.view.ImeBackAnimationController@4c7a074
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+I/ImeTracker(10618): by.bstu.coffee_lab8:b492cd5b: onShown
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+I/ImeTracker(10618): by.bstu.coffee_lab8:3f5d7fdb: onRequestHide at ORIGIN_CLIENT reason HIDE_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): hide(ime())
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@857c253
+D/InsetsController(10618): Setting requestedVisibleTypes to 503 (was 511)
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: android.app.Activity$$ExternalSyntheticLambda0@857c253
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+I/ImeTracker(10618): system_server:27157024: onCancelled at PHASE_CLIENT_ON_CONTROLS_CHANGED
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): io.flutter.embedding.android.FlutterActivity$1@986e059
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: io.flutter.embedding.android.FlutterActivity$1@986e059
+D/InteractionJankMonitor(10618): Build configuration failed!
+D/InteractionJankMonitor(10618): java.lang.IllegalArgumentException: Must pass in a valid surface control if only instrument surface; 
+D/InteractionJankMonitor(10618): 	at com.android.internal.jank.InteractionJankMonitor$Configuration.validate(InteractionJankMonitor.java:947)
+D/InteractionJankMonitor(10618): 	at com.android.internal.jank.InteractionJankMonitor$Configuration.<init>(InteractionJankMonitor.java:883)
+D/InteractionJankMonitor(10618): 	at com.android.internal.jank.InteractionJankMonitor$Configuration.<init>(InteractionJankMonitor.java:0)
+D/InteractionJankMonitor(10618): 	at com.android.internal.jank.InteractionJankMonitor$Configuration$Builder.build(InteractionJankMonitor.java:853)
+D/InteractionJankMonitor(10618): 	at com.android.internal.jank.InteractionJankMonitor.begin(InteractionJankMonitor.java:400)
+D/InteractionJankMonitor(10618): 	at android.view.inputmethod.ImeTracker$ImeJankTracker.lambda$onRequestAnimation$0(ImeTracker.java:1088)
+D/InteractionJankMonitor(10618): 	at android.view.inputmethod.ImeTracker$ImeJankTracker$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+D/InteractionJankMonitor(10618): 	at android.os.Handler.handleCallback(Handler.java:1082)
+D/InteractionJankMonitor(10618): 	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+D/InteractionJankMonitor(10618): 	at android.os.Handler.dispatchMessage(Handler.java:126)
+D/InteractionJankMonitor(10618): 	at android.os.Looper.loopOnce(Looper.java:295)
+D/InteractionJankMonitor(10618): 	at android.os.Looper.loop(Looper.java:398)
+D/InteractionJankMonitor(10618): 	at android.app.ActivityThread.main(ActivityThread.java:9569)
+D/InteractionJankMonitor(10618): 	at java.lang.reflect.Method.invoke(Native Method)
+D/InteractionJankMonitor(10618): 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:575)
+D/InteractionJankMonitor(10618): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:918)
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+I/stu.coffee_lab8(10618): Background concurrent mark compact GC freed 1009KB AllocSpace bytes, 9(1472KB) LOS objects, 49% free, 3444KB/6888KB, paused 833us,11.533ms total 22.276ms
+I/ImeTracker(10618): by.bstu.coffee_lab8:caf8201a: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+D/InsetsController(10618): Setting requestedVisibleTypes to 511 (was 503)
+I/ImeTracker(10618): by.bstu.coffee_lab8:9b94694d: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+I/ImeTracker(10618): by.bstu.coffee_lab8:9b94694d: onCancelled at PHASE_CLIENT_REPORT_REQUESTED_VISIBLE_TYPES
+D/InputConnectionAdaptor(10618): The input method toggled cursor monitoring on
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): android.view.ImeBackAnimationController@4c7a074
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: android.view.ImeBackAnimationController@4c7a074
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+I/ImeTracker(10618): by.bstu.coffee_lab8:caf8201a: onShown
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+I/ImeTracker(10618): by.bstu.coffee_lab8:670823d4: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+I/ImeTracker(10618): by.bstu.coffee_lab8:670823d4: onCancelled at PHASE_CLIENT_APPLY_ANIMATION
+I/ImeTracker(10618): by.bstu.coffee_lab8:42cd6f67: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+I/ImeTracker(10618): by.bstu.coffee_lab8:42cd6f67: onCancelled at PHASE_CLIENT_APPLY_ANIMATION
+D/InputConnectionAdaptor(10618): The input method toggled cursor monitoring on
+I/ImeTracker(10618): by.bstu.coffee_lab8:cec55fb1: onRequestHide at ORIGIN_CLIENT reason HIDE_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): hide(ime())
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): io.flutter.embedding.android.FlutterActivity$1@986e059
+D/InsetsController(10618): Setting requestedVisibleTypes to 503 (was 511)
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: io.flutter.embedding.android.FlutterActivity$1@986e059
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+I/ImeTracker(10618): system_server:7c05cea6: onCancelled at PHASE_CLIENT_ON_CONTROLS_CHANGED
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@857c253
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: android.app.Activity$$ExternalSyntheticLambda0@857c253
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): io.flutter.embedding.android.FlutterActivity$1@986e059
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: io.flutter.embedding.android.FlutterActivity$1@986e059
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@857c253
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: android.app.Activity$$ExternalSyntheticLambda0@857c253
+I/ImeTracker(10618): by.bstu.coffee_lab8:673f6870: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+D/InsetsController(10618): Setting requestedVisibleTypes to 511 (was 503)
+I/ImeTracker(10618): by.bstu.coffee_lab8:a38ca302: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+I/ImeTracker(10618): by.bstu.coffee_lab8:a38ca302: onCancelled at PHASE_CLIENT_REPORT_REQUESTED_VISIBLE_TYPES
+D/InputConnectionAdaptor(10618): The input method toggled cursor monitoring on
+I/AssistStructure(10618): Flattened final assist data: 624 bytes, containing 1 windows, 4 views
+I/ImeTracker(10618): by.bstu.coffee_lab8:598c026f: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+I/ImeTracker(10618): by.bstu.coffee_lab8:598c026f: onCancelled at PHASE_CLIENT_REPORT_REQUESTED_VISIBLE_TYPES
+I/ImeTracker(10618): by.bstu.coffee_lab8:bd158309: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+I/ImeTracker(10618): by.bstu.coffee_lab8:bd158309: onCancelled at PHASE_CLIENT_REPORT_REQUESTED_VISIBLE_TYPES
+I/AssistStructure(10618): Flattened final assist data: 628 bytes, containing 1 windows, 4 views
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): android.view.ImeBackAnimationController@4c7a074
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: android.view.ImeBackAnimationController@4c7a074
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/InputConnectionAdaptor(10618): The input method toggled cursor monitoring on
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+I/ImeTracker(10618): by.bstu.coffee_lab8:673f6870: onShown
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/VRI[MainActivity](10618): WindowInsets changed: ime:[0,0,0,63] 
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+I/ImeTracker(10618): system_server:0ec1bea4: onCancelled at PHASE_CLIENT_ON_CONTROLS_CHANGED
+D/VRI[MainActivity](10618): WindowInsets changed: ime:[0,0,0,126] 
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+I/ImeTracker(10618): by.bstu.coffee_lab8:906b31fe: onRequestHide at ORIGIN_CLIENT reason HIDE_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): hide(ime())
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@857c253
+D/InsetsController(10618): Setting requestedVisibleTypes to 503 (was 511)
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: android.app.Activity$$ExternalSyntheticLambda0@857c253
+D/VRI[MainActivity](10618): WindowInsets changed: ime:null 
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+I/ImeTracker(10618): system_server:1088731f: onCancelled at PHASE_CLIENT_ON_CONTROLS_CHANGED
+I/ImeTracker(10618): system_server:949f5040: onCancelled at PHASE_CLIENT_ON_CONTROLS_CHANGED
+I/ImeTracker(10618): system_server:71e92032: onCancelled at PHASE_CLIENT_ON_CONTROLS_CHANGED
+I/ImeTracker(10618): system_server:cd728113: onCancelled at PHASE_CLIENT_ON_CONTROLS_CHANGED
+I/ImeTracker(10618): system_server:a9082aa0: onCancelled at PHASE_CLIENT_ON_CONTROLS_CHANGED
+I/ImeTracker(10618): system_server:08b3bcbf: onCancelled at PHASE_CLIENT_ON_CONTROLS_CHANGED
+I/ImeTracker(10618): system_server:3050fb70: onCancelled at PHASE_CLIENT_ON_CONTROLS_CHANGED
+D/InteractionJankMonitor(10618): Build configuration failed!
+D/InteractionJankMonitor(10618): java.lang.IllegalArgumentException: Must pass in a valid surface control if only instrument surface; 
+D/InteractionJankMonitor(10618): 	at com.android.internal.jank.InteractionJankMonitor$Configuration.validate(InteractionJankMonitor.java:947)
+D/InteractionJankMonitor(10618): 	at com.android.internal.jank.InteractionJankMonitor$Configuration.<init>(InteractionJankMonitor.java:883)
+D/InteractionJankMonitor(10618): 	at com.android.internal.jank.InteractionJankMonitor$Configuration.<init>(InteractionJankMonitor.java:0)
+D/InteractionJankMonitor(10618): 	at com.android.internal.jank.InteractionJankMonitor$Configuration$Builder.build(InteractionJankMonitor.java:853)
+D/InteractionJankMonitor(10618): 	at com.android.internal.jank.InteractionJankMonitor.begin(InteractionJankMonitor.java:400)
+D/InteractionJankMonitor(10618): 	at android.view.inputmethod.ImeTracker$ImeJankTracker.lambda$onRequestAnimation$0(ImeTracker.java:1088)
+D/InteractionJankMonitor(10618): 	at android.view.inputmethod.ImeTracker$ImeJankTracker$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+D/InteractionJankMonitor(10618): 	at android.os.Handler.handleCallback(Handler.java:1082)
+D/InteractionJankMonitor(10618): 	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+D/InteractionJankMonitor(10618): 	at android.os.Handler.dispatchMessage(Handler.java:126)
+D/InteractionJankMonitor(10618): 	at android.os.Looper.loopOnce(Looper.java:295)
+D/InteractionJankMonitor(10618): 	at android.os.Looper.loop(Looper.java:398)
+D/InteractionJankMonitor(10618): 	at android.app.ActivityThread.main(ActivityThread.java:9569)
+D/InteractionJankMonitor(10618): 	at java.lang.reflect.Method.invoke(Native Method)
+D/InteractionJankMonitor(10618): 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:575)
+D/InteractionJankMonitor(10618): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:918)
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): io.flutter.embedding.android.FlutterActivity$1@986e059
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: io.flutter.embedding.android.FlutterActivity$1@986e059
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@857c253
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: android.app.Activity$$ExternalSyntheticLambda0@857c253
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): io.flutter.embedding.android.FlutterActivity$1@986e059
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: io.flutter.embedding.android.FlutterActivity$1@986e059
+I/stu.coffee_lab8(10618): NativeAlloc concurrent mark compact GC freed 1411KB AllocSpace bytes, 14(1088KB) LOS objects, 49% free, 2916KB/5832KB, paused 1.096ms,5.345ms total 23.861ms
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@857c253
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: android.app.Activity$$ExternalSyntheticLambda0@857c253
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): io.flutter.embedding.android.FlutterActivity$1@986e059
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: io.flutter.embedding.android.FlutterActivity$1@986e059
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@857c253
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: android.app.Activity$$ExternalSyntheticLambda0@857c253
+I/ImeTracker(10618): by.bstu.coffee_lab8:053f91fa: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+D/InsetsController(10618): Setting requestedVisibleTypes to 511 (was 503)
+I/ImeTracker(10618): by.bstu.coffee_lab8:d09e0f08: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+I/ImeTracker(10618): by.bstu.coffee_lab8:d09e0f08: onCancelled at PHASE_CLIENT_REPORT_REQUESTED_VISIBLE_TYPES
+D/InputConnectionAdaptor(10618): The input method toggled cursor monitoring on
+I/AssistStructure(10618): Flattened final assist data: 624 bytes, containing 1 windows, 4 views
+I/ImeTracker(10618): by.bstu.coffee_lab8:a4b1f13a: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+I/ImeTracker(10618): by.bstu.coffee_lab8:a4b1f13a: onCancelled at PHASE_CLIENT_REPORT_REQUESTED_VISIBLE_TYPES
+I/ImeTracker(10618): by.bstu.coffee_lab8:e1e60f98: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+I/ImeTracker(10618): by.bstu.coffee_lab8:e1e60f98: onCancelled at PHASE_CLIENT_REPORT_REQUESTED_VISIBLE_TYPES
+I/AssistStructure(10618): Flattened final assist data: 628 bytes, containing 1 windows, 4 views
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): android.view.ImeBackAnimationController@4c7a074
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: android.view.ImeBackAnimationController@4c7a074
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/InputConnectionAdaptor(10618): The input method toggled cursor monitoring on
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+I/ImeTracker(10618): by.bstu.coffee_lab8:053f91fa: onShown
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+I/ImeTracker(10618): system_server:40fb87aa: onCancelled at PHASE_CLIENT_ON_CONTROLS_CHANGED
+I/ImeTracker(10618): by.bstu.coffee_lab8:ebee1634: onRequestHide at ORIGIN_CLIENT reason HIDE_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): hide(ime())
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@857c253
+D/InsetsController(10618): Setting requestedVisibleTypes to 503 (was 511)
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: android.app.Activity$$ExternalSyntheticLambda0@857c253
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+I/ImeTracker(10618): system_server:d8d77415: onCancelled at PHASE_CLIENT_ON_CONTROLS_CHANGED
+I/ImeTracker(10618): system_server:ad087dc1: onCancelled at PHASE_CLIENT_ON_CONTROLS_CHANGED
+I/ImeTracker(10618): system_server:9919d357: onCancelled at PHASE_CLIENT_ON_CONTROLS_CHANGED
+I/ImeTracker(10618): system_server:3e0cfcd1: onCancelled at PHASE_CLIENT_ON_CONTROLS_CHANGED
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+I/ImeTracker(10618): system_server:7ba60346: onCancelled at PHASE_CLIENT_ON_CONTROLS_CHANGED
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+I/ImeTracker(10618): system_server:df007507: onCancelled at PHASE_CLIENT_ON_CONTROLS_CHANGED
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): io.flutter.embedding.android.FlutterActivity$1@986e059
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: io.flutter.embedding.android.FlutterActivity$1@986e059
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@857c253
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: android.app.Activity$$ExternalSyntheticLambda0@857c253
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): io.flutter.embedding.android.FlutterActivity$1@986e059
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: io.flutter.embedding.android.FlutterActivity$1@986e059
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@857c253
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: android.app.Activity$$ExternalSyntheticLambda0@857c253
+I/ImeTracker(10618): by.bstu.coffee_lab8:894680c3: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+D/InsetsController(10618): Setting requestedVisibleTypes to 511 (was 503)
+I/ImeTracker(10618): by.bstu.coffee_lab8:1210f89d: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+I/ImeTracker(10618): by.bstu.coffee_lab8:1210f89d: onCancelled at PHASE_CLIENT_REPORT_REQUESTED_VISIBLE_TYPES
+D/InputConnectionAdaptor(10618): The input method toggled cursor monitoring on
+I/AssistStructure(10618): Flattened final assist data: 624 bytes, containing 1 windows, 4 views
+I/ImeTracker(10618): by.bstu.coffee_lab8:3b25e9f6: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+I/ImeTracker(10618): by.bstu.coffee_lab8:3b25e9f6: onCancelled at PHASE_CLIENT_REPORT_REQUESTED_VISIBLE_TYPES
+I/ImeTracker(10618): by.bstu.coffee_lab8:8ad522f8: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+I/ImeTracker(10618): by.bstu.coffee_lab8:8ad522f8: onCancelled at PHASE_CLIENT_REPORT_REQUESTED_VISIBLE_TYPES
+I/AssistStructure(10618): Flattened final assist data: 628 bytes, containing 1 windows, 4 views
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): android.view.ImeBackAnimationController@4c7a074
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: android.view.ImeBackAnimationController@4c7a074
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/InputConnectionAdaptor(10618): The input method toggled cursor monitoring on
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+I/ImeTracker(10618): by.bstu.coffee_lab8:894680c3: onShown
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/VRI[MainActivity](10618): WindowInsets changed: ime:[0,0,0,63] 
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+I/ImeTracker(10618): system_server:1f825e5d: onCancelled at PHASE_CLIENT_ON_CONTROLS_CHANGED
+I/ImeTracker(10618): by.bstu.coffee_lab8:1c682d79: onRequestHide at ORIGIN_CLIENT reason HIDE_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): hide(ime())
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@857c253
+D/InsetsController(10618): Setting requestedVisibleTypes to 503 (was 511)
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: android.app.Activity$$ExternalSyntheticLambda0@857c253
+D/VRI[MainActivity](10618): WindowInsets changed: ime:null 
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+I/ImeTracker(10618): system_server:8cbf9435: onCancelled at PHASE_CLIENT_ON_CONTROLS_CHANGED
+I/ImeTracker(10618): system_server:5c645755: onCancelled at PHASE_CLIENT_ON_CONTROLS_CHANGED
+I/ImeTracker(10618): system_server:8e846205: onCancelled at PHASE_CLIENT_ON_CONTROLS_CHANGED
+I/ImeTracker(10618): system_server:52ba8aed: onCancelled at PHASE_CLIENT_ON_CONTROLS_CHANGED
+I/ImeTracker(10618): system_server:5dd9111a: onCancelled at PHASE_CLIENT_ON_CONTROLS_CHANGED
+I/ImeTracker(10618): system_server:5af2e0ab: onCancelled at PHASE_CLIENT_ON_CONTROLS_CHANGED
+D/InteractionJankMonitor(10618): Build configuration failed!
+D/InteractionJankMonitor(10618): java.lang.IllegalArgumentException: Must pass in a valid surface control if only instrument surface; 
+D/InteractionJankMonitor(10618): 	at com.android.internal.jank.InteractionJankMonitor$Configuration.validate(InteractionJankMonitor.java:947)
+D/InteractionJankMonitor(10618): 	at com.android.internal.jank.InteractionJankMonitor$Configuration.<init>(InteractionJankMonitor.java:883)
+D/InteractionJankMonitor(10618): 	at com.android.internal.jank.InteractionJankMonitor$Configuration.<init>(InteractionJankMonitor.java:0)
+D/InteractionJankMonitor(10618): 	at com.android.internal.jank.InteractionJankMonitor$Configuration$Builder.build(InteractionJankMonitor.java:853)
+D/InteractionJankMonitor(10618): 	at com.android.internal.jank.InteractionJankMonitor.begin(InteractionJankMonitor.java:400)
+D/InteractionJankMonitor(10618): 	at android.view.inputmethod.ImeTracker$ImeJankTracker.lambda$onRequestAnimation$0(ImeTracker.java:1088)
+D/InteractionJankMonitor(10618): 	at android.view.inputmethod.ImeTracker$ImeJankTracker$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+D/InteractionJankMonitor(10618): 	at android.os.Handler.handleCallback(Handler.java:1082)
+D/InteractionJankMonitor(10618): 	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+D/InteractionJankMonitor(10618): 	at android.os.Handler.dispatchMessage(Handler.java:126)
+D/InteractionJankMonitor(10618): 	at android.os.Looper.loopOnce(Looper.java:295)
+D/InteractionJankMonitor(10618): 	at android.os.Looper.loop(Looper.java:398)
+D/InteractionJankMonitor(10618): 	at android.app.ActivityThread.main(ActivityThread.java:9569)
+D/InteractionJankMonitor(10618): 	at java.lang.reflect.Method.invoke(Native Method)
+D/InteractionJankMonitor(10618): 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:575)
+D/InteractionJankMonitor(10618): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:918)
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): io.flutter.embedding.android.FlutterActivity$1@986e059
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: io.flutter.embedding.android.FlutterActivity$1@986e059
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@857c253
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: android.app.Activity$$ExternalSyntheticLambda0@857c253
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): io.flutter.embedding.android.FlutterActivity$1@986e059
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: io.flutter.embedding.android.FlutterActivity$1@986e059
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@857c253
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: android.app.Activity$$ExternalSyntheticLambda0@857c253
+I/ImeTracker(10618): by.bstu.coffee_lab8:447d5afb: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+D/InsetsController(10618): Setting requestedVisibleTypes to 511 (was 503)
+I/ImeTracker(10618): by.bstu.coffee_lab8:34d27bc3: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+I/ImeTracker(10618): by.bstu.coffee_lab8:34d27bc3: onCancelled at PHASE_CLIENT_REPORT_REQUESTED_VISIBLE_TYPES
+D/InputConnectionAdaptor(10618): The input method toggled cursor monitoring on
+I/AssistStructure(10618): Flattened final assist data: 624 bytes, containing 1 windows, 4 views
+I/ImeTracker(10618): by.bstu.coffee_lab8:cab97414: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+I/ImeTracker(10618): by.bstu.coffee_lab8:cab97414: onCancelled at PHASE_CLIENT_REPORT_REQUESTED_VISIBLE_TYPES
+I/ImeTracker(10618): by.bstu.coffee_lab8:316bbe9c: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+I/ImeTracker(10618): by.bstu.coffee_lab8:316bbe9c: onCancelled at PHASE_CLIENT_REPORT_REQUESTED_VISIBLE_TYPES
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): android.view.ImeBackAnimationController@4c7a074
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: android.view.ImeBackAnimationController@4c7a074
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/InputConnectionAdaptor(10618): The input method toggled cursor monitoring on
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+I/ImeTracker(10618): by.bstu.coffee_lab8:447d5afb: onShown
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/VRI[MainActivity](10618): WindowInsets changed: ime:[0,0,0,63] 
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+I/ImeTracker(10618): system_server:791faf3f: onCancelled at PHASE_CLIENT_ON_CONTROLS_CHANGED
+I/ImeTracker(10618): system_server:e0bf8e9a: onCancelled at PHASE_CLIENT_ON_CONTROLS_CHANGED
+I/ImeTracker(10618): by.bstu.coffee_lab8:b74f8c9b: onRequestHide at ORIGIN_CLIENT reason HIDE_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): hide(ime())
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@857c253
+D/InsetsController(10618): Setting requestedVisibleTypes to 503 (was 511)
+D/VRI[MainActivity](10618): WindowInsets changed: ime:null 
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: android.app.Activity$$ExternalSyntheticLambda0@857c253
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+I/ImeTracker(10618): system_server:18aec27b: onCancelled at PHASE_CLIENT_ON_CONTROLS_CHANGED
+D/InteractionJankMonitor(10618): Build configuration failed!
+D/InteractionJankMonitor(10618): java.lang.IllegalArgumentException: Must pass in a valid surface control if only instrument surface; 
+D/InteractionJankMonitor(10618): 	at com.android.internal.jank.InteractionJankMonitor$Configuration.validate(InteractionJankMonitor.java:947)
+D/InteractionJankMonitor(10618): 	at com.android.internal.jank.InteractionJankMonitor$Configuration.<init>(InteractionJankMonitor.java:883)
+D/InteractionJankMonitor(10618): 	at com.android.internal.jank.InteractionJankMonitor$Configuration.<init>(InteractionJankMonitor.java:0)
+D/InteractionJankMonitor(10618): 	at com.android.internal.jank.InteractionJankMonitor$Configuration$Builder.build(InteractionJankMonitor.java:853)
+D/InteractionJankMonitor(10618): 	at com.android.internal.jank.InteractionJankMonitor.begin(InteractionJankMonitor.java:400)
+D/InteractionJankMonitor(10618): 	at android.view.inputmethod.ImeTracker$ImeJankTracker.lambda$onRequestAnimation$0(ImeTracker.java:1088)
+D/InteractionJankMonitor(10618): 	at android.view.inputmethod.ImeTracker$ImeJankTracker$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+D/InteractionJankMonitor(10618): 	at android.os.Handler.handleCallback(Handler.java:1082)
+D/InteractionJankMonitor(10618): 	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+D/InteractionJankMonitor(10618): 	at android.os.Handler.dispatchMessage(Handler.java:126)
+D/InteractionJankMonitor(10618): 	at android.os.Looper.loopOnce(Looper.java:295)
+D/InteractionJankMonitor(10618): 	at android.os.Looper.loop(Looper.java:398)
+D/InteractionJankMonitor(10618): 	at android.app.ActivityThread.main(ActivityThread.java:9569)
+D/InteractionJankMonitor(10618): 	at java.lang.reflect.Method.invoke(Native Method)
+D/InteractionJankMonitor(10618): 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:575)
+D/InteractionJankMonitor(10618): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:918)
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+I/ImeTracker(10618): system_server:c9d96aca: onCancelled at PHASE_CLIENT_ON_CONTROLS_CHANGED
+I/ImeTracker(10618): system_server:bacd5ef1: onCancelled at PHASE_CLIENT_ON_CONTROLS_CHANGED
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+I/ImeTracker(10618): by.bstu.coffee_lab8:0b8a3ded: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+D/InsetsController(10618): Setting requestedVisibleTypes to 511 (was 503)
+I/ImeTracker(10618): by.bstu.coffee_lab8:20a8797f: onRequestShow at ORIGIN_CLIENT reason SHOW_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): show(ime())
+I/ImeTracker(10618): by.bstu.coffee_lab8:20a8797f: onCancelled at PHASE_CLIENT_REPORT_REQUESTED_VISIBLE_TYPES
+D/InputConnectionAdaptor(10618): The input method toggled cursor monitoring on
+I/AssistStructure(10618): Flattened final assist data: 500 bytes, containing 1 windows, 3 views
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): android.view.ImeBackAnimationController@4c7a074
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: android.view.ImeBackAnimationController@4c7a074
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+I/ImeTracker(10618): by.bstu.coffee_lab8:0b8a3ded: onShown
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+I/ImeTracker(10618): by.bstu.coffee_lab8:1166f581: onRequestHide at ORIGIN_CLIENT reason HIDE_SOFT_INPUT fromUser false userId 0 displayId 0
+D/InsetsController(10618): hide(ime())
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@857c253
+D/InsetsController(10618): Setting requestedVisibleTypes to 503 (was 511)
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: android.app.Activity$$ExternalSyntheticLambda0@857c253
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+I/ImeTracker(10618): system_server:23870436: onCancelled at PHASE_CLIENT_ON_CONTROLS_CHANGED
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): io.flutter.embedding.android.FlutterActivity$1@986e059
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: io.flutter.embedding.android.FlutterActivity$1@986e059
+D/InteractionJankMonitor(10618): Build configuration failed!
+D/InteractionJankMonitor(10618): java.lang.IllegalArgumentException: Must pass in a valid surface control if only instrument surface; 
+D/InteractionJankMonitor(10618): 	at com.android.internal.jank.InteractionJankMonitor$Configuration.validate(InteractionJankMonitor.java:947)
+D/InteractionJankMonitor(10618): 	at com.android.internal.jank.InteractionJankMonitor$Configuration.<init>(InteractionJankMonitor.java:883)
+D/InteractionJankMonitor(10618): 	at com.android.internal.jank.InteractionJankMonitor$Configuration.<init>(InteractionJankMonitor.java:0)
+D/InteractionJankMonitor(10618): 	at com.android.internal.jank.InteractionJankMonitor$Configuration$Builder.build(InteractionJankMonitor.java:853)
+D/InteractionJankMonitor(10618): 	at com.android.internal.jank.InteractionJankMonitor.begin(InteractionJankMonitor.java:400)
+D/InteractionJankMonitor(10618): 	at android.view.inputmethod.ImeTracker$ImeJankTracker.lambda$onRequestAnimation$0(ImeTracker.java:1088)
+D/InteractionJankMonitor(10618): 	at android.view.inputmethod.ImeTracker$ImeJankTracker$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+D/InteractionJankMonitor(10618): 	at android.os.Handler.handleCallback(Handler.java:1082)
+D/InteractionJankMonitor(10618): 	at android.os.Handler.dispatchMessageImpl(Handler.java:135)
+D/InteractionJankMonitor(10618): 	at android.os.Handler.dispatchMessage(Handler.java:126)
+D/InteractionJankMonitor(10618): 	at android.os.Looper.loopOnce(Looper.java:295)
+D/InteractionJankMonitor(10618): 	at android.os.Looper.loop(Looper.java:398)
+D/InteractionJankMonitor(10618): 	at android.app.ActivityThread.main(ActivityThread.java:9569)
+D/InteractionJankMonitor(10618): 	at java.lang.reflect.Method.invoke(Native Method)
+D/InteractionJankMonitor(10618): 	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:575)
+D/InteractionJankMonitor(10618): 	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:918)
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/FlutterJNI(10618): Sending viewport metrics to the engine.
+D/WindowOnBackDispatcher(10618): setTopOnBackInvokedCallback (unwrapped): android.app.Activity$$ExternalSyntheticLambda0@857c253
+D/WindowOnBackDispatcher(10618): setOnBackInvokedCallbackInfo: android.app.Activity$$ExternalSyntheticLambda0@857c253
+E/ConsumerBase(10618): [ImageReader-1080x2400f1m3-10618-0] abandonLocked: ConsumerBase is abandoned!
+I/flutter (10618): 00:52 +1: (tearDownAll)
+I/Choreographer(10618): Skipped 63 frames!  The application may be doing too much work on its main thread.
+I/flutter (10618): 00:53 +2: All tests passed!
+I/HWUI    (10618): Davey! duration=1066ms; Flags=0, FrameTimelineVsyncId=241934, IntendedVsync=15421660375936, Vsync=15422710375894, InputEventId=0, HandleInputStart=15422720312960, AnimationStart=15422720329160, PerformTraversalsStart=15422720352060, DrawStart=15422720587560, FrameDeadline=15421677042602, FrameStartTime=15422719763160, FrameInterval=16666666, WorkloadTarget=16666666, AnimationTime=15422710375894, AnimationCounter=-1, SyncQueued=15422720674660, SyncStart=15422725337360, IssueDrawCommandsStart=15422725517260, SwapBuffers=15422726277560, FrameCompleted=15422731584460, DequeueBufferDuration=19600, QueueBufferDuration=704100, GpuCompleted=15422731454960, SwapBuffersCompleted=15422731584460, DisplayPresentTime=0, CommandSubmissionCompleted=15422726277560, 
+All tests passed.

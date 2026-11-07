@@ -1,0 +1,9 @@
+{
+  "package": "by.bstu.coffee_lab8",
+  "androidRelease": "17",
+  "api": 37,
+  "favoriteAfterForceStopRestart": true,
+  "selectedNonDefaultUserAfterRestart": "Daniel",
+  "temporaryFavoritesRemoved": true,
+  "selectedUserRestored": "Emma"
+}
