@@ -45,5 +45,5 @@ create_service_database economy_db economy_app "$ECONOMY_DB_PASSWORD"
 create_service_database reputation_db reputation_app "$REPUTATION_DB_PASSWORD"
 create_service_database notification_db notification_app "$NOTIFICATION_DB_PASSWORD"
 create_service_database concurrency_lab_db concurrency_lab_app "${CONCURRENCY_LAB_DB_PASSWORD:-concurrency_lab_dev}"
-if [ -f /opt/replication/provision.sh ]; then sh /opt/replication/provision.sh; fi
+if [ "${PROVISION_REMOTE:-false}" != true ] && [ -f /opt/replication/provision.sh ]; then sh /opt/replication/provision.sh; fi
 if [ -f /opt/replication/provision-library.sh ]; then sh /opt/replication/provision-library.sh; fi

@@ -1,6 +1,13 @@
+param([switch]$Local)
 # Restart only the managed LR5 coordinator; leave both databases and other services running.
 $ErrorActionPreference = 'Stop'
 $taskRoot = Split-Path $PSScriptRoot -Parent
+if(!$Local){
+    Push-Location $taskRoot
+    try {docker compose restart concurrency-lab; if($LASTEXITCODE){throw 'Laboratory API restart failed.'}}
+    finally {Pop-Location}
+    return
+}
 $taskLogs = Join-Path $taskRoot '.artifacts/lab-runtime'
 $taskManifest = Join-Path $taskLogs 'processes.json'
 $taskEntries = @(Get-Content $taskManifest -Raw | ConvertFrom-Json)

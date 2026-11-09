@@ -1,7 +1,17 @@
 #requires -Version 7.4
-param([switch]$NoBuild)
+param([switch]$NoBuild, [switch]$Local)
 $ErrorActionPreference = 'Stop'
 $taskRoot = Split-Path $PSScriptRoot -Parent
+if(!$Local){
+    Push-Location $taskRoot
+    try {
+        $taskArgs=@('compose','--profile','pubsub','up','-d',$(if($NoBuild){'--no-build'}else{'--build'}))
+        docker @taskArgs
+        if($LASTEXITCODE){throw 'Pub/Sub Docker startup failed.'}
+        Write-Host '[info] http://localhost:5300/pubsub-lab'
+    } finally {Pop-Location}
+    return
+}
 Push-Location $taskRoot
 try {
     if (!$NoBuild) { dotnet build Burmalda.slnx -m:1 --nologo; if ($LASTEXITCODE) { throw 'Build failed.' } }
@@ -9,8 +19,8 @@ try {
     if ($LASTEXITCODE) { throw 'Docker PostgreSQL startup failed.' }
     $taskConfig = docker compose config --format json | ConvertFrom-Json
     $taskAdmin = $taskConfig.services.postgres.environment.POSTGRES_USER
-    & "$PSScriptRoot/Start-RaftCluster.ps1" -NoBuild
-    & "$PSScriptRoot/Set-PubSubComponent.ps1" -Component Coordinator -Action Start
+    & "$PSScriptRoot/Start-RaftCluster.ps1" -Local -NoBuild
+    & "$PSScriptRoot/Set-PubSubComponent.ps1" -Local -Component Coordinator -Action Start
     $taskWriter = $null
     for ($taskAttempt=0; $taskAttempt -lt 15 -and !$taskWriter; $taskAttempt++) {
         foreach ($taskNode in @('postgres','postgres-replica')) {
@@ -23,7 +33,7 @@ try {
     docker compose exec -T $taskWriter sh /opt/replication/provision-library.sh
     if ($LASTEXITCODE) { throw 'Library database provisioning failed.' }
     foreach ($taskComponent in @('BrokerA','BrokerB','Subscribers','GameApi','Identity','Gateway','Web')) {
-        & "$PSScriptRoot/Set-PubSubComponent.ps1" -Component $taskComponent -Action Start
+        & "$PSScriptRoot/Set-PubSubComponent.ps1" -Local -Component $taskComponent -Action Start
     }
     $taskReady = $false
     for ($taskAttempt=0; $taskAttempt -lt 40 -and !$taskReady; $taskAttempt++) {

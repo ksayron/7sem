@@ -12,12 +12,14 @@ public sealed class ExecutionRecord
     public string Status { get; set; } = "Running";
     public string? Value { get; set; }
     public List<ProcessIdentity> Processes { get; set; } = [];
+    public List<DockerActionIdentity> DockerActions { get; set; } = [];
 }
 // Shared only by local effectors, never by Raft participants' consensus storage.
 public sealed class ExecutionJournal
 {
     private readonly string root;
-    public ExecutionJournal(string root) { this.root=Path.GetFullPath(root); Directory.CreateDirectory(this.root); }
+    private readonly DockerEngineClient? docker;
+    public ExecutionJournal(string root, DockerEngineClient? docker = null) { this.root=Path.GetFullPath(root); this.docker=docker; Directory.CreateDirectory(this.root); }
     public FileStream? TryLock()
     {
         try { return new(Path.Combine(root,"cluster.lock"),FileMode.OpenOrCreate,FileAccess.ReadWrite,FileShare.None); }
@@ -70,13 +72,18 @@ public sealed class ExecutionJournal
         if(prior is not null)
         {
             if(prior.Processes.Any(StillRunning)) throw new ExternalActionRunningException("Предыдущий Docker CLI ещё работает; ожидаем его завершения.");
-            using var reconciliationScope=ExecutionScope.Enter(operation,p=> { prior.Processes.Add(p);Save(key,prior); });
+            foreach(var identity in prior.DockerActions)
+            {
+                if(docker is null) throw new NeedsInspectionException("Docker execution journal requires the Docker backend.");
+                if(await docker.IsRunning(identity, CancellationToken.None)) throw new ExternalActionRunningException("Предыдущее Docker-действие ещё работает; ожидаем завершения.");
+            }
+            using var reconciliationScope=ExecutionScope.Enter(operation,p=> { prior.Processes.Add(p);Save(key,prior); },d=> { prior.DockerActions.Add(d);Save(key,prior); });
             var recovered=await reconcile();
             if(recovered is null) throw new NeedsInspectionException($"Исход действия {key} не установлен. Последующие мутации заблокированы.");
             prior.Status="Done"; prior.Value=recovered; Save(key,prior); return recovered;
         }
         var record=new ExecutionRecord(); Save(key,record);
-        using var scope=ExecutionScope.Enter(operation,p=> { record.Processes.Add(p); Save(key,record); });
+        using var scope=ExecutionScope.Enter(operation,p=> { record.Processes.Add(p); Save(key,record); },d=> { record.DockerActions.Add(d);Save(key,record); });
         try { var value=await action(); record.Status="Done"; record.Value=value; Save(key,record); return value; }
         catch(OperationCanceledException) { throw; }
         catch(Exception e) { throw new NeedsInspectionException($"Действие {step} было начато, исход требует проверки: {e.Message}"); }

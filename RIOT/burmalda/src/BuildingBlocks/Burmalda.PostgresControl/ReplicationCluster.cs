@@ -2,6 +2,7 @@ using System.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Npgsql;
 using System.Text.Json.Serialization;
+using Burmalda.PostgresControl;
 
 namespace Burmalda.ConcurrencyLab.Api;
 
@@ -33,6 +34,7 @@ public sealed class PostgresReplicationCluster(IConfiguration config) : IReplica
 {
     public static readonly string[] NodeIds = ["postgres", "postgres-replica"];
     private readonly string root = ResolveRoot(config["ReplicationLab:ComposeRoot"]);
+    private readonly DockerEngineClient? engine = Burmalda.PostgresControl.RaftConfiguration.InDocker(config) ? new(config) : null;
     private string Connection(string node, bool catalog = false)
     {
         CheckNode(node);
@@ -60,6 +62,7 @@ public sealed class PostgresReplicationCluster(IConfiguration config) : IReplica
     }
     private async Task<string> Docker(CancellationToken ct, params string[] args)
     {
+        if(engine is not null) return await engine.Run(ct,args);
         var start = new ProcessStartInfo("docker") { WorkingDirectory = root, RedirectStandardOutput = true,
             RedirectStandardError = true, UseShellExecute = false, CreateNoWindow = true };
         foreach (var arg in args) start.ArgumentList.Add(arg);
@@ -90,15 +93,25 @@ public sealed class PostgresReplicationCluster(IConfiguration config) : IReplica
         CheckNode(node);
         return Docker(ct, ["compose", "exec", "-T", node, .. args]);
     }
+    private static async Task Open(NpgsqlConnection connection, CancellationToken ct)
+    {
+        try { await connection.OpenAsync(ct); }
+        catch (Exception error) when (error is System.Net.Sockets.SocketException or TimeoutException)
+        {
+            // Docker DNS removes stopped containers. Npgsql can propagate DNS failures
+            // directly rather than wrapping them in DbException.
+            throw new ReplicationLabException(503, "PostgreSQL недоступен: соединение или DNS-имя узла временно недоступно.");
+        }
+    }
     private async Task<object?> Scalar(string node, string sql, CancellationToken ct)
     {
-        await using var connection = new NpgsqlConnection(Connection(node)); await connection.OpenAsync(ct);
+        await using var connection = new NpgsqlConnection(Connection(node)); await Open(connection, ct);
         await using var command = new NpgsqlCommand(sql, connection); return await command.ExecuteScalarAsync(ct);
     }
     public async Task<ReplicationNode> Observe(string node, CancellationToken ct)
     {
         CheckNode(node);
-        await using var connection = new NpgsqlConnection(Connection(node)); await connection.OpenAsync(ct);
+        await using var connection = new NpgsqlConnection(Connection(node)); await Open(connection, ct);
         await using var cmd = new NpgsqlCommand("""
             SELECT pg_is_in_recovery(), current_setting('default_transaction_read_only')::boolean,
               CASE WHEN pg_is_in_recovery() THEN NULL ELSE pg_current_wal_flush_lsn()::text END,
@@ -117,7 +130,7 @@ public sealed class PostgresReplicationCluster(IConfiguration config) : IReplica
             paused = reader.GetBoolean(4); streaming = reader.IsDBNull(5) ? null : reader.GetString(5); fenced = reader.GetBoolean(6);
         }
         var books = new List<ReplicationBook>(); var copies = new List<ReplicationCopy>();
-        await using var catalog = new NpgsqlConnection(Connection(node, true)); await catalog.OpenAsync(ct);
+        await using var catalog = new NpgsqlConnection(Connection(node, true)); await Open(catalog, ct);
         await using (var schema = new NpgsqlCommand("SELECT to_regclass('public.books') IS NOT NULL AND to_regclass('public.book_copies') IS NOT NULL", catalog))
             if (!Equals(await schema.ExecuteScalarAsync(ct), true))
                 return new(node, "AVAILABLE", standby ? "Standby" : "Primary", readOnly, fenced, wal, replay, paused, streaming,
@@ -142,7 +155,7 @@ public sealed class PostgresReplicationCluster(IConfiguration config) : IReplica
     }
     public async Task<CopyCommit> Update(string node, CopyAvailabilityRequest input, CancellationToken ct)
     {
-        await using var connection = new NpgsqlConnection(Connection(node, true)); await connection.OpenAsync(ct);
+        await using var connection = new NpgsqlConnection(Connection(node, true)); await Open(connection, ct);
         await using var tx = await connection.BeginTransactionAsync(ct);
         Guid book; long version;
         // Lock the book as well as its copy: concurrent copy changes must serialize projection refreshes.

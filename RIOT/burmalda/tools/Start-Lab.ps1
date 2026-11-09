@@ -1,6 +1,23 @@
-﻿param([int]$PostgresPort = 5547, [int]$ReplicaPort = 5548, [switch]$Full, [switch]$NoBuild, [switch]$ReplicationOnly)
+﻿param([int]$PostgresPort = 5547, [int]$ReplicaPort = 5548, [switch]$Full, [switch]$NoBuild, [switch]$ReplicationOnly, [switch]$Local)
 $ErrorActionPreference = 'Stop'
 $taskRoot = Split-Path $PSScriptRoot -Parent
+if (!$Local) {
+    $taskPreviousPorts=@{POSTGRES_PORT=$env:POSTGRES_PORT;POSTGRES_REPLICA_PORT=$env:POSTGRES_REPLICA_PORT}
+    Push-Location $taskRoot
+    try {
+        if($PSBoundParameters.ContainsKey('PostgresPort')){$env:POSTGRES_PORT="$PostgresPort"}
+        if($PSBoundParameters.ContainsKey('ReplicaPort')){$env:POSTGRES_REPLICA_PORT="$ReplicaPort"}
+        $taskArgs = @('compose','up','-d', $(if($NoBuild){'--no-build'}else{'--build'}))
+        docker @taskArgs
+        if ($LASTEXITCODE) { throw 'Docker lab startup failed; inspect docker compose logs.' }
+        Write-Host '[info] http://localhost:5300/raft-lab · docker compose ps'
+    } finally {
+        $env:POSTGRES_PORT=$taskPreviousPorts.POSTGRES_PORT
+        $env:POSTGRES_REPLICA_PORT=$taskPreviousPorts.POSTGRES_REPLICA_PORT
+        Pop-Location
+    }
+    return
+}
 $taskLogs = Join-Path $taskRoot '.artifacts/lab-runtime'
 $taskEnvironmentNames = @('ASPNETCORE_ENVIRONMENT','POSTGRES_PORT','POSTGRES_REPLICA_PORT','ConnectionStrings__Database',
     'ReplicationLab__JournalRoot','ReplicationLab__ComposeRoot','ReplicationLab__Nodes__postgres','ReplicationLab__Nodes__postgres-replica','ReplicationLab__CatalogPassword')
@@ -58,7 +75,7 @@ try {
     $env:ReplicationLab__Nodes__postgres = "Host=127.0.0.1;Port=$PostgresPort;Database=postgres;Username=$taskAdmin;Password=$taskPassword"
     Set-Item 'Env:ReplicationLab__Nodes__postgres-replica' "Host=127.0.0.1;Port=$ReplicaPort;Database=postgres;Username=$taskAdmin;Password=$taskPassword"
     $env:ReplicationLab__CatalogPassword = $taskCompose.services.postgres.environment.CATALOG_DB_PASSWORD
-    & "$PSScriptRoot/Start-RaftCluster.ps1" -NoBuild -PostgresPort $PostgresPort -ReplicaPort $ReplicaPort
+    & "$PSScriptRoot/Start-RaftCluster.ps1" -Local -NoBuild -PostgresPort $PostgresPort -ReplicaPort $ReplicaPort
     foreach ($taskProject in $taskProjects) {
         $taskDirectory = Join-Path $taskRoot $taskProject
         $taskName = Split-Path $taskDirectory -Leaf

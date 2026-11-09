@@ -50,7 +50,7 @@ async function writer() {
     const config=JSON.parse(await fs.readFile('src/Services/Catalog/Burmalda.Catalog.Api/appsettings.json','utf8'));
     const enc=o=>Buffer.from(JSON.stringify(o)).toString('base64url');
     const user=randomUUID(), payload=`${enc({alg:'HS256',typ:'JWT'})}.${enc({iss:config.Jwt.Issuer,aud:config.Jwt.Audience,sub:user,role:'Reader',exp:Math.floor(Date.now()/1000)+3600})}`;
-    const token=`${payload}.${createHmac('sha256',config.Jwt.SigningKey).update(payload).digest('base64url')}`;
+    const token=`${payload}.${createHmac('sha256',compose.services.gateway?.environment?.Jwt__SigningKey??config.Jwt.SigningKey).update(payload).digest('base64url')}`;
     const auth={Authorization:'Bearer '+token};
     run=await request(lab,{});
     // Also restores the node left stopped by a prior manual demonstration.
@@ -98,7 +98,7 @@ async function writer() {
             const page=await context.newPage(), errors=[]; page.on('pageerror',e=>errors.push(e.message));
             await page.goto('http://localhost:5300/shelf');
             await page.getByLabel('Book ID',{exact:true}).fill(bookId);
-            const response=page.waitForResponse(r=>r.url()===api+'/copies'&&r.request().method()==='POST',{timeout:35000});
+            const response=page.waitForResponse(r=>new URL(r.url()).pathname==='/api/catalog/copies'&&r.request().method()==='POST',{timeout:35000});
             await page.getByRole('button',{name:'List this copy',exact:true}).click();
             assert.equal((await response).status(),503);
             await page.waitForFunction(()=>document.querySelector('.form-error')?.textContent.includes('PostgreSQL'));

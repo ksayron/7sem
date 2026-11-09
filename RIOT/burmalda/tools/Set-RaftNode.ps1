@@ -3,12 +3,22 @@ param(
     [Parameter(Mandatory)][ValidateRange(1,5)][int]$NodeId,
     [Parameter(Mandatory)][ValidateSet('Start','Stop','Restart')][string]$Action,
     [string]$RuntimeRoot,
+    [switch]$Local,
     [int]$BasePort=5121,
     [int]$PostgresPort=5547,
     [int]$ReplicaPort=5548
 )
 $ErrorActionPreference='Stop'
 $taskRoot=Split-Path $PSScriptRoot -Parent
+if(!$Local){
+    Push-Location $taskRoot
+    try {
+        $taskVerb=switch($Action){Start {'start'} Stop {'stop'} Restart {'restart'}}
+        docker compose $taskVerb "raft-node-$NodeId"
+        if($LASTEXITCODE){throw 'Raft container action failed; inspect docker compose logs.'}
+    } finally {Pop-Location}
+    return
+}
 if (!$RuntimeRoot) { $RuntimeRoot=Join-Path $taskRoot '.artifacts/raft-runtime' }
 $taskRuntime=[IO.Path]::GetFullPath($RuntimeRoot)
 New-Item -ItemType Directory -Force $taskRuntime | Out-Null

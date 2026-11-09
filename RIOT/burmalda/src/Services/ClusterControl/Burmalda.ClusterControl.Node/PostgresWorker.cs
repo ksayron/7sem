@@ -58,6 +58,7 @@ public sealed class PostgresWorker(NodeHost host,IReplicationCluster postgres,Ex
     }
     private void CheckLegacy()
     {
+        if(config["ReplicationLab:LegacyRoot"] is {} legacy) LegacyControlGuard.Check(legacy);
         var root=PostgresReplicationCluster.ResolveRoot(config["ReplicationLab:ComposeRoot"]);
         var path=Path.Combine(root,".artifacts","streaming-replication","authority.json");
         if(!File.Exists(path)) return;
@@ -296,7 +297,13 @@ public sealed class PostgresWorker(NodeHost host,IReplicationCluster postgres,Ex
     private static async Task WaitFor(Func<Task<bool>> condition,CancellationToken ct)
     {
         var deadline=DateTimeOffset.UtcNow+TimeSpan.FromSeconds(25);
-        while(DateTimeOffset.UtcNow<deadline) { if(await condition()) return; await Task.Delay(300,ct); }
+        while(DateTimeOffset.UtcNow<deadline)
+        {
+            try { if(await condition()) return; }
+            catch(Exception error) when(error is System.Data.Common.DbException or System.Net.Sockets.SocketException or TimeoutException or ReplicationLabException { Status:503 })
+            { /* A just-started PostgreSQL can refuse connections until recovery finishes. Retry observations only. */ }
+            await Task.Delay(300,ct);
+        }
         throw new ReplicationLabException(503,"Истекло время ожидания PostgreSQL/WAL; автоматического обхода проверки нет.");
     }
 }

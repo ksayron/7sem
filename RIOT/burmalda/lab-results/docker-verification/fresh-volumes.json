@@ -1,0 +1,21 @@
+{
+  "finishedAtUtc": "2026-11-09T21:40:10.8207165+00:00",
+  "volumes": [
+    "burmalda_verify_bb138dd2b2ef_lab-journal",
+    "burmalda_verify_bb138dd2b2ef_library-broker-a-data",
+    "burmalda_verify_bb138dd2b2ef_library-broker-b-data",
+    "burmalda_verify_bb138dd2b2ef_postgres-control",
+    "burmalda_verify_bb138dd2b2ef_postgres-data",
+    "burmalda_verify_bb138dd2b2ef_postgres-replica-data",
+    "burmalda_verify_bb138dd2b2ef_rabbitmq-data",
+    "burmalda_verify_bb138dd2b2ef_raft-execution",
+    "burmalda_verify_bb138dd2b2ef_raft-node-1",
+    "burmalda_verify_bb138dd2b2ef_raft-node-2",
+    "burmalda_verify_bb138dd2b2ef_raft-node-3",
+    "burmalda_verify_bb138dd2b2ef_raft-node-4",
+    "burmalda_verify_bb138dd2b2ef_raft-node-5"
+  ],
+  "success": false,
+  "restored": true,
+  "startedAtUtc": "2026-11-09T21:38:49.8802177+00:00"
+}

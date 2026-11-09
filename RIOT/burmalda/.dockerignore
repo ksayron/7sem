@@ -2,3 +2,16 @@
 **/obj
 .git
 .env
+.env.*
+!.env.example
+.artifacts
+.vs
+.idea
+**/.data
+lab-results
+deliverables
+tests
+tools
+docs
+*.user
+*.md

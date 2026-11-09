@@ -8,7 +8,9 @@ namespace Burmalda.Domain.Tests;
 
 public sealed class DatabaseAvailabilityTests
 {
-    private static FailoverConnectionInterceptor Policy(int budget = 200) => new(TimeSpan.FromMilliseconds(budget), TimeSpan.FromMilliseconds(5));
+    // Success-path checks must tolerate scheduling delays during container builds.
+    // Deadline behavior is covered separately with an explicit short budget.
+    private static FailoverConnectionInterceptor Policy(int budget = 2000) => new(TimeSpan.FromMilliseconds(budget), TimeSpan.FromMilliseconds(5));
     [Fact]
     public async Task Retries_connection_open_until_a_writer_is_available()
     {

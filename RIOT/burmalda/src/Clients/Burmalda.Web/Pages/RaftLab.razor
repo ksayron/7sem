@@ -4,6 +4,7 @@
 @using System.Text.Json
 @using Burmalda.Web.Models
 @inject HttpClient Http
+@inject IJSRuntime JS
 
 <PageTitle>Raft · управление PostgreSQL · Burmalda</PageTitle>
 <main class="raft-lab">
@@ -13,7 +14,7 @@
     </header>
     <div class="raft-toolbar">
         <button class="button" disabled="@busy" @onclick="Refresh">Обновить наблюдения</button>
-        <a class="button" href="@ExportUrl" download="raft-status.json">Скачать JSON состояния</a>
+        <a class="button" href="#" @onclick="Download" @onclick:preventDefault download="raft-status.json">Скачать JSON состояния</a>
         <span role="status">@(snapshot is null ? "Подключаем управляющие узлы…" : $"Наблюдение: {snapshot.ObservedAtUtc.ToLocalTime():HH:mm:ss}")</span>
     </div>
     @if(error is not null) { <p class="raft-error" role="alert">@error</p> }
@@ -24,6 +25,7 @@
             <p data-testid="raft-quorum">@(view.Authoritative is not null ? "Свежий обмен с кворумом подтверждён. Требуется 3 из 5." : "Новые управляющие решения не подтверждены. Работа исправного PostgreSQL может продолжаться.")</p>
             @if(view.Error is not null) { <p class="raft-note">@view.Error</p> }
         </section>
+        <RaftScene @ref="scene" Busy="busy" CanCommand="@(view.Authoritative is not null && view.State?.ActiveOperation is null)" ReplayChanged="ReplayChanged" ProcessNode="SceneProcess" Partition="Partition" Heal="Heal" Synchronize="SceneSynchronize" />
         <section aria-labelledby="raft-nodes-title">
             <div class="raft-section-heading"><h2 id="raft-nodes-title">Управляющие узлы</h2><span>Роль — собственное наблюдение каждого узла</span></div>
             <div class="raft-scroll" tabindex="0" aria-label="Состояние пяти узлов">
@@ -34,14 +36,14 @@
                             <th scope="row">Node @node.NodeId</th>
                             <td><strong class="@(node.Available ? "raft-good" : "raft-bad")">@(node.Available ? node.State?.Role : "Недоступен")</strong></td>
                             <td>@node.State?.Term</td><td>@node.State?.CommitIndex / @node.State?.LastApplied</td><td>@node.State?.LastLogIndex / @node.State?.SnapshotIndex</td>
-                            <td><button class="button button-small" disabled="@busy" @onclick='() => Process(node.NodeId,node.Available ? "Stop" : "Start")'>@(node.Available ? "Остановить" : "Запустить")</button></td>
-                            <td><button class="button button-small" disabled="@(busy || !node.Available)" @onclick="() => Fault(node.NodeId,[],1200,0)">Задержка 1,2 с</button><button class="button button-small" disabled="@(busy || !node.Available)" @onclick="() => Fault(node.NodeId,[],0,3)">Терять ⅓ сообщений</button></td>
+                            <td><button class="button button-small" disabled="@(busy || replaying)" @onclick='() => Process(node.NodeId,node.Available ? "Stop" : "Start")'>@(node.Available ? "Остановить" : "Запустить")</button></td>
+                            <td><button class="button button-small" disabled="@(busy || replaying || !node.Available)" @onclick="() => Fault(node.NodeId,[],1200,0)">Задержка 1,2 с</button><button class="button button-small" disabled="@(busy || replaying || !node.Available)" @onclick="() => Fault(node.NodeId,[],0,3)">Терять ⅓ сообщений</button></td>
                         </tr>
                     }
                 </tbody></table>
             </div>
-            <div class="raft-toolbar"><button class="button" disabled="@busy" @onclick="Partition">Разделить сеть 3 + 2</button><button class="button" disabled="@busy" @onclick="Heal">Восстановить связь</button></div>
-            <p class="raft-note">Разделение изолирует текущего лидера с одним соседом. Остановка завершает настоящий C#-процесс. Изменения связи не останавливают его и не блокируют диагностический API.</p>
+            <div class="raft-toolbar"><button class="button" disabled="@(busy || replaying)" @onclick="Partition">Разделить сеть 3 + 2</button><button class="button" disabled="@(busy || replaying)" @onclick="Heal">Восстановить связь</button></div>
+            <p class="raft-note">Разделение изолирует текущего лидера с одним соседом. Остановка выключает узел: контейнер при запуске через Docker или C#-процесс при локальной отладке. Изменения связи сохраняют доступ к диагностическому API.</p>
         </section>
         <section aria-labelledby="raft-postgres-title">
             <h2 id="raft-postgres-title">PostgreSQL: фактическое состояние</h2>
@@ -51,11 +53,11 @@
                     <article><h3>@pg.Id</h3><p><strong>@pg.Role</strong> · @pg.State · @(pg.ReadOnly ? "read-only" : "read/write")</p><p>WAL <code>@(pg.WalLsn ?? "—")</code><br />Replay <code>@(pg.ReplayLsn ?? "—")</code> · @(pg.ReplayPaused ? "PAUSED" : pg.StreamingState ?? "нет наблюдения")</p>
                         <p>@pg.Books.Count книг · @pg.Copies.Count экземпляров</p>
                         @if(pg.Error is not null) { <p class="raft-note">@pg.Error</p> }
-                        <button class="button button-small" disabled="@(busy || view.Authoritative is null || pg.Role=="Primary")" @onclick='() => Operate("Recover",pg.Id)'>Восстановить узел</button>
+                        <button class="button button-small" disabled="@(busy || replaying || view.Authoritative is null || pg.Role=="Primary")" @onclick='() => Operate("Recover",pg.Id)'>Восстановить узел</button>
                     </article>
                 }
             </div>
-            <div class="raft-toolbar"><button class="button button-primary" disabled="@(busy || view.Authoritative is null || view.State?.Initialized!=true || view.State?.ActiveOperation is not null)" @onclick='() => Operate("Switchover")'>Переключить primary</button><button class="button" disabled="@(busy || view.Authoritative is null)" @onclick='() => Operate("Pause")'>Приостановить replay</button><button class="button" disabled="@(busy || view.Authoritative is null)" @onclick='() => Operate("Synchronize")'>Возобновить и дождаться WAL</button></div>
+            <div class="raft-toolbar"><button class="button button-primary" disabled="@(busy || replaying || view.Authoritative is null || view.State?.Initialized!=true || view.State?.ActiveOperation is not null)" @onclick='() => Operate("Switchover")'>Переключить primary</button><button class="button" disabled="@(busy || replaying || view.Authoritative is null)" @onclick='() => Operate("Pause")'>Приостановить replay</button><button class="button" disabled="@(busy || replaying || view.Authoritative is null)" @onclick='() => Operate("Synchronize")'>Возобновить и дождаться WAL</button></div>
             <p class="raft-note">Переключение затрагивает все базы Burmalda. Async-репликация сохранена: без fencing и доказанной границы WAL promotion запрещён.</p>
             @if(view.State is {} cluster)
             { <p>Primary в подтверждённой истории: <strong>@(cluster.Primary ?? "не назначен")</strong> · fencing: @(cluster.FencedSource ?? "нет") · требуемый WAL: <code>@(cluster.RequiredLsn ?? "—")</code></p> }
@@ -63,7 +65,7 @@
             { if(diagnostic.TryGetProperty("controlError",out var ce) && ce.ValueKind==JsonValueKind.String) { <p class="raft-error">@ce.GetString()</p> } }
         </section>
         @if(pending is not null)
-        { <p class="raft-note" role="status">Команда <code>@pending.CommandId</code>. Если исход неизвестен, проверяйте этот ID и повторяйте только ту же команду.<button class="button button-small" disabled="@busy" @onclick="RetryPending">Повторить прежний запрос</button><button class="button button-small" disabled="@busy" @onclick="CheckPending">Проверить результат</button></p> }
+        { <p class="raft-note" role="status">Команда <code>@pending.CommandId</code>. Если исход неизвестен, проверяйте этот ID и повторяйте только ту же команду.<button class="button button-small" disabled="@(busy || replaying)" @onclick="RetryPending">Повторить прежний запрос</button><button class="button button-small" disabled="@busy" @onclick="CheckPending">Проверить результат</button></p> }
         <section aria-labelledby="raft-operations-title"><h2 id="raft-operations-title">Операции переключения</h2>
             @if(view.State?.Operations.Count>0)
             {
@@ -103,7 +105,17 @@
     private string? error;
     private int selectedNode=1;
     private long logAfter,eventAfter;
-    private string ExportUrl=>"data:application/json;base64,"+Convert.ToBase64String(System.Text.Encoding.UTF8.GetBytes(JsonSerializer.Serialize(new {snapshot,log,events})));
+    private RaftScene? scene;
+    private bool replaying;
+    private Task ReplayChanged(bool value){replaying=value;return Task.CompletedTask;}
+    private Task SceneProcess(int id)=>Process(id,snapshot?.Nodes.FirstOrDefault(n=>n.NodeId==id)?.Available==true?"Stop":"Start");
+    private Task SceneSynchronize()=>Operate("Synchronize");
+    private async Task Download()
+    {
+        var json=JsonSerializer.Serialize(new {snapshot,log,events,visualization=scene?.Export()});
+        await using var module=await JS.InvokeAsync<IJSObjectReference>("import","./js/raft-export.js");
+        await module.InvokeVoidAsync("download",json);
+    }
     protected override async Task OnInitializedAsync(){await Refresh();poll=Poll();}
     private async Task Poll()
     {
@@ -130,6 +142,7 @@
     }
     private async Task Post(string route,object body)
     {
+        if(replaying)throw new InvalidOperationException("Вернитесь в прямой эфир перед изменением кластера.");
         using var response=await Http.PostAsJsonAsync("api/raft-lab/"+route,body,stop.Token);
         if(!response.IsSuccessStatusCode)throw new HttpRequestException(await response.Content.ReadAsStringAsync(stop.Token));
     }

@@ -10,6 +10,7 @@ const headers={'X-Raft-Key':key};
 const folder=path.resolve('lab-results/raft-verification');
 const checks=[],evidence={operations:[]};
 const stopped=new Set();
+const crashed=new Set();
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 const check=name=>{checks.push(name);console.log('PASS '+name);};
 function command(command,args,input){const r=spawnSync(command,args,{input,encoding:'utf8',timeout:180000,windowsHide:true});assert.equal(r.status,0,r.stderr||r.stdout);return r.stdout.trim();}
@@ -17,7 +18,7 @@ const compose=JSON.parse(command('docker',['compose','config','--format','json']
 const admin=compose.services.postgres.environment.POSTGRES_USER;
 const sql=(node,text)=>command('docker',['compose','exec','-T',node,'psql','-X','-U',admin,'-d','catalog_db','-At','-v','ON_ERROR_STOP=1'],text);
 async function request(url,body,status=200,extra={}){
-    const r=await fetch(url,{method:body===undefined?'GET':'POST',headers:{'Content-Type':'application/json',...extra},body:body===undefined?undefined:JSON.stringify(body),signal:AbortSignal.timeout(60000)});
+    const r=await fetch(url,{method:body===undefined?'GET':'POST',headers:{'Content-Type':'application/json',Connection:'close',...extra},body:body===undefined?undefined:JSON.stringify(body),signal:AbortSignal.timeout(60000)});
     const text=await r.text();assert.equal(r.status,status,`${url}: ${text}`);return text?JSON.parse(text):null;
 }
 const api=(route,body,status)=>request(base+'/api/raft-lab'+route,body,status);
@@ -28,13 +29,31 @@ async function leader(){return wait(async()=>{const ns=(await nodes()).filter(Bo
 const state=async()=>(await leader()).state;
 function nodeProcess(id,action){
     // Background participants must not retain spawnSync's capture pipes.
-    const r=spawnSync('pwsh',['-NoProfile','-File',path.resolve('tools/Set-RaftNode.ps1'),'-NodeId',String(id),'-Action',action],{stdio:'ignore',timeout:45000,windowsHide:true});
+    const local=process.env.BURMALDA_NODE_MODE==='Local';
+    if(action==='Crash'){
+        command('docker',['update','--restart=no','burmalda-raft-node-'+id]);crashed.add(id);stopped.add(id);
+    }
+    if(action==='Start'&&crashed.has(id)){
+        command('docker',['update','--restart=unless-stopped','burmalda-raft-node-'+id]);crashed.delete(id);
+    }
+    const r=local
+        ?spawnSync('pwsh',['-NoProfile','-File',path.resolve('tools/Set-RaftNode.ps1'),'-Local','-NodeId',String(id),'-Action',action],{stdio:'ignore',timeout:45000,windowsHide:true})
+        :spawnSync('docker',action==='Crash'?['compose','kill','--signal','SIGKILL','raft-node-'+id]:['compose',action.toLowerCase(), 'raft-node-'+id],{stdio:'ignore',timeout:45000,windowsHide:true});
     assert.equal(r.status,0,`Node ${id} ${action}: ${r.error?.message??'inspect raft-runtime logs'}`);
-    if(action==='Stop')stopped.add(id);else stopped.delete(id);
+    if(!local&&action==='Start'){
+        let ready=false;const deadline=Date.now()+45000;
+        while(Date.now()<deadline){
+            const probe=spawnSync('docker',['compose','exec','-T','raft-node-'+id,'curl','--fail','--silent','--max-time','1','http://127.0.0.1:8080/health/ready'],{stdio:'ignore',timeout:3000,windowsHide:true});
+            if(probe.status===0){ready=true;break;}
+            Atomics.wait(new Int32Array(new SharedArrayBuffer(4)),0,0,100);
+        }
+        assert.ok(ready,`Node ${id} did not become ready after start`);
+    }
+    if(action==='Stop'||action==='Crash')stopped.add(id);else stopped.delete(id);
 }
 async function submit(kind,node,id=randomUUID()){const body={commandId:id,kind,node};await api('/operations',body,202);return id;}
 async function settled(id,expected='Completed'){
-    const op=await wait(async()=>{const s=await state();const op=s.operations[id];return op&&op.status!=='Running'?op:null;},'operation '+id,180000);
+    const op=await wait(async()=>{const s=await state();const op=s.operations[id];return op&&['Completed','Failed'].includes(op.status)?op:null;},'operation '+id,180000);
     evidence.operations.push(op);assert.equal(op.status,expected,JSON.stringify(op));return op;
 }
 async function operate(kind,node){const id=await submit(kind,node);return settled(id);}
@@ -50,11 +69,12 @@ const bookId=randomUUID(),copyId=randomUUID(),ownerId=randomUUID();let fixture=f
 async function catalog(){return request(`${base}/api/catalog/books/${bookId}`,undefined,200,{Authorization:'Bearer '+token});}
 (async()=>{
     await fs.mkdir(folder,{recursive:true});
+    await wait(async()=>{try{const s=await api('/status');return s.nodes.filter(n=>n.available).length===5&&s.authoritative&&s.state?.initialized;}catch{return false;}},'five ready nodes and initialized authoritative cluster');
     let initial=await healthy();evidence.initial=initial;initialPrimary=initial.state.primary;
-    assert.equal(initial.nodes.filter(n=>n.available).length,5);check('five-independent-processes-and-authoritative-majority');
+    assert.equal(initial.nodes.filter(n=>n.available).length,5);check('five-independent-nodes-and-authoritative-majority');
     const config=JSON.parse(await fs.readFile('src/Services/Catalog/Burmalda.Catalog.Api/appsettings.json','utf8'));
     const enc=o=>Buffer.from(JSON.stringify(o)).toString('base64url');const payload=`${enc({alg:'HS256',typ:'JWT'})}.${enc({iss:config.Jwt.Issuer,aud:config.Jwt.Audience,sub:ownerId,role:'Admin',exp:Math.floor(Date.now()/1000)+7200})}`;
-    token=`${payload}.${createHmac('sha256',config.Jwt.SigningKey).update(payload).digest('base64url')}`;
+    token=`${payload}.${createHmac('sha256',compose.services.gateway?.environment?.Jwt__SigningKey??config.Jwt.SigningKey).update(payload).digest('base64url')}`;
     sql(initialPrimary,`BEGIN;
 INSERT INTO books ("Id","Isbn","Title","Description","AuthorsJson","GenresJson","CreatedAt") VALUES ('${bookId}','raft-${bookId}','Raft disposable verification','','["Raft verifier"]','[]',now());
 INSERT INTO book_copies ("Id","BookId","OwnerId","Condition","Status","LendingPrice","MaximumLoanDays","Location","IsHidden","Version","CreatedAt") VALUES ('${copyId}','${bookId}','${ownerId}',0,0,1,7,'Raft verifier',false,1,now());
@@ -69,7 +89,7 @@ INSERT INTO book_search_projection ("BookId","Isbn","Title","AuthorsText","Genre
     await operate('Pause');const blocked=await submit('Switchover');const failed=await settled(blocked,'Failed');
     assert.match(failed.error,/WAL|replay|Standby/);assert.notEqual((await state()).fencedSource,null);check('paused-standby-cannot-be-promoted');
     await healthy();
-    let old=(await leader()).node.nodeId;nodeProcess(old,'Stop');let current=await leader();assert.notEqual(current.node.nodeId,old);await operate('Synchronize');check('leader-process-failure-and-continued-work-with-four-voters');
+    let old=(await leader()).node.nodeId;nodeProcess(old,'Stop');let current=await leader();assert.notEqual(current.node.nodeId,old);await operate('Synchronize');check('leader-container-failure-and-continued-work-with-four-voters');
     const second=[1,2,3,4,5].find(id=>id!==old&&id!==current.node.nodeId);nodeProcess(second,'Stop');
     await operate('Switchover');await healthy();check('real-postgresql-switchover-with-three-voters');
     const third=[1,2,3,4,5].find(id=>!stopped.has(id)&&id!==current.node.nodeId);nodeProcess(third,'Stop');
@@ -90,6 +110,21 @@ INSERT INTO book_search_projection ("BookId","Isbn","Title","AuthorsText","Genre
     const promotion=await submit('Switchover');
     await wait(async()=>{const view=await api('/status');const op=view.state?.operations[promotion];return op?.stage==='PromotionAuthorized'&&view.postgres.some(n=>n.id===op.target&&n.role==='Primary'&&!n.readOnly);},'promotion before Raft result');
     nodeProcess(old,'Stop');await leader();await settled(promotion);nodeProcess(old,'Start');await healthy();check('promotion-result-reconciled-after-leader-crash-without-repeating-effect');
+    if(process.env.BURMALDA_NODE_MODE!=='Local'){
+        await operate('Switchover');
+        const source=(await state()).fencedSource;old=(await leader()).node.nodeId;
+        await internal(old,'/executor-fault',{pauseStage:null,maintenanceDelayMs:15000});
+        const recovery=await submit('Recover',source),name='burmalda-raft-maintenance-'+recovery.replaceAll('-','');
+        const job=await wait(async()=>{
+            const r=spawnSync('docker',['inspect',name],{encoding:'utf8',windowsHide:true});
+            if(r.status!==0)return null;const info=JSON.parse(r.stdout)[0];return info.State.Running&&info;
+        },'daemon-side maintenance container running');
+        nodeProcess(old,'Crash');await leader();
+        assert.equal(JSON.parse(command('docker',['inspect',name]))[0].Id,job.Id);
+        await settled(recovery);nodeProcess(old,'Start');await healthy();
+        evidence.maintenanceCrash={operationId:recovery,containerId:job.Id};
+        check('maintenance-survives-sigkill-and-new-leader-reuses-the-same-job');
+    }
     current=await api('/status');const source=current.state.primary;const target=current.postgres.find(n=>n.id!==source).id;
     command('docker',['compose','stop',source]);await sleep(2000);
     await request(base+`/api/concurrency-lab/replication/runs/${run.id}/read`,{clientId:'Raft verifier'},503);

@@ -49,6 +49,11 @@ public sealed class RaftCore
     public string MachineState => machine.Export();
     public IReadOnlyList<LogEntry> Log => state.Log.ToArray();
     public IReadOnlyList<RaftEvent> Events => events.ToArray();
+    public long EventSequence => eventSequence;
+    public Burmalda.Diagnostics.TraceState TraceState() => new(options.NodeId,Role.ToString(),Term,LeaderId,
+        state.CommitIndex,state.Applied,LastIndex,votes.Order().ToArray(),
+        peers.ToDictionary(x=>x.Key,x=>x.Value.Match),
+        state.Log.TakeLast(3).Select(x=>new Burmalda.Diagnostics.TraceLog(x.Index,x.Term,x.Index<=state.CommitIndex,x.Index<=state.Applied)).ToArray());
     public CommandResult? Result(Guid id) => state.Results.GetValueOrDefault(id);
     public long TermAt(long index) => index == state.Snapshot.Index ? state.Snapshot.Term : state.Log.FirstOrDefault(e => e.Index == index)?.Term ?? -1;
     public Outbound[] DrainMessages() { var result = messages.ToArray(); messages.Clear(); return result; }
@@ -106,6 +111,7 @@ public sealed class RaftCore
         if (response.Term > Term) { Follow(response.Term); return; }
         if (Role != RaftRole.Candidate || request.Term != Term || response.Term != Term || !response.Granted) return;
         votes.Add(peer);
+        Event("VoteReceived", $"YES Node {peer}; votes={votes.Count}; majority={Majority}");
         if (votes.Count < Majority) return;
         Role = RaftRole.Leader; LeaderId = options.NodeId; reads.Clear();
         foreach (var p in peers.Values) { p.Match = 0; p.Next = LastIndex + 1; p.Pending = null; }
@@ -159,6 +165,7 @@ public sealed class RaftCore
         if (!response.Success) { p.Next = Math.Max(p.Match + 1, Math.Min(p.Next - 1, response.NextIndex)); Send(peer); return; }
         var acknowledged = request.PrevLogIndex + request.Entries.Length;
         p.Match = Math.Max(p.Match, acknowledged); p.Next = p.Match + 1;
+        if(request.Entries.Length>0) Event("Acknowledged", $"Node {peer}; index={p.Match}");
         foreach (var round in reads.Where(x => x.Key <= response.ReadContext).Select(x => x.Value)) round.Acks.Add(peer);
         AdvanceCommit();
         if (p.Next <= LastIndex) Send(peer);

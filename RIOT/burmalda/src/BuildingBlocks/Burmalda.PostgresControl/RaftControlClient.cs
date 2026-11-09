@@ -1,5 +1,6 @@
 using System.Net.Http.Json;
 using Burmalda.Raft;
+using Burmalda.Diagnostics;
 using Microsoft.Extensions.Configuration;
 
 namespace Burmalda.PostgresControl;
@@ -13,8 +14,7 @@ public sealed class RaftControlClient
     private readonly HttpClient http;
     public RaftControlClient(IConfiguration configuration)
     {
-        var basePort = configuration.GetValue("Raft:BasePort", 5121);
-        Members = Enumerable.Range(1,5).ToDictionary(x=>x,x=>$"http://127.0.0.1:{basePort+x-1}");
+        Members = RaftConfiguration.Members(configuration);
         http = new() { Timeout = TimeSpan.FromSeconds(7) };
         http.DefaultRequestHeaders.Add("X-Raft-Key", configuration["Raft:InternalKey"] ?? "burmalda-raft-local-only");
     }
@@ -69,6 +69,32 @@ public sealed class RaftControlClient
     }
     public async Task<T> Inspect<T>(int id,string path,CancellationToken ct)
         => (await http.GetFromJsonAsync<T>(Members[id]+path,ct))!;
+    public async Task<VisualizationFrame> Visualization(string? cursors,CancellationToken ct)
+    {
+        var positions=new Dictionary<int,(Guid Run,long After)>();
+        if(cursors is { Length:>1024 }) throw new ArgumentException("Cursor too long");
+        foreach(var part in (cursors??"").Split(';',StringSplitOptions.RemoveEmptyEntries))
+        {
+            var bits=part.Split(',');
+            if(bits.Length!=3 || !int.TryParse(bits[0],out var id) || !Members.ContainsKey(id) ||
+                !Guid.TryParse(bits[1],out var run) || !long.TryParse(bits[2],out var after) || after<0 || !positions.TryAdd(id,(run,after)))
+                throw new ArgumentException("Invalid visualization cursor");
+        }
+        var nodes=await Task.WhenAll(Members.Keys.Select(async id=>
+        {
+            using var timeout=CancellationTokenSource.CreateLinkedTokenSource(ct); timeout.CancelAfter(400);
+            // First visit starts with a current checkpoint, not a misleading replay of old traffic.
+            var query=positions.TryGetValue(id,out var p)?$"?run={p.Run}&after={p.After}&take=500":$"?after={long.MaxValue}&take=500";
+            try
+            {
+                var wire=await Inspect<TraceWire>(id,"/internal/trace"+query,timeout.Token);
+                return new TraceNode(id,true,wire.Trace,wire.Checkpoint,null);
+            }
+            catch(Exception e) when(e is HttpRequestException or OperationCanceledException or System.Text.Json.JsonException)
+            { return new TraceNode(id,false,null,null,"Нет актуального наблюдения узла"); }
+        }));
+        return new(DateTimeOffset.UtcNow,nodes);
+    }
     public async Task Fault(int id,object fault,CancellationToken ct)
     { using var response=await http.PostAsJsonAsync(Members[id]+"/internal/fault",fault,ct); response.EnsureSuccessStatusCode(); }
 }

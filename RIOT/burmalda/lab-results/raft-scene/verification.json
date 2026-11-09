@@ -1,0 +1,17 @@
+{
+  "verifiedAt": "2026-11-10T09:49:33.207Z",
+  "checks": [
+    "five-live-crew-and-authority",
+    "keyboard-node-inspection",
+    "pause-keeps-collecting-and-blocks-all-mutations",
+    "real-command-commit-and-step-inspection",
+    "real-leader-failure-election-and-run-reset",
+    "real-partition-minority-has-no-authority",
+    "real-cluster-restored",
+    "json-includes-scene-history",
+    "mobile-and-reduced-motion",
+    "transport-outage-and-observation-recovery",
+    "two-local-captains-and-no-quorum-fixtures"
+  ],
+  "errors": []
+}

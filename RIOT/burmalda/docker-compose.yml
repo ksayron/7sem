@@ -1,33 +1,78 @@
 name: burmalda
 
+x-db-env: &db-env
+  POSTGRES_USER: ${POSTGRES_ADMIN_USER:-burmalda_admin}
+  POSTGRES_PASSWORD: ${POSTGRES_ADMIN_PASSWORD:-burmalda_admin_dev}
+  REPLICATION_USER: ${REPLICATION_USER:-burmalda_replicator}
+  REPLICATION_PASSWORD: ${REPLICATION_PASSWORD:-replication_dev}
+  IDENTITY_DB_PASSWORD: ${IDENTITY_DB_PASSWORD:-identity_dev}
+  CATALOG_DB_PASSWORD: ${CATALOG_DB_PASSWORD:-catalog_dev}
+  LENDING_DB_PASSWORD: ${LENDING_DB_PASSWORD:-lending_dev}
+  ECONOMY_DB_PASSWORD: ${ECONOMY_DB_PASSWORD:-economy_dev}
+  REPUTATION_DB_PASSWORD: ${REPUTATION_DB_PASSWORD:-reputation_dev}
+  NOTIFICATION_DB_PASSWORD: ${NOTIFICATION_DB_PASSWORD:-notification_dev}
+  CONCURRENCY_LAB_DB_PASSWORD: ${CONCURRENCY_LAB_DB_PASSWORD:-concurrency_lab_dev}
+  LIBRARY_GAME_DB_PASSWORD: ${LIBRARY_GAME_DB_PASSWORD:-library_game_dev}
+  LIBRARY_SUBSCRIBERS_DB_PASSWORD: ${LIBRARY_SUBSCRIBERS_DB_PASSWORD:-library_subscribers_dev}
+
+x-app-env: &app-env
+  ASPNETCORE_ENVIRONMENT: Development
+  ASPNETCORE_URLS: http://0.0.0.0:8080
+  Logging__LogLevel__Microsoft: Warning
+  Logging__LogLevel__System.Net.Http.HttpClient: Warning
+  RabbitMq__Host: rabbitmq
+  RabbitMq__UserName: ${RABBITMQ_USER:-burmalda}
+  RabbitMq__Password: ${RABBITMQ_PASSWORD:-burmalda_dev}
+  Jwt__SigningKey: ${JWT_SIGNING_KEY:-development-only-signing-key-change-before-use-32-chars}
+  OTEL_EXPORTER_OTLP_ENDPOINT: http://otel-collector:4317
+  Library__InternalKey: ${LIBRARY_INTERNAL_KEY:-library-local-only-change-me}
+
+x-app: &app
+  restart: unless-stopped
+  networks: [burmalda]
+  healthcheck:
+    test: [CMD, curl, --fail, --silent, http://localhost:8080/health/ready]
+    interval: 5s
+    timeout: 3s
+    retries: 30
+    start_period: 30s
+
+x-raft-env: &raft-env
+  <<: *app-env
+  ReplicationLab__RuntimeMode: Docker
+  ReplicationLab__ComposeRoot: /lab
+  ReplicationLab__LegacyRoot: /legacy
+  ReplicationLab__CatalogPassword: ${CATALOG_DB_PASSWORD:-catalog_dev}
+  ReplicationLab__Nodes__postgres: Host=postgres;Port=5432;Database=postgres;Username=${POSTGRES_ADMIN_USER:-burmalda_admin};Password=${POSTGRES_ADMIN_PASSWORD:-burmalda_admin_dev}
+  ReplicationLab__Nodes__postgres-replica: Host=postgres-replica;Port=5432;Database=postgres;Username=${POSTGRES_ADMIN_USER:-burmalda_admin};Password=${POSTGRES_ADMIN_PASSWORD:-burmalda_admin_dev}
+  Raft__ClusterId: burmalda-postgres-docker-v1
+  Raft__InternalKey: ${RAFT_INTERNAL_KEY:-burmalda-raft-local-only}
+  Raft__ListenUrl: http://0.0.0.0:8080
+  Raft__RuntimeRoot: /data
+  Raft__ExecutionRoot: /execution
+  Raft__Members__1: http://raft-node-1:8080
+  Raft__Members__2: http://raft-node-2:8080
+  Raft__Members__3: http://raft-node-3:8080
+  Raft__Members__4: http://raft-node-4:8080
+  Raft__Members__5: http://raft-node-5:8080
+
 services:
   postgres:
-    image: postgres:17-alpine
+    image: burmalda-postgres:lab
+    build:
+      context: .
+      dockerfile: docker/postgres/Dockerfile
     container_name: burmalda-postgres
     restart: unless-stopped
     entrypoint: ["sh", "/opt/replication/entrypoint.sh"]
     environment:
+      <<: *db-env
       NODE_ID: postgres
-      REPLICATION_USER: ${REPLICATION_USER:-burmalda_replicator}
-      REPLICATION_PASSWORD: ${REPLICATION_PASSWORD:-replication_dev}
-      POSTGRES_USER: ${POSTGRES_ADMIN_USER:-burmalda_admin}
-      POSTGRES_PASSWORD: ${POSTGRES_ADMIN_PASSWORD:-burmalda_admin_dev}
       POSTGRES_DB: postgres
-      IDENTITY_DB_PASSWORD: ${IDENTITY_DB_PASSWORD:-identity_dev}
-      CATALOG_DB_PASSWORD: ${CATALOG_DB_PASSWORD:-catalog_dev}
-      LENDING_DB_PASSWORD: ${LENDING_DB_PASSWORD:-lending_dev}
-      ECONOMY_DB_PASSWORD: ${ECONOMY_DB_PASSWORD:-economy_dev}
-      REPUTATION_DB_PASSWORD: ${REPUTATION_DB_PASSWORD:-reputation_dev}
-      NOTIFICATION_DB_PASSWORD: ${NOTIFICATION_DB_PASSWORD:-notification_dev}
-      CONCURRENCY_LAB_DB_PASSWORD: ${CONCURRENCY_LAB_DB_PASSWORD:-concurrency_lab_dev}
-      LIBRARY_GAME_DB_PASSWORD: ${LIBRARY_GAME_DB_PASSWORD:-library_game_dev}
-      LIBRARY_SUBSCRIBERS_DB_PASSWORD: ${LIBRARY_SUBSCRIBERS_DB_PASSWORD:-library_subscribers_dev}
     ports:
       - "127.0.0.1:${POSTGRES_PORT:-5547}:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
-      - ./docker/postgres/init-databases.sh:/docker-entrypoint-initdb.d/10-init-databases.sh:ro
-      - ./docker/postgres/replication:/opt/replication:ro
       - postgres-control:/control
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d postgres"]
@@ -39,27 +84,19 @@ services:
       - burmalda
 
   postgres-replica:
-    image: postgres:17-alpine
+    image: burmalda-postgres:lab
+    pull_policy: never
     container_name: burmalda-postgres-replica
     restart: unless-stopped
     entrypoint: ["sh", "/opt/replication/entrypoint.sh"]
     environment:
+      <<: *db-env
       NODE_ID: postgres-replica
-      POSTGRES_USER: ${POSTGRES_ADMIN_USER:-burmalda_admin}
-      POSTGRES_PASSWORD: ${POSTGRES_ADMIN_PASSWORD:-burmalda_admin_dev}
-      REPLICATION_USER: ${REPLICATION_USER:-burmalda_replicator}
-      REPLICATION_PASSWORD: ${REPLICATION_PASSWORD:-replication_dev}
-      LIBRARY_GAME_DB_PASSWORD: ${LIBRARY_GAME_DB_PASSWORD:-library_game_dev}
-      LIBRARY_SUBSCRIBERS_DB_PASSWORD: ${LIBRARY_SUBSCRIBERS_DB_PASSWORD:-library_subscribers_dev}
     ports:
       - "127.0.0.1:${POSTGRES_REPLICA_PORT:-5548}:5432"
     volumes:
       - postgres-replica-data:/var/lib/postgresql/data
       - postgres-control:/control
-      - ./docker/postgres/replication:/opt/replication:ro
-    depends_on:
-      postgres:
-        condition: service_healthy
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d postgres"]
       interval: 3s
@@ -77,8 +114,8 @@ services:
       RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER:-burmalda}
       RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASSWORD:-burmalda_dev}
     ports:
-      - "${RABBITMQ_AMQP_PORT:-5672}:5672"
-      - "${RABBITMQ_MANAGEMENT_PORT:-15672}:15672"
+      - "127.0.0.1:${RABBITMQ_AMQP_PORT:-5672}:5672"
+      - "127.0.0.1:${RABBITMQ_MANAGEMENT_PORT:-15672}:15672"
     volumes:
       - rabbitmq-data:/var/lib/rabbitmq
     healthcheck:
@@ -97,7 +134,7 @@ services:
     environment:
       COLLECTOR_OTLP_ENABLED: "true"
     ports:
-      - "${JAEGER_UI_PORT:-16686}:16686"
+      - "127.0.0.1:${JAEGER_UI_PORT:-16686}:16686"
     networks:
       - burmalda
 
@@ -109,20 +146,414 @@ services:
     volumes:
       - ./docker/otel-collector/config.yaml:/etc/otelcol-contrib/config.yaml:ro
     ports:
-      - "${OTEL_GRPC_PORT:-4317}:4317"
-      - "${OTEL_HTTP_PORT:-4318}:4318"
-      - "${METRICS_PORT:-8889}:8889"
+      - "127.0.0.1:${OTEL_GRPC_PORT:-4317}:4317"
+      - "127.0.0.1:${OTEL_HTTP_PORT:-4318}:4318"
+      - "127.0.0.1:${METRICS_PORT:-8889}:8889"
     depends_on:
       jaeger:
         condition: service_started
     networks:
       - burmalda
 
+  database-bootstrap:
+    image: burmalda-postgres:lab
+    pull_policy: never
+    entrypoint: [sh, /opt/replication/bootstrap.sh]
+    restart: "no"
+    environment:
+      <<: *db-env
+      PGCONNECT_TIMEOUT: 3
+    depends_on:
+      postgres: {condition: service_started}
+      postgres-replica: {condition: service_started}
+    networks: [burmalda]
+
+  identity:
+    <<: *app
+    container_name: burmalda-identity
+    image: burmalda-identity:lab
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      target: runtime
+      args:
+        PROJECT_PATH: src/Services/Identity/Burmalda.Identity.Api
+        ASSEMBLY_NAME: Burmalda.Identity.Api
+    environment:
+      <<: *app-env
+      ConnectionStrings__Database: Host=postgres:5432,postgres-replica:5432;Target Session Attributes=read-write;Host Recheck Seconds=1;Database=identity_db;Username=identity_app;Password=${IDENTITY_DB_PASSWORD:-identity_dev};Timeout=3;Command Timeout=15
+      AdminSeed__Email: ${ADMIN_EMAIL:-admin@burmalda.local}
+      AdminSeed__Password: ${ADMIN_PASSWORD:-ChangeMe123!}
+    ports: ["127.0.0.1:5101:8080"]
+    depends_on:
+      database-bootstrap: {condition: service_completed_successfully}
+      rabbitmq: {condition: service_healthy}
+
+  catalog:
+    <<: *app
+    container_name: burmalda-catalog
+    image: burmalda-catalog:lab
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      target: runtime
+      args:
+        PROJECT_PATH: src/Services/Catalog/Burmalda.Catalog.Api
+        ASSEMBLY_NAME: Burmalda.Catalog.Api
+    environment:
+      <<: *app-env
+      ConnectionStrings__Database: Host=postgres:5432,postgres-replica:5432;Target Session Attributes=read-write;Host Recheck Seconds=1;Database=catalog_db;Username=catalog_app;Password=${CATALOG_DB_PASSWORD:-catalog_dev};Timeout=3;Command Timeout=15
+    ports: ["127.0.0.1:5102:8080"]
+    depends_on:
+      database-bootstrap: {condition: service_completed_successfully}
+      rabbitmq: {condition: service_healthy}
+
+  lending:
+    <<: *app
+    container_name: burmalda-lending
+    image: burmalda-lending:lab
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      target: runtime
+      args:
+        PROJECT_PATH: src/Services/Lending/Burmalda.Lending.Api
+        ASSEMBLY_NAME: Burmalda.Lending.Api
+    environment:
+      <<: *app-env
+      ConnectionStrings__Database: Host=postgres:5432,postgres-replica:5432;Target Session Attributes=read-write;Host Recheck Seconds=1;Database=lending_db;Username=lending_app;Password=${LENDING_DB_PASSWORD:-lending_dev};Timeout=3;Command Timeout=15
+    ports: ["127.0.0.1:5103:8080"]
+    depends_on:
+      database-bootstrap: {condition: service_completed_successfully}
+      rabbitmq: {condition: service_healthy}
+
+  economy:
+    <<: *app
+    container_name: burmalda-economy
+    image: burmalda-economy:lab
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      target: runtime
+      args:
+        PROJECT_PATH: src/Services/Economy/Burmalda.Economy.Api
+        ASSEMBLY_NAME: Burmalda.Economy.Api
+    environment:
+      <<: *app-env
+      ConnectionStrings__Database: Host=postgres:5432,postgres-replica:5432;Target Session Attributes=read-write;Host Recheck Seconds=1;Database=economy_db;Username=economy_app;Password=${ECONOMY_DB_PASSWORD:-economy_dev};Timeout=3;Command Timeout=15
+    ports: ["127.0.0.1:5104:8080"]
+    depends_on:
+      database-bootstrap: {condition: service_completed_successfully}
+      rabbitmq: {condition: service_healthy}
+
+  reputation:
+    <<: *app
+    container_name: burmalda-reputation
+    image: burmalda-reputation:lab
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      target: runtime
+      args:
+        PROJECT_PATH: src/Services/Reputation/Burmalda.Reputation.Api
+        ASSEMBLY_NAME: Burmalda.Reputation.Api
+    environment:
+      <<: *app-env
+      ConnectionStrings__Database: Host=postgres:5432,postgres-replica:5432;Target Session Attributes=read-write;Host Recheck Seconds=1;Database=reputation_db;Username=reputation_app;Password=${REPUTATION_DB_PASSWORD:-reputation_dev};Timeout=3;Command Timeout=15
+    ports: ["127.0.0.1:5105:8080"]
+    depends_on:
+      database-bootstrap: {condition: service_completed_successfully}
+      rabbitmq: {condition: service_healthy}
+
+  notifications:
+    <<: *app
+    container_name: burmalda-notifications
+    image: burmalda-notifications:lab
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      target: runtime
+      args:
+        PROJECT_PATH: src/Services/Notifications/Burmalda.Notifications.Api
+        ASSEMBLY_NAME: Burmalda.Notifications.Api
+    environment:
+      <<: *app-env
+      ConnectionStrings__Database: Host=postgres:5432,postgres-replica:5432;Target Session Attributes=read-write;Host Recheck Seconds=1;Database=notification_db;Username=notification_app;Password=${NOTIFICATION_DB_PASSWORD:-notification_dev};Timeout=3;Command Timeout=15
+    ports: ["127.0.0.1:5106:8080"]
+    depends_on:
+      database-bootstrap: {condition: service_completed_successfully}
+      rabbitmq: {condition: service_healthy}
+
+  concurrency-lab:
+    <<: *app
+    container_name: burmalda-concurrency-lab
+    image: burmalda-concurrency-lab:lab
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      target: runtime
+      args:
+        PROJECT_PATH: src/Services/ConcurrencyLab/Burmalda.ConcurrencyLab.Api
+        ASSEMBLY_NAME: Burmalda.ConcurrencyLab.Api
+    environment:
+      <<: *raft-env
+      ConnectionStrings__Database: Host=postgres:5432,postgres-replica:5432;Target Session Attributes=read-write;Host Recheck Seconds=1;Database=concurrency_lab_db;Username=concurrency_lab_app;Password=${CONCURRENCY_LAB_DB_PASSWORD:-concurrency_lab_dev};Timeout=3;Command Timeout=15
+      ReplicationLab__JournalRoot: /data/journal
+    ports: ["127.0.0.1:5107:8080"]
+    volumes:
+      - lab-journal:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+    depends_on:
+      database-bootstrap: {condition: service_completed_successfully}
+
+  raft-node-1:
+    <<: *app
+    container_name: burmalda-raft-node-1
+    image: burmalda-raft-node:lab
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      target: runtime
+      args:
+        PROJECT_PATH: src/Services/ClusterControl/Burmalda.ClusterControl.Node
+        ASSEMBLY_NAME: Burmalda.ClusterControl.Node
+    environment:
+      <<: *raft-env
+      Raft__NodeId: 1
+    ports: ["127.0.0.1:5121:8080"]
+    volumes:
+      - raft-node-1:/data
+      - raft-execution:/execution
+      - ./.artifacts:/legacy:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  raft-node-2:
+    <<: *app
+    container_name: burmalda-raft-node-2
+    image: burmalda-raft-node:lab
+    pull_policy: never
+    environment:
+      <<: *raft-env
+      Raft__NodeId: 2
+    ports: ["127.0.0.1:5122:8080"]
+    volumes:
+      - raft-node-2:/data
+      - raft-execution:/execution
+      - ./.artifacts:/legacy:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  raft-node-3:
+    <<: *app
+    container_name: burmalda-raft-node-3
+    image: burmalda-raft-node:lab
+    pull_policy: never
+    environment:
+      <<: *raft-env
+      Raft__NodeId: 3
+    ports: ["127.0.0.1:5123:8080"]
+    volumes:
+      - raft-node-3:/data
+      - raft-execution:/execution
+      - ./.artifacts:/legacy:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  raft-node-4:
+    <<: *app
+    container_name: burmalda-raft-node-4
+    image: burmalda-raft-node:lab
+    pull_policy: never
+    environment:
+      <<: *raft-env
+      Raft__NodeId: 4
+    ports: ["127.0.0.1:5124:8080"]
+    volumes:
+      - raft-node-4:/data
+      - raft-execution:/execution
+      - ./.artifacts:/legacy:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  raft-node-5:
+    <<: *app
+    container_name: burmalda-raft-node-5
+    image: burmalda-raft-node:lab
+    pull_policy: never
+    environment:
+      <<: *raft-env
+      Raft__NodeId: 5
+    ports: ["127.0.0.1:5125:8080"]
+    volumes:
+      - raft-node-5:/data
+      - raft-execution:/execution
+      - ./.artifacts:/legacy:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  gateway:
+    <<: *app
+    container_name: burmalda-gateway
+    image: burmalda-gateway:lab
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      target: runtime
+      args:
+        PROJECT_PATH: src/Gateway/Burmalda.Gateway
+        ASSEMBLY_NAME: Burmalda.Gateway
+    environment:
+      <<: *app-env
+      ClientOrigins__0: http://localhost:5300
+      ReverseProxy__Clusters__identity__Destinations__primary__Address: http://identity:8080
+      ServiceUrls__identity: http://identity:8080
+      ReverseProxy__Clusters__catalog__Destinations__primary__Address: http://catalog:8080
+      ServiceUrls__catalog: http://catalog:8080
+      ReverseProxy__Clusters__lending__Destinations__primary__Address: http://lending:8080
+      ServiceUrls__lending: http://lending:8080
+      ReverseProxy__Clusters__economy__Destinations__primary__Address: http://economy:8080
+      ServiceUrls__economy: http://economy:8080
+      ReverseProxy__Clusters__reputation__Destinations__primary__Address: http://reputation:8080
+      ServiceUrls__reputation: http://reputation:8080
+      ReverseProxy__Clusters__notifications__Destinations__primary__Address: http://notifications:8080
+      ServiceUrls__notifications: http://notifications:8080
+      ReverseProxy__Clusters__concurrency-lab__Destinations__primary__Address: http://concurrency-lab:8080
+      ServiceUrls__concurrency-lab: http://concurrency-lab:8080
+      ReverseProxy__Clusters__library-game__Destinations__primary__Address: http://library-game:8080
+      ServiceUrls__library-game: http://library-game:8080
+    ports: ["127.0.0.1:5000:8080"]
+
+  web:
+    restart: unless-stopped
+    container_name: burmalda-web
+    image: burmalda-web:lab
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      target: web
+      args:
+        PROJECT_PATH: src/Clients/Burmalda.Web
+        ASSEMBLY_NAME: Burmalda.Web
+    ports: ["127.0.0.1:5300:8080"]
+    networks: [burmalda]
+    healthcheck:
+      test: [CMD, wget, -q, --spider, http://127.0.0.1:8080/]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  library-game:
+    <<: *app
+    profiles: [pubsub]
+    container_name: burmalda-library-game
+    image: burmalda-library-game:lab
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      target: runtime
+      args:
+        PROJECT_PATH: src/Services/LibraryGame/Burmalda.LibraryGame.Api
+        ASSEMBLY_NAME: Burmalda.LibraryGame.Api
+    environment:
+      <<: *app-env
+      Library__BrokerA: http://library-broker-a:8080
+      Library__BrokerB: http://library-broker-b:8080
+      Library__Subscribers: http://library-subscribers:8080
+      Library__GameApi: http://library-game:8080
+      ConnectionStrings__Database: Host=postgres:5432,postgres-replica:5432;Target Session Attributes=read-write;Host Recheck Seconds=1;Database=library_game_db;Username=library_game_app;Password=${LIBRARY_GAME_DB_PASSWORD:-library_game_dev};Timeout=3;Command Timeout=15
+    ports: ["127.0.0.1:5108:8080"]
+    depends_on:
+      database-bootstrap: {condition: service_completed_successfully}
+
+  library-broker-a:
+    <<: *app
+    profiles: [pubsub]
+    container_name: burmalda-library-broker-a
+    image: burmalda-library-broker-a:lab
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      target: runtime
+      args:
+        PROJECT_PATH: src/Services/LibraryGame/Burmalda.LibraryGame.Broker
+        ASSEMBLY_NAME: Burmalda.LibraryGame.Broker
+    environment:
+      <<: *app-env
+      Library__BrokerA: http://library-broker-a:8080
+      Library__BrokerB: http://library-broker-b:8080
+      Library__Subscribers: http://library-subscribers:8080
+      Library__GameApi: http://library-game:8080
+      Broker__Id: A
+      Broker__Storage: /data/broker.db
+    ports: ["127.0.0.1:5109:8080"]
+    volumes: [library-broker-a-data:/data]
+    depends_on:
+      database-bootstrap: {condition: service_completed_successfully}
+
+  library-broker-b:
+    <<: *app
+    profiles: [pubsub]
+    container_name: burmalda-library-broker-b
+    image: burmalda-library-broker-a:lab
+    pull_policy: never
+    environment:
+      <<: *app-env
+      Library__BrokerA: http://library-broker-a:8080
+      Library__BrokerB: http://library-broker-b:8080
+      Library__Subscribers: http://library-subscribers:8080
+      Library__GameApi: http://library-game:8080
+      Broker__Id: B
+      Broker__Storage: /data/broker.db
+    ports: ["127.0.0.1:5110:8080"]
+    volumes: [library-broker-b-data:/data]
+    depends_on:
+      database-bootstrap: {condition: service_completed_successfully}
+
+  library-subscribers:
+    <<: *app
+    profiles: [pubsub]
+    container_name: burmalda-library-subscribers
+    image: burmalda-library-subscribers:lab
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      target: runtime
+      args:
+        PROJECT_PATH: src/Services/LibraryGame/Burmalda.LibraryGame.Subscribers
+        ASSEMBLY_NAME: Burmalda.LibraryGame.Subscribers
+    environment:
+      <<: *app-env
+      Library__BrokerA: http://library-broker-a:8080
+      Library__BrokerB: http://library-broker-b:8080
+      Library__Subscribers: http://library-subscribers:8080
+      Library__GameApi: http://library-game:8080
+      ConnectionStrings__Database: Host=postgres:5432,postgres-replica:5432;Target Session Attributes=read-write;Host Recheck Seconds=1;Database=library_subscribers_db;Username=library_subscribers_app;Password=${LIBRARY_SUBSCRIBERS_DB_PASSWORD:-library_subscribers_dev};Timeout=3;Command Timeout=15
+    ports: ["127.0.0.1:5111:8080"]
+    depends_on:
+      database-bootstrap: {condition: service_completed_successfully}
+
+  load-test:
+    image: grafana/k6:1.4.1
+    profiles: [test]
+    entrypoint: [k6, run, /scripts/catalog-load.js]
+    environment:
+      IDENTITY_URL: http://identity:8080
+      CATALOG_URL: http://catalog:8080
+    volumes:
+      - ./tools/load:/scripts:ro
+      - ./lab-results/docker-verification:/results
+    networks: [burmalda]
+
 volumes:
   postgres-data:
   postgres-replica-data:
   postgres-control:
   rabbitmq-data:
+  lab-journal:
+  raft-execution:
+  raft-node-1:
+  raft-node-2:
+  raft-node-3:
+  raft-node-4:
+  raft-node-5:
+  library-broker-a-data:
+  library-broker-b-data:
 
 networks:
   burmalda:

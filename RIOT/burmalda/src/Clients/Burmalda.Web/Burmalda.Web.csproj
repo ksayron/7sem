@@ -13,5 +13,6 @@
   </ItemGroup>
 
   <ItemGroup><ProjectReference Include="../../BuildingBlocks/Burmalda.LibraryGame/Burmalda.LibraryGame.csproj" /></ItemGroup>
+  <ItemGroup><Compile Include="../../BuildingBlocks/Burmalda.Raft/VisualizationContracts.cs" Link="Models/VisualizationContracts.cs" /></ItemGroup>
 
 </Project>

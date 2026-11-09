@@ -2,31 +2,24 @@
 
 Burmalda использует собственный Raft на C# для согласования **управляющих операций** над двумя PostgreSQL из ЛР5. Книги, экземпляры, кошельки и остальные бизнес-данные по-прежнему принадлежат PostgreSQL. Голосования перед обычным SQL-запросом нет.
 
-## Запуск
+## Запуск ЛР7 + ЛР8
 
-Нужны .NET SDK из `global.json`, PowerShell 7.4+, работающий Docker Desktop в режиме Linux containers. Из корня проекта:
-
-```powershell
-./tools/Start-RaftLab.ps1
-# Последующие запуски без сборки:
-./tools/Start-RaftLab.ps1 -NoBuild
-# Панель: http://localhost:5300/raft-lab
-# Книги и опыты ЛР5: http://localhost:5300/replication-lab
-```
-
-Запуск поднимает инфраструктуру и обычные бизнес-сервисы. Существующие тома, аккаунты и книги сохраняются. Если порты заняты чужими процессами, запуск прекращается.
-
-Для Visual Studio сначала подготовьте инфраструктуру и запустите пять узлов, затем используйте существующий профиль приложения. Самостоятельно запустить только узлы:
+Основной запуск теперь полностью контейнерный:
 
 ```powershell
-docker compose up -d --no-deps postgres postgres-replica
-./tools/Start-RaftCluster.ps1
-./tools/Set-RaftNode.ps1 -NodeId 1 -Action Stop
-./tools/Set-RaftNode.ps1 -NodeId 1 -Action Start
-./tools/Stop-RaftCluster.ps1
+docker compose up -d --build
+# http://localhost:5300/raft-lab
+./tools/Set-RaftNode.ps1 -NodeId 5 -Action Stop
+./tools/Set-RaftNode.ps1 -NodeId 5 -Action Start
 ```
 
-`Stop-Lab.ps1` и `Stop-PubSubLab.ps1` также завершают управляющие процессы, сохраняя контейнеры и данные. Скрипты проверяют PID, время создания и командную строку участника. Остановка участника намеренно не убивает наугад его ранее запущенные Docker-команды.
+Пять узлов используют DNS Compose, отдельные тома SQLite и общий том журнала внешних
+действий. Управление контейнерами выполняется через Docker Engine API. Web опубликован
+через nginx; PowerShell и SDK на хосте для обычного запуска не нужны.
+
+Полная инструкция, текущая архитектура Docker, ограничения и отдельные чек-листы защиты
+ЛР7/ЛР8: [единый deliverable](labs-7-8-docker.md). Описания ниже сохраняют детали
+протокола и исходного локального режима. Локальные скрипты требуют `-Local`.
 
 ## Архитектура
 

@@ -1,0 +1,218 @@
+@using Burmalda.Diagnostics
+@implements IAsyncDisposable
+@inject HttpClient Http
+
+<section class="raft-theatre" aria-labelledby="crew-heading" data-testid="raft-scene">
+    <div class="crew-heading"><div><h2 id="crew-heading">Капитан выбирается командой.</h2><p>Пять узлов, один бортовой журнал. Приказ становится решением после подтверждения большинства.</p></div><span class="crew-mode">@(history.IsLive ? "Прямой эфир" : "Разбор записи")</span></div>
+    <div class="crew-layout">
+        <div class="crew-stage">
+            <svg viewBox="0 0 920 655" class="crew-ocean" aria-label="Пять участников Raft на плоту">
+                <defs>
+                    <linearGradient id="crew-sea" x2="0" y2="1"><stop stop-color="#c9ddd6"/><stop offset="1" stop-color="#e5eee5"/></linearGradient>
+                    <linearGradient id="crew-wood" x2="0" y2="1"><stop stop-color="#d7ab70"/><stop offset="1" stop-color="#b9844e"/></linearGradient>
+                    <clipPath id="crew-deck"><path d="M70 192 460 65 850 192 850 481 460 600 70 481Z"/></clipPath>
+                    <marker id="crew-arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0 7 3.5 0 7" fill="none" stroke="context-stroke"/></marker>
+                </defs>
+                <rect width="920" height="655" fill="url(#crew-sea)"/>
+                @foreach(var y in new[]{100,190,310,470,600})
+                { <path d="@($"M18 {y} q28 -13 56 0 t56 0 M800 {y+25} q28 -13 56 0 t56 0")" class="crew-wave"/> }
+                <ellipse cx="460" cy="420" rx="405" ry="207" fill="#587465" opacity=".14"/>
+                <path d="M70 192 460 65 850 192 850 497 460 620 70 497Z" fill="#825d3d"/>
+                <path d="M70 192 460 65 850 192 850 481 460 600 70 481Z" fill="url(#crew-wood)" stroke="#825d3d" stroke-width="3"/>
+                <g clip-path="url(#crew-deck)" stroke="#8c643d" stroke-width="2" opacity=".6">
+                    @for(var y=95;y<610;y+=34) { <path d="@($"M65 {y} H855")"/> }
+                    @for(var y=130;y<610;y+=102) { <path d="@($"M240 {y} v34 M610 {y+34} v34 M440 {y+68} v34")"/> }
+                </g>
+                <path d="M91 213 460 94 829 213 M91 465 460 579 829 465" class="crew-rope"/>
+                @foreach(var edge in Edges)
+                {
+                    var p=Point(edge.From!.Value);var q=Point(edge.To!.Value);var broken=IsError(edge);
+                    <g @key="Key(edge)" class="crew-message @(broken?"crew-message-error":"")">
+                        <path d="@($"M{p.X} {p.Y-24} Q460 290 {q.X} {q.Y-24}")" class="crew-link" marker-end="url(#crew-arrow)"/>
+                        <circle r="5" class="crew-packet"><animateMotion dur="1s" repeatCount="1" fill="freeze" path="@($"M{p.X} {p.Y-24} Q460 290 {(broken?(p.X+q.X)/2:q.X)} {(broken?(p.Y+q.Y)/2-24:q.Y-24)}")"/></circle>
+                    </g>
+                }
+                @if(Nodes.Any(n=>n.Checkpoint?.Blocked.Length>0))
+                {
+                    <g class="crew-fog"><path d="M345 90 Q490 210 370 335 T470 595" stroke="#e9eee4" stroke-width="76" opacity=".85" fill="none"/><text x="400" y="327">Связь разделена</text></g>
+                }
+                @foreach(var id in Enumerable.Range(1,5))
+                {
+                    var node=Nodes.FirstOrDefault(n=>n.NodeId==id);var state=node?.Checkpoint?.State;var p=Point(id);
+                    var up=node?.Available==true;var leader=state?.Role=="Leader";var candidate=state?.Role=="Candidate";
+                    <g transform="@($"translate({p.X} {p.Y})")" class="crew-person @(selectedNode==id?"crew-person-selected":"")" role="button" tabindex="0" aria-label="@($"Node {id}: {(up?Role(state?.Role):"Узел недоступен")}")" @onclick="()=>SelectNode(id)" @onkeydown="e=>PersonKey(e,id)" data-crew-node="@id">
+                        <ellipse cx="0" cy="9" rx="39" ry="11" class="crew-seat"/>
+                        @if(up)
+                        {
+                            <g class="crew-sailor">
+                                <path d="M-16 -6 -21 9 M16 -6 21 9" stroke="#293b35" stroke-width="11" stroke-linecap="round"/>
+                                <path d="M-23 -39 Q0 -52 23 -39 L24 -8 Q0 1 -24 -8Z" fill="@(leader?"#335b49":"#fbf7ee")" stroke="#344b43" stroke-width="2"/>
+                                @if(!leader){<path d="M-22 -31 H22 M-23 -21 H23" stroke="#547c7b" stroke-width="5"/>}
+                                <path d="@(candidate?"M23 -34 39 -68":"M23 -34 32 -12")" stroke="#d8ab83" stroke-width="10" stroke-linecap="round"/>
+                                <path d="M-23 -34 -32 -12" stroke="#d8ab83" stroke-width="10" stroke-linecap="round"/>
+                                <circle cx="0" cy="-62" r="21" fill="#e5b58c" stroke="#825d3d" stroke-width="1.5"/>
+                                <path d="M-16 -73 Q0 -91 17 -73" stroke="#624d3c" stroke-width="7" fill="none"/>
+                                <path d="M-7 -62 v2 M7 -62 v2 M-5 -52 q5 4 10 0" stroke="#34423a" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+                                @if(leader)
+                                { <path d="M-25 -78 0 -98 25 -78 20 -72 H-20Z" fill="#203e36" stroke="#182f29" stroke-width="2"/><path d="M-17 -77 H17" stroke="#d8af55" stroke-width="4"/><circle cy="-85" r="3" fill="#e6c37e"/> }
+                                else { <path d="M-22 -78 Q0 -91 22 -78 L19 -73 H-19Z" fill="#fbf7ee" stroke="#547c7b" stroke-width="2"/> }
+                            </g>
+                        }
+                        else { <path d="M-22 -20 22 -20 M-14 -28 14 -12 M14 -28 -14 -12" stroke="#825d3d" stroke-width="3"/> }
+                        <rect x="-81" y="21" width="162" height="38" rx="5" fill="@(selectedNode==id?"#203e36":"#fbf7ee")"/>
+                        <text y="37" class="crew-name">Node @id · @(up?Role(state?.Role):"нет связи")</text>
+                        <text y="51" class="crew-numbers">@(state is null?"Нет наблюдения":$"term {state.Term} · {state.CommitIndex}/{state.Applied}")</text>
+                        <g class="crew-notebook">
+                            <rect x="-73" y="64" width="146" height="61" rx="3" fill="#f5e8cd" stroke="#a2784d"/>
+                            @if(state?.Log.Length>0)
+                            {
+                                @for(var j=0;j<state.Log.Length;j++)
+                                { var row=state.Log[j];<g><text x="-63" y="@(79+j*17)">@($"#{row.Index}  {(row.Applied?"применено":row.Committed?"подтверждено":"сохранено")}")</text></g> }
+                            }
+                            else { <g><text x="-63" y="89">@(up?"Журнал пока пуст":"Узел недоступен")</text></g> }
+                        </g>
+                        @if(node?.Checkpoint?.AuthorityConfirmed==true)
+                        { <g class="crew-authority"><rect x="-96" y="132" width="192" height="22" rx="4"/><text y="147">Управление подтверждено</text></g> }
+                    </g>
+                }
+                <text x="22" y="634" class="crew-caption">Матрос сохраняет запись. Капитан собирает подтверждения. Решают минимум трое.</text>
+            </svg>
+            @if(Edges.LastOrDefault() is {} message)
+            { <div class="crew-current-message">@Title(message) · Node @message.From → Node @message.To</div> }
+            <div class="crew-transport-key"><span>Линия — реальный RPC</span><span>Зелёный — обмен</span><span>Красный — ошибка / потеря</span></div>
+        </div>
+        <aside class="crew-explanation" aria-label="Разбор взаимодействия">
+            <p class="crew-quorum @(HasAuthority?"":"crew-no-quorum")" data-testid="crew-quorum">@(networkError is not null?"Нет свежих наблюдений":HasAuthority?"Большинство на связи · нужно 3/5":"Нет большинства — новые решения не подтверждаются")</p>
+            <h3>@(Focused is {} focused?Title(focused):"Команда на связи")</h3>
+            <p class="crew-story">@(Focused is {} item?Explain(item):"Выберите матроса или сообщение. Отправьте команду, чтобы увидеть её путь от предложения до подтверждения.")</p>
+            @if(Focused is {} active)
+            {
+                <dl class="crew-facts"><dt>Событие</dt><dd>@active.Kind · @(active.Rpc??"Raft")</dd><dt>Term / запись</dt><dd>@active.Term / @(active.Index?.ToString()??"—")</dd>
+                @if(active.From is not null){<dt>Маршрут</dt><dd>Node @active.From → Node @active.To</dd>}
+                @if(active.State is {} proof){<dt>Учтено ядром</dt><dd>@Proof(proof)</dd>}
+                @if(active.RpcId is {} rpc){<dt>Связанный RPC</dt><dd><code>@rpc.ToString()[..8]</code></dd>}
+                </dl>
+            }
+            @if(SelectedState is {} chosen)
+            {
+                <div class="crew-node-detail"><h4>Node @selectedNode · @Role(chosen.Role)</h4><p>Term @chosen.Term · Commit @chosen.CommitIndex · Applied @chosen.Applied</p><p>@RoleExplanation(chosen.Role)</p></div>
+            }
+            <div class="crew-actions" aria-label="Опыты с реальным кластером">
+                <button class="button button-small" disabled="@(ActionsDisabled || selectedNode==0)" @onclick="()=>ProcessNode.InvokeAsync(selectedNode)">@(Nodes.FirstOrDefault(n=>n.NodeId==selectedNode)?.Available==true?"Остановить выбранный узел":"Запустить выбранный узел")</button>
+                <button class="button button-small" disabled="@ActionsDisabled" @onclick="Partition">Разделить сеть 3 + 2</button>
+                <button class="button button-small" disabled="@ActionsDisabled" @onclick="Heal">Восстановить связь</button>
+                <button class="button button-primary button-small" disabled="@(ActionsDisabled || !HasAuthority || !CanCommand)" @onclick="Synchronize">Возобновить и дождаться WAL</button>
+            </div>
+            <p class="crew-small">Кнопки управляют настоящими узлами. Капитан Raft и Primary PostgreSQL — разные роли.</p>
+        </aside>
+    </div>
+    <div class="crew-playback">
+        <div class="crew-playback-buttons"><button class="button button-small" disabled="@(history.Items.Count==0)" @onclick="TogglePause">@(history.IsLive?"Пауза":"В прямой эфир")</button><button class="button button-small" disabled="@(history.Items.Count==0 || history.Position==0)" @onclick="()=>Step(-1)">Назад</button><button class="button button-small" disabled="@(history.Items.Count==0 || (!history.IsLive && history.Position>=history.Items.Count-1))" @onclick="()=>Step(1)">Следующее событие</button><span>@(history.IsLive?"Записываем последние 5 минут":$"Просмотр записи — кластер продолжает работать · новых событий: {history.NewEvents}")</span></div>
+        <label class="crew-timeline">История взаимодействия<input type="range" min="0" max="@Math.Max(0,history.Items.Count-1)" value="@history.Position" disabled="@(history.Items.Count==0)" @oninput="Seek" aria-label="Положение в истории взаимодействия"/></label>
+        <div class="crew-filters" aria-label="Фильтры сообщений">@foreach(var group in new[]{"Выборы","Репликация","Ошибки","Heartbeat"}){<label><input type="checkbox" checked="@filters.Contains(group)" @onchange="()=>ToggleFilter(group)"/>@group</label>}<button class="crew-clear-filter" @onclick="()=>selectedNode=0">Все узлы</button></div>
+        @if(networkError is not null){<p class="raft-error" role="alert">@networkError</p>}
+        @if(history.Notice is not null){<p class="crew-small" role="status">@history.Notice</p>}
+        <ol class="crew-feed" aria-label="Сообщения между узлами">
+            @foreach(var entry in Feed)
+            { <li><button class="crew-feed-item @(IsError(entry.Event)?"crew-feed-error":"")" @onclick="()=>ChooseEvent(entry.Index)"><time>@entry.Event.AtUtc.ToLocalTime().ToString("HH:mm:ss.fff")</time><strong>@Title(entry.Event)</strong><span>@(entry.Event.From is {} from?$"Node {from} → {entry.Event.To}":$"Node {entry.Event.NodeId}") · term @entry.Event.Term</span></button></li> }
+        </ol>
+        <p class="crew-small">История собирается с открытия страницы. Частые heartbeat объединены в эфире. Порядок между узлами устанавливается по связанному RPC; часы не задают общий порядок. При отключённой анимации доступны линии и текст.</p>
+    </div>
+</section>
+
+@code {
+    [Parameter] public bool Busy {get;set;}
+    [Parameter] public bool CanCommand {get;set;}
+    [Parameter] public EventCallback<bool> ReplayChanged {get;set;}
+    [Parameter] public EventCallback<int> ProcessNode {get;set;}
+    [Parameter] public EventCallback Partition {get;set;}
+    [Parameter] public EventCallback Heal {get;set;}
+    [Parameter] public EventCallback Synchronize {get;set;}
+    private readonly RaftSceneHistory history=new();
+    private readonly CancellationTokenSource cancellation=new();
+    private readonly HashSet<string> filters=["Выборы","Репликация","Ошибки"];
+    private Task? polling;
+    private string? networkError;
+    private int selectedNode;
+    private int? focusedIndex;
+    private bool ActionsDisabled=>Busy || !history.IsLive || networkError is not null;
+    private TraceNode[] Nodes=>history.Selected?.Nodes??[];
+    private bool HasAuthority=>Nodes.Any(n=>n.Available && n.Checkpoint?.AuthorityConfirmed==true);
+    private TraceState? SelectedState=>Nodes.FirstOrDefault(n=>n.NodeId==selectedNode)?.Checkpoint?.State;
+    private TraceEntry? Focused=>!history.IsLive?history.Selected?.Event:
+        focusedIndex is {} index && index<history.Items.Count?history.Items[index].Event:
+        history.Items.LastOrDefault(x=>x.Event.Kind is not ("Observation" or "Received" or "State") && x.Event.Rpc!="Heartbeat" && Related(x.Event))?.Event;
+    private bool Related(TraceEntry e)=>selectedNode==0 || e.NodeId==selectedNode || e.From==selectedNode || e.To==selectedNode;
+    private IEnumerable<(TraceEntry Event,int Index)> Feed=>history.Items.Select((m,i)=>(Event:m.Event,Index:i)).Where(x=>x.Index<=history.Position && Visible(x.Event) && Related(x.Event)).TakeLast(8).Reverse();
+    private IEnumerable<TraceEntry> Edges
+    {
+        get
+        {
+            var until=history.Selected?.Event.AtUtc??DateTimeOffset.UtcNow;
+            var events=history.IsLive?history.Items.TakeLast(350).Where(m=>m.Event.AtUtc>=until-TimeSpan.FromSeconds(1.2)).Select(m=>m.Event):new[]{history.Selected?.Event}.OfType<TraceEntry>();
+            return events.Where(e=>e.From is >=1 and <=5 && e.To is >=1 and <=5 && e.From!=e.To && e.Kind!="Received")
+                .GroupBy(e=>(e.From,e.To,e.Rpc,e.Rpc=="Heartbeat"?e.AtUtc.ToUnixTimeSeconds():e.Sequence)).Select(g=>g.Last()).TakeLast(16);
+        }
+    }
+    private static (int X,int Y) Point(int id)=>id switch {1=>(175,240),2=>(460,165),3=>(745,240),4=>(610,430),_=>(310,430)};
+    private static string Key(TraceEntry e)=>$"{e.RunId}-{e.Sequence}";
+    private static bool IsError(TraceEntry e)=>e.Success==false || e.Kind is "Timeout" or "TransportError" or "Blocked" or "Dropped" or "Rejected";
+    private static string Category(TraceEntry e)=>IsError(e)?"Ошибки":e.Rpc=="Heartbeat"?"Heartbeat":e.Rpc=="RequestVote" || e.Kind is "Election" or "Vote" or "VoteReceived" or "Leader" or "Follower"?"Выборы":"Репликация";
+    private bool Visible(TraceEntry e)=>e.Kind is not ("Observation" or "Received" or "State") && filters.Contains(Category(e));
+    private static string Role(string? role)=>role switch {"Leader"=>"капитан","Candidate"=>"кандидат","Follower"=>"матрос",_=>"неизвестно"};
+    private static string RoleExplanation(string role)=>role switch {"Leader"=>"Предлагает записи и собирает подтверждения. Для решения нужен кворум 3/5.","Candidate"=>"Просит голоса команды. Собственный голос уже учтён; для избрания нужны трое.",_=>"Проверяет и сохраняет записи капитана. Применяет их после commit; при потере лидера может начать выборы."};
+    private static string Proof(TraceState s)=>s.Role=="Candidate"?$"{s.Votes.Length}/5 голосов, включая свой":s.Role=="Leader"?$"{1+s.Match.Count(x=>x.Value>=s.LastIndex)}/5 сохранили #{s.LastIndex}; commit #{s.CommitIndex}":$"Сохранено #{s.LastIndex}; применено #{s.Applied}";
+    private static string Title(TraceEntry e)=>e.Kind switch
+    {
+        "Election"=>"Кто будет капитаном?", "Vote"=>"Матрос отдал голос", "VoteReceived"=>"Кандидат получил голос", "Leader"=>"Команда выбрала капитана", "Follower"=>"Узел стал последователем", "Propose"=>"Капитан предлагает запись", "Commit"=>"Большинство подтвердило запись", "Acknowledged"=>"Капитан учёл сохранение", "State"=>"Бортовой журнал обновлён", "Observation"=>"Состояние команды", "Timeout"=>"Ответ не пришёл вовремя", "Blocked"=>"Сигнал остановлен разделением", "Dropped"=>"Сообщение потеряно", "TransportError"=>"Нет ответа по каналу", "Rejected"=>"Запрос отклонён", "Fault"=>"Условия связи изменились", "Response"=>e.Success==false?"Узел отклонил запрос":e.Rpc=="RequestVote"?"Голос за кандидата":e.Rpc=="Heartbeat"?"Есть связь / Heartbeat":"Запись сохранена", "Sent"=>e.Rpc=="RequestVote"?"Прошу голос / RequestVote":e.Rpc=="Heartbeat"?"Есть связь / Heartbeat":e.Rpc=="InstallSnapshot"?"Передача снимка":"Сохрани запись / AppendEntries", _=>e.Kind
+    };
+    private static string Explain(TraceEntry e)=>e.Kind switch
+    {
+        "Commit"=>"Ядро Raft подтвердило сохранение записи большинством. Теперь решение можно применить; капитан сообщит новый commitIndex остальным.",
+        "Leader"=>"Кандидат получил минимум три голоса, включая собственный, и стал лидером этого term. Он добавил служебную запись текущего срока.",
+        "Election"=>"Узел не дождался heartbeat, увеличил term и стал кандидатом. Он голосует за себя и обращается к остальным.",
+        "Propose"=>"Капитан сохранил предложение у себя. Одной копии недостаточно: запись ещё должна получить подтверждение большинства.",
+        "Timeout"=>"Ответ не получен до таймаута. Причиной может быть задержка или недоступная связь; это не доказывает остановку процесса.",
+        "Observation"=>"Контрольное наблюдение ролей, журналов и свежего подтверждения лидерства. PostgreSQL продолжает жить независимо от просмотра записи.",
+        "Response" when e.Success==false=>"Узел отклонил запрос. При выборах это может быть уже отданный голос или менее актуальный журнал; при репликации — несовпадение журнала или устаревший term.",
+        "Response" when e.Rpc=="AppendEntries"=>"Последователь проверил запрос и завершил сохранение до успешного ответа. Капитан ещё проверит, относится ли ответ к текущему запросу и term.",
+        "Sent" when e.Rpc=="Heartbeat"=>"Пустой AppendEntries поддерживает связь и переносит commitIndex. Свежий обмен с большинством нужен для подтверждённого лидерства.",
+        _=>e.Detail
+    };
+    public object Export()=>history.Export();
+    protected override Task OnInitializedAsync(){polling=Poll();return Task.CompletedTask;}
+    private async Task Poll()
+    {
+        try
+        {
+            while(!cancellation.IsCancellationRequested)
+            {
+                try
+                {
+                    using var deadline=CancellationTokenSource.CreateLinkedTokenSource(cancellation.Token);deadline.CancelAfter(3000);
+                    var frame=await Http.GetFromJsonAsync<VisualizationFrame>("api/raft-lab/visualization?cursors="+Uri.EscapeDataString(history.Query),deadline.Token);
+                    if(frame is not null){history.Ingest(frame);focusedIndex=null;networkError=null;}
+                }
+                catch(Exception e) when(e is HttpRequestException or OperationCanceledException or System.Text.Json.JsonException)
+                { if(cancellation.IsCancellationRequested)break; networkError="Наблюдение прервано. Проверяем связь автоматически; прежняя сцена может быть устаревшей."; }
+                await InvokeAsync(StateHasChanged);
+                await Task.Delay(500,cancellation.Token);
+            }
+        }
+        catch(OperationCanceledException) { }
+    }
+    private void SelectNode(int id){selectedNode=id;focusedIndex=null;}
+    private void PersonKey(KeyboardEventArgs e,int id){if(e.Key is "Enter" or " ")SelectNode(id);}
+    private async Task TogglePause(){if(history.IsLive)history.Select(history.Position);else history.Live();focusedIndex=null;await ReplayChanged.InvokeAsync(!history.IsLive);}
+    private async Task ChooseEvent(int index){history.Select(index);focusedIndex=index;await ReplayChanged.InvokeAsync(true);}
+    private async Task Seek(ChangeEventArgs e){if(int.TryParse(e.Value?.ToString(),out var index))await ChooseEvent(index);}
+    private async Task Step(int direction)
+    {
+        var next=history.Position+direction;
+        while(next>=0 && next<history.Items.Count && !Visible(history.Items[next].Event))next+=direction;
+        if(next>=0 && next<history.Items.Count)await ChooseEvent(next);
+        else if(history.IsLive)await TogglePause();
+    }
+    private void ToggleFilter(string group){if(!filters.Add(group))filters.Remove(group);}
+    public async ValueTask DisposeAsync(){cancellation.Cancel();if(polling is not null)await polling;cancellation.Dispose();}
+}

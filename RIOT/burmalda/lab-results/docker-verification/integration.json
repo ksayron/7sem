@@ -1,0 +1,21 @@
+{
+  "verifiedAtUtc": "2026-11-09T20:59:00.549Z",
+  "checks": [
+    "default-compose-and-optional-pubsub-profile",
+    "five-containers-one-leader-and-spa-deep-links",
+    "register-login-book-loan-handover-return-and-async-projections",
+    "invalid-node-and-operation-requests-are-rejected",
+    "service-outage-has-readable-503-and-recovers"
+  ],
+  "fixtures": {
+    "bookId": "fc4911cb-e783-4ae0-bfd4-da78e2a5cd17",
+    "copyId": "ff88bf14-5d69-43b2-a366-605aa390377a",
+    "loanId": "be9cf2e0-3fcb-4bbc-808a-5c3914cb708d"
+  },
+  "commandId": "b2e7bad2-ac90-4b4c-9f3e-8c6be16b8ec7",
+  "before": {
+    "commitIndex": 7,
+    "term": 4
+  },
+  "failure": "TypeError: fetch failed\n    at node:internal/deps/undici/undici:13502:13\n    at async request (D:\\BSTU\\7sem\\RIOT\\burmalda\\tools\\verify-docker-lab.cjs:17:22)\n    at async sameFixture (D:\\BSTU\\7sem\\RIOT\\burmalda\\tools\\verify-docker-lab.cjs:40:18)\n    at async D:\\BSTU\\7sem\\RIOT\\burmalda\\tools\\verify-docker-lab.cjs:90:34"
+}

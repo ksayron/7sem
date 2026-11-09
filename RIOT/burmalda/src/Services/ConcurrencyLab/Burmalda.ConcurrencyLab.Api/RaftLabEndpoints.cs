@@ -19,6 +19,11 @@ public static class RaftLabEndpoints
             { return Results.Json(new { message=e.Message, outcome="Unknown", recovery="Проверьте прежний CommandId; не повторяйте с новым ID." },statusCode:503); }
         });
         group.MapGet("/nodes",(RaftControlClient control,CancellationToken ct)=>control.Nodes(ct));
+        group.MapGet("/visualization",async(string? cursors,RaftControlClient control,CancellationToken ct)=>
+        {
+            try { return Results.Ok(await control.Visualization(cursors,ct)); }
+            catch(ArgumentException e) { return Results.BadRequest(new {message=e.Message}); }
+        });
         group.MapGet("/status",async(RaftControlClient control,PostgresReplicationCluster raw,CancellationToken ct)=>
         {
             var nodes=await control.Nodes(ct); AuthoritativeControl? authoritative=null; string? error=null;
@@ -71,9 +76,14 @@ public static class RaftLabEndpoints
         group.MapPost("/processes",async(NodeProcessRequest request,IConfiguration config,CancellationToken ct)=>
         {
             if(request.NodeId is <1 or >5 || request.Action is not("Start" or "Stop" or "Restart")) return Results.BadRequest();
+            if(RaftConfiguration.InDocker(config))
+            {
+                await new DockerEngineClient(config).ManageRaft(request.NodeId,request.Action,ct);
+                return Results.Ok(new { message=$"Node {request.NodeId}: {request.Action}" });
+            }
             var root=PostgresReplicationCluster.ResolveRoot(config["ReplicationLab:ComposeRoot"]);
             var info=new ProcessStartInfo("pwsh") { WorkingDirectory=root,UseShellExecute=false,CreateNoWindow=true };
-            foreach(var arg in new[]{"-NoProfile","-File",Path.Combine(root,"tools","Set-RaftNode.ps1"),"-NodeId",request.NodeId.ToString(),"-Action",request.Action}) info.ArgumentList.Add(arg);
+            foreach(var arg in new[]{"-NoProfile","-File",Path.Combine(root,"tools","Set-RaftNode.ps1"),"-Local","-NodeId",request.NodeId.ToString(),"-Action",request.Action}) info.ArgumentList.Add(arg);
             using var process=Process.Start(info)!;
             await process.WaitForExitAsync(ct);
             return process.ExitCode==0?Results.Ok(new { message=$"Node {request.NodeId}: {request.Action}" }):Results.Conflict(new { message="Управление процессом не выполнено. Проверьте raft-runtime и журнал API." });

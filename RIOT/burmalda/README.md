@@ -26,54 +26,54 @@ The Blazor client covers account access, discovery and loan requests, shelf
 management, loan transitions, wallet/reputation summaries, notifications, and
 administrator health monitoring.
 
-## Run locally
+## Run with Docker — LR7 + LR8
 
-Copy `.env.example` to `.env` if you want to change infrastructure ports or
-credentials, then start the dependencies:
+Docker Desktop with Linux containers is the only runtime prerequisite. From this directory:
 
 ```powershell
-docker compose up -d
+docker compose up -d --build
 docker compose ps
+# Web: http://localhost:5300
+# Five-node control panel: http://localhost:5300/raft-lab
+# Optional LR6 game, C# brokers and subscribers:
+docker compose --profile pubsub up -d --build
 ```
 
-`docker-compose.yml` intentionally contains infrastructure only: two PostgreSQL servers,
-RabbitMQ, Jaeger, and the OpenTelemetry Collector. Application services run as
-ordinary .NET processes. Consequently, rebuilding or stopping the solution does
-not restart infrastructure, and restarting infrastructure does not manage any
-Burmalda application process.
-
-Open `Burmalda.slnx` in Visual Studio and select `Full application` to start the
-client, gateway, six business services, and the concurrency lab under the debugger. `All backend services`
-and `Web client` are also available for focused work. Each project has a stable
-HTTP port in its `Properties/launchSettings.json` file.
-
-Alternatively, start the projects in separate terminals:
+The default stack includes the web client, gateway, six business APIs, laboratory API,
+five independent Raft containers, PostgreSQL primary/standby, RabbitMQ and telemetry.
+Images build inside Docker; Visual Studio and a host .NET SDK are unnecessary.
+Copy `.env.example` to `.env` to override local credentials. Services use Docker DNS;
+the browser uses the same origin through nginx. Existing PostgreSQL/RabbitMQ volumes
+are preserved. New Docker Raft and C# broker histories use their own named volumes.
 
 ```powershell
-dotnet run --project src/Services/Identity/Burmalda.Identity.Api -- --urls http://localhost:5101
-dotnet run --project src/Services/Catalog/Burmalda.Catalog.Api -- --urls http://localhost:5102
-dotnet run --project src/Services/ConcurrencyLab/Burmalda.ConcurrencyLab.Api -- --urls http://localhost:5107
-dotnet run --project src/Services/Lending/Burmalda.Lending.Api -- --urls http://localhost:5103
-dotnet run --project src/Services/Economy/Burmalda.Economy.Api -- --urls http://localhost:5104
-dotnet run --project src/Services/Reputation/Burmalda.Reputation.Api -- --urls http://localhost:5105
-dotnet run --project src/Services/Notifications/Burmalda.Notifications.Api -- --urls http://localhost:5106
-dotnet run --project src/Gateway/Burmalda.Gateway -- --urls http://localhost:5000
-dotnet run --project src/Clients/Burmalda.Web -- --urls http://localhost:5300
+docker compose logs -f raft-node-1 concurrency-lab
+./tools/Set-RaftNode.ps1 -NodeId 5 -Action Stop
+./tools/Set-RaftNode.ps1 -NodeId 5 -Action Start
+docker compose --profile pubsub down  # Keeps all persistent volumes.
 ```
 
-The web client is available at `http://localhost:5300` and the gateway at
-`http://localhost:5000`. RabbitMQ management is at
-`http://localhost:15672`, Jaeger at `http://localhost:16686`, and aggregated
-Prometheus metrics at `http://localhost:8889/metrics`.
+The seeded local administrator is `admin@burmalda.local` / `ChangeMe123!`.
+Gateway: `http://localhost:5000`; RabbitMQ: `http://localhost:15672`;
+Jaeger: `http://localhost:16686`; metrics: `http://localhost:8889/metrics`.
+See the [combined delivery and demonstration guide](docs/labs-7-8-docker.md).
 
-The seeded local administrator is `admin@burmalda.local` / `ChangeMe123!` unless
-overridden through application configuration (`AdminSeed__Email` and
-`AdminSeed__Password`). Change both the administrator password and JWT signing
-key outside disposable local environments.
+## Local debugging
 
-Services create their schemas automatically in local development. This keeps a
-new checkout runnable; versioned EF migrations should replace `EnsureCreated`
-before a shared or production-like environment is introduced.
+For host debugging, install the SDK from `global.json` and PowerShell 7.4+.
+Stop application containers first to free their ports. Start the host version explicitly:
+
+```powershell
+./tools/Start-Lab.ps1 -Local -Full
+./tools/Stop-Lab.ps1 -Local
+# Or start infrastructure, then five host nodes before the Visual Studio profile:
+docker compose up -d postgres postgres-replica rabbitmq
+./tools/Start-RaftCluster.ps1 -Local
+```
+
+The normal startup scripts default to Docker. `-Local` explicitly selects the old
+process-based debugger workflow. Never run both controllers against the same databases.
+Services retain the development schema bootstrap; restarting does not erase data.
 
 ## Build and test
 

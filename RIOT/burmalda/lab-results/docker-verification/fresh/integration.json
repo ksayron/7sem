@@ -1,0 +1,22 @@
+{
+  "verifiedAtUtc": "2026-11-09T21:39:51.657Z",
+  "checks": [
+    "default-compose-and-optional-pubsub-profile",
+    "five-containers-one-leader-and-spa-deep-links",
+    "register-login-book-loan-handover-return-and-async-projections",
+    "invalid-node-and-operation-requests-are-rejected",
+    "service-outage-has-readable-503-and-recovers",
+    "restart-preserves-business-data-and-raft-history"
+  ],
+  "fixtures": {
+    "bookId": "4009e18c-c152-41fc-bcbc-a56d005b29bc",
+    "copyId": "8da76f26-5534-476e-be6d-94fdc8410db9",
+    "loanId": "4824d990-e51e-4d6e-be1a-d313dda792cb"
+  },
+  "commandId": "d5991fdb-0c7c-462a-82e7-42bac358e6cd",
+  "before": {
+    "commitIndex": 5,
+    "term": 1
+  },
+  "failure": "AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:\n\n  assert.ok(responses.some(r=>r.status===429))\n\n    at D:\\BSTU\\7sem\\RIOT\\burmalda\\tools\\verify-docker-lab.cjs:100:57\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)"
+}

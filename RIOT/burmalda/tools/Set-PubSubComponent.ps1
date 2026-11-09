@@ -1,9 +1,20 @@
 param(
     [Parameter(Mandatory)][ValidateSet('Coordinator','GameApi','BrokerA','BrokerB','Subscribers','Identity','Gateway','Web')][string]$Component,
-    [Parameter(Mandatory)][ValidateSet('Start','Stop','Restart')][string]$Action
+    [Parameter(Mandatory)][ValidateSet('Start','Stop','Restart')][string]$Action,
+    [switch]$Local
 )
 $ErrorActionPreference = 'Stop'
 $taskRoot = Split-Path $PSScriptRoot -Parent
+if(!$Local){
+    $taskServices=@{Coordinator='concurrency-lab';GameApi='library-game';BrokerA='library-broker-a';BrokerB='library-broker-b';Subscribers='library-subscribers';Identity='identity';Gateway='gateway';Web='web'}
+    Push-Location $taskRoot
+    try {
+        $taskVerb=switch($Action){Start {'start'} Stop {'stop'} Restart {'restart'}}
+        docker compose --profile pubsub $taskVerb $taskServices[$Component]
+        if($LASTEXITCODE){throw 'Component container action failed.'}
+    } finally {Pop-Location}
+    return
+}
 $taskRuntime = Join-Path $taskRoot '.artifacts/pubsub-runtime'
 $taskManifest = Join-Path $taskRuntime 'processes.json'
 New-Item -ItemType Directory -Force $taskRuntime | Out-Null
