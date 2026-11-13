@@ -10,5 +10,7 @@ builder.Services.AddDbContext<EconomyDbContext>(o => o.UseNpgsql(builder.Configu
 builder.Services.AddServiceMessaging<EconomyDbContext, EconomyQueue>();
 foreach (var type in new[] { MessageNames.UserRegistered, MessageNames.ReservePoints, MessageNames.ReleasePoints, MessageNames.LoanActivated, MessageNames.LoanCompleted, MessageNames.LoanBecameOverdue })
     builder.Services.AddScoped<IIntegrationMessageHandler>(sp => new EconomyMessageHandler(sp.GetRequiredService<EconomyDbContext>(), type));
+builder.Services.AddBusinessReadiness<EconomyDbContext>();
+
 var app = builder.Build(); app.UseBurmaldaDefaults(); app.MapEconomyEndpoints(); await app.EnsureDatabaseAsync<EconomyDbContext>(); await app.RunAsync();
 public partial class Program;

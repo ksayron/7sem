@@ -1,0 +1,205 @@
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-12T16:55:38Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "kind": "Pod",
+                "name": "catalog-546c57988-55hjw",
+                "namespace": "burmalda",
+                "resourceVersion": "4535",
+                "uid": "3df30501-1b06-412d-b0c2-a5c350bf65b5"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-12T16:55:38Z",
+            "message": "Successfully assigned burmalda/catalog-546c57988-55hjw to docker-desktop",
+            "metadata": {
+                "creationTimestamp": "2026-11-12T16:55:38Z",
+                "name": "catalog-546c57988-55hjw.18e75a8d0b039436",
+                "namespace": "burmalda",
+                "resourceVersion": "4541",
+                "uid": "40b11236-1a42-4899-904f-f3203281f24c"
+            },
+            "reason": "Scheduled",
+            "reportingComponent": "default-scheduler",
+            "reportingInstance": "",
+            "source": {
+                "component": "default-scheduler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-12T16:55:39Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{catalog}",
+                "kind": "Pod",
+                "name": "catalog-546c57988-55hjw",
+                "namespace": "burmalda",
+                "resourceVersion": "4539",
+                "uid": "3df30501-1b06-412d-b0c2-a5c350bf65b5"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-12T16:55:39Z",
+            "message": "Pulling image \"burmalda-catalog:lr9-missing-915d63b39e6e4be6b8e84ba46081bfde\"",
+            "metadata": {
+                "creationTimestamp": "2026-11-12T16:55:39Z",
+                "name": "catalog-546c57988-55hjw.18e75a8d3f7b7bb7",
+                "namespace": "burmalda",
+                "resourceVersion": "4548",
+                "uid": "ad0ec772-55e1-4ac4-b872-56de0f3a6aed"
+            },
+            "reason": "Pulling",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "docker-desktop",
+            "source": {
+                "component": "kubelet",
+                "host": "docker-desktop"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-12T16:55:44Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{catalog}",
+                "kind": "Pod",
+                "name": "catalog-546c57988-55hjw",
+                "namespace": "burmalda",
+                "resourceVersion": "4539",
+                "uid": "3df30501-1b06-412d-b0c2-a5c350bf65b5"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-12T16:55:44Z",
+            "message": "Failed to pull image \"burmalda-catalog:lr9-missing-915d63b39e6e4be6b8e84ba46081bfde\": Error response from daemon: pull access denied for burmalda-catalog, repository does not exist or may require 'docker login'",
+            "metadata": {
+                "creationTimestamp": "2026-11-12T16:55:44Z",
+                "name": "catalog-546c57988-55hjw.18e75a8e6368c57c",
+                "namespace": "burmalda",
+                "resourceVersion": "4558",
+                "uid": "80fbb62e-437b-40d4-b25d-8516330386b7"
+            },
+            "reason": "Failed",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "docker-desktop",
+            "source": {
+                "component": "kubelet",
+                "host": "docker-desktop"
+            },
+            "type": "Warning"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-12T16:55:44Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{catalog}",
+                "kind": "Pod",
+                "name": "catalog-546c57988-55hjw",
+                "namespace": "burmalda",
+                "resourceVersion": "4539",
+                "uid": "3df30501-1b06-412d-b0c2-a5c350bf65b5"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-12T16:55:44Z",
+            "message": "Error: ErrImagePull",
+            "metadata": {
+                "creationTimestamp": "2026-11-12T16:55:44Z",
+                "name": "catalog-546c57988-55hjw.18e75a8e636ac482",
+                "namespace": "burmalda",
+                "resourceVersion": "4559",
+                "uid": "f76bdd7a-7ebd-422b-ad4b-c5a08ba13510"
+            },
+            "reason": "Failed",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "docker-desktop",
+            "source": {
+                "component": "kubelet",
+                "host": "docker-desktop"
+            },
+            "type": "Warning"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-12T16:55:45Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{catalog}",
+                "kind": "Pod",
+                "name": "catalog-546c57988-55hjw",
+                "namespace": "burmalda",
+                "resourceVersion": "4539",
+                "uid": "3df30501-1b06-412d-b0c2-a5c350bf65b5"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-12T16:55:45Z",
+            "message": "Back-off pulling image \"burmalda-catalog:lr9-missing-915d63b39e6e4be6b8e84ba46081bfde\"",
+            "metadata": {
+                "creationTimestamp": "2026-11-12T16:55:45Z",
+                "name": "catalog-546c57988-55hjw.18e75a8ea49f38ff",
+                "namespace": "burmalda",
+                "resourceVersion": "4561",
+                "uid": "940e6fe6-961d-40ca-a555-1a99b5ef518a"
+            },
+            "reason": "BackOff",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "docker-desktop",
+            "source": {
+                "component": "kubelet",
+                "host": "docker-desktop"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-12T16:55:45Z",
+            "involvedObject": {
+                "apiVersion": "v1",
+                "fieldPath": "spec.containers{catalog}",
+                "kind": "Pod",
+                "name": "catalog-546c57988-55hjw",
+                "namespace": "burmalda",
+                "resourceVersion": "4539",
+                "uid": "3df30501-1b06-412d-b0c2-a5c350bf65b5"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-12T16:55:45Z",
+            "message": "Error: ImagePullBackOff",
+            "metadata": {
+                "creationTimestamp": "2026-11-12T16:55:45Z",
+                "name": "catalog-546c57988-55hjw.18e75a8ea49ff65d",
+                "namespace": "burmalda",
+                "resourceVersion": "4563",
+                "uid": "60c2556c-d37d-46e3-869e-4df0716bd8cd"
+            },
+            "reason": "Failed",
+            "reportingComponent": "kubelet",
+            "reportingInstance": "docker-desktop",
+            "source": {
+                "component": "kubelet",
+                "host": "docker-desktop"
+            },
+            "type": "Warning"
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}

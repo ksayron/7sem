@@ -77,32 +77,9 @@ public sealed class MessageConsumer<TDbContext>(
 
             using var scope = scopeFactory.CreateScope();
             var db = scope.ServiceProvider.GetRequiredService<TDbContext>();
-            var duplicate = await db.Set<InboxMessage>().AnyAsync(
-                x => x.MessageId == envelope.MessageId && x.Consumer == definition.QueueName,
-                cancellationToken);
-            if (duplicate)
-            {
-                await _channel.BasicAckAsync(args.DeliveryTag, false, cancellationToken);
-                return;
-            }
-
-            var handlers = scope.ServiceProvider.GetServices<IIntegrationMessageHandler>()
-                .Where(x => x.MessageType == envelope.Type)
-                .ToArray();
-            if (handlers.Length == 0)
-                throw new InvalidOperationException($"No handler for {envelope.Type} in {definition.QueueName}.");
-
-            await using var transaction = await db.Database.BeginTransactionAsync(cancellationToken);
-            foreach (var handler in handlers) await handler.Handle(envelope, cancellationToken);
-            db.Set<InboxMessage>().Add(new InboxMessage
-            {
-                MessageId = envelope.MessageId,
-                Consumer = definition.QueueName,
-                ProcessedAt = DateTimeOffset.UtcNow
-            });
-            await db.SaveChangesAsync(cancellationToken);
-            await transaction.CommitAsync(cancellationToken);
-            logger.LogInformation("{Queue} ← {Event} · local COMMIT · correlation {Correlation}",
+            await MessageInbox.Process(db, scope.ServiceProvider.GetServices<IIntegrationMessageHandler>(),
+                definition.QueueName, envelope, cancellationToken);
+            logger.LogInformation("{Queue} в†ђ {Event} В· local COMMIT В· correlation {Correlation}",
                 definition.QueueName, envelope.Type, envelope.CorrelationId);
             await _channel.BasicAckAsync(args.DeliveryTag, false, cancellationToken);
         }

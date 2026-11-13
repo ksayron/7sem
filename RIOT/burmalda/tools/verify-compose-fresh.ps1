@@ -10,7 +10,7 @@ $taskEvidence=@{startedAtUtc=[DateTimeOffset]::UtcNow; success=$false; restored=
 $taskPreviousResult=$env:BURMALDA_RESULT_DIR
 try {
     New-Item -ItemType Directory -Force (Split-Path $taskOverride),(Split-Path $taskResult) | Out-Null
-    $taskConfig=docker compose --profile pubsub config --format json | ConvertFrom-Json
+    $taskConfig=docker compose -f docker-compose.legacy.yml --profile pubsub config --format json | ConvertFrom-Json
     if($LASTEXITCODE){throw 'Invalid Compose configuration.'}
     $taskSuffix=[guid]::NewGuid().ToString('N').Substring(0,12)
     $taskLines=@('volumes:')
@@ -21,9 +21,9 @@ try {
         $taskEvidence.volumes+=$taskName
     }
     $taskLines | Set-Content -LiteralPath $taskOverride
-    docker compose --profile pubsub down
+    docker compose -f docker-compose.legacy.yml --profile pubsub down
     if($LASTEXITCODE){throw 'Cannot stop normal stack.'}
-    docker compose -f docker-compose.yml -f $taskOverride --profile pubsub up -d --no-build
+    docker compose -f docker-compose.legacy.yml -f $taskOverride --profile pubsub up -d --no-build
     if($LASTEXITCODE){throw 'Fresh stack startup failed.'}
     $taskReady=$false
     for($taskAttempt=0;$taskAttempt -lt 90 -and !$taskReady;$taskAttempt++){
@@ -41,10 +41,10 @@ try {
 } finally {
     $env:BURMALDA_RESULT_DIR=$taskPreviousResult
     if(Test-Path -LiteralPath $taskOverride){
-        docker compose -f docker-compose.yml -f $taskOverride --profile pubsub down
+        docker compose -f docker-compose.legacy.yml -f $taskOverride --profile pubsub down
         if($LASTEXITCODE){throw 'Cannot stop verification stack; original volumes remain intact.'}
     }
-    docker compose up -d --no-build
+    docker compose -f docker-compose.legacy.yml up -d --no-build
     $taskEvidence.restored=$LASTEXITCODE -eq 0
     $taskEvidence.finishedAtUtc=[DateTimeOffset]::UtcNow
     $taskEvidence | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $taskResult

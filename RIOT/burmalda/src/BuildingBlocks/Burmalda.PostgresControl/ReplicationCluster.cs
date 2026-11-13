@@ -57,7 +57,7 @@ public sealed class PostgresReplicationCluster(IConfiguration config) : IReplica
     {
         if (configured is not null) return Path.GetFullPath(configured);
         var dir = new DirectoryInfo(Directory.GetCurrentDirectory());
-        while (dir is not null && !File.Exists(Path.Combine(dir.FullName, "docker-compose.yml"))) dir = dir.Parent;
+        while (dir is not null && !File.Exists(Path.Combine(dir.FullName, "docker-compose.legacy.yml"))) dir = dir.Parent;
         return dir?.FullName ?? throw new InvalidOperationException("ReplicationLab:ComposeRoot is required.");
     }
     private async Task<string> Docker(CancellationToken ct, params string[] args)
@@ -65,7 +65,14 @@ public sealed class PostgresReplicationCluster(IConfiguration config) : IReplica
         if(engine is not null) return await engine.Run(ct,args);
         var start = new ProcessStartInfo("docker") { WorkingDirectory = root, RedirectStandardOutput = true,
             RedirectStandardError = true, UseShellExecute = false, CreateNoWindow = true };
-        foreach (var arg in args) start.ArgumentList.Add(arg);
+        if (args.Length > 0 && args[0] == "compose")
+        {
+            start.ArgumentList.Add("compose");
+            start.ArgumentList.Add("-f");
+            start.ArgumentList.Add(Path.Combine(root, "docker-compose.legacy.yml"));
+            foreach (var arg in args.Skip(1)) start.ArgumentList.Add(arg);
+        }
+        else foreach (var arg in args) start.ArgumentList.Add(arg);
         using var process = Process.Start(start) ?? throw new ReplicationLabException(503, "Docker CLI недоступен.");
         Burmalda.PostgresControl.ExecutionScope.Current?.Started(process, start);
         using var timeout = CancellationTokenSource.CreateLinkedTokenSource(ct);

@@ -44,6 +44,8 @@ public sealed class OutboxPublisher<TDbContext>(
     {
         using var scope = scopeFactory.CreateScope();
         var db = scope.ServiceProvider.GetRequiredService<TDbContext>();
+        await using var transaction = await db.Database.BeginTransactionAsync(cancellationToken);
+        await PostgresCoordination.LockTransaction(db, "burmalda:outbox", cancellationToken);
         var messages = await db.Set<OutboxMessage>()
             .Where(x => x.PublishedAt == null && x.RetryCount < 20)
             .OrderBy(x => x.OccurredAt)
@@ -53,7 +55,8 @@ public sealed class OutboxPublisher<TDbContext>(
             return;
 
         var connection = await rabbitMq.GetAsync(cancellationToken);
-        await using var channel = await connection.CreateChannelAsync(cancellationToken: cancellationToken);
+        await using var channel = await connection.CreateChannelAsync(
+            new CreateChannelOptions(publisherConfirmationsEnabled: true, publisherConfirmationTrackingEnabled: true), cancellationToken);
         await RabbitTopology.DeclareExchanges(channel, cancellationToken);
 
         foreach (var message in messages)
@@ -88,5 +91,6 @@ public sealed class OutboxPublisher<TDbContext>(
             }
         }
         await db.SaveChangesAsync(cancellationToken);
+        await transaction.CommitAsync(cancellationToken);
     }
 }

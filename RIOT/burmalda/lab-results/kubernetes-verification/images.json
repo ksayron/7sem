@@ -1,0 +1,143 @@
+{
+  "tag": "lr9-20261112194302",
+  "images": {
+    "postgres": {
+      "id": "sha256:823da32e8a726b8adc657e71b3a168492c89035c50902e9685353d17f0cd6edd",
+      "image": "burmalda-postgres:lr9-20261112194302"
+    },
+    "catalog": {
+      "id": "sha256:c360d616c54a4746058d8ba9e3e86ded6278b39634d7319fe73521555296af79",
+      "image": "burmalda-catalog:lr9-20261112194302"
+    },
+    "gateway": {
+      "id": "sha256:f6262b0096c5c3db46c284d1abb3867927956fb30e8fd30a9819d677eddd2173",
+      "image": "burmalda-gateway:lr9-20261112194302"
+    },
+    "economy": {
+      "id": "sha256:b37ea5ae285a3c37f22263750e6cd73ebdf4c77ecd1821e40258d2a09d5680a9",
+      "image": "burmalda-economy:lr9-20261112194302"
+    },
+    "lending": {
+      "id": "sha256:0dadb2a9b45ebb161282acd18a8c0385c9f1f9ab5f8b79b46c0a1c6e37ad2eea",
+      "image": "burmalda-lending:lr9-20261112194302"
+    },
+    "identity": {
+      "id": "sha256:fb7779094b0227b6326c251e73c25daa43f56f5a93b7d535c0f773f8fb604cce",
+      "image": "burmalda-identity:lr9-20261112194302"
+    },
+    "notifications": {
+      "id": "sha256:5b79b0c47fd66878650d091fecd3b9be626d647fdefacf0f05bd7f24a8de579c",
+      "image": "burmalda-notifications:lr9-20261112194302"
+    },
+    "web": {
+      "id": "sha256:ed4a74dca94e1245188987a4a5b77b5610e13fb32936b14caaa023d140eefa4e",
+      "image": "burmalda-web:lr9-20261112194302"
+    },
+    "reputation": {
+      "id": "sha256:d79190ee8266899809e4c14cc0c16a819ac2f2e8b6d59eb50d69e769ca2910d2",
+      "image": "burmalda-reputation:lr9-20261112194302"
+    }
+  },
+  "runningPods": [
+    {
+      "name": "catalog-656f747d6b-qbdff",
+      "images": [
+        {
+          "image": "burmalda-catalog:lr9",
+          "imageID": "docker-pullable://burmalda-catalog@sha256:c360d616c54a4746058d8ba9e3e86ded6278b39634d7319fe73521555296af79",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "name": "economy-749468c64d-lcx86",
+      "images": [
+        {
+          "image": "burmalda-economy:lr9",
+          "imageID": "docker-pullable://burmalda-economy@sha256:b37ea5ae285a3c37f22263750e6cd73ebdf4c77ecd1821e40258d2a09d5680a9",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "name": "gateway-8c78c44cc-mkrrn",
+      "images": [
+        {
+          "image": "burmalda-gateway:lr9",
+          "imageID": "docker-pullable://burmalda-gateway@sha256:f6262b0096c5c3db46c284d1abb3867927956fb30e8fd30a9819d677eddd2173",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "name": "identity-6f7b444cbd-wpmlq",
+      "images": [
+        {
+          "image": "burmalda-identity:lr9",
+          "imageID": "docker-pullable://burmalda-identity@sha256:fb7779094b0227b6326c251e73c25daa43f56f5a93b7d535c0f773f8fb604cce",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "name": "lending-79bcfdf56-4xlr8",
+      "images": [
+        {
+          "image": "burmalda-lending:lr9",
+          "imageID": "docker-pullable://burmalda-lending@sha256:0dadb2a9b45ebb161282acd18a8c0385c9f1f9ab5f8b79b46c0a1c6e37ad2eea",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "name": "notifications-768dc4d7bf-87gt4",
+      "images": [
+        {
+          "image": "burmalda-notifications:lr9",
+          "imageID": "docker-pullable://burmalda-notifications@sha256:5b79b0c47fd66878650d091fecd3b9be626d647fdefacf0f05bd7f24a8de579c",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "name": "postgres-0",
+      "images": [
+        {
+          "image": "burmalda-postgres:lr9",
+          "imageID": "docker-pullable://burmalda-postgres@sha256:823da32e8a726b8adc657e71b3a168492c89035c50902e9685353d17f0cd6edd",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "name": "rabbitmq-0",
+      "images": [
+        {
+          "image": "rabbitmq:4-management-alpine",
+          "imageID": "docker-pullable://rabbitmq@sha256:37d6ae30f7075bde2501252848953a74d525c62fae879c052c7b3565dde2e349",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "name": "reputation-8558665b96-jtjg5",
+      "images": [
+        {
+          "image": "burmalda-reputation:lr9",
+          "imageID": "docker-pullable://burmalda-reputation@sha256:d79190ee8266899809e4c14cc0c16a819ac2f2e8b6d59eb50d69e769ca2910d2",
+          "ready": true
+        }
+      ]
+    },
+    {
+      "name": "web-fcb976749-5zcgj",
+      "images": [
+        {
+          "image": "burmalda-web:lr9",
+          "imageID": "docker-pullable://burmalda-web@sha256:ed4a74dca94e1245188987a4a5b77b5610e13fb32936b14caaa023d140eefa4e",
+          "ready": true
+        }
+      ]
+    }
+  ]
+}

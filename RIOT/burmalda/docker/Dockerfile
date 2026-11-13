@@ -21,5 +21,8 @@ ENTRYPOINT ["/app/service"]
 FROM nginx:1.28-alpine AS web
 COPY --from=publish /published/wwwroot/ /usr/share/nginx/html/
 COPY docker/web/default.conf /etc/nginx/conf.d/default.conf
-RUN printf '{"ApiBaseUrl":"/"}\n' > /usr/share/nginx/html/appsettings.json
+ARG LEARNING_LABS=false
+ENV LEARNING_LABS=${LEARNING_LABS}
+COPY docker/web/20-appsettings.sh /docker-entrypoint.d/20-appsettings.sh
+RUN sed -i 's/\r$//' /docker-entrypoint.d/20-appsettings.sh && chmod +x /docker-entrypoint.d/20-appsettings.sh
 EXPOSE 8080

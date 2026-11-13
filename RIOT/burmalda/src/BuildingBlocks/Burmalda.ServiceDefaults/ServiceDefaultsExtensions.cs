@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage;
@@ -35,18 +36,21 @@ public static class ServiceDefaultsExtensions
         services.Configure<RabbitMqOptions>(configuration.GetSection(RabbitMqOptions.SectionName));
         services.AddSingleton<RabbitMqConnection>();
         services.AddOpenTelemetry()
-            .ConfigureResource(x => x.AddService(serviceName))
+            .ConfigureResource(x => x.AddService(serviceName, serviceInstanceId: configuration["POD_UID"] ?? configuration["HOSTNAME"])
+                .AddAttributes(new Dictionary<string, object> {
+                    ["k8s.namespace.name"] = configuration["POD_NAMESPACE"] ?? "local",
+                    ["k8s.pod.name"] = configuration["HOSTNAME"] ?? Environment.MachineName }))
             .WithTracing(x => x
                 .AddSource(Telemetry.SourceName)
                 .AddAspNetCoreInstrumentation()
                 .AddHttpClientInstrumentation()
                 .AddEntityFrameworkCoreInstrumentation()
-                .AddOtlpExporter())
+                .ConfigureExporter(configuration))
             .WithMetrics(x => x
                 .AddAspNetCoreInstrumentation()
                 .AddHttpClientInstrumentation()
                 .AddRuntimeInstrumentation()
-                .AddOtlpExporter());
+                .ConfigureExporter(configuration));
         services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(options =>
             {
@@ -67,6 +71,12 @@ public static class ServiceDefaultsExtensions
         services.AddAuthorizationBuilder()
             .AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"))
             .AddPolicy("ModeratorOrAdmin", policy => policy.RequireRole("Moderator", "Admin"));
+        if (configuration.GetValue<bool>("DemoFaults:Enabled"))
+        {
+            services.AddSingleton<DemoFaultState>();
+            services.AddHttpClient("demo-faults", client => client.Timeout = TimeSpan.FromSeconds(2));
+            services.AddHostedService<DemoFaultPoller>();
+        }
         return services;
     }
 
@@ -80,14 +90,29 @@ public static class ServiceDefaultsExtensions
         return services;
     }
 
+    public static IServiceCollection AddBusinessReadiness<TDbContext>(this IServiceCollection services) where TDbContext : DbContext
+    {
+        services.AddHealthChecks()
+            .AddCheck<DatabaseReadiness<TDbContext>>("database", tags: ["ready"], timeout: TimeSpan.FromSeconds(3))
+            .AddCheck<RabbitReadiness>("rabbitmq", tags: ["ready"], timeout: TimeSpan.FromSeconds(3));
+        return services;
+    }
+
+    private static TracerProviderBuilder ConfigureExporter(this TracerProviderBuilder builder, IConfiguration configuration)
+        => configuration.GetValue("Telemetry:Enabled", true) && configuration.GetValue("Telemetry:TracesEnabled", true) ? builder.AddOtlpExporter() : builder;
+
+    private static MeterProviderBuilder ConfigureExporter(this MeterProviderBuilder builder, IConfiguration configuration)
+        => configuration.GetValue("Telemetry:Enabled", true) ? builder.AddOtlpExporter() : builder;
+
     public static WebApplication UseBurmaldaDefaults(this WebApplication app)
     {
         app.Lifetime.ApplicationStarted.Register(() => app.Logger.LogInformation("Ready · {Urls}", string.Join(", ", app.Urls)));
         app.UseExceptionHandler();
         app.UseAuthentication();
         app.UseAuthorization();
-        app.MapHealthChecks("/health/live").AllowAnonymous();
-        app.MapHealthChecks("/health/ready").AllowAnonymous();
+        if (app.Configuration.GetValue<bool>("DemoFaults:Enabled")) app.UseMiddleware<DemoFaultMiddleware>();
+        app.MapHealthChecks("/health/live", new HealthCheckOptions { Predicate = _ => false }).AllowAnonymous();
+        app.MapHealthChecks("/health/ready", new HealthCheckOptions { Predicate = check => check.Tags.Contains("ready") }).AllowAnonymous();
         return app;
     }
 
@@ -96,6 +121,23 @@ public static class ServiceDefaultsExtensions
     {
         await using var scope = app.Services.CreateAsyncScope();
         var db = scope.ServiceProvider.GetRequiredService<TDbContext>();
+        if (db.Database.ProviderName == "Npgsql.EntityFrameworkCore.PostgreSQL")
+        {
+            await db.Database.OpenConnectionAsync();
+            var key = PostgresCoordination.Key("burmalda:schema:" + typeof(TDbContext).FullName);
+            await db.Database.ExecuteSqlInterpolatedAsync($"SELECT pg_advisory_lock({key})");
+            try { await EnsureSchema(db); }
+            finally
+            {
+                try { await db.Database.ExecuteSqlInterpolatedAsync($"SELECT pg_advisory_unlock({key})"); }
+                finally { await db.Database.CloseConnectionAsync(); }
+            }
+        }
+        else await EnsureSchema(db);
+    }
+
+    private static async Task EnsureSchema(DbContext db)
+    {
         var created = await db.Database.EnsureCreatedAsync();
         if (created || !db.Database.IsRelational()) return;
 

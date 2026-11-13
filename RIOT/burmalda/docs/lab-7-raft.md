@@ -7,7 +7,7 @@ Burmalda использует собственный Raft на C# для сог�
 Основной запуск теперь полностью контейнерный:
 
 ```powershell
-docker compose up -d --build
+docker compose -f docker-compose.legacy.yml up -d --build
 # http://localhost:5300/raft-lab
 ./tools/Set-RaftNode.ps1 -NodeId 5 -Action Stop
 ./tools/Set-RaftNode.ps1 -NodeId 5 -Action Start

@@ -17,6 +17,8 @@ foreach (var type in new[] { MessageNames.BookCopyReserved, MessageNames.BookCop
 builder.Services.AddHangfire(x => x.UsePostgreSqlStorage(o => o.UseNpgsqlConnection(connection)));
 builder.Services.AddHangfireServer(); builder.Services.AddScoped<LoanJobs>();
 
+builder.Services.AddBusinessReadiness<LendingDbContext>();
+
 var app = builder.Build(); app.UseBurmaldaDefaults(); app.MapLendingEndpoints();
 app.UseHangfireDashboard("/hangfire", new DashboardOptions { Authorization = [new HangfireAuthorization()] });
 await app.EnsureDatabaseAsync<LendingDbContext>();

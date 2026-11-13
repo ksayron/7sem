@@ -26,7 +26,7 @@ The Blazor client covers account access, discovery and loan requests, shelf
 management, loan transitions, wallet/reputation summaries, notifications, and
 administrator health monitoring.
 
-## Run with Docker — LR7 + LR8
+## Run with Docker — minimal Burmalda (LR9)
 
 Docker Desktop with Linux containers is the only runtime prerequisite. From this directory:
 
@@ -34,28 +34,53 @@ Docker Desktop with Linux containers is the only runtime prerequisite. From this
 docker compose up -d --build
 docker compose ps
 # Web: http://localhost:5300
-# Five-node control panel: http://localhost:5300/raft-lab
-# Optional LR6 game, C# brokers and subscribers:
-docker compose --profile pubsub up -d --build
+docker compose stop  # Preserves the new core volumes.
 ```
 
-The default stack includes the web client, gateway, six business APIs, laboratory API,
-five independent Raft containers, PostgreSQL primary/standby, RabbitMQ and telemetry.
+The default stack includes only Web, Gateway, six business APIs, PostgreSQL and RabbitMQ.
+Learning routes and navigation are disabled; telemetry export is disabled.
 Images build inside Docker; Visual Studio and a host .NET SDK are unnecessary.
 Copy `.env.example` to `.env` to override local credentials. Services use Docker DNS;
 the browser uses the same origin through nginx. Existing PostgreSQL/RabbitMQ volumes
-are preserved. New Docker Raft and C# broker histories use their own named volumes.
+are isolated from the archived labs: project `burmalda-core` uses new `core-postgres-data`
+and `core-rabbitmq-data` volumes. No old data is migrated or deleted.
+
+## Docker Desktop Kubernetes — LR9
+
+Enable the single-node **kubeadm** cluster in Docker Desktop, then use PowerShell 7.4+:
 
 ```powershell
-docker compose logs -f raft-node-1 concurrency-lab
-./tools/Set-RaftNode.ps1 -NodeId 5 -Action Stop
-./tools/Set-RaftNode.ps1 -NodeId 5 -Action Start
-docker compose --profile pubsub down  # Keeps all persistent volumes.
+./tools/Kubernetes.ps1 Prepare
+./tools/Kubernetes.ps1 Build
+./tools/Kubernetes.ps1 Start
+./tools/Kubernetes.ps1 Access
+# http://localhost:5300; keep port-forward running.
+# In another terminal:
+./tools/Kubernetes.ps1 Status
+./tools/Kubernetes.ps1 Stop  # Scales workloads to zero; retains PVC and Secret.
 ```
 
-The seeded local administrator is `admin@burmalda.local` / `ChangeMe123!`.
+All cluster commands target context `docker-desktop`, namespace `burmalda` explicitly.
+The Secret is generated locally in ignored `.artifacts/k8s/secret.json`; its administrator
+password differs from Compose. See [LR9 commands, experiments and results](docs/lab-9-kubernetes.md).
+
+## Archived LR2–LR8 environment
+
+The old services, images and data remain available through an explicit configuration.
+Stop Kubernetes and the core Compose stack before using the same host ports:
+
+```powershell
+docker compose -f docker-compose.legacy.yml up -d --build
+docker compose -f docker-compose.legacy.yml --profile pubsub up -d --build
+docker compose -f docker-compose.legacy.yml logs -f raft-node-1 concurrency-lab
+./tools/Set-RaftNode.ps1 -NodeId 5 -Action Stop
+./tools/Set-RaftNode.ps1 -NodeId 5 -Action Start
+docker compose -f docker-compose.legacy.yml --profile pubsub down  # Keeps old volumes.
+```
+
+The default Compose administrator is `admin@burmalda.local` / `ChangeMe123!`.
 Gateway: `http://localhost:5000`; RabbitMQ: `http://localhost:15672`;
-Jaeger: `http://localhost:16686`; metrics: `http://localhost:8889/metrics`.
+In the archived environment only: Jaeger `http://localhost:16686`, metrics `http://localhost:8889/metrics`.
 See the [combined delivery and demonstration guide](docs/labs-7-8-docker.md).
 
 ## Local debugging
@@ -67,7 +92,7 @@ Stop application containers first to free their ports. Start the host version ex
 ./tools/Start-Lab.ps1 -Local -Full
 ./tools/Stop-Lab.ps1 -Local
 # Or start infrastructure, then five host nodes before the Visual Studio profile:
-docker compose up -d postgres postgres-replica rabbitmq
+docker compose -f docker-compose.legacy.yml up -d postgres postgres-replica rabbitmq
 ./tools/Start-RaftCluster.ps1 -Local
 ```
 
@@ -81,6 +106,7 @@ Services retain the development schema bootstrap; restarting does not erase data
 dotnet restore Burmalda.slnx -m:1
 dotnet build Burmalda.slnx --no-restore -m:1
 dotnet test tests/Burmalda.Domain.Tests/Burmalda.Domain.Tests.csproj --no-build
+./tools/Test-CatalogReplicas.ps1  # Starts core PostgreSQL/RabbitMQ; real concurrency checks.
 ```
 
 ## First end-to-end flow
@@ -184,4 +210,9 @@ requires an Admin JWT.
 
 Operational APIs intentionally do not query foreign databases. Each control is
 performed by the service that owns the affected data.
+
+# Демо нагрузки и автомасштабирования
+
+Отдельный пульт виртуальных клиентов, HPA Catalog/Gateway и Grafana:
+[инструкция запуска и сценарии](docs/kubernetes-demo.md).
 

@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: burmalda-config
+  namespace: burmalda
+  labels:
+    app.kubernetes.io/part-of: burmalda
+data:
+  ASPNETCORE_ENVIRONMENT: Development
+  ASPNETCORE_URLS: http://0.0.0.0:8080
+  Logging__LogLevel__Microsoft: Warning
+  Logging__LogLevel__System.Net.Http.HttpClient: Warning
+  Telemetry__Enabled: 'false'
+  Features__LearningLabs: 'false'
+  RabbitMq__Host: rabbitmq
+  RabbitMq__UserName: burmalda
+  APP_MODE: kubernetes

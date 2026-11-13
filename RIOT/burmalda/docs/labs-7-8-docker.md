@@ -10,18 +10,18 @@
 первой сборке. Visual Studio, .NET SDK, PowerShell и Node.js на хосте для запуска не нужны.
 
 ```powershell
-docker compose config --quiet
-docker compose up -d --build
-docker compose ps -a
+docker compose -f docker-compose.legacy.yml config --quiet
+docker compose -f docker-compose.legacy.yml up -d --build
+docker compose -f docker-compose.legacy.yml ps -a
 # Основное приложение: http://localhost:5300
 # ЛР7: http://localhost:5300/raft-lab
 # PostgreSQL: http://localhost:5300/replication-lab
 # Дополнительные компоненты ЛР6:
-docker compose --profile pubsub up -d --build
+docker compose -f docker-compose.legacy.yml --profile pubsub up -d --build
 ```
 
 Первая сборка загружает .NET SDK/runtime и восстанавливает зависимости. `up -d` запускает
-стек в фоне; готовность проверяется через `docker compose ps` и `/health/ready` API.
+стек в фоне; готовность проверяется через `docker compose -f docker-compose.legacy.yml ps` и `/health/ready` API.
 У `database-bootstrap` нормальное итоговое состояние — `Exited (0)`.
 
 Необязательный `.env` создаётся из `.env.example`. Начальный администратор:
@@ -30,13 +30,13 @@ docker compose --profile pubsub up -d --build
 Изменение паролей PostgreSQL на уже созданных томах само по себе не меняет роли в БД.
 
 ```powershell
-docker compose logs --tail 100 concurrency-lab raft-node-1
-docker compose logs -f catalog lending
+docker compose -f docker-compose.legacy.yml logs --tail 100 concurrency-lab raft-node-1
+docker compose -f docker-compose.legacy.yml logs -f catalog lending
 ./tools/Set-RaftNode.ps1 -NodeId 5 -Action Stop
 ./tools/Set-RaftNode.ps1 -NodeId 5 -Action Start
-docker compose restart catalog
-docker compose --profile pubsub down
-docker compose up -d --build
+docker compose -f docker-compose.legacy.yml restart catalog
+docker compose -f docker-compose.legacy.yml --profile pubsub down
+docker compose -f docker-compose.legacy.yml up -d --build
 ```
 
 `down` сохраняет данные. `down -v` удаляет тома и для обычного запуска/демонстрации
@@ -139,7 +139,7 @@ node tools/verify-raft-lab.cjs
 node tools/verify-application-failover.cjs
 node tools/verify-real-saga.cjs
 node tools/verify-raft-ui.cjs --controls
-docker compose --profile test run --rm load-test
+docker compose -f docker-compose.legacy.yml --profile test run --rm load-test
 ```
 
 Docker verifier создаёт помеченные тестовые аккаунты/книгу/выдачу и сохраняет их GUID
@@ -177,7 +177,7 @@ p50/p95/p99. Пороги: ошибки <1%, p95 <1000 мс. Порог отра
 ## Чек-лист защиты ЛР8
 
 1. Показать исходную архитектуру, Dockerfile, стадии сборки, сеть, порты и переменные окружения.
-2. Выполнить `docker compose up -d --build`, показать состав и готовность контейнеров.
+2. Выполнить `docker compose -f docker-compose.legacy.yml up -d --build`, показать состав и готовность контейнеров.
 3. Через Web создать книгу/экземпляр, выполнить выдачу и возврат.
 4. Остановить Catalog, показать понятную ошибку; запустить и повторить запрос.
 5. Перезапустить/пересоздать контейнеры, показать сохранённые данные и историю Raft.
@@ -187,7 +187,7 @@ p50/p95/p99. Пороги: ошибки <1%, p95 <1000 мс. Порог отра
 ## Ошибки запуска и локальная отладка
 
 Ошибки сборки, загрузки образов, конфигурации и занятые порты видны в выводе Compose;
-проверяйте exit code, `docker compose config --quiet`, `ps -a` и `logs`. Неправильные
+проверяйте exit code, `docker compose -f docker-compose.legacy.yml config --quiet`, `ps -a` и `logs`. Неправильные
 учётные данные или недоступная БД приводят к ошибке bootstrap/подключения, без сброса томов.
 Если Docker socket недоступен, управляющая операция не объявляется успешно выполненной.
 После неизвестного результата используйте прежний CommandId и наблюдения панели.

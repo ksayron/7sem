@@ -1,0 +1,386 @@
+{
+  "engine": {
+    "run": {
+      "id": "f6b8de14-2506-4ce9-85c4-76b7726ccda8",
+      "options": {
+        "scenario": "wave",
+        "peak": 300,
+        "rampSeconds": 30,
+        "holdSeconds": 60,
+        "durationSeconds": 300
+      },
+      "startedAt": "2026-11-12T20:20:08.9264884+00:00",
+      "state": "running",
+      "finishedAt": null
+    },
+    "target": 0,
+    "active": 0,
+    "phase": "Наблюдение снижения реплик",
+    "preparation": {
+      "running": false,
+      "ready": 300,
+      "requested": 300,
+      "error": null
+    },
+    "sentRps": 16.533333333333335,
+    "successRps": 16.533333333333335,
+    "p95Ms": 9.1594,
+    "errorPercent": 0,
+    "completedOperations": 0,
+    "failedOperations": 0,
+    "pendingOperations": 0,
+    "unresolved": [],
+    "outcomes": {
+      "success": 13939
+    },
+    "faults": []
+  },
+  "cluster": {
+    "checkedAt": "2026-11-12T20:22:55.1489936+00:00",
+    "error": "Prometheus: Connection refused (prometheus:9090)",
+    "pods": [
+      {
+        "name": "catalog-6f977d4d76-h2p9k",
+        "uid": "748eeab6-99e4-4564-9e89-dae64486b2da",
+        "app": "catalog",
+        "phase": "Running",
+        "ready": true,
+        "restarts": 0,
+        "deletingAt": null
+      },
+      {
+        "name": "catalog-6f977d4d76-nspv2",
+        "uid": "639e6712-3d5b-4e06-a5b6-b40c59aac00b",
+        "app": "catalog",
+        "phase": "Running",
+        "ready": true,
+        "restarts": 0,
+        "deletingAt": null
+      },
+      {
+        "name": "catalog-6f977d4d76-skcfc",
+        "uid": "698034e5-a0cf-4530-ad04-4970630379e8",
+        "app": "catalog",
+        "phase": "Running",
+        "ready": true,
+        "restarts": 0,
+        "deletingAt": null
+      },
+      {
+        "name": "catalog-6f977d4d76-x6gm8",
+        "uid": "b55aee1b-5a4e-4e7a-9a46-c7f2dfa15a44",
+        "app": "catalog",
+        "phase": "Running",
+        "ready": true,
+        "restarts": 0,
+        "deletingAt": null
+      },
+      {
+        "name": "demo-control-8664c7db57-87rpn",
+        "uid": "f4ad21c0-59d9-42cd-8a08-58c0e8f121f7",
+        "app": "demo-control",
+        "phase": "Running",
+        "ready": true,
+        "restarts": 0,
+        "deletingAt": null
+      },
+      {
+        "name": "economy-6bf9d7bb-m5jtb",
+        "uid": "4920fbb8-3ee4-4809-ac14-0c027bd09cb0",
+        "app": "economy",
+        "phase": "Running",
+        "ready": true,
+        "restarts": 0,
+        "deletingAt": null
+      },
+      {
+        "name": "gateway-56c75d44d-kljwx",
+        "uid": "2a9deea7-b108-4863-a2eb-48ec22926639",
+        "app": "gateway",
+        "phase": "Running",
+        "ready": true,
+        "restarts": 0,
+        "deletingAt": null
+      },
+      {
+        "name": "gateway-56c75d44d-shd47",
+        "uid": "b06d3827-60d7-4c4b-86fb-6d3c39b0e662",
+        "app": "gateway",
+        "phase": "Running",
+        "ready": true,
+        "restarts": 0,
+        "deletingAt": null
+      },
+      {
+        "name": "gateway-56c75d44d-splwz",
+        "uid": "3833511c-d409-4555-b314-60d7736af3f4",
+        "app": "gateway",
+        "phase": "Running",
+        "ready": true,
+        "restarts": 0,
+        "deletingAt": null
+      },
+      {
+        "name": "grafana-595fbd54d7-5gnrt",
+        "uid": "b8a49c6b-f976-4c79-92ce-9970e3a561be",
+        "app": "grafana",
+        "phase": "Pending",
+        "ready": false,
+        "restarts": 0,
+        "deletingAt": "2026-11-12T20:17:13+00:00"
+      },
+      {
+        "name": "grafana-595fbd54d7-hrq75",
+        "uid": "1afd4d44-beed-48bf-accf-ba292a65d65e",
+        "app": "grafana",
+        "phase": "Pending",
+        "ready": false,
+        "restarts": 0,
+        "deletingAt": null
+      },
+      {
+        "name": "identity-d5db6fc98-2pp7m",
+        "uid": "bd4932ce-371b-4626-af30-d94f2c7038dc",
+        "app": "identity",
+        "phase": "Running",
+        "ready": true,
+        "restarts": 0,
+        "deletingAt": null
+      },
+      {
+        "name": "kube-state-metrics-5969947678-jfdc5",
+        "uid": "82a2c9ee-31bc-440b-b22a-37cfac7a24cb",
+        "app": "kube-state-metrics",
+        "phase": "Pending",
+        "ready": false,
+        "restarts": 0,
+        "deletingAt": null
+      },
+      {
+        "name": "kube-state-metrics-5969947678-p4tdg",
+        "uid": "385170a0-057e-47c0-89f8-0947bf9f5d93",
+        "app": "kube-state-metrics",
+        "phase": "Pending",
+        "ready": false,
+        "restarts": 0,
+        "deletingAt": "2026-11-12T20:17:13+00:00"
+      },
+      {
+        "name": "lending-5696cd977d-t5rt5",
+        "uid": "2c2ba76d-89bf-42cd-8e96-76da73271379",
+        "app": "lending",
+        "phase": "Running",
+        "ready": true,
+        "restarts": 0,
+        "deletingAt": null
+      },
+      {
+        "name": "notifications-c8986fb67-df4fm",
+        "uid": "d1f5391a-a46b-48a2-be83-0b67c97dc488",
+        "app": "notifications",
+        "phase": "Running",
+        "ready": true,
+        "restarts": 0,
+        "deletingAt": null
+      },
+      {
+        "name": "postgres-0",
+        "uid": "6693fa06-0460-46eb-b8e0-5a56b5b07630",
+        "app": "postgres",
+        "phase": "Running",
+        "ready": true,
+        "restarts": 0,
+        "deletingAt": null
+      },
+      {
+        "name": "prometheus-84bc64bb94-4zjmp",
+        "uid": "845e3b4a-2e5a-43cf-add9-44002f0c80c1",
+        "app": "prometheus",
+        "phase": "Pending",
+        "ready": false,
+        "restarts": 0,
+        "deletingAt": null
+      },
+      {
+        "name": "prometheus-84bc64bb94-qjsz6",
+        "uid": "8352ed86-7732-405e-8a69-767690ed20ec",
+        "app": "prometheus",
+        "phase": "Pending",
+        "ready": false,
+        "restarts": 0,
+        "deletingAt": "2026-11-12T20:17:13+00:00"
+      },
+      {
+        "name": "rabbitmq-0",
+        "uid": "1630047b-8c12-4f22-9c67-f43ae7bc02f5",
+        "app": "rabbitmq",
+        "phase": "Running",
+        "ready": true,
+        "restarts": 0,
+        "deletingAt": null
+      },
+      {
+        "name": "reputation-7bb6c79778-br6wv",
+        "uid": "db3221cc-8c71-4912-9f59-873f12301271",
+        "app": "reputation",
+        "phase": "Running",
+        "ready": true,
+        "restarts": 0,
+        "deletingAt": null
+      },
+      {
+        "name": "web-bddb65f79-t7d5z",
+        "uid": "62065c7d-ab25-4e31-b985-56c175deddf8",
+        "app": "web",
+        "phase": "Running",
+        "ready": true,
+        "restarts": 0,
+        "deletingAt": null
+      }
+    ],
+    "hpas": [
+      {
+        "name": "catalog",
+        "current": 3,
+        "desired": 4,
+        "min": 1,
+        "max": 4,
+        "cpuPercent": 330,
+        "conditions": "AbleToScale=True: SucceededRescale · ScalingActive=True: ValidMetricFound · ScalingLimited=True: TooManyReplicas"
+      },
+      {
+        "name": "gateway",
+        "current": 2,
+        "desired": 3,
+        "min": 1,
+        "max": 3,
+        "cpuPercent": 250,
+        "conditions": "AbleToScale=True: SucceededRescale · ScalingActive=True: ValidMetricFound · ScalingLimited=True: TooManyReplicas"
+      }
+    ],
+    "charts": {},
+    "metricsAt": null
+  },
+  "events": [
+    {
+      "id": 20,
+      "at": "2026-11-12T20:22:39.1251487+00:00",
+      "kind": "phase",
+      "message": "Наблюдение снижения реплик"
+    },
+    {
+      "id": 19,
+      "at": "2026-11-12T20:22:15.1560178+00:00",
+      "kind": "pod_ready",
+      "message": "catalog-6f977d4d76-h2p9k перешёл в Ready и принимает трафик."
+    },
+    {
+      "id": 18,
+      "at": "2026-11-12T20:22:10.177989+00:00",
+      "kind": "pod_ready",
+      "message": "gateway-56c75d44d-shd47 перешёл в Ready и принимает трафик."
+    },
+    {
+      "id": 17,
+      "at": "2026-11-12T20:22:09.1288977+00:00",
+      "kind": "phase",
+      "message": "Клиенты уходят"
+    },
+    {
+      "id": 16,
+      "at": "2026-11-12T20:22:05.1744956+00:00",
+      "kind": "pod_created",
+      "message": "Новый Pod gateway-56c75d44d-shd47 · Pending, Ready=False."
+    },
+    {
+      "id": 15,
+      "at": "2026-11-12T20:22:05.1636776+00:00",
+      "kind": "pod_created",
+      "message": "Новый Pod catalog-6f977d4d76-h2p9k · Running, Ready=False."
+    },
+    {
+      "id": 14,
+      "at": "2026-11-12T20:21:10.1666022+00:00",
+      "kind": "pod_ready",
+      "message": "gateway-56c75d44d-kljwx перешёл в Ready и принимает трафик."
+    },
+    {
+      "id": 13,
+      "at": "2026-11-12T20:21:10.158614+00:00",
+      "kind": "pod_ready",
+      "message": "catalog-6f977d4d76-skcfc перешёл в Ready и принимает трафик."
+    },
+    {
+      "id": 12,
+      "at": "2026-11-12T20:21:10.1527113+00:00",
+      "kind": "pod_ready",
+      "message": "catalog-6f977d4d76-nspv2 перешёл в Ready и принимает трафик."
+    },
+    {
+      "id": 11,
+      "at": "2026-11-12T20:21:09.1290999+00:00",
+      "kind": "phase",
+      "message": "Пиковая нагрузка"
+    },
+    {
+      "id": 10,
+      "at": "2026-11-12T20:21:05.1794902+00:00",
+      "kind": "pod_created",
+      "message": "Новый Pod gateway-56c75d44d-kljwx · Running, Ready=False."
+    },
+    {
+      "id": 9,
+      "at": "2026-11-12T20:21:05.1713479+00:00",
+      "kind": "pod_created",
+      "message": "Новый Pod catalog-6f977d4d76-skcfc · Pending, Ready=False."
+    },
+    {
+      "id": 8,
+      "at": "2026-11-12T20:21:05.1646829+00:00",
+      "kind": "pod_created",
+      "message": "Новый Pod catalog-6f977d4d76-nspv2 · Running, Ready=False."
+    },
+    {
+      "id": 7,
+      "at": "2026-11-12T20:20:39.1304848+00:00",
+      "kind": "phase",
+      "message": "Приход клиентов"
+    },
+    {
+      "id": 6,
+      "at": "2026-11-12T20:20:09.1355534+00:00",
+      "kind": "phase",
+      "message": "Исходная нагрузка"
+    },
+    {
+      "id": 5,
+      "at": "2026-11-12T20:20:09.0074045+00:00",
+      "kind": "run_start",
+      "message": "Запуск wave, пик 300, длительность 300 с."
+    },
+    {
+      "id": 4,
+      "at": "2026-11-12T20:18:50.1670638+00:00",
+      "kind": "pod_ready",
+      "message": "demo-control-8664c7db57-87rpn перешёл в Ready и принимает трафик."
+    },
+    {
+      "id": 3,
+      "at": "2026-11-12T20:10:01.1610819+00:00",
+      "kind": "prepared",
+      "message": "Готовы 300 клиентов. Созданы только собственные тестовые аккаунты и книги."
+    },
+    {
+      "id": 2,
+      "at": "2026-11-12T20:03:13.4636098+00:00",
+      "kind": "prepare",
+      "message": "Подготовка 300 тестовых клиентов. Анонимные запросы ограничены 90/мин; аккаунты используются повторно."
+    },
+    {
+      "id": 1,
+      "at": "2026-11-12T20:01:49.4941424+00:00",
+      "kind": "pod_ready",
+      "message": "demo-control-84ccb94ddc-dn76p перешёл в Ready и принимает трафик."
+    }
+  ]
+}

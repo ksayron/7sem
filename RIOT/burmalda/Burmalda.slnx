@@ -10,6 +10,7 @@
     <Project Path="src/Gateway/Burmalda.Gateway/Burmalda.Gateway.csproj" />
   </Folder>
   <Folder Name="/Services/">
+    <Project Path="src/Services/DemoControl/Burmalda.DemoControl/Burmalda.DemoControl.csproj" />
     <File Path="docker-compose.yml" />
     <Project Path="src/Services/Catalog/Burmalda.Catalog.Api/Burmalda.Catalog.Api.csproj" />
     <Project Path="src/Services/ConcurrencyLab/Burmalda.ConcurrencyLab.Api/Burmalda.ConcurrencyLab.Api.csproj" />
@@ -37,6 +38,8 @@
     <Project Path="src/Services/LibraryGame/Burmalda.LibraryGame.BrokerB/Burmalda.LibraryGame.BrokerB.csproj" />
   </Folder>
   <Folder Name="/Tests/">
+    <Project Path="tests/Burmalda.DemoControl.Tests/Burmalda.DemoControl.Tests.csproj" />
+    <Project Path="tests/Burmalda.Catalog.IntegrationTests/Burmalda.Catalog.IntegrationTests.csproj" />
     <Project Path="tests/Burmalda.Domain.Tests/Burmalda.Domain.Tests.csproj" />
     <Project Path="tests/Burmalda.LibraryGame.Tests/Burmalda.LibraryGame.Tests.csproj" />
   </Folder>

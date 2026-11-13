@@ -1,6 +1,6 @@
 # ЛР №6. Тихая библиотека: Publish/Subscribe на C#
 
-> Текущий основной запуск: `docker compose --profile pubsub up -d --build`.
+> Текущий основной запуск: `docker compose -f docker-compose.legacy.yml --profile pubsub up -d --build`.
 > Скрипты по умолчанию управляют контейнерами; исходный процессный режим включается
 > флагом `-Local`. См. [инструкцию ЛР7+ЛР8](labs-7-8-docker.md).
 

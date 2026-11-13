@@ -17,7 +17,7 @@ networks:
   burmalda:
     name: $taskProject
 "@ | Set-Content -LiteralPath $taskOverride -Encoding utf8
-$taskArgs = @('compose','-p',$taskProject,'-f',(Join-Path $taskRoot 'docker-compose.yml'),'-f',$taskOverride)
+$taskArgs = @('compose','-f','docker-compose.legacy.yml','-p',$taskProject,'-f',(Join-Path $taskRoot 'docker-compose.legacy.yml'),'-f',$taskOverride)
 $taskPassed = $false
 $taskIsolationVerified = $false
 Push-Location $taskRoot

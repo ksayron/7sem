@@ -4,7 +4,7 @@ $ErrorActionPreference = 'Stop'
 $taskRoot = Split-Path $PSScriptRoot -Parent
 if(!$Local){
     Push-Location $taskRoot
-    try {docker compose restart concurrency-lab; if($LASTEXITCODE){throw 'Laboratory API restart failed.'}}
+    try {docker compose -f docker-compose.legacy.yml restart concurrency-lab; if($LASTEXITCODE){throw 'Laboratory API restart failed.'}}
     finally {Pop-Location}
     return
 }
@@ -21,7 +21,7 @@ $taskPrevious = @{}
 foreach ($taskKey in $taskKeys) { $taskPrevious[$taskKey] = [Environment]::GetEnvironmentVariable($taskKey,'Process') }
 Push-Location $taskRoot
 try {
-    $taskCompose = docker compose config --format json | ConvertFrom-Json
+    $taskCompose = docker compose -f docker-compose.legacy.yml config --format json | ConvertFrom-Json
     $taskAdmin = $taskCompose.services.postgres.environment.POSTGRES_USER
     $taskPassword = $taskCompose.services.postgres.environment.POSTGRES_PASSWORD
     $taskPort = $taskCompose.services.postgres.ports[0].published

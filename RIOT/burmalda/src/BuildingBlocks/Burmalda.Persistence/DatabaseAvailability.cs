@@ -48,6 +48,9 @@ public sealed class FailoverConnectionInterceptor(TimeSpan? waitBudget = null, T
 
     public async Task Open(DbConnection connection, CancellationToken ct)
     {
+        // Npgsql's schema existence check invokes interceptors even when a schema-lock
+        // connection is already open. Retain that session and its advisory lock.
+        if (connection.State == System.Data.ConnectionState.Open) return;
         using var deadline = CancellationTokenSource.CreateLinkedTokenSource(ct);
         deadline.CancelAfter(budget);
         Exception? last = null;

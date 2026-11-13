@@ -1,0 +1,366 @@
+{
+  "unit": {
+    "counters": {
+      "total": "60",
+      "executed": "60",
+      "passed": "60",
+      "failed": "0",
+      "error": "0",
+      "timeout": "0",
+      "aborted": "0",
+      "inconclusive": "0",
+      "passedButRunAborted": "0",
+      "notRunnable": "0",
+      "notExecuted": "0",
+      "disconnected": "0",
+      "warning": "0",
+      "completed": "0",
+      "inProgress": "0",
+      "pending": "0"
+    },
+    "tests": [
+      {
+        "name": "Burmalda.Domain.Tests.ReplicationLabTests.Unknown_commit_outcome_is_recorded_without_retry",
+        "outcome": "Passed",
+        "duration": "00:00:00.1218065"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.CatalogConfigurationTests.Invalid_lending_terms_are_rejected(price: 10, days: 91)",
+        "outcome": "Passed",
+        "duration": "00:00:00.0001577"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.ReplicationLabTests.Invalid_input_and_empty_cycles_do_not_modify_database",
+        "outcome": "Passed",
+        "duration": "00:00:00.0255951"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.DatabaseLabTests.Persisted_state_matches_transaction_outcome(mode: Transaction, failure: None, status: \"Committed\", loans: 1, available: False)",
+        "outcome": "Passed",
+        "duration": "00:00:00.4394307"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.ConcurrencyLabTests.Sequential_unsafe_requests_have_no_lost_updates",
+        "outcome": "Passed",
+        "duration": "00:00:00.3166520"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.ReplicationLabTests.Lsn_comparison_is_numeric_across_segments(replay: \"0/F\", required: \"0/10\", expected: False)",
+        "outcome": "Passed",
+        "duration": "00:00:00.0198363"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.DatabaseLabTests.Saga_commits_steps_and_compensates_in_reverse_order(failure: Points, steps: 3, status: \"Compensated\", loans: 0, available: True, points: 0)",
+        "outcome": "Passed",
+        "duration": "00:00:00.0854972"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.DatabaseAvailabilityTests.Npgsql_multi_host_exhaustion_is_unavailable_even_when_provider_marks_it_non_transient",
+        "outcome": "Passed",
+        "duration": "00:00:00.0042065"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.ReplicationLabTests.Docker_node_arguments_are_allowlisted(node: \"bogus-node\", status: 400)",
+        "outcome": "Passed",
+        "duration": "00:00:00.0028140"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.CatalogConfigurationTests.Mode_uses_configured_value_or_local_default(value: \" kubernetes \", expected: \"kubernetes\")",
+        "outcome": "Passed",
+        "duration": "00:00:00.0000137"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.LoanTests.Invalid_handover_code_does_not_activate_loan",
+        "outcome": "Passed",
+        "duration": "00:00:00.0011239"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.DatabaseLabTests.Persisted_state_matches_transaction_outcome(mode: NoTransaction, failure: AfterOperation1, status: \"Partial\", loans: 1, available: True)",
+        "outcome": "Passed",
+        "duration": "00:00:00.4211893"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.DatabaseLabTests.Unsafe_check_then_write_creates_two_loans_for_one_copy",
+        "outcome": "Passed",
+        "duration": "00:00:00.3801473"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.ReplicationLabTests.Background_failover_resumes_from_durable_authority_after_restart",
+        "outcome": "Passed",
+        "duration": "00:00:00.0505588"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.ReplicationLabTests.Promotion_requires_verified_stopped_source",
+        "outcome": "Passed",
+        "duration": "00:00:00.0543576"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.ReplicationLabTests.Second_coordinator_cannot_open_same_journal_root",
+        "outcome": "Passed",
+        "duration": "00:00:00.0028401"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.LoanTests.Stranger_cannot_accept_request",
+        "outcome": "Passed",
+        "duration": "00:00:00.0019842"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.LoanTests.Only_active_due_loan_becomes_overdue",
+        "outcome": "Passed",
+        "duration": "00:00:00.0143259"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.CatalogConfigurationTests.Mode_uses_configured_value_or_local_default(value: null, expected: \"local\")",
+        "outcome": "Passed",
+        "duration": "00:00:00.0146277"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.ReplicationLabTests.Both_nodes_unavailable_reject_requests_without_mutating_data",
+        "outcome": "Passed",
+        "duration": "00:00:00.0086810"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.ReplicationLabTests.Paused_stale_standby_cannot_be_promoted_and_source_can_be_restored",
+        "outcome": "Passed",
+        "duration": "00:00:00.0570527"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.DatabaseLabTests.Database_enforces_nonnegative_points_and_existing_copy_foreign_key",
+        "outcome": "Passed",
+        "duration": "00:00:00.0634279"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.ReplicationLabTests.Recovery_failure_preserves_authority_and_can_resume_after_coordinator_restart",
+        "outcome": "Passed",
+        "duration": "00:00:00.0770927"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.ReplicationLabTests.Background_failover_preserves_replay_and_fencing_guards",
+        "outcome": "Passed",
+        "duration": "00:00:00.0343356"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.ReplicationLabTests.Sessions_observe_existing_database_and_never_initialize_inventory",
+        "outcome": "Passed",
+        "duration": "00:00:00.0189274"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.ReplicationLabTests.Committed_update_and_replay_are_separate_and_versions_prevent_lost_updates",
+        "outcome": "Passed",
+        "duration": "00:00:00.0177347"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.CatalogConfigurationTests.Valid_book_and_copy_are_accepted",
+        "outcome": "Passed",
+        "duration": "00:00:00.0007207"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.LoanTests.Owner_can_accept_and_borrower_can_activate_with_code",
+        "outcome": "Passed",
+        "duration": "00:00:00.0045673"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.CatalogConfigurationTests.Invalid_lending_terms_are_rejected(price: 10, days: 0)",
+        "outcome": "Passed",
+        "duration": "00:00:00.0000070"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.CatalogConfigurationTests.Mode_uses_configured_value_or_local_default(value: \"compose\", expected: \"compose\")",
+        "outcome": "Passed",
+        "duration": "00:00:00.0003591"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.DatabaseLabTests.Cancelled_transaction_rolls_back_the_first_saved_operation",
+        "outcome": "Passed",
+        "duration": "00:00:00.0587615"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.ReplicationLabTests.Background_failover_promotes_without_a_lab_read_or_update",
+        "outcome": "Passed",
+        "duration": "00:00:00.0436517"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.ReplicationLabTests.Unplanned_loss_without_durable_fencing_boundary_fails_closed",
+        "outcome": "Passed",
+        "duration": "00:00:00.0084438"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.DatabaseLabTests.Persisted_state_matches_transaction_outcome(mode: NoTransaction, failure: None, status: \"Saved\", loans: 1, available: False)",
+        "outcome": "Passed",
+        "duration": "00:00:00.8661107"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.DatabaseLabTests.Lock_allows_exactly_one_of_two_clients_to_reserve_the_copy",
+        "outcome": "Passed",
+        "duration": "00:00:00.2391205"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.ReplicationLabTests.Lsn_comparison_is_numeric_across_segments(replay: \"1/00000000\", required: \"0/FFFFFFFF\", expected: True)",
+        "outcome": "Passed",
+        "duration": "00:00:00.0026530"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.DatabaseAvailabilityTests.Exhausted_budget_returns_a_classifiable_unavailable_error",
+        "outcome": "Passed",
+        "duration": "00:00:00.0436734"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.CatalogConfigurationTests.Invalid_lending_terms_are_rejected(price: -1, days: 14)",
+        "outcome": "Passed",
+        "duration": "00:00:00.0002545"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.ConcurrencyLabTests.Critical_section_preserves_every_reservation(mode: Lock)",
+        "outcome": "Passed",
+        "duration": "00:00:00.9279087"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.ConcurrencyLabTests.Unsafe_mode_exposes_lost_updates",
+        "outcome": "Passed",
+        "duration": "00:00:00.0632146"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.ReplicationLabTests.Docker_node_arguments_are_allowlisted(node: \"\", status: 400)",
+        "outcome": "Passed",
+        "duration": "00:00:00.0035280"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.ReplicationLabTests.Monitor_does_not_interrupt_an_operator_action",
+        "outcome": "Passed",
+        "duration": "00:00:00.0442707"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.DatabaseLabTests.Saga_commits_steps_and_compensates_in_reverse_order(failure: None, steps: 3, status: \"Completed\", loans: 1, available: False, points: 10)",
+        "outcome": "Passed",
+        "duration": "00:00:00.1091759"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.DatabaseAvailabilityTests.Retries_connection_open_until_a_writer_is_available",
+        "outcome": "Passed",
+        "duration": "00:00:00.0574372"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.LoanTests.Return_requires_borrower_then_owner",
+        "outcome": "Passed",
+        "duration": "00:00:00.0007836"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.DatabaseLabTests.Saga_commits_steps_and_compensates_in_reverse_order(failure: Loan, steps: 5, status: \"Compensated\", loans: 0, available: True, points: 0)",
+        "outcome": "Passed",
+        "duration": "00:00:00.1621227"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.ReplicationLabTests.Cluster_gate_is_shared_across_sessions",
+        "outcome": "Passed",
+        "duration": "00:00:00.0296624"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.ReplicationLabTests.Two_cycles_reverse_roles_and_restore_measured_availability",
+        "outcome": "Passed",
+        "duration": "00:00:00.1592991"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.ArchitectureTests.Service_assemblies_do_not_reference_other_service_assemblies",
+        "outcome": "Passed",
+        "duration": "00:00:00.0116238"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.ReplicationLabTests.Lsn_comparison_is_numeric_across_segments(replay: \"0/10\", required: \"0/F\", expected: True)",
+        "outcome": "Passed",
+        "duration": "00:00:00.0018607"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.DatabaseLabTests.Persisted_state_matches_transaction_outcome(mode: Transaction, failure: BeforeCommit, status: \"RolledBack\", loans: 0, available: True)",
+        "outcome": "Passed",
+        "duration": "00:00:00.4128875"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.DatabaseLabTests.Unknown_run_is_reported_without_mutating_database",
+        "outcome": "Passed",
+        "duration": "00:00:01.2667768"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.CatalogConfigurationTests.Missing_authors_or_location_are_rejected_without_throwing",
+        "outcome": "Passed",
+        "duration": "00:00:00.0099787"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.DatabaseAvailabilityTests.Caller_cancellation_is_preserved",
+        "outcome": "Passed",
+        "duration": "00:00:00.0335298"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.DatabaseAvailabilityTests.Permanent_authentication_or_configuration_error_is_not_retried",
+        "outcome": "Passed",
+        "duration": "00:00:00.0032260"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.DatabaseAvailabilityTests.An_open_schema_lock_connection_is_retained",
+        "outcome": "Passed",
+        "duration": "00:00:00.0012071"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.ReplicationLabTests.Background_monitor_does_not_promote_unplanned_or_unfenced_loss",
+        "outcome": "Passed",
+        "duration": "00:00:00.0051076"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.CatalogConfigurationTests.Mode_uses_configured_value_or_local_default(value: \" \", expected: \"local\")",
+        "outcome": "Passed",
+        "duration": "00:00:00.0000155"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.ConcurrencyLabTests.Critical_section_preserves_every_reservation(mode: SemaphoreSlim)",
+        "outcome": "Passed",
+        "duration": "00:00:00.9473722"
+      },
+      {
+        "name": "Burmalda.Domain.Tests.DatabaseLabTests.Persisted_state_matches_transaction_outcome(mode: Transaction, failure: AfterOperation1, status: \"RolledBack\", loans: 0, available: True)",
+        "outcome": "Passed",
+        "duration": "00:00:00.4052075"
+      }
+    ]
+  },
+  "replicas": {
+    "counters": {
+      "total": "4",
+      "executed": "4",
+      "passed": "4",
+      "failed": "0",
+      "error": "0",
+      "timeout": "0",
+      "aborted": "0",
+      "inconclusive": "0",
+      "passedButRunAborted": "0",
+      "notRunnable": "0",
+      "notExecuted": "0",
+      "disconnected": "0",
+      "warning": "0",
+      "completed": "0",
+      "inProgress": "0",
+      "pending": "0"
+    },
+    "tests": [
+      {
+        "name": "Burmalda.Catalog.IntegrationTests.ReplicaTests.Competing_reservations_have_one_winner_and_return_refreshes_projection",
+        "outcome": "Passed",
+        "duration": "00:00:00.6090835"
+      },
+      {
+        "name": "Burmalda.Catalog.IntegrationTests.ReplicaTests.Concurrent_redelivery_commits_one_inbox_and_one_domain_effect",
+        "outcome": "Passed",
+        "duration": "00:00:04.7249258"
+      },
+      {
+        "name": "Burmalda.Catalog.IntegrationTests.ReplicaTests.Three_outbox_publishers_do_not_publish_the_same_batch_concurrently",
+        "outcome": "Passed",
+        "duration": "00:00:03.0108613"
+      },
+      {
+        "name": "Burmalda.Catalog.IntegrationTests.ReplicaTests.Three_instances_bootstrap_one_empty_database",
+        "outcome": "Passed",
+        "duration": "00:00:00.6851079"
+      }
+    ]
+  }
+}

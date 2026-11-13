@@ -1,0 +1,41 @@
+{
+  "startedAtUtc": "2026-11-12T20:09:46.641Z",
+  "base": "http://localhost:5300",
+  "checks": [
+    "client-and-feature-configuration",
+    "configuration-auth-validation-not-found-and-forbidden",
+    "no-gateway-routes-to-learning-services",
+    "parallel-http-copy-creation-keeps-book-projection-consistent",
+    "book-copy-loan-handover-return-and-projection",
+    "competing-borrowers-one-copy-one-winner",
+    "notifications-and-reputation"
+  ],
+  "fixtures": {
+    "bookId": "c4484c2b-a499-45b3-9301-6f42e659b344",
+    "copyId": "76b359af-7fcd-4618-806c-8b9b967f49d1"
+  },
+  "runtime": {
+    "mode": "kubernetes",
+    "instance": "catalog-6f977d4d76-x6gm8"
+  },
+  "parallelCopies": {
+    "bookId": "f0937961-9e13-415e-8304-5b79dcb37799",
+    "count": 6,
+    "availableCopies": 6,
+    "minimumPrice": 1
+  },
+  "competingRequests": [
+    {
+      "sagaId": "5bada824-ab6e-4364-8b11-96daf692a624",
+      "state": 2,
+      "loanId": "ff69f5d3-4fbe-481c-8f89-5925f18ca2c9"
+    },
+    {
+      "sagaId": "178d4d10-13ea-4b07-9f29-93088944e401",
+      "state": 4,
+      "loanId": null
+    }
+  ],
+  "success": true,
+  "finishedAtUtc": "2026-11-12T20:09:57.361Z"
+}

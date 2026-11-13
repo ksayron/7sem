@@ -1,4 +1,4 @@
-﻿param([int]$PostgresPort = 5547, [int]$ReplicaPort = 5548, [switch]$Full, [switch]$NoBuild, [switch]$ReplicationOnly, [switch]$Local)
+param([int]$PostgresPort = 5547, [int]$ReplicaPort = 5548, [switch]$Full, [switch]$NoBuild, [switch]$ReplicationOnly, [switch]$Local)
 $ErrorActionPreference = 'Stop'
 $taskRoot = Split-Path $PSScriptRoot -Parent
 if (!$Local) {
@@ -7,10 +7,10 @@ if (!$Local) {
     try {
         if($PSBoundParameters.ContainsKey('PostgresPort')){$env:POSTGRES_PORT="$PostgresPort"}
         if($PSBoundParameters.ContainsKey('ReplicaPort')){$env:POSTGRES_REPLICA_PORT="$ReplicaPort"}
-        $taskArgs = @('compose','up','-d', $(if($NoBuild){'--no-build'}else{'--build'}))
+        $taskArgs = @('compose','-f','docker-compose.legacy.yml','up','-d', $(if($NoBuild){'--no-build'}else{'--build'}))
         docker @taskArgs
-        if ($LASTEXITCODE) { throw 'Docker lab startup failed; inspect docker compose logs.' }
-        Write-Host '[info] http://localhost:5300/raft-lab · docker compose ps'
+        if ($LASTEXITCODE) { throw 'Docker lab startup failed; inspect docker compose -f docker-compose.legacy.yml logs.' }
+        Write-Host '[info] http://localhost:5300/raft-lab · docker compose -f docker-compose.legacy.yml ps'
     } finally {
         $env:POSTGRES_PORT=$taskPreviousPorts.POSTGRES_PORT
         $env:POSTGRES_REPLICA_PORT=$taskPreviousPorts.POSTGRES_REPLICA_PORT
@@ -19,7 +19,7 @@ if (!$Local) {
     return
 }
 $taskLogs = Join-Path $taskRoot '.artifacts/lab-runtime'
-$taskEnvironmentNames = @('ASPNETCORE_ENVIRONMENT','POSTGRES_PORT','POSTGRES_REPLICA_PORT','ConnectionStrings__Database',
+$taskEnvironmentNames = @('ASPNETCORE_ENVIRONMENT','Features__LearningLabs','POSTGRES_PORT','POSTGRES_REPLICA_PORT','ConnectionStrings__Database',
     'ReplicationLab__JournalRoot','ReplicationLab__ComposeRoot','ReplicationLab__Nodes__postgres','ReplicationLab__Nodes__postgres-replica','ReplicationLab__CatalogPassword')
 $taskPreviousEnvironment = @{}
 foreach ($taskKey in $taskEnvironmentNames) { $taskPreviousEnvironment[$taskKey] = [Environment]::GetEnvironmentVariable($taskKey, 'Process') }
@@ -31,37 +31,37 @@ try {
     $env:POSTGRES_PORT = "$PostgresPort"
     $env:POSTGRES_REPLICA_PORT = "$ReplicaPort"
     # --no-deps also starts a surviving promoted node when the old primary is fenced.
-    docker compose up -d --no-deps postgres postgres-replica
+    docker compose -f docker-compose.legacy.yml up -d --no-deps postgres postgres-replica
     if ($LASTEXITCODE) { throw 'Docker startup failed.' }
-    $taskCompose = docker compose config --format json | ConvertFrom-Json
+    $taskCompose = docker compose -f docker-compose.legacy.yml config --format json | ConvertFrom-Json
     $taskAdmin = $taskCompose.services.postgres.environment.POSTGRES_USER
     $taskPassword = $taskCompose.services.postgres.environment.POSTGRES_PASSWORD
     $taskWriter = $null
     for ($taskAttempt = 0; $taskAttempt -lt 45 -and !$taskWriter; $taskAttempt++) {
         foreach ($taskNode in @('postgres', 'postgres-replica')) {
-            $taskRole = docker compose exec -T $taskNode psql -U $taskAdmin -d postgres -Atc "SELECT NOT pg_is_in_recovery() AND NOT current_setting('default_transaction_read_only')::boolean" 2>$null
+            $taskRole = docker compose -f docker-compose.legacy.yml exec -T $taskNode psql -U $taskAdmin -d postgres -Atc "SELECT NOT pg_is_in_recovery() AND NOT current_setting('default_transaction_read_only')::boolean" 2>$null
             if ($LASTEXITCODE -eq 0 -and $taskRole -eq 't') { $taskWriter = $taskNode; break }
         }
         if (!$taskWriter) { Start-Sleep -Seconds 1 }
     }
     if ($taskWriter) {
-        if ($taskWriter -eq 'postgres') { docker compose exec -T postgres sh /docker-entrypoint-initdb.d/10-init-databases.sh | Out-Null }
-        else { docker compose exec -T postgres-replica sh /opt/replication/provision.sh | Out-Null }
+        if ($taskWriter -eq 'postgres') { docker compose -f docker-compose.legacy.yml exec -T postgres sh /docker-entrypoint-initdb.d/10-init-databases.sh | Out-Null }
+        else { docker compose -f docker-compose.legacy.yml exec -T postgres-replica sh /opt/replication/provision.sh | Out-Null }
         if ($LASTEXITCODE) { throw 'Database/replication provisioning failed.' }
         Write-Host "[info] PostgreSQL writable node: $taskWriter" -ForegroundColor Cyan
         foreach ($taskNode in @('postgres', 'postgres-replica')) {
-            docker compose exec -T $taskWriter test -f "/control/$taskNode.fenced" 2>$null
+            docker compose -f docker-compose.legacy.yml exec -T $taskWriter test -f "/control/$taskNode.fenced" 2>$null
             if ($LASTEXITCODE -eq 0) { Write-Warning "$taskNode is fenced; use recovery controls."; continue }
             $taskReady = $false
             for ($taskAttempt = 0; $taskAttempt -lt 45 -and !$taskReady; $taskAttempt++) {
-                docker compose exec -T $taskNode pg_isready -U $taskAdmin -d postgres 2>$null | Out-Null
+                docker compose -f docker-compose.legacy.yml exec -T $taskNode pg_isready -U $taskAdmin -d postgres 2>$null | Out-Null
                 $taskReady = $LASTEXITCODE -eq 0
                 if (!$taskReady) { Start-Sleep -Seconds 1 }
             }
-            if (!$taskReady) { throw "$taskNode did not become ready; inspect docker compose logs $taskNode." }
+            if (!$taskReady) { throw "$taskNode did not become ready; inspect docker compose -f docker-compose.legacy.yml logs $taskNode." }
         }
     } else { Write-Warning 'No writable node. Start the lab and use recovery controls; fenced volumes are preserved.' }
-    if (!$ReplicationOnly) { docker compose up -d --wait rabbitmq; if ($LASTEXITCODE) { throw 'RabbitMQ startup failed.' } }
+    if (!$ReplicationOnly) { docker compose -f docker-compose.legacy.yml up -d --wait rabbitmq; if ($LASTEXITCODE) { throw 'RabbitMQ startup failed.' } }
     if (!$NoBuild) {
         dotnet build Burmalda.slnx -m:1 -p:UseSharedCompilation=false --nologo
         if ($LASTEXITCODE) { throw 'Build failed.' }
@@ -70,6 +70,7 @@ try {
     if ($Full) { $taskProjects += @('src/Services/Identity/Burmalda.Identity.Api', 'src/Services/Catalog/Burmalda.Catalog.Api', 'src/Services/Lending/Burmalda.Lending.Api', 'src/Services/Economy/Burmalda.Economy.Api', 'src/Services/Reputation/Burmalda.Reputation.Api', 'src/Services/Notifications/Burmalda.Notifications.Api') }
     $taskProcesses = @()
     $env:ASPNETCORE_ENVIRONMENT = 'Development'
+    $env:Features__LearningLabs = 'true'
     $env:ReplicationLab__JournalRoot = Join-Path $taskRoot '.artifacts/streaming-replication-raft'
     $env:ReplicationLab__ComposeRoot = $taskRoot
     $env:ReplicationLab__Nodes__postgres = "Host=127.0.0.1;Port=$PostgresPort;Database=postgres;Username=$taskAdmin;Password=$taskPassword"
@@ -92,6 +93,14 @@ try {
             }
         }
         if ($taskName -eq 'Burmalda.Web') {
+            # WASM reads HTTP JSON, rather than the host's environment variables.
+            $taskWebSettings = Join-Path $taskDirectory 'wwwroot/appsettings.Development.json'
+            if (Test-Path $taskWebSettings) {
+                if ((Get-Content $taskWebSettings -Raw | ConvertFrom-Json).GeneratedBy -ne 'Start-Lab.ps1') {
+                    throw 'Preserve your custom appsettings.Development.json elsewhere before running the archived lab.'
+                }
+            }
+            @{GeneratedBy='Start-Lab.ps1';Features=@{LearningLabs=$true}} | ConvertTo-Json | Set-Content $taskWebSettings
             $taskProcess = Start-Process dotnet -ArgumentList @('run', '--no-build', '--no-restore', '--project', "`"$taskDirectory`"") -WorkingDirectory $taskRoot -WindowStyle Hidden -PassThru -RedirectStandardOutput (Join-Path $taskLogs "$taskName.log") -RedirectStandardError (Join-Path $taskLogs "$taskName.err")
         } else {
             $taskDll = Join-Path $taskDirectory "bin/Debug/net9.0/$taskName.dll"

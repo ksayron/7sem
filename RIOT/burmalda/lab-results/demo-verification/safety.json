@@ -1,0 +1,96 @@
+{
+  "startedAt": "2026-11-12T21:03:01.193Z",
+  "checks": [
+    "reused-fixtures-refreshed",
+    "concurrent-run-rejected",
+    "manual-client-limit-applied",
+    "mixed-operations-drained-and-stop-idempotent",
+    "emergency-stop-preserved",
+    "normal-site-api-affected-by-fault",
+    "site-remains-reachable",
+    "fault-expired-with-controller-offline",
+    "restart-preserved-fixtures-and-did-not-resume",
+    "interrupted-result-persisted"
+  ],
+  "samples": [
+    {
+      "at": "2026-11-12T21:04:04.869Z",
+      "engine": {
+        "run": {
+          "id": "97be02b6-feff-467d-a4da-dc49f2ce3020",
+          "options": {
+            "scenario": "mixed",
+            "peak": 30,
+            "rampSeconds": 5,
+            "holdSeconds": 30,
+            "durationSeconds": 245
+          },
+          "startedAt": "2026-11-12T21:03:22.4707296+00:00",
+          "state": "running",
+          "finishedAt": null
+        },
+        "target": 30,
+        "active": 30,
+        "phase": "Пиковая нагрузка",
+        "preparation": {
+          "running": false,
+          "ready": 30,
+          "requested": 30,
+          "error": null
+        },
+        "sentRps": 11.933333333333334,
+        "successRps": 11.933333333333334,
+        "p95Ms": 14.3885,
+        "errorPercent": 0,
+        "completedOperations": 4,
+        "failedOperations": 0,
+        "pendingOperations": 1,
+        "unresolved": [
+          "Клиент 1, saga 6d22f274-546d-4b41-9262-b22ac16601d0: ожидание выдачи"
+        ],
+        "outcomes": {
+          "success": 493
+        },
+        "faults": []
+      }
+    },
+    {
+      "at": "2026-11-12T21:04:54.667Z",
+      "engine": {
+        "run": {
+          "id": "6869ed29-156a-43ca-a987-5e9c2c3123e4",
+          "options": {
+            "scenario": "wave",
+            "peak": 3,
+            "rampSeconds": 5,
+            "holdSeconds": 30,
+            "durationSeconds": 245
+          },
+          "startedAt": "2026-11-12T21:04:22.2280931+00:00",
+          "state": "interrupted",
+          "finishedAt": "2026-11-12T21:04:26.2001269+00:00"
+        },
+        "target": 0,
+        "active": 0,
+        "phase": "Ожидание запуска",
+        "preparation": {
+          "running": false,
+          "ready": 300,
+          "requested": 300,
+          "error": null
+        },
+        "sentRps": 0,
+        "successRps": 0,
+        "p95Ms": 0,
+        "errorPercent": 0,
+        "completedOperations": 0,
+        "failedOperations": 0,
+        "pendingOperations": 0,
+        "unresolved": [],
+        "outcomes": {},
+        "faults": []
+      }
+    }
+  ],
+  "finishedAt": "2026-11-12T21:04:54.667Z"
+}

@@ -1,0 +1,34 @@
+{
+  "startedAtUtc": "2026-11-12T16:49:22.002Z",
+  "base": "http://localhost:5300",
+  "checks": [
+    "client-and-feature-configuration",
+    "configuration-auth-validation-not-found-and-forbidden",
+    "no-gateway-routes-to-learning-services",
+    "book-copy-loan-handover-return-and-projection",
+    "competing-borrowers-one-copy-one-winner",
+    "notifications-and-reputation"
+  ],
+  "fixtures": {
+    "bookId": "dbaa04f8-6037-4e89-a24e-855d53adaf77",
+    "copyId": "bb493ff3-4a13-4734-8009-69099692d833"
+  },
+  "runtime": {
+    "mode": "compose",
+    "instance": "ae98e164e861"
+  },
+  "competingRequests": [
+    {
+      "sagaId": "65b07fdc-7c1e-415d-96eb-f2eecb41672f",
+      "state": 2,
+      "loanId": "44b56905-9096-4791-a22e-e2e39ae589ce"
+    },
+    {
+      "sagaId": "cf2e9fd4-95ad-41a1-b040-ad3998ccda9c",
+      "state": 4,
+      "loanId": null
+    }
+  ],
+  "success": true,
+  "finishedAtUtc": "2026-11-12T16:49:33.107Z"
+}

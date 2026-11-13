@@ -1,0 +1,4 @@
+<Router AppAssembly="typeof(Program).Assembly">
+    <Found Context="routeData"><AuthorizeRouteView RouteData="routeData"><NotAuthorized><p>Нужен вход администратора. <a href="/login">Войти</a></p></NotAuthorized></AuthorizeRouteView><FocusOnNavigate RouteData="routeData" Selector="h1" /></Found>
+    <NotFound><h1>Страница не найдена</h1><a href="/">Открыть пульт</a></NotFound>
+</Router>

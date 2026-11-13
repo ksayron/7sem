@@ -22,6 +22,15 @@ public sealed class CatalogMessageHandler(CatalogDbContext db, string messageTyp
 
     public async Task Handle(MessageEnvelope message, CancellationToken ct)
     {
+        var copyId = message.Type switch
+        {
+            MessageNames.ReserveBookCopy => message.DeserializePayload<ReserveBookCopy>().CopyId,
+            MessageNames.ReleaseBookCopy => message.DeserializePayload<ReleaseBookCopy>().CopyId,
+            MessageNames.LoanActivated => message.DeserializePayload<LoanActivated>().CopyId,
+            MessageNames.LoanCompleted => message.DeserializePayload<LoanCompleted>().CopyId,
+            _ => throw new InvalidOperationException($"Unsupported message {message.Type}.")
+        };
+        await CatalogProjection.LockCopy(db, copyId, ct);
         switch (message.Type)
         {
             case MessageNames.ReserveBookCopy: await Reserve(message, ct); break;

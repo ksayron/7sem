@@ -1,0 +1,49 @@
+{
+  "checks": [
+    "deployment-service-domain-operations-and-configmap",
+    "scale-one-to-three-and-competing-domain-operations",
+    "deleted-pod-replaced-and-existing-data-readable",
+    "configmap-env-keeps-old-value-until-rollout",
+    "missing-image-diagnosed-and-correct-image-restored",
+    "dependency-outage-readiness-recovery-and-pvc-persistence",
+    "scale-back-to-one-browser-and-only-business-components"
+  ],
+  "startedAtUtc": "2026-11-12T16:54:39.9698928+00:00",
+  "outage": {
+    "readiness": "503",
+    "oldPostgresUid": "d7e058f7-f042-449f-8b7f-2c27cb8e5970",
+    "liveness": "200",
+    "newPostgresUid": "837ca970-5d02-4826-825c-b70cf926c57a"
+  },
+  "finishedAtUtc": "2026-11-12T16:57:43.5264077+00:00",
+  "recovery": {
+    "readyPods": [
+      {
+        "name": "catalog-76c66c64db-fpmd7",
+        "uid": "be694e7c-4d8a-4095-b271-d0983474de09"
+      },
+      {
+        "name": "catalog-76c66c64db-h57wb",
+        "uid": "71c7d9d3-bee6-4617-abb2-ba2dbff19ff1"
+      },
+      {
+        "name": "catalog-76c66c64db-lk86d",
+        "uid": "b56a7f60-08c0-46ce-af7d-c85de256645c"
+      }
+    ],
+    "deletedUid": "0fe4f4d5-4114-4af1-9d67-59c48db386b8",
+    "deletedName": "catalog-76c66c64db-4fgs7"
+  },
+  "success": true,
+  "imageError": {
+    "reason": "ErrImagePull",
+    "pod": "catalog-546c57988-55hjw",
+    "image": "burmalda-catalog:lr9-missing-915d63b39e6e4be6b8e84ba46081bfde"
+  },
+  "cluster": {
+    "namespace": "burmalda",
+    "context": "docker-desktop",
+    "version": "v1.34.1",
+    "node": "docker-desktop"
+  }
+}

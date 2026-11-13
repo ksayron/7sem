@@ -12,6 +12,15 @@ public sealed class DatabaseAvailabilityTests
     // Deadline behavior is covered separately with an explicit short budget.
     private static FailoverConnectionInterceptor Policy(int budget = 2000) => new(TimeSpan.FromMilliseconds(budget), TimeSpan.FromMilliseconds(5));
     [Fact]
+    public async Task An_open_schema_lock_connection_is_retained()
+    {
+        await using var connection = new Connection();
+        await connection.OpenAsync(default);
+        await Policy().Open(connection, default);
+        Assert.Equal(1, connection.Attempts);
+        Assert.Equal(ConnectionState.Open, connection.State);
+    }
+    [Fact]
     public async Task Retries_connection_open_until_a_writer_is_available()
     {
         await using var connection = new Connection { Failures = 2 };

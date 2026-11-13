@@ -3,11 +3,15 @@ $ErrorActionPreference = 'Stop'
 $taskRoot = Split-Path $PSScriptRoot -Parent
 if(!$Local){
     Push-Location $taskRoot
-    try {docker compose --profile pubsub stop; if($LASTEXITCODE){throw 'Docker lab stop failed.'}}
+    try {docker compose -f docker-compose.legacy.yml --profile pubsub stop; if($LASTEXITCODE){throw 'Docker lab stop failed.'}}
     finally {Pop-Location}
     return
 }
 $taskManifest = Join-Path $taskRoot '.artifacts/lab-runtime/processes.json'
+$taskWebSettings = Join-Path $taskRoot 'src/Clients/Burmalda.Web/wwwroot/appsettings.Development.json'
+if ((Test-Path $taskWebSettings) -and (Get-Content $taskWebSettings -Raw | ConvertFrom-Json).GeneratedBy -eq 'Start-Lab.ps1') {
+    Remove-Item -LiteralPath $taskWebSettings
+}
 & "$PSScriptRoot/Stop-RaftCluster.ps1" -Local
 if (!(Test-Path $taskManifest)) { Write-Host '[info] No managed lab processes.'; return }
 foreach ($taskEntry in (Get-Content $taskManifest -Raw | ConvertFrom-Json)) {

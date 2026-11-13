@@ -50,7 +50,7 @@ async function operate(kind, node) {
 }
 (async()=>{
     await fs.mkdir(folder,{recursive:true});
-    const config = JSON.parse(docker('compose','--profile','pubsub','config','--format','json'));
+    const config = JSON.parse(docker('compose','-f','docker-compose.legacy.yml','--profile','pubsub','config','--format','json'));
     for (let id=1; id<=5; id++) assert.ok(config.services['raft-node-'+id]);
     assert.deepEqual(config.services['library-game'].profiles, ['pubsub']);
     mark('default-compose-and-optional-pubsub-profile');
@@ -79,20 +79,20 @@ async function operate(kind, node) {
     await request('/api/raft-lab/operations',{commandId:randomUUID(),kind:'invalid'},null,400);
     mark('invalid-node-and-operation-requests-are-rejected');
     try {
-        docker('compose','stop','catalog');
+        docker('compose','-f','docker-compose.legacy.yml','stop','catalog');
         const r=await fetch(base+'/api/catalog/books/'+book.id,{headers:{Authorization:'Bearer '+owner.accessToken}});
         assert.equal(r.status,503);assert.ok((await r.json()).message);
-    } finally { docker('compose','start','catalog'); }
+    } finally { docker('compose','-f','docker-compose.legacy.yml','start','catalog'); }
     await wait(()=>request('/api/catalog/books/'+book.id,undefined,owner.accessToken),'catalog recovery');
     mark('service-outage-has-readable-503-and-recovers');
     evidence.commandId=await operate('Synchronize');
     s=await cluster();evidence.before={commitIndex:s.authoritative.node.commitIndex,term:s.authoritative.node.term};
-    docker('compose','restart'); await sameFixture(owner.accessToken);mark('restart-preserves-business-data-and-raft-history');
+    docker('compose','-f','docker-compose.legacy.yml','restart'); await sameFixture(owner.accessToken);mark('restart-preserves-business-data-and-raft-history');
     if(process.argv.includes('--recreate')){
-        docker('compose','up','-d','--no-build','--force-recreate'); await sameFixture(owner.accessToken);
+        docker('compose','-f','docker-compose.legacy.yml','up','-d','--no-build','--force-recreate'); await sameFixture(owner.accessToken);
         mark('container-recreation-preserves-business-data-and-raft-history');
-        docker('compose','--profile','pubsub','down');
-        docker('compose','up','-d','--no-build'); await sameFixture(owner.accessToken);
+        docker('compose','-f','docker-compose.legacy.yml','--profile','pubsub','down');
+        docker('compose','-f','docker-compose.legacy.yml','up','-d','--no-build'); await sameFixture(owner.accessToken);
         mark('down-up-without-volume-removal-preserves-data-and-raft-history');
     }
     const limiter=await user('limiter');

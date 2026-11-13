@@ -1,0 +1,49 @@
+{
+  "startedAtUtc": "2026-11-12T16:56:42.910Z",
+  "base": "http://localhost:5300",
+  "checks": [
+    "client-and-feature-configuration",
+    "configuration-auth-validation-not-found-and-forbidden",
+    "no-gateway-routes-to-learning-services",
+    "book-copy-loan-handover-return-and-projection",
+    "competing-borrowers-one-copy-one-winner",
+    "notifications-and-reputation",
+    "browser-login-book-copy-loan-handover-return-and-disabled-labs"
+  ],
+  "fixtures": {
+    "bookId": "46c930f9-537d-4b27-93c0-199e88c2a52f",
+    "copyId": "b427cfec-7d95-4956-bb02-999c9773616e",
+    "uiBookId": "1991ad08-b82e-425d-b74e-815060326cd5",
+    "uiLoanId": "fe7bf561-5f05-47fa-9c1c-aa34526a970a"
+  },
+  "runtime": {
+    "mode": "kubernetes",
+    "instance": "catalog-57c5647dbf-2wn2b"
+  },
+  "competingRequests": [
+    {
+      "sagaId": "96d6e296-d398-4e7a-996a-9d5a1a714d64",
+      "state": 2,
+      "loanId": "e3e51f5d-3190-4c01-b3b5-b64f345a04f7"
+    },
+    {
+      "sagaId": "a4fd71f9-dd79-495b-b08c-7626d0850fd0",
+      "state": 4,
+      "loanId": null
+    }
+  ],
+  "browser": {
+    "desktop": [
+      1440,
+      1000
+    ],
+    "mobile": [
+      390,
+      844
+    ],
+    "pageErrors": [],
+    "disabledDemoRequests": []
+  },
+  "success": true,
+  "finishedAtUtc": "2026-11-12T16:57:36.971Z"
+}

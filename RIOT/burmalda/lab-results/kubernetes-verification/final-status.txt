@@ -1,0 +1,46 @@
+node/docker-desktop condition met
+NAME             STATUS   ROLES           AGE     VERSION
+docker-desktop   Ready    control-plane   4h53m   v1.34.1
+NAME                            READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS      IMAGES                                      SELECTOR
+deployment.apps/catalog         1/1     1            1           13m   catalog         burmalda-catalog:lr9-20261112194302         app=catalog
+deployment.apps/economy         1/1     1            1           13m   economy         burmalda-economy:lr9-20261112194302         app=economy
+deployment.apps/gateway         1/1     1            1           13m   gateway         burmalda-gateway:lr9-20261112194302         app=gateway
+deployment.apps/identity        1/1     1            1           13m   identity        burmalda-identity:lr9-20261112194302        app=identity
+deployment.apps/lending         1/1     1            1           13m   lending         burmalda-lending:lr9-20261112194302         app=lending
+deployment.apps/notifications   1/1     1            1           13m   notifications   burmalda-notifications:lr9-20261112194302   app=notifications
+deployment.apps/reputation      1/1     1            1           13m   reputation      burmalda-reputation:lr9-20261112194302      app=reputation
+deployment.apps/web             1/1     1            1           13m   web             burmalda-web:lr9-20261112194302             app=web
+
+NAME                        READY   AGE   CONTAINERS   IMAGES
+statefulset.apps/postgres   1/1     13m   postgres     burmalda-postgres:lr9-20261112194302
+statefulset.apps/rabbitmq   1/1     13m   rabbitmq     rabbitmq:4-management-alpine
+
+NAME                                 READY   STATUS    RESTARTS   AGE    IP          NODE             NOMINATED NODE   READINESS GATES
+pod/catalog-656f747d6b-qbdff         1/1     Running   0          99s    10.1.0.45   docker-desktop   <none>           <none>
+pod/economy-749468c64d-lcx86         1/1     Running   0          99s    10.1.0.47   docker-desktop   <none>           <none>
+pod/gateway-8c78c44cc-mkrrn          1/1     Running   0          99s    10.1.0.50   docker-desktop   <none>           <none>
+pod/identity-6f7b444cbd-wpmlq        1/1     Running   0          100s   10.1.0.44   docker-desktop   <none>           <none>
+pod/lending-79bcfdf56-4xlr8          1/1     Running   0          99s    10.1.0.46   docker-desktop   <none>           <none>
+pod/notifications-768dc4d7bf-87gt4   1/1     Running   0          99s    10.1.0.49   docker-desktop   <none>           <none>
+pod/postgres-0                       1/1     Running   0          113s   10.1.0.42   docker-desktop   <none>           <none>
+pod/rabbitmq-0                       1/1     Running   0          113s   10.1.0.43   docker-desktop   <none>           <none>
+pod/reputation-8558665b96-jtjg5      1/1     Running   0          99s    10.1.0.48   docker-desktop   <none>           <none>
+pod/web-fcb976749-5zcgj              1/1     Running   0          99s    10.1.0.51   docker-desktop   <none>           <none>
+
+NAME                    TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE   SELECTOR
+service/catalog         ClusterIP   10.111.17.183   <none>        8080/TCP   13m   app=catalog
+service/economy         ClusterIP   10.107.19.14    <none>        8080/TCP   13m   app=economy
+service/gateway         ClusterIP   10.105.53.138   <none>        8080/TCP   13m   app=gateway
+service/identity        ClusterIP   10.98.183.106   <none>        8080/TCP   13m   app=identity
+service/lending         ClusterIP   10.96.91.92     <none>        8080/TCP   13m   app=lending
+service/notifications   ClusterIP   10.104.12.156   <none>        8080/TCP   13m   app=notifications
+service/postgres        ClusterIP   10.108.91.97    <none>        5432/TCP   13m   app=postgres
+service/rabbitmq        ClusterIP   10.98.99.109    <none>        5672/TCP   13m   app=rabbitmq
+service/reputation      ClusterIP   10.108.73.72    <none>        8080/TCP   13m   app=reputation
+service/web             ClusterIP   10.107.59.76    <none>        8080/TCP   13m   app=web
+
+NAME                                    STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE   VOLUMEMODE
+persistentvolumeclaim/data-postgres-0   Bound    pvc-f7bd21b3-c848-429a-b7e2-581d54e57c0e   2Gi        RWO            hostpath       <unset>                 13m   Filesystem
+persistentvolumeclaim/data-rabbitmq-0   Bound    pvc-e5b347b3-6317-4855-a1da-f9315bd7be5a   1Gi        RWO            hostpath       <unset>                 13m   Filesystem
+NAME            ADDRESSTYPE   PORTS   ENDPOINTS   AGE
+catalog-j2pfb   IPv4          8080    10.1.0.45   13m

@@ -10,7 +10,7 @@ if(!$Local){
     Push-Location $taskRoot
     try {
         $taskVerb=switch($Action){Start {'start'} Stop {'stop'} Restart {'restart'}}
-        docker compose --profile pubsub $taskVerb $taskServices[$Component]
+        docker compose -f docker-compose.legacy.yml --profile pubsub $taskVerb $taskServices[$Component]
         if($LASTEXITCODE){throw 'Component container action failed.'}
     } finally {Pop-Location}
     return

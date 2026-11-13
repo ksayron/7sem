@@ -1,0 +1,12 @@
+{
+  "at": "2026-11-12T21:51:24.743Z",
+  "base": "http://localhost:5310",
+  "checks": [
+    "existing-admin-login-by-keyboard",
+    "invalid-bearer-cannot-bypass-cookie-csrf",
+    "desktop-and-mobile-without-page-overflow",
+    "mobile-controls-visible",
+    "no-browser-runtime-errors"
+  ],
+  "errors": []
+}

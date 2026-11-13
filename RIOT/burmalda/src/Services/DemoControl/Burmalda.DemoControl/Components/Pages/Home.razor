@@ -1,0 +1,135 @@
+@page "/"
+@attribute [Authorize(Roles = "Admin")]
+@rendermode InteractiveServer
+@implements IAsyncDisposable
+@inject DemoEngine Engine
+@inject ClusterObserver Observer
+@inject DemoStore Store
+@inject KubeControl Kube
+@inject AuthenticationStateProvider Authentication
+
+<PageTitle>Пульт демонстрации · Burmalda</PageTitle>
+<header class="masthead">
+    <a class="brand" href="http://localhost:5300">Burmalda <span>Доброта</span></a>
+    <nav aria-label="Сервисы демонстрации"><a href="http://localhost:5300" target="_blank">Открыть библиотеку</a><a href="http://localhost:3000/d/burmalda-demo" target="_blank">Grafana ↗</a><form method="post" action="/logout"><AntiforgeryToken /><button class="text-button">Выйти</button></form></nav>
+</header>
+<main>
+    <div class="title-line"><div><h1>Клиенты приходят.<br /><em>Система подстраивается.</em></h1><p>Реальный трафик, решения HPA и восстановление сервисов — на одной шкале времени.</p></div>
+    <div class="run-state"><span class="status-dot @(Running ? "on" : "")"></span><strong>@state.Phase</strong><span>@RunTime</span><small>Docker Desktop · один узел</small></div></div>
+    @if (message is not null) { <div class="notice @(failed ? "error" : "")" role="status">@message</div> }
+    @if (cluster.Error is not null || Stale) { <div class="notice error" role="status">@(cluster.Error ?? "Данные устарели: ожидаем новое измерение.") <small>Pod: @Stamp(cluster.CheckedAt) · метрики: @Stamp(cluster.MetricsAt)</small></div> }
+    <section class="metrics" aria-label="Текущая нагрузка">
+        <div><span>Клиенты</span><strong>@state.Active <small>/ @state.Target</small></strong><small>активны / задано</small></div>
+        <div><span>Успешных запросов/с</span><strong>@state.SuccessRps.ToString("F1")</strong><small>отправлено @state.SentRps.ToString("F1") /с</small></div>
+        <div><span>Задержка p95</span><strong>@state.P95Ms.ToString("F0") <small>мс</small></strong><small>цель ≤ 1000 мс</small></div>
+        <div class="@(state.ErrorPercent >= 1 ? "bad-metric" : "")"><span>Ошибки запросов</span><strong>@state.ErrorPercent.ToString("F1")<small>%</small></strong><small>цель &lt; 1% · окно 30 с</small></div>
+        <div><span>Ready Pod · Catalog / Gateway</span><strong>@cluster.Pods.Count(x => x.App == "catalog" && x.Ready) <small>/</small> @cluster.Pods.Count(x => x.App == "gateway" && x.Ready)</strong><small>Цели HPA: @(cluster.Hpas.FirstOrDefault(x => x.Name == "catalog")?.Desired.ToString() ?? "?") / @(cluster.Hpas.FirstOrDefault(x => x.Name == "gateway")?.Desired.ToString() ?? "?")</small></div>
+    </section>
+    <div class="workspace">
+    <div class="observation">
+        <section class="chart-panel" aria-label="График нагрузки из Prometheus">
+            <div class="section-heading"><h2>Нагрузка во времени</h2><span>15 минут · Prometheus · @Stamp(cluster.MetricsAt)</span></div>
+            <div class="chart-legend"><span class="legend green">Успешный RPS</span><span class="legend rust">Отправленный RPS</span><span class="legend blue">Клиенты · правая шкала</span></div>
+            @if (cluster.Charts.Values.All(x => x.Length == 0)) { <div class="empty-chart">График появится после первого экспорта метрик.<br />Подготовьте клиентов и запустите сценарий.</div> }
+            else
+            {
+                <svg class="load-chart" viewBox="0 0 840 240" role="img" aria-label="Успешный и отправленный RPS, активные клиенты за последние 15 минут">
+                    <title>Измеренная нагрузка. Левая шкала — запросы в секунду, правая — клиенты.</title>
+                    @foreach (var fraction in new[] { 0.0, .25, .5, .75, 1.0 })
+                    {
+                        var y = 205 - 180 * fraction;
+                        <g><line x1="45" x2="790" y1="@F(y)" y2="@F(y)" class="grid-line" />
+                        <text x="38" y="@F(y + 4)" text-anchor="end">@((RpsMax * fraction).ToString("F0"))</text>
+                        <text x="798" y="@F(y + 4)">@((ClientMax * fraction).ToString("F0"))</text></g>
+                    }
+                    <polyline points='@Points("rps", RpsMax)' class="series sent" /><polyline points='@Points("success", RpsMax)' class="series success" /><polyline points='@Points("clients", ClientMax)' class="series clients" />
+                    <text x="45" y="231">−15 минут</text><text x="790" y="231" text-anchor="end">сейчас</text>
+                </svg>
+            }
+            <p class="footnote">RPS и задержки относятся к измеренной нагрузке этого запуска. Симулятор использует ресурсы того же узла.</p>
+        </section>
+        <section class="pods-panel">
+            <div class="section-heading"><h2>Экземпляры сервисов</h2><span>Обновление каждые 5 с · @Stamp(cluster.CheckedAt)</span></div>
+            @foreach (var service in new[] { "catalog", "gateway" })
+            {
+                var hpa = cluster.Hpas.FirstOrDefault(x => x.Name == service);
+                var pods = cluster.Pods.Where(x => x.App == service).ToArray();
+                <div class="service-row"><div class="service-description"><h3>@service</h3><span>@pods.Count(x => x.Ready) Ready / @(hpa?.Desired.ToString() ?? "?") желаемых</span><small>CPU @(hpa?.CpuPercent is { } cpu ? cpu.ToString("F0") + "%" : "нет данных") / цель 60% · предел @(hpa?.Max.ToString() ?? "?")</small><details><summary>Условия HPA</summary><p>@(hpa?.Conditions ?? "HPA ещё не найден")</p></details></div>
+                <div class="pod-list">
+                    @foreach (var pod in pods)
+                    {
+                        <article class="pod @(pod.Ready && pod.DeletingAt is null ? "ready" : "waiting")"><strong>@(pod.DeletingAt is not null ? "Завершается" : pod.Ready ? "Ready" : pod.Phase)</strong><span>@pod.Name</span><small>Перезапусков: @pod.Restarts</small><button class="text-button danger" disabled="@(busy || Stale || pods.Count(x => x.Ready && x.DeletingAt is null) < 2 || pod.DeletingAt is not null)" @onclick='() => Execute(() => Kube.DeletePod(pod.Name, pod.Uid), "Запрос удаления Pod отправлен. Наблюдайте появление замены.")'>Удалить этот Pod</button></article>
+                    }
+                    @if (pods.Length == 0) { <p class="muted">Ожидание данных Kubernetes.</p> }
+                </div></div>
+            }
+            <details class="other-services"><summary>Остальные сервисы · @cluster.Pods.Count(x => x.App is not ("catalog" or "gateway")) Pod</summary><div class="table-scroll"><table><thead><tr><th>Сервис</th><th>Pod</th><th>Состояние</th><th>Перезапуски</th></tr></thead><tbody>@foreach (var pod in cluster.Pods.Where(x => x.App is not ("catalog" or "gateway"))) { <tr><td>@pod.App</td><td>@pod.Name</td><td>@(pod.Ready ? "Ready" : pod.Phase)</td><td>@pod.Restarts</td></tr> }</tbody></table></div></details>
+        </section>
+        <section class="journal"><div class="section-heading"><h2>Что происходит</h2><span>Фазы · HPA · Pod · сбои</span></div><div class="events" aria-label="Журнал событий">@foreach (var item in events.Take(35)) { <div class="event"><time>@item.At.ToLocalTime().ToString("HH:mm:ss")</time><span>@item.Message</span></div> }</div></section>
+    </div>
+    <aside class="controls" aria-label="Управление демонстрацией">
+        <h2>Сценарий</h2>
+        <label for="scenario">Готовый сценарий</label><select id="scenario" @bind="scenario" @bind:after="PresetChanged" disabled="@(Running || busy)"><option value="wave">Плавная волна</option><option value="spike">Резкий всплеск</option><option value="mixed">Чтение и операции</option><option value="recovery">Восстановление под нагрузкой</option></select>
+        <p class="scenario-description">@Description</p>
+        <label for="peak">Пик клиентов <strong>@peak</strong></label><input id="peak" type="range" min="1" max="500" @bind="peak" disabled="@(Running || busy)" /><input aria-label="Точное число клиентов" type="number" min="1" max="500" @bind="peak" disabled="@(Running || busy)" />
+        <div class="paired"><div><label for="ramp">Рост, секунд</label><input id="ramp" type="number" min="5" max="300" @bind="ramp" disabled="@(Running || busy)" /></div><div><label for="hold">Удержание, с</label><input id="hold" type="number" min="30" max="600" @bind="hold" disabled="@(Running || busy)" /></div></div>
+        <div class="preparation"><span>Клиенты готовы: <strong>@state.Preparation.Ready / @state.Preparation.Requested</strong></span>@if (state.Preparation.Running) { <progress value="@state.Preparation.Ready" max="@Math.Max(1, state.Preparation.Requested)"></progress><small>Регистрация и вход через Gateway. Подготовка может занять несколько минут.</small> }@if (state.Preparation.Error is not null) { <p class="error">@state.Preparation.Error</p> }</div>
+        <button class="secondary full" disabled="@(busy || Running || state.Preparation.Running)" @onclick='() => Execute(() => Engine.Prepare(peak), "Подготовка запущена. Можно оставить пульт открытым или вернуться позже.")'>Подготовить @peak клиентов</button>
+        <button class="full" disabled="@(busy || Running || state.Preparation.Running || state.Preparation.Ready < peak)" @onclick='() => Execute(() => Engine.Start(new(scenario, peak, ramp, hold)), "Сценарий запущен. Масштабирование выполняет HPA.")'>Запустить сценарий</button>
+        <div class="live-controls"><h3>Управление во время запуска</h3><label for="live">Задать клиентов вручную</label><div class="inline-input"><input id="live" type="number" min="0" max="500" @bind="liveTarget" /><button class="secondary" disabled="@(!Running || busy)" @onclick='() => Execute(() => Engine.SetTarget(liveTarget), "Целевое число клиентов изменено.")'>Применить</button></div>
+        <button class="secondary full" disabled="@(!Running || busy)" @onclick='() => Execute(Engine.RampDown, "Нагрузка плавно снижается.")'>Плавно снизить до нуля</button><button class="secondary full" disabled="@(!Running || busy)" @onclick='() => Execute(() => Engine.StopRun(false), "Ожидаем завершения начатых операций.")'>Завершить операции и остановить</button><button class="danger full" disabled="@(busy || (!Running && state.Faults.Length == 0))" @onclick='() => Execute(() => Engine.StopRun(true), "Нагрузка остановлена, искусственные сбои сняты.")'>Аварийная остановка</button></div>
+        <details class="fault-controls"><summary>Временный сбой API</summary><p>Затронет всех клиентов выбранного сервиса. Probes остаются доступными.</p><label for="fault-service">Сервис</label><select id="fault-service" @bind="faultService"><option value="catalog">Catalog</option><option value="gateway">Gateway</option></select><div class="paired"><div><label for="error-percent">Ошибок 503, %</label><input id="error-percent" type="number" min="0" max="100" @bind="errorPercent" /></div><div><label for="delay">Задержка, мс</label><input id="delay" type="number" min="0" max="5000" @bind="delay" /></div></div><label for="ttl">Длительность, секунд</label><input id="ttl" type="number" min="1" max="120" @bind="ttl" /><button class="danger full" disabled="@busy" @onclick='() => Execute(() => Engine.SetFault(new(faultService, errorPercent, delay, ttl)), "Сбой включён с автоматическим окончанием.")'>Включить временный сбой</button><button class="secondary full" disabled="@busy" @onclick='() => Execute(Engine.ClearFaults, "Сбои сняты.")'>Снять все сбои</button></details>
+        @foreach (var fault in state.Faults) { <p class="error">@fault.Service: @fault.ErrorPercent% ошибок, @fault.DelayMs мс, до @fault.ExpiresAt.ToLocalTime().ToString("HH:mm:ss")</p> }
+        <div class="business-status"><h3>Бизнес-операции</h3><p>Завершено @state.CompletedOperations · ошибок @state.FailedOperations · незавершённых @state.PendingOperations</p>@foreach (var unresolved in state.Unresolved) { <p class="error">@unresolved</p> }<button class="secondary full" disabled="@(busy || Running || state.PendingOperations == 0)" @onclick='() => Execute(Engine.Reconcile, "Состояния проверены. Подробности — в журнале событий.")'>Проверить и завершить оставшиеся операции</button><details><summary>Ответы HTTP</summary>@foreach (var outcome in state.Outcomes) { <p>@outcome.Key: @outcome.Value</p> }</details></div>
+    </aside>
+    </div>
+    <footer>Число клиентов не равно RPS. Графики отражают фактические ответы; новые Pod создаёт Kubernetes по CPU, а не пульт.</footer>
+</main>
+
+@code {
+    private EngineSnapshot state = null!;
+    private ClusterSnapshot cluster = null!;
+    private DemoEvent[] events = [];
+    private string scenario = "wave", faultService = "catalog";
+    private int peak = 300, ramp = 90, hold = 120, liveTarget = 20, errorPercent = 25, delay, ttl = 30;
+    private bool busy, failed;
+    private string? message;
+    private readonly CancellationTokenSource disposed = new();
+    private Task refreshTask = Task.CompletedTask;
+    private bool Running => state.Run?.State is "running" or "draining";
+    private bool Stale => cluster.CheckedAt is null || DateTimeOffset.UtcNow - cluster.CheckedAt > TimeSpan.FromSeconds(20);
+    private string RunTime => state.Run is null ? "Готов к подготовке клиентов" : $"{Math.Max(0, (int)((state.Run.FinishedAt ?? DateTimeOffset.UtcNow) - state.Run.StartedAt).TotalSeconds)} с · {state.Run.State}";
+    private string Description => scenario switch { "recovery" => "Волна клиентов, удаление одного Pod при двух Ready, затем 30 секунд ошибок API и автоматическое снижение нагрузки.", "mixed" => "90% клиентов читают каталог, 10% проходят заявку, передачу и возврат реальной тестовой книги.", "spike" => "Быстрый приход клиентов. Наблюдайте задержки и время реакции HPA.", _ => "Плавный рост, удержание нагрузки и уход клиентов. Затем система сворачивает лишние Pod." };
+    protected override async Task OnInitializedAsync()
+    {
+        state = Engine.Snapshot(); cluster = Observer.Snapshot;
+        var settings = await Store.Read<RunOptions>("settings");
+        if (settings is not null) { scenario = settings.Scenario; peak = settings.Peak; ramp = settings.RampSeconds; hold = settings.HoldSeconds; }
+        await Refresh(); refreshTask = RefreshLoop();
+    }
+    private void PresetChanged() { ramp = scenario == "spike" ? 10 : 90; hold = scenario == "spike" ? 60 : 120; }
+    private async Task Refresh() { state = Engine.Snapshot(); cluster = Observer.Snapshot; events = await Store.Events(); }
+    private async Task RefreshLoop()
+    {
+        try { using var timer = new PeriodicTimer(TimeSpan.FromSeconds(2)); while (await timer.WaitForNextTickAsync(disposed.Token)) await InvokeAsync(async () => { await Refresh(); StateHasChanged(); }); }
+        catch (OperationCanceledException) { }
+    }
+    private async Task Execute(Func<Task> action, string success)
+    {
+        busy = true;
+        try { var auth = await Authentication.GetAuthenticationStateAsync(); if (!auth.User.IsInRole("Admin") || !long.TryParse(auth.User.FindFirst("exp")?.Value, out var expires) || DateTimeOffset.UtcNow.ToUnixTimeSeconds() >= expires) throw new DemoConflict("Войдите администратором."); await action(); message = success; failed = false; }
+        catch (Exception ex) { message = ex.Message; failed = true; }
+        finally { busy = false; await Refresh(); }
+    }
+    private static string Stamp(DateTimeOffset? at) => at?.ToLocalTime().ToString("HH:mm:ss") ?? "нет данных";
+    private static string F(double number) => number.ToString("F2", CultureInfo.InvariantCulture);
+    private double RpsMax => Math.Max(10, cluster.Charts.Where(x => x.Key is "rps" or "success").SelectMany(x => x.Value).Select(x => x.Value).DefaultIfEmpty(10).Max() * 1.1);
+    private double ClientMax => Math.Max(20, cluster.Charts.GetValueOrDefault("clients", []).Select(x => x.Value).DefaultIfEmpty(20).Max() * 1.1);
+    private string Points(string series, double max)
+    {
+        var points = cluster.Charts.GetValueOrDefault(series, []); if (points.Length == 0) return "";
+        var end = cluster.Charts.Values.SelectMany(x => x).Max(x => x.Time);
+        return string.Join(" ", points.Select(x => $"{F(45 + 745 * Math.Clamp((x.Time - end + 900) / 900, 0, 1))},{F(205 - 180 * Math.Clamp(x.Value / max, 0, 1))}"));
+    }
+    public async ValueTask DisposeAsync() { disposed.Cancel(); await refreshTask; disposed.Dispose(); }
+}

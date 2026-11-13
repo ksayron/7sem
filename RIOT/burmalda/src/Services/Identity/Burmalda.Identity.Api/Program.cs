@@ -12,6 +12,8 @@ builder.Services.AddScoped<IPasswordHasher<AppUser>, PasswordHasher<AppUser>>();
 builder.Services.AddSingleton<TokenService>();
 builder.Services.AddHostedService<OutboxPublisher<IdentityDbContext>>();
 
+builder.Services.AddBusinessReadiness<IdentityDbContext>();
+
 var app = builder.Build();
 app.UseBurmaldaDefaults();
 app.MapIdentityEndpoints();

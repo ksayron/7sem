@@ -2,7 +2,17 @@ using System.Threading.RateLimiting;
 using Burmalda.ServiceDefaults;
 
 var builder = WebApplication.CreateBuilder(args); builder.Logging.AddBurmaldaConsole(builder.Configuration); builder.Services.AddBurmaldaDefaults(builder.Configuration, "api-gateway");
-builder.Services.AddReverseProxy().LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
+var proxyConfiguration = builder.Configuration;
+if (!builder.Configuration.GetValue<bool>("Features:LearningLabs"))
+{
+    var entries = builder.Configuration.GetSection("ReverseProxy").AsEnumerable()
+        .Where(x => x.Value is not null && !x.Key.Split(':').Any(k => k is "raft-lab" or "concurrency-lab" or "library-game"))
+        .ToDictionary(x => x.Key, x => x.Value);
+    proxyConfiguration = new ConfigurationManager();
+    proxyConfiguration.AddInMemoryCollection(entries);
+}
+builder.Services.AddReverseProxy().LoadFromConfig(proxyConfiguration.GetSection("ReverseProxy"))
+    .ConfigureHttpClient((_, handler) => handler.PooledConnectionLifetime = TimeSpan.FromSeconds(10));
 builder.Services.AddCors(options => options.AddPolicy("WebClient", policy => policy
     .WithOrigins(builder.Configuration.GetSection("ClientOrigins").Get<string[]>() ?? ["http://localhost:5300"])
     .AllowAnyHeader()

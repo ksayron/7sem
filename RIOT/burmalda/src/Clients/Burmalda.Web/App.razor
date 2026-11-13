@@ -1,6 +1,16 @@
-﻿<Router AppAssembly="@typeof(App).Assembly">
+@inject IConfiguration Configuration
+<Router AppAssembly="@typeof(App).Assembly">
     <Found Context="routeData">
-        <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+        @if (!Configuration.GetValue<bool>("Features:LearningLabs") && IsLearningPage(routeData.PageType))
+        {
+            <LayoutView Layout="@typeof(MainLayout)">
+                <section class="empty-state"><h1>Page unavailable</h1><p>Learning labs are disabled in this environment.</p><a href="">Return home</a></section>
+            </LayoutView>
+        }
+        else
+        {
+            <RouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)" />
+        }
         <FocusOnNavigate RouteData="@routeData" Selector="h1" />
     </Found>
     <NotFound>
@@ -15,3 +25,8 @@
         </LayoutView>
     </NotFound>
 </Router>
+
+@code {
+    private static bool IsLearningPage(Type type) => type.GetCustomAttributes(typeof(RouteAttribute), true)
+        .Cast<RouteAttribute>().Any(route => new[] { "/concurrency-lab", "/replication-lab", "/pubsub-lab", "/raft-lab", "/library-game" }.Contains(route.Template));
+}

@@ -1,0 +1,161 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: demo-control
+  namespace: burmalda
+  labels:
+    app.kubernetes.io/part-of: burmalda
+    burmalda.demo/managed: 'true'
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: demo-control
+  namespace: burmalda
+  labels:
+    app.kubernetes.io/part-of: burmalda
+    burmalda.demo/managed: 'true'
+rules:
+- apiGroups:
+  - ''
+  resources:
+  - pods
+  verbs:
+  - get
+  - list
+  - watch
+  - delete
+- apiGroups:
+  - apps
+  resources:
+  - deployments
+  - replicasets
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - autoscaling
+  resources:
+  - horizontalpodautoscalers
+  verbs:
+  - get
+  - list
+  - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: demo-control
+  namespace: burmalda
+  labels:
+    app.kubernetes.io/part-of: burmalda
+    burmalda.demo/managed: 'true'
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: demo-control
+subjects:
+- kind: ServiceAccount
+  name: demo-control
+  namespace: burmalda
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: kube-state-metrics
+  namespace: burmalda
+  labels:
+    app.kubernetes.io/part-of: burmalda
+    burmalda.demo/managed: 'true'
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: burmalda-kube-state-metrics
+  namespace: burmalda
+  labels:
+    app.kubernetes.io/part-of: burmalda
+    burmalda.demo/managed: 'true'
+rules:
+- apiGroups:
+  - ''
+  resources:
+  - pods
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - apps
+  resources:
+  - deployments
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - autoscaling
+  resources:
+  - horizontalpodautoscalers
+  verbs:
+  - get
+  - list
+  - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: burmalda-kube-state-metrics
+  namespace: burmalda
+  labels:
+    app.kubernetes.io/part-of: burmalda
+    burmalda.demo/managed: 'true'
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: burmalda-kube-state-metrics
+subjects:
+- kind: ServiceAccount
+  name: kube-state-metrics
+  namespace: burmalda
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: prometheus
+  namespace: burmalda
+  labels:
+    app.kubernetes.io/part-of: burmalda
+    burmalda.demo/managed: 'true'
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: burmalda-prometheus-kubelet
+  labels:
+    app.kubernetes.io/part-of: burmalda
+    burmalda.demo/managed: 'true'
+rules:
+- apiGroups:
+  - ''
+  resources:
+  - nodes/proxy
+  verbs:
+  - get
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: burmalda-prometheus-kubelet
+  labels:
+    app.kubernetes.io/part-of: burmalda
+    burmalda.demo/managed: 'true'
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: burmalda-prometheus-kubelet
+subjects:
+- kind: ServiceAccount
+  name: prometheus
+  namespace: burmalda

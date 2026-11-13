@@ -25,8 +25,8 @@ Optionally copy `.env.example` to `.env` and change the local credentials, then
 run:
 
 ```powershell
-docker compose up -d
-docker compose ps
+docker compose -f docker-compose.legacy.yml up -d
+docker compose -f docker-compose.legacy.yml ps
 ```
 
 RabbitMQ management is available at <http://localhost:15672> and Jaeger at
@@ -35,5 +35,5 @@ RabbitMQ management is available at <http://localhost:15672> and Jaeger at
 PostgreSQL initialization scripts run only when the `postgres-data` volume is
 first created. If the database list or initialization credentials are changed
 afterward, either migrate the existing instance or deliberately recreate the
-local volume with `docker compose down -v` (this deletes all local data).
+local volume with `docker compose -f docker-compose.legacy.yml down -v` (this deletes all local data).
 

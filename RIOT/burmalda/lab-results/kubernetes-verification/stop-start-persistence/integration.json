@@ -1,0 +1,17 @@
+{
+  "startedAtUtc": "2026-11-12T17:02:54.884Z",
+  "base": "http://localhost:5300",
+  "checks": [
+    "same-book-and-copy-preserved-and-mode-confirmed"
+  ],
+  "fixtures": {
+    "bookId": "c960ca09-8586-4997-bcf7-919689a967c1",
+    "copyId": "916a076d-b33e-452e-96b3-0dcbc3117cce"
+  },
+  "runtime": {
+    "mode": "kubernetes",
+    "instance": "catalog-656f747d6b-qbdff"
+  },
+  "success": true,
+  "finishedAtUtc": "2026-11-12T17:02:55.408Z"
+}

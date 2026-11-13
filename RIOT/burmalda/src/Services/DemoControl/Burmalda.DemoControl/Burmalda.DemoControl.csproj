@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" />
+    <ProjectReference Include="../../../BuildingBlocks/Burmalda.ServiceDefaults/Burmalda.ServiceDefaults.csproj" />
+  </ItemGroup>
+</Project>

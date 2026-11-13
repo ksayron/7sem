@@ -29,8 +29,10 @@ public static class CatalogEndpoints
 
     private static async Task<IResult> CreateBook(CreateBookRequest request, CatalogDbContext db, CancellationToken ct)
     {
-        if (string.IsNullOrWhiteSpace(request.Isbn) || string.IsNullOrWhiteSpace(request.Title) || request.Authors.Length == 0)
+        if (!CatalogRequestValidation.IsValid(request))
             return Results.BadRequest(new { message = "ISBN, title, and at least one author are required." });
+        await using var transaction = await db.Database.BeginTransactionAsync(ct);
+        await PostgresCoordination.LockTransaction(db, "catalog:isbn:" + request.Isbn.Trim(), ct);
         var existing = await db.Books.SingleOrDefaultAsync(x => x.Isbn == request.Isbn.Trim(), ct);
         if (existing is not null) return Results.Ok(new { existing.Id, existing.Isbn, existing.Title });
         var book = new Book
@@ -46,12 +48,15 @@ public static class CatalogEndpoints
             GenresText = string.Join(", ", request.Genres), AvailableCopies = 0, UpdatedAt = DateTimeOffset.UtcNow
         });
         await db.SaveChangesAsync(ct);
+        await transaction.CommitAsync(ct);
         return Results.Created($"/api/catalog/books/{book.Id}", new { book.Id });
     }
 
     private static async Task<IResult> ListCopy(ListCopyRequest request, HttpContext context, CatalogDbContext db, CancellationToken ct)
     {
-        if (request.LendingPrice < 0 || request.MaximumLoanDays is < 1 or > 90) return Results.BadRequest(new { message = "Invalid lending terms." });
+        if (!CatalogRequestValidation.IsValid(request)) return Results.BadRequest(new { message = "Invalid lending terms." });
+        await using var transaction = await db.Database.BeginTransactionAsync(ct);
+        await CatalogProjection.LockBook(db, request.BookId, ct);
         if (!await db.Books.AnyAsync(x => x.Id == request.BookId, ct)) return Results.NotFound(new { message = "Book not found." });
         var copy = new BookCopy
         {
@@ -60,11 +65,9 @@ public static class CatalogEndpoints
             Location = request.Location.Trim(), Version = 1, CreatedAt = DateTimeOffset.UtcNow
         };
         db.BookCopies.Add(copy);
-        var projection = await db.SearchProjections.SingleAsync(x => x.BookId == request.BookId, ct);
-        projection.AvailableCopies++;
-        projection.MinimumPrice = projection.MinimumPrice is null ? copy.LendingPrice : Math.Min(projection.MinimumPrice.Value, copy.LendingPrice);
-        projection.UpdatedAt = DateTimeOffset.UtcNow;
+        await CatalogProjection.Refresh(db, copy.BookId, ct);
         await db.SaveChangesAsync(ct);
+        await transaction.CommitAsync(ct);
         return Results.Created($"/api/catalog/books/{request.BookId}/copies", new { copy.Id });
     }
 
@@ -97,15 +100,19 @@ public static class CatalogEndpoints
 
     private static async Task<IResult> SetHidden(Guid id, bool hidden, CatalogDbContext db, CancellationToken ct)
     {
+        await using var transaction = await db.Database.BeginTransactionAsync(ct);
+        await CatalogProjection.LockCopy(db, id, ct);
         var copy = await db.BookCopies.FindAsync([id], ct); if (copy is null) return Results.NotFound();
-        copy.IsHidden = hidden; copy.Version++; await CatalogProjection.Refresh(db, copy.BookId, ct); await db.SaveChangesAsync(ct); return Results.NoContent();
+        copy.IsHidden = hidden; copy.Version++; await CatalogProjection.Refresh(db, copy.BookId, ct); await db.SaveChangesAsync(ct); await transaction.CommitAsync(ct); return Results.NoContent();
     }
 
     private static async Task<IResult> ForceAvailable(Guid id, CatalogDbContext db, CancellationToken ct)
     {
+        await using var transaction = await db.Database.BeginTransactionAsync(ct);
+        await CatalogProjection.LockCopy(db, id, ct);
         var copy = await db.BookCopies.FindAsync([id], ct); if (copy is null) return Results.NotFound();
         copy.Status = BookCopyStatus.Available; copy.ReservationSagaId = null; copy.ReservedForUserId = null; copy.ReservationExpiresAt = null; copy.Version++;
-        await CatalogProjection.Refresh(db, copy.BookId, ct); await db.SaveChangesAsync(ct); return Results.NoContent();
+        await CatalogProjection.Refresh(db, copy.BookId, ct); await db.SaveChangesAsync(ct); await transaction.CommitAsync(ct); return Results.NoContent();
     }
 
     private static async Task<IResult> MessagingStatus(CatalogDbContext db, CancellationToken ct) => Results.Ok(new
@@ -118,8 +125,19 @@ public static class CatalogEndpoints
 
 public static class CatalogProjection
 {
+    public static Task LockBook(CatalogDbContext db, Guid bookId, CancellationToken ct) =>
+        PostgresCoordination.LockTransaction(db, "catalog:book:" + bookId, ct);
+
+    public static async Task LockCopy(CatalogDbContext db, Guid copyId, CancellationToken ct)
+    {
+        var bookId = await db.BookCopies.AsNoTracking().Where(x => x.Id == copyId).Select(x => (Guid?)x.BookId).SingleOrDefaultAsync(ct);
+        if (bookId is not null) await LockBook(db, bookId.Value, ct);
+    }
+
     public static async Task Refresh(CatalogDbContext db, Guid bookId, CancellationToken ct)
     {
+        // Flush the new copy status before querying the projection, within the caller's transaction.
+        await db.SaveChangesAsync(ct);
         var projection = await db.SearchProjections.SingleAsync(x => x.BookId == bookId, ct);
         var available = db.BookCopies.Where(x => x.BookId == bookId && x.Status == BookCopyStatus.Available && !x.IsHidden);
         projection.AvailableCopies = await available.CountAsync(ct);

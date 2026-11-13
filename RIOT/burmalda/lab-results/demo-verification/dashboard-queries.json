@@ -1,0 +1,134 @@
+[
+  {
+    "panel": 1,
+    "query": "sum by(kind)(burmalda_demo_clients)",
+    "status": "success",
+    "series": 2
+  },
+  {
+    "panel": 2,
+    "query": "sum(rate(burmalda_demo_requests_total{operation!=\"prepare\",outcome=\"success\"}[30s]))",
+    "status": "success",
+    "series": 1
+  },
+  {
+    "panel": 2,
+    "query": "sum(rate(burmalda_demo_requests_total{operation!=\"prepare\"}[30s]))",
+    "status": "success",
+    "series": 1
+  },
+  {
+    "panel": 3,
+    "query": "histogram_quantile(0.5, sum by(le)(rate(burmalda_demo_request_duration_seconds_bucket[30s])))",
+    "status": "success",
+    "series": 1
+  },
+  {
+    "panel": 3,
+    "query": "histogram_quantile(0.95, sum by(le)(rate(burmalda_demo_request_duration_seconds_bucket[30s])))",
+    "status": "success",
+    "series": 1
+  },
+  {
+    "panel": 3,
+    "query": "histogram_quantile(0.99, sum by(le)(rate(burmalda_demo_request_duration_seconds_bucket[30s])))",
+    "status": "success",
+    "series": 1
+  },
+  {
+    "panel": 4,
+    "query": "sum by(outcome)(rate(burmalda_demo_requests_total{outcome!=\"success\",operation!=\"prepare\"}[30s]))",
+    "status": "success",
+    "series": 1
+  },
+  {
+    "panel": 5,
+    "query": "kube_horizontalpodautoscaler_status_desired_replicas{namespace=\"burmalda\"}",
+    "status": "success",
+    "series": 2
+  },
+  {
+    "panel": 5,
+    "query": "kube_deployment_status_replicas_available{namespace=\"burmalda\",deployment=~\"catalog|gateway\"}",
+    "status": "success",
+    "series": 2
+  },
+  {
+    "panel": 6,
+    "query": "(sum by(pod)(rate(container_cpu_usage_seconds_total{namespace=\"burmalda\",container!=\"\",container!=\"POD\"}[30s])) * 1000) or (sum by(pod)(rate(container_cpu_usage_seconds_total{namespace=\"burmalda\",container=\"\",pod!=\"\"}[30s])) * 1000)",
+    "status": "success",
+    "series": 14
+  },
+  {
+    "panel": 7,
+    "query": "(sum by(pod)(container_memory_working_set_bytes{namespace=\"burmalda\",container!=\"\",container!=\"POD\"})) or (sum by(pod)(container_memory_working_set_bytes{namespace=\"burmalda\",container=\"\",pod!=\"\"}))",
+    "status": "success",
+    "series": 21
+  },
+  {
+    "panel": 8,
+    "query": "sum by(job,k8s_pod_name)(rate(http_server_request_duration_seconds_count{http_route!~\"/health/.*\"}[30s]))",
+    "status": "success",
+    "series": 9
+  },
+  {
+    "panel": 9,
+    "query": "kube_pod_status_ready{namespace=\"burmalda\",condition=\"true\"}",
+    "status": "success",
+    "series": 19
+  },
+  {
+    "panel": 9,
+    "query": "kube_pod_container_status_restarts_total{namespace=\"burmalda\"}",
+    "status": "success",
+    "series": 19
+  },
+  {
+    "panel": 10,
+    "query": "burmalda_demo_fault_active",
+    "status": "success",
+    "series": 2
+  },
+  {
+    "panel": 10,
+    "query": "sum by(outcome)(rate(burmalda_demo_operations_total[30s]))",
+    "status": "success",
+    "series": 0
+  },
+  {
+    "panel": 10,
+    "query": "burmalda_demo_pending_operations",
+    "status": "success",
+    "series": 1
+  },
+  {
+    "panel": 11,
+    "query": "sum by(event)(increase(burmalda_demo_events_total[30s]))",
+    "status": "success",
+    "series": 10
+  },
+  {
+    "panel": 12,
+    "query": "100 * sum(rate(burmalda_demo_requests_total{operation!=\"prepare\",outcome!=\"success\"}[30s])) / clamp_min(sum(rate(burmalda_demo_requests_total{operation!=\"prepare\"}[30s])),0.001)",
+    "status": "success",
+    "series": 1
+  },
+  {
+    "panel": 13,
+    "query": "kube_horizontalpodautoscaler_status_condition{namespace=\"burmalda\"}",
+    "status": "success",
+    "series": 18
+  },
+  {
+    "panel": 14,
+    "query": "(sum(rate(container_cpu_usage_seconds_total{namespace=\"burmalda\",pod=~\"demo-control-.*\",container!=\"\",container!=\"POD\"}[30s])) * 1000) or (sum(rate(container_cpu_usage_seconds_total{namespace=\"burmalda\",pod=~\"demo-control-.*\",container=\"\",pod!=\"\"}[30s])) * 1000)",
+    "status": "success",
+    "series": 1
+  },
+  {
+    "panel": 15,
+    "query": "(sum(container_memory_working_set_bytes{namespace=\"burmalda\",pod=~\"demo-control-.*\",container!=\"\",container!=\"POD\"})) or (sum(container_memory_working_set_bytes{namespace=\"burmalda\",pod=~\"demo-control-.*\",container=\"\",pod!=\"\"}))",
+    "status": "success",
+    "series": 1
+  }
+]

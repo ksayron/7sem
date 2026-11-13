@@ -1,0 +1,218 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: postgres
+  namespace: burmalda
+  labels:
+    app.kubernetes.io/part-of: burmalda
+spec:
+  serviceName: postgres
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+        app.kubernetes.io/part-of: burmalda
+    spec:
+      terminationGracePeriodSeconds: 60
+      containers:
+      - name: postgres
+        image: burmalda-postgres:lr9
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: db
+          containerPort: 5432
+        resources:
+          requests:
+            cpu: 250m
+            memory: 256Mi
+          limits:
+            cpu: '1'
+            memory: 1Gi
+        volumeMounts:
+        - name: data
+          mountPath: /var/lib/postgresql/data
+        env:
+        - name: POSTGRES_USER
+          value: burmalda_admin
+        - name: POSTGRES_DB
+          value: postgres
+        - name: PGDATA
+          value: /var/lib/postgresql/data/pgdata
+        - name: PROVISION_LEARNING_LABS
+          value: 'false'
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: burmalda-secrets
+              key: POSTGRES_PASSWORD
+        - name: IDENTITY_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: burmalda-secrets
+              key: IDENTITY_DB_PASSWORD
+        - name: CATALOG_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: burmalda-secrets
+              key: CATALOG_DB_PASSWORD
+        - name: LENDING_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: burmalda-secrets
+              key: LENDING_DB_PASSWORD
+        - name: ECONOMY_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: burmalda-secrets
+              key: ECONOMY_DB_PASSWORD
+        - name: REPUTATION_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: burmalda-secrets
+              key: REPUTATION_DB_PASSWORD
+        - name: NOTIFICATION_DB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: burmalda-secrets
+              key: NOTIFICATION_DB_PASSWORD
+        startupProbe:
+          exec:
+            command:
+            - pg_isready
+            - -h
+            - 127.0.0.1
+            - -U
+            - burmalda_admin
+            - -d
+            - postgres
+          periodSeconds: 5
+          timeoutSeconds: 5
+          failureThreshold: 60
+        readinessProbe:
+          exec:
+            command:
+            - pg_isready
+            - -h
+            - 127.0.0.1
+            - -U
+            - burmalda_admin
+            - -d
+            - postgres
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        livenessProbe:
+          exec:
+            command:
+            - pg_isready
+            - -h
+            - 127.0.0.1
+            - -U
+            - burmalda_admin
+            - -d
+            - postgres
+          periodSeconds: 20
+          timeoutSeconds: 5
+          failureThreshold: 6
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 2Gi
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: rabbitmq
+  namespace: burmalda
+  labels:
+    app.kubernetes.io/part-of: burmalda
+spec:
+  serviceName: rabbitmq
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rabbitmq
+  template:
+    metadata:
+      labels:
+        app: rabbitmq
+        app.kubernetes.io/part-of: burmalda
+    spec:
+      terminationGracePeriodSeconds: 60
+      containers:
+      - name: rabbitmq
+        image: rabbitmq:4-management-alpine
+        imagePullPolicy: IfNotPresent
+        ports:
+        - name: amqp
+          containerPort: 5672
+        resources:
+          requests:
+            cpu: 100m
+            memory: 256Mi
+          limits:
+            cpu: '1'
+            memory: 768Mi
+        volumeMounts:
+        - name: data
+          mountPath: /var/lib/rabbitmq
+        env:
+        - name: RABBITMQ_DEFAULT_USER
+          value: burmalda
+        - name: RABBITMQ_DEFAULT_PASS
+          valueFrom:
+            secretKeyRef:
+              name: burmalda-secrets
+              key: RABBITMQ_PASSWORD
+        - name: RABBITMQ_NODENAME
+          value: rabbit@rabbitmq-0
+        - name: RABBITMQ_ERLANG_COOKIE
+          valueFrom:
+            secretKeyRef:
+              name: burmalda-secrets
+              key: RABBITMQ_ERLANG_COOKIE
+        startupProbe:
+          exec:
+            command:
+            - rabbitmq-diagnostics
+            - -q
+            - ping
+          periodSeconds: 5
+          timeoutSeconds: 5
+          failureThreshold: 60
+        readinessProbe:
+          exec:
+            command:
+            - rabbitmq-diagnostics
+            - -q
+            - ping
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        livenessProbe:
+          exec:
+            command:
+            - rabbitmq-diagnostics
+            - -q
+            - ping
+          periodSeconds: 20
+          timeoutSeconds: 5
+          failureThreshold: 6
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 1Gi

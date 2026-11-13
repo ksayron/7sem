@@ -14,8 +14,8 @@ if(!$Local){
     Push-Location $taskRoot
     try {
         $taskVerb=switch($Action){Start {'start'} Stop {'stop'} Restart {'restart'}}
-        docker compose $taskVerb "raft-node-$NodeId"
-        if($LASTEXITCODE){throw 'Raft container action failed; inspect docker compose logs.'}
+        docker compose -f docker-compose.legacy.yml $taskVerb "raft-node-$NodeId"
+        if($LASTEXITCODE){throw 'Raft container action failed; inspect docker compose -f docker-compose.legacy.yml logs.'}
     } finally {Pop-Location}
     return
 }
@@ -58,7 +58,7 @@ try {
         $taskEnv=@{ ASPNETCORE_ENVIRONMENT='Development'; Raft__RuntimeRoot=$taskRuntime; ReplicationLab__ComposeRoot=$taskRoot }
         Push-Location $taskRoot
         try {
-            $taskConfig=docker compose config --format json | ConvertFrom-Json
+            $taskConfig=docker compose -f docker-compose.legacy.yml config --format json | ConvertFrom-Json
             if($LASTEXITCODE){throw 'Cannot read Docker Compose configuration.'}
             $taskAdmin=$taskConfig.services.postgres.environment.POSTGRES_USER
             $taskPassword=$taskConfig.services.postgres.environment.POSTGRES_PASSWORD

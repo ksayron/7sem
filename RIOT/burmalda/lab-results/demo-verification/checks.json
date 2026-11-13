@@ -1,0 +1,13 @@
+{
+  "startedAt": "2026-11-12T20:19:52.367Z",
+  "base": "http://localhost:5310",
+  "clients": 300,
+  "checks": [
+    "anonymous-control-denied",
+    "dependency-fault-denied",
+    "unbounded-fault-denied",
+    "stateful-pod-delete-denied",
+    "both-hpas-observed"
+  ],
+  "samples": []
+}

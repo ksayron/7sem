@@ -7,5 +7,7 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args); builder.Logging.AddBurmaldaConsole(builder.Configuration); builder.Services.AddBurmaldaDefaults(builder.Configuration, "notification-service");
 builder.Services.AddDbContext<NotificationDbContext>(o => o.UseNpgsql(builder.Configuration.GetConnectionString("Database")).WithDatabaseFailover()); builder.Services.AddServiceMessaging<NotificationDbContext, NotificationQueue>();
 foreach (var type in new[] { MessageNames.UserRegistered, MessageNames.LoanRequested, MessageNames.LoanAccepted, MessageNames.LoanRejected, MessageNames.LoanCancelled, MessageNames.LoanActivated, MessageNames.ReturnInitiated, MessageNames.LoanCompleted, MessageNames.LoanBecameOverdue, MessageNames.FineCreated, MessageNames.ReturnReminderDue }) builder.Services.AddScoped<IIntegrationMessageHandler>(sp => new NotificationMessageHandler(sp.GetRequiredService<NotificationDbContext>(), type));
+builder.Services.AddBusinessReadiness<NotificationDbContext>();
+
 var app = builder.Build(); app.UseBurmaldaDefaults(); app.MapNotificationEndpoints(); await app.EnsureDatabaseAsync<NotificationDbContext>(); await app.RunAsync();
 public partial class Program;

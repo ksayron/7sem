@@ -5,8 +5,8 @@ $taskRoot=Split-Path $PSScriptRoot -Parent
 if(!$Local){
     Push-Location $taskRoot
     try {
-        if(!$NoBuild){docker compose build raft-node-1; if($LASTEXITCODE){throw 'Raft image build failed.'}}
-        docker compose up -d --no-deps raft-node-1 raft-node-2 raft-node-3 raft-node-4 raft-node-5
+        if(!$NoBuild){docker compose -f docker-compose.legacy.yml build raft-node-1; if($LASTEXITCODE){throw 'Raft image build failed.'}}
+        docker compose -f docker-compose.legacy.yml up -d --no-deps raft-node-1 raft-node-2 raft-node-3 raft-node-4 raft-node-5
         if($LASTEXITCODE){throw 'Raft container startup failed.'}
     } finally {Pop-Location}
     return

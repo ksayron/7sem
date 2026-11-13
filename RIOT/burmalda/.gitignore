@@ -6,5 +6,6 @@
 **/bin/
 **/obj/
 .artifacts/
+src/Clients/Burmalda.Web/wwwroot/appsettings.Development.json
 **/.data/
 

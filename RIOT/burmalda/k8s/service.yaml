@@ -1,0 +1,159 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: identity
+  namespace: burmalda
+  labels:
+    app.kubernetes.io/part-of: burmalda
+spec:
+  type: ClusterIP
+  selector:
+    app: identity
+  ports:
+  - name: http
+    port: 8080
+    targetPort: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: catalog
+  namespace: burmalda
+  labels:
+    app.kubernetes.io/part-of: burmalda
+spec:
+  type: ClusterIP
+  selector:
+    app: catalog
+  ports:
+  - name: http
+    port: 8080
+    targetPort: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: lending
+  namespace: burmalda
+  labels:
+    app.kubernetes.io/part-of: burmalda
+spec:
+  type: ClusterIP
+  selector:
+    app: lending
+  ports:
+  - name: http
+    port: 8080
+    targetPort: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: economy
+  namespace: burmalda
+  labels:
+    app.kubernetes.io/part-of: burmalda
+spec:
+  type: ClusterIP
+  selector:
+    app: economy
+  ports:
+  - name: http
+    port: 8080
+    targetPort: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: reputation
+  namespace: burmalda
+  labels:
+    app.kubernetes.io/part-of: burmalda
+spec:
+  type: ClusterIP
+  selector:
+    app: reputation
+  ports:
+  - name: http
+    port: 8080
+    targetPort: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: notifications
+  namespace: burmalda
+  labels:
+    app.kubernetes.io/part-of: burmalda
+spec:
+  type: ClusterIP
+  selector:
+    app: notifications
+  ports:
+  - name: http
+    port: 8080
+    targetPort: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gateway
+  namespace: burmalda
+  labels:
+    app.kubernetes.io/part-of: burmalda
+spec:
+  type: ClusterIP
+  selector:
+    app: gateway
+  ports:
+  - name: http
+    port: 8080
+    targetPort: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: web
+  namespace: burmalda
+  labels:
+    app.kubernetes.io/part-of: burmalda
+spec:
+  type: ClusterIP
+  selector:
+    app: web
+  ports:
+  - name: http
+    port: 8080
+    targetPort: http
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: postgres
+  namespace: burmalda
+  labels:
+    app.kubernetes.io/part-of: burmalda
+spec:
+  type: ClusterIP
+  selector:
+    app: postgres
+  ports:
+  - name: db
+    port: 5432
+    targetPort: 5432
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rabbitmq
+  namespace: burmalda
+  labels:
+    app.kubernetes.io/part-of: burmalda
+spec:
+  type: ClusterIP
+  selector:
+    app: rabbitmq
+  ports:
+  - name: amqp
+    port: 5672
+    targetPort: 5672

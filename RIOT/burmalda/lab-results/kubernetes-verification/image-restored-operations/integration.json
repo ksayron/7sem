@@ -1,0 +1,17 @@
+{
+  "startedAtUtc": "2026-11-12T16:55:46.657Z",
+  "base": "http://localhost:5300",
+  "checks": [
+    "same-book-and-copy-preserved-and-mode-confirmed"
+  ],
+  "fixtures": {
+    "bookId": "1958634a-2f54-4e6c-97db-cf866cf79363",
+    "copyId": "f40c521d-ea23-4d70-ae21-ec4bf87e8b0e"
+  },
+  "runtime": {
+    "mode": "kubernetes-configmap-demo",
+    "instance": "catalog-7cdbdd9d-q9764"
+  },
+  "success": true,
+  "finishedAtUtc": "2026-11-12T16:55:46.846Z"
+}
