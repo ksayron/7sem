@@ -1,0 +1,108 @@
+{
+  "at": "2026-11-16T22:42:37.995Z",
+  "baseline": 16,
+  "build": {
+    "number": 17,
+    "building": false,
+    "result": "SUCCESS",
+    "commit": "2f1de18b3fdcadc2fcbff2c7b030b6394738f21c",
+    "startedAtMs": 1794868530745,
+    "durationMs": 424986,
+    "checkedAtMs": 1794868957656,
+    "command": {
+      "pending": false,
+      "command": "queued",
+      "error": null,
+      "commit": "2f1de18b3fdcadc2fcbff2c7b030b6394738f21c"
+    },
+    "stages": [
+      {
+        "name": "Checkout",
+        "status": "SUCCESS",
+        "startedAtMs": 1794868549218,
+        "durationMs": 23363
+      },
+      {
+        "name": "Restore",
+        "status": "SUCCESS",
+        "startedAtMs": 1794868572612,
+        "durationMs": 5616
+      },
+      {
+        "name": "Build",
+        "status": "SUCCESS",
+        "startedAtMs": 1794868578257,
+        "durationMs": 95062
+      },
+      {
+        "name": "Test",
+        "status": "SUCCESS",
+        "startedAtMs": 1794868673367,
+        "durationMs": 29368
+      },
+      {
+        "name": "Load",
+        "status": "SUCCESS",
+        "startedAtMs": 1794868702774,
+        "durationMs": 6271
+      },
+      {
+        "name": "Package",
+        "status": "SUCCESS",
+        "startedAtMs": 1794868709121,
+        "durationMs": 171249
+      },
+      {
+        "name": "Deploy",
+        "status": "SUCCESS",
+        "startedAtMs": 1794868880434,
+        "durationMs": 54055
+      },
+      {
+        "name": "Verify",
+        "status": "SUCCESS",
+        "startedAtMs": 1794868934544,
+        "durationMs": 15147
+      }
+    ]
+  },
+  "traffic": {
+    "from": "2026-11-16T22:41:20.434+00:00",
+    "to": "2026-11-16T22:42:35.731+00:00",
+    "requests": 775,
+    "errors": 0,
+    "p95Ms": 18.341099999999997,
+    "versions": {
+      "17b5865e6fee · редакция 1": 255,
+      "2f1de18b3fdc · редакция 2": 474
+    },
+    "outcomes": {
+      "success": 775
+    },
+    "covered": true
+  },
+  "external": {
+    "requests": 48,
+    "errors": 0,
+    "failures": [],
+    "editions": [
+      "1",
+      "2"
+    ]
+  },
+  "operations": {
+    "completed": 38,
+    "failed": 0,
+    "pending": 0,
+    "duringUpdate": 5
+  },
+  "browserErrors": [],
+  "minReady": {
+    "catalog": 2,
+    "gateway": 2
+  },
+  "activeDuringUpdate": {
+    "min": 20,
+    "max": 20
+  }
+}

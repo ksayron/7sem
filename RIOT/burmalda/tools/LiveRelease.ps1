@@ -33,16 +33,23 @@ try {
             $taskSecret | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath $taskSecretFile
             Invoke-Kube apply -f $taskSecretFile
             $taskSource=Join-Path $taskLive 'source'
+            $taskRepo=(Native git rev-parse --show-toplevel | Out-String).Trim()
+            $taskSha=(Native git rev-parse HEAD | Out-String).Trim()
             if (!(Test-Path (Join-Path $taskSource '.git'))) {
-                $taskRepo=(Native git rev-parse --show-toplevel | Out-String).Trim()
-                $taskSha=(Native git rev-parse HEAD | Out-String).Trim()
                 Native git clone --shared --no-checkout $taskRepo $taskSource
                 Native git -C $taskSource sparse-checkout init --cone
                 Native git -C $taskSource sparse-checkout set RIOT/burmalda
-                Native git -C $taskSource checkout -b demo/live-release $taskSha
                 Native git -C $taskSource remote set-url origin https://github.com/ksayron/7sem.git
-                Native git -C $taskSource push -u origin demo/live-release
+                $taskRemote=Native git -C $taskSource ls-remote --heads origin refs/heads/demo/live-release
+                if ($taskRemote) {
+                    Native git -C $taskSource fetch origin demo/live-release
+                    Native git -C $taskSource checkout -b demo/live-release FETCH_HEAD
+                } else { Native git -C $taskSource checkout -b demo/live-release $taskSha }
             }
+            if (Native git -C $taskSource status --porcelain) { throw 'The isolated demo source has unfinished changes. Preserve/resolve them before Prepare.' }
+            Native git -C $taskSource fetch $taskRepo $taskSha
+            Native git -C $taskSource merge --no-edit FETCH_HEAD
+            Native git -C $taskSource push -u origin demo/live-release
             Write-Host '[info] Prepared isolated source branch and bridge key. Git/Jenkins credentials remain on Windows.'
         }
         'Build' {
@@ -76,13 +83,28 @@ try {
             }
             # Apply traffic-drain hooks once before measuring a release. Keep every running image.
             foreach ($taskName in @('identity','catalog','lending','economy','reputation','notifications','gateway','web')) {
-                $taskPatch=@{spec=@{template=@{spec=@{terminationGracePeriodSeconds=45;containers=@(@{name=$taskName;lifecycle=@{preStop=@{exec=@{command=@('/bin/sh','-c','sleep 10')}}}})}}}}
+                $taskContainer=@{name=$taskName;lifecycle=@{preStop=@{exec=@{command=@('/bin/sh','-c','sleep 10')}}};env=@(
+                    @{name='POD_UID';valueFrom=@{fieldRef=@{fieldPath='metadata.uid'}}},
+                    @{name='POD_NAMESPACE';valueFrom=@{fieldRef=@{fieldPath='metadata.namespace'}}}
+                )}
+                if ($taskName -in @('catalog','gateway')) {
+                    $taskContainer.env+=@(@{name='DemoFaults__Enabled';value='true'},@{name='DemoFaults__Service';value=$taskName},
+                        @{name='DemoFaults__ControlUrl';value='http://demo-control:8080'},
+                        @{name='DemoFaults__Key';valueFrom=@{secretKeyRef=@{name='burmalda-demo-secrets';key='CONTROL_KEY'}}})
+                }
+                $taskPatch=@{spec=@{template=@{spec=@{terminationGracePeriodSeconds=45;containers=@($taskContainer)}}}}
                 $taskPatch | ConvertTo-Json -Depth 15 | Set-Content (Join-Path $taskLive 'drain-patch.json')
                 Invoke-Kube patch "deployment/$taskName" --type strategic --patch-file (Join-Path $taskLive 'drain-patch.json')
                 Invoke-Kube rollout status "deployment/$taskName" --timeout=300s
             }
             & (Join-Path $PSScriptRoot 'Jenkins.ps1') Start -Branch demo/live-release
             if (!$?) { throw 'Cannot configure Jenkins.' }
+            $taskState=Invoke-RestMethod http://127.0.0.1:18090/state -Headers @{'X-Release-Key'=[IO.File]::ReadAllText((Join-Path $taskLive 'bridge-token')).Trim()} -TimeoutSec 30
+            $taskSourceSha=(Native git -C (Join-Path $taskLive 'source') rev-parse HEAD | Out-String).Trim()
+            if (!$taskState.building -and $taskState.commit -ne $taskSourceSha) {
+                & (Join-Path $PSScriptRoot 'Jenkins.ps1') Run
+                if (!$?) { throw 'Cannot start the baseline release.' }
+            }
             Start-DemoAccess
             Write-Host '[info] Library: http://localhost:30530; control: http://localhost:5310; Grafana: http://localhost:3000/d/burmalda-demo'
             Write-Host '[info] Wait for the initial Jenkins build, prepare clients, start the release scenario, then press Publish.'

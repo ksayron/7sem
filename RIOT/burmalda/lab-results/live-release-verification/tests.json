@@ -1,0 +1,38 @@
+{
+  "DemoControl.junit": {
+    "name": "DemoControl",
+    "tests": "32",
+    "failures": "0",
+    "skipped": "0"
+  },
+  "Domain.junit": {
+    "name": "Domain",
+    "tests": "60",
+    "failures": "0",
+    "skipped": "0"
+  },
+  "Integration.junit": {
+    "name": "Integration",
+    "tests": "4",
+    "failures": "0",
+    "skipped": "0"
+  },
+  "LibraryGame.junit": {
+    "name": "LibraryGame",
+    "tests": "29",
+    "failures": "0",
+    "skipped": "0"
+  },
+  "Load.junit": {
+    "name": "Load",
+    "tests": "1",
+    "failures": "0",
+    "skipped": "0"
+  },
+  "Raft.junit": {
+    "name": "Raft",
+    "tests": "56",
+    "failures": "0",
+    "skipped": "0"
+  }
+}

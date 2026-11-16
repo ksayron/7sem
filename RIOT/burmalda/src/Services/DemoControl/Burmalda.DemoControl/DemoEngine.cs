@@ -131,7 +131,7 @@ public sealed class DemoEngine : BackgroundService
                 {
                     try { session = JsonSerializer.Deserialize<SessionTokens>(protector.Unprotect(existing.ProtectedTokens))!; }
                     catch (System.Security.Cryptography.CryptographicException) { session = await Login(email, password, ct); }
-                    if (session.ExpiresAt < DateTimeOffset.UtcNow.AddMinutes(15))
+                    if (session.ExpiresAt < DateTimeOffset.UtcNow.AddMinutes(configuration.GetValue<bool>("Release:Enabled") ? 27 : 15))
                         session = await Login(email, password, ct);
                 }
                 else session = await Login(email, password, ct);

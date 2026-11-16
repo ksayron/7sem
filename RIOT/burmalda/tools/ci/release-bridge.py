@@ -33,6 +33,8 @@ def state():
     build = json.loads(request(JOB + 'lastBuild/api/json?tree=number,building,result,timestamp,duration,actions[lastBuiltRevision[SHA1]]'))
     stages = json.loads(request(JOB + str(build['number']) + '/wfapi/describe')).get('stages', [])
     sha = next((x['lastBuiltRevision']['SHA1'] for x in build['actions'] if x.get('lastBuiltRevision')), '')
+    if STATE['command'] == 'queued' and STATE['commit'] == sha and not build['building']:
+        STATE['command'] = 'finished'
     return {'number': build['number'], 'building': build['building'], 'result': build['result'],
             'commit': sha, 'startedAtMs': build['timestamp'], 'durationMs': build['duration'],
             'checkedAtMs': int(time.time() * 1000), 'command': dict(STATE),
@@ -65,8 +67,8 @@ def release():
         sha = git('rev-parse', 'HEAD')
         STATE['commit'] = sha
         git('push', 'origin', 'HEAD:refs/heads/demo/live-release')
-        # The configured SCM remains the only source of Jenkinsfile and application code.
-        request(JOB + 'build', {})
+        # Poll SCM starts this commit. A second manual trigger can queue a duplicate
+        # while the Git plugin still polls the previous agent checkout.
         STATE['command'] = 'queued'
     except Exception as error:
         STATE['error'] = str(error)
@@ -91,7 +93,7 @@ class Handler(BaseHTTPRequestHandler):
         self.wfile.write(body)
 
     def authorized(self):
-        return secrets.compare_digest(self.headers.get('X-Release-Key', ''), TOKEN)
+        return secrets.compare_digest(self.headers.get('X-Release-Key', '').encode(), TOKEN.encode())
 
     def do_GET(self):
         if self.path == '/health':

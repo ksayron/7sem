@@ -6,8 +6,8 @@ public sealed record RunOptions(string Scenario = "wave", int Peak = 300, int Ra
     public void Validate()
     {
         if (!new[] { "wave", "spike", "mixed", "recovery", "release" }.Contains(Scenario) || Peak is < 1 or > 500 ||
-            RampSeconds is < 5 or > 300 || HoldSeconds < 30 || HoldSeconds > (Scenario == "release" ? 2400 : 600))
-            throw new DemoConflict("Проверьте сценарий, пик 1–500, рост 5–300 с; удержание до 600 с, для выпуска — до 2400 с.");
+            RampSeconds is < 5 or > 300 || HoldSeconds < 30 || HoldSeconds > (Scenario == "release" ? 1200 : 600))
+            throw new DemoConflict("Проверьте сценарий, пик 1–500, рост 5–300 с; удержание до 600 с, для выпуска — до 1200 с.");
     }
 }
 

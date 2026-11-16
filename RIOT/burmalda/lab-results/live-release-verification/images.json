@@ -1,0 +1,67 @@
+{
+  "identity": {
+    "image": "burmalda-identity:ci-17-2f1de18b3fdc",
+    "id": "sha256:acf4af7605ef1c3c82b9b4c183c001d4eea5e504393f40c228d7f4fcaecd752c",
+    "labels": {
+      "org.opencontainers.image.revision": "2f1de18b3fdcadc2fcbff2c7b030b6394738f21c",
+      "org.opencontainers.image.version": "ci-17-2f1de18b3fdc"
+    }
+  },
+  "catalog": {
+    "image": "burmalda-catalog:ci-17-2f1de18b3fdc",
+    "id": "sha256:5ef56a6011904b58324ce11d1acc7f71fd8903003d9ad91335cd588b4485cac0",
+    "labels": {
+      "org.opencontainers.image.revision": "2f1de18b3fdcadc2fcbff2c7b030b6394738f21c",
+      "org.opencontainers.image.version": "ci-17-2f1de18b3fdc"
+    }
+  },
+  "lending": {
+    "image": "burmalda-lending:ci-17-2f1de18b3fdc",
+    "id": "sha256:c876687f9b1cb35b3f9d0f6e2756919be26d8ccb61e0e2234ad0a8fc38e01de2",
+    "labels": {
+      "org.opencontainers.image.revision": "2f1de18b3fdcadc2fcbff2c7b030b6394738f21c",
+      "org.opencontainers.image.version": "ci-17-2f1de18b3fdc"
+    }
+  },
+  "economy": {
+    "image": "burmalda-economy:ci-17-2f1de18b3fdc",
+    "id": "sha256:655c3f92e02c8fa6b8869998d6c0b2f693d18ec8de2568684b3ba3e0b4eada55",
+    "labels": {
+      "org.opencontainers.image.revision": "2f1de18b3fdcadc2fcbff2c7b030b6394738f21c",
+      "org.opencontainers.image.version": "ci-17-2f1de18b3fdc"
+    }
+  },
+  "reputation": {
+    "image": "burmalda-reputation:ci-17-2f1de18b3fdc",
+    "id": "sha256:350c592095aadf13b7fa467b0f89fcb17776d5423ad42e68a522aa08b4ad3109",
+    "labels": {
+      "org.opencontainers.image.revision": "2f1de18b3fdcadc2fcbff2c7b030b6394738f21c",
+      "org.opencontainers.image.version": "ci-17-2f1de18b3fdc"
+    }
+  },
+  "notifications": {
+    "image": "burmalda-notifications:ci-17-2f1de18b3fdc",
+    "id": "sha256:61ccfd5c73aece696256bc969320861e0756ebb3eb585d6af7dabab31ba10ac8",
+    "labels": {
+      "org.opencontainers.image.revision": "2f1de18b3fdcadc2fcbff2c7b030b6394738f21c",
+      "org.opencontainers.image.version": "ci-17-2f1de18b3fdc"
+    }
+  },
+  "gateway": {
+    "image": "burmalda-gateway:ci-17-2f1de18b3fdc",
+    "id": "sha256:5a2fa0358b865c85e0e19ff362955933679b50e886bbbdd22e66972dc3166749",
+    "labels": {
+      "org.opencontainers.image.revision": "2f1de18b3fdcadc2fcbff2c7b030b6394738f21c",
+      "org.opencontainers.image.version": "ci-17-2f1de18b3fdc"
+    }
+  },
+  "web": {
+    "image": "burmalda-web:ci-17-2f1de18b3fdc",
+    "id": "sha256:9e86880b24a8694e11bd3285aa87a92ecc4651eba04061fcbe1857802f0e8506",
+    "labels": {
+      "maintainer": "NGINX Docker Maintainers <docker-maint@nginx.com>",
+      "org.opencontainers.image.revision": "2f1de18b3fdcadc2fcbff2c7b030b6394738f21c",
+      "org.opencontainers.image.version": "ci-17-2f1de18b3fdc"
+    }
+  }
+}
