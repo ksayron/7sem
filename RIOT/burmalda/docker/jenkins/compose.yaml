@@ -1,0 +1,37 @@
+name: burmalda-ci
+services:
+  jenkins:
+    image: burmalda-jenkins:lr10
+    build:
+      context: ../..
+      dockerfile: docker/jenkins/controller.Dockerfile
+      additional_contexts:
+        plugins: ../../.artifacts/ci/plugins-locked
+    environment:
+      JAVA_OPTS: -Djenkins.install.runSetupWizard=false -Xmx768m
+      BURMALDA_CI_BRANCH: ${BURMALDA_CI_BRANCH:-lab10/cicd}
+    ports:
+      - 127.0.0.1:8081:8080
+    volumes:
+      - jenkins-home:/var/jenkins_home
+      - ../../.artifacts/ci/secrets:/run/ci:ro
+    mem_limit: 1536m
+    restart: unless-stopped
+  agent:
+    image: burmalda-ci-agent:lr10
+    container_name: burmalda-ci-agent
+    build:
+      context: ../..
+      dockerfile: docker/jenkins/agent.Dockerfile
+    command: ["-url", "http://jenkins:8080", "-name", "burmalda-linux", "-secret", "@/run/ci/agent-secret", "-webSocket", "-workDir", "/home/jenkins/agent"]
+    volumes:
+      - agent-work:/home/jenkins/agent
+      - nuget:/root/.nuget/packages
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ../../.artifacts/ci/secrets:/run/ci:ro
+    mem_limit: 4g
+    restart: unless-stopped
+volumes:
+  jenkins-home:
+  agent-work:
+  nuget:

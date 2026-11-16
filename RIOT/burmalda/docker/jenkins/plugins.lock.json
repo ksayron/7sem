@@ -1,0 +1,286 @@
+{
+  "workflow-aggregator": {
+    "version": "608.v67378e9d3db_1",
+    "sha256": "7b94227c1afa01bb262c14919ad4a333412f1b51d947c0f21909ec2daff357dc"
+  },
+  "pipeline-groovy-lib": {
+    "version": "797.v90ea_a_9b_e45a_0",
+    "sha256": "53729b56436bca8b9ccc196eb6a7c41256ba29274331afe24c12a01d182d2755"
+  },
+  "workflow-api": {
+    "version": "1413.v2ff1a_5e720fa_",
+    "sha256": "f4adbd6b34a2a0b643a12b898110bd976350142eff6322efda21efacbccb6835"
+  },
+  "workflow-step-api": {
+    "version": "724.v538c2362b_dfb_",
+    "sha256": "887491de444174228471993b0b2db958db2e7fb577857c8516c58e9618049896"
+  },
+  "structs": {
+    "version": "362.va_b_695ef4fdf9",
+    "sha256": "a0a5db44f2cb082a9ec6572c088340521f033fff8c351fc7eba9ef7f07dbbf8d"
+  },
+  "scm-api": {
+    "version": "728.vc30dcf7a_0df5",
+    "sha256": "1336472987daa2fa912210aba00e1e37b739ce03f75c973a6794d1a0f55c0326"
+  },
+  "asm-api": {
+    "version": "9.10-211.v7d13903b_a_d89",
+    "sha256": "89c6c40929279a2292d6c43918dae3eb5e884d3c9dd9f07e22658816a09925c0"
+  },
+  "commons-lang3-api": {
+    "version": "3.20.0-109.ve43756e2d2b_4",
+    "sha256": "aa0908e0002c23c329df1f5e36d2ea9af6dfbd7c7f71fcf413cc471f335c2052"
+  },
+  "workflow-cps": {
+    "version": "4331.v9d06ed4658ff",
+    "sha256": "f539a2972982200aa0258e843e89c79d6e6871ae26ca025f8b21ef707abc9429"
+  },
+  "ionicons-api": {
+    "version": "94.vcc3065403257",
+    "sha256": "95f3504375d628d887425ccdf32d5606a230261ee42dc683f13958d8e973ac3f"
+  },
+  "workflow-scm-step": {
+    "version": "466.va_d69e602552b_",
+    "sha256": "8f35b68153ee8a671d01dcdc3d86dd47837bd2d5fcf9df8d674ff8aeecfba16a"
+  },
+  "workflow-support": {
+    "version": "1015.v785e5a_b_b_8b_22",
+    "sha256": "914ee717ab8c1d60d0d3ea49a1af11e4ea65c1e74c0b44dc3522f9a2fe5b2a8e"
+  },
+  "caffeine-api": {
+    "version": "3.2.3-194.v31a_b_f7a_b_5a_81",
+    "sha256": "93e218637e99ab794efe666387195af0f12b1bd7bef35c7e40e91ec0cf6c43ef"
+  },
+  "script-security": {
+    "version": "1402.v94c9ce464861",
+    "sha256": "7196f259a941e831aef7d9f0d87ae1ea37ddaba97fd2271b722bc36d3959b3b4"
+  },
+  "cloudbees-folder": {
+    "version": "6.1100.ve9eed61d16c4",
+    "sha256": "796f2ce5169f09c943743f056616759e9f51988d6b83140ec4b353cc8d6af3a0"
+  },
+  "variant": {
+    "version": "70.va_d9f17f859e0",
+    "sha256": "12e214ea694469a4461b55881ecb4074ae5dfb04797dbc0dad390f6f4bc75aaf"
+  },
+  "workflow-basic-steps": {
+    "version": "1098.v808b_fd7f8cf4",
+    "sha256": "93449eb494658d065d097e8c54f707c98c9ce3e54da2fb98281b0a0487154eaf"
+  },
+  "jakarta-mail-api": {
+    "version": "2.1.5-1",
+    "sha256": "244735ea85a51332c079d235a5713e70d3810bea62332894002acc39914ce11b"
+  },
+  "jakarta-activation-api": {
+    "version": "2.1.4-1",
+    "sha256": "e62298341742f14b374045387ba641ad8a19376793c76bdafebb4a05b5099712"
+  },
+  "workflow-durable-task-step": {
+    "version": "1479.v56e587f413a_7",
+    "sha256": "a0f0f1464ce3592f76d0f0079ce9fc2d4272594f995bf3d1a7ede4cd5031452e"
+  },
+  "durable-task": {
+    "version": "664.v2b_e7a_dfff66c",
+    "sha256": "251551e5e91bc9c05f845bccc646d520d317e0d876ef04687effced09a33a7f3"
+  },
+  "apache-httpcomponents-client-4-api": {
+    "version": "4.5.14-269.vfa_2321039a_83",
+    "sha256": "cea2f61cc72890b962fd4b767c31778c6cb30015b4a8758b4c26b62e51ca9533"
+  },
+  "mailer": {
+    "version": "534.v1b_36f5864073",
+    "sha256": "5426a66a3f879d25fcb4baff678a28422afbabff22cd6e4f0f998fc67a3dc3fa"
+  },
+  "instance-identity": {
+    "version": "203.v15e81a_1b_7a_38",
+    "sha256": "df2b3205a6177248f12b294650a60405f65ba2cd503ca9599b2dcb72c1de5018"
+  },
+  "bouncycastle-api": {
+    "version": "2.30.1.84-291.v9f17b_21896e2",
+    "sha256": "a31099c54d9b1ac6f88b1336088a73124831532313bf3280e3eb1610300382e1"
+  },
+  "display-url-api": {
+    "version": "2.217.va_6b_de84cc74b_",
+    "sha256": "07eeaae738b451bade4756900b48561c6c493a42c7ba07a45b22a2dce71ac0ca"
+  },
+  "workflow-job": {
+    "version": "1571.1580.v18e46842c125",
+    "sha256": "ef54a682580ca86c109636f48afe8d8a4f1a3064974f272cc54d3a18282fc8f2"
+  },
+  "workflow-multibranch": {
+    "version": "821.vc3b_4ea_780798",
+    "sha256": "f0a9857e0b07c52cc54e427b6edca274612e111cab9416d2e3c3d76a83f00cfd"
+  },
+  "branch-api": {
+    "version": "2.1280.v0d4e5b_b_460ef",
+    "sha256": "fa9c246644e1b5011241a2e6daded05ac50e59f6b9941871a012b39efe9c8deb"
+  },
+  "pipeline-build-step": {
+    "version": "584.vdb_a_2cc3a_d07a_",
+    "sha256": "88df1792ac9018ade1993b6bfb6b782d5718f130076685a25692291a6511741f"
+  },
+  "pipeline-input-step": {
+    "version": "551.vdff487c5998c",
+    "sha256": "8c57d5cd32e2cc20912b548f3c1dbd873a34d1f1f309fc205efd11ac94f7cc16"
+  },
+  "credentials": {
+    "version": "1502.v5c95e620ddfe",
+    "sha256": "05e36e354433a22361b4891cf758030c96234689362fafdf5e7fa66347ba0bcd"
+  },
+  "commons-text-api": {
+    "version": "1.15.0-218.va_61573470393",
+    "sha256": "ae2abdf957694f4aa39b9ba0b539edabc384f3da277551879e34ffb22fb13764"
+  },
+  "pipeline-milestone-step": {
+    "version": "152.v6e22b_8cfc66c",
+    "sha256": "cb3187809e219f01b42068f277058a818033f3cfd14da7ec59c86f028fc38386"
+  },
+  "pipeline-stage-step": {
+    "version": "345.va_96187909426",
+    "sha256": "2eba433b28f2dfc90519e233b14264890f97b93b78e25c664d56607141fcd94b"
+  },
+  "pipeline-model-definition": {
+    "version": "2.2277.v00573e73ddf1",
+    "sha256": "14ee188730c4d4ba83259af61f585036d5c34ed0b9dba46d3012be980f3512c2"
+  },
+  "credentials-binding": {
+    "version": "720.v3f6decef43ea_",
+    "sha256": "0a2a1773f32d88dae6fb99cf9ff35dae800a0aa50a6cbb39d7ef1afe5492c4bb"
+  },
+  "plain-credentials": {
+    "version": "199.v9f8e1f741799",
+    "sha256": "b5e5e35cf93ad3b818a983916cbcdf3f7866699410a4df923e6a2968ecc3a448"
+  },
+  "ssh-credentials": {
+    "version": "372.va_250881b_08cd",
+    "sha256": "7b4d035b05b331038f3dfa99ddfef0cabbacede8f0ad2a6ca9611fb0844108a9"
+  },
+  "pipeline-model-api": {
+    "version": "2.2277.v00573e73ddf1",
+    "sha256": "afedbcf3536526ff38eb640f72d27d8e828b50e61ed2d44db6602f85cdbab054"
+  },
+  "joda-time-api": {
+    "version": "2.14.2-193.v422b_efce56e0",
+    "sha256": "9a005fa1abd994829fc895cbe29402ce3c2c5c2f847463e04149b7d347edc4c4"
+  },
+  "jackson2-api": {
+    "version": "2.21.2-436.v29efdb_7418ff",
+    "sha256": "3dc088848b4dba65eabdccd6dc33f2f606a49035f2e3e75b7b9031323f461fac"
+  },
+  "jackson-annotations2-api": {
+    "version": "2.21-7.v4777a_f3a_a_d47",
+    "sha256": "cb4621c468ad67d096df34283901bc775faa447039cd3ea6c064db19c7da4338"
+  },
+  "jakarta-xml-bind-api": {
+    "version": "4.0.6-12.vb_1833c1231d3",
+    "sha256": "930d1e7bdc23a646d28973a138151fca714314b1ecba3e220415b9609da0a9e6"
+  },
+  "javax-activation-api": {
+    "version": "1.2.0-8",
+    "sha256": "e96e88c52edf07ba00fb45b26cc411a7a95fa3d4491aaa1a5d36637665880560"
+  },
+  "jaxb": {
+    "version": "2.3.9-143.v5979df3304e6",
+    "sha256": "38ddf4cf5db61a591044130c2f7ccb2b7aa9abebc8fcd8a6953f8da550d002ed"
+  },
+  "json-api": {
+    "version": "20251224-185.v0cc18490c62c",
+    "sha256": "9170a4c55cd949e57bf897057041886aaab3a1a59ba8a3a1842f094c683d4e2b"
+  },
+  "snakeyaml-api": {
+    "version": "2.5-149.v72471e9c6371",
+    "sha256": "80edbeec15b9afbca18d000cf367d9e26456aa83100dcdd09ee0ed6a4b98a9c2"
+  },
+  "woodstox-core-api": {
+    "version": "7.1.1-1.v4d297985f397",
+    "sha256": "61009aade6c0b0f59f87e6c90949a5a5936deea34e3ac750715f6c3dec47b794"
+  },
+  "pipeline-model-extensions": {
+    "version": "2.2277.v00573e73ddf1",
+    "sha256": "48313d88c6d403221cca9ee6e4b22b7caa2260cbb30ae1a132152fdf86b6d1d2"
+  },
+  "pipeline-stage-tags-metadata": {
+    "version": "2.2277.v00573e73ddf1",
+    "sha256": "b65cb5acb5e7f15c01c26779ee01585bfdc2d2ef2e86c38eb6612bbe76482a66"
+  },
+  "git": {
+    "version": "5.10.1",
+    "sha256": "eb562836855eb8e4155a03154002467051d287ab068b2853cfc1c3b86b669a69"
+  },
+  "git-client": {
+    "version": "6.6.0",
+    "sha256": "8ab9b0911c7884019c629fca59623abae0cf744daac32891d78cbfeb5f4906bc"
+  },
+  "mina-sshd-api-common": {
+    "version": "2.17.1-187.v0341274c2905",
+    "sha256": "4bf8d267ad9435bf249ebebb6b1b5efc90dd5a1ffd9398931a1ea3c026ec13e8"
+  },
+  "mina-sshd-api-core": {
+    "version": "2.17.1-187.v0341274c2905",
+    "sha256": "9479d70a69201a0d75f816cfce4d55553402d56e0d480dbeb15f4f7333ec01b4"
+  },
+  "gson-api": {
+    "version": "2.14.0-201.v8eefe5515533",
+    "sha256": "6940cd0f795f72371fd5644d885db9ec0a2077985ac55de85d19ab3b1fac2bb7"
+  },
+  "pipeline-stage-view": {
+    "version": "2.41",
+    "sha256": "fbc9dd724278f69b8c7638907363a609a8484cfaaa59321169468ee6c908952f"
+  },
+  "pipeline-rest-api": {
+    "version": "2.41",
+    "sha256": "6e463affa43f4013c4b0865d4c0442abd738440c54c8bb0cd70f0c1164743159"
+  },
+  "pipeline-graph-analysis": {
+    "version": "254.v0f63a_a_447dca_",
+    "sha256": "8c89351cb13f694b9cc620501a75aed8bd4acdc0b9a6e6918b5dcb0543f08e7f"
+  },
+  "junit": {
+    "version": "1403.vd9d1413fd205",
+    "sha256": "716d2f706bd8238076e0b408bf3adeb07eae20d81e256a7fd40340c24f9d9d48"
+  },
+  "bootstrap5-api": {
+    "version": "5.3.8-1038.vee76a_fe825ff",
+    "sha256": "beb258150e0d777c3295c3aac3485a03978404fd2e79a3f7b666c8dc463ea342"
+  },
+  "font-awesome-api": {
+    "version": "7.2.0-990.vf220b_2a_496f9",
+    "sha256": "ee596616e322875d6163ffbd2465f29e84e1ced87d3b22758056a7ede36f45a9"
+  },
+  "plugin-util-api": {
+    "version": "7.1341.v039f146993d9",
+    "sha256": "6ed91e4b73cae55327b41ab919b53c33b39425727115d6c308f45ae7a6e47837"
+  },
+  "checks-api": {
+    "version": "402.vca_263b_f200e3",
+    "sha256": "27e2728fcc5f1da82923e1b1cc65d14df075dc36f1e22de963432e3d8c0e537e"
+  },
+  "echarts-api": {
+    "version": "6.0.0-1287.vfd24c22a_3d00",
+    "sha256": "7f7a7ae991dbd861660b353757735d55d16d302a3b8354d8da793143f9d2d06c"
+  },
+  "jackson3-api": {
+    "version": "3.1.3-76.vd9b_7cd2e80b_8",
+    "sha256": "556c82004cafc3f13865ad0e37dfe3c7ae64c180d0b2fcdbd77d7e987a43c2b3"
+  },
+  "snakeyaml-engine-api": {
+    "version": "3.0.1-5.vd98ea_ff3b_92e",
+    "sha256": "dafc5fa060c9589d7b7e85aa8fc49239ad20841cba855e14a7bf7f064a257b0d"
+  },
+  "jquery3-api": {
+    "version": "3.7.1-687.v68d468e40b_30",
+    "sha256": "16716d59a3df872a3b8700337de9e8306b2d5104320e6916731aa7185d3de880"
+  },
+  "prism-api": {
+    "version": "1.30.0-727.vc475481f034d",
+    "sha256": "38b4ea33eb2a0c5772a3a1215559e26fc27a7cbbb7244a1cefacd7a7ed803a79"
+  },
+  "antisamy-markup-formatter": {
+    "version": "173.v680e3a_b_69ff3",
+    "sha256": "29b4765797f26c44574a2732ddf9d7d98ea0283295352497dd9eef84aed0102f"
+  },
+  "timestamper": {
+    "version": "1.30",
+    "sha256": "b4d6589e7a169f06b26bc7e15bc37ef2fb3986dc20b502cb91c2a9918eaf980b"
+  }
+}

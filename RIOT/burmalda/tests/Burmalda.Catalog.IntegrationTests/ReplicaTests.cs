@@ -92,7 +92,7 @@ public sealed class ReplicaTests
         await using (var db = database.Context()) await db.Database.EnsureCreatedAsync();
         var options = new RabbitMqOptions
         {
-            Host = "localhost", Port = int.Parse(Environment.GetEnvironmentVariable("BURMALDA_TEST_RABBIT_PORT") ?? "5672"),
+            Host = Environment.GetEnvironmentVariable("BURMALDA_TEST_RABBIT_HOST") ?? "localhost", Port = int.Parse(Environment.GetEnvironmentVariable("BURMALDA_TEST_RABBIT_PORT") ?? "5672"),
             UserName = Environment.GetEnvironmentVariable("BURMALDA_TEST_RABBIT_USER")!,
             Password = Environment.GetEnvironmentVariable("BURMALDA_TEST_RABBIT_PASSWORD")!
         };
@@ -141,7 +141,7 @@ public sealed class ReplicaTests
         Assert.Equal(25, ids.Count);
     }
 
-    private static async Task<(Guid book, Guid copy)> Seed(TestDatabase database)
+    internal static async Task<(Guid book, Guid copy)> Seed(TestDatabase database)
     {
         await using var db = database.Context();
         await db.Database.EnsureCreatedAsync();
