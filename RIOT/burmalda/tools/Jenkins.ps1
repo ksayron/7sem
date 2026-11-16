@@ -2,7 +2,8 @@
 [CmdletBinding()]
 param(
     [Parameter(Mandatory)][ValidateSet('Prepare','Build','Start','Status','Run','Stop')][string]$Action,
-    [ValidatePattern('^[a-zA-Z0-9/_.-]+$')][string]$Branch = 'lab10/cicd'
+    [ValidatePattern('^[a-zA-Z0-9/_.-]+$')][string]$Branch = 'lab10/cicd',
+    [switch]$DirectDownloads
 )
 $ErrorActionPreference = 'Stop'
 $taskRoot = Split-Path $PSScriptRoot -Parent
@@ -29,6 +30,11 @@ try {
     switch ($Action) {
         'Prepare' {
             New-Item -ItemType Directory -Force $taskSecrets | Out-Null
+            $taskCache = Join-Path $taskRoot '.artifacts/ci/git-cache.git'
+            if (!(Test-Path $taskCache)) {
+                $taskRepository = (Native git rev-parse --show-toplevel | Out-String).Trim()
+                Native git clone --mirror --no-hardlinks $taskRepository $taskCache
+            } else { Native git -C $taskCache fetch origin }
             if (!(Test-Path (Join-Path $taskSecrets 'admin-password'))) {
                 [IO.File]::WriteAllText((Join-Path $taskSecrets 'admin-password'), [Convert]::ToHexString([Security.Cryptography.RandomNumberGenerator]::GetBytes(24)))
             }
@@ -59,7 +65,24 @@ try {
         'Build' {
             Native python (Join-Path $PSScriptRoot 'ci/download-plugins.py')
             Native docker compose -f $taskCompose build jenkins
-            Native docker compose -f $taskCompose build agent
+            $taskProxyProcess = $null
+            $taskPreviousProxy = $env:BURMALDA_DOWNLOAD_PROXY
+            try {
+                if (!$DirectDownloads) {
+                    $taskProxyReady = $false
+                    try { $taskProxyReady = (Invoke-WebRequest 'http://127.0.0.1:18089/health' -TimeoutSec 2).Content -eq 'burmalda-ci-download-cache' } catch { }
+                    if (!$taskProxyReady) {
+                        $taskProxyProcess = Start-Process (Get-Command python).Source -ArgumentList @('-u',(Join-Path $PSScriptRoot 'ci/download-proxy.py')) -WindowStyle Hidden -PassThru -RedirectStandardOutput (Join-Path $taskRoot '.artifacts/ci/download-cache.log') -RedirectStandardError (Join-Path $taskRoot '.artifacts/ci/download-cache.err')
+                        Start-Sleep -Seconds 2
+                        if ($taskProxyProcess.HasExited) { throw 'Build download cache failed to start (port 18089).' }
+                    }
+                    $env:BURMALDA_DOWNLOAD_PROXY = 'http://host.docker.internal:18089'
+                }
+                Native docker compose -f $taskCompose build agent
+            } finally {
+                $env:BURMALDA_DOWNLOAD_PROXY = $taskPreviousProxy
+                if ($taskProxyProcess -and !$taskProxyProcess.HasExited) { Stop-Process -Id $taskProxyProcess.Id }
+            }
         }
         'Start' {
             if (!(Test-Path (Join-Path $taskSecrets 'kubeconfig'))) { throw 'Run Prepare first.' }

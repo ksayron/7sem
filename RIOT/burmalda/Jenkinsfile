@@ -25,14 +25,24 @@ pipeline {
         stage('Verify') { steps { dir('RIOT/burmalda') { sh 'python3 tools/ci/pipeline.py verify' } } }
     }
     post {
-        unsuccessful {
-            dir('RIOT/burmalda') { sh 'python3 tools/ci/pipeline.py rollback' }
-        }
         always {
             dir('RIOT/burmalda') {
-                sh 'python3 tools/ci/pipeline.py cleanup'
-                junit testResults: '.artifacts/ci/results/*.junit.xml', allowEmptyResults: true
-                archiveArtifacts artifacts: '.artifacts/ci/results/**', allowEmptyArchive: true
+                script {
+                    if (fileExists('tools/ci/pipeline.py')) {
+                        try {
+                            if (currentBuild.currentResult != 'SUCCESS') {
+                                sh 'python3 tools/ci/pipeline.py rollback'
+                            }
+                        } finally {
+                            try {
+                                sh 'python3 tools/ci/pipeline.py cleanup'
+                            } finally {
+                                junit testResults: '.artifacts/ci/results/*.junit.xml', allowEmptyResults: true
+                                archiveArtifacts artifacts: '.artifacts/ci/results/**', allowEmptyArchive: true
+                            }
+                        }
+                    }
+                }
             }
         }
     }

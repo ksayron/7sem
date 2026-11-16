@@ -30,7 +30,7 @@ def job = j.getItem('burmalda-lab10') ?: j.createProject(WorkflowJob, 'burmalda-
 def scm = new GitSCM('https://github.com/ksayron/7sem.git')
 scm.branches = [new BranchSpec('*/' + (System.getenv('BURMALDA_CI_BRANCH') ?: 'lab10/cicd'))]
 scm.extensions.add(new PathRestriction('RIOT/burmalda/.*', ''))
-scm.extensions.add(new CloneOption(true, true, '', 20))
+scm.extensions.add(new CloneOption(true, true, '/opt/ci/git-cache.git', 20))
 scm.extensions.add(new SparseCheckoutPaths([new SparseCheckoutPath('RIOT/burmalda')]))
 job.setDefinition(new CpsScmFlowDefinition(scm, 'RIOT/burmalda/Jenkinsfile'))
 job.save()
