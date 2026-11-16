@@ -81,7 +81,8 @@ class Handler(BaseHTTPRequestHandler):
                     with urllib.request.urlopen(urllib.request.Request(url, method='HEAD'), timeout=30) as response:
                         size = int(response.headers['Content-Length'])
                     print(f'Download {url} ({size} bytes)', flush=True)
-                    chunks = [POOL.submit(fetch, url, start, min(start + CHUNK, size) - 1, size) for start in range(0, size, CHUNK)]
+                    chunk_size = CHUNK
+                    chunks = [POOL.submit(fetch, url, start, min(start + chunk_size, size) - 1, size) for start in range(0, size, chunk_size)]
                     data = b''.join(future.result() for future in chunks)
                     path.write_bytes(data)
             self.send_response(200)

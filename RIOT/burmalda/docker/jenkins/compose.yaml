@@ -26,13 +26,13 @@ services:
       dockerfile: docker/jenkins/agent.Dockerfile
       args:
         DOWNLOAD_PROXY: ${BURMALDA_DOWNLOAD_PROXY:-}
-    command: ["-url", "http://jenkins:8080", "-name", "burmalda-linux", "-secret", "@/run/ci/agent-secret", "-webSocket", "-workDir", "/home/jenkins/agent"]
+    command: ["-url", "http://jenkins:8080", "-name", "burmalda-linux", "-secret", "@/ci-secrets/agent-secret", "-webSocket", "-workDir", "/home/jenkins/agent"]
     volumes:
       - agent-work:/home/jenkins/agent
       - nuget:/root/.nuget/packages
       - nuget-http:/root/.local/share/NuGet/http-cache
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ../../.artifacts/ci/secrets:/run/ci:ro
+      - /var/run/docker.sock:/ci-docker.sock
+      - ../../.artifacts/ci/secrets:/ci-secrets:ro
       - ../../.artifacts/ci/git-cache.git:/opt/ci/git-cache.git:ro
     mem_limit: 4g
     restart: unless-stopped
