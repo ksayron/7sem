@@ -19,6 +19,7 @@ public sealed class DemoEngine : BackgroundService
     private readonly IDataProtector protector;
     private readonly KubeControl kube;
     private readonly ILogger<DemoEngine> logger;
+    private readonly ReleaseTraffic releaseTraffic;
     private readonly SemaphoreSlim commands = new(1, 1);
     private readonly SemaphoreSlim anonymous = new(1, 1);
     private readonly ConcurrentDictionary<int, Task> actors = new();
@@ -44,9 +45,9 @@ public sealed class DemoEngine : BackgroundService
     private Task preparationTask = Task.CompletedTask;
 
     public DemoEngine(DemoStore store, DemoMetrics metrics, IHttpClientFactory clients, IConfiguration configuration,
-        IDataProtectionProvider protection, KubeControl kube, ILogger<DemoEngine> logger)
+        IDataProtectionProvider protection, KubeControl kube, ILogger<DemoEngine> logger, ReleaseTraffic releaseTraffic)
     {
-        this.store = store; this.metrics = metrics; this.configuration = configuration; this.kube = kube; this.logger = logger;
+        this.store = store; this.metrics = metrics; this.configuration = configuration; this.kube = kube; this.logger = logger; this.releaseTraffic = releaseTraffic;
         http = clients.CreateClient("traffic");
         protector = protection.CreateProtector("Burmalda.DemoControl.Fixtures.v1");
         metrics.Meter.CreateObservableGauge("burmalda_demo_clients", () => new[] {
@@ -321,7 +322,7 @@ public sealed class DemoEngine : BackgroundService
                 try
                 {
                     var session = tokens[index];
-                    if (run!.Options.Scenario == "mixed" && index % 10 == 1 && step % 12 == 3)
+                    if (run!.Options.Scenario is "mixed" or "release" && index % 10 == 1 && step % 12 == 3)
                         await LoanCycle(index, fixture, ct);
                     else
                     {
@@ -481,9 +482,15 @@ public sealed class DemoEngine : BackgroundService
         if (body is not null) request.Content = JsonContent.Create(body);
         var started = Stopwatch.GetTimestamp();
         string outcome;
+        string version = "";
         try
         {
             var response = await http.SendAsync(request, HttpCompletionOption.ResponseContentRead, ct);
+            if (response.Headers.TryGetValues("X-Burmalda-Catalog-Version", out var commits))
+            {
+                var edition = response.Headers.TryGetValues("X-Burmalda-Catalog-Edition", out var editions) ? editions.FirstOrDefault() : null;
+                version = ReleaseObserver.Short(commits.FirstOrDefault() ?? "") + (edition is null ? "" : " · редакция " + edition);
+            }
             outcome = response.IsSuccessStatusCode ? "success" : (int)response.StatusCode switch {
                 429 => "rate_limited", >= 500 => "server_error", 401 or 403 => "auth_error", _ => "client_error" };
             Record(); return response;
@@ -500,6 +507,7 @@ public sealed class DemoEngine : BackgroundService
             metrics.Duration.Record(seconds, new KeyValuePair<string, object?>("operation", operation));
             outcomes.AddOrUpdate(outcome, 1, (_, count) => count + 1);
             window.Enqueue((DateTimeOffset.UtcNow, seconds * 1000, outcome));
+            if (operation != "prepare") releaseTraffic.Record(DateTimeOffset.UtcNow, seconds * 1000, outcome, version);
             while (window.TryPeek(out var first) && first.At < DateTimeOffset.UtcNow.AddSeconds(-30)) window.TryDequeue(out _);
         }
     }

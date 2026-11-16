@@ -178,7 +178,9 @@ def package():
 
 def deploy():
     images, release = read('images.json'), read('release.json')
-    previous = {'changed': [], 'deployments': {}}
+    hpas = json.loads(kube('get', 'hpa', '-o', 'json', capture=True))['items']
+    autoscaled = {x['spec']['scaleTargetRef']['name'] for x in hpas if x['spec']['scaleTargetRef']['kind'] == 'Deployment'}
+    previous = {'changed': [], 'deployments': {}, 'autoscaled': sorted(autoscaled)}
     for service in SERVICES:
         obj = json.loads(kube('get', 'deployment/' + service, '-o', 'json', capture=True))
         previous['deployments'][service] = obj['spec']
@@ -187,9 +189,12 @@ def deploy():
         previous['changed'].append(service)
         (RUNTIME / 'previous.json').write_text(json.dumps(previous))
         # One atomic template update prevents separate annotation/image rollouts.
-        patch = {'spec': {'replicas': 1, 'template': {'metadata': {'annotations': {
+        patch = {'spec': {'template': {'metadata': {'annotations': {
             'burmalda.local/commit': release['commit'], 'burmalda.local/build': release['build']}},
-            'spec': {'containers': [{'name': service, 'image': images[service]['image']}]}}}}
+            'spec': {'terminationGracePeriodSeconds': 45, 'containers': [{'name': service, 'image': images[service]['image'],
+                'lifecycle': {'preStop': {'exec': {'command': ['/bin/sh', '-c', 'sleep 10']}}},
+                'env': [{'name': 'BUILD_COMMIT', 'valueFrom': {'fieldRef': {'fieldPath': "metadata.annotations['burmalda.local/commit']"}}},
+                        {'name': 'BUILD_NUMBER', 'valueFrom': {'fieldRef': {'fieldPath': "metadata.annotations['burmalda.local/build']"}}}]}]}}}}
         patch_file = RUNTIME / 'patch.json'
         patch_file.write_text(json.dumps(patch))
         kube('patch', 'deployment/' + service, '--type', 'strategic', '--patch-file', patch_file)
@@ -256,7 +261,10 @@ def rollback():
         for key in ['burmalda.local/commit', 'burmalda.local/build']:
             annotations.setdefault(key, None)
         patch = RUNTIME / 'rollback-patch.json'
-        patch.write_text(json.dumps({'spec': {'replicas': spec['replicas'], 'template': spec['template']}}))
+        restored = {'template': spec['template']}
+        if service not in previous.get('autoscaled', []):
+            restored['replicas'] = spec['replicas']
+        patch.write_text(json.dumps({'spec': restored}))
         try:
             kube('patch', 'deployment/' + service, '--type', 'merge', '--patch-file', patch)
             kube('rollout', 'status', 'deployment/' + service, '--timeout=300s', timeout=330)

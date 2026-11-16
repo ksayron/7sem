@@ -10,6 +10,9 @@ metadata:
   name: burmalda-ci
   namespace: burmalda
 rules:
+  - apiGroups: [autoscaling]
+    resources: [horizontalpodautoscalers]
+    verbs: [get, list]
   - apiGroups: [apps]
     resources: [deployments, deployments/scale, statefulsets, statefulsets/scale]
     verbs: [get, list, watch, patch, update]

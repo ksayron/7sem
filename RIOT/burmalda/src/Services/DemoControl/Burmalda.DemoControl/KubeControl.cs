@@ -58,7 +58,10 @@ public sealed class KubeControl : IDisposable
             var app = meta.GetProperty("labels").TryGetProperty("app", out var label) ? label.GetString()! : "unknown";
             return new PodView(meta.GetProperty("name").GetString()!, meta.GetProperty("uid").GetString()!, app,
                 status.GetProperty("phase").GetString()!, ready, restarts,
-                meta.TryGetProperty("deletionTimestamp", out var deleting) ? deleting.GetDateTimeOffset() : null);
+                meta.TryGetProperty("deletionTimestamp", out var deleting) ? deleting.GetDateTimeOffset() : null,
+                pod.GetProperty("spec").GetProperty("containers")[0].GetProperty("image").GetString() ?? "",
+                meta.TryGetProperty("annotations", out var annotations) && annotations.TryGetProperty("burmalda.local/commit", out var commit) ? commit.GetString() ?? "" : "",
+                meta.TryGetProperty("annotations", out annotations) && annotations.TryGetProperty("burmalda.local/build", out var build) ? build.GetString() ?? "" : "");
         }).OrderBy(x => x.App).ThenBy(x => x.Name).ToArray();
     }
     public async Task<HpaView[]> Hpas()

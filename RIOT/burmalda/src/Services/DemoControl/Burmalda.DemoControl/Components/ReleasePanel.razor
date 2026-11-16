@@ -1,0 +1,50 @@
+@using Burmalda.DemoControl
+<section class="release-panel" aria-label="Выпуск обновления под нагрузкой">
+    <div class="section-heading"><div><h2>Выпуск обновления</h2><p>Читатели продолжают работу, пока Kubernetes заменяет экземпляры.</p></div>
+        <button disabled="@(!CanPublish || Waiting || Stale)" @onclick="Publish">@(Waiting ? "Выпуск выполняется…" : "Выпустить обновление")</button></div>
+    @if (View.Error is not null) { <p class="error" role="status">@View.Error</p> }
+    @if (Stale) { <p class="muted">Ожидаем свежие данные Jenkins. Проверьте tools/LiveRelease.ps1 Status.</p> }
+    @if (View.Build is { } build)
+    {
+        <div class="release-source"><a href="http://localhost:8081/job/burmalda-lab10/" target="_blank">Jenkins #@build.Number ↗</a>
+            <code>@ReleaseObserver.Short(build.Commit)</code><strong>@(build.Building ? "Выполняется" : build.Result)</strong>
+            <span>Обновлено @View.CheckedAt?.ToLocalTime().ToString("HH:mm:ss")</span></div>
+        @if (Publishing) { <p role="status">Готовим новую редакцию каталога: коммит C#, Git push, очередь Jenkins.</p> }
+        <ol class="release-stages" aria-label="Этапы Jenkins">
+            @foreach (var name in Names)
+            {
+                var stage = build.Stages.FirstOrDefault(x => x.Name == name);
+                <li class="stage-@(stage?.Status.ToLowerInvariant() ?? "waiting")"><strong>@name</strong><span>@StageText(stage?.Status)</span></li>
+            }
+        </ol>
+    }
+    else { <p class="muted">После подключения появятся SHA коммита и реальные этапы Jenkins.</p> }
+    <div class="release-proof">
+        <div><h3>Запросы во время обновления</h3><p>Окно Deploy → завершение Verify и Pipeline. Все исходы учитываются без скрытого повтора.</p></div>
+        @if (View.Traffic.From is null || View.Traffic.Requests == 0)
+        { <p class="muted">Запустите клиентов, затем выпустите обновление. Измерения появятся на этапе Deploy.</p> }
+        else
+        {
+            <dl><div><dt>Запросов</dt><dd>@View.Traffic.Requests.ToString("N0")</dd></div>
+                <div class="@(View.Traffic.Errors > 0 ? "error" : "green")"><dt>Ошибок</dt><dd>@View.Traffic.Errors</dd></div>
+                <div><dt>p95</dt><dd>@View.Traffic.P95Ms.ToString("F0") <small>мс</small></dd></div></dl>
+            @if (!View.Traffic.Covered) { <p class="error">Наблюдение не охватывает начало Deploy; результат неполный.</p> }
+            <div class="served-versions"><h3>Какие версии ответили читателям</h3>
+                @foreach (var version in View.Traffic.Versions) { <p><code>@version.Key</code><span>@version.Value.ToString("N0") ответов Catalog</span></p> }
+                @if (View.Traffic.Versions.Count == 0) { <p class="muted">Предыдущая версия ещё не передаёт сведения о редакции.</p> }
+                @foreach (var outcome in View.Traffic.Outcomes.Where(x => x.Key != "success")) { <p class="error">@outcome.Key: @outcome.Value</p> }
+            </div>
+        }
+    </div>
+    <p class="footnote">Кнопка изменяет ReleaseEdition.cs в отдельной ветке demo/live-release. Jenkins собирает исходники из Git. Для первого выпуска подготовьте и запустите клиентов.</p>
+</section>
+@code {
+    [Parameter, EditorRequired] public ReleaseView View { get; set; } = null!;
+    [Parameter] public bool CanPublish { get; set; }
+    [Parameter] public EventCallback Publish { get; set; }
+    private static readonly string[] Names = ["Checkout", "Restore", "Build", "Test", "Load", "Package", "Deploy", "Verify"];
+    private bool Stale => View.CheckedAt is null || DateTimeOffset.UtcNow - View.CheckedAt > TimeSpan.FromSeconds(20);
+    private bool Publishing => View.Build?.Command is { } command && (command.Pending || command.Command == "queued" && command.Commit != View.Build.Commit);
+    private bool Waiting => View.Build?.Building == true || Publishing;
+    private static string StageText(string? status) => status switch { "SUCCESS" => "Готово", "IN_PROGRESS" => "Выполняется", "FAILED" => "Ошибка", "ABORTED" => "Прервано", "NOT_EXECUTED" => "Пропущен", _ => "Ожидает" };
+}

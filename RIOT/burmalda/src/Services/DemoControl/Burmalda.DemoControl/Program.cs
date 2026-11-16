@@ -47,6 +47,9 @@ builder.Services.AddHttpClient("traffic", client => { client.BaseAddress = new U
 builder.Services.AddHttpClient("login", client => { client.BaseAddress = new Uri(gateway); client.Timeout = TimeSpan.FromSeconds(15); });
 builder.Services.AddHttpClient("prometheus", client => { client.BaseAddress = new Uri(builder.Configuration["Demo:PrometheusUrl"] ?? "http://prometheus:9090"); client.Timeout = TimeSpan.FromSeconds(4); });
 builder.Services.AddSingleton<DemoMetrics>(); builder.Services.AddSingleton<DemoStore>(); builder.Services.AddSingleton<KubeControl>();
+builder.Services.AddSingleton<ReleaseTraffic>();
+builder.Services.AddHttpClient("release", client => { client.BaseAddress = new Uri(builder.Configuration["Release:BridgeUrl"] ?? "http://host.docker.internal:18090"); client.Timeout = TimeSpan.FromSeconds(8); });
+builder.Services.AddSingleton<ReleaseObserver>(); builder.Services.AddHostedService(sp => sp.GetRequiredService<ReleaseObserver>());
 builder.Services.AddSingleton<DemoEngine>(); builder.Services.AddHostedService(sp => sp.GetRequiredService<DemoEngine>());
 builder.Services.AddSingleton<ClusterObserver>(); builder.Services.AddHostedService(sp => sp.GetRequiredService<ClusterObserver>());
 builder.Services.AddOpenTelemetry().ConfigureResource(resource => resource.AddService("demo-control", serviceInstanceId: builder.Configuration["POD_UID"] ?? Environment.MachineName)
@@ -99,7 +102,9 @@ var api = app.MapGroup("/api/demo").RequireAuthorization("DemoAdmin");
 api.AddEndpointFilter<DemoApiAntiforgeryFilter>();
 api.MapGet("/presets", () => new[] { new { id = "wave", name = "Плавная волна" }, new { id = "spike", name = "Резкий всплеск" },
     new { id = "mixed", name = "Чтение и операции" }, new { id = "recovery", name = "Восстановление под нагрузкой" } });
-api.MapGet("/state", async (DemoEngine engine, ClusterObserver observer, DemoStore store) => new { engine = engine.Snapshot(), cluster = observer.Snapshot, events = await store.Events() });
+api.MapGet("/state", async (DemoEngine engine, ClusterObserver observer, DemoStore store, ReleaseObserver release) => new { engine = engine.Snapshot(), cluster = observer.Snapshot, release = release.Snapshot, events = await store.Events() });
+api.MapPost("/release", async (ReleaseObserver release) => { await release.Publish(); return Results.Accepted(); });
+api.MapGet("/releases/{number:int}", async (int number, DemoStore store) => await store.Read<ReleaseView>("release-result:" + number) is { } value ? Results.Ok(value) : Results.NotFound());
 api.MapGet("/settings", async (DemoStore store) => await store.Read<RunOptions>("settings") ?? new RunOptions());
 api.MapPost("/prepare", async (PrepareRequest request, DemoEngine engine) => { await engine.Prepare(request.Clients); return Results.Accepted(); });
 api.MapPost("/runs", async (RunOptions request, DemoEngine engine) => { await engine.Start(request); return Results.Accepted(); });

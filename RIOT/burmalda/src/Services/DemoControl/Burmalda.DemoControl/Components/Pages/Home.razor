@@ -7,14 +7,16 @@
 @inject DemoStore Store
 @inject KubeControl Kube
 @inject AuthenticationStateProvider Authentication
+@inject ReleaseObserver Release
+@inject IConfiguration Configuration
 
 <PageTitle>Пульт демонстрации · Burmalda</PageTitle>
 <header class="masthead">
-    <a class="brand" href="http://localhost:5300">Burmalda <span>Доброта</span></a>
-    <nav aria-label="Сервисы демонстрации"><a href="http://localhost:5300" target="_blank">Открыть библиотеку</a><a href="http://localhost:3000/d/burmalda-demo" target="_blank">Grafana ↗</a><form method="post" action="/logout"><AntiforgeryToken /><button class="text-button">Выйти</button></form></nav>
+    <a class="brand" href="@LibraryUrl">Burmalda <span>Доброта</span></a>
+    <nav aria-label="Сервисы демонстрации"><a href="@LibraryUrl" target="_blank">Открыть библиотеку</a><a href="http://localhost:3000/d/burmalda-demo" target="_blank">Grafana ↗</a><form method="post" action="/logout"><AntiforgeryToken /><button class="text-button">Выйти</button></form></nav>
 </header>
 <main>
-    <div class="title-line"><div><h1>Клиенты приходят.<br /><em>Система подстраивается.</em></h1><p>Реальный трафик, решения HPA и восстановление сервисов — на одной шкале времени.</p></div>
+    <div class="title-line"><div><h1>@(Release.Enabled ? "Читатели остаются." : "Клиенты приходят.")<br /><em>@(Release.Enabled ? "Версия меняется." : "Система подстраивается.")</em></h1><p>Реальный трафик, решения HPA и @(Release.Enabled ? "выпуск обновлений" : "восстановление сервисов") — на одной шкале времени.</p></div>
     <div class="run-state"><span class="status-dot @(Running ? "on" : "")"></span><strong>@state.Phase</strong><span>@RunTime</span><small>Docker Desktop · один узел</small></div></div>
     @if (message is not null) { <div class="notice @(failed ? "error" : "")" role="status">@message</div> }
     @if (cluster.Error is not null || Stale) { <div class="notice error" role="status">@(cluster.Error ?? "Данные устарели: ожидаем новое измерение.") <small>Pod: @Stamp(cluster.CheckedAt) · метрики: @Stamp(cluster.MetricsAt)</small></div> }
@@ -25,6 +27,7 @@
         <div class="@(state.ErrorPercent >= 1 ? "bad-metric" : "")"><span>Ошибки запросов</span><strong>@state.ErrorPercent.ToString("F1")<small>%</small></strong><small>цель &lt; 1% · окно 30 с</small></div>
         <div><span>Ready Pod · Catalog / Gateway</span><strong>@cluster.Pods.Count(x => x.App == "catalog" && x.Ready) <small>/</small> @cluster.Pods.Count(x => x.App == "gateway" && x.Ready)</strong><small>Цели HPA: @(cluster.Hpas.FirstOrDefault(x => x.Name == "catalog")?.Desired.ToString() ?? "?") / @(cluster.Hpas.FirstOrDefault(x => x.Name == "gateway")?.Desired.ToString() ?? "?")</small></div>
     </section>
+    @if (Release.Enabled) { <ReleasePanel View="Release.Snapshot" CanPublish="@(Running && state.Active > 0 && !busy)" Publish='() => Execute(Release.Publish, "Запрос выпуска принят. Нагрузка продолжает работать.")' /> }
     <div class="workspace">
     <div class="observation">
         <section class="chart-panel" aria-label="График нагрузки из Prometheus">
@@ -58,7 +61,7 @@
                 <div class="pod-list">
                     @foreach (var pod in pods)
                     {
-                        <article class="pod @(pod.Ready && pod.DeletingAt is null ? "ready" : "waiting")"><strong>@(pod.DeletingAt is not null ? "Завершается" : pod.Ready ? "Ready" : pod.Phase)</strong><span>@pod.Name</span><small>Перезапусков: @pod.Restarts</small><button class="text-button danger" disabled="@(busy || Stale || pods.Count(x => x.Ready && x.DeletingAt is null) < 2 || pod.DeletingAt is not null)" @onclick='() => Execute(() => Kube.DeletePod(pod.Name, pod.Uid), "Запрос удаления Pod отправлен. Наблюдайте появление замены.")'>Удалить этот Pod</button></article>
+                        <article class="pod @(pod.Ready && pod.DeletingAt is null ? "ready" : "waiting")"><strong>@(pod.DeletingAt is not null ? "Завершается" : pod.Ready ? "Ready" : pod.Phase)</strong><span>@pod.Name</span><small>Сборка @(pod.Build.Length == 0 ? "ЛР9" : "#" + pod.Build) · @ReleaseObserver.Short(pod.Commit)</small><small title="@pod.Image">@pod.Image.Split(':').Last()</small><small>Перезапусков: @pod.Restarts</small><button class="text-button danger" disabled="@(busy || Stale || pods.Count(x => x.Ready && x.DeletingAt is null) < 2 || pod.DeletingAt is not null)" @onclick='() => Execute(() => Kube.DeletePod(pod.Name, pod.Uid), "Запрос удаления Pod отправлен. Наблюдайте появление замены.")'>Удалить этот Pod</button></article>
                     }
                     @if (pods.Length == 0) { <p class="muted">Ожидание данных Kubernetes.</p> }
                 </div></div>
@@ -69,10 +72,10 @@
     </div>
     <aside class="controls" aria-label="Управление демонстрацией">
         <h2>Сценарий</h2>
-        <label for="scenario">Готовый сценарий</label><select id="scenario" @bind="scenario" @bind:after="PresetChanged" disabled="@(Running || busy)"><option value="wave">Плавная волна</option><option value="spike">Резкий всплеск</option><option value="mixed">Чтение и операции</option><option value="recovery">Восстановление под нагрузкой</option></select>
+        <label for="scenario">Готовый сценарий</label><select id="scenario" @bind="scenario" @bind:after="PresetChanged" disabled="@(Running || busy)"><option value="wave">Плавная волна</option><option value="spike">Резкий всплеск</option><option value="mixed">Чтение и операции</option><option value="recovery">Восстановление под нагрузкой</option>@if (Release.Enabled) { <option value="release">Обновление работающей библиотеки</option> }</select>
         <p class="scenario-description">@Description</p>
         <label for="peak">Пик клиентов <strong>@peak</strong></label><input id="peak" type="range" min="1" max="500" @bind="peak" disabled="@(Running || busy)" /><input aria-label="Точное число клиентов" type="number" min="1" max="500" @bind="peak" disabled="@(Running || busy)" />
-        <div class="paired"><div><label for="ramp">Рост, секунд</label><input id="ramp" type="number" min="5" max="300" @bind="ramp" disabled="@(Running || busy)" /></div><div><label for="hold">Удержание, с</label><input id="hold" type="number" min="30" max="600" @bind="hold" disabled="@(Running || busy)" /></div></div>
+        <div class="paired"><div><label for="ramp">Рост, секунд</label><input id="ramp" type="number" min="5" max="300" @bind="ramp" disabled="@(Running || busy)" /></div><div><label for="hold">Удержание, с</label><input id="hold" type="number" min="30" max="@(scenario == "release" ? 2400 : 600)" @bind="hold" disabled="@(Running || busy)" /></div></div>
         <div class="preparation"><span>Клиенты готовы: <strong>@state.Preparation.Ready / @state.Preparation.Requested</strong></span>@if (state.Preparation.Running) { <progress value="@state.Preparation.Ready" max="@Math.Max(1, state.Preparation.Requested)"></progress><small>Регистрация и вход через Gateway. Подготовка может занять несколько минут.</small> }@if (state.Preparation.Error is not null) { <p class="error">@state.Preparation.Error</p> }</div>
         <button class="secondary full" disabled="@(busy || Running || state.Preparation.Running)" @onclick='() => Execute(() => Engine.Prepare(peak), "Подготовка запущена. Можно оставить пульт открытым или вернуться позже.")'>Подготовить @peak клиентов</button>
         <button class="full" disabled="@(busy || Running || state.Preparation.Running || state.Preparation.Ready < peak)" @onclick='() => Execute(() => Engine.Start(new(scenario, peak, ramp, hold)), "Сценарий запущен. Масштабирование выполняет HPA.")'>Запустить сценарий</button>
@@ -97,17 +100,19 @@
     private readonly CancellationTokenSource disposed = new();
     private Task refreshTask = Task.CompletedTask;
     private bool Running => state.Run?.State is "running" or "draining";
+    private string LibraryUrl => Configuration["Demo:LibraryUrl"] ?? "http://localhost:5300";
     private bool Stale => cluster.CheckedAt is null || DateTimeOffset.UtcNow - cluster.CheckedAt > TimeSpan.FromSeconds(20);
     private string RunTime => state.Run is null ? "Готов к подготовке клиентов" : $"{Math.Max(0, (int)((state.Run.FinishedAt ?? DateTimeOffset.UtcNow) - state.Run.StartedAt).TotalSeconds)} с · {state.Run.State}";
-    private string Description => scenario switch { "recovery" => "Волна клиентов, удаление одного Pod при двух Ready, затем 30 секунд ошибок API и автоматическое снижение нагрузки.", "mixed" => "90% клиентов читают каталог, 10% проходят заявку, передачу и возврат реальной тестовой книги.", "spike" => "Быстрый приход клиентов. Наблюдайте задержки и время реакции HPA.", _ => "Плавный рост, удержание нагрузки и уход клиентов. Затем система сворачивает лишние Pod." };
+    private string Description => scenario switch { "release" => "Читатели ищут книги, берут и возвращают экземпляры. После выхода на нагрузку нажмите «Выпустить обновление»: трафик продолжится во время Jenkins Pipeline и rollout.", "recovery" => "Волна клиентов, удаление одного Pod при двух Ready, затем 30 секунд ошибок API и автоматическое снижение нагрузки.", "mixed" => "90% клиентов читают каталог, 10% проходят заявку, передачу и возврат реальной тестовой книги.", "spike" => "Быстрый приход клиентов. Наблюдайте задержки и время реакции HPA.", _ => "Плавный рост, удержание нагрузки и уход клиентов. Затем система сворачивает лишние Pod." };
     protected override async Task OnInitializedAsync()
     {
         state = Engine.Snapshot(); cluster = Observer.Snapshot;
         var settings = await Store.Read<RunOptions>("settings");
         if (settings is not null) { scenario = settings.Scenario; peak = settings.Peak; ramp = settings.RampSeconds; hold = settings.HoldSeconds; }
+        if (Release.Enabled) { scenario = "release"; peak = 60; ramp = 30; hold = 1200; }
         await Refresh(); refreshTask = RefreshLoop();
     }
-    private void PresetChanged() { ramp = scenario == "spike" ? 10 : 90; hold = scenario == "spike" ? 60 : 120; }
+    private void PresetChanged() { ramp = scenario == "spike" ? 10 : scenario == "release" ? 30 : 90; hold = scenario == "release" ? 1200 : scenario == "spike" ? 60 : 120; }
     private async Task Refresh() { state = Engine.Snapshot(); cluster = Observer.Snapshot; events = await Store.Events(); }
     private async Task RefreshLoop()
     {

@@ -70,6 +70,9 @@ GitHub → Release build → Unit/integration/load tests → Docker images → K
 rollout → domain acceptance. See the [separate LR10 guide](docs/lab-10-cicd.md)
 for Jenkins in Docker, automatic SCM polling, failure experiments and evidence.
 
+Live demo: [release updates while readers keep using the library](docs/live-release-demo.md),
+integrated with the LR9 control panel, HPA and real traffic measurements.
+
 ## Archived LR2–LR8 environment
 
 The old services, images and data remain available through an explicit configuration.

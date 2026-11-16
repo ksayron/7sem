@@ -5,9 +5,9 @@ public sealed record RunOptions(string Scenario = "wave", int Peak = 300, int Ra
     public int DurationSeconds => 30 + RampSeconds + HoldSeconds + 30 + 150;
     public void Validate()
     {
-        if (!new[] { "wave", "spike", "mixed", "recovery" }.Contains(Scenario) || Peak is < 1 or > 500 ||
-            RampSeconds is < 5 or > 300 || HoldSeconds is < 30 or > 600)
-            throw new DemoConflict("Проверьте сценарий, пик 1–500, рост 5–300 с и удержание 30–600 с.");
+        if (!new[] { "wave", "spike", "mixed", "recovery", "release" }.Contains(Scenario) || Peak is < 1 or > 500 ||
+            RampSeconds is < 5 or > 300 || HoldSeconds < 30 || HoldSeconds > (Scenario == "release" ? 2400 : 600))
+            throw new DemoConflict("Проверьте сценарий, пик 1–500, рост 5–300 с; удержание до 600 с, для выпуска — до 2400 с.");
     }
 }
 
@@ -43,7 +43,8 @@ public sealed record DemoRun(Guid Id, RunOptions Options, DateTimeOffset Started
 public sealed record Fixture(int Index, string Email, string DisplayName, string ProtectedTokens, Guid BookId, Guid CopyId);
 public sealed record SessionTokens(string AccessToken, string RefreshToken, DateTimeOffset ExpiresAt);
 public sealed record DemoEvent(long Id, DateTimeOffset At, string Kind, string Message);
-public sealed record PodView(string Name, string Uid, string App, string Phase, bool Ready, int Restarts, DateTimeOffset? DeletingAt);
+public sealed record PodView(string Name, string Uid, string App, string Phase, bool Ready, int Restarts, DateTimeOffset? DeletingAt,
+    string Image = "", string Commit = "", string Build = "");
 public sealed record HpaView(string Name, int Current, int Desired, int Min, int Max, double? CpuPercent, string Conditions);
 public sealed record ChartPoint(double Time, double Value);
 public sealed record ClusterSnapshot(DateTimeOffset? CheckedAt, string? Error, PodView[] Pods, HpaView[] Hpas,

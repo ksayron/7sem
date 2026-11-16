@@ -53,7 +53,7 @@ public class ControlSafetyTests
             ["Demo:ServiceAccountDirectory"] = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N")) }).Build();
         using var kube = new KubeControl(configuration, store);
         using var http = new HttpClient(new BlockUntilCancelledHandler()) { BaseAddress = new Uri("http://gateway") };
-        using var engine = new DemoEngine(store, metrics, new ClientFactory(http), configuration, protection, kube, NullLogger<DemoEngine>.Instance);
+        using var engine = new DemoEngine(store, metrics, new ClientFactory(http), configuration, protection, kube, NullLogger<DemoEngine>.Instance, new ReleaseTraffic());
         await engine.StartAsync(CancellationToken.None);
         try
         {
