@@ -178,8 +178,6 @@ def package():
 
 def deploy():
     images, release = read('images.json'), read('release.json')
-    # LAB10 experiment: exercise rollback after a partially applied release.
-    images['catalog']['image'] = 'burmalda-catalog:lab10-deliberately-missing-' + release['build']
     previous = {'changed': [], 'deployments': {}}
     for service in SERVICES:
         obj = json.loads(kube('get', 'deployment/' + service, '-o', 'json', capture=True))
@@ -195,7 +193,7 @@ def deploy():
         patch_file = RUNTIME / 'patch.json'
         patch_file.write_text(json.dumps(patch))
         kube('patch', 'deployment/' + service, '--type', 'strategic', '--patch-file', patch_file)
-        kube('rollout', 'status', 'deployment/' + service, '--timeout=45s', timeout=75)
+        kube('rollout', 'status', 'deployment/' + service, '--timeout=300s', timeout=330)
     snapshot('deployed.json')
 
 
