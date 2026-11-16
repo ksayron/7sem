@@ -1,0 +1,286 @@
+{
+  "build": 6,
+  "result": "SUCCESS",
+  "url": "http://127.0.0.1:8081/job/burmalda-lab10/6/",
+  "durationMs": 451366,
+  "causes": [
+    {
+      "_class": "hudson.model.Cause$UserIdCause",
+      "shortDescription": "Started by user admin",
+      "userId": "admin",
+      "userName": "admin"
+    }
+  ],
+  "stages": {
+    "Checkout": "SUCCESS",
+    "Restore": "SUCCESS",
+    "Build": "SUCCESS",
+    "Test": "SUCCESS",
+    "Load": "SUCCESS",
+    "Package": "SUCCESS",
+    "Deploy": "SUCCESS",
+    "Verify": "SUCCESS",
+    "Declarative: Post Actions": "SUCCESS"
+  },
+  "tests": {
+    "DemoControl": {
+      "name": "DemoControl",
+      "tests": "29",
+      "failures": "0",
+      "skipped": "0"
+    },
+    "Domain": {
+      "name": "Domain",
+      "tests": "60",
+      "failures": "0",
+      "skipped": "0"
+    },
+    "Integration": {
+      "name": "Integration",
+      "tests": "4",
+      "failures": "0",
+      "skipped": "0"
+    },
+    "LibraryGame": {
+      "name": "LibraryGame",
+      "tests": "29",
+      "failures": "0",
+      "skipped": "0"
+    },
+    "Load": {
+      "name": "Load",
+      "tests": "1",
+      "failures": "0",
+      "skipped": "0"
+    },
+    "Raft": {
+      "name": "Raft",
+      "tests": "56",
+      "failures": "0",
+      "skipped": "0"
+    }
+  },
+  "integration": {
+    "startedAtUtc": "2026-11-16T20:58:06.431Z",
+    "base": "http://127.0.0.1:15300",
+    "checks": [
+      "client-and-feature-configuration",
+      "configuration-auth-validation-not-found-and-forbidden",
+      "no-gateway-routes-to-learning-services",
+      "parallel-http-copy-creation-keeps-book-projection-consistent",
+      "book-copy-loan-handover-return-and-projection",
+      "competing-borrowers-one-copy-one-winner",
+      "notifications-and-reputation"
+    ],
+    "fixtures": {
+      "bookId": "ae984dfe-ff17-4bc6-8c7e-5f117b1f537c",
+      "copyId": "bb18756a-c413-4d18-b318-f84b59288621"
+    },
+    "runtime": {
+      "mode": "kubernetes",
+      "instance": "catalog-675b69d796-gxt4t"
+    },
+    "parallelCopies": {
+      "bookId": "385bbe24-2263-451f-95d4-45a6ac382ee6",
+      "count": 6,
+      "availableCopies": 6,
+      "minimumPrice": 1
+    },
+    "competingRequests": [
+      {
+        "sagaId": "4d101dce-9f99-453f-afe2-c3b8d33a69c4",
+        "state": 4,
+        "loanId": null
+      },
+      {
+        "sagaId": "f2bf1859-6fbf-44e0-a6ad-050bdd068cad",
+        "state": 2,
+        "loanId": "99ce0fe0-7e1e-433a-8a39-56951cdb0e3e"
+      }
+    ],
+    "success": true,
+    "finishedAtUtc": "2026-11-16T20:58:15.837Z"
+  },
+  "before": {
+    "catalog": [
+      {
+        "name": "catalog",
+        "image": "burmalda-catalog:lr9-20261112225121"
+      }
+    ],
+    "economy": [
+      {
+        "name": "economy",
+        "image": "burmalda-economy:lr9-20261112225121"
+      }
+    ],
+    "gateway": [
+      {
+        "name": "gateway",
+        "image": "burmalda-gateway:lr9-20261112225121"
+      }
+    ],
+    "identity": [
+      {
+        "name": "identity",
+        "image": "burmalda-identity:lr9-20261112225121"
+      }
+    ],
+    "lending": [
+      {
+        "name": "lending",
+        "image": "burmalda-lending:lr9-20261112225121"
+      }
+    ],
+    "notifications": [
+      {
+        "name": "notifications",
+        "image": "burmalda-notifications:lr9-20261112225121"
+      }
+    ],
+    "reputation": [
+      {
+        "name": "reputation",
+        "image": "burmalda-reputation:lr9-20261112225121"
+      }
+    ],
+    "web": [
+      {
+        "name": "web",
+        "image": "burmalda-web:lr9-20261112225121"
+      }
+    ]
+  },
+  "cleanup": {
+    "errors": []
+  },
+  "images": {
+    "identity": {
+      "image": "burmalda-identity:ci-6-cec70a130a05",
+      "id": "sha256:57ebac045210a8018a7d4e204bea2f341077155bcf2e6deb2d972796439f48cf",
+      "labels": {
+        "org.opencontainers.image.revision": "cec70a130a052b477c55a2044af06390eb2c59d5",
+        "org.opencontainers.image.version": "ci-6-cec70a130a05"
+      }
+    },
+    "catalog": {
+      "image": "burmalda-catalog:ci-6-cec70a130a05",
+      "id": "sha256:00a80b842c90b6c14b24461616ef582e77eed7e94393d9ac7ceb27fb48f348a6",
+      "labels": {
+        "org.opencontainers.image.revision": "cec70a130a052b477c55a2044af06390eb2c59d5",
+        "org.opencontainers.image.version": "ci-6-cec70a130a05"
+      }
+    },
+    "lending": {
+      "image": "burmalda-lending:ci-6-cec70a130a05",
+      "id": "sha256:3c08915866f8f525b830cda9069f8799097e971c0bedc7cbdf8fb81608d48d69",
+      "labels": {
+        "org.opencontainers.image.revision": "cec70a130a052b477c55a2044af06390eb2c59d5",
+        "org.opencontainers.image.version": "ci-6-cec70a130a05"
+      }
+    },
+    "economy": {
+      "image": "burmalda-economy:ci-6-cec70a130a05",
+      "id": "sha256:e2d56678c2a389ebfe346aa99ad867016763f698d0baa24991897ff3a124fbfa",
+      "labels": {
+        "org.opencontainers.image.revision": "cec70a130a052b477c55a2044af06390eb2c59d5",
+        "org.opencontainers.image.version": "ci-6-cec70a130a05"
+      }
+    },
+    "reputation": {
+      "image": "burmalda-reputation:ci-6-cec70a130a05",
+      "id": "sha256:dd3ff60fc7cbb154d15415a2162908f7c7758b305e8ce8797b6e9f37d07f5f7f",
+      "labels": {
+        "org.opencontainers.image.revision": "cec70a130a052b477c55a2044af06390eb2c59d5",
+        "org.opencontainers.image.version": "ci-6-cec70a130a05"
+      }
+    },
+    "notifications": {
+      "image": "burmalda-notifications:ci-6-cec70a130a05",
+      "id": "sha256:e37c502e9a205be0b0f0f7ff6fe6be0170a4357ec235ff343da1d91ed33127fe",
+      "labels": {
+        "org.opencontainers.image.revision": "cec70a130a052b477c55a2044af06390eb2c59d5",
+        "org.opencontainers.image.version": "ci-6-cec70a130a05"
+      }
+    },
+    "gateway": {
+      "image": "burmalda-gateway:ci-6-cec70a130a05",
+      "id": "sha256:b65634eeb8830d72d605a21444c4acb092c7f18ae9f0218e36d980108d4f1a52",
+      "labels": {
+        "org.opencontainers.image.revision": "cec70a130a052b477c55a2044af06390eb2c59d5",
+        "org.opencontainers.image.version": "ci-6-cec70a130a05"
+      }
+    },
+    "web": {
+      "image": "burmalda-web:ci-6-cec70a130a05",
+      "id": "sha256:10c00a29cf5703c074154fc768d846afeee41bc4b35128a4803c7e8b6a6d1f3b",
+      "labels": {
+        "maintainer": "NGINX Docker Maintainers <docker-maint@nginx.com>",
+        "org.opencontainers.image.revision": "cec70a130a052b477c55a2044af06390eb2c59d5",
+        "org.opencontainers.image.version": "ci-6-cec70a130a05"
+      }
+    }
+  },
+  "load": {
+    "workers": 8,
+    "iterations": 20,
+    "operations": 320,
+    "elapsedMs": 1689,
+    "success": true
+  },
+  "release": {
+    "commit": "cec70a130a052b477c55a2044af06390eb2c59d5",
+    "build": "6",
+    "tag": "ci-6-cec70a130a05"
+  },
+  "verified": {
+    "catalog": [
+      {
+        "name": "catalog",
+        "image": "burmalda-catalog:ci-6-cec70a130a05"
+      }
+    ],
+    "economy": [
+      {
+        "name": "economy",
+        "image": "burmalda-economy:ci-6-cec70a130a05"
+      }
+    ],
+    "gateway": [
+      {
+        "name": "gateway",
+        "image": "burmalda-gateway:ci-6-cec70a130a05"
+      }
+    ],
+    "identity": [
+      {
+        "name": "identity",
+        "image": "burmalda-identity:ci-6-cec70a130a05"
+      }
+    ],
+    "lending": [
+      {
+        "name": "lending",
+        "image": "burmalda-lending:ci-6-cec70a130a05"
+      }
+    ],
+    "notifications": [
+      {
+        "name": "notifications",
+        "image": "burmalda-notifications:ci-6-cec70a130a05"
+      }
+    ],
+    "reputation": [
+      {
+        "name": "reputation",
+        "image": "burmalda-reputation:ci-6-cec70a130a05"
+      }
+    ],
+    "web": [
+      {
+        "name": "web",
+        "image": "burmalda-web:ci-6-cec70a130a05"
+      }
+    ]
+  }
+}

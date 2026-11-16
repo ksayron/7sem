@@ -44,6 +44,8 @@ Jenkins привязан к loopback. Агент имеет Docker socket для
 Кэш разрешает только публичные Debian/Kubernetes downloads; TLS, подписи APT и
 контрольная сумма kubectl проверяются. `Build -DirectDownloads` отключает кэш.
 После сборки запущенный скриптом сервер завершается.
+Скрипт также передаёт агенту и контроллеру HTTP(S) proxy из настроек Docker
+Desktop, если он задан; внутренние адреса исключены через `NO_PROXY`.
 
 Jenkins получает `RIOT/burmalda/Jenkinsfile` через Pipeline from SCM. Poll SCM
 проверяет Git каждые две минуты и учитывает изменения `RIOT/burmalda`.
