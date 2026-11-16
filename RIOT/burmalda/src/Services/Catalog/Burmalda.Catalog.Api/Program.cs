@@ -18,6 +18,8 @@ var app = builder.Build(); app.UseBurmaldaDefaults(); app.MapCatalogEndpoints();
 app.MapGet("/api/catalog/runtime", (CatalogRuntime runtime) => runtime).RequireAuthorization();
 var runtime = app.Services.GetRequiredService<CatalogRuntime>();
 app.Logger.LogInformation("Catalog mode {Mode}; instance {Instance}", runtime.Mode, runtime.Instance);
-await app.EnsureDatabaseAsync<CatalogDbContext>(); await app.RunAsync();
+await app.EnsureDatabaseAsync<CatalogDbContext>();
+app.Logger.LogInformation("Catalog database initialized; ready to serve book exchange requests");
+await app.RunAsync();
 
 public partial class Program;

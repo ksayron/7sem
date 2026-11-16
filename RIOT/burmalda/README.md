@@ -64,6 +64,12 @@ All cluster commands target context `docker-desktop`, namespace `burmalda` expli
 The Secret is generated locally in ignored `.artifacts/k8s/secret.json`; its administrator
 password differs from Compose. See [LR9 commands, experiments and results](docs/lab-9-kubernetes.md).
 
+## Jenkins CI/CD — LR10
+
+GitHub → Release build → Unit/integration/load tests → Docker images → Kubernetes
+rollout → domain acceptance. See the [separate LR10 guide](docs/lab-10-cicd.md)
+for Jenkins in Docker, automatic SCM polling, failure experiments and evidence.
+
 ## Archived LR2–LR8 environment
 
 The old services, images and data remain available through an explicit configuration.

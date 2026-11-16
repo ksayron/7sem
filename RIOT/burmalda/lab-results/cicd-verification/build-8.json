@@ -1,0 +1,156 @@
+{
+  "build": 8,
+  "result": "FAILURE",
+  "url": "http://127.0.0.1:8081/job/burmalda-lab10/8/",
+  "durationMs": 257302,
+  "causes": [
+    {
+      "_class": "hudson.triggers.SCMTrigger$SCMTriggerCause",
+      "shortDescription": "Started by an SCM change"
+    }
+  ],
+  "stages": {
+    "Checkout": "SUCCESS",
+    "Restore": "SUCCESS",
+    "Build": "SUCCESS",
+    "Test": "FAILED",
+    "Load": "SKIPPED",
+    "Package": "SKIPPED",
+    "Deploy": "SKIPPED",
+    "Verify": "SKIPPED",
+    "Declarative: Post Actions": "UNSTABLE"
+  },
+  "tests": {
+    "Domain": {
+      "name": "Domain",
+      "tests": "60",
+      "failures": "1",
+      "skipped": "0"
+    }
+  },
+  "skippedStages": [
+    "Load",
+    "Package",
+    "Deploy",
+    "Verify"
+  ],
+  "before": {
+    "catalog": [
+      {
+        "name": "catalog",
+        "image": "burmalda-catalog:ci-7-0286cf354b7d"
+      }
+    ],
+    "economy": [
+      {
+        "name": "economy",
+        "image": "burmalda-economy:ci-7-0286cf354b7d"
+      }
+    ],
+    "gateway": [
+      {
+        "name": "gateway",
+        "image": "burmalda-gateway:ci-7-0286cf354b7d"
+      }
+    ],
+    "identity": [
+      {
+        "name": "identity",
+        "image": "burmalda-identity:ci-7-0286cf354b7d"
+      }
+    ],
+    "lending": [
+      {
+        "name": "lending",
+        "image": "burmalda-lending:ci-7-0286cf354b7d"
+      }
+    ],
+    "notifications": [
+      {
+        "name": "notifications",
+        "image": "burmalda-notifications:ci-7-0286cf354b7d"
+      }
+    ],
+    "reputation": [
+      {
+        "name": "reputation",
+        "image": "burmalda-reputation:ci-7-0286cf354b7d"
+      }
+    ],
+    "web": [
+      {
+        "name": "web",
+        "image": "burmalda-web:ci-7-0286cf354b7d"
+      }
+    ]
+  },
+  "cleanup": {
+    "errors": []
+  },
+  "release": {
+    "commit": "bc52177e89c12c5677ec26ef6b2c8450f3ef0325",
+    "build": "8",
+    "tag": "ci-8-bc52177e89c1"
+  },
+  "afterFailure": {
+    "catalog": [
+      {
+        "name": "catalog",
+        "image": "burmalda-catalog:ci-7-0286cf354b7d"
+      }
+    ],
+    "economy": [
+      {
+        "name": "economy",
+        "image": "burmalda-economy:ci-7-0286cf354b7d"
+      }
+    ],
+    "gateway": [
+      {
+        "name": "gateway",
+        "image": "burmalda-gateway:ci-7-0286cf354b7d"
+      }
+    ],
+    "identity": [
+      {
+        "name": "identity",
+        "image": "burmalda-identity:ci-7-0286cf354b7d"
+      }
+    ],
+    "lending": [
+      {
+        "name": "lending",
+        "image": "burmalda-lending:ci-7-0286cf354b7d"
+      }
+    ],
+    "notifications": [
+      {
+        "name": "notifications",
+        "image": "burmalda-notifications:ci-7-0286cf354b7d"
+      }
+    ],
+    "reputation": [
+      {
+        "name": "reputation",
+        "image": "burmalda-reputation:ci-7-0286cf354b7d"
+      }
+    ],
+    "web": [
+      {
+        "name": "web",
+        "image": "burmalda-web:ci-7-0286cf354b7d"
+      }
+    ]
+  },
+  "previousReleasePreserved": true,
+  "readyAfterFailure": {
+    "catalog": 1,
+    "economy": 1,
+    "gateway": 1,
+    "identity": 1,
+    "lending": 1,
+    "notifications": 1,
+    "reputation": 1,
+    "web": 1
+  }
+}

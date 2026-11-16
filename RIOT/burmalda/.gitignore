@@ -6,6 +6,7 @@
 **/bin/
 **/obj/
 .artifacts/
+**/__pycache__/
 src/Clients/Burmalda.Web/wwwroot/appsettings.Development.json
 **/.data/
 

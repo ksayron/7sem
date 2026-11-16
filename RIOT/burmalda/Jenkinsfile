@@ -1,0 +1,49 @@
+pipeline {
+    agent { label 'burmalda-linux' }
+    options {
+        skipDefaultCheckout(true)
+        disableConcurrentBuilds()
+        timeout(time: 90, unit: 'MINUTES')
+        buildDiscarder(logRotator(numToKeepStr: '15'))
+        timestamps()
+    }
+    triggers { pollSCM('H/2 * * * *') }
+    stages {
+        stage('Checkout') {
+            steps {
+                deleteDir()
+                checkout scm
+                dir('RIOT/burmalda') { sh 'python3 tools/ci/pipeline.py preflight' }
+            }
+        }
+        stage('Restore') { steps { dir('RIOT/burmalda') { sh 'python3 tools/ci/pipeline.py restore' } } }
+        stage('Build') { steps { dir('RIOT/burmalda') { sh 'python3 tools/ci/pipeline.py build' } } }
+        stage('Test') { steps { dir('RIOT/burmalda') { sh 'python3 tools/ci/pipeline.py test' } } }
+        stage('Load') { steps { dir('RIOT/burmalda') { sh 'python3 tools/ci/pipeline.py load' } } }
+        stage('Package') { steps { dir('RIOT/burmalda') { sh 'python3 tools/ci/pipeline.py package' } } }
+        stage('Deploy') { steps { dir('RIOT/burmalda') { sh 'python3 tools/ci/pipeline.py deploy' } } }
+        stage('Verify') { steps { dir('RIOT/burmalda') { sh 'python3 tools/ci/pipeline.py verify' } } }
+    }
+    post {
+        always {
+            dir('RIOT/burmalda') {
+                script {
+                    if (fileExists('tools/ci/pipeline.py')) {
+                        try {
+                            if (currentBuild.currentResult != 'SUCCESS') {
+                                sh 'python3 tools/ci/pipeline.py rollback'
+                            }
+                        } finally {
+                            try {
+                                sh 'python3 tools/ci/pipeline.py cleanup'
+                            } finally {
+                                junit testResults: '.artifacts/ci/results/*.junit.xml', allowEmptyResults: true
+                                archiveArtifacts artifacts: '.artifacts/ci/results/**', allowEmptyArchive: true
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

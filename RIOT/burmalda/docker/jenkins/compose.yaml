@@ -1,0 +1,50 @@
+name: burmalda-ci
+services:
+  jenkins:
+    image: burmalda-jenkins:lr10
+    build:
+      context: ../..
+      dockerfile: docker/jenkins/controller.Dockerfile
+      additional_contexts:
+        plugins: ../../.artifacts/ci/plugins-locked
+    environment:
+      JAVA_OPTS: -Djenkins.install.runSetupWizard=false -Xmx768m
+      BURMALDA_CI_BRANCH: ${BURMALDA_CI_BRANCH:-master}
+      HTTP_PROXY: ${BURMALDA_HTTP_PROXY:-}
+      HTTPS_PROXY: ${BURMALDA_HTTPS_PROXY:-}
+      NO_PROXY: localhost,127.0.0.1,jenkins,kubernetes.docker.internal,host.docker.internal,http.docker.internal,ci-postgres,ci-rabbit
+    ports:
+      - 127.0.0.1:8081:8080
+    volumes:
+      - jenkins-home:/var/jenkins_home
+      - ../../.artifacts/ci/secrets:/run/ci:ro
+      - ../../.artifacts/ci/git-cache.git:/opt/ci/git-cache.git:ro
+    mem_limit: 1536m
+    restart: unless-stopped
+  agent:
+    image: burmalda-ci-agent:lr10
+    container_name: burmalda-ci-agent
+    environment:
+      HTTP_PROXY: ${BURMALDA_HTTP_PROXY:-}
+      HTTPS_PROXY: ${BURMALDA_HTTPS_PROXY:-}
+      NO_PROXY: localhost,127.0.0.1,jenkins,kubernetes.docker.internal,host.docker.internal,http.docker.internal,ci-postgres,ci-rabbit
+    build:
+      context: ../..
+      dockerfile: docker/jenkins/agent.Dockerfile
+      args:
+        DOWNLOAD_PROXY: ${BURMALDA_DOWNLOAD_PROXY:-}
+    command: ["-url", "http://jenkins:8080", "-name", "burmalda-linux", "-secret", "@/ci-secrets/agent-secret", "-webSocket", "-workDir", "/home/jenkins/agent"]
+    volumes:
+      - agent-work:/home/jenkins/agent
+      - nuget:/root/.nuget/packages
+      - nuget-http:/root/.local/share/NuGet/http-cache
+      - /var/run/docker.sock:/ci-docker.sock
+      - ../../.artifacts/ci/secrets:/ci-secrets:ro
+      - ../../.artifacts/ci/git-cache.git:/opt/ci/git-cache.git:ro
+    mem_limit: 4g
+    restart: unless-stopped
+volumes:
+  jenkins-home:
+  agent-work:
+  nuget:
+  nuget-http:

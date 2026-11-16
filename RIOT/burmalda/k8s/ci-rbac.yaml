@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: burmalda-ci
+  namespace: burmalda
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: burmalda-ci
+  namespace: burmalda
+rules:
+  - apiGroups: [apps]
+    resources: [deployments, deployments/scale, statefulsets, statefulsets/scale]
+    verbs: [get, list, watch, patch, update]
+  - apiGroups: [apps]
+    resources: [replicasets]
+    verbs: [get, list, watch]
+  - apiGroups: ['']
+    resources: [pods, pods/log, services, endpoints, events]
+    verbs: [get, list, watch]
+  - apiGroups: ['']
+    resources: [pods/portforward]
+    verbs: [create]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: burmalda-ci
+  namespace: burmalda
+subjects:
+  - kind: ServiceAccount
+    name: burmalda-ci
+    namespace: burmalda
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: burmalda-ci
