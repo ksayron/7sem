@@ -27,6 +27,9 @@ function Api([string]$Path, [string]$Method='GET', $Body=$null) {
 }
 Push-Location $taskRoot
 try {
+    $taskDockerInfo = Native docker info --format '{{json .}}' | ConvertFrom-Json
+    $env:BURMALDA_HTTP_PROXY = $taskDockerInfo.HTTPProxy
+    $env:BURMALDA_HTTPS_PROXY = $taskDockerInfo.HTTPSProxy
     switch ($Action) {
         'Prepare' {
             New-Item -ItemType Directory -Force $taskSecrets | Out-Null

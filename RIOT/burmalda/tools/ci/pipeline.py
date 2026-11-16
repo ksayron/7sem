@@ -60,8 +60,8 @@ def preflight():
     for args in [['dotnet', '--version'], ['git', '--version'], ['docker', 'version'], ['node', '--version'], ['kubectl', 'version', '--client']]:
         run(args)
     kube('get', 'deployment/catalog', 'service/web')
-    for verb, resource in [('patch', 'deployments'), ('create', 'pods/portforward')]:
-        if kube('auth', 'can-i', verb, resource, capture=True) != 'yes':
+    for permission in [('patch', 'deployments'), ('create', 'pods', '--subresource=portforward')]:
+        if kube('auth', 'can-i', *permission, capture=True) != 'yes':
             raise RuntimeError('Missing Kubernetes permission')
     snapshot('before.json')
 

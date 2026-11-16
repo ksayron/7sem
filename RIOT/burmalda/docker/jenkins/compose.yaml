@@ -10,6 +10,9 @@ services:
     environment:
       JAVA_OPTS: -Djenkins.install.runSetupWizard=false -Xmx768m
       BURMALDA_CI_BRANCH: ${BURMALDA_CI_BRANCH:-master}
+      HTTP_PROXY: ${BURMALDA_HTTP_PROXY:-}
+      HTTPS_PROXY: ${BURMALDA_HTTPS_PROXY:-}
+      NO_PROXY: localhost,127.0.0.1,jenkins,kubernetes.docker.internal,host.docker.internal,http.docker.internal,ci-postgres,ci-rabbit
     ports:
       - 127.0.0.1:8081:8080
     volumes:
@@ -21,6 +24,10 @@ services:
   agent:
     image: burmalda-ci-agent:lr10
     container_name: burmalda-ci-agent
+    environment:
+      HTTP_PROXY: ${BURMALDA_HTTP_PROXY:-}
+      HTTPS_PROXY: ${BURMALDA_HTTPS_PROXY:-}
+      NO_PROXY: localhost,127.0.0.1,jenkins,kubernetes.docker.internal,host.docker.internal,http.docker.internal,ci-postgres,ci-rabbit
     build:
       context: ../..
       dockerfile: docker/jenkins/agent.Dockerfile
