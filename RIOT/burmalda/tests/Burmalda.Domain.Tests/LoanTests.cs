@@ -14,7 +14,7 @@ public sealed class LoanTests
         var loan = CreateLoan();
         var code = loan.Accept(_owner, now);
         loan.ConfirmHandover(_borrower, code, now.AddMinutes(5));
-        Assert.Equal(LoanStatus.Active, loan.Status);
+        Assert.Equal(LoanStatus.Requested, loan.Status); // LAB10 experiment: intentionally incorrect expectation.
         Assert.Equal(now.AddMinutes(5).AddDays(14), loan.DueAt);
     }
 
