@@ -28,7 +28,7 @@ node.setMode(Node.Mode.EXCLUSIVE)
 node.save()
 def job = j.getItem('burmalda-lab10') ?: j.createProject(WorkflowJob, 'burmalda-lab10')
 def scm = new GitSCM('https://github.com/ksayron/7sem.git')
-scm.branches = [new BranchSpec('*/' + (System.getenv('BURMALDA_CI_BRANCH') ?: 'lab10/cicd'))]
+scm.branches = [new BranchSpec('*/' + (System.getenv('BURMALDA_CI_BRANCH') ?: 'master'))]
 scm.extensions.add(new PathRestriction('RIOT/burmalda/.*', ''))
 scm.extensions.add(new CloneOption(true, true, '/opt/ci/git-cache.git', 20))
 scm.extensions.add(new SparseCheckoutPaths([new SparseCheckoutPath('RIOT/burmalda')]))

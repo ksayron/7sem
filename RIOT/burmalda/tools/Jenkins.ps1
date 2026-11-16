@@ -2,7 +2,7 @@
 [CmdletBinding()]
 param(
     [Parameter(Mandatory)][ValidateSet('Prepare','Build','Start','Status','Run','Stop')][string]$Action,
-    [ValidatePattern('^[a-zA-Z0-9/_.-]+$')][string]$Branch = 'lab10/cicd',
+    [ValidatePattern('^[a-zA-Z0-9/_.-]+$')][string]$Branch = 'master',
     [switch]$DirectDownloads
 )
 $ErrorActionPreference = 'Stop'
@@ -70,7 +70,11 @@ try {
             try {
                 if (!$DirectDownloads) {
                     $taskProxyReady = $false
-                    try { $taskProxyReady = (Invoke-WebRequest 'http://127.0.0.1:18089/health' -TimeoutSec 2).Content -eq 'burmalda-ci-download-cache' } catch { }
+                    try {
+                        $taskHealth = (Invoke-WebRequest 'http://127.0.0.1:18089/health' -TimeoutSec 2).Content
+                        if ($taskHealth -is [byte[]]) { $taskHealth=[Text.Encoding]::UTF8.GetString($taskHealth) }
+                        $taskProxyReady = $taskHealth -eq 'burmalda-ci-download-cache'
+                    } catch { }
                     if (!$taskProxyReady) {
                         $taskProxyProcess = Start-Process (Get-Command python).Source -ArgumentList @('-u',(Join-Path $PSScriptRoot 'ci/download-proxy.py')) -WindowStyle Hidden -PassThru -RedirectStandardOutput (Join-Path $taskRoot '.artifacts/ci/download-cache.log') -RedirectStandardError (Join-Path $taskRoot '.artifacts/ci/download-cache.err')
                         Start-Sleep -Seconds 2

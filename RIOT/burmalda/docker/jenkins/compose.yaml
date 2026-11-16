@@ -9,7 +9,7 @@ services:
         plugins: ../../.artifacts/ci/plugins-locked
     environment:
       JAVA_OPTS: -Djenkins.install.runSetupWizard=false -Xmx768m
-      BURMALDA_CI_BRANCH: ${BURMALDA_CI_BRANCH:-lab10/cicd}
+      BURMALDA_CI_BRANCH: ${BURMALDA_CI_BRANCH:-master}
     ports:
       - 127.0.0.1:8081:8080
     volumes:
@@ -30,6 +30,7 @@ services:
     volumes:
       - agent-work:/home/jenkins/agent
       - nuget:/root/.nuget/packages
+      - nuget-http:/root/.local/share/NuGet/http-cache
       - /var/run/docker.sock:/var/run/docker.sock
       - ../../.artifacts/ci/secrets:/run/ci:ro
       - ../../.artifacts/ci/git-cache.git:/opt/ci/git-cache.git:ro
@@ -39,3 +40,4 @@ volumes:
   jenkins-home:
   agent-work:
   nuget:
+  nuget-http:
