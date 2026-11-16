@@ -1,3 +1,4 @@
+#error LAB10 experiment: intentionally prevent compilation
 namespace Burmalda.Catalog.Api;
 
 public sealed record CatalogRuntime(string Mode, string Instance)
